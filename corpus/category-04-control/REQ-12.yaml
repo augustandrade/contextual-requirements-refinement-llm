@@ -1,0 +1,84 @@
+id: REQ-13
+category_id: category-04-control
+category_name: Control group
+title: Controlled functional requirement pattern
+source:
+  citation: Veizaga et al. (2024)
+base_requirement_text: "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+expected_problem: No significant structural problem expected.
+expected_behavior: Preserve requirement structure with minimal formal adjustments only.
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: Financial file upload workflow.
+      glossary:
+        - term: Instruction
+          definition: Input message received by the workflow.
+        - term: Keyword
+          definition: Cataloged trigger word.
+      business_rules: []
+      constraints: []
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: Financial file upload workflow.
+      glossary:
+        - term: System-A
+          definition: Target upload service endpoint.
+      business_rules:
+        - id: BR-01
+          rule: Upload action is triggered only when the instruction contains a cataloged keyword.
+      constraints: []
+tags: [control, preserve-structure]
+status: ready
+manual_reference:
+  C0:
+    expected_resolubility: "not_applicable"
+    expected_actions:
+      - preserve_requirement
+      - structure_with_template
+      - avoid_unsupported_inference
+    expected_findings:
+      - no relevant issue expected
+    should_not_do:
+      - invent ambiguity where none is expected
+      - degrade a well-structured requirement
+    applicable_criteria:
+      - syntactic_structuring
+      - clarity
+
+  C1:
+    expected_resolubility: "not_applicable"
+    expected_actions:
+      - preserve_requirement
+      - structure_with_template
+      - avoid_unsupported_inference
+    expected_findings:
+      - no relevant issue expected
+    should_not_do:
+      - invent ambiguity where none is expected
+      - degrade a well-structured requirement
+    applicable_criteria:
+      - syntactic_structuring
+      - clarity
+
+  C2:
+    expected_resolubility: "not_applicable"
+    expected_actions:
+      - preserve_requirement
+      - structure_with_template
+      - avoid_unsupported_inference
+    expected_findings:
+      - no relevant issue expected
+    should_not_do:
+      - invent ambiguity where none is expected
+      - degrade a well-structured requirement
+    applicable_criteria:
+      - syntactic_structuring
+      - clarity

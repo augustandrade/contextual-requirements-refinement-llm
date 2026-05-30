@@ -1,0 +1,102 @@
+id: REQ-01
+category_id: category-01-structural
+category_name: Formulation and final structuring problems
+title: Function and quality mixed in one sentence
+source:
+  citation: Pohl (2025)
+base_requirement_text: "If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service within 2 seconds at the latest."
+expected_problem: Functional behavior and timing quality are mixed in one requirement sentence.
+expected_behavior: Split into at least one functional requirement and one quality requirement.
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: Building security and alarm monitoring system for offices.
+      glossary:
+        - term: glass break detector
+          definition: Sensor that detects vibration or sound patterns from broken glass.
+      business_rules: []
+      constraints: []
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: Building security and alarm monitoring system for offices.
+      glossary:
+        - term: security service
+          definition: External emergency response service connected to the building controller.
+      business_rules:
+        - id: BR-01
+          rule: Damage detection and alarm notification are modeled as a functional requirement.
+      constraints:
+        - id: QLT-01
+          text: Alarm notification must be sent within 2 seconds after damage detection.
+tags: [structural, concern-separation, function-quality]
+status: ready
+manual_reference:
+  C0:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - decompose_requirement
+      - separate_concerns
+      - preserve_requirement
+    expected_findings:
+      - functional and quality concerns are mixed in one statement
+      - non-atomic requirement
+    should_not_do:
+      - merge functional and quality requirements
+      - degrade a well-structured requirement
+    applicable_criteria:
+      - atomicity
+      - concern_separation
+      - syntactic_structuring
+      - semantic_explicitation
+      - clarity
+
+  C1:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - decompose_requirement
+      - separate_concerns
+      - structure_with_template
+    expected_findings:
+      - functional and quality concerns are mixed in one statement
+      - non-atomic requirement
+    should_not_do:
+      - merge functional and quality requirements
+      - infer additional behavior not supported by the text
+    applicable_criteria:
+      - atomicity
+      - concern_separation
+      - syntactic_structuring
+      - semantic_explicitation
+      - clarity
+
+  C2:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - decompose_requirement
+      - separate_concerns
+      - refine_text
+    expected_findings:
+      - functional and quality concerns are mixed in one statement
+      - non-atomic requirement
+    should_not_do:
+      - merge functional and quality requirements
+      - ignore the explicit timing constraint
+    applicable_criteria:
+      - atomicity
+      - concern_separation
+      - syntactic_structuring
+      - semantic_explicitation
+      - clarity

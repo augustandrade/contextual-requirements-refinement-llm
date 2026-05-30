@@ -1,0 +1,89 @@
+id: REQ-07
+category_id: category-02-linguistic
+category_name: Linguistic and syntactic ambiguities
+title: Weak modality with should preferably
+source:
+  citation: Unterbusch; Vogelsang (2026)
+base_requirement_text: "When leaving the Factory mode, the ECU should preferably perform a reset."
+expected_problem: should preferably creates weak and non-verifiable obligation.
+expected_behavior: Flag weak modality and refine into explicit mandatory or optional behavior when context resolves policy.
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: Automotive embedded system with Factory mode transitions.
+      glossary:
+        - term: ECU
+          definition: Engine Control Unit.
+      business_rules: []
+      constraints: []
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: Automotive embedded system with Factory mode transitions.
+      glossary: []
+      business_rules:
+        - id: BR-01
+          rule: ECU reset is mandatory when leaving Factory mode for critical control modules.
+      constraints: []
+tags: [linguistic, weak-modality, non-verifiable]
+status: ready
+manual_reference:
+  C0:
+    expected_resolubility: "unresolved"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - refine_text
+      - avoid_unsupported_inference
+    expected_findings:
+      - weak modality
+      - non-verifiable obligation
+    should_not_do:
+      - infer a mandatory rule without policy evidence
+      - infer an optional rule without policy evidence
+    applicable_criteria:
+      - clarity
+      - semantic_explicitation
+      - contextual_resolubility
+
+  C1:
+    expected_resolubility: "unresolved"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - refine_text
+      - preserve_requirement
+    expected_findings:
+      - weak modality
+      - non-verifiable obligation
+    should_not_do:
+      - infer a mandatory rule without policy evidence
+      - infer an optional rule without policy evidence
+    applicable_criteria:
+      - clarity
+      - semantic_explicitation
+      - contextual_resolubility
+
+  C2:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - refine_text
+      - preserve_requirement
+    expected_findings:
+      - weak modality
+      - non-verifiable obligation
+    should_not_do:
+      - keep the weak modality unchanged
+      - ignore the explicit policy about reset behavior
+    applicable_criteria:
+      - clarity
+      - semantic_explicitation
+      - contextual_resolubility

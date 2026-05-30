@@ -1,0 +1,106 @@
+id: REQ-03
+category_id: category-01-structuring
+category_name: Formulation and final structuring problems
+title: Multiple actions requiring final requirement structuring
+source:
+  citation: Veizaga et al. (2024)
+
+base_requirement_text: "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow."
+
+expected_problem: The requirement combines two distinct actions in a single sentence, requiring final structuring to preserve both actions clearly.
+
+expected_behavior: Produce a structured final output that preserves both actions and, when appropriate, represents them as independent structured requirements without treating decomposition as an independent objective.
+
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: Integration platform that orchestrates downstream services and reporting subscriptions.
+      glossary:
+        - term: downstream systems
+          definition: External systems that receive events from System-A.
+      business_rules: []
+      constraints: []
+
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: Integration platform that orchestrates downstream services and reporting subscriptions.
+      glossary:
+        - term: Reporting flow
+          definition: Event stream used by subscribers for operational reporting.
+      business_rules:
+        - id: BR-01
+          rule: Partner registration and reporting subscription are independent operations and must be specified clearly in the final requirement structure.
+      constraints: []
+
+tags: [textual-formulation, final-structuring, multiple-actions]
+status: ready
+
+manual_reference:
+  C0:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_textual_formulation_problem
+      - structure_final_requirement
+      - preserve_requirement_meaning
+      - avoid_unsupported_inference
+    expected_findings:
+      - the sentence contains two distinct actions
+      - both actions must be preserved in the final structured output
+    should_not_do:
+      - merge multiple actions into an unclear final requirement
+      - drop one of the actions during structuring
+      - infer new actions not present in the text
+    applicable_criteria:
+      - final_requirement_structuring
+      - clarity
+      - semantic_explicitation
+
+  C1:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_textual_formulation_problem
+      - structure_final_requirement
+      - preserve_requirement_meaning
+      - avoid_unsupported_inference
+    expected_findings:
+      - the sentence contains two distinct actions
+      - general context clarifies the integration domain but does not add new actions
+      - both actions must remain explicit in the final structured output
+    should_not_do:
+      - merge multiple actions into an unclear final requirement
+      - infer new actions from the integration context
+      - alter the relationship between System-A, System-B and System-C without evidence
+    applicable_criteria:
+      - final_requirement_structuring
+      - clarity
+      - semantic_explicitation
+
+  C2:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_textual_formulation_problem
+      - structure_final_requirement
+      - preserve_requirement_meaning
+      - use_contextual_evidence
+      - avoid_unsupported_inference
+    expected_findings:
+      - the sentence contains two independent operations
+      - the resolutive context supports representing partner registration and reporting subscription clearly in the final structure
+      - both actions must remain explicit and independent in the structured output
+    should_not_do:
+      - merge the two independent operations into one unclear requirement
+      - alter the independent scope of either action
+      - add technical constraints not present in the requirement or context
+    applicable_criteria:
+      - final_requirement_structuring
+      - clarity
+      - semantic_explicitation
+      - contextual_resolubility

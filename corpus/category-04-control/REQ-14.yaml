@@ -1,0 +1,80 @@
+id: REQ-15
+category_id: category-04-control
+category_name: Control group
+title: Already separated quality requirement
+source:
+  citation: Pohl (2025)
+base_requirement_text: "R-Q-2: The system shall inform the security service within 2 s after detecting damage."
+expected_problem: Quality requirement is already isolated from the related functional requirement.
+expected_behavior: Preserve quality requirement semantics and timing attribute.
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: Building alarm control system with notification SLA.
+      glossary:
+        - term: within 2 s
+          definition: Maximum accepted elapsed time from detection to notification.
+      business_rules: []
+      constraints: []
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: Building alarm control system with notification SLA.
+      glossary: []
+      business_rules: []
+      constraints:
+        - id: QLT-01
+          text: Notification deadline is 2 seconds after pane damage detection.
+tags: [control, quality, preserve-structure]
+status: ready
+manual_reference:
+  C0:
+    expected_resolubility: "not_applicable"
+    expected_actions:
+      - preserve_requirement
+      - avoid_unsupported_inference
+    expected_findings:
+      - no relevant issue expected
+    should_not_do:
+      - remove the timing attribute
+      - degrade a well-structured requirement
+    applicable_criteria:
+      - syntactic_structuring
+      - clarity
+      - semantic_explicitation
+
+  C1:
+    expected_resolubility: "not_applicable"
+    expected_actions:
+      - preserve_requirement
+      - avoid_unsupported_inference
+    expected_findings:
+      - no relevant issue expected
+    should_not_do:
+      - remove the timing attribute
+      - degrade a well-structured requirement
+    applicable_criteria:
+      - syntactic_structuring
+      - clarity
+      - semantic_explicitation
+
+  C2:
+    expected_resolubility: "not_applicable"
+    expected_actions:
+      - preserve_requirement
+      - avoid_unsupported_inference
+    expected_findings:
+      - no relevant issue expected
+    should_not_do:
+      - remove the timing attribute
+      - infer extra constraints beyond the stated deadline
+    applicable_criteria:
+      - syntactic_structuring
+      - clarity
+      - semantic_explicitation

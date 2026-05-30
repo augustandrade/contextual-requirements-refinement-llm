@@ -1,0 +1,534 @@
+Abaixo está um guia completo para você consolidar o conceito de **ambiguidade bloqueante** no TCC, de forma metodologicamente defensável e alinhada ao seu novo escopo.
+
+---
+
+# Guia metodológico: ambiguidades bloqueantes
+
+## 1. Papel do conceito no trabalho
+
+No contexto deste TCC, **ambiguidade bloqueante** será um conceito operacional criado para o funcionamento do pipeline de refinamento textual.
+
+Ela não precisa ser apresentada como uma categoria clássica consolidada da Engenharia de Requisitos. O mais correto é tratá-la como:
+
+> uma classificação operacional adotada neste trabalho para indicar ambiguidades que não podem ser resolvidas automaticamente pelo sistema sem risco de inferência indevida.
+
+Isso evita uma crítica importante da banca: “onde esse termo aparece na literatura?”. A resposta será: o termo é operacional, mas fundamentado em conceitos já discutidos na literatura, como ambiguidade dependente de contexto, conhecimento implícito, interpretação divergente e necessidade de validação humana.
+
+---
+
+# 2. Definição proposta
+
+Você pode adotar esta definição:
+
+> Neste trabalho, define-se como **ambiguidade bloqueante** a ambiguidade em que um requisito textual permite múltiplas interpretações plausíveis e o contexto controlado fornecido não contém evidências suficientes para selecionar uma interpretação sem introduzir informações não sustentadas pelo requisito original ou pelo próprio contexto.
+
+Essa definição tem quatro elementos importantes:
+
+1. existe ambiguidade;
+2. há mais de uma interpretação plausível;
+3. o contexto controlado não resolve a dúvida;
+4. a reescrita automática exigiria inferência indevida.
+
+---
+
+# 3. Diferença entre ambiguidade resolúvel e bloqueante
+
+## Ambiguidade resolúvel
+
+É aquela em que o sistema consegue resolver a dúvida com base em evidências disponíveis.
+
+Exemplo:
+
+**Requisito original:**
+O sistema deve bloquear o cadastro quando o documento estiver inválido.
+
+**Contexto controlado:**
+Documento inválido significa CPF ou CNPJ que não passa na validação oficial de dígitos verificadores.
+
+**Interpretações possíveis:**
+
+1. documento inválido por formato incorreto;
+2. documento inválido por falha nos dígitos verificadores;
+3. documento inválido por estar vencido.
+
+**Decisão:**
+Resolúvel, porque o contexto define explicitamente o que “documento inválido” significa.
+
+**Saída esperada:**
+O sistema pode reestruturar o requisito usando a interpretação definida no contexto.
+
+---
+
+## Ambiguidade bloqueante
+
+É aquela em que o sistema identifica múltiplas interpretações, mas não há informação suficiente no requisito nem no contexto para decidir.
+
+Exemplo:
+
+**Requisito original:**
+O sistema deve enviar uma notificação rápida ao usuário após a aprovação.
+
+**Contexto controlado:**
+O sistema gerencia solicitações internas de cadastro.
+
+**Interpretações possíveis:**
+
+1. “rápida” significa em até 5 segundos;
+2. “rápida” significa em até 1 minuto;
+3. “rápida” significa antes do próximo acesso do usuário;
+4. “aprovação” pode ser aprovação automática ou aprovação manual.
+
+**Decisão:**
+Bloqueante, porque o contexto não define o limite temporal de “rápida” nem o tipo de aprovação.
+
+**Saída esperada:**
+O sistema não deve inventar “em até 5 segundos”. Deve sinalizar a ambiguidade e sugerir pergunta ao analista.
+
+---
+
+# 4. Critério de suficiência do contexto
+
+Este é o ponto central para o Agente 2.
+
+Você pode definir assim:
+
+> Considerou-se que o contexto controlado forneceu evidência suficiente quando continha informação explícita capaz de eliminar interpretações alternativas sem exigir adição de conhecimento externo ou suposição não documentada.
+
+Ou seja, o contexto é suficiente quando:
+
+* define o termo ambíguo;
+* elimina uma interpretação concorrente;
+* fornece uma restrição clara;
+* esclarece uma entidade referenciada;
+* especifica uma condição temporal, lógica ou operacional;
+* permite justificar a escolha sem inventar informação.
+
+O contexto é insuficiente quando:
+
+* apenas repete o requisito;
+* traz informações genéricas;
+* não define o termo ambíguo;
+* deixa duas ou mais interpretações igualmente plausíveis;
+* exige conhecimento de stakeholder não documentado;
+* exige valor, regra ou critério que não foi fornecido.
+
+---
+
+# 5. Critério de inferência indevida
+
+Você também precisa definir o que o sistema **não pode fazer**.
+
+Sugestão:
+
+> Considerou-se inferência indevida qualquer informação adicionada ao requisito refinado que não estivesse sustentada pelo requisito original nem pelo contexto controlado fornecido.
+
+Exemplos de inferência indevida:
+
+* adicionar prazo não informado;
+* escolher uma regra de negócio não descrita;
+* definir um ator não mencionado;
+* assumir tecnologia específica sem restrição técnica;
+* transformar um termo vago em um valor mensurável sem base contextual;
+* escolher uma interpretação apenas por parecer “mais comum”.
+
+Exemplo:
+
+**Entrada:**
+O sistema deve responder rapidamente à solicitação.
+
+**Contexto:**
+Sistema de atendimento interno.
+
+**Reescrita inadequada:**
+O sistema deve responder à solicitação em até 2 segundos.
+
+Problema: “2 segundos” não foi informado nem pelo requisito nem pelo contexto.
+
+---
+
+# 6. Etapa específica no pipeline
+
+A ambiguidade bloqueante deve aparecer como uma etapa decisória dentro do pipeline.
+
+Sugestão de nome formal:
+
+> Validação de resolubilidade contextual
+
+Fluxo recomendado:
+
+```text
+Requisito original + contexto controlado
+↓
+Agente 1 — Detector de ambiguidades
+↓
+Lista de ambiguidades + interpretações possíveis
+↓
+Agente 2 — Validador de resolubilidade contextual
+↓
+Decisão:
+  a) resolúvel → segue para refinamento
+  b) bloqueante → sinaliza e não força reescrita
+```
+
+Essa etapa fortalece a metodologia, porque o sistema não apenas “detecta ambiguidade”; ele avalia se a ambiguidade pode ser resolvida com segurança.
+
+---
+
+# 7. Agente 1 — Detector de ambiguidades
+
+## Função
+
+Identificar trechos ambíguos e levantar interpretações possíveis.
+
+## Entrada
+
+* requisito original;
+* contexto controlado.
+
+## Saída esperada
+
+```text
+Trecho ambíguo:
+Tipo de ambiguidade:
+Interpretação possível 1:
+Interpretação possível 2:
+Interpretação possível 3, se houver:
+Justificativa:
+```
+
+## Tipos de ambiguidade que ele pode classificar
+
+Você pode usar uma taxonomia simples:
+
+* lexical: uma palavra pode ter mais de um significado;
+* sintática: a estrutura da frase permite leituras diferentes;
+* semântica: o sentido do requisito é impreciso ou incompleto;
+* referencial: pronomes, termos ou entidades não apontam claramente para um referente;
+* pragmática/contextual: a interpretação depende de conhecimento de domínio ou uso não explicitado.
+
+---
+
+# 8. Agente 2 — Validador de resolubilidade contextual
+
+## Função
+
+Avaliar se as interpretações possíveis identificadas pelo Agente 1 podem ser resolvidas com base no requisito e no contexto controlado.
+
+## Entrada
+
+* requisito original;
+* contexto controlado;
+* trecho ambíguo;
+* tipo de ambiguidade;
+* interpretações possíveis.
+
+## Saída esperada
+
+```text
+Ambiguidade bloqueante: Sim/Não
+Interpretação adotada, se resolúvel:
+Evidência no requisito original:
+Evidência no contexto controlado:
+Informação ausente, se bloqueante:
+Ação recomendada:
+Justificativa:
+Pergunta sugerida ao analista, se aplicável:
+```
+
+## Decisão
+
+O Agente 2 deve seguir esta regra:
+
+```text
+Se houver evidência suficiente no requisito ou no contexto:
+    classificar como resolúvel
+    indicar interpretação adotada
+    permitir refinamento textual
+Senão:
+    classificar como bloqueante
+    não permitir reescrita automática daquele trecho
+    registrar justificativa e pergunta de esclarecimento
+```
+
+---
+
+# 9. Formato de saída para ambiguidade resolúvel
+
+Quando a ambiguidade for resolúvel, o sistema pode seguir para refinamento.
+
+Exemplo de saída:
+
+```text
+Ambiguidade bloqueante: Não
+
+Trecho ambíguo:
+"documento inválido"
+
+Interpretações possíveis:
+1. documento com formato incorreto
+2. documento que não passa na validação de dígitos verificadores
+3. documento vencido
+
+Interpretação adotada:
+documento que não passa na validação de dígitos verificadores
+
+Evidência utilizada:
+O contexto controlado define documento inválido como CPF ou CNPJ que não passa na validação oficial de dígitos verificadores.
+
+Ação:
+seguir para refinamento textual.
+```
+
+---
+
+# 10. Formato de saída para ambiguidade bloqueante
+
+Quando a ambiguidade for bloqueante, o sistema deve sinalizar, não inventar.
+
+Exemplo:
+
+```text
+Ambiguidade bloqueante: Sim
+
+Trecho ambíguo:
+"notificação rápida"
+
+Interpretações possíveis:
+1. notificação em até 5 segundos
+2. notificação em até 1 minuto
+3. notificação antes do próximo acesso do usuário
+
+Motivo do bloqueio:
+O requisito indica a necessidade de rapidez, mas não define critério temporal mensurável. O contexto controlado também não fornece limite de tempo.
+
+Informação ausente:
+tempo máximo aceitável para envio da notificação.
+
+Ação:
+não realizar reescrita automática do trecho ambíguo.
+
+Pergunta sugerida ao analista:
+Qual é o tempo máximo aceitável para que a notificação seja enviada após a aprovação?
+```
+
+---
+
+# 11. Refinamento parcial
+
+Você deve decidir que o sistema poderá realizar **refinamento parcial**.
+
+Isso significa:
+
+* se parte do requisito for resolúvel, ela pode ser refinada;
+* se outra parte for bloqueante, ela será sinalizada;
+* o requisito final deve indicar pendências.
+
+Essa decisão é melhor do que interromper todo o processamento.
+
+Exemplo:
+
+**Requisito original:**
+O sistema deve aprovar automaticamente cadastros válidos e enviar uma notificação rápida ao usuário.
+
+**Contexto:**
+Cadastro válido significa CPF verificado, e-mail confirmado e aceite dos termos.
+
+**Resultado esperado:**
+
+* “cadastros válidos” é resolúvel;
+* “notificação rápida” é bloqueante;
+* o sistema pode decompor a parte de cadastro;
+* mas deve sinalizar que o tempo da notificação precisa de esclarecimento.
+
+---
+
+# 12. Como isso entra na avaliação
+
+Na análise dos resultados, a ambiguidade bloqueante deve ser avaliada por critérios próprios.
+
+Critérios sugeridos:
+
+1. o sistema identificou corretamente a ambiguidade?
+2. o sistema listou interpretações plausíveis?
+3. o sistema verificou evidências no requisito e no contexto?
+4. o sistema classificou corretamente como resolúvel ou bloqueante?
+5. o sistema evitou inferência indevida?
+6. o sistema sinalizou a informação ausente?
+7. o sistema sugeriu pergunta de esclarecimento adequada?
+8. quando resolúvel, o sistema adotou interpretação sustentada pelo contexto?
+
+---
+
+# 13. Como isso entra no gabarito manual
+
+Para cada requisito do corpus, sua referência manual deve conter pelo menos:
+
+```text
+ID do requisito:
+Requisito original:
+Contexto controlado:
+Ambiguidades esperadas:
+Tipos de ambiguidade:
+Interpretações possíveis esperadas:
+Resolúvel com o contexto? Sim/Não
+Se sim, interpretação esperada:
+Se não, informação ausente:
+Ação esperada: refinar / sinalizar
+Pergunta esperada, se aplicável:
+```
+
+Isso é essencial para reduzir subjetividade na avaliação.
+
+---
+
+# 14. Exemplo de gabarito manual
+
+```text
+ID: REQ-03
+
+Requisito original:
+O sistema deve enviar alerta imediato ao gestor quando houver falha crítica.
+
+Contexto controlado:
+Falha crítica é aquela que impede a conclusão do pedido. Gestor é o usuário com perfil supervisor da unidade.
+
+Ambiguidades esperadas:
+1. "alerta imediato"
+2. "falha crítica"
+
+Tipos:
+1. semântica
+2. lexical/contextual
+
+Interpretações possíveis:
+"alerta imediato":
+- envio em tempo real
+- envio em até alguns segundos
+- envio antes da próxima operação
+
+"falha crítica":
+- falha técnica
+- falha de negócio
+- falha que impede conclusão do pedido
+
+Resolúvel com o contexto?
+Parcialmente.
+
+Interpretação esperada:
+"falha crítica" é resolúvel, pois o contexto define o termo.
+"alerta imediato" é bloqueante, pois não há limite temporal mensurável.
+
+Ação esperada:
+refinar a definição de falha crítica e sinalizar pendência sobre tempo de envio do alerta.
+
+Pergunta esperada:
+Qual é o prazo máximo para que o alerta seja enviado ao gestor após a identificação da falha crítica?
+```
+
+---
+
+# 15. Redação pronta para a metodologia
+
+Você pode inserir este trecho em **Material e Métodos**:
+
+> A análise de ambiguidades bloqueantes foi tratada como uma etapa específica do pipeline, denominada validação de resolubilidade contextual. Para isso, foram utilizados dois agentes ou módulos especializados. O primeiro, denominado detector de ambiguidades, recebeu o requisito textual e o contexto controlado, identificando trechos ambíguos, tipos de ambiguidade e interpretações possíveis. O segundo, denominado validador de resolubilidade, recebeu o requisito original, o contexto controlado e as interpretações levantadas pelo agente detector, avaliando se havia evidências suficientes para selecionar uma interpretação sem introduzir informações não sustentadas. Neste trabalho, considerou-se ambiguidade bloqueante aquela em que o requisito apresenta múltiplas interpretações plausíveis e o contexto controlado não contém elementos suficientes para orientar uma reestruturação segura. Quando a ambiguidade foi considerada resolúvel, o requisito seguiu para as etapas posteriores de separação de concerns, decomposição e refinamento textual. Quando foi considerada bloqueante, o sistema registrou o trecho problemático, a justificativa da limitação, a informação ausente e, quando aplicável, uma pergunta de esclarecimento destinada ao analista de requisitos.
+
+---
+
+# 16. Redação pronta para a análise dos dados
+
+Você também pode incluir isto na seção de análise:
+
+> A avaliação da etapa de validação de resolubilidade contextual considerou se o sistema identificou corretamente as ambiguidades, listou interpretações plausíveis, utilizou evidências presentes no requisito original ou no contexto controlado e classificou adequadamente cada ambiguidade como resolúvel ou bloqueante. Também foi observado se, nos casos bloqueantes, o sistema evitou realizar inferências não sustentadas e apresentou uma justificativa textual adequada para encaminhamento ao analista de requisitos.
+
+---
+
+# 17. O que evitar no texto acadêmico
+
+Evite dizer:
+
+> o sistema entende a intenção do stakeholder.
+
+Prefira:
+
+> o sistema seleciona uma interpretação sustentada pelo contexto fornecido.
+
+Evite dizer:
+
+> o sistema sabe que não sabe.
+
+Prefira:
+
+> o sistema identifica ausência de evidências suficientes para reestruturação segura.
+
+Evite dizer:
+
+> o sistema resolve a ambiguidade.
+
+Prefira:
+
+> o sistema reduz ou reestrutura ambiguidades quando há evidência suficiente.
+
+Evite dizer:
+
+> a LLM decide livremente.
+
+Prefira:
+
+> a classificação é realizada por etapa específica do pipeline, orientada por critérios de resolubilidade contextual.
+
+---
+
+# 18. Status da definição
+
+Com esse guia, você já tem definido:
+
+* conceito de ambiguidade bloqueante;
+* diferença entre resolúvel e bloqueante;
+* critério de suficiência do contexto;
+* critério de inferência indevida;
+* papel dos dois agentes;
+* formato de saída;
+* comportamento do sistema;
+* relação com avaliação qualitativa;
+* impacto no gabarito manual;
+* redação pronta para metodologia.
+
+O próximo ponto crítico é definir o **corpus** e a **referência manual**, porque é isso que permitirá avaliar se o Agente 1 e o Agente 2 funcionaram corretamente.
+
+
+
+
+----------
+
+O termo exato **"ambiguidade bloqueante"** não aparece como um conceito padrão ou consolidado na literatura clássica de Engenharia de Requisitos (como em Pohl, Sommerville ou Kamsties), nem nos *papers* mais recentes de IA generativa fornecidos nos seus documentos. Ele parece ser um **termo operacional** que você cunhou para o escopo do seu *pipeline*. 
+
+**Você precisa buscar mais literatura?** 
+**Não necessariamente.** Você não precisa encontrar um artigo que use exatamente o termo "ambiguidade bloqueante". Na redação acadêmica (especialmente no template da USP), é perfeitamente válido que o autor defina um termo operacional para o seu sistema, desde que essa definição seja **fundamentada em conceitos existentes na literatura**. As suas fontes atuais oferecem uma base excelente e robusta para sustentar essa lógica.
+
+Abaixo, detalho como você pode formalizar os três critérios que você listou, apoiando-se exclusivamente na literatura que você já tem no projeto:
+
+### 1. O que torna uma ambiguidade "bloqueante"?
+Uma ambiguidade torna-se "bloqueante" quando o sistema não possui os subsídios contextuais necessários para determinar a intenção original do autor sem correr o risco de inventar informações (alucinação) ou fazer uma "interpretação incorreta inconsciente". 
+
+Você pode fundamentar isso em duas frentes:
+*   **Visão Clássica (Engenharia de Requisitos):** Kamsties (2001) define as "ambiguidades específicas de RE" (RE-specific ambiguities) como aquelas que dependem puramente do conhecimento de domínio e do *background* do leitor. Uma ambiguidade é bloqueante quando ela recai em uma lacuna de conhecimento implícito que não foi fornecido ao sistema.
+*   **Visão Moderna (IA Generativa e LLMs):** Na literatura de LLMs aplicada à Engenharia de Requisitos, uma ambiguidade é considerada insolucionável de forma autônoma quando ela gera alta **"entropia semântica"** (Semantic Entropy). Ou seja, quando o LLM identifica que a sentença pode gerar múltiplos agrupamentos semânticos (múltiplas interpretações válidas) e o contexto fornecido não é suficiente para isolar uma única interpretação correta.
+
+### 2. Quando o sistema deve tentar resolver?
+O sistema deve agir ativamente para resolver e reestruturar o requisito quando a ambiguidade for de ordem linguística (léxica ou sintática) ou quando a intenção semântica puder ser inferida inequivocamente através do **contexto controlado** fornecido.
+
+*   **Com base em Pohl (2025):** O sistema resolve ambiguidades aplicando padrões de sentenças sintáticas (*templates*) e consultando glossários. Se o problema for, por exemplo, a mistura de *concerns* ou o uso de voz passiva ("O usuário é notificado"), o sistema tenta resolver ativando regras de estruturação para reescrever a frase de forma clara.
+*   **Com base em LLMs (Jia et al., 2025):** O sistema tenta o reparo automatizado ("Automated Repair") se ele puder alinhar a linguagem natural com o conhecimento ou restrições injetados no contexto (por exemplo, buscando consistência com exemplos ou definições restritas que reduzam a incerteza da geração). 
+
+### 3. Quando deve apenas sinalizar (pedir intervenção humana)?
+O sistema deve interromper a tentativa de reescrita automática e **sinalizar o defeito** quando a resolução exigir elicitação humana. 
+
+*   **Justificativa de IA / Human-in-the-Loop:** A literatura recente defende a colaboração "Humano-LLM" (*Human-LLM Collaboration*), afirmando que o que constitui um defeito exato de requisito depende fortemente do contexto do *stakeholder* e que a IA não deve substituir a elicitação humana, mas sim explicitar o problema para o analista. 
+*   **Como o sistema sinaliza?** Quando a "entropia semântica" permanece alta e a IA identifica informações faltantes (por exemplo, omissão de uma condição ou um verbo não preciso cuja definição não está no contexto controlado). Nesses casos, abordagens baseadas em LLM (como o *ClarifyGPT* ou *ReqRAG*) adotam a estratégia de gerar explicações textuais (*rationales*) que destacam os termos vagos ou os detalhes ausentes, formulando perguntas clarificadoras ou justificativas do porquê o requisito não é atomicamente resolvível, deixando a decisão final para o especialista humano.
+
+---
+
+**Sugestão de como escrever isso no seu TCC (Exemplo de redação):**
+
+> *"Neste trabalho, define-se operacionalmente o conceito de **ambiguidade bloqueante** como aquela em que a multiplicidade de interpretações decorre de uma dependência estrita de conhecimentos implícitos não documentados (KAMSTIES, 2001), resultando em alta entropia semântica nas predições do LLM (JIA et al., 2025). O sistema é projetado para tentar a resolução automática — via decomposição, separação de concerns e aplicação de templates — sempre que o contexto controlado (glossários e regras de domínio) fornecer evidências suficientes para uma reestruturação segura (POHL, 2025). Por outro lado, quando o contexto for insuficiente para desambiguar a sentença sem o risco de inferências equivocadas (alucinação semântica), o sistema classifica a ambiguidade como bloqueante. Nesses casos, ao invés de forçar uma reescrita, o agente adota o paradigma de Colaboração Humano-LLM (UNTERBUSCH; VOGELSANG, 2026), limitando-se a sinalizar o defeito e gerar uma explicação textual (rationale) que evidencie a lacuna de informação (BASHIR et al., 2025), devolvendo a responsabilidade de elicitação ao analista de requisitos."*

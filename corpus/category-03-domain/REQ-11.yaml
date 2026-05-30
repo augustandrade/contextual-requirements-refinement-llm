@@ -1,0 +1,98 @@
+id: REQ-11
+category_id: category-03-domain
+category_name: Domain or context-specific ambiguities
+title: Operational technical gap in traffic filtering statement
+source:
+  citation: Bashir et al. (2025)
+base_requirement_text: "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic."
+expected_problem: Incomplete wording and missing technical definitions for filtering behavior and management traffic.
+expected_behavior: Identify operational gaps and require technical definitions before precise restructuring.
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: Industrial railway communication network using routing switches.
+      glossary:
+        - term: management data traffic
+          definition: Administrative traffic used for device monitoring and control.
+      business_rules: []
+      constraints: []
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: Industrial railway communication network using routing switches.
+      glossary:
+        - term: management data traffic
+          definition: SNMP traffic restricted to UDP port 161.
+        - term: filter network traffic
+          definition: Inspect and drop packets based on protocol and destination port.
+      business_rules: []
+      constraints: []
+tags: [domain, technical-gap, operational-definition]
+status: ready
+manual_reference:
+  C0:
+    expected_resolubility: "unresolved"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - signal_unresolved_ambiguity
+      - avoid_unsupported_inference
+    expected_findings:
+      - incomplete wording
+      - missing technical definitions
+      - operational gap
+    should_not_do:
+      - infer filtering semantics without definitions
+      - invent packet handling rules
+    applicable_criteria:
+      - semantic_explicitation
+      - syntactic_structuring
+      - contextual_resolubility
+      - clarity
+
+  C1:
+    expected_resolubility: "unresolved"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - refine_text
+      - avoid_unsupported_inference
+    expected_findings:
+      - incomplete wording
+      - missing technical definitions
+      - operational gap
+    should_not_do:
+      - infer filtering semantics without definitions
+      - treat the statement as fully specified
+    applicable_criteria:
+      - semantic_explicitation
+      - syntactic_structuring
+      - contextual_resolubility
+      - clarity
+
+  C2:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - refine_text
+      - separate_concerns
+      - preserve_requirement
+    expected_findings:
+      - incomplete wording
+      - missing technical definitions
+      - operational gap
+    should_not_do:
+      - invent additional technical constraints not supported by the context
+      - ignore the explicit traffic-filtering definitions
+    applicable_criteria:
+      - semantic_explicitation
+      - syntactic_structuring
+      - contextual_resolubility
+      - clarity

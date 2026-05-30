@@ -1,0 +1,69 @@
+corpus_id: controlled-corpus-v1
+title: Controlled corpus for requirement ambiguity analysis
+language_policy:
+  requirements: en
+  contexts: en
+  metadata: en
+methodology:
+  base_requirements: 15
+  context_levels: [C0, C1, C2]
+  context_level_encoding: key_based
+  context_injection_policy:
+    C0:
+      inject_context: false
+      includes_controlled_context: false
+    C1:
+      inject_context: true
+      includes_controlled_context: true
+    C2:
+      inject_context: true
+      includes_controlled_context: true
+  context_entry_fields:
+    C0: [intent, inject_context]
+    C1: [intent, inject_context, controlled_context]
+    C2: [intent, inject_context, controlled_context]
+  total_executions: 45
+  categories:
+    - id: category-01-structural
+      name: Formulation and final structuring problems
+      req_ids: [REQ-01, REQ-02, REQ-03]
+    - id: category-02-linguistic
+      name: Linguistic and syntactic ambiguities
+      req_ids: [REQ-05, REQ-06, REQ-07]
+    - id: category-03-domain
+      name: Domain or context-specific ambiguities
+      req_ids: [REQ-08, REQ-09, REQ-10, REQ-11,]
+    - id: category-04-control
+      name: Control group
+      req_ids: [ REQ-12, REQ-13, REQ-14]
+items:
+  - id: REQ-01
+    file: category-01-structural/REQ-01.yaml
+  - id: REQ-02
+    file: category-01-structural/REQ-02.yaml
+  - id: REQ-03
+    file: category-01-structural/REQ-03.yaml
+  - id: REQ-04
+    file: category-01-structural/REQ-04.yaml
+  - id: REQ-05
+    file: category-02-linguistic/REQ-05.yaml
+  - id: REQ-06
+    file: category-02-linguistic/REQ-06.yaml
+  - id: REQ-07
+    file: category-02-linguistic/REQ-07.yaml
+  - id: REQ-08
+    file: category-02-linguistic/REQ-08.yaml
+  - id: REQ-09
+    file: category-03-domain/REQ-09.yaml
+  - id: REQ-10
+    file: category-03-domain/REQ-10.yaml
+  - id: REQ-11
+    file: category-03-domain/REQ-11.yaml
+  - id: REQ-12
+    file: category-03-domain/REQ-12.yaml
+  - id: REQ-13
+    file: category-04-control/REQ-13.yaml
+  - id: REQ-14
+    file: category-04-control/REQ-14.yaml
+status: ready
+manual_reference: true

@@ -1,0 +1,91 @@
+id: REQ-02
+category_id: category-01-structural
+category_name: Formulation and final structuring problems
+title: Passive voice with hidden actor
+source:
+  citation: Veizaga et al. (2024)
+base_requirement_text: "When a rejection order is received for a cancellation request, System-A must raise a web alert."
+expected_problem: Passive condition hides the actor responsible for issuing the rejection order.
+expected_behavior: Identify actor omission and explicitly introduce actor when context is sufficient.
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: Post-trade financial platform with cancellation workflows and alerts.
+      glossary:
+        - term: System-A
+          definition: User-facing alert module.
+      business_rules: []
+      constraints: []
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: Post-trade financial platform with cancellation workflows and alerts.
+      glossary:
+        - term: Security Manager
+          definition: Workflow authority that approves or rejects cancellation requests.
+      business_rules:
+        - id: BR-01
+          rule: Rejection and approval orders are issued exclusively by Security Manager.
+      constraints: []
+tags: [structural, passive-voice, hidden-actor]
+status: ready
+manual_reference:
+  C0:
+    expected_resolubility: "unresolved"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - signal_unresolved_ambiguity
+      - avoid_unsupported_inference
+    expected_findings:
+      - hidden actor in a passive construction
+      - missing actor
+    should_not_do:
+      - invent a missing actor
+      - resolve a domain-dependent ambiguity without evidence
+    applicable_criteria:
+      - ambiguity
+      - semantic_explicitation
+      - clarity
+
+  C1:
+    expected_resolubility: "unresolved"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - signal_unresolved_ambiguity
+      - avoid_unsupported_inference
+    expected_findings:
+      - hidden actor in a passive construction
+      - missing actor
+    should_not_do:
+      - invent a missing actor
+      - resolve a domain-dependent ambiguity without evidence
+    applicable_criteria:
+      - ambiguity
+      - semantic_explicitation
+      - clarity
+
+  C2:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - refine_text
+      - preserve_requirement
+    expected_findings:
+      - hidden actor in a passive construction
+      - missing actor
+    should_not_do:
+      - invent a missing actor
+      - resolve the actor without using the provided business rule
+    applicable_criteria:
+      - ambiguity
+      - semantic_explicitation
+      - clarity

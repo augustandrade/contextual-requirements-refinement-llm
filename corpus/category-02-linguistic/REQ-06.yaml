@@ -1,0 +1,92 @@
+id: REQ-06
+category_id: category-02-linguistic
+category_name: Linguistic and syntactic ambiguities
+title: Logical ambiguity with and or precedence
+source:
+  citation: Pohl (2025)
+base_requirement_text: "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm."
+expected_problem: Logical grouping is unclear due to and or precedence ambiguity.
+expected_behavior: Signal multiple logical interpretations and apply explicit grouping only when business logic is provided.
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: In-vehicle safety system with intrusion detection and door state monitoring.
+      glossary:
+        - term: interior surveillance
+          definition: Sensor subsystem for intrusion detection inside the vehicle.
+      business_rules: []
+      constraints: []
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: In-vehicle safety system with intrusion detection and door state monitoring.
+      glossary: []
+      business_rules:
+        - id: BR-01
+          rule: Alarm must be raised when either intruder detection occurs, or a door is opened without key, and window damage is confirmed.
+      constraints: []
+tags: [linguistic, logical-ambiguity, and-or]
+status: ready
+manual_reference:
+  C0:
+    expected_resolubility: "unresolved"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - signal_unresolved_ambiguity
+      - avoid_unsupported_inference
+    expected_findings:
+      - logical grouping is unclear
+      - and/or precedence ambiguity
+    should_not_do:
+      - impose precedence without evidence
+      - merge conditions incorrectly
+    applicable_criteria:
+      - ambiguity
+      - syntactic_structuring
+      - semantic_explicitation
+      - clarity
+
+  C1:
+    expected_resolubility: "unresolved"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - signal_unresolved_ambiguity
+      - avoid_unsupported_inference
+    expected_findings:
+      - logical grouping is unclear
+      - and/or precedence ambiguity
+    should_not_do:
+      - impose precedence without evidence
+      - merge conditions incorrectly
+    applicable_criteria:
+      - ambiguity
+      - syntactic_structuring
+      - semantic_explicitation
+      - clarity
+
+  C2:
+    expected_resolubility: "resolvable"
+    expected_actions:
+      - identify_ambiguity
+      - classify_ambiguity
+      - refine_text
+      - preserve_requirement
+    expected_findings:
+      - logical grouping is unclear
+      - and/or precedence ambiguity
+    should_not_do:
+      - impose precedence without evidence
+      - ignore the business rule that defines grouping
+    applicable_criteria:
+      - ambiguity
+      - syntactic_structuring
+      - semantic_explicitation
+      - clarity
