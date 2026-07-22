@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-06-C2",
+  "requirement_id": "REQ-06",
+  "context_condition": "C2",
+  "base_requirement_text": "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.",
+  "controlled_context": {
+    "domain": "In-vehicle safety system with intrusion detection and door state monitoring.",
+    "glossary": [],
+    "business_rules": [
+      {
+        "id": "BR-01",
+        "rule": "Window damage is a mandatory precondition for triggering the alarm. Once window damage is confirmed, the alarm is raised independently by either of two events: (1) the interior surveillance detects an intruder, or (2) a door is opened without a car key.\n"
+      }
+    ],
+    "constraints": []
+  }
+}

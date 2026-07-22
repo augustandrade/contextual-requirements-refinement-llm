@@ -1,0 +1,111 @@
+{
+  "execution_id": "REQ-03-C1",
+  "requirement_id": "REQ-03",
+  "context_condition": "C1",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "has_concern_mixing": true,
+    "ambiguities": null,
+    "no_ambiguity_reason": "The sentence is syntactically and semantically clear. 'System-A' is the subject, 'System-B' and 'System-C' are distinct objects. The phrase 'downstream systems' is a standard technical term, not a vague descriptor. There are no competing antecedents for pronouns or modifiers.",
+    "concern_mixing_analysis": {
+      "functional_action": "add System-B to their downstream systems",
+      "quality_criterion": "allow System-C to subscribe to the Reporting flow",
+      "explanation": "The sentence contains two distinct functional actions ('add...' and 'allow...') without a clear quality/timing criterion (e.g., 'within X seconds', 'with high reliability') attached to either action. However, per the operational note, this requirement is flagged for structural decomposition because it combines multiple independent actions in a single sentence, which may lead to confusion regarding priority or execution order."
+    }
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "has_ambiguity": false,
+    "validation_summary": "The requirement is linguistically clear but combines two independent functional actions, triggering a structural decomposition requirement.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "structural_issue": "concern_mixing",
+      "explanation": "Agent 1 detected no linguistic ambiguity (has_ambiguity: false) but flagged concern_mixing: true due to the presence of two distinct functional actions ('add...' and 'allow...') without a clear quality or timing criterion. The controlled context provides no additional evidence to resolve this structural issue, so Agent 3 must decompose the requirement."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "structuring_summary": "The requirement contains two distinct functional actions ('add System-B' and 'allow System-C to subscribe') without a quality or constraint criterion. Per Pohl §25.2, this concern-mixing issue requires decomposition into two separate functional requirements.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-03-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "System-A is operational",
+          "condition_type": "system_state",
+          "system_or_component": "System-A",
+          "interaction_pattern": "internal_or_external_interface",
+          "actor": "System-A",
+          "modality": "must",
+          "action": "add",
+          "object": "System-B",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "downstream systems registry"
+        },
+        "final_statement": "System-A must add System-B to its downstream systems registry.",
+        "structuring_notes": [
+          "Decomposed first functional action: 'add System-B to downstream systems'."
+        ]
+      },
+      {
+        "structured_id": "REQ-03-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "allow System-C to subscribe to the Reporting flow"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "System-C requests subscription",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "System-C",
+          "modality": "must",
+          "action": "allow",
+          "object": "subscription to the Reporting flow",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "Reporting flow subscription mechanism"
+        },
+        "final_statement": "System-A must allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "Decomposed second functional action: 'allow System-C to subscribe to the Reporting flow'."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

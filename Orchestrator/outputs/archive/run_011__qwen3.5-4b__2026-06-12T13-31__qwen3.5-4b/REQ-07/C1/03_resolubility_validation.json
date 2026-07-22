@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement contains a lexical ambiguity regarding the strength of the obligation ('preferably') and a structural concern-mixing issue. The controlled context provides a glossary definition but lacks specific business rules to resolve the obligation's strictness.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU must perform a reset (mandatory).",
+          "The ECU should perform a reset if possible, but it is not required (optional)."
+        ],
+        "evidence_from_requirement": [
+          "The term 'preferably' is used without a qualifier indicating mandatory or optional status."
+        ],
+        "evidence_from_context": [
+          "Glossary defines ECU as Engine Control Unit."
+        ],
+        "missing_information": [
+          "A specific business rule or constraint defining the strictness of 'preferably' (e.g., 'must' vs 'should') is absent from the controlled context."
+        ],
+        "justification": "While the glossary clarifies the term 'ECU', the controlled context contains no business rules or constraints to define the semantic weight of 'preferably'. Therefore, the ambiguity between mandatory and optional cannot be resolved with sufficient evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "concern_mixing",
+      "explanation": "The lexical ambiguity regarding the obligation's strictness is unresolved due to missing business rules in the context. Additionally, the requirement exhibits concern-mixing (functional action + quality criterion), requiring decomposition. The execution must bypass Agent 3."
+    }
+  }
+}

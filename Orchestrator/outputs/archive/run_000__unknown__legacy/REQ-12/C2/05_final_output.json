@@ -1,0 +1,123 @@
+{
+  "execution_id": "REQ-12-C2",
+  "requirement_id": "REQ-12",
+  "context_condition": "C2",
+  "input_requirement": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'Keyword' is polysemous; without a glossary definition, it is unclear whether it refers to a specific cataloged keyword (as implied by business rule BR-01) or any arbitrary word found in the instruction. Similarly, 'excel file' is a common noun that could refer to the specific file format or any file containing Excel data.",
+        "possible_interpretations": [
+          "The instruction contains a specific, pre-defined cataloged keyword, and the user must upload a file in the .xlsx/.xls format.",
+          "The instruction contains any word that matches the concept of a keyword, and the user must upload any file that contains Excel data."
+        ],
+        "textual_evidence": [
+          "If an 'Instruction' contains a 'Keyword'",
+          "upload the 'excel file'"
+        ],
+        "context_evidence": [
+          "Upload action is triggered only when the instruction contains a cataloged keyword."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'Keyword' is clarified by business rule BR-01, but the specific file format for 'excel file' remains undefined.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The instruction contains a specific, pre-defined cataloged keyword, and the user must upload a file in the .xlsx/.xls format.",
+          "The instruction contains any word that matches the concept of a keyword, and the user must upload any file that contains Excel data."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses the term 'Keyword' and 'excel file' without explicit definitions."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 confirms 'Keyword' refers to a 'cataloged keyword'.",
+          "Glossary defines 'System-A' as the target upload service endpoint."
+        ],
+        "missing_information": [
+          "The specific file format or content requirements for the 'excel file'."
+        ],
+        "justification": "While business rule BR-01 resolves the ambiguity regarding 'Keyword' (it must be cataloged), the requirement does not specify the exact format or constraints for the 'excel file'. The glossary defines System-A but not the file type. Without explicit evidence defining the file format, the interpretation that the user must upload a specific .xlsx/.xls file cannot be confirmed over the interpretation that any Excel data file suffices.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "One ambiguity remains unresolved due to missing evidence regarding the specific file format for 'excel file'. The case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C2",
+    "requirement_id": "REQ-12",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "While business rule BR-01 resolves the ambiguity regarding 'Keyword' (it must be cataloged), the requirement does not specify the exact format or constraints for the 'excel file'. The glossary defines System-A but not the file type. Without explicit evidence defining the file format, the interpretation that the user must upload a specific .xlsx/.xls file cannot be confirmed over the interpretation that any Excel data file suffices.",
+        "missing_information": [
+          "The specific file format or content requirements for the 'excel file'."
+        ],
+        "unsupported_interpretations": [
+          "The instruction contains a specific, pre-defined cataloged keyword, and the user must upload a file in the .xlsx/.xls format.",
+          "The instruction contains any word that matches the concept of a keyword, and the user must upload any file that contains Excel data."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "While business rule BR-01 resolves the ambiguity regarding 'Keyword' (it must be cataloged), the requirement does not specify the exact format or constraints for the 'excel file'. The glossary defines System-A but not the file type. Without explicit evidence defining the file format, the interpretation that the user must upload a specific .xlsx/.xls file cannot be confirmed over the interpretation that any Excel data file suffices.",
+        "missing_information": [
+          "The specific file format or content requirements for the 'excel file'."
+        ],
+        "unsupported_interpretations": [
+          "The instruction contains a specific, pre-defined cataloged keyword, and the user must upload a file in the .xlsx/.xls format.",
+          "The instruction contains any word that matches the concept of a keyword, and the user must upload any file that contains Excel data."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The specific file format or content requirements for the 'excel file'."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

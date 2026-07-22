@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "```json\n{\n  \"is_ambiguous\": true,\n  \"ambiguity_type\": \"semantic\",\n  \"ambiguity_description\": \"The term 'medium-sized' is subjective and lacks a defined, measurable boundary, leading to ambiguity regarding which vehicles must be equipped with the system.\",\n  \"suggested_clarification\": \"Define 'medium-sized' using objective criteria, such as weight range (e.g., 2,000 kg to 4,500 kg) or vehicle class (e.g., SUV or light truck).\"\n}\n```"
+}

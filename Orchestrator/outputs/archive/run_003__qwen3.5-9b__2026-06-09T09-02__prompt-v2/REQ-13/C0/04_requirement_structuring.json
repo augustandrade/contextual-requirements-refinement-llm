@@ -1,0 +1,72 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-RF18-C0",
+    "requirement_id": "REQ-RF18",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement R-F-18 mixes a functional action (inform security service) with a trigger condition (detector detects damage). Per Pohl §25.2, decomposed into one functional requirement and one quality/constraint requirement regarding the nature of the notification.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-RF18-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If the detector detects damage to the pane, the system shall inform the security service."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the detector detects damage to the pane",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "security service"
+        },
+        "final_statement": "If the detector detects damage to the pane, the system shall inform the security service.",
+        "structuring_notes": [
+          "Extracted functional action from concern-mixed requirement. Trigger condition preserved as event."
+        ]
+      },
+      {
+        "structured_id": "REQ-RF18-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "inform the security service"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "upon detection of damage to the pane",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "notification capability",
+          "measurable_criterion": "",
+          "constraint_category": "communication",
+          "affected_element": "security service notification"
+        },
+        "final_statement": "The system shall inform the security service upon detection of damage to the pane.",
+        "structuring_notes": [
+          "Reframed as a quality requirement regarding the system's capability to notify, though specific metrics (e.g., latency) are not defined in the source text."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

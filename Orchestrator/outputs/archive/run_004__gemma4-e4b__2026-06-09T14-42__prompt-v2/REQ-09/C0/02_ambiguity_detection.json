@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' is inherently vague as it lacks defined, measurable boundaries for vehicle dimensions, making it impossible to determine membership for all potential vehicles.",
+        "possible_interpretations": [
+          "Vehicles falling within a specific, predefined dimensional range (e.g., 3 to 5 meters in length).",
+          "Vehicles that are generally perceived by the user or domain expert as medium-sized, without a strict mathematical definition."
+        ],
+        "textual_evidence": [
+          "All medium-sized vehicles"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

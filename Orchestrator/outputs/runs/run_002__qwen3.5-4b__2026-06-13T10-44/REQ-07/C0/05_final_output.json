@@ -1,0 +1,130 @@
+{
+  "execution_id": "REQ-07-C0",
+  "requirement_id": "REQ-07",
+  "context_condition": "C0",
+  "input_requirement": "When leaving the Factory mode, the ECU should preferably perform a reset.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'preferably' introduces vagueness by lacking a measurable boundary for priority. It does not specify if the reset is mandatory, optional, or conditional, leaving the requirement's intent underspecified regarding the ECU's behavior upon exiting Factory mode.",
+        "possible_interpretations": [
+          "The reset is optional; the ECU may or may not perform it.",
+          "The reset is strongly recommended but not required.",
+          "The reset is required unless a specific exception applies."
+        ],
+        "textual_evidence": [
+          "preferably perform a reset"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'preferably' introduces high-vagueness regarding mandatory behavior, and no controlled context exists to resolve this.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The reset is optional.",
+          "The reset is strongly recommended.",
+          "The reset is required with exceptions."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses the word 'preferably' without defining a priority scale or mandatory condition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A definition of 'preferably' within the context of ECU behavior (e.g., mandatory vs. optional).",
+          "Specific business rules or constraints defining the priority of the reset action."
+        ],
+        "justification": "The requirement text relies on the word 'preferably' to indicate priority, but provides no measurable boundary or explicit rule to distinguish between optional, recommended, or conditional mandatory behavior. The controlled context is empty (C0), so no external evidence exists to disambiguate the intent.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the mandatory nature of the reset action cannot be resolved using only the provided requirement text or the empty controlled context. Execution must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "reason": "The requirement text relies on the word 'preferably' to indicate priority, but provides no measurable boundary or explicit rule to distinguish between optional, recommended, or conditional mandatory behavior. The controlled context is empty (C0), so no external evidence exists to disambiguate the intent.",
+        "missing_information": [
+          "A definition of 'preferably' within the context of ECU behavior (e.g., mandatory vs. optional).",
+          "Specific business rules or constraints defining the priority of the reset action."
+        ],
+        "unsupported_interpretations": [
+          "The reset is optional.",
+          "The reset is strongly recommended.",
+          "The reset is required with exceptions."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "reason": "The requirement text relies on the word 'preferably' to indicate priority, but provides no measurable boundary or explicit rule to distinguish between optional, recommended, or conditional mandatory behavior. The controlled context is empty (C0), so no external evidence exists to disambiguate the intent.",
+        "missing_information": [
+          "A definition of 'preferably' within the context of ECU behavior (e.g., mandatory vs. optional).",
+          "Specific business rules or constraints defining the priority of the reset action."
+        ],
+        "unsupported_interpretations": [
+          "The reset is optional.",
+          "The reset is strongly recommended.",
+          "The reset is required with exceptions."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "A definition of 'preferably' within the context of ECU behavior (e.g., mandatory vs. optional).",
+      "Specific business rules or constraints defining the priority of the reset action."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

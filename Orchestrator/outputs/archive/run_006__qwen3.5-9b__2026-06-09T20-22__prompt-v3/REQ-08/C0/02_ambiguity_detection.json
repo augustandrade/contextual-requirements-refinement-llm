@@ -1,0 +1,6 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement mixes a functional action ('Shut off the pumps') with a quality/timing condition ('remains above 100 meters for more than 4 seconds'). This constitutes concern-mixing (Pohl §25.2), not ambiguity. The terms are not lexically ambiguous, the syntax is unambiguous, the referent 'water level' is singular, and the numeric threshold '100 meters' has a determinate extension. No vagueness or semantic ambiguity is present."
+  }
+}

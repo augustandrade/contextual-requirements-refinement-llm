@@ -1,0 +1,56 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-06-C1",
+    "requirement_id": "REQ-06",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged",
+        "reason": "The requirement contains no disambiguating information about the relationship between 'car' and 'window'.",
+        "missing_information": [
+          "Whether 'window' is part of the car or not."
+        ],
+        "unsupported_interpretations": [
+          "A window that is part of the car is damaged."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and the interior surveillance of the car detects an intruder",
+        "reason": "The requirement contains no disambiguating information about the relationship between 'car' and 'interior surveillance'.",
+        "missing_information": [
+          "Whether 'the' refers to 'interior surveillance' or 'car'."
+        ],
+        "unsupported_interpretations": [
+          "The interior of the car is being surveilled, and that system detects an intruder."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "or a door of the car is opened without a car key,",
+        "reason": "The requirement contains no disambiguating information about the relationship between 'car' and 'door'.",
+        "missing_information": [
+          "Whether 'the' refers to 'door' or 'car'."
+        ],
+        "unsupported_interpretations": [
+          "A door that is part of the car is opened without a car key."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

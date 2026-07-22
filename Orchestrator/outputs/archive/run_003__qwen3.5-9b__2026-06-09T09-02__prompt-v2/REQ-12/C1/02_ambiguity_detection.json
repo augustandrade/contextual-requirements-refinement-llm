@@ -1,0 +1,52 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "syntactic",
+        "explanation": "The conditional clause 'If an 'Instruction' contains a 'Keyword'' is syntactically ambiguous regarding the scope of the condition. It is unclear whether the requirement mandates uploading the file only when a specific Instruction contains a Keyword, or if the presence of a Keyword in any Instruction triggers the upload action regardless of which Instruction it belongs to.",
+        "possible_interpretations": [
+          "The system monitors all Instructions; if any single Instruction contains a Keyword, the User must upload the excel file.",
+          "The system processes Instructions individually; the User must upload the excel file only for the specific transaction where an Instruction contains a Keyword."
+        ],
+        "textual_evidence": [
+          "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "upload the 'excel file'",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'excel file' is demarcated with quotes, suggesting a controlled vocabulary. However, without an explicit glossary definition in the provided context, it is lexically ambiguous between referring to a specific file named 'excel file' or any file in the Excel format (e.g., .xlsx, .xls). Given the glossary defines 'Instruction' and 'Keyword' but not 'excel file', and the term is not in ALL_CAPS or CamelCase, it risks being treated as a polysemous term where the specific format or naming convention is undefined.",
+        "possible_interpretations": [
+          "The User must upload a file specifically named 'excel file'.",
+          "The User must upload any file formatted as an Excel spreadsheet."
+        ],
+        "textual_evidence": [
+          "upload the 'excel file'"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "upload the 'excel file' to System-A",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical relationship between the condition (containing a Keyword) and the action (uploading) is semantically ambiguous regarding the scope of the 'excel file'. It is unclear if the 'excel file' is a specific artifact associated with the Instruction containing the Keyword, or if it is a generic file type that must be uploaded whenever the condition is met.",
+        "possible_interpretations": [
+          "When the condition is met, the User must upload the specific excel file associated with that Instruction.",
+          "When the condition is met, the User must upload any excel file they possess."
+        ],
+        "textual_evidence": [
+          "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ]
+  }
+}

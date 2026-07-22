@@ -1,0 +1,112 @@
+{
+  "execution_id": "REQ-02-C0",
+  "requirement_id": "REQ-02",
+  "context_condition": "C0",
+  "input_requirement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "has_concern_mixing": true,
+    "ambiguities": null,
+    "no_ambiguity_reason": "The sentence contains no lexical, syntactic, semantic, referential, or vagueness ambiguities. All terms are clearly defined or contextually unambiguous.",
+    "concern_mixing_analysis": {
+      "functional_action": "raise a web alert",
+      "quality_criterion": "When a rejection order is received for a cancellation request",
+      "explanation": "The sentence simultaneously specifies a functional action ('raise a web alert') and a quality/timing criterion ('When a rejection order is received...'), which constitutes concern-mixing per Pohl §25.2.",
+      "recommendation": "Decompose into two separate sentences: 1) 'When a rejection order is received for a cancellation request, the system shall detect the event.' 2) 'Upon detection, System-A must raise a web alert.'"
+    }
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02",
+    "context_condition": "C0",
+    "has_ambiguity": false,
+    "validation_summary": "The requirement is linguistically clear but mixes a functional action and a quality criterion in a single sentence, requiring structural decomposition.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "structural_issue": "concern_mixing",
+      "explanation": "Agent 1 detected no linguistic ambiguities but flagged concern-mixing (functional action + quality criterion). Since the requirement text is clear and no context is needed to resolve linguistic issues, the only action required is structural decomposition by Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement contains no linguistic ambiguity but exhibits concern-mixing (functional action + quality criterion). Decomposed into two separate artefacts per Pohl §25.2: a functional requirement for raising the alert and a quality requirement for the alert's visibility.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-02-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "When a rejection order is received for a cancellation request, System-A must raise a web alert."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "a rejection order is received for a cancellation request",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "must",
+          "action": "raise",
+          "object": "a web alert",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "web alert"
+        },
+        "final_statement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+        "structuring_notes": [
+          "Extracted the core functional action (raising the alert) from the mixed requirement."
+        ]
+      },
+      {
+        "structured_id": "REQ-02-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "web alert"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "when a rejection order is received for a cancellation request",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "must",
+          "action": "",
+          "object": "",
+          "quality_attribute": "alert visibility",
+          "measurable_criterion": "the alert must be visible on the web",
+          "constraint_category": "usability",
+          "affected_element": "web alert"
+        },
+        "final_statement": "The web alert raised by System-A must be visible on the web.",
+        "structuring_notes": [
+          "Extracted the quality attribute (visibility) and its implicit criterion (must be visible) as a separate artefact."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

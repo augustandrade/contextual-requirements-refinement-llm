@@ -1,0 +1,82 @@
+{
+  "execution_id": "REQ-10-C1",
+  "requirement_id": "REQ-10",
+  "context_condition": "C1",
+  "input_requirement": "Generate a dial tone.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: each term has a single plausible meaning, there are no competing antecedents, and the sentence admits only one parse tree."
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": "Generate a dial tone",
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10",
+    "context_condition": "C1",
+    "has_ambiguity": false,
+    "validation_summary": "No linguistic ambiguity detected by Agent 1a. Resolubility validation bypassed.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "explanation": "Agent 1a reported has_ambiguity: false. Orchestrator synthetic block."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "has_concern_mixing": false,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10",
+    "context_condition": "C1",
+    "structuring_summary": "No concern-mixing or ambiguity detected. Structured as a single functional requirement preserving the original meaning.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-10-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Generate a dial tone."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "none",
+          "system_or_component": "Digital telephony exchange system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "generate",
+          "object": "dial tone",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "digital telephony exchange system"
+        },
+        "final_statement": "Generate a dial tone.",
+        "structuring_notes": [
+          "No decomposition required. Requirement is atomic and unambiguous."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

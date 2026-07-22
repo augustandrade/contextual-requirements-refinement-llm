@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity regarding the modification scope of 'with the access code' is resolved by the explicit sequence defined in the business rules.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "with the access code",
+        "ambiguity_type": "Syntactic/Semantic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The access code is entered on the keypad after the card is inserted, as a sequential step.",
+        "unsupported_interpretations": [
+          "The card itself contains the access code.",
+          "The access code modifies the action of entering the card."
+        ],
+        "evidence_from_requirement": [
+          "The user enters the access card with the access code."
+        ],
+        "evidence_from_context": [
+          "Business rule: User first inserts the card into the card reader, then enters the access code on the keypad."
+        ],
+        "missing_information": [],
+        "justification": "The business rule dictates a mandatory sequence: 1. Insert card, 2. Enter code. This sequence clarifies that the code entry is a separate, subsequent action, not a property of the card or the act of insertion.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides a clear, sequential business rule that resolves the syntactic ambiguity in the requirement text."
+    }
+  }
+}

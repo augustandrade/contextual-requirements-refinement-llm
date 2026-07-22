@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-001-C1",
+    "requirement_id": "REQ-001",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement is unambiguous and atomic. The term 'dial tone' is resolved via the controlled glossary. Structured as a single functional requirement with autonomous system activity.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-001-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Generate a dial tone."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "none",
+          "system_or_component": "Digital telephony exchange system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "generate",
+          "object": "dial tone",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "telephony line"
+        },
+        "final_statement": "The Digital telephony exchange system shall generate a dial tone.",
+        "structuring_notes": [
+          "Requirement is atomic. Glossary definition confirms 'dial tone' refers to line readiness signaling. No decomposition required."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

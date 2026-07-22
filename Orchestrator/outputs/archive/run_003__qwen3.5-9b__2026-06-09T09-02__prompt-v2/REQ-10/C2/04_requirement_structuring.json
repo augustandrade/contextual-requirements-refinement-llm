@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. The functional action 'Generate a dial tone' is supported by the controlled context constraint defining the specific frequencies (350 Hz and 440 Hz). No decomposition is required.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Generate a dial tone."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "none",
+          "system_or_component": "Digital telephony exchange system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "generate",
+          "object": "a dial tone",
+          "quality_attribute": "",
+          "measurable_criterion": "simultaneous 350 Hz and 440 Hz",
+          "constraint_category": "technical_specification",
+          "affected_element": "audio output"
+        },
+        "final_statement": "The Digital telephony exchange system shall generate a dial tone consisting of simultaneous 350 Hz and 440 Hz frequencies.",
+        "structuring_notes": [
+          "The term 'dial tone' was resolved using the controlled context constraint CST-01."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

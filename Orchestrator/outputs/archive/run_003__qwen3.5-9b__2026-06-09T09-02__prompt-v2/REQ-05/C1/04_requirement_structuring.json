@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-AC-01",
+    "requirement_id": "REQ-AC-01",
+    "context_condition": "C1",
+    "structuring_summary": "Syntactic ambiguity regarding 'with the access code' was resolved using the controlled context glossary. The phrase implies two distinct actions (entering card, entering code) rather than a single combined method. Structured as a single functional requirement reflecting the supported interpretation.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-AC-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "user initiates access attempt",
+          "condition_type": "event",
+          "system_or_component": "access control system",
+          "interaction_pattern": "user_interaction",
+          "actor": "the user",
+          "modality": "shall",
+          "action": "enter",
+          "object": "the access card and the access code",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access control system"
+        },
+        "final_statement": "The user shall enter the access card and separately enter the access code.",
+        "structuring_notes": [
+          "Resolved syntactic ambiguity 'enters the access card with the access code' to mean two distinct inputs based on glossary definition of 'access code' as second-factor verification."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

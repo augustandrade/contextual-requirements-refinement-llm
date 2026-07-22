@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity centers on the modal operator 'should'; the controlled context provides no information to elevate this advisory statement to a mandatory requirement.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should",
+        "ambiguity_type": "modal_operator",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Mandatory Requirement: The system MUST reset upon exiting Factory mode.",
+          "Advisory Recommendation: The system SHOULD reset upon exiting Factory mode (best practice)."
+        ],
+        "evidence_from_requirement": [
+          "The requirement uses the modal verb 'should'."
+        ],
+        "evidence_from_context": [
+          "Domain: Automotive embedded system with Factory mode transitions.",
+          "Glossary: ECU definition provided."
+        ],
+        "missing_information": [
+          "Whether the reset action is a mandatory operational requirement (MUST) or merely a best practice recommendation (SHOULD)."
+        ],
+        "justification": "The controlled context only defines the domain and glossary terms but provides no business rules or constraints that dictate the mandatory nature of the reset action.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the mandatory nature of the reset action cannot be resolved using the provided context, requiring human clarification."
+    }
+  }
+}

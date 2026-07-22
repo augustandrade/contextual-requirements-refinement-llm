@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-01-C1",
+  "requirement_id": "REQ-01",
+  "context_condition": "C1",
+  "base_requirement_text": "If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service within 2 seconds at the latest.",
+  "controlled_context": {
+    "domain": "Building security and alarm monitoring system for offices.",
+    "glossary": [
+      {
+        "term": "glass break detector",
+        "definition": "Sensor that detects vibration or sound patterns from broken glass."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

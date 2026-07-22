@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-06-C1",
+  "requirement_id": "REQ-06",
+  "context_condition": "C1",
+  "base_requirement_text": "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.",
+  "controlled_context": {
+    "domain": "In-vehicle safety system with intrusion detection and door state monitoring.",
+    "glossary": [
+      {
+        "term": "interior surveillance",
+        "definition": "Sensor subsystem for intrusion detection inside the vehicle."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

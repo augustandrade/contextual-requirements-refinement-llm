@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the attachment of 'with the access code' is resolved by the controlled context business rule defining the sequence of actions.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user performs the action of entering by using the access code (the code is the means of entry).",
+        "unsupported_interpretations": [
+          "The user enters an access card that possesses the access code (the card contains or is associated with the code)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'enters the access card with the access code' presents two syntactic structures."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 states: 'User first inserts the card into the card reader, then enters the access code on the keypad.'"
+        ],
+        "missing_information": [],
+        "justification": "The business rule explicitly separates the insertion of the card from the entry of the code, confirming that the code is the method used to enter (authenticate), not a property of the card itself. This supports the interpretation where 'with' attaches to the verb indicating the means of entry.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides direct evidence to resolve the syntactic ambiguity, allowing the execution to proceed to Agent 3."
+    }
+  }
+}

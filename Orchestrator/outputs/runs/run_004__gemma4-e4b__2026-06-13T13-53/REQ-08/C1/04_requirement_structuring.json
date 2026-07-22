@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement based on a temporal condition.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-08-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the water level remains above 100 meters for more than 4 seconds",
+          "condition_type": "temporal",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "If the water level remains above 100 meters for more than 4 seconds, the system shall shut off the pumps.",
+        "structuring_notes": [
+          "The requirement is structured around a temporal condition triggering a system action (shutting off pumps)."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume the specific component responsible for monitoring the water level, only that the system performs the check."
+    ],
+    "final_output_status": "structured"
+  }
+}

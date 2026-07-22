@@ -1,0 +1,21 @@
+{
+  "execution_id": "REQ-PILOT-03-C1",
+  "requirement_id": "REQ-PILOT-03",
+  "context_condition": "C1",
+  "base_requirement_text": "The system shall automatically approve the leave request if the employee is eligible.",
+  "controlled_context": {
+    "domain": "Human resources management system for a mid-sized enterprise.",
+    "glossary": [
+      {
+        "term": "leave request",
+        "definition": "A formal employee request for planned absence from work, submitted through the HR system."
+      },
+      {
+        "term": "automatic approval",
+        "definition": "Approval granted by the system without requiring manual review by a manager."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-06-C1",
+    "requirement_id": "REQ-06",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Three referential ambiguities detected in the requirement text.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A window that is part of the car is damaged."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text does not specify whether 'window' is part of the car or not."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether 'window' is part of the car or not."
+        ],
+        "justification": "The requirement contains no disambiguating information about the relationship between 'car' and 'window'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and the interior surveillance of the car detects an intruder",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The interior of the car is being surveilled, and that system detects an intruder."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text does not specify whether 'the' refers to 'interior surveillance' or 'car'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether 'the' refers to 'interior surveillance' or 'car'."
+        ],
+        "justification": "The requirement contains no disambiguating information about the relationship between 'car' and 'interior surveillance'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "or a door of the car is opened without a car key,",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A door that is part of the car is opened without a car key."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text does not specify whether 'the' refers to 'door' or 'car'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether 'the' refers to 'door' or 'car'."
+        ],
+        "justification": "The requirement contains no disambiguating information about the relationship between 'car' and 'door'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "All medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' lacks a precise, measurable boundary. It is impossible to determine membership for vehicles at the threshold of the 'medium' category without an external definition.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4.5 meters and 5.5 meters (inclusive).",
+          "Vehicles with a length between 4.0 meters and 6.0 meters (inclusive)."
+        ],
+        "textual_evidence": [
+          "All medium-sized vehicles"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "equipped with a navigation system",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'navigation system' is polysemous in this context. It could refer to a specific hardware unit or a broader software capability, and the term is not demarcated as controlled vocabulary.",
+        "possible_interpretations": [
+          "The vehicle must contain a dedicated hardware unit (e.g., a GPS receiver module) installed in the cabin.",
+          "The vehicle must have the capability to display navigation data, which could be provided by a software update to an existing infotainment unit rather than a distinct hardware component."
+        ],
+        "textual_evidence": [
+          "equipped with a navigation system"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "reason": "In C0, there is no controlled context to disambiguate the syntactic structure. The requirement text itself does not explicitly rule out the relative clause reading, leaving the logical condition of the trigger ambiguous.",
+        "missing_information": [
+          "Explicit grammatical structure or domain definition clarifying whether the detector triggers on the event of breaking or the state of damage."
+        ],
+        "unsupported_interpretations": [
+          "The system triggers if the detector senses the event of the pane breaking (complement clause reading).",
+          "The system triggers if the detector senses a specific pane that is already in a damaged state (relative clause reading)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 2 seconds at the latest",
+        "reason": "The requirement text contains redundant phrasing that obscures the exact start point of the timing constraint. Without context defining the event sequence, the ambiguity remains unresolved.",
+        "missing_information": [
+          "Definition of the precise start time for the 2-second window (e.g., 'after detection' vs 'after damage')."
+        ],
+        "unsupported_interpretations": [
+          "The notification must be sent no later than 2 seconds after the detection event.",
+          "The notification must be sent within a window that ends 2 seconds after the event, but the start time is undefined or flexible."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

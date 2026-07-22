@@ -1,0 +1,15 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "provenance": {
+    "manifest_item_id": null,
+    "requirement_id": "REQ-14",
+    "file_path": null,
+    "execution_id": "REQ-14-C1",
+    "timestamp": null
+  },
+  "model_raw": "ambiguity_detection:\n  has_ambiguity: false\n  ambiguities: []\n  no_ambiguity_reason: \"The requirement is linguistically clear and unambiguous. It expresses a functional action ('inform') and a quality criterion ('within 2 s') simultaneously, which constitutes a non-atomic concern-mixing problem (Pohl §25.2) rather than a linguistic ambiguity. The term 'within 2 s' is demarcated in the glossary as a defined concept with a determinate extension, ruling out vagueness. The pronoun 'it' in the implied context of 'detecting damage' refers to a single, uniquely identifiable event type, ruling out referential ambiguity.\"\n\nprovenance:\n  manifest_item_id: null\n  requirement_id: null\n  file_path: null\n  execution_id: null\n  timestamp: null\n```"
+}

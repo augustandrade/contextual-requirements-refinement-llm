@@ -1,0 +1,104 @@
+{
+  "execution_id": "REQ-08-C2",
+  "requirement_id": "REQ-08",
+  "context_condition": "C2",
+  "input_requirement": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement mixes a functional action ('Shut off the pumps') with a quality/timing condition ('remains above 100 meters for more than 4 seconds'). This constitutes concern-mixing (Pohl §25.2), not ambiguity. The terms are not lexically ambiguous, the syntax is unambiguous, the referent 'water level' is singular, and the numeric threshold '100 meters' has a determinate extension. No vagueness or semantic ambiguity is present."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": false,
+    "validation_summary": "Requirement mixes functional action and timing condition (concern-mixing). No linguistic ambiguity detected. Structural decomposition required.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "structural_issue": "concern_mixing",
+      "explanation": "Agent 1 flagged concern-mixing (action + condition). No linguistic ambiguity. Agent 3 must decompose."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Concern-mixing detected per Pohl §25.2. Decomposed into one functional requirement (shut off pumps) and one quality requirement (4-second persistence window constraint).",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-05-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "water level remains above 100 meters for more than 4 seconds",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "shall",
+          "action": "shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "The system shall shut off the pumps when the water level remains above 100 meters for more than 4 seconds.",
+        "structuring_notes": [
+          "Extracted functional action from concern-mixed requirement. Timing constraint moved to separate quality requirement."
+        ]
+      },
+      {
+        "structured_id": "REQ-05-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "for more than 4 seconds"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after water level exceeds 100 meters",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "persistence window",
+          "measurable_criterion": "more than 4 seconds",
+          "constraint_category": "performance",
+          "affected_element": "water level monitoring"
+        },
+        "final_statement": "The water level condition shall persist for more than 4 seconds before triggering the shutdown.",
+        "structuring_notes": [
+          "Extracted quality criterion (timing window) as a separate artefact per Pohl §25.2."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

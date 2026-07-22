@@ -1,0 +1,25 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical structure involving 'and' and 'or' is ambiguous regarding operator precedence. It is unclear whether the window damage must apply to the entire condition (i.e., (Window Damaged AND (Intruder OR Door Opened)) ) or if the window damage only applies to the intruder detection part.",
+        "possible_interpretations": [
+          "The alarm raises if (Window is damaged AND Intruder is detected) OR (Door is opened without key).",
+          "The alarm raises if Window is damaged AND (Intruder is detected OR Door is opened without key)."
+        ],
+        "textual_evidence": [
+          "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key"
+        ],
+        "context_evidence": [
+          "Alarm must be raised when either intruder detection occurs, or a door is opened without key, and window damage is confirmed."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

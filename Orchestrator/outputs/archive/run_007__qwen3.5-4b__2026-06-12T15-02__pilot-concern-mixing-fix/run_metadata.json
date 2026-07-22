@@ -1,0 +1,11 @@
+{
+  "run_id": "run_007__qwen3.5-4b__2026-06-12T15-02__pilot-concern-mixing-fix",
+  "model": "qwen3.5:4b",
+  "provider": "ollama",
+  "ollama_host": "http://localhost:11434",
+  "temperature": 0.0,
+  "think": false,
+  "started_at": "2026-06-12T15:02:26.744715",
+  "corpus": "pilot-manifest.yaml",
+  "label": "pilot-concern-mixing-fix"
+}

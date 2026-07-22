@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C0",
+    "requirement_id": "REQ-08",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "reason": "The ambiguity is structural, and since the controlled context is empty, there is no evidence to prioritize one interpretation over the other.",
+        "missing_information": [
+          "It is unclear whether 'for more than 4 seconds' modifies the duration the water level must remain high, or if it relates to the duration of the monitoring check itself."
+        ],
+        "unsupported_interpretations": [
+          "The water level must be above 100 meters continuously for a duration exceeding 4 seconds.",
+          "The system must check the water level, and if the check takes longer than 4 seconds, the pumps should shut off (less likely, but structurally possible)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

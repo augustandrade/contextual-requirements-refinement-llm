@@ -1,0 +1,183 @@
+{
+  "execution_id": "REQ-08-C1",
+  "requirement_id": "REQ-08",
+  "context_condition": "C1",
+  "input_requirement": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "has_concern_mixing": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'above' lacks a precise measurable boundary in this context. While '100 meters' is a specific value, the condition 'above' implies a range (e.g., > 100m, ≥ 100m, or > 100.0001m) without defining the exact threshold, leading to potential misinterpretation of the trigger point.",
+        "possible_interpretations": [
+          "Strictly greater than 100 meters (> 100m)",
+          "Greater than or equal to 100 meters (≥ 100m)"
+        ],
+        "textual_evidence": [
+          "above 100 meters"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "ambiguity_type": "syntactic",
+        "explanation": "The phrase 'remains above' creates a syntactic ambiguity regarding the state of the water level. It is unclear whether the water level must continuously stay above 100m for the entire 4-second duration, or if it only needs to be above 100m at any point within a 4-second window.",
+        "possible_interpretations": [
+          "Continuous state: The water level must be > 100m for the entire 4-second interval.",
+          "Existential state: The water level must be > 100m at least once within a 4-second window."
+        ],
+        "textual_evidence": [
+          "remains above 100 meters for more than 4 seconds"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Two ambiguities detected: 'above' is vague regarding the threshold, and 'remains' is syntactically ambiguous regarding duration. Controlled context provides no disambiguating evidence.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "> 100m",
+          "≥ 100m"
+        ],
+        "evidence_from_requirement": [
+          "The text states 'above 100 meters' without specifying the operator."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "The exact threshold definition (strictly greater than vs. inclusive) is not defined in the requirement text or the controlled context."
+        ],
+        "justification": "The controlled context defines the domain and glossary but contains no business rules or constraints specifying the threshold logic. The ambiguity cannot be resolved without external knowledge.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Continuous state: > 100m for the entire 4-second interval.",
+          "Existential state: > 100m at least once within a 4-second window."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'remains above' allows for both continuous and existential interpretations."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "The controlled context does not specify whether the shutdown trigger requires a sustained state or a momentary breach."
+        ],
+        "justification": "The requirement text permits two distinct syntactic interpretations, and the controlled context provides no evidence to prefer one over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "concern_mixing",
+      "explanation": "Linguistic ambiguities regarding the threshold and duration are unresolved due to lack of evidence in the controlled context. Additionally, the requirement mixes a functional action ('Shut off') with a quality criterion ('remains above...'), requiring decomposition."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "reason": "The controlled context defines the domain and glossary but contains no business rules or constraints specifying the threshold logic. The ambiguity cannot be resolved without external knowledge.",
+        "missing_information": [
+          "The exact threshold definition (strictly greater than vs. inclusive) is not defined in the requirement text or the controlled context."
+        ],
+        "unsupported_interpretations": [
+          "> 100m",
+          "≥ 100m"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "reason": "The requirement text permits two distinct syntactic interpretations, and the controlled context provides no evidence to prefer one over the other.",
+        "missing_information": [
+          "The controlled context does not specify whether the shutdown trigger requires a sustained state or a momentary breach."
+        ],
+        "unsupported_interpretations": [
+          "Continuous state: > 100m for the entire 4-second interval.",
+          "Existential state: > 100m at least once within a 4-second window."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "reason": "The controlled context defines the domain and glossary but contains no business rules or constraints specifying the threshold logic. The ambiguity cannot be resolved without external knowledge.",
+        "missing_information": [
+          "The exact threshold definition (strictly greater than vs. inclusive) is not defined in the requirement text or the controlled context."
+        ],
+        "unsupported_interpretations": [
+          "> 100m",
+          "≥ 100m"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "reason": "The requirement text permits two distinct syntactic interpretations, and the controlled context provides no evidence to prefer one over the other.",
+        "missing_information": [
+          "The controlled context does not specify whether the shutdown trigger requires a sustained state or a momentary breach."
+        ],
+        "unsupported_interpretations": [
+          "Continuous state: > 100m for the entire 4-second interval.",
+          "Existential state: > 100m at least once within a 4-second window."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The exact threshold definition (strictly greater than vs. inclusive) is not defined in the requirement text or the controlled context.",
+      "The controlled context does not specify whether the shutdown trigger requires a sustained state or a momentary breach."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,124 @@
+{
+  "execution_id": "REQ-03-C0",
+  "requirement_id": "REQ-03",
+  "context_condition": "C0",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "explanation": "The possessive pronoun 'their' lacks a singular antecedent. It is unclear whether 'their' refers to System-A (implying System-A's own downstream systems) or if System-B is being added to a shared downstream system context, or if 'their' implies a plural entity not explicitly named.",
+        "possible_interpretations": [
+          "System-A must add System-B to the downstream systems that belong to System-A.",
+          "System-A must add System-B to a downstream system that belongs to a plural entity (e.g., a team or organization) not specified."
+        ],
+        "textual_evidence": [
+          "System-A must add System-B",
+          "to their downstream systems"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The possessive pronoun 'their' has multiple plausible antecedents; no evidence in the requirement text resolves this ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems that belong to System-A.",
+          "System-A must add System-B to a downstream system that belongs to a plural entity not specified."
+        ],
+        "evidence_from_requirement": [
+          "The text contains the pronoun 'their' without a clear singular or plural antecedent.",
+          "System-A is singular, but 'their' can grammatically refer to a plural entity."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific entity or entities to which 'their' refers."
+        ],
+        "justification": "In the absence of controlled context (C0), the pronoun 'their' remains ambiguous between referring to System-A (if treated as plural or collective) or an undefined plural entity. The requirement text does not explicitly define the antecedent.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to missing antecedent information; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "reason": "In the absence of controlled context (C0), the pronoun 'their' remains ambiguous between referring to System-A (if treated as plural or collective) or an undefined plural entity. The requirement text does not explicitly define the antecedent.",
+        "missing_information": [
+          "The specific entity or entities to which 'their' refers."
+        ],
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems that belong to System-A.",
+          "System-A must add System-B to a downstream system that belongs to a plural entity not specified."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "reason": "In the absence of controlled context (C0), the pronoun 'their' remains ambiguous between referring to System-A (if treated as plural or collective) or an undefined plural entity. The requirement text does not explicitly define the antecedent.",
+        "missing_information": [
+          "The specific entity or entities to which 'their' refers."
+        ],
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems that belong to System-A.",
+          "System-A must add System-B to a downstream system that belongs to a plural entity not specified."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The specific entity or entities to which 'their' refers."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

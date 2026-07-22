@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The requirement text alone does not disambiguate the syntactic attachment. The controlled context is empty (C0), providing no evidence to support one interpretation over the other. The ambiguity cannot be resolved without external clarification.",
+        "missing_information": [
+          "Domain-specific rules or glossary entries defining whether 'access code' is a method of entry or a property of the card."
+        ],
+        "unsupported_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters an access card that possesses the access code (the card contains or is associated with the code)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

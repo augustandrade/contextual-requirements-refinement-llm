@@ -1,0 +1,44 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01",
+    "context_condition": "C0",
+    "structuring_summary": "The requirement is linguistically clear and unambiguous. However, the phrase 'should preferably perform' introduces a modal conflict ('should' implies obligation, 'preferably' implies soft preference). Per the classification rules, this is treated as a soft constraint or quality attribute regarding the preferred behavior of the ECU. It is structured as a single quality requirement to preserve the nuance of preference without inventing a hard obligation.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "When leaving the Factory mode, the ECU should preferably perform a reset."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "when leaving the Factory mode",
+          "condition_type": "event",
+          "system_or_component": "the ECU",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "should",
+          "action": "perform a reset",
+          "object": "",
+          "quality_attribute": "preferred behavior",
+          "measurable_criterion": "",
+          "constraint_category": "preference",
+          "affected_element": "ECU reset behavior"
+        },
+        "final_statement": "When leaving the Factory mode, the ECU should preferably perform a reset.",
+        "structuring_notes": [
+          "Classified as a quality requirement due to the 'preferably' modifier indicating a soft constraint rather than a strict functional obligation.",
+          "No decomposition performed as the requirement is atomic and unambiguous per Agent 2 validation."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "execution_id": "REQ-09-C2",
+  "requirement_id": "REQ-09",
+  "context_condition": "C2",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is structurally clear and does not exhibit linguistic ambiguity according to Pohl's taxonomy. The term 'medium-sized vehicle' is explicitly defined in the glossary, resolving any potential lexical ambiguity."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": false,
+    "validation_summary": "The requirement is structurally clear and the key term is explicitly defined in the controlled context glossary.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "structural_issue": "none",
+      "explanation": "The requirement is linguistically clear and the glossary resolves the term 'medium-sized vehicle', allowing direct progression."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single constraint requirement based on the defined glossary term.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "constraint",
+        "source_fragments": [
+          "All medium-sized vehicles shall be equipped with a navigation system."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "N/A",
+          "condition_type": "none",
+          "system_or_component": "N/A",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "equipment mandate",
+          "affected_element": "medium-sized vehicle"
+        },
+        "final_statement": "All medium-sized vehicles shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "This is a mandatory equipment specification, classified as a constraint. The term 'medium-sized vehicle' is resolved using the provided glossary definition (1500 kg < gross weight < 2000 kg)."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

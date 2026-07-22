@@ -1,0 +1,122 @@
+{
+  "execution_id": "REQ-09-C1",
+  "requirement_id": "REQ-09",
+  "context_condition": "C1",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'medium-sized' is a vague descriptor lacking a precise, universally accepted definition within the provided context. Unlike controlled vocabulary terms (e.g., ALL_CAPS or quoted terms), this adjective relies on fuzzy extension, making the set of vehicles satisfying this condition ill-defined.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4.5m and 6.0m.",
+          "Vehicles with a cargo capacity between 10 and 20 cubic meters.",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "textual_evidence": [
+          "medium-sized vehicles"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity detected in 'medium-sized vehicles'. Context provides a glossary definition but does not resolve the specific quantitative or categorical criteria required for implementation.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 6.0m.",
+          "Vehicles with a cargo capacity between 10 and 20 cubic meters.",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "evidence_from_requirement": [
+          "The term 'medium-sized' is used without a precise definition in the requirement text."
+        ],
+        "evidence_from_context": [
+          "Glossary defines 'medium-sized vehicle' as an 'Informal vehicle size category used by operations'."
+        ],
+        "missing_information": [
+          "Precise quantitative thresholds (e.g., length, volume) or a reference to a specific taxonomy."
+        ],
+        "justification": "The glossary explicitly labels the term as 'informal', indicating a lack of precise definition needed for automated enforcement or clear implementation.",
+        "allowed_structuring_action": "request_definition"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "lexical_vagueness",
+      "explanation": "The context acknowledges the term is informal but fails to provide a concrete definition to resolve the ambiguity. Execution must be routed away from Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The glossary explicitly labels the term as 'informal', indicating a lack of precise definition needed for automated enforcement or clear implementation.",
+        "missing_information": [
+          "Precise quantitative thresholds (e.g., length, volume) or a reference to a specific taxonomy."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 6.0m.",
+          "Vehicles with a cargo capacity between 10 and 20 cubic meters.",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "allowed_structuring_action": "request_definition"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The glossary explicitly labels the term as 'informal', indicating a lack of precise definition needed for automated enforcement or clear implementation.",
+        "missing_information": [
+          "Precise quantitative thresholds (e.g., length, volume) or a reference to a specific taxonomy."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 6.0m.",
+          "Vehicles with a cargo capacity between 10 and 20 cubic meters.",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "allowed_structuring_action": "request_definition"
+      }
+    ],
+    "missing_information": [
+      "Precise quantitative thresholds (e.g., length, volume) or a reference to a specific taxonomy."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

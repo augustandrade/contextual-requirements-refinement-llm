@@ -1,0 +1,72 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "structuring_summary": "The requirement contains two distinct functional actions ('add System-B' and 'allow System-C to subscribe') without a quality or constraint criterion. Per Pohl §25.2, this concern-mixing issue requires decomposition into two separate functional requirements.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-03-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "System-A is operational",
+          "condition_type": "system_state",
+          "system_or_component": "System-A",
+          "interaction_pattern": "internal_or_external_interface",
+          "actor": "System-A",
+          "modality": "must",
+          "action": "add",
+          "object": "System-B",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "downstream systems registry"
+        },
+        "final_statement": "System-A must add System-B to its downstream systems registry.",
+        "structuring_notes": [
+          "Decomposed first functional action: 'add System-B to downstream systems'."
+        ]
+      },
+      {
+        "structured_id": "REQ-03-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "allow System-C to subscribe to the Reporting flow"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "System-C requests subscription",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "System-C",
+          "modality": "must",
+          "action": "allow",
+          "object": "subscription to the Reporting flow",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "Reporting flow subscription mechanism"
+        },
+        "final_statement": "System-A must allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "Decomposed second functional action: 'allow System-C to subscribe to the Reporting flow'."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

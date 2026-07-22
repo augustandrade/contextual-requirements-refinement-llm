@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement describing a capability.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-11-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "none",
+          "system_or_component": "Routing switches",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "filter",
+          "object": "network traffic",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "network traffic between data-plane interfaces and management data traffic"
+        },
+        "final_statement": "Routing switches shall have the ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "structuring_notes": [
+          "The statement describes a capability (ability to filter), which is structured as a functional requirement. The modality 'shall' is inferred as the standard requirement modality for capabilities."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not specify the mechanism or conditions under which filtering must occur, as the text only states the 'ability' to filter."
+    ],
+    "final_output_status": "structured"
+  }
+}

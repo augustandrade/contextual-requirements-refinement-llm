@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2",
+    "structuring_summary": "Lexical ambiguity regarding 'medium-sized vehicles' resolved by controlled context glossary. Requirement structured as a single functional requirement using the supported interpretation (gross weight 1500-2000 kg).",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-09-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "All medium-sized vehicles shall be equipped with a navigation system."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "vehicle gross weight is strictly between 1500 kg and 2000 kg",
+          "condition_type": "logical",
+          "system_or_component": "the vehicle",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "be equipped with",
+          "object": "a navigation system",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "navigation system"
+        },
+        "final_statement": "All vehicles with a gross weight strictly between 1500 kg and 2000 kg shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "Replaced ambiguous term 'medium-sized vehicles' with explicit weight definition from glossary."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume specific navigation system features, installation location, or activation logic."
+    ],
+    "final_output_status": "structured"
+  }
+}

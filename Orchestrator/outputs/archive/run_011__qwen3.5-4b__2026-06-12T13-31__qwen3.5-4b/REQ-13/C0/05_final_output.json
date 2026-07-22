@@ -1,0 +1,50 @@
+{
+  "execution_id": "REQ-13-C0",
+  "requirement_id": "REQ-13",
+  "context_condition": "C0",
+  "input_requirement": "R-F-18: If the detector detects damage to the pane, the system shall inform the security service.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "has_concern_mixing": true,
+    "ambiguities": null,
+    "no_ambiguity_reason": "No syntactic, semantic, referential, lexical, or vagueness-based ambiguities detected. The sentence structure is clear: the condition ('detector detects damage') and the action ('inform the security service') are unambiguously linked.",
+    "concern_mixing_analysis": {
+      "functional_action": "inform the security service",
+      "quality_criterion": "detects damage to the pane",
+      "explanation": "The sentence contains both a functional requirement (inform the service) and a quality criterion (detects damage), which constitutes concern mixing per Pohl §25.2. This requires structural decomposition to separate the detection logic from the notification action."
+    }
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13",
+    "context_condition": "C0",
+    "has_ambiguity": false,
+    "validation_summary": "The requirement is linguistically clear but mixes a functional action and a quality criterion, requiring structural decomposition.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "structural_issue": "concern_mixing",
+      "explanation": "Agent 1 detected no linguistic ambiguities but flagged concern mixing (functional action + quality criterion). Since the requirement text is clear and no context is needed to resolve linguistic issues, the only action required is structural decomposition."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13",
+    "context_condition": "C0",
+    "structuring_summary": "Model returned unparsable or invalid response",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [],
+    "final_output_status": "partially_structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

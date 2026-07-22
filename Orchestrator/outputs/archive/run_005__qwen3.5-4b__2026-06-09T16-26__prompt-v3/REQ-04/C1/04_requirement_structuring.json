@@ -1,0 +1,46 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "structuring_summary": "The requirement describes a user interaction sequence followed by a conditional system response. The referential ambiguity regarding 'it' is resolved using the supported interpretation that 'it' refers to the PIN. The requirement is structured as a single functional requirement with a user interaction condition and a system response action.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad, and the PIN is invalid",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "user_interaction",
+          "actor": "the customer",
+          "modality": "shall",
+          "action": "deny the access",
+          "object": "access",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access control"
+        },
+        "final_statement": "If the customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad, and the PIN is invalid, the system shall deny the access.",
+        "structuring_notes": [
+          "Resolved referential ambiguity 'it' -> 'PIN' based on controlled context and supported interpretation.",
+          "Decomposed the compound condition into a single logical condition for clarity."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

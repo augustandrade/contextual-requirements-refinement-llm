@@ -1,0 +1,187 @@
+{
+  "execution_id": "REQ-07-C1",
+  "requirement_id": "REQ-07",
+  "context_condition": "C1",
+  "input_requirement": "When leaving the Factory mode, the ECU should preferably perform a reset.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'should preferably' creates a semantic ambiguity regarding the logical binding of the preference modifier. It is unclear whether the preference applies to the entire action of resetting upon leaving Factory mode, or if the preference is conditional (i.e., reset only if preferred, otherwise do nothing), versus a mandatory action with a soft preference.",
+        "possible_interpretations": [
+          "The system MUST perform a reset when leaving Factory mode; the word 'preferably' is redundant or indicates a soft constraint that does not override the mandatory nature of the action.",
+          "The system SHOULD perform a reset only if it is preferred (e.g., based on a flag or condition); if not preferred, the system must NOT reset when leaving Factory mode."
+        ],
+        "textual_evidence": [
+          "should preferably perform a reset"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "When leaving the Factory mode",
+        "ambiguity_type": "semantic",
+        "explanation": "The temporal scope of 'When leaving' is ambiguous. It could refer to the exact instant the transition begins, the exact instant the transition completes, or any point during the transition process.",
+        "possible_interpretations": [
+          "The reset must occur immediately upon the initiation of the transition out of Factory mode.",
+          "The reset must occur only after the system has fully exited Factory mode and entered the next operational state."
+        ],
+        "textual_evidence": [
+          "When leaving the Factory mode"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Ambiguity regarding the binding of 'preferably' is unresolved due to lack of business rules; ambiguity regarding 'leaving' timing is unresolved due to lack of state transition definitions.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system MUST perform a reset when leaving Factory mode; the word 'preferably' is redundant or indicates a soft constraint that does not override the mandatory nature of the action.",
+          "The system SHOULD perform a reset only if it is preferred (e.g., based on a flag or condition); if not preferred, the system must NOT reset when leaving Factory mode."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'should preferably' introduces a modifier that conflicts with standard mandatory language ('should' vs 'must')."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Business rules defining the priority of 'preferably' modifiers in this domain.",
+          "Constraints clarifying whether 'should' implies a hard requirement with a soft preference or a conditional action."
+        ],
+        "justification": "The controlled context provides no business rules or constraints to resolve the logical binding of 'preferably'. Without explicit rules, the distinction between a mandatory action with a soft preference and a conditional action cannot be determined.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "When leaving the Factory mode",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The reset must occur immediately upon the initiation of the transition out of Factory mode.",
+          "The reset must occur only after the system has fully exited Factory mode and entered the next operational state."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'When leaving' lacks a precise temporal definition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Domain glossary or business rules defining the exact moment of 'leaving' a mode (initiation vs completion).",
+          "State machine definitions for Factory mode transitions."
+        ],
+        "justification": "The controlled context does not define the semantics of 'leaving' a mode or the timing of state transitions. The ambiguity between initiation and completion cannot be resolved without these definitions.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Both ambiguities are unresolved because the controlled context (C1) lacks the specific business rules, constraints, or state definitions required to disambiguate the preference modifier and the temporal scope of the transition."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "reason": "The controlled context provides no business rules or constraints to resolve the logical binding of 'preferably'. Without explicit rules, the distinction between a mandatory action with a soft preference and a conditional action cannot be determined.",
+        "missing_information": [
+          "Business rules defining the priority of 'preferably' modifiers in this domain.",
+          "Constraints clarifying whether 'should' implies a hard requirement with a soft preference or a conditional action."
+        ],
+        "unsupported_interpretations": [
+          "The system MUST perform a reset when leaving Factory mode; the word 'preferably' is redundant or indicates a soft constraint that does not override the mandatory nature of the action.",
+          "The system SHOULD perform a reset only if it is preferred (e.g., based on a flag or condition); if not preferred, the system must NOT reset when leaving Factory mode."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "When leaving the Factory mode",
+        "reason": "The controlled context does not define the semantics of 'leaving' a mode or the timing of state transitions. The ambiguity between initiation and completion cannot be resolved without these definitions.",
+        "missing_information": [
+          "Domain glossary or business rules defining the exact moment of 'leaving' a mode (initiation vs completion).",
+          "State machine definitions for Factory mode transitions."
+        ],
+        "unsupported_interpretations": [
+          "The reset must occur immediately upon the initiation of the transition out of Factory mode.",
+          "The reset must occur only after the system has fully exited Factory mode and entered the next operational state."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "reason": "The controlled context provides no business rules or constraints to resolve the logical binding of 'preferably'. Without explicit rules, the distinction between a mandatory action with a soft preference and a conditional action cannot be determined.",
+        "missing_information": [
+          "Business rules defining the priority of 'preferably' modifiers in this domain.",
+          "Constraints clarifying whether 'should' implies a hard requirement with a soft preference or a conditional action."
+        ],
+        "unsupported_interpretations": [
+          "The system MUST perform a reset when leaving Factory mode; the word 'preferably' is redundant or indicates a soft constraint that does not override the mandatory nature of the action.",
+          "The system SHOULD perform a reset only if it is preferred (e.g., based on a flag or condition); if not preferred, the system must NOT reset when leaving Factory mode."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "When leaving the Factory mode",
+        "reason": "The controlled context does not define the semantics of 'leaving' a mode or the timing of state transitions. The ambiguity between initiation and completion cannot be resolved without these definitions.",
+        "missing_information": [
+          "Domain glossary or business rules defining the exact moment of 'leaving' a mode (initiation vs completion).",
+          "State machine definitions for Factory mode transitions."
+        ],
+        "unsupported_interpretations": [
+          "The reset must occur immediately upon the initiation of the transition out of Factory mode.",
+          "The reset must occur only after the system has fully exited Factory mode and entered the next operational state."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Business rules defining the priority of 'preferably' modifiers in this domain.",
+      "Constraints clarifying whether 'should' implies a hard requirement with a soft preference or a conditional action.",
+      "Domain glossary or business rules defining the exact moment of 'leaving' a mode (initiation vs completion).",
+      "State machine definitions for Factory mode transitions."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

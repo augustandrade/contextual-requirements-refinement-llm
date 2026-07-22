@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'rejection order' remains polysemous; controlled context confirms the actor but does not define the specific workflow state triggered.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Rejection of the cancellation request (original order remains active).",
+          "Rejection of the cancellation request's validity (original order confirmed)."
+        ],
+        "evidence_from_requirement": [
+          "The term 'rejection order' is used without qualification."
+        ],
+        "evidence_from_context": [
+          "Rejection and approval orders are issued exclusively by Security Manager."
+        ],
+        "missing_information": [
+          "The specific definition of 'rejection order' within the cancellation workflow (whether it negates the cancellation or confirms the original order)."
+        ],
+        "justification": "While the controlled context confirms that Security Manager issues rejection orders, it does not define the semantic meaning of a 'rejection order' in the context of cancellation workflows. The glossary lacks a definition distinguishing between rejecting the cancellation versus rejecting the validity of the cancellation. Therefore, the trigger condition admits multiple interpretations that cannot be safely resolved without external knowledge or clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity regarding the semantic meaning of 'rejection order' cannot be resolved using only the provided requirement text and controlled context. The case must bypass Agent 3."
+    }
+  }
+}

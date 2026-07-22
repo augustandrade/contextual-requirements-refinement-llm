@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "R-Q-2",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement is clear and unambiguous. It defines a functional behavior (informing the security service) with a specific quality attribute (response time within 2s). No decomposition is required as there is no concern mixing.",
+    "structured_requirements": [
+      {
+        "structured_id": "R-Q-2-SR-01",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "The system shall inform the security service within 2 s after detecting damage."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "after detecting damage",
+          "condition_type": "event",
+          "system_or_component": "system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "security service",
+          "modality": "shall",
+          "action": "inform",
+          "object": "security service",
+          "quality_attribute": "response time",
+          "measurable_criterion": "within 2 s",
+          "constraint_category": "performance",
+          "affected_element": "notification process"
+        },
+        "final_statement": "The system shall inform the security service within 2 s after detecting damage.",
+        "structuring_notes": [
+          "The requirement expresses a functional obligation (inform) constrained by a quality attribute (response time). The 'within 2 s' is interpreted as the maximum acceptable elapsed time based on the glossary."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"The User must upload the 'excel file' to System-A\"\n      ambiguity_type: \"lexical\"\n      explanation: \"The term 'excel file' is used without explicit demarcation (e.g., quotes, CamelCase) or a glossary definition, allowing for multiple interpretations regarding the file format (e.g., native .xlsx vs. generic spreadsheet data).\"\n      possible_interpretations:\n        - \"The user must upload a file with the specific extension .xlsx or .xls.\"\n        - \"The user must upload any file containing spreadsheet data, regardless of extension.\"\n      textual_evidence:\n        - \"upload the 'excel file'\"\n      context_evidence:\n        - \"Upload action is triggered only when the instruction contains a cataloged keyword.\"\n      context_dependency: \"moderate\"\n  no_ambiguity_reason: null\n```"
+}

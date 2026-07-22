@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-09-C1",
+  "requirement_id": "REQ-09",
+  "context_condition": "C1",
+  "base_requirement_text": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "controlled_context": {
+    "domain": "Fleet configuration management system.",
+    "glossary": [
+      {
+        "term": "medium-sized vehicle",
+        "definition": "Informal vehicle size category used by operations."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

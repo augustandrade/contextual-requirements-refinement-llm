@@ -1,0 +1,7 @@
+{
+  "execution_id": "REQ-PILOT-01-C0",
+  "requirement_id": "REQ-PILOT-01",
+  "context_condition": "C0",
+  "base_requirement_text": "When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds.",
+  "controlled_context": {}
+}

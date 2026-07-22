@@ -1,0 +1,105 @@
+{
+  "execution_id": "REQ-03-C2",
+  "requirement_id": "REQ-03",
+  "context_condition": "C2",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": false,
+    "validation_summary": "Agent 1 reported no linguistic ambiguity, but flagged an unexpected or unparsable model output. The requirement text is syntactically clear but semantically mixes two distinct actions (adding a system and allowing a subscription) into a single sentence, which violates the business rule requiring clear separation of independent operations.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "structural_issue": "concern_mixing",
+      "explanation": "Although the text contains no lexical or syntactic ambiguity, the requirement combines two independent operations (System-A adding System-B and System-C subscribing) in one sentence. Per business rule BR-01, these must be specified clearly in separate structures. Agent 3 must decompose this into two atomic requirements."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C1",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement text is syntactically clear but semantically mixes two independent operations (adding a system and allowing a subscription). Per business rule BR-01 and Pohl §25.2, this has been decomposed into two separate atomic requirements: one functional requirement for the system addition and one functional requirement for the subscription allowance.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "none",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "must",
+          "action": "add",
+          "object": "System-B to their downstream systems",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "downstream systems"
+        },
+        "final_statement": "System-A must add System-B to their downstream systems.",
+        "structuring_notes": [
+          "Decomposed from the original concern-mixed sentence. Extracted the action of adding System-B to downstream systems."
+        ]
+      },
+      {
+        "structured_id": "REQ-XX-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "allow System-C to subscribe to the Reporting flow"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "none",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "must",
+          "action": "allow",
+          "object": "System-C to subscribe to the Reporting flow",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "Reporting flow"
+        },
+        "final_statement": "System-A must allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "Decomposed from the original concern-mixed sentence. Extracted the action of allowing System-C to subscribe to the Reporting flow."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

@@ -1,0 +1,55 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the trigger condition and semantic ambiguity regarding the timing start point remain unresolved; context does not provide disambiguating evidence.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system triggers if the detector senses the event of the pane breaking (complement clause reading).",
+          "The system triggers if the detector senses a specific pane that is already in a damaged state (relative clause reading)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'detects the pane has been damaged' lacks a complementizer 'that', allowing both complement clause and reduced relative clause readings."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit definition of the trigger condition (event of breaking vs. state of damage) in the requirement or context."
+        ],
+        "justification": "The controlled context defines the glossary but does not specify the logical trigger condition (event vs. state) to resolve the syntactic attachment ambiguity. The requirement text itself is ambiguous without external clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 2 seconds at the latest",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The notification must be sent no later than 2 seconds after the detection event.",
+          "The notification must be sent within a window that ends 2 seconds after the event, but the start time is undefined or flexible."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'within 2 seconds at the latest' introduces uncertainty about whether the 2-second window starts from detection, damage, or alarm generation."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Definition of the precise start time for the 2-second constraint (detection vs. damage vs. alarm generation)."
+        ],
+        "justification": "The controlled context provides domain rules but no specific timing definitions. The ambiguity regarding the start point of the constraint cannot be resolved without explicit clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity (AMB-01 and AMB-02) is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

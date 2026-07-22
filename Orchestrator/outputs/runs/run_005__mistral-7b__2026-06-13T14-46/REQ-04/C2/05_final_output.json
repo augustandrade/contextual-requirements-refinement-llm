@@ -1,0 +1,155 @@
+{
+  "execution_id": "REQ-04-C2",
+  "requirement_id": "REQ-04",
+  "context_condition": "C2",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the customer",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'keypad'. It is unclear which entity the invalid PIN refers to.",
+        "possible_interpretations": [
+          "The access card entered by the customer is invalid.",
+          "The keypad entered PIN by the customer is invalid."
+        ],
+        "textual_evidence": [
+          "The customer inserts the access card into the card reader",
+          "enters a personal identification number (PIN) at the keypad",
+          "If it is invalid"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall deny the access",
+        "ambiguity_type": "referential",
+        "explanation": "It is unclear which access (card reader or door) the system denies when an invalid PIN is entered.",
+        "possible_interpretations": [
+          "The card reader denies the access.",
+          "The door denies the access."
+        ],
+        "textual_evidence": [
+          "If it is invalid, the system shall deny the access"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Two referential ambiguities detected, both resolved by controlled context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the customer",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The access card entered by the customer is invalid.",
+        "unsupported_interpretations": [
+          "The keypad entered PIN by the customer is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence introduces only 'the customer' as a candidate prior to 'it'."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01: Invalid card causes immediate access denial at turnstile."
+        ],
+        "missing_information": [],
+        "justification": "Only one entity is in scope as a plausible antecedent; the requirement text and controlled context disambiguate.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall deny the access",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The card reader denies the access.",
+        "unsupported_interpretations": [
+          "The door denies the access."
+        ],
+        "evidence_from_requirement": [
+          "If it is invalid, the system shall deny the access"
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01: Invalid card causes immediate access denial at turnstile."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context explicitly links the system to the card reader.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "All ambiguities resolved using requirement text and controlled context. Execution may proceed to Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "has_concern_mixing": false,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic after resolving two referential ambiguities using the controlled context. Structured as a single functional requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-04-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01",
+            "AMB-02"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "the customer inserts an invalid access card and enters an invalid PIN",
+          "condition_type": "logical",
+          "system_or_component": "the system (card reader)",
+          "interaction_pattern": "user_interaction",
+          "actor": "the customer",
+          "modality": "shall",
+          "action": "deny access",
+          "object": "",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access"
+        },
+        "final_statement": "If the customer inserts an invalid access card and enters an invalid PIN, the system shall deny the access.",
+        "structuring_notes": [
+          "Ambiguities resolved using supported interpretations from contextual resolubility validation."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

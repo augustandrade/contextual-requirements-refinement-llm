@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-13-C2",
+    "requirement_id": "REQ-13",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'damage' remains vague; the controlled context provides no definition or threshold to resolve the ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects damage to the pane",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Any visible defect or imperfection on the pane.",
+          "Only critical structural failures or safety-compromising defects."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states 'detects damage to the pane' without defining the threshold for 'damage'."
+        ],
+        "evidence_from_context": [
+          "Domain: Building alarm control system.",
+          "Glossary definition for 'security service' refers to the external responder, not the definition of 'damage'."
+        ],
+        "missing_information": [
+          "A precise definition or measurable threshold for 'damage' (e.g., depth, area, structural integrity) is missing from both the requirement text and the controlled context."
+        ],
+        "justification": "While the context identifies the domain and defines 'security service', it fails to provide a definition for 'damage'. Without a specific threshold or criteria for what constitutes 'damage', the ambiguity cannot be resolved with certainty.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the definition of 'damage' cannot be resolved using the provided controlled context. The case must bypass Agent 3."
+    }
+  }
+}

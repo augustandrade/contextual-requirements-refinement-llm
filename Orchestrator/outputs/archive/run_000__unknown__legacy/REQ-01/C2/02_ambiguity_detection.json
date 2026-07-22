@@ -1,0 +1,14 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is clear in its functional and temporal intent. However, it is non-atomic: it intermingles a functional requirement (inform the security service) and a quality/timing requirement (within 2 seconds). This is a structural concern-separation problem, not a linguistic ambiguity."
+  },
+  "provenance": {
+    "manifest_item_id": null,
+    "requirement_id": null,
+    "file_path": null,
+    "execution_id": null,
+    "timestamp": null
+  }
+}

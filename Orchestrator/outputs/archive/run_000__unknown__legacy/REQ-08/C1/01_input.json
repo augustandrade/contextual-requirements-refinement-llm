@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-08-C1",
+  "requirement_id": "REQ-08",
+  "context_condition": "C1",
+  "base_requirement_text": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+  "controlled_context": {
+    "domain": "Dam water level control system with automatic pump shutdown.",
+    "glossary": [
+      {
+        "term": "water level",
+        "definition": "Sensor reading sampled continuously."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

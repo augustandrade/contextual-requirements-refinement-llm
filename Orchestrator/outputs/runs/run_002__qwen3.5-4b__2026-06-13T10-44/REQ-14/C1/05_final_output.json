@@ -1,0 +1,111 @@
+{
+  "execution_id": "REQ-14-C1",
+  "requirement_id": "REQ-14",
+  "context_condition": "C1",
+  "input_requirement": "R-Q-2: The system shall inform the security service within 2 s after detecting damage.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: 'the system' has a single subject, 'the security service' has a single object, and 'detecting damage' is a clear event trigger. There are no competing antecedents for pronouns or modifiers, no syntactic attachment conflicts, and no terms with inherent lack of measurable boundaries."
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": true,
+    "functional_action": "inform the security service",
+    "quality_criterion": "within 2 s",
+    "explanation": "The requirement simultaneously specifies a functional action (inform the security service) and a timing quality criterion (within 2 s) that describes how fast the system must execute the action."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-14-C1",
+    "requirement_id": "REQ-14",
+    "context_condition": "C1",
+    "has_ambiguity": false,
+    "validation_summary": "No linguistic ambiguity detected by Agent 1a. Resolubility validation bypassed.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "explanation": "Agent 1a reported has_ambiguity: false. Orchestrator synthetic block."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "has_concern_mixing": true,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-14-C1",
+    "requirement_id": "REQ-14",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement contains concern-mixing (functional action + quality criterion). Decomposed into two separate artefacts per Pohl §25.2: a functional requirement for the notification action and a quality requirement for the timing constraint.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-14-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The system shall inform the security service"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after detecting damage",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "security service"
+        },
+        "final_statement": "The system shall inform the security service after detecting damage.",
+        "structuring_notes": [
+          "Extracted functional action from concern-mixed requirement. Timing constraint moved to separate quality requirement."
+        ]
+      },
+      {
+        "structured_id": "REQ-14-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "within 2 s"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after detecting damage",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "response time",
+          "measurable_criterion": "within 2 s",
+          "constraint_category": "performance",
+          "affected_element": "notification process"
+        },
+        "final_statement": "The notification process shall have a response time of within 2 s after detecting damage.",
+        "structuring_notes": [
+          "Extracted quality criterion (response time) as a separate artefact per Pohl §25.2. Used glossary definition for 'within 2 s'."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

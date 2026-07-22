@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-PILOT-03-C2",
+    "requirement_id": "REQ-PILOT-03",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement uses the term 'eligible' which is defined in the controlled context; the definition provides complete evidence to resolve the ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The employee meets all four conditions: (a) accrued leave balance >= requested days, (b) no active disciplinary action, (c) no overlap with mandatory attendance windows, and (d) no temporary approval hold from direct manager.",
+        "unsupported_interpretations": [
+          "The employee meets a generic or undefined notion of eligibility.",
+          "The employee meets criteria defined elsewhere in the system."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text states 'if the employee is eligible'."
+        ],
+        "evidence_from_context": [
+          "Glossary definition for 'eligible' explicitly lists four simultaneous conditions (a, b, c, d).",
+          "Business rule BR-01 confirms that automatic approval is granted when these specific conditions are satisfied."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context provides a precise, exhaustive definition of 'eligible' that maps directly to the condition in the requirement. The ambiguity is fully resolved by this definition.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The linguistic ambiguity regarding the term 'eligible' is resolved by the controlled context. No structural concern-mixing was detected. The execution may proceed to Agent 3."
+    }
+  }
+}

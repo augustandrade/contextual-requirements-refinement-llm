@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The possessive pronoun 'their' is ambiguous regarding its antecedent, but the controlled context provides insufficient evidence to resolve it definitively.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems that belong to System-A.",
+          "System-A must add System-B to a downstream system that belongs to a plural entity not specified."
+        ],
+        "evidence_from_requirement": [
+          "The sentence uses the pronoun 'their' without a clear singular or plural antecedent."
+        ],
+        "evidence_from_context": [
+          "The domain is an integration platform orchestrating services.",
+          "The glossary defines 'downstream systems' as external systems receiving events."
+        ],
+        "missing_information": [
+          "The specific entity or entities to which 'their' refers (e.g., System-A itself, a team, or another system) is not defined in the requirement text or the provided controlled context."
+        ],
+        "justification": "While the context defines 'downstream systems', it does not specify which entity possesses these systems. The pronoun 'their' could refer to System-A (singular) or an implied plural group, and the context lacks a business rule or constraint to disambiguate this reference.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The controlled context defines terms but fails to provide the specific entity reference needed to resolve the pronoun 'their'. The ambiguity cannot be safely resolved without human clarification."
+    }
+  }
+}

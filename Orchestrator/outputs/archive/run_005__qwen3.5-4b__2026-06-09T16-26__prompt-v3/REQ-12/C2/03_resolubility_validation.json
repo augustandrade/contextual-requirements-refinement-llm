@@ -1,0 +1,118 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Ambiguities regarding specific vocabulary definitions and logical scope are resolvable via controlled context; syntactic and referential ambiguities remain unresolved due to lack of explicit exclusion or antecedent context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "An 'Instruction' is a specific document type or data object defined in the system's controlled vocabulary, and a 'Keyword' is a specific tag or field within that object.",
+        "unsupported_interpretations": [
+          "An 'Instruction' refers to any textual command or directive, and a 'Keyword' refers to any word present in that text, without specific domain constraints."
+        ],
+        "evidence_from_requirement": [
+          "The terms are typographically demarcated with single quotes."
+        ],
+        "evidence_from_context": [
+          "Domain: Financial file upload workflow.",
+          "Business rule BR-01: Upload action is triggered only when the instruction contains a cataloged keyword."
+        ],
+        "missing_information": [],
+        "justification": "The business rule explicitly mentions 'cataloged keyword', confirming that 'Keyword' refers to a specific, defined term rather than any arbitrary word. The domain context implies structured data objects.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The file must be in the specific Microsoft Excel binary or XML format.",
+          "The file must be any spreadsheet format (e.g., CSV, ODS) that can be opened by an Excel-compatible application."
+        ],
+        "evidence_from_requirement": [
+          "The term 'excel file' is typographically demarcated."
+        ],
+        "evidence_from_context": [
+          "Glossary does not define 'excel file'.",
+          "Business rules do not specify file format constraints."
+        ],
+        "missing_information": [
+          "Definition of 'excel file' in the controlled vocabulary."
+        ],
+        "justification": "The glossary provided to the agent does not contain a definition for 'excel file'. Without an explicit definition or a business rule restricting the format, the specific format (binary/XML vs. generic spreadsheet) cannot be determined.",
+        "allowed_structuring_action": "request_glossary_definition"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "For every instance where an 'Instruction' contains a 'Keyword', the user is triggered to upload an 'excel file'.",
+        "unsupported_interpretations": [
+          "The user must upload an 'excel file' only if the 'Instruction' contains a specific, critical 'Keyword' (e.g., 'URGENT')."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure presents a general conditional rule."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 states: 'Upload action is triggered only when the instruction contains a cataloged keyword.'"
+        ],
+        "missing_information": [],
+        "justification": "The business rule implies a general condition: if a cataloged keyword is present, the action triggers. It does not restrict the action to only 'critical' keywords unless specified, making the general interpretation the default supported one.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-04",
+        "fragment": "upload the 'excel file' to System-A",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The destination for the upload action is specifically 'System-A'.",
+        "unsupported_interpretations": [
+          "The user uploads the file to 'System-A', but the requirement does not specify if other systems are excluded or if 'System-A' is a generic placeholder for any system."
+        ],
+        "evidence_from_requirement": [
+          "The prepositional phrase 'to System-A' clearly attaches to the verb 'upload'."
+        ],
+        "evidence_from_context": [
+          "Glossary defines 'System-A' as 'Target upload service endpoint'."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly defines 'System-A' as the 'Target upload service endpoint', resolving the ambiguity about whether it is a generic placeholder or a specific destination. The destination is clearly 'System-A'.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-05",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user must upload any excel file relevant to the instruction."
+        ],
+        "evidence_from_requirement": [
+          "The definite article 'the' is used."
+        ],
+        "evidence_from_context": [
+          "No prior context establishing a unique file is present in the input."
+        ],
+        "missing_information": [
+          "Identification of the specific 'excel file' associated with the current context."
+        ],
+        "justification": "The definite article 'the' implies a specific file, but the input lacks any antecedent mentioning a specific file. Without external context defining which file is required, the antecedent is not uniquely determined.",
+        "allowed_structuring_action": "request_file_identification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "partially_resolvable",
+      "structural_issue": "missing_glossary_definitions_and_file_context",
+      "explanation": "Lexical ambiguities regarding 'excel file' and referential ambiguity regarding 'the excel file' cannot be resolved with the current context. Execution must pause to request missing definitions or file identifiers before proceeding to Agent 3."
+    }
+  }
+}

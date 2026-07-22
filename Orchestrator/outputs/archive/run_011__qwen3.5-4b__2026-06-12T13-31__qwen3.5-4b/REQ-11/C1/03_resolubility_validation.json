@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-11-C1",
+    "requirement_id": "REQ-11",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'Routing' exists but is resolved by domain context; however, a structural concern-mixing issue requires decomposition.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The routing switch (device) has the ability...",
+        "unsupported_interpretations": [
+          "The act of routing switches the ability..."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'Routing switches ability' suggests a device class possessing a capability."
+        ],
+        "evidence_from_context": [
+          "Domain: Industrial railway communication network using routing switches.",
+          "Glossary: 'management data traffic' is defined as administrative traffic."
+        ],
+        "missing_information": [],
+        "justification": "The domain context explicitly identifies 'routing switches' as a specific device class in an industrial network, resolving the lexical ambiguity between the noun and verb forms. The supported interpretation aligns with standard network terminology where a switch possesses filtering ability.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "concern_mixing",
+      "explanation": "While the lexical ambiguity is resolved by the domain context, the requirement mixes a functional action ('filter network traffic') with a quality criterion ('between data-plane interfaces and management data traffic'). Agent 3 must decompose this into separate sentences to satisfy structural clarity."
+    }
+  }
+}

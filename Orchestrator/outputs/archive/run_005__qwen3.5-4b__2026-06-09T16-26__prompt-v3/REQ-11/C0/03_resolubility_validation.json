@@ -1,0 +1,76 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "All detected ambiguities are unresolved due to lack of controlled context (C0) and insufficient evidence within the requirement text to disambiguate syntactic, lexical, and semantic issues.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The routing switch filters traffic that flows between data-plane interfaces and management data traffic.",
+          "The routing switch filters traffic, and there is a relationship or separation between data-plane interfaces and management data traffic."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'between data-plane interfaces and management data traffic' is structurally ambiguous without explicit prepositions or structural markers."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit syntactic markers or glossary definitions to determine if the phrase modifies 'filter' or 'switches'."
+        ],
+        "justification": "The requirement text does not contain explicit markers to resolve the attachment of the prepositional phrase. Without controlled context (C0), the ambiguity cannot be resolved.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The hardware devices (network switches) have the ability to filter...",
+          "The action of switching (in a routing context) has the ability to filter..."
+        ],
+        "evidence_from_requirement": [
+          "The word 'switches' is used without a specific domain definition in the text."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A glossary definition or domain constraint to confirm 'switches' refers to hardware devices."
+        ],
+        "justification": "The term 'switches' lacks a specific definition in the text or context. Without external knowledge or a glossary, the hardware vs. action interpretation cannot be distinguished.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system filters traffic that traverses the boundary between data-plane and management interfaces.",
+          "The system filters traffic originating from data-plane interfaces destined for management data traffic (unidirectional)."
+        ],
+        "evidence_from_requirement": [
+          "The text lacks directional operators (e.g., 'from', 'to') or exclusivity markers."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit logical operators or constraints defining the directionality or scope of the filtering action."
+        ],
+        "justification": "The semantic relationship (directionality/exclusivity) is underspecified in the text. No context exists to infer the intended logical relationship.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "All ambiguities remain unresolved because the execution condition is C0 (no controlled context) and the requirement text itself does not provide sufficient evidence to disambiguate the syntactic, lexical, or semantic issues."
+    }
+  }
+}

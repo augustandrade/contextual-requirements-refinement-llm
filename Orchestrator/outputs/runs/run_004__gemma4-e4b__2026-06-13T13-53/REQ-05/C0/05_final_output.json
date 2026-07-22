@@ -1,0 +1,116 @@
+{
+  "execution_id": "REQ-05-C0",
+  "requirement_id": "REQ-05",
+  "context_condition": "C0",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_type": "Syntactic/Semantic",
+        "ambiguity_description": "The phrase \"with the access code\" can modify either the action of entering (how the user enters) or the object being entered (what is being entered).",
+        "ambiguity_examples": [
+          "The user enters the card (which has the access code).",
+          "The user enters the card by providing the access code."
+        ],
+        "suggested_clarification": "Specify whether the access code is used as a secondary authentication method or if the card itself contains the code."
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The phrase 'with the access code' has syntactic ambiguity regarding whether it modifies the manner of entry or the object being entered. No context is available to resolve this.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "with the access code",
+        "ambiguity_type": "syntactic | semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user enters the card, and the card itself possesses the access code.",
+          "The user enters the card by providing the access code as a secondary authentication method."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text is: 'The user enters the access card with the access code.'"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "It is unclear whether 'with the access code' modifies the verb 'enters' (manner) or the noun 'access card' (attribute)."
+        ],
+        "justification": "The requirement text alone does not provide enough information to determine if the access code is part of the card or used during the entry action.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the scope of 'with the access code' cannot be resolved using only the base requirement text, necessitating human review."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "with the access code",
+        "reason": "The requirement text alone does not provide enough information to determine if the access code is part of the card or used during the entry action.",
+        "missing_information": [
+          "It is unclear whether 'with the access code' modifies the verb 'enters' (manner) or the noun 'access card' (attribute)."
+        ],
+        "unsupported_interpretations": [
+          "The user enters the card, and the card itself possesses the access code.",
+          "The user enters the card by providing the access code as a secondary authentication method."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "with the access code",
+        "reason": "The requirement text alone does not provide enough information to determine if the access code is part of the card or used during the entry action.",
+        "missing_information": [
+          "It is unclear whether 'with the access code' modifies the verb 'enters' (manner) or the noun 'access card' (attribute)."
+        ],
+        "unsupported_interpretations": [
+          "The user enters the card, and the card itself possesses the access code.",
+          "The user enters the card by providing the access code as a secondary authentication method."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "It is unclear whether 'with the access code' modifies the verb 'enters' (manner) or the noun 'access card' (attribute)."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

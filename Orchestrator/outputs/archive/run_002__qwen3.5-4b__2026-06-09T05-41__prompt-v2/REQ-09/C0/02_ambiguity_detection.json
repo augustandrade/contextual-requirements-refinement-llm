@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"medium-sized vehicles\"\n      ambiguity_type: \"lexical\"\n      explanation: \"The term 'medium-sized' is a relative descriptor lacking a fixed boundary; it admits multiple interpretations based on the reference class (e.g., compared to all vehicles, compared to light trucks, or compared to heavy goods vehicles).\"\n      possible_interpretations:\n        - \"Vehicles that are larger than light vehicles but smaller than heavy-duty trucks.\"\n        - \"Vehicles that fall within a specific manufacturer-defined size range (e.g., 3.5 to 7.5 tonnes).\"\n        - \"Vehicles that are larger than the average passenger car but smaller than full-size SUVs.\"\n      textual_evidence:\n        - \"medium-sized vehicles\"\n      context_evidence: []\n      context_dependency: \"high\"\n  no_ambiguity_reason: null\n```"
+}

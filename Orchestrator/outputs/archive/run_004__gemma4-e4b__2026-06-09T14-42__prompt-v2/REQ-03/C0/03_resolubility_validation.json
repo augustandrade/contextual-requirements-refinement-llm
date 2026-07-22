@@ -1,0 +1,56 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Both detected ambiguities are unresolved because the controlled context is empty, preventing the selection of a definitive interpretation for the possessive pronoun or the scope of the 'allow' action.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A must add System-B to System-A's downstream systems.",
+          "System-A must add System-B to the downstream systems of the entity that owns the context (e.g., the overall integration platform)."
+        ],
+        "evidence_from_requirement": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The antecedent for the possessive pronoun 'their' is unclear, and no context is provided to resolve whether it refers to System-A or another entity."
+        ],
+        "justification": "The context dependency is moderate, but since the controlled context is empty, no evidence exists to resolve the pronoun reference.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "'System-A must perform two distinct actions: 1) add System-B, AND 2) allow System-C to subscribe.'",
+          "The act of adding System-B to the downstream systems inherently results in System-C being allowed to subscribe."
+        ],
+        "evidence_from_requirement": [
+          "and allow System-C to subscribe to the Reporting flow"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The relationship between the action 'add System-B' and the action 'allow System-C to subscribe' is syntactically ambiguous, and no context clarifies if they are sequential, parallel, or causal."
+        ],
+        "justification": "The ambiguity concerns the scope of the conjunction 'and' and the relationship between two clauses, which cannot be resolved without contextual rules or clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Both detected ambiguities are unresolved due to the lack of supporting evidence in the controlled context, requiring manual review before proceeding to Agent 3."
+    }
+  }
+}

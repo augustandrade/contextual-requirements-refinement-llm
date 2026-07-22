@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "navigation system",
+        "reason": "The controlled context lacks a definition for 'navigation system', leaving the specific capabilities (e.g., routing vs. display only) undefined.",
+        "missing_information": [
+          "A definition or functional specification for 'navigation system' within the controlled context."
+        ],
+        "unsupported_interpretations": [
+          "A dedicated GPS unit or integrated infotainment module capable of providing turn-by-turn directions.",
+          "Any system that provides location data, which could include basic map display without routing capabilities, or a simple compass."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

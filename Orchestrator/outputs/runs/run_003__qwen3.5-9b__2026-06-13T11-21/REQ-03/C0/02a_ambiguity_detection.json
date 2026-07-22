@@ -1,0 +1,37 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'to their downstream systems' can attach either to the verb 'add' (indicating the target of the addition action) or to the object 'System-B' (identifying System-B as a member of the downstream systems set). While the intended meaning is likely that System-B is the target, the syntax allows for an interpretation where 'System-B' is being added to a pre-existing set of 'downstream systems' belonging to 'their' (System-A), creating a structural ambiguity regarding the scope of the prepositional phrase.",
+        "possible_interpretations": [
+          "System-A performs the action of adding System-B, and the phrase 'to their downstream systems' specifies the target category or location of this addition.",
+          "System-A adds System-B to a specific collection of systems already defined as 'their downstream systems', potentially implying System-B was not previously in that set."
+        ],
+        "textual_evidence": [
+          "add System-B to their downstream systems"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "explanation": "The phrase 'to the Reporting flow' can attach to 'subscribe' (indicating the object of the subscription action) or potentially be misparsed as modifying 'allow' (though less likely). More critically, 'their' in the first clause creates a referential ambiguity regarding the possessive pronoun's antecedent. Does 'their' refer to 'System-A' (the subject) or 'System-B' (the object of the first clause)? If 'their' refers to System-B, the meaning changes significantly regarding who owns the downstream systems.",
+        "possible_interpretations": [
+          "System-A allows System-C to subscribe to the Reporting flow (System-A owns the flow).",
+          "System-A allows System-C to subscribe to the Reporting flow (System-B owns the flow, though this is less grammatically standard for 'allow' but possible in loose syntax)."
+        ],
+        "textual_evidence": [
+          "allow System-C to subscribe to the Reporting flow",
+          "their downstream systems"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

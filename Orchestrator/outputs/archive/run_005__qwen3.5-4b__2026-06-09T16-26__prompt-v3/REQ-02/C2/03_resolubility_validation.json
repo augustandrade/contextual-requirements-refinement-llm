@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The controlled context explicitly defines the source of rejection orders, resolving the referential ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system receives a rejection order that specifically denies the cancellation request.",
+        "unsupported_interpretations": [
+          "The system receives a rejection order (from a different source or context) that is associated with a cancellation request."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'a rejection order' lacks a specific antecedent within the text."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 states: Rejection and approval orders are issued exclusively by Security Manager.",
+          "Glossary defines Security Manager as the Workflow authority that approves or rejects cancellation requests."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context provides explicit evidence that rejection orders are exclusively issued by the Security Manager in the context of cancellation requests, eliminating the possibility of an external or distinct source.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides direct evidence to resolve the referential ambiguity regarding the source of the rejection order. Execution may proceed to Agent 3."
+    }
+  }
+}

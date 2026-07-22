@@ -1,0 +1,38 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'between data-plane interfaces and management data traffic' has ambiguous attachment. It can modify 'filter' (defining the scope of the filtering action) or modify 'switches' (defining the relationship between the two types of traffic), leading to different interpretations of the system's function.",
+        "possible_interpretations": [
+          "The routing switch filters traffic that flows between data-plane interfaces and management data traffic (the filter applies to the traffic moving between these two domains).",
+          "The routing switch has the ability to filter traffic, and this ability exists between data-plane interfaces and management data traffic (the filter is applied to traffic originating from or destined to these specific interfaces)."
+        ],
+        "textual_evidence": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'switches' is used without a controlled vocabulary definition. It could refer to the hardware devices (network switches) or the action of switching (routing/forwarding), though context suggests hardware, the lack of explicit definition creates potential lexical ambiguity regarding the noun's specific domain meaning.",
+        "possible_interpretations": [
+          "The hardware devices (network switches) possess the ability to filter...",
+          "The action of switching (routing) possesses the ability to filter..."
+        ],
+        "textual_evidence": [
+          "Routing switches ability"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

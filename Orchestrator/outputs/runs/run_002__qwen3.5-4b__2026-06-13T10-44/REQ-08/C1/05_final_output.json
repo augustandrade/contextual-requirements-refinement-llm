@@ -1,0 +1,138 @@
+{
+  "execution_id": "REQ-08-C1",
+  "requirement_id": "REQ-08",
+  "context_condition": "C1",
+  "input_requirement": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'remains above' implies a continuous state, but the boundary between 'above' and 'not above' is not strictly defined for physical measurements (e.g., is 100.0001 meters above considered 'above'?). Similarly, 'more than 4 seconds' lacks a precise threshold without a specified tolerance or measurement precision, creating an underspecified condition for automated decision-making.",
+        "possible_interpretations": [
+          "The water level is strictly greater than 100 meters.",
+          "The water level is greater than or equal to 100 meters.",
+          "The duration of the state being above 100 meters is strictly greater than 4 seconds.",
+          "The duration of the state being above 100 meters is greater than or equal to 4 seconds."
+        ],
+        "textual_evidence": [
+          "remains above 100 meters",
+          "for more than 4 seconds"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement text uses natural language thresholds ('above', 'more than') which are inherently vague, but the controlled context provides a glossary definition that does not resolve the specific boundary conditions.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Strictly greater than 100 meters.",
+          "Greater than or equal to 100 meters.",
+          "Strictly greater than 4 seconds.",
+          "Greater than or equal to 4 seconds."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'above' implies a continuous state without a defined boundary.",
+          "The phrase 'more than' implies a continuous duration without a defined tolerance."
+        ],
+        "evidence_from_context": [
+          "Glossary defines 'water level' as a sensor reading sampled continuously."
+        ],
+        "missing_information": [
+          "The specific tolerance or precision required to define the boundary between 'above' and 'not above'.",
+          "The specific tolerance or precision required to define the boundary between 'more than' and 'not more than'."
+        ],
+        "justification": "While the glossary confirms the nature of the measurement (continuous sampling), it does not provide the numerical thresholds or tolerance values needed to resolve the linguistic vagueness of 'above' and 'more than'. The requirement text itself does not specify these values either.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The controlled context (C1) provides domain and glossary information but lacks the specific numerical constraints or tolerance definitions required to resolve the linguistic vagueness in the requirement text. Therefore, the ambiguity cannot be safely resolved without human clarification."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "reason": "While the glossary confirms the nature of the measurement (continuous sampling), it does not provide the numerical thresholds or tolerance values needed to resolve the linguistic vagueness of 'above' and 'more than'. The requirement text itself does not specify these values either.",
+        "missing_information": [
+          "The specific tolerance or precision required to define the boundary between 'above' and 'not above'.",
+          "The specific tolerance or precision required to define the boundary between 'more than' and 'not more than'."
+        ],
+        "unsupported_interpretations": [
+          "Strictly greater than 100 meters.",
+          "Greater than or equal to 100 meters.",
+          "Strictly greater than 4 seconds.",
+          "Greater than or equal to 4 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "reason": "While the glossary confirms the nature of the measurement (continuous sampling), it does not provide the numerical thresholds or tolerance values needed to resolve the linguistic vagueness of 'above' and 'more than'. The requirement text itself does not specify these values either.",
+        "missing_information": [
+          "The specific tolerance or precision required to define the boundary between 'above' and 'not above'.",
+          "The specific tolerance or precision required to define the boundary between 'more than' and 'not more than'."
+        ],
+        "unsupported_interpretations": [
+          "Strictly greater than 100 meters.",
+          "Greater than or equal to 100 meters.",
+          "Strictly greater than 4 seconds.",
+          "Greater than or equal to 4 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The specific tolerance or precision required to define the boundary between 'above' and 'not above'.",
+      "The specific tolerance or precision required to define the boundary between 'more than' and 'not more than'."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C1",
+    "requirement_id": "REQ-11",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "reason": "The controlled context provides domain information but lacks specific business rules or glossary entries defining the scope of the prepositional phrase 'between' in this context. Without explicit evidence, the syntactic ambiguity cannot be resolved.",
+        "missing_information": [
+          "A definition or business rule specifying whether 'between' refers to the traffic flow boundary or the relationship between the interface types."
+        ],
+        "unsupported_interpretations": [
+          "The routing switch filters traffic that flows between the data-plane interfaces and the management data traffic (filtering the boundary/flow between these two distinct traffic types).",
+          "The routing switch filters traffic on the data-plane interfaces, and separately manages the relationship or separation between the data-plane interfaces and the management data traffic (ambiguous scope of 'between')."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "filter network traffic",
+        "reason": "The controlled context contains a glossary for 'management data traffic' but does not define 'filter'. The domain description does not explicitly state whether the function is security-based (dropping) or engineering-based (separating). Evidence is insufficient to choose between the polysemous meanings.",
+        "missing_information": [
+          "A glossary entry or business rule defining 'filter' in the context of industrial railway communication networks (e.g., distinguishing between packet dropping and traffic separation)."
+        ],
+        "unsupported_interpretations": [
+          "The system drops or blocks specific packets to separate data-plane traffic from management traffic (access control/security).",
+          "The system separates or isolates the streams of data-plane and management traffic to prevent mixing (traffic engineering)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

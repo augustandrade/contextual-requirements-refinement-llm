@@ -1,0 +1,78 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C2",
+    "requirement_id": "REQ-07",
+    "context_condition": "C2",
+    "structuring_summary": "Lexical ambiguity ('preferably') resolved by Agent 2 via business rule BR-01, establishing a mandatory obligation. Structural issue 'concern_mixing' detected per Pohl §25.2: the requirement mixes a functional action (reset) with a quality criterion (mandatory/obligation). Decomposed into one functional requirement and one quality requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-07-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "perform a reset"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "when leaving Factory mode",
+          "condition_type": "event",
+          "system_or_component": "the ECU",
+          "interaction_pattern": "internal_operation",
+          "actor": "",
+          "modality": "shall",
+          "action": "perform",
+          "object": "a reset",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "ECU"
+        },
+        "final_statement": "When leaving Factory mode, the ECU shall perform a reset.",
+        "structuring_notes": [
+          "Extracted functional action 'perform a reset'. Replaced 'preferably' with 'shall' based on supported interpretation from BR-01."
+        ]
+      },
+      {
+        "structured_id": "REQ-07-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "preferably perform a reset"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "when leaving Factory mode",
+          "condition_type": "event",
+          "system_or_component": "the ECU",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "obligation strength",
+          "measurable_criterion": "mandatory",
+          "constraint_category": "safety",
+          "affected_element": "ECU reset operation"
+        },
+        "final_statement": "The ECU reset operation shall be mandatory when leaving Factory mode.",
+        "structuring_notes": [
+          "Extracted quality criterion (mandatory obligation) as a separate artefact per Pohl §25.2. The specific mention of 'critical control modules' in BR-01 is treated as a constraint on the applicability of the requirement rather than part of the requirement text itself, to avoid unsupported inference."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not explicitly include 'critical control modules' in the requirement text; treated as a constraint on applicability per Pohl §25.2."
+    ],
+    "final_output_status": "structured"
+  }
+}

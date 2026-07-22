@@ -1,0 +1,181 @@
+<svg viewBox="0 0 760 850" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" font-size="13">
+  <title>Fluxo de decisão do orquestrador</title>
+  <desc>Fluxograma do orquestrador mostrando as decisões de roteamento entre os agentes 1a, 1b, 2 e 3.</desc>
+
+  <defs>
+    <marker id="a"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#374151"/></marker>
+    <marker id="ag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#16a34a"/></marker>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#dc2626"/></marker>
+  </defs>
+
+  <rect width="760" height="850" fill="#ffffff" rx="12"/>
+
+  <!-- TITLE -->
+  <text x="380" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Fluxo de decisão do orquestrador</text>
+
+  <!-- START -->
+  <ellipse cx="380" cy="58" rx="92" ry="22" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="380" y="63" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">Início da execução</text>
+  <line x1="380" y1="80" x2="380" y2="90" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- ═══ ETAPA 1 ═══ -->
+  <rect x="46" y="90" width="668" height="128" rx="8" fill="#fafafa" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text x="66" y="107" font-size="10" font-weight="700" fill="#6b7280">ETAPA 1 — Detecção  (1× por requisito; reutilizada em C0, C1 e C2)</text>
+
+  <!-- Agent 1a -->
+  <rect x="60" y="114" width="272" height="88" rx="7" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="196" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">Agente 1a</text>
+  <text x="196" y="148" text-anchor="middle" font-size="10.5" fill="#1d4ed8">Detector de Ambiguidades</text>
+  <line x1="74" y1="156" x2="318" y2="156" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="196" y="170" text-anchor="middle" font-size="10" fill="#374151">analisa base_requirement_text</text>
+  <text x="196" y="183" text-anchor="middle" font-size="10" fill="#374151">(context-blind) → <tspan font-weight="600">has_ambiguity</tspan></text>
+
+  <!-- sequential arrow -->
+  <line x1="332" y1="158" x2="428" y2="158" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a)"/>
+  <text x="380" y="152" text-anchor="middle" font-size="8.5" fill="#9ca3af">sequencial</text>
+  <text x="380" y="166" text-anchor="middle" font-size="8.5" fill="#9ca3af">(↔ paralel.)</text>
+
+  <!-- Agent 1b -->
+  <rect x="428" y="114" width="272" height="88" rx="7" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="564" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">Agente 1b</text>
+  <text x="564" y="148" text-anchor="middle" font-size="10.5" fill="#15803d">Detector de Concern Mixing</text>
+  <line x1="442" y1="156" x2="686" y2="156" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="564" y="170" text-anchor="middle" font-size="10" fill="#374151">analisa base_requirement_text</text>
+  <text x="564" y="183" text-anchor="middle" font-size="10" fill="#374151">(context-blind) → <tspan font-weight="600">has_concern_mixing</tspan></text>
+
+  <!-- Arrow ETAPA1 → diamond (from 1a bottom-center) -->
+  <line x1="380" y1="218" x2="380" y2="238" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="393" y="232" font-size="8.5" fill="#374151">Ag. 1a output</text>
+
+  <!-- ═══ DIAMOND 1: has_ambiguity? ═══ -->
+  <!-- cx=380, cy=264, half-w=108, half-h=28 -->
+  <polygon points="380,236 488,264 380,292 272,264" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="380" y="260" text-anchor="middle" font-size="10" font-weight="700" fill="#5b21b6">has_ambiguity?</text>
+  <text x="380" y="274" text-anchor="middle" font-size="8.5" fill="#6d28d9">flag do Agente 1a</text>
+
+  <!-- false branch → LEFT bypass -->
+  <line x1="272" y1="264" x2="64" y2="264" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="167" y="256" text-anchor="middle" font-size="8.5" fill="#374151">false</text>
+
+  <!-- Synthetic block note -->
+  <rect x="4" y="280" width="108" height="44" rx="5" fill="#fef3c7" stroke="#fbbf24" stroke-width="1"/>
+  <text x="58" y="297" text-anchor="middle" font-size="8.5" fill="#92400e">bloco sintético</text>
+  <text x="58" y="310" text-anchor="middle" font-size="8.5" fill="#92400e">do orquestrador</text>
+  <text x="58" y="321" text-anchor="middle" font-size="8" fill="#92400e">(no_ambiguity)</text>
+
+  <!-- Left bypass line: from false arrow junction down to merge point y=455 -->
+  <line x1="64" y1="264" x2="64" y2="455" stroke="#374151" stroke-width="1.5"/>
+  <!-- horizontal to merge point -->
+  <line x1="64" y1="455" x2="372" y2="455" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="120" y="448" font-size="8.5" fill="#374151">no_ambiguity</text>
+
+  <!-- true branch → down to Agent 2 -->
+  <line x1="380" y1="292" x2="380" y2="316" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="393" y="308" font-size="8.5" fill="#374151">true</text>
+
+  <!-- ═══ AGENT 2 ═══ -->
+  <rect x="140" y="316" width="480" height="72" rx="7" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+  <text x="380" y="336" text-anchor="middle" font-size="11" font-weight="700" fill="#c2410c">Agente 2 — Verificação de Resolubilidade</text>
+  <line x1="154" y1="344" x2="606" y2="344" stroke="#fed7aa" stroke-width="1"/>
+  <text x="380" y="358" text-anchor="middle" font-size="10" fill="#9a3412">recebe: requisito + contexto (C0/C1/C2) + output Ag. 1a</text>
+  <text x="380" y="372" text-anchor="middle" font-size="10" fill="#9a3412">→ status por ambiguidade · overall_resolubility</text>
+
+  <line x1="380" y1="388" x2="380" y2="408" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- ═══ DIAMOND 2: overall_resolubility? ═══ -->
+  <!-- cx=380, cy=432, half-w=116, half-h=28 -->
+  <polygon points="380,408 496,432 380,456 264,432" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="380" y="428" text-anchor="middle" font-size="10" font-weight="700" fill="#5b21b6">overall_resolubility?</text>
+  <text x="380" y="442" text-anchor="middle" font-size="8.5" fill="#6d28d9">status global</text>
+
+  <!-- non_resolvable → RIGHT -->
+  <line x1="496" y1="432" x2="636" y2="432" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="563" y="424" text-anchor="middle" font-size="8.5" fill="#dc2626">non_resolvable</text>
+
+  <!-- Signaling box -->
+  <rect x="636" y="410" width="116" height="44" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="694" y="429" text-anchor="middle" font-size="10" font-weight="700" fill="#991b1b">Rota:</text>
+  <text x="694" y="443" text-anchor="middle" font-size="10" font-weight="700" fill="#991b1b">signaling</text>
+
+  <!-- Signaling bypass → down right side to Consolidador -->
+  <line x1="694" y1="454" x2="694" y2="692" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <line x1="694" y1="692" x2="572" y2="692" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#ar)"/>
+
+  <!-- fully_resolvable → down to merge point -->
+  <line x1="380" y1="456" x2="380" y2="472" stroke="#16a34a" stroke-width="1.5" marker-end="url(#ag)"/>
+  <text x="393" y="467" font-size="8.5" fill="#16a34a">fully_resolvable</text>
+
+  <!-- Merge point at y=472 (no_ambiguity from left + fully_resolvable from above) -->
+  <line x1="380" y1="472" x2="380" y2="488" stroke="#16a34a" stroke-width="1.5" marker-end="url(#ag)"/>
+
+  <!-- ═══ AGENT 3 ═══ -->
+  <rect x="100" y="488" width="560" height="84" rx="7" fill="#fdf4ff" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="380" y="508" text-anchor="middle" font-size="11" font-weight="700" fill="#7e22ce">Agente 3 — Estruturador</text>
+  <line x1="114" y1="516" x2="646" y2="516" stroke="#e9d5ff" stroke-width="1"/>
+  <text x="380" y="530" text-anchor="middle" font-size="10" fill="#6b21a8">recebe: requisito + contexto + has_concern_mixing (Ag. 1b) + output Ag. 2</text>
+  <text x="380" y="544" text-anchor="middle" font-size="10" fill="#6b21a8">invocado se: fully_resolvable ou no_ambiguity</text>
+  <text x="380" y="558" text-anchor="middle" font-size="10" fill="#6b21a8">→ produz requisito estruturado (YAML)</text>
+
+  <line x1="380" y1="572" x2="380" y2="592" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- ═══ DIAMOND 3: has_concern_mixing? ═══ -->
+  <!-- cx=380, cy=616, half-w=108, half-h=28 -->
+  <polygon points="380,592 488,616 380,640 272,616" fill="#fef9c3" stroke="#b45309" stroke-width="1.5"/>
+  <text x="380" y="611" text-anchor="middle" font-size="10" font-weight="700" fill="#92400e">has_concern_mixing?</text>
+  <text x="380" y="625" text-anchor="middle" font-size="8.5" fill="#92400e">flag do Agente 1b</text>
+
+  <!-- true → LEFT: decompose -->
+  <line x1="272" y1="616" x2="148" y2="616" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="209" y="608" text-anchor="middle" font-size="8.5" fill="#374151">true</text>
+
+  <rect x="14" y="592" width="134" height="54" rx="5" fill="#fef9c3" stroke="#b45309" stroke-width="1.5"/>
+  <text x="81" y="612" text-anchor="middle" font-size="10" font-weight="700" fill="#92400e">Decompõe em</text>
+  <text x="81" y="626" text-anchor="middle" font-size="10" fill="#78350f">FR + QR</text>
+  <text x="81" y="638" text-anchor="middle" font-size="8.5" fill="#78350f">(Pohl, 2025)</text>
+
+  <!-- false → RIGHT: artefato único -->
+  <line x1="488" y1="616" x2="612" y2="616" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="552" y="608" text-anchor="middle" font-size="8.5" fill="#374151">false</text>
+
+  <rect x="612" y="592" width="134" height="54" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="679" y="612" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">Artefato único</text>
+  <text x="679" y="626" text-anchor="middle" font-size="10" fill="#166534">FR, QR ou</text>
+  <text x="679" y="638" text-anchor="middle" font-size="9" fill="#166534">constraint</text>
+
+  <!-- Convergence to Consolidador -->
+  <line x1="81" y1="646" x2="81" y2="680" stroke="#374151" stroke-width="1.5"/>
+  <line x1="81" y1="680" x2="228" y2="680" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <line x1="679" y1="646" x2="679" y2="680" stroke="#374151" stroke-width="1.5"/>
+  <line x1="679" y1="680" x2="532" y2="680" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <line x1="380" y1="640" x2="380" y2="668" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- ═══ CONSOLIDADOR ═══ -->
+  <rect x="228" y="668" width="304" height="46" rx="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="380" y="688" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">Consolidador Python</text>
+  <text x="380" y="703" text-anchor="middle" font-size="10" fill="#166534">determinístico · monta output integrado</text>
+
+  <line x1="380" y1="714" x2="380" y2="734" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- ═══ OUTPUT ═══ -->
+  <rect x="210" y="734" width="340" height="46" rx="7" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="380" y="754" text-anchor="middle" font-size="11" font-weight="700" fill="#9a3412">05_final_output.json</text>
+  <text x="380" y="769" text-anchor="middle" font-size="10" fill="#c2410c">rota: structured ou signaling</text>
+
+  <line x1="380" y1="780" x2="380" y2="800" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- END -->
+  <ellipse cx="380" cy="820" rx="92" ry="22" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="380" y="825" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">Fim da execução</text>
+
+  <!-- ═══ LEGEND ═══ -->
+  <rect x="4" y="730" width="160" height="80" rx="6" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="84" y="746" text-anchor="middle" font-size="9.5" font-weight="700" fill="#6b7280">Legenda</text>
+  <line x1="14" y1="758" x2="30" y2="758" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#ar)"/>
+  <text x="36" y="762" font-size="8.5" fill="#374151">rota signaling (bypass Ag. 3)</text>
+  <line x1="14" y1="776" x2="30" y2="776" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="36" y="780" font-size="8.5" fill="#374151">rota structured</text>
+  <line x1="14" y1="795" x2="30" y2="795" stroke="#16a34a" stroke-width="1.5" marker-end="url(#ag)"/>
+  <text x="36" y="799" font-size="8.5" fill="#374151">rota ativa (structured)</text>
+</svg>

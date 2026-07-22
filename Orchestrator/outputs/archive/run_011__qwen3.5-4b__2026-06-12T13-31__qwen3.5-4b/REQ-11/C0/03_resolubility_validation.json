@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'Routing' exists and is unresolved; concern mixing is present but does not affect linguistic interpretability.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The routing switch (device) has the ability...",
+          "The act of routing switches the ability..."
+        ],
+        "evidence_from_requirement": [
+          "The term 'Routing' is used as a noun and a verb without disambiguating context."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether 'Routing' refers to a specific device class or the network operation."
+        ],
+        "justification": "In C0, no controlled context exists to resolve the lexical overlap. The requirement text alone does not provide evidence to distinguish between the device interpretation and the action interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "concern_mixing",
+      "explanation": "Agent 1 flagged concern mixing (functional action + quality criterion), requiring decomposition by Agent 3. However, the primary lexical ambiguity remains unresolved due to lack of context, preventing safe execution."
+    }
+  }
+}

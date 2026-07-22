@@ -1,0 +1,26 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "syntactic",
+        "explanation": "The scope of the conditional trigger ('If an 'Instruction' contains a 'Keyword'') is unclear. It is ambiguous whether the entire action ('The User must upload the 'excel file' to System-A') is conditional on the presence of the 'Keyword', or if the 'Keyword' itself must be present in the 'Instruction' for the upload to be required.",
+        "possible_interpretations": [
+          "The upload action is required if the 'Instruction' contains a 'Keyword'.",
+          "The upload action is required only if the 'Instruction' contains a 'Keyword' AND the 'excel file' is the subject of the upload."
+        ],
+        "textual_evidence": [
+          "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+        ],
+        "context_evidence": [
+          "term: Instruction\ndefinition: Input message received by the workflow.",
+          "term: Keyword\ndefinition: Cataloged trigger word."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

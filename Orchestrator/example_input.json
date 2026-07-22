@@ -1,0 +1,12 @@
+{
+  "execution_id": "REQ-01-C0",
+  "requirement_id": "REQ-01",
+  "context_condition": "C0",
+  "base_requirement_text": "The system shall notify the user if it detects glass break within 2 seconds.",
+  "controlled_context": {
+    "available": false,
+    "glossary": [],
+    "business_rules": [],
+    "constraints": []
+  }
+}

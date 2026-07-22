@@ -1,0 +1,184 @@
+{
+  "execution_id": "REQ-03-C1",
+  "requirement_id": "REQ-03",
+  "context_condition": "C1",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "explanation": "The possessive pronoun 'their' is ambiguous as to which system it refers to. It could refer to System-A, or it could refer to the collective set of systems mentioned previously or implied by the context.",
+        "possible_interpretations": [
+          "System-A must add System-B to System-A's downstream systems.",
+          "System-A must add System-B to the downstream systems of another entity (e.g., the platform itself)."
+        ],
+        "textual_evidence": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "context_evidence": [
+          "domain: Integration platform that orchestrates downstream services and reporting subscriptions."
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "explanation": "The coordination structure using 'and' creates ambiguity regarding the scope of the action 'allow'. It is unclear whether 'allow' is a separate, independent action performed by System-A, or if it is a consequence/result of 'adding System-B'.",
+        "possible_interpretations": [
+          "System-A must perform two distinct actions: 1) add System-B, AND 2) allow System-C to subscribe.",
+          "The act of adding System-B somehow necessitates or results in allowing System-C to subscribe."
+        ],
+        "textual_evidence": [
+          "and allow System-C to subscribe to the Reporting flow"
+        ],
+        "context_evidence": [],
+        "context_dependency": "low"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-XX-CX",
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The possessive pronoun 'their' in AMB-01 is ambiguous, and the scope of 'allow' in AMB-02 is unclear. Both ambiguities require external clarification.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A must add System-B to System-A's downstream systems.",
+          "System-A must add System-B to the downstream systems of another entity (e.g., the platform itself)."
+        ],
+        "evidence_from_requirement": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "evidence_from_context": [
+          "domain: Integration platform that orchestrates downstream services and reporting subscriptions."
+        ],
+        "missing_information": [
+          "The specific owner of the 'downstream systems' referenced by 'their' is not explicitly stated in the requirement or context."
+        ],
+        "justification": "The context defines the platform's role but does not resolve whether 'their' refers to System-A or the platform itself.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A must perform two distinct actions: 1) add System-B, AND 2) allow System-C to subscribe.",
+          "The act of adding System-B somehow necessitates or results in allowing System-C to subscribe."
+        ],
+        "evidence_from_requirement": [
+          "and allow System-C to subscribe to the Reporting flow"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The relationship between the action 'add System-B' and the action 'allow System-C to subscribe' (whether sequential, conjunctive, or causal) is not defined."
+        ],
+        "justification": "The coordinating conjunction 'and' does not clarify the scope or dependency between the two clauses.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Both detected ambiguities are unresolved because the context does not provide sufficient evidence to definitively choose between the possible interpretations."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "reason": "The context defines the platform's role but does not resolve whether 'their' refers to System-A or the platform itself.",
+        "missing_information": [
+          "The specific owner of the 'downstream systems' referenced by 'their' is not explicitly stated in the requirement or context."
+        ],
+        "unsupported_interpretations": [
+          "System-A must add System-B to System-A's downstream systems.",
+          "System-A must add System-B to the downstream systems of another entity (e.g., the platform itself)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and allow System-C to subscribe to the Reporting flow",
+        "reason": "The coordinating conjunction 'and' does not clarify the scope or dependency between the two clauses.",
+        "missing_information": [
+          "The relationship between the action 'add System-B' and the action 'allow System-C to subscribe' (whether sequential, conjunctive, or causal) is not defined."
+        ],
+        "unsupported_interpretations": [
+          "System-A must perform two distinct actions: 1) add System-B, AND 2) allow System-C to subscribe.",
+          "The act of adding System-B somehow necessitates or results in allowing System-C to subscribe."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "reason": "The context defines the platform's role but does not resolve whether 'their' refers to System-A or the platform itself.",
+        "missing_information": [
+          "The specific owner of the 'downstream systems' referenced by 'their' is not explicitly stated in the requirement or context."
+        ],
+        "unsupported_interpretations": [
+          "System-A must add System-B to System-A's downstream systems.",
+          "System-A must add System-B to the downstream systems of another entity (e.g., the platform itself)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and allow System-C to subscribe to the Reporting flow",
+        "reason": "The coordinating conjunction 'and' does not clarify the scope or dependency between the two clauses.",
+        "missing_information": [
+          "The relationship between the action 'add System-B' and the action 'allow System-C to subscribe' (whether sequential, conjunctive, or causal) is not defined."
+        ],
+        "unsupported_interpretations": [
+          "System-A must perform two distinct actions: 1) add System-B, AND 2) allow System-C to subscribe.",
+          "The act of adding System-B somehow necessitates or results in allowing System-C to subscribe."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The specific owner of the 'downstream systems' referenced by 'their' is not explicitly stated in the requirement or context.",
+      "The relationship between the action 'add System-B' and the action 'allow System-C to subscribe' (whether sequential, conjunctive, or causal) is not defined."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

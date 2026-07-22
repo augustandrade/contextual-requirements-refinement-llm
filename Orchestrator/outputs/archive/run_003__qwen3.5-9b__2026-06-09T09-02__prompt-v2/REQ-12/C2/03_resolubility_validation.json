@@ -1,0 +1,81 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic and semantic ambiguities regarding scope and necessity are unresolved due to lack of explicit business rules defining exclusivity. Lexical ambiguity regarding file format is unresolved as the glossary lacks specific format definitions.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The condition applies to the entire action (uploading the excel file).",
+          "The condition specifically governs the uploading of the 'excel file'."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure allows for scope ambiguity between the condition and the action."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit business rule stating whether the condition is exclusive to the upload action or if other actions are permitted/required."
+        ],
+        "justification": "The controlled context provides a business rule about triggering the upload but does not explicitly define the scope of the condition regarding other potential files or actions, leaving the syntactic ambiguity unresolved.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "upload the 'excel file'",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "'excel file' refers strictly to files with .xlsx or .xls extensions.",
+          "'excel file' refers to any spreadsheet-like file format including .csv, .ods, or .xlsb."
+        ],
+        "evidence_from_requirement": [
+          "The term is quoted, suggesting a specific term, but no definition is provided in the text."
+        ],
+        "evidence_from_context": [
+          "Glossary defines 'System-A' but does not define 'excel file' or its specific format extensions."
+        ],
+        "missing_information": [
+          "Glossary entry or business rule explicitly defining the accepted file extensions for 'excel file'."
+        ],
+        "justification": "The glossary in the controlled context defines 'System-A' but fails to provide a definition for 'excel file' that restricts it to specific extensions or includes other formats.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "upload the 'excel file' to System-A",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The upload is required ONLY if the instruction contains the keyword (Necessary and Sufficient).",
+          "The upload is required if the instruction contains the keyword, but may also be required under other unstated conditions (Sufficient but not Necessary)."
+        ],
+        "evidence_from_requirement": [
+          "The text uses 'If... then...' structure which implies sufficiency but does not explicitly state necessity."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 states 'Upload action is triggered only when the instruction contains a cataloged keyword.' This suggests necessity, but does not explicitly rule out other conditions."
+        ],
+        "missing_information": [
+          "Explicit statement confirming that the keyword condition is both necessary and sufficient, or a rule explicitly forbidding uploads without the keyword."
+        ],
+        "justification": "While BR-01 implies necessity, it does not explicitly state that the keyword is the sole condition, leaving open the possibility of other unstated conditions triggering the upload.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "missing_glossary_definitions_and_exclusive_conditions",
+      "explanation": "Ambiguities regarding file format specificity and the exclusivity of the triggering condition cannot be resolved with the provided context. The glossary is incomplete, and the business rules do not explicitly define the logical scope (necessary vs sufficient) of the condition."
+    },
+    "routing_decision": "route_to_human_review"
+  }
+}

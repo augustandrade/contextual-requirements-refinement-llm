@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-05-C2",
+  "requirement_id": "REQ-05",
+  "context_condition": "C2",
+  "base_requirement_text": "The user enters the access card with the access code.",
+  "controlled_context": {
+    "domain": "Access control system using card reader and keypad.",
+    "glossary": [],
+    "business_rules": [
+      {
+        "id": "BR-01",
+        "rule": "User first inserts the card into the card reader, then enters the access code on the keypad."
+      }
+    ],
+    "constraints": []
+  }
+}

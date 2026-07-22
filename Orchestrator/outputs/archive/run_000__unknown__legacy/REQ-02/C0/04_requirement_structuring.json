@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "raise a web alert",
+        "reason": "The requirement text defines 'web alert' as polysemous, and the controlled context is empty, providing no evidence to select one interpretation.",
+        "missing_information": [
+          "Whether 'web alert' refers to a browser notification or an email/webmail notification."
+        ],
+        "unsupported_interpretations": [
+          "The system shall display a notification on the user's web browser.",
+          "The system shall send a notification via email or a webmail interface."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

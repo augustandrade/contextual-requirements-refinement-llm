@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The phrase 'with the access code' has syntactic ambiguity regarding whether it modifies the manner of entry or the object being entered. No context is available to resolve this.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "with the access code",
+        "ambiguity_type": "syntactic | semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user enters the card, and the card itself possesses the access code.",
+          "The user enters the card by providing the access code as a secondary authentication method."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text is: 'The user enters the access card with the access code.'"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "It is unclear whether 'with the access code' modifies the verb 'enters' (manner) or the noun 'access card' (attribute)."
+        ],
+        "justification": "The requirement text alone does not provide enough information to determine if the access code is part of the card or used during the entry action.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the scope of 'with the access code' cannot be resolved using only the base requirement text, necessitating human review."
+    }
+  }
+}

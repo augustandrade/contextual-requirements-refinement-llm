@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.\"\n      ambiguity_type: \"syntactic\"\n      explanation: \"The sentence structure allows for two distinct parse trees regarding the scope of the condition 'contains a Keyword'. The phrase 'contains a Keyword' could modify 'Instruction' (the instruction itself holds the keyword) or 'User' (the user holds the keyword), leading to different logical triggers for the upload action.\"\n      possible_interpretations:\n        - \"If the 'Instruction' contains a 'Keyword', then the User must upload the 'excel file' to System-A.\" (Condition applies to the Instruction)\n        - \"If the User contains a 'Keyword', then the User must upload the 'excel file' to System-A.\" (Condition applies to the User)\n      textual_evidence:\n        - \"If an 'Instruction' contains a 'Keyword', The User must upload\"\n      context_evidence:\n        - \"term: Instruction definition: Input message received by the workflow.\"\n      context_dependency: \"moderate\"\n  no_ambiguity_reason: null\n```"
+}

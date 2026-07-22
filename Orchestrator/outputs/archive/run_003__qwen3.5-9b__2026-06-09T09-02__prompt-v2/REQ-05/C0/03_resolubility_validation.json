@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the attachment of the prepositional phrase remains unresolved due to lack of controlled context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters an access card that possesses the access code (the card contains or is associated with the code)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'with the access code' can grammatically modify either 'enters' or 'the access card'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Domain-specific rules or glossary entries defining whether 'access code' is a method of entry or a property of the card."
+        ],
+        "justification": "The requirement text alone does not disambiguate the syntactic attachment. The controlled context is empty (C0), providing no evidence to support one interpretation over the other. The ambiguity cannot be resolved without external clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The syntactic ambiguity is unresolved because the controlled context is unavailable to provide the necessary disambiguation evidence. The case must bypass Agent 3."
+    }
+  }
+}

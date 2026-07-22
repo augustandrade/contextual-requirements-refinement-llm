@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The pronoun 'it' has two possible antecedents (access card or PIN), but the controlled context is empty, preventing safe disambiguation.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure allows 'it' to refer to either the access card or the PIN."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Which entity (access card or PIN) triggers the access denial."
+        ],
+        "justification": "The requirement text provides no explicit link between 'it' and a specific entity, and the controlled context is empty, so no evidence exists to select one interpretation over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity is unresolved because the controlled context is empty and the requirement text does not explicitly disambiguate the pronoun."
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "reason": "The controlled context is empty, providing no evidence to distinguish between mandatory and optional interpretations of 'preferably'.",
+        "missing_information": [
+          "Whether the reset is mandatory or optional."
+        ],
+        "unsupported_interpretations": [
+          "The ECU must perform a reset, but other actions may also occur if the reset is not feasible.",
+          "The ECU should perform a reset if possible, but it is not required if the reset cannot be performed."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

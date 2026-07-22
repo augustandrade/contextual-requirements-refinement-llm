@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement is structurally clear with no ambiguity. It describes a functional capability of the routing switch within an industrial railway context. No decomposition is required as there is no concern mixing.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "In an industrial railway communication network",
+          "condition_type": "contextual",
+          "system_or_component": "Routing switch",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "System (Routing Switch)",
+          "modality": "shall",
+          "action": "filter network traffic",
+          "object": "between data-plane interfaces and management data traffic",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "Routing switch"
+        },
+        "final_statement": "The routing switch shall filter network traffic between data-plane interfaces and management data traffic.",
+        "structuring_notes": [
+          "The requirement was parsed as a single functional capability. The mention of 'management data traffic' is defined in the glossary as administrative traffic for monitoring and control, but no specific quality attribute (e.g., latency, reliability) was specified in the original text, so it remains a functional description of the filtering action."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

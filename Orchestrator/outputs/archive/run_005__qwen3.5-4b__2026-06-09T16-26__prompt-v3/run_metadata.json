@@ -1,0 +1,11 @@
+{
+  "run_id": "run_005__qwen3.5-4b__2026-06-09T16-26__prompt-v3",
+  "model": "qwen3.5:4b",
+  "provider": "ollama",
+  "ollama_host": "http://localhost:11434",
+  "temperature": 0.0,
+  "think": false,
+  "started_at": "2026-06-09T16:26:16.696757",
+  "corpus": "full",
+  "label": "prompt-v3"
+}

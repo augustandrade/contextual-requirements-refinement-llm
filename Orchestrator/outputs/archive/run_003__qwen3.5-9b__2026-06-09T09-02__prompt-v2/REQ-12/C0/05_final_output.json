@@ -1,0 +1,184 @@
+{
+  "execution_id": "REQ-12-C0",
+  "requirement_id": "REQ-12",
+  "context_condition": "C0",
+  "input_requirement": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical operator precedence between 'contains' (implied AND) and the conditional trigger is underspecified. It is unclear whether the 'Keyword' must be present within the 'Instruction' object itself, or if the 'Instruction' merely needs to contain a 'Keyword' field that holds a specific value, or if the condition applies to the entire document structure versus a specific field.",
+        "possible_interpretations": [
+          "The condition triggers only if the 'Instruction' object explicitly includes a 'Keyword' attribute or field.",
+          "The condition triggers if the 'Instruction' document contains any text or data that matches the definition of a 'Keyword', regardless of field structure."
+        ],
+        "textual_evidence": [
+          "If an 'Instruction' contains a 'Keyword'"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "referential",
+        "explanation": "The definite article 'the' before 'excel file' implies a specific file, but the antecedent is not explicitly defined in the sentence. It is unclear if 'the excel file' refers to a specific file previously mentioned in a broader context, a file associated with the 'Instruction' containing the 'Keyword', or any excel file the user possesses.",
+        "possible_interpretations": [
+          "The user must upload the specific excel file that is associated with the 'Instruction' containing the 'Keyword'.",
+          "The user must upload any excel file they have available to System-A."
+        ],
+        "textual_evidence": [
+          "The User must upload the 'excel file' to System-A."
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Semantic and referential ambiguities detected; controlled context is empty, preventing resolution.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The condition triggers only if the 'Instruction' object explicitly includes a 'Keyword' attribute or field.",
+          "The condition triggers if the 'Instruction' document contains any text or data that matches the definition of a 'Keyword', regardless of field structure."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'contains a Keyword' is syntactically ambiguous regarding whether it refers to a specific field attribute or general document content."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Definition of 'Keyword' and whether it is a specific field name or a content value.",
+          "Scope of 'contains' (field-level vs document-level)."
+        ],
+        "justification": "The requirement text does not specify the structural scope of 'contains'. The controlled context is empty, providing no evidence to distinguish between field-level and document-level interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user must upload the specific excel file that is associated with the 'Instruction' containing the 'Keyword'.",
+          "The user must upload any excel file they have available to System-A."
+        ],
+        "evidence_from_requirement": [
+          "The use of the definite article 'the' implies a specific file, but no antecedent is defined in the sentence."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Identification of the specific 'excel file' intended (e.g., associated with the Instruction, or any available file)."
+        ],
+        "justification": "The antecedent for 'the excel file' is missing from the requirement text. The controlled context is empty, offering no definition or reference to resolve which specific file is required.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Ambiguities regarding the scope of 'contains' and the identity of 'the excel file' cannot be resolved without external context or clarification. Execution must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "The requirement text does not specify the structural scope of 'contains'. The controlled context is empty, providing no evidence to distinguish between field-level and document-level interpretation.",
+        "missing_information": [
+          "Definition of 'Keyword' and whether it is a specific field name or a content value.",
+          "Scope of 'contains' (field-level vs document-level)."
+        ],
+        "unsupported_interpretations": [
+          "The condition triggers only if the 'Instruction' object explicitly includes a 'Keyword' attribute or field.",
+          "The condition triggers if the 'Instruction' document contains any text or data that matches the definition of a 'Keyword', regardless of field structure."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The antecedent for 'the excel file' is missing from the requirement text. The controlled context is empty, offering no definition or reference to resolve which specific file is required.",
+        "missing_information": [
+          "Identification of the specific 'excel file' intended (e.g., associated with the Instruction, or any available file)."
+        ],
+        "unsupported_interpretations": [
+          "The user must upload the specific excel file that is associated with the 'Instruction' containing the 'Keyword'.",
+          "The user must upload any excel file they have available to System-A."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "The requirement text does not specify the structural scope of 'contains'. The controlled context is empty, providing no evidence to distinguish between field-level and document-level interpretation.",
+        "missing_information": [
+          "Definition of 'Keyword' and whether it is a specific field name or a content value.",
+          "Scope of 'contains' (field-level vs document-level)."
+        ],
+        "unsupported_interpretations": [
+          "The condition triggers only if the 'Instruction' object explicitly includes a 'Keyword' attribute or field.",
+          "The condition triggers if the 'Instruction' document contains any text or data that matches the definition of a 'Keyword', regardless of field structure."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The antecedent for 'the excel file' is missing from the requirement text. The controlled context is empty, offering no definition or reference to resolve which specific file is required.",
+        "missing_information": [
+          "Identification of the specific 'excel file' intended (e.g., associated with the Instruction, or any available file)."
+        ],
+        "unsupported_interpretations": [
+          "The user must upload the specific excel file that is associated with the 'Instruction' containing the 'Keyword'.",
+          "The user must upload any excel file they have available to System-A."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Definition of 'Keyword' and whether it is a specific field name or a content value.",
+      "Scope of 'contains' (field-level vs document-level).",
+      "Identification of the specific 'excel file' intended (e.g., associated with the Instruction, or any available file)."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

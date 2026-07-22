@@ -1,0 +1,113 @@
+{
+  "execution_id": "REQ-05-C1",
+  "requirement_id": "REQ-05",
+  "context_condition": "C1",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' can attach either to the verb 'enters' (indicating the method of entry) or to the noun phrase 'the access card' (indicating a property of the card), resulting in two distinct syntactic trees and meanings.",
+        "possible_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters an access card that possesses the access code (the card contains or is associated with the code)."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the attachment of 'with the access code' is resolvable via controlled context glossary defining 'access code' as a verification method.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user performs the action of entering by using the access code (the code is the means of entry).",
+        "unsupported_interpretations": [
+          "The user enters an access card that possesses the access code (the card contains or is associated with the code)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'with the access code' modifies the action of entering."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'access code' is defined as 'Secret code used for second-factor verification'."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly defines 'access code' as a verification mechanism, not a physical property of the card. This supports the interpretation that the code is the method used to enter, resolving the syntactic attachment ambiguity.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context glossary provides the necessary definition to resolve the syntactic ambiguity, allowing the execution to proceed to Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C1",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C1",
+    "structuring_summary": "Syntactic ambiguity regarding 'with the access code' was resolved using the controlled context glossary. The supported interpretation identifies the access code as the means of entry (second-factor verification), resulting in a single functional requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "user enters the access card with the access code",
+          "condition_type": "event",
+          "system_or_component": "access control system",
+          "interaction_pattern": "user_interaction",
+          "actor": "the user",
+          "modality": "shall",
+          "action": "enter",
+          "object": "the access card",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access control system"
+        },
+        "final_statement": "The user shall enter the access card with the access code.",
+        "structuring_notes": [
+          "Resolved syntactic ambiguity: 'with the access code' modifies the action of entering, indicating the code is the method used."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

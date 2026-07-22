@@ -1,0 +1,82 @@
+{
+  "execution_id": "REQ-02-C0",
+  "requirement_id": "REQ-02",
+  "context_condition": "C0",
+  "input_requirement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: each term has a single plausible meaning, there are no competing antecedents, and the sentence admits only one parse tree."
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": true,
+    "functional_action": "raise a web alert",
+    "quality_criterion": null,
+    "explanation": "The requirement simultaneously specifies a functional action (raise web alert) and does not contain a quality criterion, but it is still non-atomic because the action's execution is implicitly tied to a trigger condition ('When a rejection order is received for a cancellation request'). However, since no measurable property of HOW the system executes the action is provided, this example only contains a functional action."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02",
+    "context_condition": "C0",
+    "has_ambiguity": false,
+    "validation_summary": "No linguistic ambiguity detected by Agent 1a. Resolubility validation bypassed.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "explanation": "Agent 1a reported has_ambiguity: false. Orchestrator synthetic block."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "has_concern_mixing": true,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02",
+    "context_condition": "C0",
+    "structuring_summary": "Concern-mixing detected per Pohl §25.2. Decomposed into one functional requirement (raise web alert) and no quality requirement or constraint since there's no measurable property provided.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-02-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "When a rejection order is received for a cancellation request, System-A must raise a web alert."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "a rejection order is received for a cancellation request",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "must",
+          "action": "raise",
+          "object": "a web alert",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "web alert"
+        },
+        "final_statement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+        "structuring_notes": [
+          "Extracted functional action from concern-mixed requirement."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

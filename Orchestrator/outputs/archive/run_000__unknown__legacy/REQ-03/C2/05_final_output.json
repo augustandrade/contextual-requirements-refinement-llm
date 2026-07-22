@@ -1,0 +1,126 @@
+{
+  "execution_id": "REQ-03-C2",
+  "requirement_id": "REQ-03",
+  "context_condition": "C2",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'downstream systems' is lexically ambiguous because 'downstream' is a polysemous term in the context of software architecture. It can refer to systems that receive data from the orchestrator (consumers) or systems that the orchestrator depends upon (dependencies), leading to two distinct interpretations of the action 'add'.",
+        "possible_interpretations": [
+          "System-A must add System-B as a consumer that receives data from System-A.",
+          "System-A must add System-B as a dependency that System-A relies upon."
+        ],
+        "textual_evidence": [
+          "add System-B to their downstream systems"
+        ],
+        "context_evidence": [
+          "domain: Integration platform that orchestrates downstream services and reporting subscriptions."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'downstream systems' remains lexically ambiguous; the controlled context defines 'downstream services' but does not explicitly resolve the directionality of the 'add' action between System-A and System-B.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A adds System-B as a consumer receiving data from System-A.",
+          "System-A adds System-B as a dependency relied upon by System-A."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states System-A must add System-B to 'downstream systems'.",
+          "The requirement states System-A must allow System-C to subscribe to the Reporting flow."
+        ],
+        "evidence_from_context": [
+          "Domain: Integration platform that orchestrates downstream services and reporting subscriptions."
+        ],
+        "missing_information": [
+          "Whether 'downstream systems' in the requirement refers to consumers receiving data or dependencies relied upon.",
+          "The specific direction of data flow or dependency relationship implied by 'add' in this context."
+        ],
+        "justification": "While the domain mentions 'downstream services', it does not explicitly define the relationship between System-A and System-B (consumer vs. dependency) required to resolve the lexical ambiguity of 'add'. The business rule regarding independent operations does not clarify the structural relationship.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The lexical ambiguity regarding the direction of the relationship between System-A and System-B cannot be resolved with the provided controlled context evidence."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "reason": "While the domain mentions 'downstream services', it does not explicitly define the relationship between System-A and System-B (consumer vs. dependency) required to resolve the lexical ambiguity of 'add'. The business rule regarding independent operations does not clarify the structural relationship.",
+        "missing_information": [
+          "Whether 'downstream systems' in the requirement refers to consumers receiving data or dependencies relied upon.",
+          "The specific direction of data flow or dependency relationship implied by 'add' in this context."
+        ],
+        "unsupported_interpretations": [
+          "System-A adds System-B as a consumer receiving data from System-A.",
+          "System-A adds System-B as a dependency relied upon by System-A."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "reason": "While the domain mentions 'downstream services', it does not explicitly define the relationship between System-A and System-B (consumer vs. dependency) required to resolve the lexical ambiguity of 'add'. The business rule regarding independent operations does not clarify the structural relationship.",
+        "missing_information": [
+          "Whether 'downstream systems' in the requirement refers to consumers receiving data or dependencies relied upon.",
+          "The specific direction of data flow or dependency relationship implied by 'add' in this context."
+        ],
+        "unsupported_interpretations": [
+          "System-A adds System-B as a consumer receiving data from System-A.",
+          "System-A adds System-B as a dependency relied upon by System-A."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether 'downstream systems' in the requirement refers to consumers receiving data or dependencies relied upon.",
+      "The specific direction of data flow or dependency relationship implied by 'add' in this context."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

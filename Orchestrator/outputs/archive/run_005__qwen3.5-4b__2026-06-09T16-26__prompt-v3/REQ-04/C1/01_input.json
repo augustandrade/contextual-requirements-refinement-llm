@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-04-C1",
+  "requirement_id": "REQ-04",
+  "context_condition": "C1",
+  "base_requirement_text": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "controlled_context": {
+    "domain": "Corporate physical access control system with badge and PIN authentication.",
+    "glossary": [
+      {
+        "term": "PIN",
+        "definition": "4-digit personal identification number."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

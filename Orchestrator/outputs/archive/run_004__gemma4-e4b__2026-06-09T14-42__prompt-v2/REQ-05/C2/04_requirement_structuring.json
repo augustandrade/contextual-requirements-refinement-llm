@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement was fully resolvable using the supported interpretation from the context, which dictates a sequential process: card insertion followed by code entry. Structured as a single functional requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "The user initiates access attempt",
+          "condition_type": "event",
+          "system_or_component": "The system",
+          "interaction_pattern": "user_interaction",
+          "actor": "The user",
+          "modality": "shall",
+          "action": "perform sequential actions",
+          "object": "access card and access code",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access control process"
+        },
+        "final_statement": "The user shall first insert the access card into the card reader, and then enter the access code on the keypad.",
+        "structuring_notes": [
+          "Decomposition based on AMB-01 resolution: The process is sequential (Card -> Code). The final statement reflects the explicit sequence mandated by BR-01."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement contains a referential ambiguity regarding the pronoun 'it'. The controlled context provides no evidence to resolve this ambiguity between the card and the PIN.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure allows both 'access card' and 'PIN' to serve as antecedents for 'it'."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "Which specific entity (card or PIN) triggers the access denial."
+        ],
+        "justification": "The requirement text presents two valid antecedents for the pronoun 'it'. The controlled context defines the domain and glossary but contains no business rules or constraints specifying which entity's invalidity triggers the denial. Therefore, the interpretation cannot be resolved with sufficient evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "concern_mixing",
+      "explanation": "The requirement is linguistically ambiguous (unresolved referential ambiguity) and structurally mixes a functional action with a quality criterion. Since the ambiguity is unresolved and the context does not provide disambiguating evidence, the execution must bypass Agent 3."
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the phrase 'enters the access card with the access code' is resolved by the business rule defining the correct sequence of actions.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user inserts the access card into the card reader and then enters the access code on the keypad.",
+        "unsupported_interpretations": [
+          "The user enters the system using the access code as the method of entry.",
+          "The user enters an access card that is physically or logically associated with the access code."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'enters the access card with the access code' is the subject of the ambiguity."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 explicitly states: 'User first inserts the card into the card reader, then enters the access code on the keypad.'"
+        ],
+        "missing_information": [],
+        "justification": "The controlled context provides a specific business rule (BR-01) that dictates the exact sequence of actions (insert card, then enter code). This directly supports the interpretation that 'enters' applies to the code on the keypad, resolving the syntactic attachment ambiguity.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context (C2) contains a business rule that explicitly defines the sequence of operations, providing sufficient evidence to resolve the syntactic ambiguity without inference."
+    }
+  }
+}

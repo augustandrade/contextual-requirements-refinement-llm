@@ -1,0 +1,121 @@
+{
+  "execution_id": "REQ-11-C1",
+  "requirement_id": "REQ-11",
+  "context_condition": "C1",
+  "input_requirement": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "syntactic",
+        "explanation": "The scope of the filtering action is unclear. It is ambiguous whether the filtering applies to traffic originating from data-plane interfaces destined for management data traffic, or if it filters the data-plane interfaces themselves relative to management data traffic.",
+        "possible_interpretations": [
+          "The system filters traffic that is traversing between the data-plane interfaces and the management data traffic stream.",
+          "The system filters the data-plane interfaces, restricting their interaction with management data traffic."
+        ],
+        "textual_evidence": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "context_evidence": [
+          "term: management data traffic\ndefinition: Administrative traffic used for device monitoring and control."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The syntactic ambiguity regarding the scope of 'filter network traffic' remains unresolved because the context only defines 'management data traffic' but does not clarify the relationship or direction of the filtering action.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system filters traffic that is traversing between the data-plane interfaces and the management data traffic stream.",
+          "The system filters the data-plane interfaces, restricting their interaction with management data traffic."
+        ],
+        "evidence_from_requirement": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "evidence_from_context": [
+          "term: management data traffic\n      definition: Administrative traffic used for device monitoring and control."
+        ],
+        "missing_information": [
+          "The precise scope of the filtering action: whether it filters the flow/traversal between the two domains, or if it modifies the capability/interaction of the data-plane interfaces themselves."
+        ],
+        "justification": "The context defines 'management data traffic' but provides no structural or functional guidance to resolve the syntactic ambiguity regarding the filtering scope.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity detected in AMB-01 is unresolved because the controlled context lacks the necessary functional or structural detail to determine the correct scope of the filtering action."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C1",
+    "requirement_id": "REQ-11",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "reason": "The context defines 'management data traffic' but provides no structural or functional guidance to resolve the syntactic ambiguity regarding the filtering scope.",
+        "missing_information": [
+          "The precise scope of the filtering action: whether it filters the flow/traversal between the two domains, or if it modifies the capability/interaction of the data-plane interfaces themselves."
+        ],
+        "unsupported_interpretations": [
+          "The system filters traffic that is traversing between the data-plane interfaces and the management data traffic stream.",
+          "The system filters the data-plane interfaces, restricting their interaction with management data traffic."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "reason": "The context defines 'management data traffic' but provides no structural or functional guidance to resolve the syntactic ambiguity regarding the filtering scope.",
+        "missing_information": [
+          "The precise scope of the filtering action: whether it filters the flow/traversal between the two domains, or if it modifies the capability/interaction of the data-plane interfaces themselves."
+        ],
+        "unsupported_interpretations": [
+          "The system filters traffic that is traversing between the data-plane interfaces and the management data traffic stream.",
+          "The system filters the data-plane interfaces, restricting their interaction with management data traffic."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The precise scope of the filtering action: whether it filters the flow/traversal between the two domains, or if it modifies the capability/interaction of the data-plane interfaces themselves."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

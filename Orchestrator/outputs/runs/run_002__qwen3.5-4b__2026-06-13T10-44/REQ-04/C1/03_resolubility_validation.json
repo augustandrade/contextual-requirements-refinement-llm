@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The pronoun 'it' refers to either the card or the PIN; however, the controlled context clarifies the domain rules regarding invalidation.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system denies access if the PIN is invalid.",
+        "unsupported_interpretations": [
+          "The system denies access if the access card is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure implies a sequence: insert card, enter PIN, then check validity."
+        ],
+        "evidence_from_context": [
+          "Domain: Corporate physical access control system with badge and PIN authentication."
+        ],
+        "missing_information": [],
+        "justification": "While the requirement text allows for two antecedents, the controlled context defines the system as relying on 'badge and PIN authentication'. In standard access control logic, the PIN is the active credential entered by the user to validate the card's status or to gain entry independently. The ambiguity detector flagged 'it' as potentially referring to the card, but in the context of 'enters a PIN... If it is invalid', the PIN is the most immediate subject of the validity check described. Without explicit business rules stating 'card invalidity triggers denial', the PIN invalidity is the only interpretation fully supported by the combination of the text's immediate subject and the domain's authentication model.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides sufficient domain knowledge to resolve the referential ambiguity in favor of the PIN being the subject of the validity check."
+    }
+  }
+}

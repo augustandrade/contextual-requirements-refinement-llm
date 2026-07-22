@@ -1,0 +1,32 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-13-C1",
+    "requirement_id": "REQ-13",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects damage to the pane",
+        "reason": "While the glossary defines the 'detector', it does not define the critical term 'damage'. Without a specific threshold or rule in the context, the boundary between minor defects and critical failures cannot be determined from the provided text.",
+        "missing_information": [
+          "A precise definition or threshold for 'damage' (e.g., distinguishing minor scratches from structural failure).",
+          "A business rule or constraint specifying the severity level required to trigger the notification."
+        ],
+        "unsupported_interpretations": [
+          "Any visible defect or imperfection on the pane.",
+          "Only critical structural failures or safety-compromising defects."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

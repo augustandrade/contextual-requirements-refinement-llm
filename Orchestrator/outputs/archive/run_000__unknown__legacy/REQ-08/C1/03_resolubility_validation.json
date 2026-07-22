@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement contains a temporal ambiguity regarding the duration of the water level condition, and the controlled context provides no evidence to resolve it.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Continuous exceedance for the full 4-second duration.",
+          "Exceedance at any point within a 4-second window."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'remains above' combined with 'for more than 4 seconds' creates a logical ambiguity regarding the temporal scope."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "Whether the shutdown triggers on continuous exceedance or on any point within a 4-second window."
+        ],
+        "justification": "The controlled context defines the domain and glossary but lacks specific business rules or constraints defining the temporal logic for the shutdown trigger.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity is unresolved because the controlled context does not provide explicit evidence to distinguish between continuous exceedance and any-point exceedance."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-02-C1",
+  "requirement_id": "REQ-02",
+  "context_condition": "C1",
+  "base_requirement_text": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "controlled_context": {
+    "domain": "Post-trade financial platform with cancellation workflows and alerts.",
+    "glossary": [
+      {
+        "term": "System-A",
+        "definition": "User-facing alert module."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

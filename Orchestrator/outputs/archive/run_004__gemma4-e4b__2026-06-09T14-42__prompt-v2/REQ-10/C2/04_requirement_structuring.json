@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous, atomic, and purely functional. Structured as a single functional requirement, incorporating the specific technical constraint from the context.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Generate a dial tone."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "none",
+          "condition_type": "none",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "Generate",
+          "object": "a dial tone",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "telephony standard",
+          "affected_element": "dial tone"
+        },
+        "final_statement": "The system shall generate a dial tone.",
+        "structuring_notes": [
+          "The core action is 'Generate a dial tone.' The specific technical parameters (350 Hz and 440 Hz) are derived from the controlled context constraint CST-01 and must be noted in the final statement/notes."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

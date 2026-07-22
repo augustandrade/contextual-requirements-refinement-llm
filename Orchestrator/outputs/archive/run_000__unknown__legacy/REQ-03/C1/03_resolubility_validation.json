@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement defines 'downstream systems' as consumers, but the verb 'add' creates ambiguity regarding the direction of the integration action.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A must configure System-B to receive events from System-A (System-B is a downstream consumer).",
+        "unsupported_interpretations": [
+          "System-A must configure System-B to send events to System-A (System-B is a downstream provider)."
+        ],
+        "evidence_from_requirement": [
+          "add System-B to their downstream systems"
+        ],
+        "evidence_from_context": [
+          "downstream systems: External systems that receive events from System-A."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly defines 'downstream systems' as entities that receive events from System-A. Therefore, 'adding' System-B to this set implies configuring System-B to receive events.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides a clear definition for 'downstream systems' that resolves the lexical ambiguity regarding the direction of the event flow."
+    }
+  }
+}

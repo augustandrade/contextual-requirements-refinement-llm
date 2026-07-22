@@ -1,0 +1,117 @@
+{
+  "execution_id": "REQ-10-C0",
+  "requirement_id": "REQ-10",
+  "context_condition": "C0",
+  "input_requirement": "Generate a dial tone.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'dial tone' is polysemous in this context; it may refer to the audible signal indicating a line is ready, or it may refer to the specific audio waveform or frequency characteristics required.",
+        "possible_interpretations": [
+          "The system shall produce the standard audible signal (e.g., 440 Hz) to indicate the telephone line is active.",
+          "The system shall generate a specific audio file or waveform that mimics the sound of a dial tone for a specific use case."
+        ],
+        "textual_evidence": [
+          "Generate a dial tone"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'dial tone' is polysemous; no evidence in the requirement or controlled context supports a specific interpretation.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system shall produce the standard audible signal (e.g., 440 Hz) to indicate the telephone line is active.",
+          "The system shall generate a specific audio file or waveform that mimics the sound of a dial tone for a specific use case."
+        ],
+        "evidence_from_requirement": [
+          "Generate a dial tone"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the requirement refers to the standard audible signal or a specific audio file/waveform."
+        ],
+        "justification": "The controlled context is empty, providing no evidence to distinguish between the two possible interpretations of 'dial tone'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "At least one ambiguity is unresolved due to lack of context; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-10-C0",
+    "requirement_id": "REQ-10",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "reason": "The controlled context is empty, providing no evidence to distinguish between the two possible interpretations of 'dial tone'.",
+        "missing_information": [
+          "Whether the requirement refers to the standard audible signal or a specific audio file/waveform."
+        ],
+        "unsupported_interpretations": [
+          "The system shall produce the standard audible signal (e.g., 440 Hz) to indicate the telephone line is active.",
+          "The system shall generate a specific audio file or waveform that mimics the sound of a dial tone for a specific use case."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "reason": "The controlled context is empty, providing no evidence to distinguish between the two possible interpretations of 'dial tone'.",
+        "missing_information": [
+          "Whether the requirement refers to the standard audible signal or a specific audio file/waveform."
+        ],
+        "unsupported_interpretations": [
+          "The system shall produce the standard audible signal (e.g., 440 Hz) to indicate the telephone line is active.",
+          "The system shall generate a specific audio file or waveform that mimics the sound of a dial tone for a specific use case."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether the requirement refers to the standard audible signal or a specific audio file/waveform."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,27 @@
+{
+  "execution_id": "REQ-01-C2",
+  "requirement_id": "REQ-01",
+  "context_condition": "C2",
+  "base_requirement_text": "If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service within 2 seconds at the latest.",
+  "controlled_context": {
+    "domain": "Building security and alarm monitoring system for offices.",
+    "glossary": [
+      {
+        "term": "security service",
+        "definition": "External emergency response service connected to the building controller."
+      }
+    ],
+    "business_rules": [
+      {
+        "id": "BR-01",
+        "rule": "Damage detection and alarm notification are modeled as a functional requirement."
+      }
+    ],
+    "constraints": [
+      {
+        "id": "QLT-01",
+        "text": "Alarm notification must be sent within 2 seconds after damage detection."
+      }
+    ]
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "execution_id": "REQ-12-C0",
+  "requirement_id": "REQ-12",
+  "context_condition": "C0",
+  "input_requirement": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "ambiguity_type": "referential",
+        "explanation": "The terms 'Instruction' and 'Keyword' are enclosed in single quotes, indicating they are controlled vocabulary terms. However, without a defined glossary or context, it is unclear which specific 'Instruction' or 'Keyword' is being referenced. The requirement implies a conditional check on the content of an 'Instruction' based on the presence of a 'Keyword', but the specific values or identifiers for these terms are undefined, creating a referential ambiguity regarding the exact conditions that trigger the action.",
+        "possible_interpretations": [
+          "Any instruction containing any keyword triggers the upload.",
+          "A specific, undefined instruction containing a specific, undefined keyword triggers the upload."
+        ],
+        "textual_evidence": [
+          "'Instruction'",
+          "'Keyword'"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Referential ambiguity exists regarding specific 'Instruction' and 'Keyword' values; no context provided to resolve.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Any instruction containing any keyword triggers the upload.",
+          "A specific, undefined instruction containing a specific, undefined keyword triggers the upload."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses single quotes around 'Instruction' and 'Keyword', implying specific controlled vocabulary terms.",
+          "The text does not define the actual values or identifiers for these terms."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific values or identifiers for the 'Instruction' and 'Keyword' terms.",
+          "The exact condition logic (e.g., exact match, substring, case sensitivity) is not defined."
+        ],
+        "justification": "In C0, the controlled context is empty. The requirement text implies specific terms but does not define them, leaving the trigger condition ambiguous between 'any/any' and 'specific/undefined'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to missing controlled context and lack of explicit definition in the requirement text. Execution must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "reason": "In C0, the controlled context is empty. The requirement text implies specific terms but does not define them, leaving the trigger condition ambiguous between 'any/any' and 'specific/undefined'.",
+        "missing_information": [
+          "The specific values or identifiers for the 'Instruction' and 'Keyword' terms.",
+          "The exact condition logic (e.g., exact match, substring, case sensitivity) is not defined."
+        ],
+        "unsupported_interpretations": [
+          "Any instruction containing any keyword triggers the upload.",
+          "A specific, undefined instruction containing a specific, undefined keyword triggers the upload."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "reason": "In C0, the controlled context is empty. The requirement text implies specific terms but does not define them, leaving the trigger condition ambiguous between 'any/any' and 'specific/undefined'.",
+        "missing_information": [
+          "The specific values or identifiers for the 'Instruction' and 'Keyword' terms.",
+          "The exact condition logic (e.g., exact match, substring, case sensitivity) is not defined."
+        ],
+        "unsupported_interpretations": [
+          "Any instruction containing any keyword triggers the upload.",
+          "A specific, undefined instruction containing a specific, undefined keyword triggers the upload."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The specific values or identifiers for the 'Instruction' and 'Keyword' terms.",
+      "The exact condition logic (e.g., exact match, substring, case sensitivity) is not defined."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,39 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized vehicle' is lexically ambiguous due to lack of precise boundaries; the controlled context only defines it as an 'informal' category without specific metrics, leaving the interpretation unresolved.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "All medium-sized vehicles shall be equipped with a navigation system.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The requirement applies to vehicles falling within a specific, operationally defined weight or length range.",
+          "The requirement applies to any vehicle that operations staff subjectively classify as 'medium-sized'."
+        ],
+        "evidence_from_requirement": [
+          "All medium-sized vehicles shall be equipped with a navigation system."
+        ],
+        "evidence_from_context": [
+          "term: medium-sized vehicle",
+          "definition: Informal vehicle size category used by operations."
+        ],
+        "missing_information": [
+          "Specific quantitative boundaries (e.g., weight, length, seating capacity) or a definitive operational classification rule for 'medium-sized'."
+        ],
+        "justification": "The controlled context explicitly labels the term as 'informal' and provides no measurable criteria to distinguish between the possible interpretations. Without specific boundaries, it is impossible to determine which interpretation is correct based solely on the provided text.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The lexical ambiguity regarding the definition of 'medium-sized vehicle' cannot be resolved because the controlled context lacks the necessary quantitative or definitive operational criteria to select one interpretation over the other."
+    }
+  }
+}

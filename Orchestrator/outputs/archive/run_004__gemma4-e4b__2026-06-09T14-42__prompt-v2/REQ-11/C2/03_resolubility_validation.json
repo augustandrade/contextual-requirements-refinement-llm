@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity regarding the scope of filtering is partially resolved by the context defining 'filter network traffic' as inspecting and dropping packets based on protocol and destination port.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system shall filter traffic that is traversing from the data-plane interfaces towards the management data traffic domain.",
+        "unsupported_interpretations": [
+          "The system shall filter the combined set of traffic streams, specifically separating and inspecting traffic originating from the data-plane interfaces versus traffic designated as management data traffic."
+        ],
+        "evidence_from_requirement": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "evidence_from_context": [
+          "term: filter network traffic\n      definition: Inspect and drop packets based on protocol and destination port."
+        ],
+        "missing_information": [],
+        "justification": "The context defines 'filter network traffic' as an action that inspects and drops packets based on protocol and destination port, which strongly implies filtering traffic *in transit* between two points, supporting the first interpretation.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The context provides a definition for 'filter network traffic' that clarifies the action as inspecting in-transit packets, resolving the syntactic ambiguity."
+    }
+  }
+}

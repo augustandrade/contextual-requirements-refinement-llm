@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "```json\n{\n  \"ambiguity_analysis\": [\n    {\n      \"type\": \"referential\",\n      \"description\": \"The scope of 'it' or the subject of the action following 'detects damage' is unclear. Does 'it' refer to the detector unit, the system, or the specific component that detected the damage?\",\n      \"potential_ambiguity\": \"The subject performing the action of 'detecting' or the subject that 'detects' the damage is ambiguous.\"\n    }\n  ],\n  \"ambiguity_report\": {\n    \"has_ambiguity\": true,\n    \"suggested_clarification\": \"Specify the subject performing the detection (e.g., 'If the detector unit detects damage...') or clarify what 'it' refers to if the sentence structure implies a missing subject.\"\n  }\n}\n```"
+}

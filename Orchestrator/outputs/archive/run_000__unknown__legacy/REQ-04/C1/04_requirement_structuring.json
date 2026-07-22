@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "Although the domain is a physical access control system, the provided business_rules and constraints are empty. The glossary defines 'PIN' but does not specify the validation logic or failure conditions. Without explicit rules stating that an invalid PIN denies access (or an invalid card does), the ambiguity cannot be resolved based on the provided context.",
+        "missing_information": [
+          "Which specific entity (access card or PIN) triggers the access denial condition."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

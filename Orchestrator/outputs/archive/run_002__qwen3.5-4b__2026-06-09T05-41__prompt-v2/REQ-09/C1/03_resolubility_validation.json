@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' is defined as informal, lacking absolute boundaries, and the requirement text provides no specific criteria to resolve the ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with mass/volume strictly between smallest and largest categories.",
+          "Vehicles larger than smallest but smaller than largest, regardless of measurements."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states 'All medium-sized vehicles shall be equipped with a navigation system' without defining the boundary for 'medium-sized'."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'medium-sized vehicle' as an 'Informal vehicle size category used by operations'."
+        ],
+        "missing_information": [
+          "The specific mass or volume thresholds that define the 'medium-sized' category."
+        ],
+        "justification": "The glossary explicitly characterizes the term as 'informal' and lacking an absolute boundary. No specific numerical or categorical limits are provided in the requirement text or business rules to determine which vehicles qualify.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity regarding the definition of 'medium-sized' cannot be resolved because the glossary labels it as informal and provides no concrete criteria, and the requirement text offers no additional disambiguating information."
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "execution_id": "REQ-09-C2",
+  "requirement_id": "REQ-09",
+  "context_condition": "C2",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "has_concern_mixing": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' lacks a precise, measurable boundary for vehicle classification. Without a defined metric (e.g., weight range, passenger capacity), the requirement cannot be objectively verified.",
+        "possible_interpretations": [
+          "Vehicles with a weight between 3,500 kg and 5,000 kg.",
+          "Vehicles with a passenger capacity between 7 and 12 seats."
+        ],
+        "textual_evidence": [
+          "medium-sized vehicles"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null,
+    "concern_mixing_details": {
+      "functional_action": "shall be equipped with a navigation system",
+      "quality_criterion": "medium-sized",
+      "explanation": "The requirement mixes a functional obligation (equipping with a system) with a vague quality criterion (vehicle size), creating a structural ambiguity regarding the scope of the obligation."
+    }
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement contains a vague quality criterion ('medium-sized') that cannot be resolved using the provided controlled context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with a weight between 3,500 kg and 5,000 kg.",
+          "Vehicles with a passenger capacity between 7 and 12 seats."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text states 'medium-sized vehicles' without defining the metric."
+        ],
+        "evidence_from_context": [
+          "Glossary defines 'medium-sized vehicle' as 'Vehicle with gross weight strictly between 1500 kg and 2000 kg'."
+        ],
+        "missing_information": [
+          "The requirement text does not explicitly link the glossary definition to the term 'medium-sized vehicles' in the sentence."
+        ],
+        "justification": "While the glossary provides a definition, the requirement text itself does not contain the phrase 'medium-sized vehicle' matching the glossary term, nor does it explicitly reference the glossary. Without an explicit textual link or a direct definition within the requirement sentence, the interpretation relies on an assumption that the glossary applies to this specific sentence, which is not explicitly stated in the text.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "concern_mixing",
+      "explanation": "The linguistic ambiguity regarding 'medium-sized' is unresolved because the requirement text lacks an explicit definition or reference to the glossary. Additionally, the requirement mixes a functional action with a vague quality criterion, requiring structural decomposition."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "While the glossary provides a definition, the requirement text itself does not contain the phrase 'medium-sized vehicle' matching the glossary term, nor does it explicitly reference the glossary. Without an explicit textual link or a direct definition within the requirement sentence, the interpretation relies on an assumption that the glossary applies to this specific sentence, which is not explicitly stated in the text.",
+        "missing_information": [
+          "The requirement text does not explicitly link the glossary definition to the term 'medium-sized vehicles' in the sentence."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with a weight between 3,500 kg and 5,000 kg.",
+          "Vehicles with a passenger capacity between 7 and 12 seats."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "While the glossary provides a definition, the requirement text itself does not contain the phrase 'medium-sized vehicle' matching the glossary term, nor does it explicitly reference the glossary. Without an explicit textual link or a direct definition within the requirement sentence, the interpretation relies on an assumption that the glossary applies to this specific sentence, which is not explicitly stated in the text.",
+        "missing_information": [
+          "The requirement text does not explicitly link the glossary definition to the term 'medium-sized vehicles' in the sentence."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with a weight between 3,500 kg and 5,000 kg.",
+          "Vehicles with a passenger capacity between 7 and 12 seats."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The requirement text does not explicitly link the glossary definition to the term 'medium-sized vehicles' in the sentence."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "reason": "The controlled context defines the actor (Security Manager) and the existence of rejection/approval orders but fails to define the taxonomy of rejection orders. Without explicit evidence that all rejection orders in this domain are 'for cancellation requests', the syntactic attachment cannot be resolved to a single interpretation.",
+        "missing_information": [
+          "Whether rejection orders are exclusively 'for cancellation requests' or if other types of rejection orders exist within the domain."
+        ],
+        "unsupported_interpretations": [
+          "The system raises an alert when it receives a rejection order that is specifically designated for a cancellation request.",
+          "The system raises an alert when it receives a rejection order (of any type) in the context of a cancellation request process."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

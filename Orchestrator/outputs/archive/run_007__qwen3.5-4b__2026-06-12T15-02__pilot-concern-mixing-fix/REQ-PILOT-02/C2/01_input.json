@@ -1,0 +1,31 @@
+{
+  "execution_id": "REQ-PILOT-02-C2",
+  "requirement_id": "REQ-PILOT-02",
+  "context_condition": "C2",
+  "base_requirement_text": "The nurse administers the prescribed medication to the patient. If she does not respond within 10 minutes, the system shall escalate the alert to the duty physician.",
+  "controlled_context": {
+    "domain": "Hospital patient monitoring system for post-operative care.",
+    "glossary": [
+      {
+        "term": "duty physician",
+        "definition": "The attending physician responsible for a ward during a given shift."
+      },
+      {
+        "term": "alert escalation",
+        "definition": "The process of notifying a higher-priority care provider when a lower-priority care action does not achieve the expected outcome."
+      }
+    ],
+    "business_rules": [
+      {
+        "id": "BR-01",
+        "rule": "Medication response monitoring applies to the patient, not the care provider. If the patient does not show a recorded response event within the specified observation window after medication administration, the system escalates the alert to the duty physician."
+      }
+    ],
+    "constraints": [
+      {
+        "id": "OBS-01",
+        "text": "The observation window for response detection is 10 minutes from the administration timestamp recorded by the system."
+      }
+    ]
+  }
+}

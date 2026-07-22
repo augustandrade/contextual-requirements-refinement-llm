@@ -1,0 +1,117 @@
+{
+  "execution_id": "REQ-05-C2",
+  "requirement_id": "REQ-05",
+  "context_condition": "C2",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' can attach ambiguously. It is unclear whether the code modifies the action of entering the card, or if the card itself is associated with the code.",
+        "possible_interpretations": [
+          "The user uses the access code to perform the action of entering the access card (Code modifies 'enters').",
+          "The user enters an access card that is associated with the access code (Code modifies 'access card')."
+        ],
+        "textual_evidence": [
+          "The user enters the access card with the access code."
+        ],
+        "context_evidence": [
+          "User first inserts the card into the card reader, then enters the access code on the keypad."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The controlled context provides a specific sequence of actions that resolves the syntactic ambiguity regarding the order of operations.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user performs two sequential actions: first entering the card, and then entering the code.",
+        "unsupported_interpretations": [
+          "The user uses the access code to perform the action of entering the access card (Code modifies 'enters').",
+          "The user enters an access card that is associated with the access code (Code modifies 'access card')."
+        ],
+        "evidence_from_requirement": [
+          "The user enters the access card with the access code."
+        ],
+        "evidence_from_context": [
+          "User first inserts the card into the card reader, then enters the access code on the keypad."
+        ],
+        "missing_information": [],
+        "justification": "The business rule explicitly dictates a sequence: card insertion first, followed by code entry, which resolves the ambiguity in the base requirement.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides direct evidence for the supported interpretation, allowing safe progression to Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement was fully resolvable using the supported interpretation from the context, which dictates a sequential process: card insertion followed by code entry. Structured as a single functional requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "The user initiates access attempt",
+          "condition_type": "event",
+          "system_or_component": "The system",
+          "interaction_pattern": "user_interaction",
+          "actor": "The user",
+          "modality": "shall",
+          "action": "perform sequential actions",
+          "object": "access card and access code",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access control process"
+        },
+        "final_statement": "The user shall first insert the access card into the card reader, and then enter the access code on the keypad.",
+        "structuring_notes": [
+          "Decomposition based on AMB-01 resolution: The process is sequential (Card -> Code). The final statement reflects the explicit sequence mandated by BR-01."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

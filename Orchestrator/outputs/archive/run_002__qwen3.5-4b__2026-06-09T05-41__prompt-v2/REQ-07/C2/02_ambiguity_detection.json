@@ -1,0 +1,7 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is linguistically clear but non-atomic: it intermingles a functional requirement (perform a reset) and a quality/timing requirement (within 5 seconds). concern_mixing flagged for structural decomposition."
+  }
+}

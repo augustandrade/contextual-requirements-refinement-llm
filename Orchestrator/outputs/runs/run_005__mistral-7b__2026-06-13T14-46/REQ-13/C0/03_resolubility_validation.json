@@ -1,0 +1,33 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Semantic ambiguity in the conditional clause; no evidence in the requirement to decide safely.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the detector detects damage to the pane",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system informs the security service only when the detector has detected damage to the pane.",
+          "The system informs the security service regardless of whether the detector has detected damage, but if the damage is to the pane, then the system informs the security service."
+        ],
+        "evidence_from_requirement": [],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the system informs the security service only when the detector has detected damage to the pane or regardless of whether the detector has detected damage but the damage is to the pane."
+        ],
+        "justification": "The requirement contains two possible interpretations and provides no disambiguating evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

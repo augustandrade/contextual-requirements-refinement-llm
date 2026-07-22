@@ -1,0 +1,123 @@
+{
+  "execution_id": "REQ-04-C2",
+  "requirement_id": "REQ-04",
+  "context_condition": "C2",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'personal identification number (PIN)'. It is unclear whether the system denies access if the card is invalid or if the PIN is invalid.",
+        "possible_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "textual_evidence": [
+          "inserts the access card",
+          "enters a personal identification number (PIN)",
+          "If it is invalid"
+        ],
+        "context_dependency": "high"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The controlled context explicitly distinguishes the consequences of an invalid card versus an invalid PIN, resolving the referential ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The personal identification number (PIN) is invalid.",
+        "unsupported_interpretations": [
+          "The access card is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence mentions both 'access card' and 'personal identification number (PIN)' as inputs before the condition 'If it is invalid'."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01: Invalid card causes immediate access denial at turnstile.",
+          "Business rule BR-02: Invalid PIN triggers retry request and does not immediately deny access."
+        ],
+        "missing_information": [],
+        "justification": "The requirement states the system 'shall deny the access' if the condition is met. Business rule BR-01 states an invalid card causes denial, while BR-02 states an invalid PIN does not cause immediate denial. Therefore, the condition 'If it is invalid' leading to 'deny the access' must refer to the PIN being invalid, as that is the only scenario where denial occurs without a retry.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides distinct business rules that map the outcome (access denial) to a specific antecedent (invalid PIN), allowing safe resolution of the ambiguity."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "has_concern_mixing": false,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04",
+    "context_condition": "C2",
+    "structuring_summary": "Referential ambiguity 'If it is invalid' resolved via business rules BR-01/BR-02. The condition 'deny access' maps exclusively to an invalid PIN (BR-02), not an invalid card (BR-01). Structured as a single functional requirement using the supported interpretation.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-04-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If it is invalid, the system shall deny the access."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "the personal identification number (PIN) is invalid",
+          "condition_type": "logical",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "deny",
+          "object": "the access",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access"
+        },
+        "final_statement": "If the personal identification number (PIN) is invalid, the system shall deny the access.",
+        "structuring_notes": [
+          "Ambiguous pronoun 'it' replaced by 'the personal identification number (PIN)' based on supported interpretation derived from BR-02 (invalid PIN triggers denial) vs BR-01 (invalid card triggers denial but not immediate denial)."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume the system denies access for invalid cards, as BR-01 specifies a different behavior (immediate denial at turnstile) which is distinct from the 'deny access' predicate in this specific sentence context resolved by the PIN rule."
+    ],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

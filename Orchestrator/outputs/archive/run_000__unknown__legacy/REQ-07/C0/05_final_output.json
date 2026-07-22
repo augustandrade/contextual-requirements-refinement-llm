@@ -1,0 +1,117 @@
+{
+  "execution_id": "REQ-07-C0",
+  "requirement_id": "REQ-07",
+  "context_condition": "C0",
+  "input_requirement": "When leaving the Factory mode, the ECU should preferably perform a reset.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'preferably' introduces a preference-based modifier that admits multiple interpretations regarding the mandatory nature of the action.",
+        "possible_interpretations": [
+          "The ECU must perform a reset, but other actions may also occur if the reset is not feasible.",
+          "The ECU should perform a reset if possible, but it is not required if the reset cannot be performed."
+        ],
+        "textual_evidence": [
+          "preferably perform a reset"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'preferably' admits multiple interpretations regarding the mandatory nature of the action, and no controlled context exists to resolve this.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU must perform a reset, but other actions may also occur if the reset is not feasible.",
+          "The ECU should perform a reset if possible, but it is not required if the reset cannot be performed."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses the modifier 'preferably' without further qualification."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the reset is mandatory or optional."
+        ],
+        "justification": "The controlled context is empty, providing no evidence to distinguish between mandatory and optional interpretations of 'preferably'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity regarding the mandatory nature of the reset action cannot be resolved without external context; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "reason": "The controlled context is empty, providing no evidence to distinguish between mandatory and optional interpretations of 'preferably'.",
+        "missing_information": [
+          "Whether the reset is mandatory or optional."
+        ],
+        "unsupported_interpretations": [
+          "The ECU must perform a reset, but other actions may also occur if the reset is not feasible.",
+          "The ECU should perform a reset if possible, but it is not required if the reset cannot be performed."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "reason": "The controlled context is empty, providing no evidence to distinguish between mandatory and optional interpretations of 'preferably'.",
+        "missing_information": [
+          "Whether the reset is mandatory or optional."
+        ],
+        "unsupported_interpretations": [
+          "The ECU must perform a reset, but other actions may also occur if the reset is not feasible.",
+          "The ECU should perform a reset if possible, but it is not required if the reset cannot be performed."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether the reset is mandatory or optional."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-05-C1",
+  "requirement_id": "REQ-05",
+  "context_condition": "C1",
+  "base_requirement_text": "The user enters the access card with the access code.",
+  "controlled_context": {
+    "domain": "Access control system using card reader and keypad.",
+    "glossary": [
+      {
+        "term": "access code",
+        "definition": "Secret code used for second-factor verification."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

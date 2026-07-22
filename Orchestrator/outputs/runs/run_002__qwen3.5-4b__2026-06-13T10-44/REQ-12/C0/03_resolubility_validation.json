@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Referential ambiguity exists regarding specific 'Instruction' and 'Keyword' values; no context provided to resolve.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Any instruction containing any keyword triggers the upload.",
+          "A specific, undefined instruction containing a specific, undefined keyword triggers the upload."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses single quotes around 'Instruction' and 'Keyword', implying specific controlled vocabulary terms.",
+          "The text does not define the actual values or identifiers for these terms."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific values or identifiers for the 'Instruction' and 'Keyword' terms.",
+          "The exact condition logic (e.g., exact match, substring, case sensitivity) is not defined."
+        ],
+        "justification": "In C0, the controlled context is empty. The requirement text implies specific terms but does not define them, leaving the trigger condition ambiguous between 'any/any' and 'specific/undefined'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to missing controlled context and lack of explicit definition in the requirement text. Execution must bypass Agent 3."
+    }
+  }
+}

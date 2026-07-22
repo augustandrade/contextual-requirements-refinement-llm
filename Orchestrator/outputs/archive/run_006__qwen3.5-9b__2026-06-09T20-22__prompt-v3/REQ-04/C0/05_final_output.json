@@ -1,0 +1,118 @@
+{
+  "execution_id": "REQ-04-C0",
+  "requirement_id": "REQ-04",
+  "context_condition": "C0",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'personal identification number (PIN)'. It is unclear which entity must be invalid to trigger access denial.",
+        "possible_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "textual_evidence": [
+          "inserts the access card",
+          "enters a personal identification number (PIN)",
+          "If it is invalid"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Referential ambiguity regarding the pronoun 'it' cannot be resolved because the controlled context is empty and the requirement text provides no disambiguating evidence.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence mentions both 'access card' and 'PIN' as antecedents before the pronoun 'it'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit definition of which entity (card or PIN) being invalid triggers the denial."
+        ],
+        "justification": "The requirement text presents two valid antecedents for 'it' without grammatical or semantic cues to distinguish them. The controlled context is empty, providing no external evidence to resolve the ambiguity. Safe execution requires clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "At least one ambiguity is unresolved due to lack of evidence in the requirement or context; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "The requirement text presents two valid antecedents for 'it' without grammatical or semantic cues to distinguish them. The controlled context is empty, providing no external evidence to resolve the ambiguity. Safe execution requires clarification.",
+        "missing_information": [
+          "Explicit definition of which entity (card or PIN) being invalid triggers the denial."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "The requirement text presents two valid antecedents for 'it' without grammatical or semantic cues to distinguish them. The controlled context is empty, providing no external evidence to resolve the ambiguity. Safe execution requires clarification.",
+        "missing_information": [
+          "Explicit definition of which entity (card or PIN) being invalid triggers the denial."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Explicit definition of which entity (card or PIN) being invalid triggers the denial."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

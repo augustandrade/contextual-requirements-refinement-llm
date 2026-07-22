@@ -1,0 +1,59 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The glossary in the controlled context provides a precise definition for 'medium-sized vehicle', resolving AMB-01. However, AMB-02 regarding 'navigation system' remains unresolved as the glossary does not define its specific functional requirements.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles with gross weight strictly between 1500 kg and 2000 kg.",
+        "unsupported_interpretations": [
+          "Vehicles with a length or volume strictly between the definitions of 'small' and 'large'.",
+          "Vehicles falling into a specific, but undefined, category that the stakeholder considers 'medium'."
+        ],
+        "evidence_from_requirement": [
+          "The term 'medium-sized vehicles' is used in the requirement."
+        ],
+        "evidence_from_context": [
+          "Glossary entry: term 'medium-sized vehicle' is defined as 'Vehicle with gross weight strictly between 1500 kg and 2000 kg'."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context glossary explicitly defines the term, eliminating the lexical ambiguity.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "navigation system",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A dedicated GPS unit or integrated infotainment module capable of providing turn-by-turn directions.",
+          "Any system that provides location data, which could include basic map display without routing capabilities, or a simple compass."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'navigation system' is used in the requirement."
+        ],
+        "evidence_from_context": [
+          "The glossary does not contain a definition for 'navigation system'.",
+          "Business rules and constraints are empty."
+        ],
+        "missing_information": [
+          "A definition or functional specification for 'navigation system' within the controlled context."
+        ],
+        "justification": "The controlled context lacks a definition for 'navigation system', leaving the specific capabilities (e.g., routing vs. display only) undefined.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "While the vehicle size definition is resolved by the glossary, the definition of the navigation system capability is missing from the context, preventing full resolution."
+    }
+  }
+}

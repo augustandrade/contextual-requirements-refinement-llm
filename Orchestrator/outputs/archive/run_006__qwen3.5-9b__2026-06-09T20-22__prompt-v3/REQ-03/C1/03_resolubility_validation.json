@@ -1,0 +1,75 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'their' is resolvable via glossary; syntactic and semantic ambiguities remain unresolved due to lack of explicit permission scope and state-change definitions in context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A adds System-B to the list of downstream systems owned by System-A.",
+        "unsupported_interpretations": [
+          "System-A adds System-B to the list of downstream systems owned by System-B."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure 'System-A must add System-B to their...' grammatically links the possessive to the subject 'System-A'."
+        ],
+        "evidence_from_context": [
+          "Glossary definition: 'downstream systems' are 'External systems that receive events from System-A'."
+        ],
+        "missing_information": [],
+        "justification": "The glossary defines 'downstream systems' relative to System-A (the sender of events). Therefore, the list of downstream systems is owned/managed by System-A, resolving the pronoun reference.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A grants permission specifically for System-C to subscribe to the Reporting flow.",
+          "The system (implicitly defined) allows System-C to subscribe, and this is a separate statement from the previous one about System-A and System-B."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text presents two imperative clauses joined by 'and' without explicit conjunctions like 'and also allows' or 'while allowing'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the permission to subscribe is a specific grant from System-A or a general system capability."
+        ],
+        "justification": "The controlled context describes the domain but does not specify the permission model (e.g., whether System-A acts as a gatekeeper or if the platform handles subscriptions automatically). Without explicit text defining the scope of 'allow', the distinction between a specific grant and a general capability cannot be made.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-B is added to an existing, static list of downstream systems.",
+          "System-B is added, and this action creates or updates the definition of the downstream systems category."
+        ],
+        "evidence_from_requirement": [
+          "The verb 'add' implies inclusion, but the text does not specify if the set is static or dynamic."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the 'downstream systems' category is a fixed configuration or a dynamic state updated by the action."
+        ],
+        "justification": "The requirement text does not distinguish between adding to a static list versus updating a dynamic category. The controlled context defines the term but does not specify the mutability of the set upon addition.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "While the lexical ambiguity is resolved by the glossary, the syntactic and semantic ambiguities lack sufficient evidence in the controlled context to proceed to Agent 3."
+    }
+  }
+}

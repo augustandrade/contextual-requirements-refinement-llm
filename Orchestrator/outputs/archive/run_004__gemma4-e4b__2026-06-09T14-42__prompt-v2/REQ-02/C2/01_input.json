@@ -1,0 +1,22 @@
+{
+  "execution_id": "REQ-02-C2",
+  "requirement_id": "REQ-02",
+  "context_condition": "C2",
+  "base_requirement_text": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "controlled_context": {
+    "domain": "Post-trade financial platform with cancellation workflows and alerts.",
+    "glossary": [
+      {
+        "term": "Security Manager",
+        "definition": "Workflow authority that approves or rejects cancellation requests."
+      }
+    ],
+    "business_rules": [
+      {
+        "id": "BR-01",
+        "rule": "Rejection and approval orders are issued exclusively by Security Manager."
+      }
+    ],
+    "constraints": []
+  }
+}

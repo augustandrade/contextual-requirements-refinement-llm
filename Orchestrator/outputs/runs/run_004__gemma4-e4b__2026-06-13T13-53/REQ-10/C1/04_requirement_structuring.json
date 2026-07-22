@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement based on the defined domain (Digital telephony exchange system).",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-10-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Generate a dial tone."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "none",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "Generate",
+          "object": "a dial tone",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "line readiness"
+        },
+        "final_statement": "The system shall generate a dial tone.",
+        "structuring_notes": [
+          "The action 'Generate a dial tone' is interpreted as a core system function. The context defines 'dial tone' as signaling line readiness, which informs the object/purpose."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not specify the trigger for generating the dial tone, as none was provided."
+    ],
+    "final_output_status": "structured"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "execution_id": "REQ-PILOT-03-C2",
+  "requirement_id": "REQ-PILOT-03",
+  "context_condition": "C2",
+  "input_requirement": "The system shall automatically approve the leave request if the employee is eligible.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "has_concern_mixing": false,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "referential",
+        "explanation": "The term 'eligible' is a referential expression lacking a defined set of antecedents or criteria within the provided text. Unlike a clear condition (e.g., 'if the employee has >50 hours of service'), 'eligible' points to an external definition or a missing clause that specifies the exact conditions for eligibility, creating a gap in the requirement's logical scope.",
+        "possible_interpretations": [
+          "The employee meets the specific eligibility criteria defined elsewhere in the system.",
+          "The employee satisfies a generic or undefined notion of eligibility."
+        ],
+        "textual_evidence": [
+          "if the employee is eligible"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-PILOT-03-C2",
+    "requirement_id": "REQ-PILOT-03",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement uses the term 'eligible' which is defined in the controlled context; the definition provides complete evidence to resolve the ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The employee meets all four conditions: (a) accrued leave balance >= requested days, (b) no active disciplinary action, (c) no overlap with mandatory attendance windows, and (d) no temporary approval hold from direct manager.",
+        "unsupported_interpretations": [
+          "The employee meets a generic or undefined notion of eligibility.",
+          "The employee meets criteria defined elsewhere in the system."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text states 'if the employee is eligible'."
+        ],
+        "evidence_from_context": [
+          "Glossary definition for 'eligible' explicitly lists four simultaneous conditions (a, b, c, d).",
+          "Business rule BR-01 confirms that automatic approval is granted when these specific conditions are satisfied."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context provides a precise, exhaustive definition of 'eligible' that maps directly to the condition in the requirement. The ambiguity is fully resolved by this definition.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The linguistic ambiguity regarding the term 'eligible' is resolved by the controlled context. No structural concern-mixing was detected. The execution may proceed to Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-PILOT-03-C2",
+    "requirement_id": "REQ-PILOT-03",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement is fully resolvable. The term 'eligible' is resolved using the glossary definition and business rule BR-01. The requirement is structured as a single functional requirement with a complex logical condition derived from the four simultaneous eligibility criteria.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-PILOT-03-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The system shall automatically approve the leave request if the employee is eligible."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "the employee meets all four conditions: (a) accrued leave balance >= requested days, (b) no active disciplinary action, (c) no overlap with mandatory attendance windows, and (d) no temporary approval hold from direct manager",
+          "condition_type": "logical",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "automatically approve",
+          "object": "the leave request",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "leave request"
+        },
+        "final_statement": "The system shall automatically approve the leave request if the employee meets all four conditions: (a) accrued leave balance is at least equal to the number of days requested, (b) no active disciplinary action is on record, (c) the requested dates do not overlap a mandatory attendance window, and (d) the direct manager has not placed a temporary approval hold on the employee's account.",
+        "structuring_notes": [
+          "Resolved referential ambiguity 'eligible' using glossary definition and business rule BR-01. Expanded the condition to explicitly list the four simultaneous criteria."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

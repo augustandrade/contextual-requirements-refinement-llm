@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic attachment ambiguity exists in the requirement text; no controlled context is available to resolve it.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system raises an alert when it receives a rejection order that is specifically designated for a cancellation request.",
+          "The system raises an alert when it receives a rejection order (of any type) in the context of a cancellation request process."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'for a cancellation request' can syntactically attach to either 'rejection order' or the event of receiving."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Business rule or glossary definition specifying whether 'rejection order for a cancellation request' is a distinct category or a contextual descriptor."
+        ],
+        "justification": "The requirement text alone does not disambiguate the attachment site of the prepositional phrase. Since context_condition is C0, no external context exists to resolve the ambiguity. The distinction between specific designation and contextual process is not explicitly defined in the text.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to lack of disambiguating evidence in the requirement text or context; the case must bypass Agent 3."
+    }
+  }
+}

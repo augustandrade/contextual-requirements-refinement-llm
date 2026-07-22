@@ -1,0 +1,117 @@
+{
+  "execution_id": "REQ-PILOT-03-C0",
+  "requirement_id": "REQ-PILOT-03",
+  "context_condition": "C0",
+  "input_requirement": "The system shall automatically approve the leave request if the employee is eligible.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "has_concern_mixing": false,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "referential",
+        "explanation": "The term 'eligible' is a referential expression lacking a defined set of antecedents or criteria within the provided text. Unlike a clear condition (e.g., 'if the employee has >50 hours of service'), 'eligible' points to an external definition or a missing clause that specifies the exact conditions for eligibility, creating a gap in the requirement's logical scope.",
+        "possible_interpretations": [
+          "The employee meets the specific eligibility criteria defined elsewhere in the system.",
+          "The employee satisfies a generic or undefined notion of eligibility."
+        ],
+        "textual_evidence": [
+          "if the employee is eligible"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-PILOT-03-C0",
+    "requirement_id": "REQ-PILOT-03",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'eligible' lacks a defined set of criteria in the requirement text; no context is available to resolve the ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The employee meets specific criteria defined elsewhere.",
+          "The employee satisfies a generic or undefined notion of eligibility."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text contains the term 'eligible' without listing or referencing specific criteria."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific conditions or criteria that define 'eligibility' for the employee."
+        ],
+        "justification": "The controlled context is empty (C0), and the requirement text provides no definition for 'eligible'. The ambiguity cannot be resolved without external knowledge or clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity regarding the definition of 'eligible' is unresolved due to missing information in both the requirement text and the controlled context. The execution must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-PILOT-03-C0",
+    "requirement_id": "REQ-PILOT-03",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "reason": "The controlled context is empty (C0), and the requirement text provides no definition for 'eligible'. The ambiguity cannot be resolved without external knowledge or clarification.",
+        "missing_information": [
+          "The specific conditions or criteria that define 'eligibility' for the employee."
+        ],
+        "unsupported_interpretations": [
+          "The employee meets specific criteria defined elsewhere.",
+          "The employee satisfies a generic or undefined notion of eligibility."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "reason": "The controlled context is empty (C0), and the requirement text provides no definition for 'eligible'. The ambiguity cannot be resolved without external knowledge or clarification.",
+        "missing_information": [
+          "The specific conditions or criteria that define 'eligibility' for the employee."
+        ],
+        "unsupported_interpretations": [
+          "The employee meets specific criteria defined elsewhere.",
+          "The employee satisfies a generic or undefined notion of eligibility."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The specific conditions or criteria that define 'eligibility' for the employee."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

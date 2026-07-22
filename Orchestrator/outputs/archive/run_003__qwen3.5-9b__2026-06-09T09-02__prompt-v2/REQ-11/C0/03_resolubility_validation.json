@@ -1,0 +1,56 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic attachment and lexical ambiguity detected; controlled context is empty, preventing resolution.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The routing switch filters traffic that flows between data-plane interfaces and management data traffic.",
+          "The routing switch has the ability to filter traffic, and this ability exists between data-plane interfaces and management data traffic."
+        ],
+        "evidence_from_requirement": [
+          "The prepositional phrase 'between data-plane interfaces and management data traffic' syntactically attaches to either 'filter' or 'switches'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit definition of the scope of the filtering action relative to the interfaces."
+        ],
+        "justification": "The requirement text alone does not disambiguate the attachment of the prepositional phrase, and no controlled context is available to resolve the high dependency.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The hardware devices (network switches) possess the ability to filter...",
+          "The action of switching (routing) possesses the ability to filter..."
+        ],
+        "evidence_from_requirement": [
+          "The term 'switches' is used without a controlled vocabulary definition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Controlled vocabulary or glossary defining 'switches' as hardware devices."
+        ],
+        "justification": "The term 'switches' lacks a specific domain definition in the provided text, and the empty controlled context cannot confirm the hardware interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Ambiguities remain unresolved due to lack of controlled context evidence required to disambiguate syntactic attachment and lexical terms."
+    }
+  }
+}

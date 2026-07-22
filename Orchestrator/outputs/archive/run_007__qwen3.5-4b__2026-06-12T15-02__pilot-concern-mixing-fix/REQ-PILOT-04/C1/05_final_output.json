@@ -1,0 +1,106 @@
+{
+  "execution_id": "REQ-PILOT-04-C1",
+  "requirement_id": "REQ-PILOT-04",
+  "context_condition": "C1",
+  "input_requirement": "When the user selects the Save option, the system shall write the current document to disk and display a confirmation message.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "has_concern_mixing": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is syntactically clear (Condition: 'When the user selects the Save option', Action: 'write... and display...'). There are no competing antecedents for pronouns, no syntactic attachment conflicts, and no terms lacking measurable boundaries. The phrase 'Save option' is treated as a specific UI element, not a vague concept. The actions 'write' and 'display' are distinct and do not create a concern-mixing structure where a quality criterion (e.g., speed, accuracy) is conflated with the functional action."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-PILOT-04-C1",
+    "requirement_id": "REQ-PILOT-04",
+    "context_condition": "C1",
+    "has_ambiguity": false,
+    "validation_summary": "The requirement is linguistically clear and contains no ambiguities. However, it mixes a functional action with a quality criterion (displaying a confirmation message), requiring structural decomposition.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "structural_issue": "concern_mixing",
+      "explanation": "Agent 1 detected no linguistic ambiguity but flagged concern_mixing (functional action + quality criterion). The requirement must be decomposed by Agent 3 to separate the persistence action from the feedback action."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-PILOT-04-C1",
+    "requirement_id": "REQ-PILOT-04",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement is unambiguous but contains concern-mixing (functional action + quality criterion). Decomposed into two separate artefacts per Pohl §25.2: one functional requirement for persistence and one quality requirement for feedback.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-PILOT-04-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "the system shall write the current document to disk"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the user selects the Save option",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "user_interaction",
+          "actor": "the user",
+          "modality": "shall",
+          "action": "write",
+          "object": "the current document",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "persistent storage"
+        },
+        "final_statement": "When the user selects the Save option, the system shall write the current document to disk.",
+        "structuring_notes": [
+          "Extracted the core functional action (persistence) from the original mixed sentence."
+        ]
+      },
+      {
+        "structured_id": "REQ-PILOT-04-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "display a confirmation message"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after the document is written to disk",
+          "condition_type": "temporal",
+          "system_or_component": "the system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "display",
+          "object": "a confirmation message",
+          "quality_attribute": "user feedback",
+          "measurable_criterion": "confirmation message presentation",
+          "constraint_category": "usability",
+          "affected_element": "user interface"
+        },
+        "final_statement": "After the document is written to disk, the system shall display a confirmation message.",
+        "structuring_notes": [
+          "Extracted the feedback action as a quality requirement to separate it from the persistence logic."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

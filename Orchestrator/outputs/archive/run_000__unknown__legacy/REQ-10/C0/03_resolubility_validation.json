@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'dial tone' is polysemous; no evidence in the requirement or controlled context supports a specific interpretation.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system shall produce the standard audible signal (e.g., 440 Hz) to indicate the telephone line is active.",
+          "The system shall generate a specific audio file or waveform that mimics the sound of a dial tone for a specific use case."
+        ],
+        "evidence_from_requirement": [
+          "Generate a dial tone"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the requirement refers to the standard audible signal or a specific audio file/waveform."
+        ],
+        "justification": "The controlled context is empty, providing no evidence to distinguish between the two possible interpretations of 'dial tone'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "At least one ambiguity is unresolved due to lack of context; the case must bypass Agent 3."
+    }
+  }
+}

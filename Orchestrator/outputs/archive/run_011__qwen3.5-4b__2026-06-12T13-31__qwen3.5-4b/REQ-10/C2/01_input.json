@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-10-C2",
+  "requirement_id": "REQ-10",
+  "context_condition": "C2",
+  "base_requirement_text": "Generate a dial tone.",
+  "controlled_context": {
+    "domain": "Digital telephony exchange system.",
+    "glossary": [],
+    "business_rules": [],
+    "constraints": [
+      {
+        "id": "CST-01",
+        "text": "System follows North American telephony standard using simultaneous 350 Hz and 440 Hz dial tone."
+      }
+    ]
+  }
+}

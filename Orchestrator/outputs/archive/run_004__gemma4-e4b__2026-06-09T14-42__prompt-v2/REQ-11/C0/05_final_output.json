@@ -1,0 +1,117 @@
+{
+  "execution_id": "REQ-11-C0",
+  "requirement_id": "REQ-11",
+  "context_condition": "C0",
+  "input_requirement": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "syntactic",
+        "explanation": "The scope of the filtering action is unclear. It is ambiguous whether the filtering applies to traffic originating from data-plane interfaces AND management data traffic, or if it filters traffic that is *between* these two sets of interfaces/traffic types.",
+        "possible_interpretations": [
+          "The system filters traffic that is physically located between the data-plane interfaces and the management data traffic stream.",
+          "The system filters traffic originating from the data-plane interfaces AND separately filters traffic originating from the management data traffic."
+        ],
+        "textual_evidence": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The syntactic ambiguity regarding the scope of 'filter network traffic between' cannot be resolved because the controlled context provides no clarifying information.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system filters traffic that is physically located between the data-plane interfaces and the management data traffic stream.",
+          "The system filters traffic originating from the data-plane interfaces AND separately filters traffic originating from the management data traffic."
+        ],
+        "evidence_from_requirement": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The relationship implied by 'between' needs clarification: does it imply a physical boundary, or does it imply two separate, distinct filtering actions on two separate sources?"
+        ],
+        "justification": "The ambiguity hinges on the scope of the preposition 'between'. Since the controlled context is empty, there is no evidence to distinguish between a single boundary filter and two separate source filters.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity detected in AMB-01 is unresolved due to lack of context, requiring manual review before proceeding to Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "reason": "The ambiguity hinges on the scope of the preposition 'between'. Since the controlled context is empty, there is no evidence to distinguish between a single boundary filter and two separate source filters.",
+        "missing_information": [
+          "The relationship implied by 'between' needs clarification: does it imply a physical boundary, or does it imply two separate, distinct filtering actions on two separate sources?"
+        ],
+        "unsupported_interpretations": [
+          "The system filters traffic that is physically located between the data-plane interfaces and the management data traffic stream.",
+          "The system filters traffic originating from the data-plane interfaces AND separately filters traffic originating from the management data traffic."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "reason": "The ambiguity hinges on the scope of the preposition 'between'. Since the controlled context is empty, there is no evidence to distinguish between a single boundary filter and two separate source filters.",
+        "missing_information": [
+          "The relationship implied by 'between' needs clarification: does it imply a physical boundary, or does it imply two separate, distinct filtering actions on two separate sources?"
+        ],
+        "unsupported_interpretations": [
+          "The system filters traffic that is physically located between the data-plane interfaces and the management data traffic stream.",
+          "The system filters traffic originating from the data-plane interfaces AND separately filters traffic originating from the management data traffic."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The relationship implied by 'between' needs clarification: does it imply a physical boundary, or does it imply two separate, distinct filtering actions on two separate sources?"
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

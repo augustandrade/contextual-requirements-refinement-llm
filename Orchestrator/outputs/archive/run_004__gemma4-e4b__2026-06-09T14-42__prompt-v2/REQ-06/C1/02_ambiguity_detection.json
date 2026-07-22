@@ -1,0 +1,25 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key",
+        "ambiguity_type": "syntactic",
+        "explanation": "The structure connecting the three potential triggers ('window damaged', 'interior surveillance detects', or 'door opened') is ambiguous regarding the logical scope of the 'or' operator. It is unclear if the system requires (A AND B) OR C, or A OR (B OR C).",
+        "possible_interpretations": [
+          "The alarm triggers if (the window is damaged AND the interior surveillance detects an intruder) OR (a door is opened without a car key).",
+          "The alarm triggers if (the window is damaged) OR (the interior surveillance detects an intruder) OR (a door is opened without a car key)."
+        ],
+        "textual_evidence": [
+          "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key"
+        ],
+        "context_evidence": [
+          "domain: In-vehicle safety system with intrusion detection and door state monitoring."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

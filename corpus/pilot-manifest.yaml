@@ -1,0 +1,54 @@
+corpus_id: pilot-corpus-v1
+title: Pilot corpus for pipeline calibration (pre-final corpus)
+description: >
+  Provisional requirements used in the pilot execution that preceded the construction of the
+  final controlled corpus. Results from this pilot run informed agent prompt adjustments and
+  the selection of defect categories adopted in the final corpus (controlled-corpus-v1).
+  Not used for the main experimental evaluation; included for methodological traceability.
+language_policy:
+  requirements: en
+  contexts: en
+  metadata: en
+methodology:
+  base_requirements: 4
+  context_levels: [C0, C1, C2]
+  context_level_encoding: key_based
+  context_injection_policy:
+    C0:
+      inject_context: false
+      includes_controlled_context: false
+    C1:
+      inject_context: true
+      includes_controlled_context: true
+    C2:
+      inject_context: true
+      includes_controlled_context: true
+  context_entry_fields:
+    C0: [intent, inject_context]
+    C1: [intent, inject_context, controlled_context]
+    C2: [intent, inject_context, controlled_context]
+  total_executions: 12
+  categories:
+    - id: pilot-structural
+      name: "Pilot structural — concern mixing (functional + quality in one sentence)"
+      req_ids: [REQ-PILOT-01]
+    - id: pilot-linguistic
+      name: "Pilot linguistic — referential ambiguity (pronoun with two antecedents)"
+      req_ids: [REQ-PILOT-02]
+    - id: pilot-domain
+      name: "Pilot domain — vagueness (fuzzy eligibility criterion)"
+      req_ids: [REQ-PILOT-03]
+    - id: pilot-control
+      name: "Pilot control — clean requirement (no ambiguity, no concern mixing)"
+      req_ids: [REQ-PILOT-04]
+items:
+  - id: REQ-PILOT-01
+    file: pilot/REQ-PILOT-01.yaml
+  - id: REQ-PILOT-02
+    file: pilot/REQ-PILOT-02.yaml
+  - id: REQ-PILOT-03
+    file: pilot/REQ-PILOT-03.yaml
+  - id: REQ-PILOT-04
+    file: pilot/REQ-PILOT-04.yaml
+status: ready
+manual_reference: true

@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "reason": "The requirement text alone does not provide evidence to distinguish between the two syntactic attachments. Without controlled context, the ambiguity cannot be resolved.",
+        "missing_information": [
+          "Grammatical scope rules or explicit clarification on whether 'downstream systems' is a target category or a pre-existing set."
+        ],
+        "unsupported_interpretations": [
+          "System-A adds System-B to a specific collection of systems already defined as 'their downstream systems'."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "reason": "The requirement text contains two potential antecedents for 'their' (System-A and System-B) with no evidence to prefer one over the other. The ambiguity remains unresolved.",
+        "missing_information": [
+          "Explicit identification of the antecedent for the pronoun 'their'."
+        ],
+        "unsupported_interpretations": [
+          "The possessive 'their' refers to System-B, implying System-B owns the downstream systems."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

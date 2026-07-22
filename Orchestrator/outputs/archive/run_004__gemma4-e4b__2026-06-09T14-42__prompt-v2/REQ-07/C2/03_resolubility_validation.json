@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The vagueness of 'preferably' is overridden by a mandatory business rule in the controlled context, making the requirement determinable.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system must perform a reset when leaving Factory mode.",
+        "unsupported_interpretations": [
+          "The system should attempt to perform a reset, but failure to do so is acceptable.",
+          "The system should perform a reset only if it is deemed preferable by some unstated metric."
+        ],
+        "evidence_from_requirement": [
+          "should preferably perform a reset"
+        ],
+        "evidence_from_context": [
+          "ECU reset is mandatory when leaving Factory mode for critical control modules."
+        ],
+        "missing_information": [],
+        "justification": "The business rule explicitly states that the reset is 'mandatory' for critical modules, directly contradicting the soft constraint implied by 'preferably' in the requirement text.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides a mandatory business rule that resolves the vagueness of the requirement text, allowing safe progression to Agent 3."
+    }
+  }
+}

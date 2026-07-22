@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The referential ambiguity regarding 'it' remains unresolved because the controlled context provides no explicit rule to distinguish between an invalid access card or an invalid PIN.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The controlled context lacks a business rule or constraint specifying which input failure (card or PIN) triggers the 'deny access' action."
+        ],
+        "justification": "The requirement presents two equally plausible antecedents ('access card' and 'PIN'), and the controlled context offers no evidence to prioritize one over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity AMB-01 is unresolved because the controlled context does not provide sufficient evidence to determine the intended antecedent for the pronoun 'it'."
+    }
+  }
+}

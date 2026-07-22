@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C0",
+    "requirement_id": "REQ-08",
+    "context_condition": "C0",
+    "structuring_summary": "",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps if the water level remains above 100 meters"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the water level remains above 100 meters for more than 4 seconds",
+          "condition_type": "temporal",
+          "system_or_component": "the system",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "shall",
+          "action": "shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "structuring_notes": [
+          "Decomposed concern-mixed requirement into a single functional requirement per Pohl §25.2–25.3."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

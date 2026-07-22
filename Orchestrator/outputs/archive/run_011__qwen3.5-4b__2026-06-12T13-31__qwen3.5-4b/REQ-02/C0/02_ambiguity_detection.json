@@ -1,0 +1,14 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "has_concern_mixing": true,
+    "ambiguities": null,
+    "no_ambiguity_reason": "The sentence contains no lexical, syntactic, semantic, referential, or vagueness ambiguities. All terms are clearly defined or contextually unambiguous.",
+    "concern_mixing_analysis": {
+      "functional_action": "raise a web alert",
+      "quality_criterion": "When a rejection order is received for a cancellation request",
+      "explanation": "The sentence simultaneously specifies a functional action ('raise a web alert') and a quality/timing criterion ('When a rejection order is received...'), which constitutes concern-mixing per Pohl §25.2.",
+      "recommendation": "Decompose into two separate sentences: 1) 'When a rejection order is received for a cancellation request, the system shall detect the event.' 2) 'Upon detection, System-A must raise a web alert.'"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "execution_id": "REQ-13-C0",
+  "requirement_id": "REQ-13",
+  "context_condition": "C0",
+  "input_requirement": "R-F-18: If the detector detects damage to the pane, the system shall inform the security service.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13",
+    "context_condition": "C0",
+    "has_ambiguity": false,
+    "validation_summary": "No linguistic ambiguity detected by Agent 1a. Resolubility validation bypassed.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "explanation": "Agent 1a reported has_ambiguity: false. Orchestrator synthetic block."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "has_concern_mixing": false,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement preserving the original meaning.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-13-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If the detector detects damage to the pane, the system shall inform the security service."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the detector detects damage to the pane",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "security service"
+        },
+        "final_statement": "If the detector detects damage to the pane, the system shall inform the security service.",
+        "structuring_notes": [
+          "The condition is an event triggered by the detector. The system's action is to inform the security service."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not specify the method or means of informing the security service, as this detail was not provided."
+    ],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

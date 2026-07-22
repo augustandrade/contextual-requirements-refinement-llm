@@ -1,0 +1,72 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C2",
+    "requirement_id": "REQ-12",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement exhibits concern-mixing per Pohl §25.2. Decomposed into a functional requirement (upload action) and a quality requirement (mandatory nature of the action) based on the clear but combined text.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-12-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "an 'Instruction' contains a 'Keyword'",
+          "condition_type": "logical",
+          "system_or_component": "the User",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "the User",
+          "modality": "must",
+          "action": "upload",
+          "object": "the 'excel file'",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "excel file"
+        },
+        "final_statement": "If an 'Instruction' contains a 'Keyword', the User must upload the 'excel file' to System-A.",
+        "structuring_notes": [
+          "Extracted the core functional action (upload) triggered by the condition (keyword presence)."
+        ]
+      },
+      {
+        "structured_id": "REQ-12-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "The User must upload..."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "when an 'Instruction' contains a 'Keyword'",
+          "condition_type": "logical",
+          "system_or_component": "the User",
+          "interaction_pattern": "not_applicable",
+          "actor": "the User",
+          "modality": "must",
+          "action": "",
+          "object": "",
+          "quality_attribute": "mandatory compliance",
+          "measurable_criterion": "100% compliance with the instruction containing a keyword",
+          "constraint_category": "functional_safety_or_policy",
+          "affected_element": "User upload behavior"
+        },
+        "final_statement": "The User must upload the 'excel file' to System-A whenever an 'Instruction' contains a 'Keyword'.",
+        "structuring_notes": [
+          "Reframed the 'must' as a quality attribute (mandatory compliance) to separate the obligation from the specific action, ensuring the functional requirement remains purely about the action itself."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

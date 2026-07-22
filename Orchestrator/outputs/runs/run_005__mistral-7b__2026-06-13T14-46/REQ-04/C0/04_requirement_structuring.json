@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the customer",
+        "reason": "The requirement contains two possible antecedents for the customer and provides no disambiguating evidence.",
+        "missing_information": [
+          "Which entity the pronoun 'it' refers to when discussing the invalid PIN."
+        ],
+        "unsupported_interpretations": [
+          "The access card entered by the customer is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall deny the access",
+        "reason": "The requirement contains two possible antecedents for the system and provides no disambiguating evidence.",
+        "missing_information": [
+          "Which access (card reader or door) the system denies when an invalid PIN is entered."
+        ],
+        "unsupported_interpretations": [
+          "The card reader denies the access."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

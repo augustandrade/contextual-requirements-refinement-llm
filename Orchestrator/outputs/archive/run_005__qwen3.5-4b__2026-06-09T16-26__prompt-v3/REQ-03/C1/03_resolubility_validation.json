@@ -1,0 +1,61 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguities regarding 'downstream systems' and 'Reporting flow' exist; controlled context provides partial definitions but lacks explicit disambiguation rules.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Physical or logical data flow direction.",
+          "Logical hierarchy (parent/child relationship)."
+        ],
+        "evidence_from_requirement": [
+          "The term 'downstream systems' is used without qualification."
+        ],
+        "evidence_from_context": [
+          "Domain definition: 'downstream systems' are external systems that receive events from System-A."
+        ],
+        "missing_information": [
+          "Whether 'downstream' refers strictly to the event-receiving relationship defined in the glossary or implies a broader hierarchy/flow concept not explicitly restricted by the text."
+        ],
+        "justification": "While the glossary defines 'downstream systems' as systems receiving events, the requirement text does not explicitly link System-B to this specific definition, nor does it rule out other interpretations of 'downstream' (e.g., logical hierarchy). The evidence is suggestive but requires inference to confirm the intended meaning without external assumptions.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A specific named data stream.",
+          "A generic category of reporting mechanisms.",
+          "A specific business process."
+        ],
+        "evidence_from_requirement": [
+          "The term 'Reporting flow' is used without a specific definition."
+        ],
+        "evidence_from_context": [
+          "Domain mentions 'reporting subscriptions' but does not define 'Reporting flow'."
+        ],
+        "missing_information": [
+          "The specific definition or scope of 'Reporting flow' is absent from both the requirement text and the controlled context."
+        ],
+        "justification": "The controlled context mentions 'reporting subscriptions' but fails to define the specific entity 'Reporting flow'. Without an explicit definition in the context, the ambiguity cannot be resolved safely.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Ambiguities AMB-01 and AMB-02 are unresolved because the controlled context provides domain context but lacks explicit definitions or rules to definitively resolve the lexical ambiguities present in the requirement text."
+    }
+  }
+}

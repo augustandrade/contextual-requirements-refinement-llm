@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the ECU should preferably perform a reset",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'should preferably' creates a semantic ambiguity regarding the logical binding of the preference modifier. It is unclear whether the preference applies to the entire action of resetting upon leaving Factory mode, or if the requirement implies that a reset is optional and the preference is merely a suggestion rather than a strict condition.",
+        "possible_interpretations": [
+          "Upon leaving Factory mode, the ECU MUST perform a reset (the 'preferably' is a weak recommendation that does not negate the obligation).",
+          "Upon leaving Factory mode, the ECU MAY perform a reset, but it is not required; the system should try to reset if possible, but it is not a hard constraint."
+        ],
+        "textual_evidence": [
+          "the ECU should preferably perform a reset"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-03-C1",
+  "requirement_id": "REQ-03",
+  "context_condition": "C1",
+  "base_requirement_text": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "controlled_context": {
+    "domain": "Integration platform that orchestrates downstream services and reporting subscriptions.",
+    "glossary": [
+      {
+        "term": "downstream systems",
+        "definition": "External systems that receive events from System-A."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

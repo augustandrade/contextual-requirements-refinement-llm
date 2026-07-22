@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement based on the defined trigger and mandatory system action.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "When a rejection order is received for a cancellation request, System-A must raise a web alert."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "a rejection order is received for a cancellation request",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "must",
+          "action": "raise",
+          "object": "a web alert",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "web alert"
+        },
+        "final_statement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+        "structuring_notes": [
+          "The modality 'must' implies a mandatory functional requirement. The trigger is an external event (rejection order)."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

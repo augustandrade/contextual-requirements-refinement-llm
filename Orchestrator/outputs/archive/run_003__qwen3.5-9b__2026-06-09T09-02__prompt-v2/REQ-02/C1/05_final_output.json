@@ -1,0 +1,188 @@
+{
+  "execution_id": "REQ-02-C1",
+  "requirement_id": "REQ-02",
+  "context_condition": "C1",
+  "input_requirement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical relationship between the 'rejection order' and the 'cancellation request' is underspecified. It is unclear whether the rejection order is the sole condition triggering the alert, or if the alert should also trigger upon receiving a cancellation request regardless of rejection status, or if the rejection must be specifically for that specific request.",
+        "possible_interpretations": [
+          "The system raises an alert only when a rejection order is received that is explicitly linked to a cancellation request.",
+          "The system raises an alert whenever a rejection order is received, provided it pertains to any cancellation request, but the phrasing implies a dependency that might be misinterpreted as requiring the rejection to be the primary event rather than a specific type of event.",
+          "The system raises an alert when a rejection order is received, and the phrase 'for a cancellation request' defines the scope of the rejection (i.e., rejections of cancellation requests), but the ambiguity lies in whether 'received' implies immediate action or if there are other conditions (like valid rejection) implied."
+        ],
+        "textual_evidence": [
+          "When a rejection order is received for a cancellation request"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "System-A must raise a web alert",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'web alert' is used without a glossary definition. While 'System-A' is defined in the glossary, 'web alert' could refer to a browser-based notification, a pop-up, an email with a web link, or a dashboard widget, leading to different implementation interpretations.",
+        "possible_interpretations": [
+          "The system displays a notification directly within a web browser interface (e.g., a toast message or modal).",
+          "The system sends an email or message containing a link to a web page where the alert is displayed."
+        ],
+        "textual_evidence": [
+          "raise a web alert"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Semantic ambiguity regarding the trigger condition and lexical ambiguity regarding the alert type remain unresolved due to lack of specific business rules or glossary definitions in the controlled context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system raises an alert only when a rejection order is received that is explicitly linked to a cancellation request.",
+          "The system raises an alert whenever a rejection order is received, provided it pertains to any cancellation request.",
+          "The system raises an alert when a rejection order is received, and the phrase 'for a cancellation request' defines the scope of the rejection."
+        ],
+        "evidence_from_requirement": [
+          "The text states 'When a rejection order is received for a cancellation request' but does not specify if the rejection must be the sole trigger or if other conditions apply."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Business rules defining the exact trigger logic for alerts in cancellation workflows.",
+          "Clarification on whether 'rejection order' implies a specific status or type of event distinct from other orders."
+        ],
+        "justification": "The controlled context provides domain information but lacks specific business rules to resolve the logical relationship between the rejection order and the cancellation request. The ambiguity cannot be eliminated safely without external clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "System-A must raise a web alert",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system displays a notification directly within a web browser interface.",
+          "The system sends an email or message containing a link to a web page where the alert is displayed."
+        ],
+        "evidence_from_requirement": [
+          "The term 'web alert' is used without a specific definition in the requirement text."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Glossary entry or business rule defining the specific implementation of 'web alert' (e.g., browser toast, modal, email link)."
+        ],
+        "justification": "Although the glossary defines 'System-A', it does not define 'web alert'. The controlled context lacks the specific business rules or glossary entries needed to distinguish between browser-based notifications, emails, or other web-linked alerts. Evidence is insufficient to choose one interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Both ambiguities are unresolved because the controlled context (C1) does not contain the specific business rules or glossary definitions required to disambiguate the trigger logic or the alert type. The case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C1",
+    "requirement_id": "REQ-02",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "reason": "The controlled context provides domain information but lacks specific business rules to resolve the logical relationship between the rejection order and the cancellation request. The ambiguity cannot be eliminated safely without external clarification.",
+        "missing_information": [
+          "Business rules defining the exact trigger logic for alerts in cancellation workflows.",
+          "Clarification on whether 'rejection order' implies a specific status or type of event distinct from other orders."
+        ],
+        "unsupported_interpretations": [
+          "The system raises an alert only when a rejection order is received that is explicitly linked to a cancellation request.",
+          "The system raises an alert whenever a rejection order is received, provided it pertains to any cancellation request.",
+          "The system raises an alert when a rejection order is received, and the phrase 'for a cancellation request' defines the scope of the rejection."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "System-A must raise a web alert",
+        "reason": "Although the glossary defines 'System-A', it does not define 'web alert'. The controlled context lacks the specific business rules or glossary entries needed to distinguish between browser-based notifications, emails, or other web-linked alerts. Evidence is insufficient to choose one interpretation.",
+        "missing_information": [
+          "Glossary entry or business rule defining the specific implementation of 'web alert' (e.g., browser toast, modal, email link)."
+        ],
+        "unsupported_interpretations": [
+          "The system displays a notification directly within a web browser interface.",
+          "The system sends an email or message containing a link to a web page where the alert is displayed."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "reason": "The controlled context provides domain information but lacks specific business rules to resolve the logical relationship between the rejection order and the cancellation request. The ambiguity cannot be eliminated safely without external clarification.",
+        "missing_information": [
+          "Business rules defining the exact trigger logic for alerts in cancellation workflows.",
+          "Clarification on whether 'rejection order' implies a specific status or type of event distinct from other orders."
+        ],
+        "unsupported_interpretations": [
+          "The system raises an alert only when a rejection order is received that is explicitly linked to a cancellation request.",
+          "The system raises an alert whenever a rejection order is received, provided it pertains to any cancellation request.",
+          "The system raises an alert when a rejection order is received, and the phrase 'for a cancellation request' defines the scope of the rejection."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "System-A must raise a web alert",
+        "reason": "Although the glossary defines 'System-A', it does not define 'web alert'. The controlled context lacks the specific business rules or glossary entries needed to distinguish between browser-based notifications, emails, or other web-linked alerts. Evidence is insufficient to choose one interpretation.",
+        "missing_information": [
+          "Glossary entry or business rule defining the specific implementation of 'web alert' (e.g., browser toast, modal, email link)."
+        ],
+        "unsupported_interpretations": [
+          "The system displays a notification directly within a web browser interface.",
+          "The system sends an email or message containing a link to a web page where the alert is displayed."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Business rules defining the exact trigger logic for alerts in cancellation workflows.",
+      "Clarification on whether 'rejection order' implies a specific status or type of event distinct from other orders.",
+      "Glossary entry or business rule defining the specific implementation of 'web alert' (e.g., browser toast, modal, email link)."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

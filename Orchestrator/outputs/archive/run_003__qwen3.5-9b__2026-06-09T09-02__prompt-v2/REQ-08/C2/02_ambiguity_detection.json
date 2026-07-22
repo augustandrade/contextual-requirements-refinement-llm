@@ -1,0 +1,25 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical condition 'remains above 100 meters for more than 4 seconds' is underspecified regarding the temporal scope of the threshold check. It is unclear whether the condition requires the level to be above 100m for the entire 4-second duration, or if the level only needs to be above 100m at any point within a 4-second window.",
+        "possible_interpretations": [
+          "The water level must be strictly above 100 meters continuously for the entire duration of 4 seconds before triggering shutdown.",
+          "The water level must exceed 100 meters at any point within a rolling 4-second window (e.g., if it drops below 100m at 1 second but rises again at 2 seconds, the condition might still be considered met depending on the specific logic)."
+        ],
+        "textual_evidence": [
+          "remains above 100 meters for more than 4 seconds"
+        ],
+        "context_evidence": [
+          "For a 4-second persistence window, the decision metric is the absolute minimum reading in the window."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

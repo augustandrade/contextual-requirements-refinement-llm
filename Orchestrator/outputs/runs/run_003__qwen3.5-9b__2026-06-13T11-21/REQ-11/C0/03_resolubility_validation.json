@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the scope of 'between' and category mixing cannot be resolved without external context; execution must bypass Agent 3.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The switch filters traffic that traverses the boundary separating data-plane interfaces from management data traffic.",
+          "The switch filters traffic that flows between the set of data-plane interfaces and the set of management data traffic.",
+          "The switch filters traffic located in the space between data-plane interfaces and management data traffic."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'between data-plane interfaces and management data traffic' mixes categories (interfaces vs traffic) and lacks a preposition or structure to define the exact relationship (boundary vs flow vs space)."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A definition of the intended relationship between 'data-plane interfaces' and 'management data traffic' (e.g., separation, flow direction, or spatial relation).",
+          "Clarification on whether 'between' implies a boundary, a flow path, or a spatial gap."
+        ],
+        "justification": "The requirement text contains a category mismatch ('interfaces' vs 'traffic') and an ambiguous prepositional phrase ('between') that allows multiple syntactic interpretations. Since the context condition is C0, no external glossary or business rules are available to disambiguate the intended meaning. The ambiguity cannot be resolved safely without inference.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to category mixing and lack of disambiguating context; the case must bypass Agent 3."
+    }
+  }
+}

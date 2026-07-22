@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-AC-01",
+    "requirement_id": "REQ-AC",
+    "context_condition": "C1",
+    "structuring_summary": "Syntactic ambiguity regarding 'enters the access card with the access code' was resolved using business rule BR-01. The phrase 'with the access code' indicates the means of authentication (keypad entry) rather than a property of the card. The requirement is structured as a single functional requirement describing the user's authentication action.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-AC-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "User authentication attempt",
+          "condition_type": "event",
+          "system_or_component": "access control system",
+          "interaction_pattern": "user_interaction",
+          "actor": "the user",
+          "modality": "shall",
+          "action": "enter",
+          "object": "the access code",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "user authentication"
+        },
+        "final_statement": "The user shall enter the access code to authenticate.",
+        "structuring_notes": [
+          "Resolved syntactic ambiguity: 'with the access code' refers to the method of entry (keypad), not the card property.",
+          "Action 'enters the access card' was interpreted in context of BR-01 as part of the authentication sequence, but the specific functional predicate for the system is the entry of the code.",
+          "Final statement focuses on the core functional action (entering the code) as the means of authentication."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

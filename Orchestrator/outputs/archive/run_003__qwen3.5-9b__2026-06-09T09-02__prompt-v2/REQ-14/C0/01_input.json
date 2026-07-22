@@ -1,0 +1,7 @@
+{
+  "execution_id": "REQ-14-C0",
+  "requirement_id": "REQ-14",
+  "context_condition": "C0",
+  "base_requirement_text": "R-Q-2: The system shall inform the security service within 2 s after detecting damage.",
+  "controlled_context": {}
+}

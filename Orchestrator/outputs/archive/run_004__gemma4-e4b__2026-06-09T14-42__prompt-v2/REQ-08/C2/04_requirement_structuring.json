@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement, incorporating the time-based condition and the specific decision metric provided in the controlled context.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the water level remains above 100 meters for more than 4 seconds",
+          "condition_type": "temporal",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "Shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "The decision metric for the 4-second window is the absolute minimum reading.",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "If the water level remains above 100 meters for more than 4 seconds (where the decision metric is the absolute minimum reading in the window), the system shall shut off the pumps.",
+        "structuring_notes": [
+          "The condition is temporal, requiring a persistence check. The controlled context (BR-01) was used to refine the measurable criterion for the time window."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

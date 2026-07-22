@@ -1,0 +1,80 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement contains syntactic and referential ambiguities. Both are resolved using business rule BR-01 which mandates independent specification of partner registration and reporting subscription. The requirement is decomposed into two distinct functional requirements: one for adding System-B to System-A's downstream systems, and one for allowing System-C to subscribe to the Reporting flow.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01",
+            "AMB-02"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "System-A performs partner registration",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "System-A",
+          "modality": "must",
+          "action": "add",
+          "object": "System-B",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "System-A downstream systems"
+        },
+        "final_statement": "System-A must add System-B to its downstream systems.",
+        "structuring_notes": [
+          "Resolved referential ambiguity ('their' -> System-A) and syntactic ambiguity (independent action) per BR-01."
+        ]
+      },
+      {
+        "structured_id": "REQ-XX-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "allow System-C to subscribe to the Reporting flow"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "System-A performs reporting subscription management",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "System-C",
+          "modality": "must",
+          "action": "allow",
+          "object": "System-C to subscribe to the Reporting flow",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "Reporting flow subscription"
+        },
+        "final_statement": "System-A must allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "Extracted as a second independent functional requirement per BR-01."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Interpretation B (sequential/dependent relationship between adding System-B and allowing System-C)",
+      "Interpretation B ('their' refers to a collective entity of System-A and System-B)"
+    ],
+    "final_output_status": "structured"
+  }
+}

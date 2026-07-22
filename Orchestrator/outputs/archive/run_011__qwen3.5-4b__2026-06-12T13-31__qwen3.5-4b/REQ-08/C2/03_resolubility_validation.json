@@ -1,0 +1,57 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-08-C2",
+    "requirement_id": "REQ-08",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Two ambiguities detected: 'above' is resolved by the business rule defining the metric, but 'remains' is unresolved due to missing temporal continuity evidence.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The water level must be strictly greater than 100 meters.",
+        "unsupported_interpretations": [
+          "The water level must be greater than or equal to 100 meters."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'above 100 meters' implies a strict inequality (>)."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 defines the decision metric as the absolute minimum reading in the window."
+        ],
+        "missing_information": [],
+        "justification": "The business rule explicitly defines the metric as the 'absolute minimum reading'. A minimum reading of 100m implies the value is strictly greater than 100m, resolving the vagueness of 'above'.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Continuous state: The water level must be > 100m for the entire 4-second interval.",
+          "Existential state: The water level must be > 100m at least once within a 4-second window."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'remains above' creates a syntactic ambiguity regarding the state of the water level."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "Whether the requirement mandates continuous elevation or merely a single instance of elevation within the window."
+        ],
+        "justification": "The controlled context provides the metric definition (minimum reading) but does not specify the temporal behavior required for the '4-second persistence window'. Without explicit evidence defining 'remains' as continuous or existential, the ambiguity cannot be resolved safely.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "concern_mixing",
+      "explanation": "While the vagueness regarding 'above' is resolved by the business rule, the syntactic ambiguity regarding 'remains' (continuous vs. existential) lacks sufficient evidence in the controlled context. Additionally, the requirement mixes a functional action ('Shut off') with a quality criterion ('remains above...'), requiring decomposition."
+    }
+  }
+}

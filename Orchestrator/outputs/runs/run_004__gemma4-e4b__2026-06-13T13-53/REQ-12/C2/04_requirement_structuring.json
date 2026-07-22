@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C2",
+    "requirement_id": "REQ-12",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement based on the trigger condition (keyword presence) and the required action (upload).",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-12-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "an 'Instruction' contains a 'Keyword'",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "user_interaction",
+          "actor": "The User",
+          "modality": "must",
+          "action": "upload",
+          "object": "the 'excel file'",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "System-A"
+        },
+        "final_statement": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "structuring_notes": [
+          "The trigger condition is derived from the 'If' clause. The business rule BR-01 confirms that keyword presence triggers the upload action."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume the specific format or content of the 'excel file' beyond its name."
+    ],
+    "final_output_status": "structured"
+  }
+}

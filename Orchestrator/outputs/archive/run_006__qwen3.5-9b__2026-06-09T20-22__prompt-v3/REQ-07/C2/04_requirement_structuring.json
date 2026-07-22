@@ -1,0 +1,68 @@
+{
+  "structured_requirements": [
+    {
+      "structured_id": "REQ-05-SR-01",
+      "type": "functional_requirement",
+      "source_fragments": [
+        "When leaving the Factory mode, the ECU should preferably perform a reset."
+      ],
+      "based_on_resolubility": {
+        "ambiguity_ids": [
+          "AMB-01"
+        ],
+        "applied_action": "use_supported_interpretation"
+      },
+      "fields": {
+        "condition": "leaving Factory mode",
+        "condition_type": "event",
+        "system_or_component": "the ECU",
+        "interaction_pattern": "internal_state_transition",
+        "actor": "the ECU",
+        "modality": "shall",
+        "action": "perform",
+        "object": "a reset",
+        "quality_attribute": "",
+        "measurable_criterion": "",
+        "constraint_category": "safety",
+        "affected_element": "ECU state"
+      },
+      "final_statement": "Upon leaving Factory mode, the ECU shall perform a reset.",
+      "structuring_notes": [
+        "Resolved vagueness ambiguity (AMB-01) using Business Rule BR-01. Changed modality from 'preferably' (optional) to 'shall' (mandatory)."
+      ]
+    },
+    {
+      "structured_id": "REQ-05-SR-02",
+      "type": "quality_requirement",
+      "source_fragments": [
+        "preferably perform a reset"
+      ],
+      "based_on_resolubility": {
+        "ambiguity_ids": [],
+        "applied_action": "no_action_needed"
+      },
+      "fields": {
+        "condition": "after leaving Factory mode",
+        "condition_type": "event",
+        "system_or_component": "the ECU",
+        "interaction_pattern": "not_applicable",
+        "actor": "",
+        "modality": "shall",
+        "action": "",
+        "object": "",
+        "quality_attribute": "reset priority",
+        "measurable_criterion": "reset must be executed as the primary action upon mode transition",
+        "constraint_category": "behavioral",
+        "affected_element": "reset execution"
+      },
+      "final_statement": "The reset action shall be the primary behavior executed when leaving Factory mode.",
+      "structuring_notes": [
+        "Captured the original intent of 'preferably' as a behavioral priority, though the mandatory nature is now defined in the functional requirement."
+      ]
+    }
+  ],
+  "unresolved_ambiguities": [],
+  "preserved_uncertainties": [],
+  "unsupported_inferences_avoided": [],
+  "final_output_status": "structured"
+}

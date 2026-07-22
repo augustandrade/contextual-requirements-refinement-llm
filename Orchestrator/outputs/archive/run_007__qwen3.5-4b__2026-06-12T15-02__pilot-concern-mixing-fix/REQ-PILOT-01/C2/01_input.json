@@ -1,0 +1,27 @@
+{
+  "execution_id": "REQ-PILOT-01-C2",
+  "requirement_id": "REQ-PILOT-01",
+  "context_condition": "C2",
+  "base_requirement_text": "When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds.",
+  "controlled_context": {
+    "domain": "Online retail platform for consumer electronics.",
+    "glossary": [
+      {
+        "term": "confirmation email",
+        "definition": "Automated transactional message sent to the customer after a successful order placement."
+      }
+    ],
+    "business_rules": [
+      {
+        "id": "BR-01",
+        "rule": "Sending the confirmation email is a mandatory functional action triggered by order submission and is independent of the delivery time window."
+      }
+    ],
+    "constraints": [
+      {
+        "id": "QLT-01",
+        "text": "Confirmation emails must be delivered within 30 seconds of order submission. This is a quality of service constraint, not part of the functional sending action."
+      }
+    ]
+  }
+}

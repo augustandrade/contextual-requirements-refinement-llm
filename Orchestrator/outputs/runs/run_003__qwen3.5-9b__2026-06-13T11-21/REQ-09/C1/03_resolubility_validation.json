@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' remains lexically vague; the controlled context defines it only as an informal category without providing specific boundaries or a mapping to precise criteria.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles falling within a specific weight range (e.g., 1.5 to 2.5 metric tons).",
+          "Vehicles with specific physical dimensions (e.g., length between 4.5 and 5.5 meters).",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses the term 'medium-sized' without defining specific metrics."
+        ],
+        "evidence_from_context": [
+          "Glossary definition: 'Informal vehicle size category used by operations.'"
+        ],
+        "missing_information": [
+          "Specific quantitative boundaries (weight, dimensions) or a reference to a formal taxonomy that defines 'medium-sized'."
+        ],
+        "justification": "The controlled context explicitly labels the term as 'informal' and provides no operational definition, weight limits, or dimensional constraints to resolve the vagueness.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The lexical ambiguity regarding the definition of 'medium-sized' cannot be resolved because the controlled context lacks the necessary quantitative or formal criteria to select a single interpretation."
+    }
+  }
+}

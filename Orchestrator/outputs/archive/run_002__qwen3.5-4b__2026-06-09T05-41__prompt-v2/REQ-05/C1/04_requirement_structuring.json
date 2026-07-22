@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-AC-C1",
+    "requirement_id": "REQ-AC",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement describing the user's interaction with the access control system.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-AC-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "The user enters the access card with the access code",
+          "condition_type": "event",
+          "system_or_component": "the access control system",
+          "interaction_pattern": "user_interaction",
+          "actor": "the user",
+          "modality": "unspecified",
+          "action": "enters",
+          "object": "the access card with the access code",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access control system"
+        },
+        "final_statement": "The user enters the access card with the access code.",
+        "structuring_notes": [
+          "Requirement is clear and atomic. No decomposition required."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

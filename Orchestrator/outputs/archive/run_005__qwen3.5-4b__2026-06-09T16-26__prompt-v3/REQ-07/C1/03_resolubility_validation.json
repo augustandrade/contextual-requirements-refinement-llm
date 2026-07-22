@@ -1,0 +1,76 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "All three ambiguities are unresolved because the controlled context lacks specific definitions for 'reset', business rules for mode transitions, or constraints defining the priority of the action.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the ECU should preferably perform a reset",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU performs a full factory reset, restoring all parameters and configurations to their original state.",
+          "The ECU performs a partial reset, such as clearing error codes or rebooting the software without altering configuration parameters."
+        ],
+        "evidence_from_requirement": [
+          "The term 'reset' is used without a specific definition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A glossary entry defining 'reset' (e.g., full vs. partial) is required."
+        ],
+        "justification": "The controlled context provides a domain description but lacks a specific glossary definition for 'reset' or business rules clarifying the scope of the reset action.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "When leaving the Factory mode",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The reset action is triggered immediately upon the system transitioning out of the 'Factory mode' state.",
+          "The reset action is a conditional step that must be performed specifically when the user or system decides to exit the 'Factory mode' configuration."
+        ],
+        "evidence_from_requirement": [
+          "The attachment of the prepositional phrase is ambiguous."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Business rules defining the trigger condition for the reset relative to the mode transition are missing."
+        ],
+        "justification": "The controlled context does not contain business rules specifying whether the reset is an automatic consequence of the transition or a conditional step.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "should preferably perform",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The reset is a recommended best practice but not strictly mandatory; the system may choose not to reset if other constraints apply.",
+          "The reset is a soft requirement that should be executed unless explicitly prevented by higher-priority logic."
+        ],
+        "evidence_from_requirement": [
+          "The combination of 'should' and 'preferably' creates ambiguity regarding necessity."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Constraints or business rules defining the priority level (mandatory vs. recommended) of the reset action are missing."
+        ],
+        "justification": "The controlled context lacks constraints or business rules that define the mandatory nature or priority of the 'preferably' action.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The controlled context is insufficient to resolve the lexical, syntactic, and semantic ambiguities; human clarification is required before proceeding to Agent 3."
+    }
+  }
+}

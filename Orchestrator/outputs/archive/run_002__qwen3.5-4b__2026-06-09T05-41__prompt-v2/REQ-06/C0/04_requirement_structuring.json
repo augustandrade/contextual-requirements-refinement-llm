@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01",
+    "context_condition": "C0",
+    "structuring_summary": "The requirement is unambiguous and structurally sound. It describes a conditional safety action triggered by specific events. No decomposition is required.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "a window of the car is damaged AND (the interior surveillance of the car detects an intruder OR a door of the car is opened without a car key)",
+          "condition_type": "logical",
+          "system_or_component": "the safety system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "raise an alarm",
+          "object": "",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "the safety system"
+        },
+        "final_statement": "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.",
+        "structuring_notes": [
+          "Requirement is atomic. Condition involves a logical AND of a physical damage event and a logical OR of two surveillance/entry events. Action is a single functional response."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

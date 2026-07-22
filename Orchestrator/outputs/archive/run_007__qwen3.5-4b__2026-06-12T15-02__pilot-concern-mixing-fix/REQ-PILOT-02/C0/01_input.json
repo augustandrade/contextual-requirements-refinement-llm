@@ -1,0 +1,7 @@
+{
+  "execution_id": "REQ-PILOT-02-C0",
+  "requirement_id": "REQ-PILOT-02",
+  "context_condition": "C0",
+  "base_requirement_text": "The nurse administers the prescribed medication to the patient. If she does not respond within 10 minutes, the system shall escalate the alert to the duty physician.",
+  "controlled_context": {}
+}

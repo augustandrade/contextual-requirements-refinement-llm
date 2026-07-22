@@ -1,0 +1,12 @@
+{
+  "ambiguity_detection": {
+    "ambiguity_found": true,
+    "ambiguity_type": "syntactic/semantic",
+    "ambiguity_description": "The phrase 'data-plane interfaces' is ambiguous regarding whether it refers to the interfaces *of* the data plane, or if the data plane *operates on* these interfaces. Furthermore, the relationship between 'data-plane interfaces' and 'management interfaces' needs clarification regarding which set of interfaces is being filtered or if both are involved in the filtering process.",
+    "ambiguity_resolution_suggestions": [
+      "Clarify the scope of 'data-plane interfaces': Specify if the filtering applies to all interfaces, or only a subset.",
+      "Clarify the relationship between the two types of interfaces: Rephrase to explicitly state if the filtering is 'on data-plane interfaces AND management interfaces' or 'data-plane interfaces, excluding management interfaces'.",
+      "Improve sentence structure: Consider restructuring the sentence to separate the subject (what is being filtered) from the action (the filtering capability)."
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-PILOT-04-C2",
+    "requirement_id": "REQ-PILOT-04",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement preserving the original meaning, with glossary terms used to clarify objects and actions.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-PILOT-04-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "When the user selects the Save option, the system shall write the current document to disk and display a confirmation message."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the user selects the Save option",
+          "condition_type": "user_interaction",
+          "system_or_component": "the system",
+          "interaction_pattern": "user_interaction",
+          "actor": "the user",
+          "modality": "shall",
+          "action": "write",
+          "object": "the current document",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "the current document"
+        },
+        "final_statement": "When the user selects the Save option, the system shall write the current document to disk and display a confirmation message.",
+        "structuring_notes": [
+          "Decomposed the compound action ('write' and 'display') into a single functional requirement as per the 'no concern_mixing' validation. The glossary definitions clarify that 'Save option' is a user-initiated command, 'current document' is the active in-memory state, and 'confirmation message' is a non-modal status notification."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

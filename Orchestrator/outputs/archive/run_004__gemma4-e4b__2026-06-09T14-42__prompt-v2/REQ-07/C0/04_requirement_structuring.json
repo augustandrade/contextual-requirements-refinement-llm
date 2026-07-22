@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "reason": "The ambiguity hinges on interpreting the modal adverb 'preferably', and the empty controlled context offers no evidence to elevate this preference to a concrete, testable requirement.",
+        "missing_information": [
+          "The context must define the operational meaning of 'preferably' (e.g., is it a soft constraint, a best-effort attempt, or a suggestion for documentation?)."
+        ],
+        "unsupported_interpretations": [
+          "The system must perform a reset if possible, but other actions are acceptable.",
+          "The system should attempt a reset, but if it fails or is not appropriate, it can proceed without one."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

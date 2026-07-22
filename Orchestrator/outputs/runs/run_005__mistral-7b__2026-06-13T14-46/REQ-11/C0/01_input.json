@@ -1,0 +1,7 @@
+{
+  "execution_id": "REQ-11-C0",
+  "requirement_id": "REQ-11",
+  "context_condition": "C0",
+  "base_requirement_text": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+  "controlled_context": {}
+}

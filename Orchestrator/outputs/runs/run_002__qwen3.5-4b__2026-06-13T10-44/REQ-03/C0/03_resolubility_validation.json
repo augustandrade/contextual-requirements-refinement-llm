@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The possessive pronoun 'their' has multiple plausible antecedents; no evidence in the requirement text resolves this ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems that belong to System-A.",
+          "System-A must add System-B to a downstream system that belongs to a plural entity not specified."
+        ],
+        "evidence_from_requirement": [
+          "The text contains the pronoun 'their' without a clear singular or plural antecedent.",
+          "System-A is singular, but 'their' can grammatically refer to a plural entity."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific entity or entities to which 'their' refers."
+        ],
+        "justification": "In the absence of controlled context (C0), the pronoun 'their' remains ambiguous between referring to System-A (if treated as plural or collective) or an undefined plural entity. The requirement text does not explicitly define the antecedent.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to missing antecedent information; the case must bypass Agent 3."
+    }
+  }
+}

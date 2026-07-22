@@ -1,0 +1,32 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C1",
+    "requirement_id": "REQ-12",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "While the domain confirms the workflow type, the glossary and business rules do not define 'upload' or 'System-A', leaving the specific action and target ambiguous.",
+        "missing_information": [
+          "Specific definition of 'upload' within the Financial file upload workflow context.",
+          "Specific definition or reference of 'System-A' within the Financial file upload workflow context."
+        ],
+        "unsupported_interpretations": [
+          "The User must transfer the content of the 'excel file' into 'System-A'.",
+          "The User must physically move the 'excel file' to a different location within 'System-A'."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "ambiguity_type": "semantic",
+        "explanation": "The modal adverb 'preferably' introduces a conflict between a strong normative requirement (the system 'should' reset) and a weak preference. In formal requirements engineering, this creates semantic ambiguity regarding the mandatory nature of the action: does the system *must* reset, or is the reset optional if the preference is not met? This affects the pass/fail criteria for conformance testing.",
+        "possible_interpretations": [
+          "The ECU MUST perform a reset upon leaving Factory mode (the 'preferably' is treated as a rhetorical softener for a hard requirement).",
+          "The ECU SHOULD perform a reset, but is allowed to skip it if other conditions are met (the 'preferably' makes the reset optional)."
+        ],
+        "textual_evidence": [
+          "should preferably perform a reset"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the phrase 'enters the access card with the access code' is resolved by the business rule defining the distinct sequential actions of inserting the card and entering the code.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user inserts the access card into the reader and separately enters the access code on the keypad.",
+        "unsupported_interpretations": [
+          "The user enters an access card that includes the access code."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'with the access code' creates a syntactic attachment ambiguity."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 states: 'User first inserts the card into the card reader, then enters the access code on the keypad.'"
+        ],
+        "missing_information": [],
+        "justification": "The controlled context explicitly defines two distinct actions (inserting card, entering code) which resolves the syntactic ambiguity by mapping the requirement text to the known process sequence.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "concern_mixing",
+      "explanation": "All linguistic ambiguities are resolved using the controlled context. However, Agent 1 flagged concern_mixing (functional action + quality criterion), requiring decomposition before Agent 3 can process the requirement."
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'upload' and 'System-A' exists; controlled context provides partial domain context but lacks specific definitions for the terms.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The User must transfer the content of the 'excel file' into 'System-A'.",
+          "The User must physically move the 'excel file' to a different location within 'System-A'."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses the terms 'upload', 'excel file', and 'System-A'."
+        ],
+        "evidence_from_context": [
+          "Domain is defined as 'Financial file upload workflow'."
+        ],
+        "missing_information": [
+          "Specific definition of 'upload' within the Financial file upload workflow context.",
+          "Specific definition or reference of 'System-A' within the Financial file upload workflow context."
+        ],
+        "justification": "While the domain confirms the workflow type, the glossary and business rules do not define 'upload' or 'System-A', leaving the specific action and target ambiguous.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides domain context but lacks the specific definitions required to resolve the lexical ambiguity regarding 'upload' and 'System-A'."
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The pronoun 'it' has two competing antecedents (access card, PIN) and no context or text evidence resolves which one triggers the denial.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The text mentions both 'access card' and 'PIN' prior to the pronoun 'it'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Which specific entity (access card or PIN) the pronoun 'it' refers to."
+        ],
+        "justification": "In C0, the requirement text provides no linguistic cues (e.g., proximity, modifiers) to distinguish between the two antecedents. The ambiguity remains unresolved without external context.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-18-C0",
+    "requirement_id": "R-F-18",
+    "context_condition": "C0",
+    "structuring_summary": "The requirement is linguistically clear but structurally mixes a functional action (inform) with a quality trigger (detection of damage). Per Pohl §25.2, it is decomposed into a functional requirement (informing the service) and a quality requirement (detection capability).",
+    "structured_requirements": [
+      {
+        "structured_id": "R-F-18-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "the system shall inform the security service"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the detector detects damage to the pane",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "the security service",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "security service notification"
+        },
+        "final_statement": "If the detector detects damage to the pane, the system shall inform the security service.",
+        "structuring_notes": [
+          "Extracted functional action from concern-mixed requirement. Detection condition preserved as trigger."
+        ]
+      },
+      {
+        "structured_id": "R-F-18-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "the detector detects damage to the pane"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "when damage to the pane occurs",
+          "condition_type": "event",
+          "system_or_component": "the detector",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "detection capability",
+          "measurable_criterion": "ability to detect damage to the pane",
+          "constraint_category": "functional_quality",
+          "affected_element": "detector"
+        },
+        "final_statement": "The detector shall be capable of detecting damage to the pane.",
+        "structuring_notes": [
+          "Extracted quality criterion (detection capability) as a separate artefact per Pohl §25.2."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

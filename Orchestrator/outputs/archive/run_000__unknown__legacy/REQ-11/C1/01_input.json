@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-11-C1",
+  "requirement_id": "REQ-11",
+  "context_condition": "C1",
+  "base_requirement_text": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+  "controlled_context": {
+    "domain": "Industrial railway communication network using routing switches.",
+    "glossary": [
+      {
+        "term": "management data traffic",
+        "definition": "Administrative traffic used for device monitoring and control."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

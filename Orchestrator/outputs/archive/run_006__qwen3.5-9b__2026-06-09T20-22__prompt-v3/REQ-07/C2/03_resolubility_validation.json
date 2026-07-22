@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Vagueness ambiguity detected regarding the modality of the reset action. Business rule BR-01 provides a mandatory constraint that conflicts with the optional nature implied by 'preferably'.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The ECU MUST perform a reset when leaving Factory mode.",
+        "unsupported_interpretations": [
+          "The ECU SHOULD perform a reset when leaving Factory mode (but may skip it).",
+          "The ECU MAY perform a reset when leaving Factory mode (optional behavior)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'preferably' suggests optionality."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 states: 'ECU reset is mandatory when leaving Factory mode for critical control modules.'"
+        ],
+        "missing_information": [],
+        "justification": "Business rule BR-01 overrides the vague preference in the requirement text, establishing a mandatory obligation.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "Contextual business rule resolves the vagueness by elevating the action to a mandatory requirement."
+    }
+  }
+}

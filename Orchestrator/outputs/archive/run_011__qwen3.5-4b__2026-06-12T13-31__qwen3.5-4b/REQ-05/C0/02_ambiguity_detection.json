@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "has_concern_mixing": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' creates a syntactic attachment ambiguity. It can modify 'enters' (the user enters the card while holding the code) or 'access card' (the card itself is entered along with the code, implying the card contains the code or they are distinct entities being entered together).",
+        "possible_interpretations": [
+          "The user enters the access card, and separately possesses/uses the access code.",
+          "The user enters the access card which includes the access code."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

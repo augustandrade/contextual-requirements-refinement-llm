@@ -1,0 +1,39 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity detected in 'medium-sized vehicles'. Controlled context provides a glossary definition but does not resolve the inherent vagueness of the term against alternative interpretations (length, capacity, taxonomy).",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 6.0m.",
+          "Vehicles with a cargo capacity between 10 and 20 cubic meters.",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "evidence_from_requirement": [
+          "The term 'medium-sized' is used without a precise definition in the requirement text."
+        ],
+        "evidence_from_context": [
+          "Glossary defines 'medium-sized vehicle' as 'Vehicle with gross weight strictly between 1500 kg and 2000 kg'."
+        ],
+        "missing_information": [
+          "Confirmation that the glossary definition is the exclusive standard for this domain."
+        ],
+        "justification": "While a glossary definition exists, the ambiguity type is lexical vagueness. Without an explicit constraint stating the glossary is the sole definition, alternative interpretations remain plausible. Execution cannot proceed to Agent 3 without resolving the definition source.",
+        "allowed_structuring_action": "request_definition_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "lexical_vagueness",
+      "explanation": "The controlled context offers a definition but fails to eliminate other plausible interpretations of the vague term 'medium-sized'. Ambiguity remains unresolved."
+    }
+  }
+}

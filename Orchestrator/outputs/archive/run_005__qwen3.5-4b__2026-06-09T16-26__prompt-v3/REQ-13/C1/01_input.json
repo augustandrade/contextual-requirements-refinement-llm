@@ -1,0 +1,17 @@
+{
+  "execution_id": "REQ-13-C1",
+  "requirement_id": "REQ-13",
+  "context_condition": "C1",
+  "base_requirement_text": "R-F-18: If the detector detects damage to the pane, the system shall inform the security service.",
+  "controlled_context": {
+    "domain": "Building alarm control system.",
+    "glossary": [
+      {
+        "term": "detector",
+        "definition": "Sensor that detects pane damage."
+      }
+    ],
+    "business_rules": [],
+    "constraints": []
+  }
+}

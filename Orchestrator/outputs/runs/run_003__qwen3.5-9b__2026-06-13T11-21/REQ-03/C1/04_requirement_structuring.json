@@ -1,0 +1,78 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement contains syntactic ambiguities regarding ownership and phrase attachment. Controlled context clarifies that System-A is the orchestrator and owner of downstream systems and the Reporting flow. Ambiguities AMB-01 and AMB-02 are resolved using supported interpretations. The requirement is decomposed into two distinct functional requirements: one for adding a downstream system and one for enabling a subscription.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-03-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "System-A performs the action",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "System-A",
+          "modality": "must",
+          "action": "add",
+          "object": "System-B",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "downstream systems"
+        },
+        "final_statement": "System-A shall add System-B to its downstream systems.",
+        "structuring_notes": [
+          "Resolved ambiguity AMB-01: 'their' refers to System-A. Action is autonomous by System-A."
+        ]
+      },
+      {
+        "structured_id": "REQ-03-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "allow System-C to subscribe to the Reporting flow"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-02"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "System-A allows the subscription",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "System-A",
+          "modality": "must",
+          "action": "allow",
+          "object": "System-C to subscribe to the Reporting flow",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "Reporting flow"
+        },
+        "final_statement": "System-A shall allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "Resolved ambiguity AMB-02: System-A owns the Reporting flow. Action is autonomous by System-A."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume specific subscription protocols or data formats."
+    ],
+    "final_output_status": "structured"
+  }
+}

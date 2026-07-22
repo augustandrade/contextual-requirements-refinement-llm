@@ -1,0 +1,7 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is linguistically clear and unambiguous. It expresses a functional action ('raise a web alert') triggered by a specific condition ('When a rejection order is received for a cancellation request'). There is no lexical, syntactic, semantic, referential, or vagueness ambiguity. The term 'System-A' is demarcated as controlled vocabulary in the glossary, and the condition is specific enough to admit only one valid interpretation."
+  }
+}

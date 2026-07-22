@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-PILOT-03-C0",
+    "requirement_id": "REQ-PILOT-03",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'eligible' lacks a defined set of criteria in the requirement text; no context is available to resolve the ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The employee meets specific criteria defined elsewhere.",
+          "The employee satisfies a generic or undefined notion of eligibility."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text contains the term 'eligible' without listing or referencing specific criteria."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific conditions or criteria that define 'eligibility' for the employee."
+        ],
+        "justification": "The controlled context is empty (C0), and the requirement text provides no definition for 'eligible'. The ambiguity cannot be resolved without external knowledge or clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity regarding the definition of 'eligible' is unresolved due to missing information in both the requirement text and the controlled context. The execution must bypass Agent 3."
+    }
+  }
+}

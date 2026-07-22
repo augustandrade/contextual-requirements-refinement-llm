@@ -1,0 +1,35 @@
+{
+  "execution_id": "REQ-PILOT-03-C2",
+  "requirement_id": "REQ-PILOT-03",
+  "context_condition": "C2",
+  "base_requirement_text": "The system shall automatically approve the leave request if the employee is eligible.",
+  "controlled_context": {
+    "domain": "Human resources management system for a mid-sized enterprise.",
+    "glossary": [
+      {
+        "term": "leave request",
+        "definition": "A formal employee request for planned absence from work, submitted through the HR system."
+      },
+      {
+        "term": "automatic approval",
+        "definition": "Approval granted by the system without requiring manual review by a manager."
+      },
+      {
+        "term": "eligible",
+        "definition": "An employee is eligible for automatic leave approval when ALL of the following conditions are simultaneously met: (a) accrued leave balance is at least equal to the number of days requested; (b) no active disciplinary action on record; (c) the requested dates do not overlap a mandatory attendance window; and (d) the direct manager has not placed a temporary approval hold on the employee's account."
+      }
+    ],
+    "business_rules": [
+      {
+        "id": "BR-01",
+        "rule": "Automatic approval is granted when all four eligibility conditions defined in the glossary entry for 'eligible' are satisfied. Any single condition failing causes the system to route the request to manual review instead."
+      }
+    ],
+    "constraints": [
+      {
+        "id": "HR-01",
+        "text": "The system must log the specific eligibility condition that caused automatic approval or the specific condition that triggered manual review routing."
+      }
+    ]
+  }
+}

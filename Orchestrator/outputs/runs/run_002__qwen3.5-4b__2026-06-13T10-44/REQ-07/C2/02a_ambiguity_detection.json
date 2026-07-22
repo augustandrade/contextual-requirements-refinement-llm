@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'preferably' introduces vagueness by lacking a measurable boundary for priority. It does not specify if the reset is mandatory, optional, or conditional, leaving the requirement's intent underspecified regarding the ECU's behavior upon exiting Factory mode.",
+        "possible_interpretations": [
+          "The reset is optional; the ECU may or may not perform it.",
+          "The reset is strongly recommended but not required.",
+          "The reset is required unless a specific exception applies."
+        ],
+        "textual_evidence": [
+          "preferably perform a reset"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

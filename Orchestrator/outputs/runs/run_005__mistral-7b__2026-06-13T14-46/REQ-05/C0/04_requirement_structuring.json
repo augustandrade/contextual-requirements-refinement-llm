@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement preserving the original meaning.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-05-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the user enters the access card with the access code",
+          "condition_type": "none",
+          "system_or_component": "",
+          "interaction_pattern": "user_interaction",
+          "actor": "the user",
+          "modality": "shall",
+          "action": "enter",
+          "object": "access card with the access code",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access card and access code"
+        },
+        "final_statement": "The user enters the access card with the access code.",
+        "structuring_notes": [
+          "No decomposition required. Requirement is atomic and unambiguous."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "syntactic",
+        "explanation": "The scope of the conditional clause ('If an 'Instruction' contains a 'Keyword'') is unclear. It is ambiguous whether the entire action ('The User must upload the 'excel file' to System-A') is conditional on the presence of a 'Keyword' within an 'Instruction', or if the condition only applies to the 'Instruction' itself, leaving the upload action unconditional.",
+        "possible_interpretations": [
+          "The upload action only occurs if the 'Instruction' contains a 'Keyword'.",
+          "The upload action must occur regardless of whether the 'Instruction' contains a 'Keyword', provided the 'Instruction' exists."
+        ],
+        "textual_evidence": [
+          "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

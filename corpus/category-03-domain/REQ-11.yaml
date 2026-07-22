@@ -82,15 +82,14 @@ manual_reference:
       - identify_ambiguity
       - classify_ambiguity
       - refine_text
-      - separate_concerns
       - preserve_requirement
     expected_findings:
-      - incomplete wording
-      - missing technical definitions
-      - operational gap
+      - incomplete wording resolved by glossary definitions for filter network traffic and management data traffic
+      - operational gap closed by precise technical definitions in context
     should_not_do:
       - invent additional technical constraints not supported by the context
       - ignore the explicit traffic-filtering definitions
+      - flag as concern_mixing (this is a data-scope gap, not a functional/quality intermingling per Pohl §25.2)
     applicable_criteria:
       - semantic_explicitation
       - syntactic_structuring

@@ -1,0 +1,215 @@
+{
+  "execution_id": "REQ-03-C2",
+  "requirement_id": "REQ-03",
+  "context_condition": "C2",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "explanation": "The pronoun 'their' lacks a clear antecedent in the text. It could refer to 'System-A' (singular they) or 'System-B' (if interpreted as a plural entity or a collective), creating ambiguity about which system owns the downstream list.",
+        "possible_interpretations": [
+          "System-A adds System-B to the list of downstream systems owned by System-A.",
+          "System-A adds System-B to the list of downstream systems owned by System-B."
+        ],
+        "textual_evidence": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "explanation": "The scope of 'allow' is ambiguous. It is unclear whether 'allow' applies only to the action of 'System-C to subscribe' or if it also governs the entire preceding clause regarding System-A and System-B, potentially implying a permission granted by System-A to System-C or a system-wide permission.",
+        "possible_interpretations": [
+          "System-A grants permission specifically for System-C to subscribe to the Reporting flow.",
+          "The system (implicitly defined) allows System-C to subscribe, and this is a separate statement from the previous one about System-A and System-B."
+        ],
+        "textual_evidence": [
+          "allow System-C to subscribe to the Reporting flow"
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical relationship between 'add' and 'downstream systems' is underspecified. It is unclear if 'downstream systems' is a specific set that System-B is being added to, or if 'downstream systems' is a dynamic category that changes upon the addition of System-B.",
+        "possible_interpretations": [
+          "System-B is added to an existing, static list of downstream systems.",
+          "System-B is added, and this action creates or updates the definition of the downstream systems category."
+        ],
+        "textual_evidence": [
+          "add System-B to their downstream systems"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'their' is resolvable via domain context; syntactic and semantic ambiguities remain unresolved due to lack of explicit permission or state-change definitions in the context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A adds System-B to the list of downstream systems owned by System-A.",
+        "unsupported_interpretations": [
+          "System-A adds System-B to the list of downstream systems owned by System-B."
+        ],
+        "evidence_from_requirement": [
+          "The subject of the imperative clause is 'System-A'."
+        ],
+        "evidence_from_context": [
+          "Domain: Integration platform that orchestrates downstream services.",
+          "Business rule BR-01 implies distinct ownership where 'add' implies adding to the addressee's (System-A's) managed list."
+        ],
+        "missing_information": [],
+        "justification": "In the context of an integration platform, 'downstream systems' are managed by the orchestrator (System-A). The possessive 'their' refers to the subject 'System-A'.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A grants permission specifically for System-C to subscribe to the Reporting flow.",
+          "The system (implicitly defined) allows System-C to subscribe, and this is a separate statement from the previous one about System-A and System-B."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure uses a comma to separate two independent clauses."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "Whether the permission to subscribe is granted by System-A or is a system-wide capability."
+        ],
+        "justification": "The context defines the domain and rules but does not explicitly state who grants the permission or if the clauses are logically dependent. The ambiguity requires clarification on the scope of 'allow'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-B is added to an existing, static list of downstream systems.",
+          "System-B is added, and this action creates or updates the definition of the downstream systems category."
+        ],
+        "evidence_from_requirement": [
+          "The verb 'add' is used."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "Whether the 'downstream systems' list is static or dynamic upon addition."
+        ],
+        "justification": "The context does not define the mutability of the downstream systems list. It is unclear if the addition is a state update or a list population.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "While the lexical ambiguity is resolved, the syntactic and semantic ambiguities lack sufficient evidence in the controlled context to be resolved. The execution must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "reason": "The context defines the domain and rules but does not explicitly state who grants the permission or if the clauses are logically dependent. The ambiguity requires clarification on the scope of 'allow'.",
+        "missing_information": [
+          "Whether the permission to subscribe is granted by System-A or is a system-wide capability."
+        ],
+        "unsupported_interpretations": [
+          "System-A grants permission specifically for System-C to subscribe to the Reporting flow.",
+          "The system (implicitly defined) allows System-C to subscribe, and this is a separate statement from the previous one about System-A and System-B."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "add System-B to their downstream systems",
+        "reason": "The context does not define the mutability of the downstream systems list. It is unclear if the addition is a state update or a list population.",
+        "missing_information": [
+          "Whether the 'downstream systems' list is static or dynamic upon addition."
+        ],
+        "unsupported_interpretations": [
+          "System-B is added to an existing, static list of downstream systems.",
+          "System-B is added, and this action creates or updates the definition of the downstream systems category."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "reason": "The context defines the domain and rules but does not explicitly state who grants the permission or if the clauses are logically dependent. The ambiguity requires clarification on the scope of 'allow'.",
+        "missing_information": [
+          "Whether the permission to subscribe is granted by System-A or is a system-wide capability."
+        ],
+        "unsupported_interpretations": [
+          "System-A grants permission specifically for System-C to subscribe to the Reporting flow.",
+          "The system (implicitly defined) allows System-C to subscribe, and this is a separate statement from the previous one about System-A and System-B."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "add System-B to their downstream systems",
+        "reason": "The context does not define the mutability of the downstream systems list. It is unclear if the addition is a state update or a list population.",
+        "missing_information": [
+          "Whether the 'downstream systems' list is static or dynamic upon addition."
+        ],
+        "unsupported_interpretations": [
+          "System-B is added to an existing, static list of downstream systems.",
+          "System-B is added, and this action creates or updates the definition of the downstream systems category."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether the permission to subscribe is granted by System-A or is a system-wide capability.",
+      "Whether the 'downstream systems' list is static or dynamic upon addition."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

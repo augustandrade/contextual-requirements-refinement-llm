@@ -1,0 +1,37 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "has_concern_mixing": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'above' lacks a precise measurable boundary in this context. While '100 meters' is a specific value, the condition 'above' implies a range (e.g., > 100m, ≥ 100m, or > 100.0001m) without defining the exact threshold, leading to potential misinterpretation of the trigger point.",
+        "possible_interpretations": [
+          "Strictly greater than 100 meters (> 100m)",
+          "Greater than or equal to 100 meters (≥ 100m)"
+        ],
+        "textual_evidence": [
+          "above 100 meters"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "ambiguity_type": "syntactic",
+        "explanation": "The phrase 'remains above' creates a syntactic ambiguity regarding the state of the water level. It is unclear whether the water level must continuously stay above 100m for the entire 4-second duration, or if it only needs to be above 100m at any point within a 4-second window.",
+        "possible_interpretations": [
+          "Continuous state: The water level must be > 100m for the entire 4-second interval.",
+          "Existential state: The water level must be > 100m at least once within a 4-second window."
+        ],
+        "textual_evidence": [
+          "remains above 100 meters for more than 4 seconds"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

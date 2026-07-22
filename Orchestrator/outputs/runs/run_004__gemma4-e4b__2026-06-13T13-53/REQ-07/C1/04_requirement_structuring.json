@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should",
+        "reason": "The controlled context only defines the domain and glossary terms but provides no business rules or constraints that dictate the mandatory nature of the reset action.",
+        "missing_information": [
+          "Whether the reset action is a mandatory operational requirement (MUST) or merely a best practice recommendation (SHOULD)."
+        ],
+        "unsupported_interpretations": [
+          "Mandatory Requirement: The system MUST reset upon exiting Factory mode.",
+          "Advisory Recommendation: The system SHOULD reset upon exiting Factory mode (best practice)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

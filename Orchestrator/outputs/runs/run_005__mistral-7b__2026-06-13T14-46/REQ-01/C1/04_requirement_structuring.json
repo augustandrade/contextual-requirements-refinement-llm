@@ -1,0 +1,59 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the glass break detector of a window",
+        "reason": "The requirement text mentions both the 'glass break detector' and the 'window', but it does not clarify if they are one and the same.",
+        "missing_information": [
+          "The context does not specify whether the 'glass break detector' is an integrated part of the window or a separate device."
+        ],
+        "unsupported_interpretations": [
+          "A device that detects broken glass is installed on the window.",
+          "The window itself has an integrated glass break sensor."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the pane has been damaged",
+        "reason": "The requirement text mentions 'the pane', but it does not clarify if it refers to the entire window or just the glass part.",
+        "missing_information": [
+          "The context does not specify whether 'pane' refers to the entire window or just the glass part."
+        ],
+        "unsupported_interpretations": [
+          "The entire window has been damaged.",
+          "Only the glass part of the window has been damaged."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the security service",
+        "reason": "The requirement text mentions 'the security service', but it does not clarify if it refers to an internal or external team.",
+        "missing_information": [
+          "The context does not specify whether 'security service' refers to an internal or external entity."
+        ],
+        "unsupported_interpretations": [
+          "An internal security team will be informed.",
+          "An external security company will be contacted."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

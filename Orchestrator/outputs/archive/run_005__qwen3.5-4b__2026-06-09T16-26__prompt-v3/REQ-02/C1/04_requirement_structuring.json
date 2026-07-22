@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C1",
+    "requirement_id": "REQ-02",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "reason": "While the domain is identified as a post-trade financial platform, the controlled context does not contain explicit business rules or constraints defining the semantic relationship between a 'rejection order' and a 'cancellation request'. Without this definition, the antecedent remains ambiguous and cannot be safely resolved.",
+        "missing_information": [
+          "The specific business rule or workflow definition that links a 'rejection order' to a 'cancellation request'."
+        ],
+        "unsupported_interpretations": [
+          "The rejection order specifically denies the cancellation request.",
+          "The rejection order is a separate entity associated with the cancellation request."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

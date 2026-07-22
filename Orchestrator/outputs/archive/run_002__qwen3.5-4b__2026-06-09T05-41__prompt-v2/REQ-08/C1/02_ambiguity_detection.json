@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"remains above 100 meters for more than 4 seconds\"\n      ambiguity_type: \"semantic\"\n      explanation: \"The logical scope of the temporal condition 'for more than 4 seconds' is ambiguous: it may apply to the continuous state of the water level remaining above the threshold, or it may apply to the duration of the pump shutdown action itself.\"\n      possible_interpretations:\n        - \"The water level must remain above 100 meters continuously for a duration exceeding 4 seconds before the pumps are shut off.\"\n        - \"The pumps are shut off if the water level is above 100 meters, and the shutdown action itself must last for more than 4 seconds.\"\n      textual_evidence:\n        - \"remains above 100 meters for more than 4 seconds\"\n      context_evidence: []\n      context_dependency: \"high\"\n  no_ambiguity_reason: null\n```"
+}

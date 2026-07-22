@@ -1,0 +1,364 @@
+{
+  "execution_id": "REQ-12-C0",
+  "requirement_id": "REQ-12",
+  "context_condition": "C0",
+  "input_requirement": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "ambiguity_type": "lexical",
+        "explanation": "The terms 'Instruction' and 'Keyword' are typographically demarcated (single quotes), which per Pohl §25.4.1 signals controlled vocabulary. However, without the external glossary provided to this agent, the specific semantic content of these identifiers is unknown. If these are not strictly defined identifiers in the absence of a provided glossary, they admit multiple interpretations regarding what constitutes an 'Instruction' or a 'Keyword' in this domain.",
+        "possible_interpretations": [
+          "An 'Instruction' is a specific document type or data object defined in the system's controlled vocabulary, and a 'Keyword' is a specific tag or field within that object.",
+          "An 'Instruction' refers to any textual command or directive, and a 'Keyword' refers to any word present in that text, without specific domain constraints."
+        ],
+        "textual_evidence": [
+          "'Instruction'",
+          "'Keyword'"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'excel file' is typographically demarcated but lacks an external glossary definition. Without context, it is unclear if this refers strictly to the Microsoft Excel format (.xlsx, .xls) or any spreadsheet-like file format.",
+        "possible_interpretations": [
+          "The file must be in the specific Microsoft Excel binary or XML format.",
+          "The file must be any spreadsheet format (e.g., CSV, ODS) that can be opened by an Excel-compatible application."
+        ],
+        "textual_evidence": [
+          "'excel file'"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical relationship between the condition ('Instruction' contains 'Keyword') and the action ('User must upload') is ambiguous regarding scope. It is unclear if the upload action is required for *any* instruction containing *any* keyword, or if the upload is required only when a specific, previously defined keyword is present.",
+        "possible_interpretations": [
+          "For every instance where an 'Instruction' contains a 'Keyword', the user is triggered to upload an 'excel file'.",
+          "The user must upload an 'excel file' only if the 'Instruction' contains a specific, critical 'Keyword' (e.g., 'URGENT')."
+        ],
+        "textual_evidence": [
+          "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-04",
+        "fragment": "upload the 'excel file' to System-A",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'to System-A' could attach to the verb 'upload' (destination of the upload) or potentially be interpreted as the source of the file (though less likely syntactically, the attachment of the destination modifier is clear, but the scope of 'System-A' is ambiguous: is it the only system, or one of many?).",
+        "possible_interpretations": [
+          "The destination for the upload action is specifically 'System-A'.",
+          "The user uploads the file to 'System-A', but the requirement does not specify if other systems are excluded or if 'System-A' is a generic placeholder for any system."
+        ],
+        "textual_evidence": [
+          "upload the 'excel file' to System-A"
+        ],
+        "context_dependency": "low"
+      },
+      {
+        "ambiguity_id": "AMB-05",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "referential",
+        "explanation": "The definite article 'the' in 'the 'excel file'' implies a specific file. However, without prior context establishing a unique file, 'the' could refer to a file previously mentioned (not present here), a file implied by the 'Instruction' content, or any generic excel file. The antecedent for 'the' is not uniquely determined within this isolated sentence.",
+        "possible_interpretations": [
+          "The user must upload a specific, unique excel file associated with the current context.",
+          "The user must upload any excel file relevant to the instruction."
+        ],
+        "textual_evidence": [
+          "the 'excel file'"
+        ],
+        "context_dependency": "high"
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "All detected ambiguities are unresolved because the controlled context is empty (C0), providing no evidence to disambiguate lexical terms, semantic scope, or referential antecedents.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "An 'Instruction' is a specific document type or data object defined in the system's controlled vocabulary, and a 'Keyword' is a specific tag or field within that object.",
+          "An 'Instruction' refers to any textual command or directive, and a 'Keyword' refers to any word present in that text, without specific domain constraints."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses single quotes around 'Instruction' and 'Keyword' but provides no definition for these terms."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Definition of 'Instruction' and 'Keyword' from the controlled vocabulary or glossary."
+        ],
+        "justification": "The requirement text alone does not define the specific meaning of 'Instruction' or 'Keyword'. The controlled context is empty, so no external evidence exists to select one interpretation over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The file must be in the specific Microsoft Excel binary or XML format.",
+          "The file must be any spreadsheet format (e.g., CSV, ODS) that can be opened by an Excel-compatible application."
+        ],
+        "evidence_from_requirement": [
+          "The term 'excel file' is used without a specific format extension or definition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Specification of the required file format (e.g., .xlsx, .xls, CSV) from the controlled context."
+        ],
+        "justification": "The requirement text does not specify the exact file format. The controlled context is empty, so it is impossible to determine if 'excel file' implies a strict format or a generic spreadsheet.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "For every instance where an 'Instruction' contains a 'Keyword', the user is triggered to upload an 'excel file'.",
+          "The user must upload an 'excel file' only if the 'Instruction' contains a specific, critical 'Keyword' (e.g., 'URGENT')."
+        ],
+        "evidence_from_requirement": [
+          "The conditional logic regarding the specificity of the 'Keyword' is not defined in the text."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Definition of which 'Keyword' triggers the action or if any keyword triggers it."
+        ],
+        "justification": "The requirement text does not specify if the condition applies to any keyword or a specific one. The controlled context is empty, so the scope of the condition cannot be resolved.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-04",
+        "fragment": "upload the 'excel file' to System-A",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The destination for the upload action is specifically 'System-A'.",
+          "The user uploads the file to 'System-A', but the requirement does not specify if other systems are excluded or if 'System-A' is a generic placeholder for any system."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'to System-A' is present, but the exclusivity of 'System-A' is not explicitly stated."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Clarification on whether 'System-A' is the exclusive destination or a generic placeholder."
+        ],
+        "justification": "While the destination is syntactically 'System-A', the text does not clarify if other systems are excluded. The controlled context is empty, so this nuance cannot be resolved.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-05",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user must upload a specific, unique excel file associated with the current context.",
+          "The user must upload any excel file relevant to the instruction."
+        ],
+        "evidence_from_requirement": [
+          "The definite article 'the' implies a specific file, but no antecedent is present in the text."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Identification of the specific 'excel file' from the controlled context or prior state."
+        ],
+        "justification": "The definite article 'the' requires a specific antecedent which is absent in the requirement text. The controlled context is empty, so the specific file cannot be identified.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "missing_controlled_context",
+      "explanation": "All ambiguities remain unresolved because the controlled context is empty. No evidence exists to resolve lexical, semantic, syntactic, or referential ambiguities. Execution must be routed away from Agent 3 for human clarification."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "reason": "The requirement text alone does not define the specific meaning of 'Instruction' or 'Keyword'. The controlled context is empty, so no external evidence exists to select one interpretation over the other.",
+        "missing_information": [
+          "Definition of 'Instruction' and 'Keyword' from the controlled vocabulary or glossary."
+        ],
+        "unsupported_interpretations": [
+          "An 'Instruction' is a specific document type or data object defined in the system's controlled vocabulary, and a 'Keyword' is a specific tag or field within that object.",
+          "An 'Instruction' refers to any textual command or directive, and a 'Keyword' refers to any word present in that text, without specific domain constraints."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The requirement text does not specify the exact file format. The controlled context is empty, so it is impossible to determine if 'excel file' implies a strict format or a generic spreadsheet.",
+        "missing_information": [
+          "Specification of the required file format (e.g., .xlsx, .xls, CSV) from the controlled context."
+        ],
+        "unsupported_interpretations": [
+          "The file must be in the specific Microsoft Excel binary or XML format.",
+          "The file must be any spreadsheet format (e.g., CSV, ODS) that can be opened by an Excel-compatible application."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "The requirement text does not specify if the condition applies to any keyword or a specific one. The controlled context is empty, so the scope of the condition cannot be resolved.",
+        "missing_information": [
+          "Definition of which 'Keyword' triggers the action or if any keyword triggers it."
+        ],
+        "unsupported_interpretations": [
+          "For every instance where an 'Instruction' contains a 'Keyword', the user is triggered to upload an 'excel file'.",
+          "The user must upload an 'excel file' only if the 'Instruction' contains a specific, critical 'Keyword' (e.g., 'URGENT')."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-04",
+        "fragment": "upload the 'excel file' to System-A",
+        "reason": "While the destination is syntactically 'System-A', the text does not clarify if other systems are excluded. The controlled context is empty, so this nuance cannot be resolved.",
+        "missing_information": [
+          "Clarification on whether 'System-A' is the exclusive destination or a generic placeholder."
+        ],
+        "unsupported_interpretations": [
+          "The destination for the upload action is specifically 'System-A'.",
+          "The user uploads the file to 'System-A', but the requirement does not specify if other systems are excluded or if 'System-A' is a generic placeholder for any system."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-05",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The definite article 'the' requires a specific antecedent which is absent in the requirement text. The controlled context is empty, so the specific file cannot be identified.",
+        "missing_information": [
+          "Identification of the specific 'excel file' from the controlled context or prior state."
+        ],
+        "unsupported_interpretations": [
+          "The user must upload a specific, unique excel file associated with the current context.",
+          "The user must upload any excel file relevant to the instruction."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring",
+      "AMB-04: insufficient evidence for safe structuring",
+      "AMB-05: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "reason": "The requirement text alone does not define the specific meaning of 'Instruction' or 'Keyword'. The controlled context is empty, so no external evidence exists to select one interpretation over the other.",
+        "missing_information": [
+          "Definition of 'Instruction' and 'Keyword' from the controlled vocabulary or glossary."
+        ],
+        "unsupported_interpretations": [
+          "An 'Instruction' is a specific document type or data object defined in the system's controlled vocabulary, and a 'Keyword' is a specific tag or field within that object.",
+          "An 'Instruction' refers to any textual command or directive, and a 'Keyword' refers to any word present in that text, without specific domain constraints."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The requirement text does not specify the exact file format. The controlled context is empty, so it is impossible to determine if 'excel file' implies a strict format or a generic spreadsheet.",
+        "missing_information": [
+          "Specification of the required file format (e.g., .xlsx, .xls, CSV) from the controlled context."
+        ],
+        "unsupported_interpretations": [
+          "The file must be in the specific Microsoft Excel binary or XML format.",
+          "The file must be any spreadsheet format (e.g., CSV, ODS) that can be opened by an Excel-compatible application."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "The requirement text does not specify if the condition applies to any keyword or a specific one. The controlled context is empty, so the scope of the condition cannot be resolved.",
+        "missing_information": [
+          "Definition of which 'Keyword' triggers the action or if any keyword triggers it."
+        ],
+        "unsupported_interpretations": [
+          "For every instance where an 'Instruction' contains a 'Keyword', the user is triggered to upload an 'excel file'.",
+          "The user must upload an 'excel file' only if the 'Instruction' contains a specific, critical 'Keyword' (e.g., 'URGENT')."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-04",
+        "fragment": "upload the 'excel file' to System-A",
+        "reason": "While the destination is syntactically 'System-A', the text does not clarify if other systems are excluded. The controlled context is empty, so this nuance cannot be resolved.",
+        "missing_information": [
+          "Clarification on whether 'System-A' is the exclusive destination or a generic placeholder."
+        ],
+        "unsupported_interpretations": [
+          "The destination for the upload action is specifically 'System-A'.",
+          "The user uploads the file to 'System-A', but the requirement does not specify if other systems are excluded or if 'System-A' is a generic placeholder for any system."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-05",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The definite article 'the' requires a specific antecedent which is absent in the requirement text. The controlled context is empty, so the specific file cannot be identified.",
+        "missing_information": [
+          "Identification of the specific 'excel file' from the controlled context or prior state."
+        ],
+        "unsupported_interpretations": [
+          "The user must upload a specific, unique excel file associated with the current context.",
+          "The user must upload any excel file relevant to the instruction."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Definition of 'Instruction' and 'Keyword' from the controlled vocabulary or glossary.",
+      "Specification of the required file format (e.g., .xlsx, .xls, CSV) from the controlled context.",
+      "Definition of which 'Keyword' triggers the action or if any keyword triggers it.",
+      "Clarification on whether 'System-A' is the exclusive destination or a generic placeholder.",
+      "Identification of the specific 'excel file' from the controlled context or prior state."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

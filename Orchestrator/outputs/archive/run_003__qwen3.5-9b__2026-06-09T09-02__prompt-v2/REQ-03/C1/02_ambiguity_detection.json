@@ -1,0 +1,37 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "explanation": "The pronoun 'their' is lexically ambiguous regarding its antecedent. It could refer to 'System-A' (possessive of the subject) or 'System-B' (possessive of the object), leading to different interpretations of which system owns the downstream relationship.",
+        "possible_interpretations": [
+          "System-A owns the relationship; System-A adds System-B to the list of systems that receive events from System-A.",
+          "System-B owns the relationship; System-A adds System-B to the list of systems that receive events from System-B."
+        ],
+        "textual_evidence": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'to the Reporting flow' has an attachment ambiguity. It can attach to 'subscribe' (the act of subscribing is directed at the flow) or to 'System-C' (System-C subscribes to a flow that belongs to the Reporting flow category), though the latter is less likely syntactically, the primary ambiguity lies in whether 'Reporting flow' is the specific object of subscription or a category descriptor, and if 'allow' implies System-A grants permission or System-C is simply enabled.",
+        "possible_interpretations": [
+          "System-C subscribes to a specific flow named 'Reporting flow'.",
+          "System-C subscribes to any flow that falls under the category of 'Reporting flow'."
+        ],
+        "textual_evidence": [
+          "allow System-C to subscribe to the Reporting flow"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ]
+  }
+}

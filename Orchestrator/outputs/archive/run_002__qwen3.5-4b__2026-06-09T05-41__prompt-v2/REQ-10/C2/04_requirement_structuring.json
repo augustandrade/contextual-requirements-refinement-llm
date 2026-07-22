@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement is unambiguous and structurally sound. It is classified as a functional requirement based on the core action 'generate'. The controlled context provides the specific technical parameters (350 Hz and 440 Hz) but does not alter the requirement's clarity or necessitate decomposition.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Generate a dial tone."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "none",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "generate",
+          "object": "a dial tone",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "dial tone"
+        },
+        "final_statement": "The system shall generate a dial tone.",
+        "structuring_notes": [
+          "Requirement is a clear functional statement. Technical parameters (350 Hz, 440 Hz) are noted in context but not forced into the requirement text to avoid inventing specific values not explicitly in the source text, as per evidence-only principle."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

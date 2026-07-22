@@ -1,0 +1,120 @@
+{
+  "execution_id": "REQ-05-C1",
+  "requirement_id": "REQ-05",
+  "context_condition": "C1",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "has_concern_mixing": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' creates a syntactic attachment ambiguity. It can modify 'enters' (the user enters the card while holding the code) or 'access card' (the card itself is entered along with the code, implying the card contains the code or they are distinct entities being entered together).",
+        "possible_interpretations": [
+          "The user enters the access card, and separately possesses/uses the access code.",
+          "The user enters the access card which includes the access code."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the attachment of 'with the access code' exists; controlled context provides no evidence to resolve it.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user enters the access card, and separately possesses/uses the access code.",
+          "The user enters the access card which includes the access code."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'with the access code' is syntactically ambiguous between modifying 'enters' or 'access card'."
+        ],
+        "evidence_from_context": [
+          "Domain: Access control system using card reader and keypad.",
+          "Glossary: access code = Secret code used for second-factor verification."
+        ],
+        "missing_information": [
+          "Whether the access code is physically embedded in the card or used as a separate input method is not specified in the requirement or context."
+        ],
+        "justification": "The controlled context defines the access code as a secret code for verification but does not describe its physical relationship to the card or the mechanism of entry. Therefore, the syntactic ambiguity cannot be resolved with the provided evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "concern_mixing",
+      "explanation": "The requirement contains a syntactic ambiguity that cannot be resolved using the provided context. Additionally, the requirement mixes a functional action (entering) with a quality criterion (using the code), requiring structural decomposition."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The controlled context defines the access code as a secret code for verification but does not describe its physical relationship to the card or the mechanism of entry. Therefore, the syntactic ambiguity cannot be resolved with the provided evidence.",
+        "missing_information": [
+          "Whether the access code is physically embedded in the card or used as a separate input method is not specified in the requirement or context."
+        ],
+        "unsupported_interpretations": [
+          "The user enters the access card, and separately possesses/uses the access code.",
+          "The user enters the access card which includes the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The controlled context defines the access code as a secret code for verification but does not describe its physical relationship to the card or the mechanism of entry. Therefore, the syntactic ambiguity cannot be resolved with the provided evidence.",
+        "missing_information": [
+          "Whether the access code is physically embedded in the card or used as a separate input method is not specified in the requirement or context."
+        ],
+        "unsupported_interpretations": [
+          "The user enters the access card, and separately possesses/uses the access code.",
+          "The user enters the access card which includes the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether the access code is physically embedded in the card or used as a separate input method is not specified in the requirement or context."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

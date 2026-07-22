@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The modal operator 'should' creates ambiguity regarding whether the reset is a mandatory requirement or merely a best practice recommendation. No context is available to resolve this.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should",
+        "ambiguity_type": "modal_operator",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Mandatory Requirement: The system MUST reset upon exiting Factory mode.",
+          "Advisory Recommendation: The system SHOULD reset upon exiting Factory mode (best practice)."
+        ],
+        "evidence_from_requirement": [
+          "The text uses the modal verb 'should'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The requirement text alone does not specify the operational consequence of *not* performing the reset, making it impossible to determine if 'should' implies mandatory behavior or mere advice."
+        ],
+        "justification": "The ambiguity hinges on the intended level of obligation (mandatory vs. advisory), and the requirement text provides no explicit rule or context to resolve this.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the mandatory nature of the reset action cannot be resolved using only the requirement text, necessitating human review."
+    }
+  }
+}

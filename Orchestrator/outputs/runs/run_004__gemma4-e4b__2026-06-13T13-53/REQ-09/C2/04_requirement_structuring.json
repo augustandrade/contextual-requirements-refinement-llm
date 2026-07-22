@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single constraint requirement based on the defined vehicle class.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-09-SR-01",
+        "type": "constraint",
+        "source_fragments": [
+          "All medium-sized vehicles shall be equipped with a navigation system."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "The vehicle is a medium-sized vehicle",
+          "condition_type": "none",
+          "system_or_component": "",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "equipment mandate",
+          "affected_element": "medium-sized vehicle"
+        },
+        "final_statement": "All medium-sized vehicles shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "This requirement mandates an equipment feature for a specific class of vehicle, classifying it as a design constraint rather than a system behavior."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not specify the type or standard of the navigation system, as this detail was not provided in the requirement or context."
+    ],
+    "final_output_status": "structured"
+  }
+}

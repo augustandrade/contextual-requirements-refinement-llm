@@ -1,0 +1,80 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'their' is resolvable via domain context; syntactic and semantic ambiguities remain unresolved due to lack of explicit permission or state-change definitions in the context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A adds System-B to the list of downstream systems owned by System-A.",
+        "unsupported_interpretations": [
+          "System-A adds System-B to the list of downstream systems owned by System-B."
+        ],
+        "evidence_from_requirement": [
+          "The subject of the imperative clause is 'System-A'."
+        ],
+        "evidence_from_context": [
+          "Domain: Integration platform that orchestrates downstream services.",
+          "Business rule BR-01 implies distinct ownership where 'add' implies adding to the addressee's (System-A's) managed list."
+        ],
+        "missing_information": [],
+        "justification": "In the context of an integration platform, 'downstream systems' are managed by the orchestrator (System-A). The possessive 'their' refers to the subject 'System-A'.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A grants permission specifically for System-C to subscribe to the Reporting flow.",
+          "The system (implicitly defined) allows System-C to subscribe, and this is a separate statement from the previous one about System-A and System-B."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure uses a comma to separate two independent clauses."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "Whether the permission to subscribe is granted by System-A or is a system-wide capability."
+        ],
+        "justification": "The context defines the domain and rules but does not explicitly state who grants the permission or if the clauses are logically dependent. The ambiguity requires clarification on the scope of 'allow'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-B is added to an existing, static list of downstream systems.",
+          "System-B is added, and this action creates or updates the definition of the downstream systems category."
+        ],
+        "evidence_from_requirement": [
+          "The verb 'add' is used."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "Whether the 'downstream systems' list is static or dynamic upon addition."
+        ],
+        "justification": "The context does not define the mutability of the downstream systems list. It is unclear if the addition is a state update or a list population.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "While the lexical ambiguity is resolved, the syntactic and semantic ambiguities lack sufficient evidence in the controlled context to be resolved. The execution must bypass Agent 3."
+    }
+  }
+}

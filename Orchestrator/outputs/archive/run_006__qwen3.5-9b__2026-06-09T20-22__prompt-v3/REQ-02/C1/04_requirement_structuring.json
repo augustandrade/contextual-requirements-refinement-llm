@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C1",
+    "requirement_id": "REQ-02",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "reason": "The controlled context provides domain information but lacks specific business rules or glossary entries to distinguish between the two semantic interpretations of the trigger condition.",
+        "missing_information": [
+          "Business rule defining the exact trigger condition for the alert.",
+          "Clarification on whether 'rejection order' implies a specific subtype or a general state."
+        ],
+        "unsupported_interpretations": [
+          "The system raises an alert whenever a rejection order is received, provided that a cancellation request exists in the context.",
+          "The system raises an alert only when a rejection order is received specifically for a cancellation request (implying a specific type of rejection order)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "rejection order is received for a cancellation request",
+        "reason": "The controlled context does not contain a glossary entry or business rule defining the specific meaning of 'rejection order' in this workflow, leaving the lexical ambiguity unresolved.",
+        "missing_information": [
+          "Definition of 'rejection order' within the Post-trade financial platform domain.",
+          "Distinction between rejecting a request vs. rejecting an order intended to cancel."
+        ],
+        "unsupported_interpretations": [
+          "A rejection order indicates that the cancellation request was not approved.",
+          "A rejection order indicates that an order to cancel the request was not executed or was denied."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

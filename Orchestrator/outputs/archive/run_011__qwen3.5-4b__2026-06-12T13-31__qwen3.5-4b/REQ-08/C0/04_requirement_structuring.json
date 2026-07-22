@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C0",
+    "requirement_id": "REQ-08",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "reason": "In C0, the requirement text alone does not define the boundary for 'above'. The ambiguity cannot be resolved without external specification.",
+        "missing_information": [
+          "The exact threshold definition (e.g., > 100m vs ≥ 100m) is missing."
+        ],
+        "unsupported_interpretations": [
+          "Strictly greater than 100 meters (> 100m)",
+          "Greater than or equal to 100 meters (≥ 100m)"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "reason": "The requirement text permits two distinct temporal interpretations. Without context, neither can be selected as the supported interpretation.",
+        "missing_information": [
+          "The temporal logic (continuous vs. existential) is not defined in the text."
+        ],
+        "unsupported_interpretations": [
+          "Continuous state: The water level must be > 100m for the entire 4-second interval.",
+          "Existential state: The water level must be > 100m at least once within a 4-second window."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

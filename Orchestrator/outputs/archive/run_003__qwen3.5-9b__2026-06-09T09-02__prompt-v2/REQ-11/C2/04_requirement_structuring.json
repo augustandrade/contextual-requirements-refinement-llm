@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "reason": "The requirement text does not specify the scope of the 'between' phrase, and the controlled context provides no business rules or constraints to resolve the syntactic attachment ambiguity.",
+        "missing_information": [
+          "Whether the filtering action applies to traffic flowing between the two domains or applies to each domain separately."
+        ],
+        "unsupported_interpretations": [
+          "The switch filters packets that are traveling between data-plane interfaces and management data traffic (filtering the inter-traffic flow).",
+          "The switch filters traffic on data-plane interfaces and separately filters management data traffic (treating the two as distinct sets to be filtered, potentially implying exclusion of one from the other)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

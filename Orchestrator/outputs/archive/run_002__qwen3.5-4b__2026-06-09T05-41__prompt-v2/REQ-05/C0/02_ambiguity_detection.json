@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' is structurally ambiguous, attaching either to the verb 'enters' or the noun 'access card', resulting in two distinct parse trees and meanings.",
+        "possible_interpretations": [
+          "The user enters the access card, and the access card contains the access code.",
+          "The user enters the access card, and the user also enters the access code separately."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

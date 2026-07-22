@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "While the domain mentions a card reader and keypad, it does not explicitly state the interaction protocol (e.g., 'swipes card and enters code' vs 'enters card with code embedded'). Without explicit text linking the code to the card or the entry method, the ambiguity cannot be resolved safely.",
+        "missing_information": [
+          "The requirement text does not specify whether the access code is used as a method of entry or as an attribute of the card."
+        ],
+        "unsupported_interpretations": [
+          "The user enters the system using the access code as the method of entry.",
+          "The user enters an access card that is physically or logically associated with the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

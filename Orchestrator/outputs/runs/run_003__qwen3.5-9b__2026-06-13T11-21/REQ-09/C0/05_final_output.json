@@ -1,0 +1,126 @@
+{
+  "execution_id": "REQ-09-C0",
+  "requirement_id": "REQ-09",
+  "context_condition": "C0",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'medium-sized' is lexically vague and lacks a precise, universally accepted boundary. In the context of vehicle classification, 'medium-sized' could refer to specific weight classes (e.g., 1.5–2.5 tons), engine displacements, or physical dimensions (length/width), leading to uncertainty about which specific vehicles satisfy the requirement.",
+        "possible_interpretations": [
+          "Vehicles falling within a specific weight range (e.g., 1.5 to 2.5 metric tons).",
+          "Vehicles with specific physical dimensions (e.g., length between 4.5 and 5.5 meters).",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "textual_evidence": [
+          "medium-sized vehicles"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-09-C0",
+    "requirement_id": "REQ-09",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' is lexically vague; no controlled context is available to define the boundary, leaving the interpretation unresolved.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles falling within a specific weight range (e.g., 1.5 to 2.5 metric tons).",
+          "Vehicles with specific physical dimensions (e.g., length between 4.5 and 5.5 meters).",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses the term 'medium-sized' without defining specific metrics or ranges."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A precise definition of 'medium-sized' (e.g., weight, dimension, or classification standard)."
+        ],
+        "justification": "The requirement text provides no definition for 'medium-sized', and the controlled context is empty. Without external evidence, the specific boundary cannot be determined.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The lexical ambiguity regarding 'medium-sized' cannot be resolved without additional context or definition; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C0",
+    "requirement_id": "REQ-09",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The requirement text provides no definition for 'medium-sized', and the controlled context is empty. Without external evidence, the specific boundary cannot be determined.",
+        "missing_information": [
+          "A precise definition of 'medium-sized' (e.g., weight, dimension, or classification standard)."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles falling within a specific weight range (e.g., 1.5 to 2.5 metric tons).",
+          "Vehicles with specific physical dimensions (e.g., length between 4.5 and 5.5 meters).",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The requirement text provides no definition for 'medium-sized', and the controlled context is empty. Without external evidence, the specific boundary cannot be determined.",
+        "missing_information": [
+          "A precise definition of 'medium-sized' (e.g., weight, dimension, or classification standard)."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles falling within a specific weight range (e.g., 1.5 to 2.5 metric tons).",
+          "Vehicles with specific physical dimensions (e.g., length between 4.5 and 5.5 meters).",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "A precise definition of 'medium-sized' (e.g., weight, dimension, or classification standard)."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

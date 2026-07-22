@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic attachment ambiguity regarding the scope of 'for a cancellation request' remains unresolved; controlled context does not specify the categorization of rejection orders.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system raises an alert when it receives a rejection order that is specifically designated for a cancellation request.",
+          "The system raises an alert when it receives a rejection order (of any type) in the context of a cancellation request process."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'for a cancellation request' syntactically modifies either 'rejection order' or the event of receiving."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 states rejection orders are issued by Security Manager but does not define the semantic categories or sub-types of rejection orders (e.g., whether some are 'for cancellation requests' and others are not)."
+        ],
+        "missing_information": [
+          "Whether rejection orders are exclusively 'for cancellation requests' or if other types of rejection orders exist within the domain."
+        ],
+        "justification": "The controlled context defines the actor (Security Manager) and the existence of rejection/approval orders but fails to define the taxonomy of rejection orders. Without explicit evidence that all rejection orders in this domain are 'for cancellation requests', the syntactic attachment cannot be resolved to a single interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The syntactic ambiguity regarding the scope of the prepositional phrase cannot be resolved because the controlled context lacks the necessary definition of rejection order types to support a single interpretation."
+    }
+  }
+}

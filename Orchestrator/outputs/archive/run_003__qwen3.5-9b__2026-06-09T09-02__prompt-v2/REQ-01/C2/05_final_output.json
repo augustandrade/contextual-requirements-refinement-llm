@@ -1,0 +1,105 @@
+{
+  "execution_id": "REQ-01-C2",
+  "requirement_id": "REQ-01",
+  "context_condition": "C2",
+  "input_requirement": "If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service within 2 seconds at the latest.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is linguistically clear but non-atomic: it intermingles a functional action ('inform the security service') and a quality/timing criterion ('within 2 seconds at the latest'). According to Pohl §25.2, this constitutes concern-mixing (structural decomposition needed) rather than a linguistic ambiguity. The terms 'glass break detector', 'pane', and 'security service' are either uniquely identifiable within the sentence or defined in the controlled_context glossary, so no lexical ambiguity exists. The timing constraint has a precise numeric extension, so no vagueness exists."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": false,
+    "validation_summary": "Requirement is linguistically clear but mixes a functional action and a quality criterion, indicating a structural concern-mixing issue.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "structural_issue": "concern_mixing",
+      "explanation": "Agent 1 flagged concern-mixing (functional action + quality criterion in same sentence). No linguistic ambiguity. Agent 3 must decompose."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement mixes a functional action (inform security service) with a quality criterion (within 2 seconds). Decomposed into one functional requirement and one quality requirement per Pohl §25.2.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the glass break detector of a window detects the pane has been damaged",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "security service"
+        },
+        "final_statement": "If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service.",
+        "structuring_notes": [
+          "Extracted functional action from concern-mixed requirement. Timing constraint moved to separate quality requirement."
+        ]
+      },
+      {
+        "structured_id": "REQ-XX-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "within 2 seconds at the latest"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after damage detection",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "response time",
+          "measurable_criterion": "within 2 seconds at the latest",
+          "constraint_category": "performance",
+          "affected_element": "alarm notification delivery"
+        },
+        "final_statement": "The alarm notification shall be delivered to the security service within 2 seconds at the latest after damage detection.",
+        "structuring_notes": [
+          "Extracted quality criterion (timing) as a separate artefact per Pohl §25.2."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

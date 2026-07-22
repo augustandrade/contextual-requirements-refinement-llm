@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is fully resolvable. The semantic ambiguity regarding the temporal scope of the water level check is resolved using Business Rule BR-01, which defines the decision metric as the absolute minimum reading in the window. This necessitates that the water level remains strictly above 100 meters for the entire 4-second duration. Structured as a single functional requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "water level remains above 100 meters for more than 4 seconds",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "If the water level remains above 100 meters for more than 4 seconds, the system shall shut off the pumps.",
+        "structuring_notes": [
+          "Resolved ambiguity AMB-01 using Business Rule BR-01. The condition implies continuous compliance (absolute minimum reading > 100m) over the 4-second window."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

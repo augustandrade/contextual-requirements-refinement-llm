@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.\"\n      ambiguity_type: \"semantic\"\n      explanation: \"The logical operator precedence between the condition 'contains a Keyword' and the action 'must upload' is underspecified. It is unclear whether the presence of a keyword is a necessary condition, a sufficient condition, or if the upload action is independent of the keyword check.\"\n      possible_interpretations:\n        - \"The User must upload the 'excel file' to System-A ONLY IF an 'Instruction' contains a 'Keyword' (Keyword presence is a necessary condition).\"\n        - \"The User must upload the 'excel file' to System-A regardless of whether an 'Instruction' contains a 'Keyword' (Keyword presence is irrelevant to the upload action).\"\n      textual_evidence:\n        - \"If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.\"\n      context_evidence:\n        - []\n      context_dependency: \"high\"\n  no_ambiguity_reason: null\n```"
+}

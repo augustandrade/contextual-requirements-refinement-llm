@@ -1,0 +1,14 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "has_concern_mixing": true,
+    "ambiguities": null,
+    "no_ambiguity_reason": "No lexical, syntactic, semantic, referential, or vagueness ambiguities detected. All terms are clearly defined or contextually unambiguous.",
+    "concern_mixing_analysis": {
+      "functional_action": "inform the security service",
+      "quality_criterion": "within 2 s after detecting damage",
+      "structural_issue": "The requirement combines a functional action with a timing constraint in a single sentence, creating a concern-mixing structure (Pohl §25.2) that may hinder precise verification.",
+      "recommended_action": "Decompose into two separate requirements: one for the detection event and one for the notification timing."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"remains above 100 meters for more than 4 seconds\"\n      ambiguity_type: \"semantic\"\n      explanation: \"The phrase 'remains above' combined with 'for more than 4 seconds' creates a logical ambiguity regarding the temporal scope of the condition. It is unclear whether the water level must stay above the threshold for the entire 4-second window, or if the level only needs to exceed the threshold at any point within a 4-second window.\"\n      possible_interpretations:\n        - \"The water level must be continuously above 100 meters for the entire duration of 4 seconds.\"\n        - \"The water level must exceed 100 meters at least once within a 4-second window.\"\n      textual_evidence:\n        - \"remains above 100 meters for more than 4 seconds\"\n      context_evidence:\n        - \"For a 4-second persistence window, the decision metric is the absolute minimum reading in the window.\"\n      context_dependency: \"high\"\n  no_ambiguity_reason: null\n```"
+}

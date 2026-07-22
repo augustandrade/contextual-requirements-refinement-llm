@@ -1,0 +1,33 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'medium-sized' is a relative descriptor lacking an absolute boundary. Without a specific metric (e.g., weight, length, passenger capacity) or a defined set of vehicles to compare against, it is impossible to determine which vehicles qualify as 'medium-sized'.",
+        "possible_interpretations": [
+          "Vehicles with a weight between 3,500 kg and 5,000 kg.",
+          "Vehicles with a length between 4.5 m and 5.5 m.",
+          "Vehicles that are larger than compact cars but smaller than full-size trucks."
+        ],
+        "textual_evidence": [
+          "medium-sized vehicles"
+        ],
+        "context_evidence": [
+          "term: medium-sized vehicle\n    definition: Informal vehicle size category used by operations."
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "provenance": {
+    "manifest_item_id": null,
+    "requirement_id": null,
+    "file_path": null,
+    "execution_id": null,
+    "timestamp": null
+  }
+}

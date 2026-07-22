@@ -1,0 +1,117 @@
+{
+  "execution_id": "REQ-06-C0",
+  "requirement_id": "REQ-06",
+  "context_condition": "C0",
+  "input_requirement": "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects an intruder or a door of the car is opened without a car key",
+        "ambiguity_type": "syntactic",
+        "explanation": "The scope of the conjunction 'or' is ambiguous. It is unclear whether the condition requires (Window Damaged AND (Intruder Detected OR Door Opened)) or (Window Damaged AND Intruder Detected) OR (Door Opened). The structure suggests the 'or' applies to the two detection events, but the overall structure is unclear.",
+        "possible_interpretations": [
+          "The alarm triggers if (Window is damaged AND Intruder is detected) OR (Door is opened without a key).",
+          "The alarm triggers if (Window is damaged AND (Intruder is detected OR Door is opened without a key))."
+        ],
+        "textual_evidence": [
+          "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The scope of the conjunction 'or' is syntactically ambiguous, and the controlled context provides no evidence to resolve which logical grouping is intended.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects an intruder or a door of the car is opened without a car key",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The alarm triggers if (Window is damaged AND Intruder is detected) OR (Door is opened without a key).",
+          "The alarm triggers if (Window is damaged AND (Intruder is detected OR Door is opened without a key))."
+        ],
+        "evidence_from_requirement": [
+          "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The precise logical scope of the 'or' conjunction relative to the initial 'window damaged' condition."
+        ],
+        "justification": "The requirement text presents two plausible interpretations based on the placement of 'or', and the empty controlled context offers no evidence to resolve this structural ambiguity.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity detected in AMB-01 is unresolved because the context provides no evidence to determine the correct logical grouping of the conditions."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-06-C0",
+    "requirement_id": "REQ-06",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects an intruder or a door of the car is opened without a car key",
+        "reason": "The requirement text presents two plausible interpretations based on the placement of 'or', and the empty controlled context offers no evidence to resolve this structural ambiguity.",
+        "missing_information": [
+          "The precise logical scope of the 'or' conjunction relative to the initial 'window damaged' condition."
+        ],
+        "unsupported_interpretations": [
+          "The alarm triggers if (Window is damaged AND Intruder is detected) OR (Door is opened without a key).",
+          "The alarm triggers if (Window is damaged AND (Intruder is detected OR Door is opened without a key))."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects an intruder or a door of the car is opened without a car key",
+        "reason": "The requirement text presents two plausible interpretations based on the placement of 'or', and the empty controlled context offers no evidence to resolve this structural ambiguity.",
+        "missing_information": [
+          "The precise logical scope of the 'or' conjunction relative to the initial 'window damaged' condition."
+        ],
+        "unsupported_interpretations": [
+          "The alarm triggers if (Window is damaged AND Intruder is detected) OR (Door is opened without a key).",
+          "The alarm triggers if (Window is damaged AND (Intruder is detected OR Door is opened without a key))."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The precise logical scope of the 'or' conjunction relative to the initial 'window damaged' condition."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

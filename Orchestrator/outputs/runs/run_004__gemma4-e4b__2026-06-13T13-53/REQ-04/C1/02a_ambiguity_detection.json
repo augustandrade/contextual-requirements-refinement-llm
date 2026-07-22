@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "```json\n{\n  \"amalgamated_output\": {\n    \"amalgamated_output_type\": \"ambiguity_detection\",\n    \"ambiguity_detected\": true,\n    \"ambiguities\": [\n      {\n        \"ambiguity_type\": \"referential_ambiguity\",\n        \"description\": \"The pronoun 'it' in the clause 'If it is invalid' is ambiguous. It could refer to the PIN entered, or it could refer to the entire process of entering the PIN.\",\n        \"ambiguity_source\": \"If it is invalid\",\n        \"potential_referents\": [\n          \"The PIN entered by the user\",\n          \"The action of entering the PIN\"\n        ],\n        \"suggested_clarification\": \"Replace 'If it is invalid' with 'If the entered PIN is invalid' or 'If the PIN validation fails'.\"\n      }\n    ]\n  }\n}\n```"
+}

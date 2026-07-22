@@ -1,0 +1,40 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'downstream systems' remains lexically ambiguous; the controlled context defines 'downstream services' but does not explicitly resolve the directionality of the 'add' action between System-A and System-B.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A adds System-B as a consumer receiving data from System-A.",
+          "System-A adds System-B as a dependency relied upon by System-A."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states System-A must add System-B to 'downstream systems'.",
+          "The requirement states System-A must allow System-C to subscribe to the Reporting flow."
+        ],
+        "evidence_from_context": [
+          "Domain: Integration platform that orchestrates downstream services and reporting subscriptions."
+        ],
+        "missing_information": [
+          "Whether 'downstream systems' in the requirement refers to consumers receiving data or dependencies relied upon.",
+          "The specific direction of data flow or dependency relationship implied by 'add' in this context."
+        ],
+        "justification": "While the domain mentions 'downstream services', it does not explicitly define the relationship between System-A and System-B (consumer vs. dependency) required to resolve the lexical ambiguity of 'add'. The business rule regarding independent operations does not clarify the structural relationship.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The lexical ambiguity regarding the direction of the relationship between System-A and System-B cannot be resolved with the provided controlled context evidence."
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "execution_id": "REQ-05-C0",
+  "requirement_id": "REQ-05",
+  "context_condition": "C0",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' can attach either to 'enters' (the user uses the code as the instrument/method of entry) or to 'access card' (the card is the one associated with or containing the code), yielding two different syntax trees and two different meanings regarding the mechanism of access.",
+        "possible_interpretations": [
+          "The user physically inserts the access card while simultaneously providing the access code (code is the instrument).",
+          "The user inserts a specific access card that is linked to or contains the access code (code identifies the card)."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the attachment of the prepositional phrase remains unresolved as no context is available to disambiguate.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user physically inserts the access card while simultaneously providing the access code (code is the instrument).",
+          "The user inserts a specific access card that is linked to or contains the access code (code identifies the card)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'enters the access card with the access code' allows two syntactic attachments without further clarification."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Information specifying whether the code is used as the method of entry or as an identifier for the card."
+        ],
+        "justification": "In C0, there is no controlled context to resolve the syntactic attachment. The requirement text alone does not provide evidence to prefer one interpretation over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "In C0, there is no controlled context to resolve the syntactic attachment. The requirement text alone does not provide evidence to prefer one interpretation over the other.",
+        "missing_information": [
+          "Information specifying whether the code is used as the method of entry or as an identifier for the card."
+        ],
+        "unsupported_interpretations": [
+          "The user physically inserts the access card while simultaneously providing the access code (code is the instrument).",
+          "The user inserts a specific access card that is linked to or contains the access code (code identifies the card)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "In C0, there is no controlled context to resolve the syntactic attachment. The requirement text alone does not provide evidence to prefer one interpretation over the other.",
+        "missing_information": [
+          "Information specifying whether the code is used as the method of entry or as an identifier for the card."
+        ],
+        "unsupported_interpretations": [
+          "The user physically inserts the access card while simultaneously providing the access code (code is the instrument).",
+          "The user inserts a specific access card that is linked to or contains the access code (code identifies the card)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Information specifying whether the code is used as the method of entry or as an identifier for the card."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

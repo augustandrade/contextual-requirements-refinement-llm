@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'dial tone' is clarified by the North American standard constraint specifying simultaneous 350 Hz and 440 Hz frequencies.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Generate the specific frequency components (350 Hz and 440 Hz) as defined in the North American telephony standard.",
+        "unsupported_interpretations": [
+          "Generate the standard audible signal indicating the telephone line is ready for use (without specific frequency definition).",
+          "Generate a specific pattern or sequence of tones rather than a continuous signal."
+        ],
+        "evidence_from_requirement": [
+          "Generate a dial tone."
+        ],
+        "evidence_from_context": [
+          "System follows North American telephony standard using simultaneous 350 Hz and 440 Hz dial tone."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context explicitly defines the 'dial tone' as the simultaneous 350 Hz and 440 Hz signal, eliminating the ambiguity regarding the signal's composition.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides explicit evidence defining the specific frequency components of the dial tone, allowing safe interpretation."
+    }
+  }
+}

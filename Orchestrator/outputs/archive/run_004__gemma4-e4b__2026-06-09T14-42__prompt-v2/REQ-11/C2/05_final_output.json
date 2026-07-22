@@ -1,0 +1,119 @@
+{
+  "execution_id": "REQ-11-C2",
+  "requirement_id": "REQ-11",
+  "context_condition": "C2",
+  "input_requirement": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "syntactic",
+        "explanation": "The scope of the filtering action is unclear. It is ambiguous whether the filtering applies to traffic *originating* from the data-plane interfaces and destined for management data traffic, or if it filters the *set* of traffic that exists between these two domains.",
+        "possible_interpretations": [
+          "The system shall filter traffic that is traversing from the data-plane interfaces towards the management data traffic domain.",
+          "The system shall filter the combined set of traffic streams, specifically separating and inspecting traffic originating from the data-plane interfaces versus traffic designated as management data traffic."
+        ],
+        "textual_evidence": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "context_evidence": [
+          "term: management data traffic\ndefinition: SNMP traffic restricted to UDP port 161.",
+          "term: filter network traffic\ndefinition: Inspect and drop packets based on protocol and destination port."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity regarding the scope of filtering is partially resolved by the context defining 'filter network traffic' as inspecting and dropping packets based on protocol and destination port.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system shall filter traffic that is traversing from the data-plane interfaces towards the management data traffic domain.",
+        "unsupported_interpretations": [
+          "The system shall filter the combined set of traffic streams, specifically separating and inspecting traffic originating from the data-plane interfaces versus traffic designated as management data traffic."
+        ],
+        "evidence_from_requirement": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "evidence_from_context": [
+          "term: filter network traffic\n      definition: Inspect and drop packets based on protocol and destination port."
+        ],
+        "missing_information": [],
+        "justification": "The context defines 'filter network traffic' as an action that inspects and drops packets based on protocol and destination port, which strongly implies filtering traffic *in transit* between two points, supporting the first interpretation.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The context provides a definition for 'filter network traffic' that clarifies the action as inspecting in-transit packets, resolving the syntactic ambiguity."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement is fully resolvable. The ambiguity regarding the scope of filtering was resolved by interpreting 'filter network traffic between A and B' as filtering traffic traversing from A towards B, based on the context definition of filtering.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "traffic traversing from the data-plane interfaces towards the management data traffic domain",
+          "condition_type": "event",
+          "system_or_component": "Routing switches",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "filter",
+          "object": "network traffic",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "data-plane interfaces and management data traffic"
+        },
+        "final_statement": "The routing switches shall filter network traffic traversing from the data-plane interfaces towards the management data traffic domain.",
+        "structuring_notes": [
+          "Decomposed based on the supported interpretation of AMB-01. The action is filtering traffic in transit."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "The specific mechanism of filtering (protocol/port inspection) is derived from the context definition but is not explicitly stated as a requirement constraint, so it is noted but not forced into the structure."
+    ],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

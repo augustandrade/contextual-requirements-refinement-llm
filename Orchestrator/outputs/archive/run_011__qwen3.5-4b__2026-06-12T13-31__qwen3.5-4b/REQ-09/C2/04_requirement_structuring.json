@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "While the glossary provides a definition, the requirement text itself does not contain the phrase 'medium-sized vehicle' matching the glossary term, nor does it explicitly reference the glossary. Without an explicit textual link or a direct definition within the requirement sentence, the interpretation relies on an assumption that the glossary applies to this specific sentence, which is not explicitly stated in the text.",
+        "missing_information": [
+          "The requirement text does not explicitly link the glossary definition to the term 'medium-sized vehicles' in the sentence."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with a weight between 3,500 kg and 5,000 kg.",
+          "Vehicles with a passenger capacity between 7 and 12 seats."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

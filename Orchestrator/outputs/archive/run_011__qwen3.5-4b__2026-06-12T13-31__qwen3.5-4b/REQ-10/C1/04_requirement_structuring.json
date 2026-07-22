@@ -1,0 +1,72 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement 'Generate a dial tone' was found to be linguistically clear but structurally mixed (functional action + quality criterion). Per Pohl §25.2, it has been decomposed into a functional requirement (action) and a quality requirement (state of readiness).",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-10-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Generate a dial tone."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "",
+          "system_or_component": "the telephony exchange system",
+          "interaction_pattern": "internal_functional_behavior",
+          "actor": "",
+          "modality": "shall",
+          "action": "generate",
+          "object": "a dial tone",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "telephony exchange system"
+        },
+        "final_statement": "The telephony exchange system shall generate a dial tone.",
+        "structuring_notes": [
+          "Extracted the core functional action 'generate' and object 'dial tone'. The condition is implicit (system startup or user request context)."
+        ]
+      },
+      {
+        "structured_id": "REQ-10-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "a dial tone"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "upon system readiness or user request",
+          "condition_type": "state_trigger",
+          "system_or_component": "the telephony exchange system",
+          "interaction_pattern": "internal_functional_behavior",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "state of readiness",
+          "measurable_criterion": "presence of a dial tone signal",
+          "constraint_category": "functional_quality",
+          "affected_element": "telephony exchange system"
+        },
+        "final_statement": "The telephony exchange system shall maintain a state of readiness indicated by the presence of a dial tone signal.",
+        "structuring_notes": [
+          "Extracted the quality attribute 'dial tone' as a measurable state of readiness. This ensures the functional action is distinct from the quality criterion."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

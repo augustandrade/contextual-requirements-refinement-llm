@@ -29,7 +29,11 @@ contexts:
       glossary: []
       business_rules:
         - id: BR-01
-          rule: Alarm must be raised when either intruder detection occurs, or a door is opened without key, and window damage is confirmed.
+          rule: >
+            Window damage is a mandatory precondition for triggering the alarm.
+            Once window damage is confirmed, the alarm is raised independently
+            by either of two events: (1) the interior surveillance detects an intruder,
+            or (2) a door is opened without a car key.
       constraints: []
 tags: [linguistic, logical-ambiguity, and-or]
 status: ready

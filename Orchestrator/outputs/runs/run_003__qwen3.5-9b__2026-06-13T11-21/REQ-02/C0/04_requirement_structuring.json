@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "reason": "The requirement text alone does not disambiguate the attachment site of the prepositional phrase. Since context_condition is C0, no external context exists to resolve the ambiguity. The distinction between specific designation and contextual process is not explicitly defined in the text.",
+        "missing_information": [
+          "Business rule or glossary definition specifying whether 'rejection order for a cancellation request' is a distinct category or a contextual descriptor."
+        ],
+        "unsupported_interpretations": [
+          "The system raises an alert when it receives a rejection order that is specifically designated for a cancellation request.",
+          "The system raises an alert when it receives a rejection order (of any type) in the context of a cancellation request process."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

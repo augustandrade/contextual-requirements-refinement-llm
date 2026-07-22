@@ -1,0 +1,72 @@
+{
+  "requirement_structuring": {
+    "execution_id": "R-Q-2-C2",
+    "requirement_id": "R-Q-2",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement contains a structural concern-mixing issue (functional action mixed with quality criterion) as validated by Agent 2. Per Pohl §25.2, it is decomposed into a functional requirement (informing the security service) and a quality requirement (response time within 2 seconds).",
+    "structured_requirements": [
+      {
+        "structured_id": "R-Q-2-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The system shall inform the security service"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after detecting damage",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "the security service",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "security service notification"
+        },
+        "final_statement": "The system shall inform the security service after detecting damage.",
+        "structuring_notes": [
+          "Extracted the functional action of notifying the security service. The trigger condition is the detection event."
+        ]
+      },
+      {
+        "structured_id": "R-Q-2-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "within 2 s"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after detecting damage",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "response time",
+          "measurable_criterion": "within 2 seconds of damage detection",
+          "constraint_category": "performance",
+          "affected_element": "notification latency"
+        },
+        "final_statement": "The notification latency shall be within 2 seconds of damage detection.",
+        "structuring_notes": [
+          "Extracted the quality criterion (time limit) as a separate artefact. The glossary definition confirms 'within 2 s' is a maximum elapsed time."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

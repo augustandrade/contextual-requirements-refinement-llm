@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'preferably' is a modal adverb indicating preference rather than obligation, creating ambiguity between a soft recommendation and a conditional action.",
+        "possible_interpretations": [
+          "The ECU is recommended to perform a reset, but it is not mandatory.",
+          "The ECU must perform a reset, but the system may allow exceptions under specific conditions."
+        ],
+        "textual_evidence": [
+          "preferably perform"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

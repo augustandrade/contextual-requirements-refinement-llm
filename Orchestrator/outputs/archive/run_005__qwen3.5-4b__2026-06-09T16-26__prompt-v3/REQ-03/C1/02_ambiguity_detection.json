@@ -1,0 +1,36 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'downstream systems' is lexically ambiguous because 'downstream' is a polysemous term that can refer to either a physical flow direction (e.g., data pipeline) or a logical hierarchy (e.g., parent/child relationship), and the text does not specify which meaning applies.",
+        "possible_interpretations": [
+          "System-B must be added to the physical or logical data flow that occurs after System-A.",
+          "System-B must be added to the set of systems that are logically subordinate to System-A in a hierarchy."
+        ],
+        "textual_evidence": [
+          "downstream systems"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'Reporting flow' is lexically ambiguous as it lacks a specific definition; it could refer to a specific named data stream, a generic category of reporting mechanisms, or a specific business process.",
+        "possible_interpretations": [
+          "System-C must subscribe to a specific, pre-defined data stream named 'Reporting flow'.",
+          "System-C must subscribe to any mechanism that generates reports or reporting data."
+        ],
+        "textual_evidence": [
+          "Reporting flow"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

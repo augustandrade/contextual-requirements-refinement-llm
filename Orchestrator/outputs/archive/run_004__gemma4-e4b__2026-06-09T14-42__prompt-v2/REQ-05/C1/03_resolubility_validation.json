@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The syntactic ambiguity regarding the attachment of 'with the access code' remains unresolved because the context only defines the term but does not specify the relationship between the code and the action or the card.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user uses the access code to perform the action of entering the access card (Code is the means/instrument).",
+          "The user enters an access card that is associated with or contains the access code (Code is a property of the card)."
+        ],
+        "evidence_from_requirement": [
+          "enters the access card with the access code"
+        ],
+        "evidence_from_context": [
+          "term: access code\n      definition: Secret code used for second-factor verification."
+        ],
+        "missing_information": [
+          "The context does not specify whether 'with the access code' modifies the verb 'enters' (instrument) or modifies 'access card' (property)."
+        ],
+        "justification": "The context defines 'access code' but provides no structural guidance to resolve the attachment ambiguity between the prepositional phrase and the verb or the noun.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity detected in AMB-01 is unresolved because the controlled context lacks the necessary structural or functional constraints to definitively link 'with the access code' to either the action or the object."
+    }
+  }
+}

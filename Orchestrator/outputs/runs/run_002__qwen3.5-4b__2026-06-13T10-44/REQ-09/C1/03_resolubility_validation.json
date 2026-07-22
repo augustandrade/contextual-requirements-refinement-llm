@@ -1,0 +1,40 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' remains vague; the controlled context provides no definition or constraints to resolve the ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with a weight between 3,500 kg and 4,500 kg.",
+          "Vehicles with a length between 4.5 m and 5.5 m.",
+          "Vehicles that are larger than light trucks but smaller than heavy-duty trucks."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states 'All medium-sized vehicles shall be equipped with a navigation system'."
+        ],
+        "evidence_from_context": [
+          "Domain: Fleet configuration management system.",
+          "Glossary defines 'medium-sized vehicle' as an 'Informal vehicle size category used by operations'."
+        ],
+        "missing_information": [
+          "Specific measurable thresholds (weight, length, or capacity) for the 'medium-sized' category.",
+          "Operational definitions or classification standards used within the fleet management system."
+        ],
+        "justification": "While the glossary identifies the term as 'informal', it does not provide the specific criteria (e.g., weight limits) required to distinguish 'medium-sized' from other categories. The requirement text contains no additional constraints to narrow the definition.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding vehicle classification cannot be resolved because the controlled context lacks specific definitions or constraints for the informal term 'medium-sized'."
+    }
+  }
+}

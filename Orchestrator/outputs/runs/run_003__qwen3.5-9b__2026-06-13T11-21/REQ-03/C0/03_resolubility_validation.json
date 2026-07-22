@@ -1,0 +1,53 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguities regarding phrase attachment and referential pronouns are present; no controlled context is available to resolve them.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A adds System-B to a specific collection of systems already defined as 'their downstream systems'."
+        ],
+        "evidence_from_requirement": [
+          "The prepositional phrase 'to their downstream systems' structurally allows attachment to either the verb 'add' or the object 'System-B'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Grammatical scope rules or explicit clarification on whether 'downstream systems' is a target category or a pre-existing set."
+        ],
+        "justification": "The requirement text alone does not provide evidence to distinguish between the two syntactic attachments. Without controlled context, the ambiguity cannot be resolved.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The possessive 'their' refers to System-B, implying System-B owns the downstream systems."
+        ],
+        "evidence_from_requirement": [
+          "The pronoun 'their' appears in the first clause but its antecedent could be 'System-A' or 'System-B'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit identification of the antecedent for the pronoun 'their'."
+        ],
+        "justification": "The requirement text contains two potential antecedents for 'their' (System-A and System-B) with no evidence to prefer one over the other. The ambiguity remains unresolved.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to lack of evidence in the requirement text and absence of controlled context; the case must bypass Agent 3."
+    }
+  }
+}

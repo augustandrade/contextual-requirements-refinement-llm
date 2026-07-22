@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05",
+    "context_condition": "C2",
+    "structuring_summary": "Syntactic ambiguity resolved by Agent 2 via business rule BR-01. The requirement is structured as a single functional requirement detailing the mandatory sequence of actions.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-05-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "The user inserts the card into the card reader",
+          "condition_type": "none",
+          "system_or_component": "the system",
+          "interaction_pattern": "user_interaction",
+          "actor": "user",
+          "modality": "shall",
+          "action": "enter",
+          "object": "the access code",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access code entry"
+        },
+        "final_statement": "The user shall first insert the card into the card reader, and subsequently enter the access code on the keypad.",
+        "structuring_notes": [
+          "The original ambiguous statement was decomposed based on the mandatory sequence defined in BR-01 and authorized by AMB-01. The structure reflects two sequential actions: 1. Card insertion, 2. Code entry."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume the system's response after successful entry, only the required sequence of user actions."
+    ],
+    "final_output_status": "structured"
+  }
+}

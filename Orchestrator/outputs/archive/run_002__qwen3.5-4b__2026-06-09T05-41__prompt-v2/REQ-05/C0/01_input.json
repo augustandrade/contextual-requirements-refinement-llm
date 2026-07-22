@@ -1,0 +1,7 @@
+{
+  "execution_id": "REQ-05-C0",
+  "requirement_id": "REQ-05",
+  "context_condition": "C0",
+  "base_requirement_text": "The user enters the access card with the access code.",
+  "controlled_context": {}
+}

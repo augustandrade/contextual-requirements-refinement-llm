@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "reason": "The term 'preferably' denotes a soft constraint, and without explicit context defining the required level of certainty (e.g., mandatory vs. advisory), the ambiguity remains unresolved.",
+        "missing_information": [
+          "The context lacks a business rule or constraint that defines the mandatory nature of the reset or the specific conditions under which the reset is optional."
+        ],
+        "unsupported_interpretations": [
+          "The system must perform a reset, but this is the best practice, not a hard requirement.",
+          "The system should only perform a reset if other conditions (not specified) are met, otherwise, it can proceed without one."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

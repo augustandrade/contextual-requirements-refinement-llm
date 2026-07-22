@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement is unambiguous and structurally sound. It describes a conditional action based on a time-persistence condition. The controlled context clarifies the decision metric for the water level measurement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the water level remains above 100 meters for more than 4 seconds",
+          "condition_type": "temporal",
+          "system_or_component": "the pump control system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "The pump control system shall shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "structuring_notes": [
+          "Decomposed the condition to include the temporal persistence ('more than 4 seconds') and the measurement threshold ('above 100 meters'). The controlled context (BR-01) confirms that the '4-second persistence' metric uses the absolute minimum reading, but this does not alter the functional requirement structure."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

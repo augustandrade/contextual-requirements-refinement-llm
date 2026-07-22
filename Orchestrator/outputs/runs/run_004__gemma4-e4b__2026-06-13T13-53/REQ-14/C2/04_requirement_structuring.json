@@ -1,0 +1,74 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-14-C2",
+    "requirement_id": "REQ-14",
+    "context_condition": "C2",
+    "structuring_summary": "Concern-mixing detected. Decomposed into one functional requirement (inform security service) and one quality requirement (2s deadline) based on the explicit constraint QLT-01.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-14-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The system shall inform the security service"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "detecting damage",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "security service"
+        },
+        "final_statement": "When damage is detected, the system shall inform the security service.",
+        "structuring_notes": [
+          "Extracted the core functional action. The trigger condition is 'detecting damage' (event)."
+        ]
+      },
+      {
+        "structured_id": "REQ-14-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "within 2 s after detecting damage"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "detecting damage",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "response time",
+          "measurable_criterion": "within 2 seconds",
+          "constraint_category": "performance",
+          "affected_element": "notification to security service"
+        },
+        "final_statement": "The system shall inform the security service within 2 seconds after detecting damage.",
+        "structuring_notes": [
+          "Extracted the timing constraint as a separate quality requirement, referencing the explicit business rule QLT-01."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not specify the exact mechanism of 'informing' (e.g., API call, message queue) as this was not detailed."
+    ],
+    "final_output_status": "structured"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The pronoun 'it' refers to either the card or the PIN; controlled context provides explicit rules distinguishing their invalidation behaviors.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The access card is invalid, causing immediate access denial.",
+        "unsupported_interpretations": [
+          "The PIN is invalid, causing immediate access denial."
+        ],
+        "evidence_from_requirement": [
+          "The pronoun 'it' follows the sequence of inserting the card and entering the PIN."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01: Invalid card causes immediate access denial at turnstile.",
+          "Business rule BR-02: Invalid PIN triggers retry request and does not immediately deny access."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context explicitly defines the consequence of an invalid card (immediate denial) versus an invalid PIN (retry), resolving the referential ambiguity by matching the 'deny access' action to the card invalidation rule.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides sufficient evidence to determine that 'it' refers to the access card, allowing the requirement to proceed to Agent 3."
+    }
+  }
+}

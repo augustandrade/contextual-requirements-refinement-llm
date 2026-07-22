@@ -1,0 +1,25 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+        "ambiguity_type": "syntactic",
+        "explanation": "The conjunction 'and' connects two distinct actions, but the scope of 'their' (referring to System-A) is unclear regarding which system is responsible for allowing the subscription. It is ambiguous whether System-A must perform both actions, or if the actions are independent requirements.",
+        "possible_interpretations": [
+          "System-A must perform two distinct actions: 1) add System-B to its downstream systems, AND 2) allow System-C to subscribe to the Reporting flow.",
+          "The requirement implies a sequence or dependency where the action of adding System-B somehow enables or relates to System-C's subscription, rather than two independent mandates."
+        ],
+        "textual_evidence": [
+          "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow."
+        ],
+        "context_evidence": [
+          "Partner registration and reporting subscription are independent operations and must be specified clearly in the final requirement structure."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

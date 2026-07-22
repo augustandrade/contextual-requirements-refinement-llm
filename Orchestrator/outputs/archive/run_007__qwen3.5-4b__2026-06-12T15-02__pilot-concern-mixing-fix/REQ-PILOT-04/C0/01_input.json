@@ -1,0 +1,7 @@
+{
+  "execution_id": "REQ-PILOT-04-C0",
+  "requirement_id": "REQ-PILOT-04",
+  "context_condition": "C0",
+  "base_requirement_text": "When the user selects the Save option, the system shall write the current document to disk and display a confirmation message.",
+  "controlled_context": {}
+}

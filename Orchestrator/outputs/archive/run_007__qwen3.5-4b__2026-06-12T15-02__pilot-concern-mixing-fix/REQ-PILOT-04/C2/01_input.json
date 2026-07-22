@@ -1,0 +1,30 @@
+{
+  "execution_id": "REQ-PILOT-04-C2",
+  "requirement_id": "REQ-PILOT-04",
+  "context_condition": "C2",
+  "base_requirement_text": "When the user selects the Save option, the system shall write the current document to disk and display a confirmation message.",
+  "controlled_context": {
+    "domain": "Desktop document editing application.",
+    "glossary": [
+      {
+        "term": "Save option",
+        "definition": "A user-initiated command that triggers the persistence of the current in-memory document state to persistent storage."
+      },
+      {
+        "term": "current document",
+        "definition": "The document instance currently active in the editor at the moment the save command is issued."
+      },
+      {
+        "term": "confirmation message",
+        "definition": "A non-modal status notification displayed in the status bar for three seconds after a successful save operation."
+      }
+    ],
+    "business_rules": [
+      {
+        "id": "BR-01",
+        "rule": "The write operation must complete successfully before the confirmation message is displayed. If the write fails, an error notification must be shown instead and no confirmation message is displayed."
+      }
+    ],
+    "constraints": []
+  }
+}

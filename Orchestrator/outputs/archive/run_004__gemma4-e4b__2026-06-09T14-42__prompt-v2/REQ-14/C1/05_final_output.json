@@ -1,0 +1,76 @@
+{
+  "execution_id": "REQ-14-C1",
+  "requirement_id": "REQ-14",
+  "context_condition": "C1",
+  "input_requirement": "R-Q-2: The system shall inform the security service within 2 s after detecting damage.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is structurally clear and does not exhibit linguistic ambiguity. The phrase 'within 2 s' is explicitly defined in the glossary, resolving any potential vagueness or ambiguity regarding timing. The structure is a pure functional requirement with a defined quality constraint, but it does not mix them in a way that constitutes concern-mixing ambiguity for this agent's purpose."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": false,
+    "validation_summary": "The requirement is structurally clear and the timing constraint is explicitly defined in the controlled context glossary.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "structural_issue": "none",
+      "explanation": "The requirement is linguistically clear and the timing constraint is resolved by the glossary definition, allowing direct progression."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "R-Q-2",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement, utilizing the glossary definition for the measurable criterion.",
+    "structured_requirements": [
+      {
+        "structured_id": "R-Q-2-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The system shall inform the security service within 2 s after detecting damage."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "detecting damage",
+          "condition_type": "event",
+          "system_or_component": "The system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "within 2 s after detecting damage",
+          "constraint_category": "",
+          "affected_element": "security service"
+        },
+        "final_statement": "The system shall inform the security service within 2 s after detecting damage.",
+        "structuring_notes": [
+          "The timing constraint 'within 2 s' is resolved by the glossary definition, making the requirement fully structured as a functional action with a measurable criterion."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

@@ -1,0 +1,40 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'between data-plane interfaces and management data traffic' has ambiguous attachment. It can modify 'filter network traffic' (filtering traffic that flows between these two distinct types of traffic) or it can modify the scope of the filtering action (filtering traffic on data-plane interfaces while excluding management data traffic).",
+        "possible_interpretations": [
+          "The switch filters packets that are traveling between data-plane interfaces and management data traffic (filtering the inter-traffic flow).",
+          "The switch filters traffic on data-plane interfaces and separately filters management data traffic (treating the two as distinct sets to be filtered, potentially implying exclusion of one from the other)."
+        ],
+        "textual_evidence": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'filter network traffic' is lexically ambiguous regarding the intent of the action. Without a specific glossary definition for 'filter' in this context, it could mean 'allow only specific traffic' (whitelist) or 'block specific traffic' (blacklist), or both.",
+        "possible_interpretations": [
+          "The switch allows only the specified traffic to pass (whitelisting).",
+          "The switch blocks the specified traffic (blacklisting)."
+        ],
+        "textual_evidence": [
+          "filter network traffic"
+        ],
+        "context_evidence": [
+          "filter network traffic: Inspect and drop packets based on protocol and destination port."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

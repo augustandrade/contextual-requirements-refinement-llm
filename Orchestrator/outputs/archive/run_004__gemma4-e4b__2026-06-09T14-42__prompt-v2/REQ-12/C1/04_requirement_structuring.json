@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C1",
+    "requirement_id": "REQ-12",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "The context defines the terms but does not provide a business rule or constraint to resolve whether the condition applies only to the presence of the Keyword, or if it must also govern the specific file type being uploaded.",
+        "missing_information": [
+          "The precise scope of the conditional trigger ('If an 'Instruction' contains a 'Keyword'') relative to the action ('The User must upload the 'excel file' to System-A')."
+        ],
+        "unsupported_interpretations": [
+          "The upload action is required if the 'Instruction' contains a 'Keyword'.",
+          "The upload action is required only if the 'Instruction' contains a 'Keyword' AND the 'excel file' is the subject of the upload."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

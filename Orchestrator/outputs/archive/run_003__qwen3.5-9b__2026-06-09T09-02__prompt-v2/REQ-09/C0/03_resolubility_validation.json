@@ -1,0 +1,56 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Ambiguities regarding vehicle size definition and navigation system hardware vs. software capability are unresolved due to lack of controlled context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "All medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5 meters and 5.5 meters (inclusive).",
+          "Vehicles with a length between 4.0 meters and 6.0 meters (inclusive)."
+        ],
+        "evidence_from_requirement": [
+          "The term 'medium-sized' is used without a specific metric or boundary."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A precise definition or measurable boundary for 'medium-sized' vehicles."
+        ],
+        "justification": "The requirement text lacks a definition for 'medium-sized', and the controlled context is empty, providing no evidence to select between the possible length ranges.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "equipped with a navigation system",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The vehicle must contain a dedicated hardware unit (e.g., a GPS receiver module) installed in the cabin.",
+          "The vehicle must have the capability to display navigation data, which could be provided by a software update to an existing infotainment unit rather than a distinct hardware component."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'navigation system' is used without specifying hardware or software implementation."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A controlled vocabulary or business rule defining whether 'navigation system' implies dedicated hardware or software capability."
+        ],
+        "justification": "The requirement text does not distinguish between hardware and software, and the controlled context is empty, providing no evidence to resolve the lexical ambiguity.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Both ambiguities are unresolved because the controlled context is empty and the requirement text does not contain sufficient evidence to disambiguate the terms."
+    }
+  }
+}

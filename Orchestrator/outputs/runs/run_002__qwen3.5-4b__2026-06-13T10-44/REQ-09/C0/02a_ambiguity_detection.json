@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' lacks a precise, measurable boundary for vehicle classification. Unlike controlled vocabulary terms (e.g., 'Class 2'), this adjective is inherently vague, as it does not specify the exact weight, length, or capacity thresholds that define the category.",
+        "possible_interpretations": [
+          "Vehicles with a weight between 3,500 kg and 4,500 kg.",
+          "Vehicles with a length between 4.5 m and 5.5 m.",
+          "Vehicles that are larger than light trucks but smaller than heavy-duty trucks."
+        ],
+        "textual_evidence": [
+          "medium-sized vehicles"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

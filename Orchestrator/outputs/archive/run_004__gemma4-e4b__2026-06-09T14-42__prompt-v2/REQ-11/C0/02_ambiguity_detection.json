@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "syntactic",
+        "explanation": "The scope of the filtering action is unclear. It is ambiguous whether the filtering applies to traffic originating from data-plane interfaces AND management data traffic, or if it filters traffic that is *between* these two sets of interfaces/traffic types.",
+        "possible_interpretations": [
+          "The system filters traffic that is physically located between the data-plane interfaces and the management data traffic stream.",
+          "The system filters traffic originating from the data-plane interfaces AND separately filters traffic originating from the management data traffic."
+        ],
+        "textual_evidence": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-14-C1",
+    "requirement_id": "REQ-14",
+    "context_condition": "C1",
+    "structuring_summary": "",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The system shall inform the security service"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "",
+          "condition_type": "none",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": ""
+        },
+        "final_statement": "The system shall inform the security service."
+      },
+      {
+        "structured_id": "REQ-XX-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "within 2 s after detecting damage"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after detecting damage",
+          "condition_type": "temporal",
+          "system_or_component": "",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "",
+          "action": "",
+          "object": "",
+          "quality_attribute": "response time",
+          "measurable_criterion": "2 s",
+          "constraint_category": "performance",
+          "affected_element": "notification to the security service"
+        },
+        "final_statement": "The notification to the security service shall be made within 2 s after detecting damage."
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "execution_id": "REQ-05-C0",
+  "requirement_id": "REQ-05",
+  "context_condition": "C0",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' can attach either to the verb 'enters' (indicating the method of entry) or to the noun phrase 'the access card' (indicating a property of the card), resulting in two distinct syntactic trees and meanings.",
+        "possible_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters an access card that possesses the access code (the card contains or is associated with the code)."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the attachment of the prepositional phrase remains unresolved as no controlled context is available to disambiguate.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters an access card that possesses the access code (the card contains or is associated with the code)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'with the access code' syntactically modifies either 'enters' or 'the access card'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Domain-specific rules or glossary entries defining whether 'with' indicates method of action or attribute of the object."
+        ],
+        "justification": "The requirement text alone does not distinguish between the method of entry and the property of the card. The controlled context is empty, providing no evidence to resolve the high-context-dependency ambiguity.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The syntactic ambiguity cannot be resolved without external context or clarification; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The requirement text alone does not distinguish between the method of entry and the property of the card. The controlled context is empty, providing no evidence to resolve the high-context-dependency ambiguity.",
+        "missing_information": [
+          "Domain-specific rules or glossary entries defining whether 'with' indicates method of action or attribute of the object."
+        ],
+        "unsupported_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters an access card that possesses the access code (the card contains or is associated with the code)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The requirement text alone does not distinguish between the method of entry and the property of the card. The controlled context is empty, providing no evidence to resolve the high-context-dependency ambiguity.",
+        "missing_information": [
+          "Domain-specific rules or glossary entries defining whether 'with' indicates method of action or attribute of the object."
+        ],
+        "unsupported_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters an access card that possesses the access code (the card contains or is associated with the code)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Domain-specific rules or glossary entries defining whether 'with' indicates method of action or attribute of the object."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

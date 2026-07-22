@@ -1,0 +1,39 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-PILOT-03-C1",
+    "requirement_id": "REQ-PILOT-03",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'eligible' lacks a defined set of criteria in the requirement text, and the controlled context provides no business rules or constraints to specify these criteria.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The employee meets specific criteria defined elsewhere.",
+          "The employee satisfies a generic or undefined notion of eligibility."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text contains the term 'eligible' without listing or referencing specific criteria."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'leave request' and 'automatic approval' but does not define 'eligible' or provide eligibility criteria.",
+          "The business_rules list is empty."
+        ],
+        "missing_information": [
+          "The specific conditions or criteria that determine employee eligibility for leave."
+        ],
+        "justification": "The controlled context (C1) provides domain and glossary definitions but lacks the specific business rules or constraints needed to define 'eligible'. The requirement text itself does not contain the criteria. Therefore, the interpretation cannot be resolved with sufficient evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity regarding the definition of 'eligible' is unresolved because the controlled context does not provide the necessary criteria to support a single interpretation. The case must bypass Agent 3."
+    }
+  }
+}

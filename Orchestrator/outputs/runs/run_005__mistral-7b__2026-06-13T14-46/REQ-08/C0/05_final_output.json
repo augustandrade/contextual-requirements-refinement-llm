@@ -1,0 +1,82 @@
+{
+  "execution_id": "REQ-08-C0",
+  "requirement_id": "REQ-08",
+  "context_condition": "C0",
+  "input_requirement": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: each term has a single plausible meaning, there are no competing antecedents, and the sentence admits only one parse tree."
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": true,
+    "functional_action": "shut off the pumps",
+    "quality_criterion": "for more than 4 seconds",
+    "explanation": "The requirement simultaneously specifies a functional action (shut off pumps) and a timing quality criterion (more than 4 seconds) that describes how long the system must execute the action."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-08-C0",
+    "requirement_id": "REQ-08",
+    "context_condition": "C0",
+    "has_ambiguity": false,
+    "validation_summary": "No linguistic ambiguity detected by Agent 1a. Resolubility validation bypassed.",
+    "ambiguity_resolubility": [],
+    "overall_resolubility": {
+      "status": "no_ambiguity",
+      "explanation": "Agent 1a reported has_ambiguity: false. Orchestrator synthetic block."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "has_concern_mixing": true,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C0",
+    "requirement_id": "REQ-08",
+    "context_condition": "C0",
+    "structuring_summary": "",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps if the water level remains above 100 meters"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the water level remains above 100 meters for more than 4 seconds",
+          "condition_type": "temporal",
+          "system_or_component": "the system",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "shall",
+          "action": "shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "structuring_notes": [
+          "Decomposed concern-mixed requirement into a single functional requirement per Pohl §25.2–25.3."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

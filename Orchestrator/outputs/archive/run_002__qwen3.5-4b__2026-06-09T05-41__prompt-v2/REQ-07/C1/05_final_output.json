@@ -1,0 +1,119 @@
+{
+  "execution_id": "REQ-07-C1",
+  "requirement_id": "REQ-07",
+  "context_condition": "C1",
+  "input_requirement": "When leaving the Factory mode, the ECU should preferably perform a reset.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'preferably' is a modal adverb indicating preference rather than obligation, creating ambiguity between a soft recommendation and a conditional action.",
+        "possible_interpretations": [
+          "The ECU is recommended to perform a reset, but it is not mandatory.",
+          "The ECU must perform a reset, but the system may allow exceptions under specific conditions."
+        ],
+        "textual_evidence": [
+          "preferably perform"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement uses 'preferably' to indicate a soft preference. The controlled context confirms the domain but lacks specific business rules defining the mandatory behavior or exception conditions.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU is recommended to perform a reset, but it is not mandatory.",
+          "The ECU must perform a reset, but the system may allow exceptions under specific conditions."
+        ],
+        "evidence_from_requirement": [
+          "The use of the modal adverb 'preferably' indicates a preference rather than an obligation."
+        ],
+        "evidence_from_context": [
+          "Domain: Automotive embedded system with Factory mode transitions."
+        ],
+        "missing_information": [
+          "Whether 'preferably' implies a mandatory action with allowed exceptions, or a purely soft recommendation without mandatory fallback."
+        ],
+        "justification": "While the domain is known, the controlled context contains no business rules or constraints that explicitly define the mandatory nature of the reset or the conditions under which it might be skipped. The ambiguity between a soft recommendation and a conditional obligation cannot be resolved without explicit evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The lexical ambiguity regarding the strength of the obligation ('preferably') cannot be resolved with the provided controlled context. The case must bypass Agent 3 and require human clarification."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "reason": "While the domain is known, the controlled context contains no business rules or constraints that explicitly define the mandatory nature of the reset or the conditions under which it might be skipped. The ambiguity between a soft recommendation and a conditional obligation cannot be resolved without explicit evidence.",
+        "missing_information": [
+          "Whether 'preferably' implies a mandatory action with allowed exceptions, or a purely soft recommendation without mandatory fallback."
+        ],
+        "unsupported_interpretations": [
+          "The ECU is recommended to perform a reset, but it is not mandatory.",
+          "The ECU must perform a reset, but the system may allow exceptions under specific conditions."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "reason": "While the domain is known, the controlled context contains no business rules or constraints that explicitly define the mandatory nature of the reset or the conditions under which it might be skipped. The ambiguity between a soft recommendation and a conditional obligation cannot be resolved without explicit evidence.",
+        "missing_information": [
+          "Whether 'preferably' implies a mandatory action with allowed exceptions, or a purely soft recommendation without mandatory fallback."
+        ],
+        "unsupported_interpretations": [
+          "The ECU is recommended to perform a reset, but it is not mandatory.",
+          "The ECU must perform a reset, but the system may allow exceptions under specific conditions."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether 'preferably' implies a mandatory action with allowed exceptions, or a purely soft recommendation without mandatory fallback."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

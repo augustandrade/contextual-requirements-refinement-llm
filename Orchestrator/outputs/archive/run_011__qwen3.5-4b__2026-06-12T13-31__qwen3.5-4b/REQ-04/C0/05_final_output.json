@@ -1,0 +1,125 @@
+{
+  "execution_id": "REQ-04-C0",
+  "requirement_id": "REQ-04",
+  "context_condition": "C0",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "has_concern_mixing": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'personal identification number (PIN)'. It is unclear whether the denial of access is triggered by an invalid card or an invalid PIN.",
+        "possible_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "textual_evidence": [
+          "inserts the access card",
+          "enters a personal identification number (PIN)",
+          "If it is invalid"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null,
+    "concern_mixing_analysis": {
+      "has_functional_action": true,
+      "has_quality_criterion": true,
+      "explanation": "The sentence combines a functional action ('denies the access') with a quality criterion ('invalid'), but the antecedent of the condition ('it') is ambiguous, making the specific trigger for the action unclear.",
+      "affected_fragment": "If it is invalid, the system shall deny the access"
+    }
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement contains a referential ambiguity regarding the pronoun 'it'. No controlled context is available to resolve the antecedent, and the requirement text itself does not provide sufficient evidence to distinguish between the card and the PIN.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence mentions both 'access card' and 'PIN' as potential antecedents for 'it'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Which specific entity (access card or PIN) triggers the access denial."
+        ],
+        "justification": "In C0, the controlled context is empty. The requirement text lists both the card and the PIN as preceding entities, providing no linguistic cue to prefer one over the other. Without external context, the antecedent remains ambiguous.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "concern_mixing",
+      "explanation": "The requirement is linguistically ambiguous (unresolved referential ambiguity) and structurally mixes a functional action with a quality criterion. Due to the unresolved ambiguity and lack of context, execution cannot proceed to Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "In C0, the controlled context is empty. The requirement text lists both the card and the PIN as preceding entities, providing no linguistic cue to prefer one over the other. Without external context, the antecedent remains ambiguous.",
+        "missing_information": [
+          "Which specific entity (access card or PIN) triggers the access denial."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "In C0, the controlled context is empty. The requirement text lists both the card and the PIN as preceding entities, providing no linguistic cue to prefer one over the other. Without external context, the antecedent remains ambiguous.",
+        "missing_information": [
+          "Which specific entity (access card or PIN) triggers the access denial."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Which specific entity (access card or PIN) triggers the access denial."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

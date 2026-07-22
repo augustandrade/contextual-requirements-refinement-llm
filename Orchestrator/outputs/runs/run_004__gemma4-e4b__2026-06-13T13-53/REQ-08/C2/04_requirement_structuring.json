@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C2",
+    "requirement_id": "REQ-08",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement based on the specified time-based condition and system action.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-08-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the water level remains above 100 meters for more than 4 seconds",
+          "condition_type": "temporal",
+          "system_or_component": "the system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "If the water level remains above 100 meters for more than 4 seconds, the system shall shut off the pumps.",
+        "structuring_notes": [
+          "The condition is temporal, requiring the level to persist above 100m for > 4s. The action is a direct system response (shut off pumps)."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not incorporate the business rule BR-01 regarding the 'absolute minimum reading' as the requirement text specifies a simple 'remains above 100 meters' check, which takes precedence for structuring the core requirement."
+    ],
+    "final_output_status": "structured"
+  }
+}

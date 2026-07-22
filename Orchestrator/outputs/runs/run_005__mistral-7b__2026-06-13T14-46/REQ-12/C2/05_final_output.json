@@ -1,0 +1,361 @@
+{
+  "execution_id": "REQ-12-C2",
+  "requirement_id": "REQ-12",
+  "context_condition": "C2",
+  "input_requirement": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-1",
+        "fragment": "If an 'Instruction'",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'an' has no explicit antecedent in the provided context. It is unclear what 'Instruction' refers to.",
+        "possible_interpretations": [
+          "An instruction from System-A",
+          "An instruction from another system or source"
+        ],
+        "textual_evidence": [
+          "If an 'Instruction'"
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-2",
+        "fragment": "contains a 'Keyword'",
+        "ambiguity_type": "referential",
+        "explanation": "The phrase 'contains a Keyword' is unclear about what 'Keyword' refers to. It could be a keyword from the excel file, or a specific keyword within the instruction.",
+        "possible_interpretations": [
+          "Contains a keyword specified in the instruction",
+          "Contains a keyword from the controlled vocabulary"
+        ],
+        "textual_evidence": [
+          "contains a 'Keyword'"
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-3",
+        "fragment": "The User must upload",
+        "ambiguity_type": "referential",
+        "explanation": "It is unclear who 'The User' refers to. It could be a specific user, or any user with access to the system.",
+        "possible_interpretations": [
+          "A specific user assigned to this task",
+          "Any user with access to System-A"
+        ],
+        "textual_evidence": [
+          "The User must upload"
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-4",
+        "fragment": "the 'excel file'",
+        "ambiguity_type": "referential",
+        "explanation": "It is unclear which excel file 'the excel file' refers to. It could be a specific excel file, or any excel file that meets certain criteria.",
+        "possible_interpretations": [
+          "A specific excel file provided by the user",
+          "Any excel file containing the required data"
+        ],
+        "textual_evidence": [
+          "the 'excel file'"
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-5",
+        "fragment": "to System-A",
+        "ambiguity_type": "referential",
+        "explanation": "It is unclear which system 'System-A' refers to. It could be a specific system, or any system that accepts the excel file.",
+        "possible_interpretations": [
+          "To the intended recipient System-A",
+          "To any system capable of processing the excel file"
+        ],
+        "textual_evidence": [
+          "to System-A"
+        ]
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-12-C2",
+    "requirement_id": "REQ-12",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Multiple referential ambiguities detected in the requirement text.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-1",
+        "fragment": "If an 'Instruction'",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "An instruction from System-A",
+          "An instruction from another system or source"
+        ],
+        "evidence_from_requirement": [
+          "If an 'Instruction'"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific instruction being referred to."
+        ],
+        "justification": "The requirement contains no contextual information about the instruction.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-2",
+        "fragment": "contains a 'Keyword'",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Contains a keyword specified in the instruction",
+          "Contains a keyword from the controlled vocabulary"
+        ],
+        "evidence_from_requirement": [
+          "contains a 'Keyword'"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific keyword being referred to."
+        ],
+        "justification": "The requirement does not provide context about the keyword."
+      },
+      {
+        "ambiguity_id": "AMB-3",
+        "fragment": "The User must upload",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A specific user assigned to this task",
+          "Any user with access to System-A"
+        ],
+        "evidence_from_requirement": [
+          "The User must upload"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific user being referred to."
+        ],
+        "justification": "The requirement does not provide context about the user."
+      },
+      {
+        "ambiguity_id": "AMB-4",
+        "fragment": "the 'excel file'",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A specific excel file provided by the user",
+          "Any excel file containing the required data"
+        ],
+        "evidence_from_requirement": [
+          "the 'excel file'"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific excel file being referred to."
+        ],
+        "justification": "The requirement does not provide context about the excel file."
+      },
+      {
+        "ambiguity_id": "AMB-5",
+        "fragment": "to System-A",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "To the intended recipient System-A",
+          "To any system capable of processing the excel file"
+        ],
+        "evidence_from_requirement": [
+          "to System-A"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific system being referred to."
+        ],
+        "justification": "The requirement does not provide context about the system."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C2",
+    "requirement_id": "REQ-12",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-1",
+        "fragment": "If an 'Instruction'",
+        "reason": "The requirement contains no contextual information about the instruction.",
+        "missing_information": [
+          "The specific instruction being referred to."
+        ],
+        "unsupported_interpretations": [
+          "An instruction from System-A",
+          "An instruction from another system or source"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-2",
+        "fragment": "contains a 'Keyword'",
+        "reason": "The requirement does not provide context about the keyword.",
+        "missing_information": [
+          "The specific keyword being referred to."
+        ],
+        "unsupported_interpretations": [
+          "Contains a keyword specified in the instruction",
+          "Contains a keyword from the controlled vocabulary"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-3",
+        "fragment": "The User must upload",
+        "reason": "The requirement does not provide context about the user.",
+        "missing_information": [
+          "The specific user being referred to."
+        ],
+        "unsupported_interpretations": [
+          "A specific user assigned to this task",
+          "Any user with access to System-A"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-4",
+        "fragment": "the 'excel file'",
+        "reason": "The requirement does not provide context about the excel file.",
+        "missing_information": [
+          "The specific excel file being referred to."
+        ],
+        "unsupported_interpretations": [
+          "A specific excel file provided by the user",
+          "Any excel file containing the required data"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-5",
+        "fragment": "to System-A",
+        "reason": "The requirement does not provide context about the system.",
+        "missing_information": [
+          "The specific system being referred to."
+        ],
+        "unsupported_interpretations": [
+          "To the intended recipient System-A",
+          "To any system capable of processing the excel file"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-1: insufficient evidence for safe structuring",
+      "AMB-2: insufficient evidence for safe structuring",
+      "AMB-3: insufficient evidence for safe structuring",
+      "AMB-4: insufficient evidence for safe structuring",
+      "AMB-5: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-1",
+        "fragment": "If an 'Instruction'",
+        "reason": "The requirement contains no contextual information about the instruction.",
+        "missing_information": [
+          "The specific instruction being referred to."
+        ],
+        "unsupported_interpretations": [
+          "An instruction from System-A",
+          "An instruction from another system or source"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-2",
+        "fragment": "contains a 'Keyword'",
+        "reason": "The requirement does not provide context about the keyword.",
+        "missing_information": [
+          "The specific keyword being referred to."
+        ],
+        "unsupported_interpretations": [
+          "Contains a keyword specified in the instruction",
+          "Contains a keyword from the controlled vocabulary"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-3",
+        "fragment": "The User must upload",
+        "reason": "The requirement does not provide context about the user.",
+        "missing_information": [
+          "The specific user being referred to."
+        ],
+        "unsupported_interpretations": [
+          "A specific user assigned to this task",
+          "Any user with access to System-A"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-4",
+        "fragment": "the 'excel file'",
+        "reason": "The requirement does not provide context about the excel file.",
+        "missing_information": [
+          "The specific excel file being referred to."
+        ],
+        "unsupported_interpretations": [
+          "A specific excel file provided by the user",
+          "Any excel file containing the required data"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-5",
+        "fragment": "to System-A",
+        "reason": "The requirement does not provide context about the system.",
+        "missing_information": [
+          "The specific system being referred to."
+        ],
+        "unsupported_interpretations": [
+          "To the intended recipient System-A",
+          "To any system capable of processing the excel file"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The specific instruction being referred to.",
+      "The specific keyword being referred to.",
+      "The specific user being referred to.",
+      "The specific excel file being referred to.",
+      "The specific system being referred to."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

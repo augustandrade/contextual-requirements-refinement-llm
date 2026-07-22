@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-XX-C2",
+    "requirement_id": "REQ-XX",
+    "context_condition": "C2",
+    "structuring_summary": "The requirement was fully resolvable. The structure is a single functional requirement triggered by a condition derived from the context's business rule.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The User must upload the 'excel file' to System-A."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "an 'Instruction' contains a 'Keyword'",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "user_interaction",
+          "actor": "The User",
+          "modality": "must",
+          "action": "upload",
+          "object": "the 'excel file'",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "System-A"
+        },
+        "final_statement": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "structuring_notes": [
+          "The trigger condition ('Instruction' contains 'Keyword') is derived from the supported interpretation of AMB-01, which aligns with Business Rule BR-01."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "The specific mechanism or component responsible for checking if the 'Instruction' contains a 'Keyword' was not detailed beyond the trigger condition."
+    ],
+    "final_output_status": "structured"
+  }
+}

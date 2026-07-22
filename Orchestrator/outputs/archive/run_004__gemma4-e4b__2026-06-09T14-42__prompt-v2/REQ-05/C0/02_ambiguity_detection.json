@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' can attach to either 'access card' or to the verb 'enters', leading to two distinct structural interpretations of the action.",
+        "possible_interpretations": [
+          "The user uses the access code to perform the action of entering the access card (Code is the means).",
+          "The user enters an access card that is associated with or contains the access code (Code is a property of the card)."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

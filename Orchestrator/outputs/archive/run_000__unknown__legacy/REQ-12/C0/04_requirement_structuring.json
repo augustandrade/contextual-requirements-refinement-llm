@@ -1,0 +1,32 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "The controlled context is empty (C0), providing no evidence to distinguish between necessary, sufficient, or partial conditions. The requirement text alone does not specify the logical operator.",
+        "missing_information": [
+          "Whether the presence of a keyword is a necessary, sufficient, or partial condition for the upload action."
+        ],
+        "unsupported_interpretations": [
+          "Keyword presence is a necessary condition.",
+          "Keyword presence is a sufficient condition.",
+          "Keyword presence is a partial condition."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

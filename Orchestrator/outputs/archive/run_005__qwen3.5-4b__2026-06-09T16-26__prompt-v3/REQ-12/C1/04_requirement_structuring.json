@@ -1,0 +1,59 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C1",
+    "requirement_id": "REQ-12",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The context provides no definition for 'excel file', leaving the specific format requirement ambiguous.",
+        "missing_information": [
+          "Definition of 'excel file' in the controlled vocabulary or business rules."
+        ],
+        "unsupported_interpretations": [
+          "The file must be in the specific Microsoft Excel binary or XML format.",
+          "The file must be any spreadsheet format (e.g., CSV, ODS) that can be opened by an Excel-compatible application."
+        ],
+        "allowed_structuring_action": "request_missing_information"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "reason": "Without a defined list of trigger keywords, it is impossible to determine if the condition applies to any keyword or only specific ones.",
+        "missing_information": [
+          "List of specific 'Keywords' that trigger the upload action."
+        ],
+        "unsupported_interpretations": [
+          "For every instance where an 'Instruction' contains a 'Keyword', the user is triggered to upload an 'excel file'.",
+          "The user must upload an 'excel file' only if the 'Instruction' contains a specific, critical 'Keyword' (e.g., 'URGENT')."
+        ],
+        "allowed_structuring_action": "request_missing_information"
+      },
+      {
+        "ambiguity_id": "AMB-05",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The isolated sentence lacks a unique antecedent for 'the excel file', and no business rule defines file selection criteria.",
+        "missing_information": [
+          "Prior context establishing a unique file or a rule for file selection."
+        ],
+        "unsupported_interpretations": [
+          "The user must upload a specific, unique excel file associated with the current context.",
+          "The user must upload any excel file relevant to the instruction."
+        ],
+        "allowed_structuring_action": "request_missing_information"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring",
+      "AMB-05: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the attachment of the duration phrase exists; no context evidence to resolve.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The water level remains above 100 meters continuously for a duration exceeding 4 seconds.",
+          "The action of shutting off the pumps must be sustained for a duration exceeding 4 seconds."
+        ],
+        "evidence_from_requirement": [
+          "remains above 100 meters for more than 4 seconds"
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the duration applies to the state of the water level or the duration of the pump shutdown action."
+        ],
+        "justification": "The controlled context is empty, providing no evidence to distinguish between the two syntactic interpretations.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "At least one ambiguity is unresolved due to lack of context evidence; the case must bypass Agent 3."
+    }
+  }
+}

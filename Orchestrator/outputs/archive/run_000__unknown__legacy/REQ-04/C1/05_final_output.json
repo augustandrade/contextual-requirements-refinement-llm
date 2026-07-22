@@ -1,0 +1,122 @@
+{
+  "execution_id": "REQ-04-C1",
+  "requirement_id": "REQ-04",
+  "context_condition": "C1",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'personal identification number (PIN)'. It is unclear which entity must be invalid to trigger access denial.",
+        "possible_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "textual_evidence": [
+          "The customer inserts the access card into the card reader",
+          "enters a personal identification number (PIN) at the keypad",
+          "If it is invalid"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The pronoun 'it' refers to either the access card or the PIN; the controlled context provides no evidence to resolve this referential ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure presents two potential antecedents: 'access card' and 'PIN'.",
+          "The pronoun 'it' appears without a clear modifier or context to distinguish between the two."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "Which specific entity (access card or PIN) triggers the access denial condition."
+        ],
+        "justification": "Although the domain is a physical access control system, the provided business_rules and constraints are empty. The glossary defines 'PIN' but does not specify the validation logic or failure conditions. Without explicit rules stating that an invalid PIN denies access (or an invalid card does), the ambiguity cannot be resolved based on the provided context.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The referential ambiguity regarding the pronoun 'it' cannot be resolved because the controlled context lacks the necessary business rules or constraints to distinguish between the two possible antecedents."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "Although the domain is a physical access control system, the provided business_rules and constraints are empty. The glossary defines 'PIN' but does not specify the validation logic or failure conditions. Without explicit rules stating that an invalid PIN denies access (or an invalid card does), the ambiguity cannot be resolved based on the provided context.",
+        "missing_information": [
+          "Which specific entity (access card or PIN) triggers the access denial condition."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "Although the domain is a physical access control system, the provided business_rules and constraints are empty. The glossary defines 'PIN' but does not specify the validation logic or failure conditions. Without explicit rules stating that an invalid PIN denies access (or an invalid card does), the ambiguity cannot be resolved based on the provided context.",
+        "missing_information": [
+          "Which specific entity (access card or PIN) triggers the access denial condition."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The PIN is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Which specific entity (access card or PIN) triggers the access denial condition."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,76 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01",
+    "context_condition": "C2",
+    "structuring_summary": "The syntactic ambiguity regarding the method of entry is resolved by the business rule specifying a sequential process. The requirement is decomposed into two distinct functional requirements: one for card insertion and one for code entry.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "The user initiates the access process",
+          "condition_type": "event",
+          "system_or_component": "Access control system",
+          "interaction_pattern": "user_interaction",
+          "actor": "User",
+          "modality": "shall",
+          "action": "insert",
+          "object": "access card",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "card reader"
+        },
+        "final_statement": "The user shall insert the access card into the card reader.",
+        "structuring_notes": [
+          "Decomposed from the original text based on the supported interpretation that 'enters the access card' is a distinct action from entering the code."
+        ]
+      },
+      {
+        "structured_id": "REQ-01-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "the user also separately enters the access code"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "After the access card has been inserted",
+          "condition_type": "temporal",
+          "system_or_component": "Access control system",
+          "interaction_pattern": "user_interaction",
+          "actor": "User",
+          "modality": "shall",
+          "action": "enter",
+          "object": "access code",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "keypad"
+        },
+        "final_statement": "The user shall enter the access code on the keypad.",
+        "structuring_notes": [
+          "Decomposed from the original text based on the supported interpretation that 'enters the access code' is a distinct action."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

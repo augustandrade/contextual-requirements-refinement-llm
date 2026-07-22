@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "```json\n{\n  \"is_ambiguous\": false,\n  \"ambiguity_type\": null,\n  \"explanation\": \"The sentence is grammatically clear and does not present inherent ambiguity regarding the sequence of events or the scope of the action. 'Within 2 s' clearly modifies the time frame for the action 'inform'.\",\n  \"is_ambiguous\": false\n}\n```"
+}

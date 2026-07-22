@@ -1,0 +1,46 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "reason": "While the glossary defines 'downstream systems' as systems receiving events, the requirement text does not explicitly link System-B to this specific definition, nor does it rule out other interpretations of 'downstream' (e.g., logical hierarchy). The evidence is suggestive but requires inference to confirm the intended meaning without external assumptions.",
+        "missing_information": [
+          "Whether 'downstream' refers strictly to the event-receiving relationship defined in the glossary or implies a broader hierarchy/flow concept not explicitly restricted by the text."
+        ],
+        "unsupported_interpretations": [
+          "Physical or logical data flow direction.",
+          "Logical hierarchy (parent/child relationship)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "reason": "The controlled context mentions 'reporting subscriptions' but fails to define the specific entity 'Reporting flow'. Without an explicit definition in the context, the ambiguity cannot be resolved safely.",
+        "missing_information": [
+          "The specific definition or scope of 'Reporting flow' is absent from both the requirement text and the controlled context."
+        ],
+        "unsupported_interpretations": [
+          "A specific named data stream.",
+          "A generic category of reporting mechanisms.",
+          "A specific business process."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

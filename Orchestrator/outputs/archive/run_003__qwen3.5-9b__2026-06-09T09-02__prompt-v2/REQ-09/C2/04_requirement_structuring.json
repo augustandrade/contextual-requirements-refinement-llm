@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-001-C1",
+    "requirement_id": "REQ-001",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement preserving the original meaning. The glossary definition for 'medium-sized vehicle' is preserved in the condition.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-001-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "All medium-sized vehicles shall be equipped with a navigation system."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "vehicle is a medium-sized vehicle",
+          "condition_type": "logical",
+          "system_or_component": "the vehicle",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "be equipped with",
+          "object": "a navigation system",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "medium-sized vehicle"
+        },
+        "final_statement": "All medium-sized vehicles shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "Requirement is clear and atomic. No decomposition needed."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

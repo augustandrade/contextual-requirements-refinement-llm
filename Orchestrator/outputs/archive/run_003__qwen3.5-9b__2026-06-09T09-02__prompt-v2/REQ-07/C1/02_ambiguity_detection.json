@@ -1,0 +1,37 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'should preferably' creates a semantic ambiguity regarding the logical binding of the preference modifier. It is unclear whether the preference applies to the entire action of resetting upon leaving Factory mode, or if the preference is conditional (i.e., reset only if preferred, otherwise do nothing), versus a mandatory action with a soft preference.",
+        "possible_interpretations": [
+          "The system MUST perform a reset when leaving Factory mode; the word 'preferably' is redundant or indicates a soft constraint that does not override the mandatory nature of the action.",
+          "The system SHOULD perform a reset only if it is preferred (e.g., based on a flag or condition); if not preferred, the system must NOT reset when leaving Factory mode."
+        ],
+        "textual_evidence": [
+          "should preferably perform a reset"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "When leaving the Factory mode",
+        "ambiguity_type": "semantic",
+        "explanation": "The temporal scope of 'When leaving' is ambiguous. It could refer to the exact instant the transition begins, the exact instant the transition completes, or any point during the transition process.",
+        "possible_interpretations": [
+          "The reset must occur immediately upon the initiation of the transition out of Factory mode.",
+          "The reset must occur only after the system has fully exited Factory mode and entered the next operational state."
+        ],
+        "textual_evidence": [
+          "When leaving the Factory mode"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ]
+  }
+}

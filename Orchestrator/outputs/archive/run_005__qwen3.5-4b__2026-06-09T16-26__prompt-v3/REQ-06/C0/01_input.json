@@ -1,0 +1,7 @@
+{
+  "execution_id": "REQ-06-C0",
+  "requirement_id": "REQ-06",
+  "context_condition": "C0",
+  "base_requirement_text": "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.",
+  "controlled_context": {}
+}

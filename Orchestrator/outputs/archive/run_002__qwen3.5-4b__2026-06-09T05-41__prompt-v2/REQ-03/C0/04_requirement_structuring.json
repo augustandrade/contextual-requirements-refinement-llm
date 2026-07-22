@@ -1,0 +1,72 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-001-C0",
+    "requirement_id": "REQ-001",
+    "context_condition": "C0",
+    "structuring_summary": "The requirement is unambiguous and structurally sound. It describes a system action (adding a system) and a permission grant (allowing subscription). Decomposed into two functional requirements to separate the 'add' action from the 'allow' action for clarity.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-001-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "N/A",
+          "condition_type": "none",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "must",
+          "action": "add",
+          "object": "System-B to their downstream systems",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "downstream systems"
+        },
+        "final_statement": "System-A must add System-B to their downstream systems.",
+        "structuring_notes": [
+          "Extracted the primary action of adding System-B."
+        ]
+      },
+      {
+        "structured_id": "REQ-001-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "and allow System-C to subscribe to the Reporting flow"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "N/A",
+          "condition_type": "none",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "must",
+          "action": "allow",
+          "object": "System-C to subscribe to the Reporting flow",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "Reporting flow"
+        },
+        "final_statement": "System-A must allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "Extracted the secondary action of allowing subscription."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

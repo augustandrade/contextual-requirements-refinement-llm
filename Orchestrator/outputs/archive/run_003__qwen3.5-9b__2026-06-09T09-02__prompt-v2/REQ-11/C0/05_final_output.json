@@ -1,0 +1,180 @@
+{
+  "execution_id": "REQ-11-C0",
+  "requirement_id": "REQ-11",
+  "context_condition": "C0",
+  "input_requirement": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'between data-plane interfaces and management data traffic' has ambiguous attachment. It can modify 'filter' (defining the scope of the filtering action) or modify 'switches' (defining the relationship between the two types of traffic), leading to different interpretations of the system's function.",
+        "possible_interpretations": [
+          "The routing switch filters traffic that flows between data-plane interfaces and management data traffic (the filter applies to the traffic moving between these two domains).",
+          "The routing switch has the ability to filter traffic, and this ability exists between data-plane interfaces and management data traffic (the filter is applied to traffic originating from or destined to these specific interfaces)."
+        ],
+        "textual_evidence": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'switches' is used without a controlled vocabulary definition. It could refer to the hardware devices (network switches) or the action of switching (routing/forwarding), though context suggests hardware, the lack of explicit definition creates potential lexical ambiguity regarding the noun's specific domain meaning.",
+        "possible_interpretations": [
+          "The hardware devices (network switches) possess the ability to filter...",
+          "The action of switching (routing) possesses the ability to filter..."
+        ],
+        "textual_evidence": [
+          "Routing switches ability"
+        ],
+        "context_evidence": [],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": null,
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic attachment and lexical ambiguity detected; controlled context is empty, preventing resolution.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The routing switch filters traffic that flows between data-plane interfaces and management data traffic.",
+          "The routing switch has the ability to filter traffic, and this ability exists between data-plane interfaces and management data traffic."
+        ],
+        "evidence_from_requirement": [
+          "The prepositional phrase 'between data-plane interfaces and management data traffic' syntactically attaches to either 'filter' or 'switches'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit definition of the scope of the filtering action relative to the interfaces."
+        ],
+        "justification": "The requirement text alone does not disambiguate the attachment of the prepositional phrase, and no controlled context is available to resolve the high dependency.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The hardware devices (network switches) possess the ability to filter...",
+          "The action of switching (routing) possesses the ability to filter..."
+        ],
+        "evidence_from_requirement": [
+          "The term 'switches' is used without a controlled vocabulary definition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Controlled vocabulary or glossary defining 'switches' as hardware devices."
+        ],
+        "justification": "The term 'switches' lacks a specific domain definition in the provided text, and the empty controlled context cannot confirm the hardware interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Ambiguities remain unresolved due to lack of controlled context evidence required to disambiguate syntactic attachment and lexical terms."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "reason": "The requirement text alone does not disambiguate the attachment of the prepositional phrase, and no controlled context is available to resolve the high dependency.",
+        "missing_information": [
+          "Explicit definition of the scope of the filtering action relative to the interfaces."
+        ],
+        "unsupported_interpretations": [
+          "The routing switch filters traffic that flows between data-plane interfaces and management data traffic.",
+          "The routing switch has the ability to filter traffic, and this ability exists between data-plane interfaces and management data traffic."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic",
+        "reason": "The term 'switches' lacks a specific domain definition in the provided text, and the empty controlled context cannot confirm the hardware interpretation.",
+        "missing_information": [
+          "Controlled vocabulary or glossary defining 'switches' as hardware devices."
+        ],
+        "unsupported_interpretations": [
+          "The hardware devices (network switches) possess the ability to filter...",
+          "The action of switching (routing) possesses the ability to filter..."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "reason": "The requirement text alone does not disambiguate the attachment of the prepositional phrase, and no controlled context is available to resolve the high dependency.",
+        "missing_information": [
+          "Explicit definition of the scope of the filtering action relative to the interfaces."
+        ],
+        "unsupported_interpretations": [
+          "The routing switch filters traffic that flows between data-plane interfaces and management data traffic.",
+          "The routing switch has the ability to filter traffic, and this ability exists between data-plane interfaces and management data traffic."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic",
+        "reason": "The term 'switches' lacks a specific domain definition in the provided text, and the empty controlled context cannot confirm the hardware interpretation.",
+        "missing_information": [
+          "Controlled vocabulary or glossary defining 'switches' as hardware devices."
+        ],
+        "unsupported_interpretations": [
+          "The hardware devices (network switches) possess the ability to filter...",
+          "The action of switching (routing) possesses the ability to filter..."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Explicit definition of the scope of the filtering action relative to the interfaces.",
+      "Controlled vocabulary or glossary defining 'switches' as hardware devices."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

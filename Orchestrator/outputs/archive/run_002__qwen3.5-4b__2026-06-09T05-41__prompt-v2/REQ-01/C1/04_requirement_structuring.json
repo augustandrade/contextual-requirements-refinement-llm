@@ -1,0 +1,72 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "structuring_summary": "The requirement mixes a functional action (inform security service) with a quality criterion (within 2 seconds). Per Pohl §25.2, it is decomposed into a functional requirement and a quality requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-01-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "the system shall inform the security service"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "the glass break detector detects the pane has been damaged",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "the security service",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "security service notification"
+        },
+        "final_statement": "If the glass break detector detects the pane has been damaged, the system shall inform the security service.",
+        "structuring_notes": [
+          "Extracted functional action from concern-mixed requirement. Timing constraint moved to separate quality requirement."
+        ]
+      },
+      {
+        "structured_id": "REQ-01-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "within 2 seconds at the latest"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after detection of pane damage",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "response time",
+          "measurable_criterion": "within 2 seconds at the latest",
+          "constraint_category": "performance",
+          "affected_element": "security service notification delivery"
+        },
+        "final_statement": "The security service notification shall be delivered within 2 seconds at the latest after detection of pane damage.",
+        "structuring_notes": [
+          "Extracted quality criterion (timing) as a separate artefact per Pohl §25.2."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

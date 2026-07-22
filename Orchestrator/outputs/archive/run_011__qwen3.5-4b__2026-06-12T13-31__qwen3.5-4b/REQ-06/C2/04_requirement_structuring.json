@@ -1,0 +1,75 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-06-C2",
+    "requirement_id": "REQ-06",
+    "context_condition": "C2",
+    "structuring_summary": "Syntactic ambiguity resolved by business rule BR-01. Concern-mixing detected (functional action mixed with safety quality criterion). Decomposed into one functional requirement (triggering the alarm) and one quality requirement (alarm activation upon specific events).",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-06-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "a window of the car is damaged AND (the interior surveillance of the car detects an intruder OR a door of the car is opened without a car key)",
+          "condition_type": "logical",
+          "system_or_component": "the safety system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "raise",
+          "object": "an alarm",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "alarm"
+        },
+        "final_statement": "If a window of the car is damaged and (the interior surveillance of the car detects an intruder OR a door of the car is opened without a car key), the safety system shall raise an alarm.",
+        "structuring_notes": [
+          "Resolved syntactic ambiguity using BR-01: Window damage is the primary precondition; intruder detection and unauthorized door opening are alternative triggers.",
+          "Decomposed functional action 'raise an alarm' from quality criterion 'alarm activation' per Pohl §25.2 due to concern_mixing flag."
+        ]
+      },
+      {
+        "structured_id": "REQ-06-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "the safety system shall raise an alarm"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "upon confirmation of window damage AND (intruder detection OR unauthorized door opening)",
+          "condition_type": "event",
+          "system_or_component": "the safety system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "alarm activation",
+          "measurable_criterion": "activation upon intruder detection or unauthorized door opening",
+          "constraint_category": "safety",
+          "affected_element": "alarm activation"
+        },
+        "final_statement": "The safety system shall activate the alarm upon confirmation of window damage and either intruder detection or unauthorized door opening.",
+        "structuring_notes": [
+          "Extracted quality criterion (alarm activation) as a separate artefact per Pohl §25.2."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

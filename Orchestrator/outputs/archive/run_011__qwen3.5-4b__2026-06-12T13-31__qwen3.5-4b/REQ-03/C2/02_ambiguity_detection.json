@@ -1,0 +1,13 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "has_concern_mixing": true,
+    "ambiguities": null,
+    "no_ambiguity_reason": "The sentence is syntactically and semantically clear. 'System-A' is the subject, 'System-B' and 'System-C' are distinct objects. The phrase 'downstream systems' is a standard technical term, not a vague descriptor. There are no competing antecedents for pronouns or modifiers.",
+    "concern_mixing_analysis": {
+      "functional_action": "add System-B to their downstream systems",
+      "quality_criterion": "allow System-C to subscribe to the Reporting flow",
+      "explanation": "The sentence contains two distinct functional actions ('add...' and 'allow...') without a clear quality/timing criterion (e.g., 'within X seconds', 'with high reliability') attached to either action. However, per the operational note, this requirement is flagged for structural decomposition because it combines multiple independent actions in a single sentence, which may lead to confusion regarding priority or execution order."
+    }
+  }
+}

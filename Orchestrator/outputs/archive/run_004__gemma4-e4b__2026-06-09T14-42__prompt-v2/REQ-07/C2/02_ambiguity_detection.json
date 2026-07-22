@@ -1,0 +1,25 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'preferably' introduces a fuzzy constraint on the action. It suggests a preference rather than a mandatory or guaranteed outcome, making the required behavior indeterminate.",
+        "possible_interpretations": [
+          "The system should attempt to perform a reset, but failure to do so is acceptable.",
+          "The system should perform a reset only if it is deemed preferable by some unstated metric."
+        ],
+        "textual_evidence": [
+          "should preferably perform a reset"
+        ],
+        "context_evidence": [
+          "ECU reset is mandatory when leaving Factory mode for critical control modules."
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

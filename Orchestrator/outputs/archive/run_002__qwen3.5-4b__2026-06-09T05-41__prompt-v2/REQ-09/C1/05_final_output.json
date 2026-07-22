@@ -1,0 +1,121 @@
+{
+  "execution_id": "REQ-09-C1",
+  "requirement_id": "REQ-09",
+  "context_condition": "C1",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'medium-sized' is a relative descriptor lacking an absolute boundary; it is ambiguous whether a vehicle of a specific size falls into this category or not.",
+        "possible_interpretations": [
+          "Vehicles with a mass or volume strictly between the smallest and largest vehicle categories defined by the fleet.",
+          "Vehicles that are larger than the smallest category but smaller than the largest category, regardless of specific measurements."
+        ],
+        "textual_evidence": [
+          "medium-sized vehicles"
+        ],
+        "context_evidence": [
+          "term: medium-sized vehicle\n    definition: Informal vehicle size category used by operations."
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' is defined as informal, lacking absolute boundaries, and the requirement text provides no specific criteria to resolve the ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with mass/volume strictly between smallest and largest categories.",
+          "Vehicles larger than smallest but smaller than largest, regardless of measurements."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states 'All medium-sized vehicles shall be equipped with a navigation system' without defining the boundary for 'medium-sized'."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'medium-sized vehicle' as an 'Informal vehicle size category used by operations'."
+        ],
+        "missing_information": [
+          "The specific mass or volume thresholds that define the 'medium-sized' category."
+        ],
+        "justification": "The glossary explicitly characterizes the term as 'informal' and lacking an absolute boundary. No specific numerical or categorical limits are provided in the requirement text or business rules to determine which vehicles qualify.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The ambiguity regarding the definition of 'medium-sized' cannot be resolved because the glossary labels it as informal and provides no concrete criteria, and the requirement text offers no additional disambiguating information."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The glossary explicitly characterizes the term as 'informal' and lacking an absolute boundary. No specific numerical or categorical limits are provided in the requirement text or business rules to determine which vehicles qualify.",
+        "missing_information": [
+          "The specific mass or volume thresholds that define the 'medium-sized' category."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with mass/volume strictly between smallest and largest categories.",
+          "Vehicles larger than smallest but smaller than largest, regardless of measurements."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The glossary explicitly characterizes the term as 'informal' and lacking an absolute boundary. No specific numerical or categorical limits are provided in the requirement text or business rules to determine which vehicles qualify.",
+        "missing_information": [
+          "The specific mass or volume thresholds that define the 'medium-sized' category."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with mass/volume strictly between smallest and largest categories.",
+          "Vehicles larger than smallest but smaller than largest, regardless of measurements."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The specific mass or volume thresholds that define the 'medium-sized' category."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

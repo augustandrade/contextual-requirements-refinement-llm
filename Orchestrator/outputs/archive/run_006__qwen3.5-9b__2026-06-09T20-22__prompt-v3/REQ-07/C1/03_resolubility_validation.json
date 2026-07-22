@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Requirement contains vagueness regarding the modality of the reset action. Context provides no business rules or constraints to resolve the preference level.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU MUST perform a reset when leaving Factory mode.",
+          "The ECU SHOULD perform a reset when leaving Factory mode (but may skip it).",
+          "The ECU MAY perform a reset when leaving Factory mode (optional behavior)."
+        ],
+        "evidence_from_requirement": [
+          "The adverb 'preferably' introduces a fuzzy preference rather than a determinate requirement."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Business rule defining the mandatory nature of the reset.",
+          "Constraint specifying the consequence of skipping the reset."
+        ],
+        "justification": "Context lacks business rules or constraints to define the modality of the action.",
+        "allowed_structuring_action": "request_missing_information"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Vagueness regarding action modality cannot be resolved by the provided context. Execution must be routed away from Agent 3."
+    }
+  }
+}

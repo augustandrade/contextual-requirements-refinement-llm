@@ -1,0 +1,8 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "ambiguities": [],
+    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
+  },
+  "model_raw": "```json\n{\n  \"is_ambiguous\": false,\n  \"ambiguity_type\": null,\n  \"explanation\": \"The sentence structure is clear. The condition for shutting off the pumps is explicitly stated: if the water level remains above 100 meters for a duration exceeding the specified time limit. There is no ambiguity regarding the trigger or the action.\",\n  \"suggested_revision\": null\n}\n```"
+}

@@ -38,20 +38,27 @@ contexts:
 tags: [structural, concern-separation, function-quality]
 status: ready
 manual_reference:
+  # NOTE (corpus revision): concern_mixing is NOT classified as linguistic ambiguity per
+  # Pohl §25.2 and the adopted pipeline standard. Agent 1 must return has_ambiguity: false
+  # with concern_mixing noted in no_ambiguity_reason. Agent 3 performs decomposition.
+  # expected_resolubility is set to not_applicable (no ambiguity to resolve);
+  # identify_ambiguity and classify_ambiguity removed from expected_actions accordingly.
+
   C0:
-    expected_resolubility: "resolvable"
+    expected_resolubility: "not_applicable"
     expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
+      - detect_concern_mixing
       - decompose_requirement
       - separate_concerns
       - preserve_requirement
     expected_findings:
-      - functional and quality concerns are mixed in one statement
-      - non-atomic requirement
+      - concern_mixing flagged in no_ambiguity_reason (functional action + quality criterion in same sentence)
+      - structural_issue set to concern_mixing by Agent 2
+      - Agent 3 decomposes into at least one functional requirement and one quality requirement
     should_not_do:
-      - merge functional and quality requirements
-      - degrade a well-structured requirement
+      - flag concern_mixing as a linguistic ambiguity (has_ambiguity must be false)
+      - merge functional and quality requirements in final output
+      - invent quality criteria not present in the text
     applicable_criteria:
       - atomicity
       - concern_separation
@@ -60,18 +67,20 @@ manual_reference:
       - clarity
 
   C1:
-    expected_resolubility: "resolvable"
+    expected_resolubility: "not_applicable"
     expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
+      - detect_concern_mixing
       - decompose_requirement
       - separate_concerns
       - structure_with_template
     expected_findings:
-      - functional and quality concerns are mixed in one statement
-      - non-atomic requirement
+      - concern_mixing flagged in no_ambiguity_reason (functional action + quality criterion in same sentence)
+      - structural_issue set to concern_mixing by Agent 2
+      - Agent 3 decomposes into at least one functional requirement and one quality requirement
+      - glossary term used to clarify glass break detector role
     should_not_do:
-      - merge functional and quality requirements
+      - flag concern_mixing as a linguistic ambiguity (has_ambiguity must be false)
+      - merge functional and quality requirements in final output
       - infer additional behavior not supported by the text
     applicable_criteria:
       - atomicity
@@ -81,19 +90,21 @@ manual_reference:
       - clarity
 
   C2:
-    expected_resolubility: "resolvable"
+    expected_resolubility: "not_applicable"
     expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
+      - detect_concern_mixing
       - decompose_requirement
       - separate_concerns
       - refine_text
     expected_findings:
-      - functional and quality concerns are mixed in one statement
-      - non-atomic requirement
+      - concern_mixing flagged in no_ambiguity_reason (functional action + quality criterion in same sentence)
+      - structural_issue set to concern_mixing by Agent 2
+      - Agent 3 decomposes; quality requirement uses constraint QLT-01 (within 2 seconds)
     should_not_do:
-      - merge functional and quality requirements
-      - ignore the explicit timing constraint
+      - flag concern_mixing as a linguistic ambiguity (has_ambiguity must be false)
+      - merge functional and quality requirements in final output
+      - ignore the explicit timing constraint from QLT-01
+      - infer extra constraints beyond the stated 2-second deadline
     applicable_criteria:
       - atomicity
       - concern_separation

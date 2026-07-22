@@ -1,0 +1,14 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "has_concern_mixing": true,
+    "ambiguities": null,
+    "no_ambiguity_reason": "No syntactic, semantic, referential, lexical, or vagueness ambiguities detected. The sentence structure is clear, and controlled vocabulary terms ('Instruction', 'Keyword', 'excel file', 'System-A') are typographically demarcated.",
+    "concern_mixing_analysis": {
+      "functional_action": "The User must upload the 'excel file' to System-A.",
+      "quality_criterion": "If an 'Instruction' contains a 'Keyword'",
+      "explanation": "The sentence combines a conditional quality criterion ('If...') with a mandatory functional action ('must upload...'), creating a concern-mixing structure per Pohl §25.2."
+    },
+    "decomposition_recommendation": "Decompose into two requirements: 1) Quality: An 'Instruction' must contain a 'Keyword'. 2) Action: If the condition is met, the User must upload the 'excel file' to System-A."
+  }
+}

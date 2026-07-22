@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' is vague, but the controlled context provides a precise definition that resolves the ambiguity.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles with gross weight strictly between 1500 kg and 2000 kg.",
+        "unsupported_interpretations": [
+          "Vehicles with a weight between 3,500 kg and 4,500 kg.",
+          "Vehicles with a length between 4.5 m and 5.5 m.",
+          "Vehicles that are larger than light trucks but smaller than heavy-duty trucks."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states: 'All medium-sized vehicles shall be equipped with a navigation system.'"
+        ],
+        "evidence_from_context": [
+          "Glossary definition: 'medium-sized vehicle' is defined as 'Vehicle with gross weight strictly between 1500 kg and 2000 kg.'"
+        ],
+        "missing_information": [],
+        "justification": "The controlled context (C2) explicitly defines 'medium-sized vehicle' with a precise weight range, eliminating the vagueness identified in the requirement text.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides direct evidence to resolve the vagueness of 'medium-sized vehicles'. Execution may proceed to Agent 3."
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "execution_id": "REQ-04-C0",
+  "requirement_id": "REQ-04",
+  "context_condition": "C0",
+  "base_requirement_text": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "controlled_context": {}
+}

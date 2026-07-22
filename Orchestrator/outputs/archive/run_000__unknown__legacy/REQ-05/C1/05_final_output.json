@@ -1,0 +1,120 @@
+{
+  "execution_id": "REQ-05-C1",
+  "requirement_id": "REQ-05",
+  "context_condition": "C1",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' is structurally ambiguous, attaching either to the verb 'enters' (indicating the method of entry) or to the noun 'access card' (indicating the card's property).",
+        "possible_interpretations": [
+          "The user enters the access card, and the method of entry involves using the access code (two separate actions: entering the card and entering the code).",
+          "The user enters the access card, which inherently contains or is associated with the access code (the code is a property of the card)."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity exists regarding the attachment of 'with the access code'; controlled context provides no evidence to resolve it.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user enters the access card, and the method of entry involves using the access code.",
+          "The user enters the access card, which inherently contains or is associated with the access code."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'with the access code' is structurally ambiguous."
+        ],
+        "evidence_from_context": [
+          "Domain: Access control system using card reader and keypad.",
+          "Glossary: access code is a secret code for second-factor verification."
+        ],
+        "missing_information": [
+          "Whether the access code is a property of the card or a separate action required during entry."
+        ],
+        "justification": "While the glossary defines 'access code', it does not specify its relationship to the 'access card' or the action of 'entering'. The domain mentions a keypad, but does not explicitly state that the user must enter the code separately from the card, nor that the code is embedded in the card. Therefore, the syntactic attachment cannot be resolved with sufficient evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides definitions but lacks explicit rules linking the access code to the entry action or card property, leaving the syntactic ambiguity unresolved."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "While the glossary defines 'access code', it does not specify its relationship to the 'access card' or the action of 'entering'. The domain mentions a keypad, but does not explicitly state that the user must enter the code separately from the card, nor that the code is embedded in the card. Therefore, the syntactic attachment cannot be resolved with sufficient evidence.",
+        "missing_information": [
+          "Whether the access code is a property of the card or a separate action required during entry."
+        ],
+        "unsupported_interpretations": [
+          "The user enters the access card, and the method of entry involves using the access code.",
+          "The user enters the access card, which inherently contains or is associated with the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "While the glossary defines 'access code', it does not specify its relationship to the 'access card' or the action of 'entering'. The domain mentions a keypad, but does not explicitly state that the user must enter the code separately from the card, nor that the code is embedded in the card. Therefore, the syntactic attachment cannot be resolved with sufficient evidence.",
+        "missing_information": [
+          "Whether the access code is a property of the card or a separate action required during entry."
+        ],
+        "unsupported_interpretations": [
+          "The user enters the access card, and the method of entry involves using the access code.",
+          "The user enters the access card, which inherently contains or is associated with the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether the access code is a property of the card or a separate action required during entry."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

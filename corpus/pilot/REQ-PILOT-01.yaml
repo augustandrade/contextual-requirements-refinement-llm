@@ -1,0 +1,99 @@
+id: REQ-PILOT-01
+category_id: pilot
+category_name: "Pilot — structural (concern mixing)"
+title: Functional action with delivery time constraint combined in one sentence
+source:
+  citation: Author-constructed
+base_requirement_text: "When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds."
+expected_problem: A functional requirement (send confirmation email) and a quality/timing requirement (within 30 seconds) are merged in a single sentence.
+expected_behavior: Agent 1 must flag has_concern_mixing as true and has_ambiguity as false. Agent 3 must decompose into one functional requirement and one quality requirement.
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: Online retail platform for consumer electronics.
+      glossary:
+        - term: confirmation email
+          definition: Automated transactional message sent to the customer after a successful order placement.
+      business_rules: []
+      constraints: []
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: Online retail platform for consumer electronics.
+      glossary:
+        - term: confirmation email
+          definition: Automated transactional message sent to the customer after a successful order placement.
+      business_rules:
+        - id: BR-01
+          rule: Sending the confirmation email is a mandatory functional action triggered by order submission and is independent of the delivery time window.
+      constraints:
+        - id: QLT-01
+          text: Confirmation emails must be delivered within 30 seconds of order submission. This is a quality of service constraint, not part of the functional sending action.
+tags: [structural, concern-mixing, function-quality, pilot]
+status: ready
+manual_reference:
+  C0:
+    expected_resolubility: "not_applicable"
+    expected_actions:
+      - detect_concern_mixing
+      - decompose_requirement
+      - separate_concerns
+      - preserve_requirement
+    expected_findings:
+      - has_ambiguity must be false
+      - has_concern_mixing must be true
+      - Agent 3 decomposes into one functional requirement (send confirmation email) and one quality requirement (within 30 seconds)
+    should_not_do:
+      - flag concern_mixing as a linguistic ambiguity (has_ambiguity must be false)
+      - merge functional action and timing constraint in a single structured requirement
+      - invent delivery mechanisms or retry policies not present in the text
+    applicable_criteria:
+      - atomicity
+      - concern_separation
+      - syntactic_structuring
+
+  C1:
+    expected_resolubility: "not_applicable"
+    expected_actions:
+      - detect_concern_mixing
+      - decompose_requirement
+      - separate_concerns
+      - structure_with_template
+    expected_findings:
+      - has_ambiguity must be false
+      - has_concern_mixing must be true
+      - Agent 3 decomposes into FR (send email) + QR (30 seconds); glossary term may enrich the FR
+    should_not_do:
+      - flag concern_mixing as a linguistic ambiguity
+      - merge functional and quality requirements
+    applicable_criteria:
+      - atomicity
+      - concern_separation
+      - syntactic_structuring
+
+  C2:
+    expected_resolubility: "not_applicable"
+    expected_actions:
+      - detect_concern_mixing
+      - decompose_requirement
+      - separate_concerns
+      - refine_text
+    expected_findings:
+      - has_ambiguity must be false
+      - has_concern_mixing must be true
+      - Agent 3 decomposes; QR explicitly uses constraint QLT-01 (30 seconds); BR-01 confirms the functional independence of the sending action
+    should_not_do:
+      - flag concern_mixing as a linguistic ambiguity
+      - merge functional and quality requirements
+      - ignore QLT-01 when structuring the quality requirement
+    applicable_criteria:
+      - atomicity
+      - concern_separation
+      - syntactic_structuring
+      - semantic_explicitation

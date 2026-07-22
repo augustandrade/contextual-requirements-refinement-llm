@@ -1,0 +1,36 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'medium-sized' lacks a precise, controlled definition within the provided text. Without a glossary or typographic demarcation (e.g., quotes, CamelCase), the boundary between 'medium' and 'large' or 'small' is indeterminate.",
+        "possible_interpretations": [
+          "Vehicles with a length or volume strictly between the definitions of 'small' and 'large' (e.g., compact SUVs, mid-size sedans).",
+          "Vehicles falling into a specific, but undefined, category that the stakeholder considers 'medium', which might include larger trucks or vans depending on unstated industry standards."
+        ],
+        "textual_evidence": [
+          "medium-sized vehicles"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "navigation system",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'navigation system' is polysemous in the absence of a controlled vocabulary. It could refer to a specific hardware/software unit or a broader capability.",
+        "possible_interpretations": [
+          "A dedicated GPS unit or integrated infotainment module capable of providing turn-by-turn directions.",
+          "Any system that provides location data, which could include basic map display without routing capabilities, or a simple compass."
+        ],
+        "textual_evidence": [
+          "navigation system"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

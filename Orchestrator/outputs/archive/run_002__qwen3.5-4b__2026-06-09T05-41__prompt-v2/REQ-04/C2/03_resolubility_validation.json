@@ -1,0 +1,36 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Referential ambiguity regarding the pronoun 'it' is resolved by business rules distinguishing card and PIN invalidity outcomes.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The access card is invalid, causing immediate denial.",
+        "unsupported_interpretations": [
+          "The PIN is invalid, causing immediate denial."
+        ],
+        "evidence_from_requirement": [
+          "The pronoun 'it' refers to the last mentioned entity ('PIN') or the first ('access card')."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01: Invalid card causes immediate access denial at turnstile.",
+          "Business rule BR-02: Invalid PIN triggers retry request and does not immediately deny access."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context explicitly defines the consequence of an invalid card (immediate denial) versus an invalid PIN (retry, no immediate denial). Since the requirement mandates denial, the only interpretation consistent with the business rules is that the access card is invalid.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides explicit, conflicting evidence for the two possible interpretations. Only one interpretation (invalid card) aligns with the mandatory denial action described in the requirement, making the ambiguity fully resolvable."
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C2",
+    "requirement_id": null,
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'filter' is lexically ambiguous, but the controlled context provides a specific definition that resolves the direction of the action.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The routing switch has the capability to selectively block specific network traffic while allowing others.",
+        "unsupported_interpretations": [
+          "The routing switch has the capability to selectively allow specific network traffic while blocking others."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'ability to filter' lacks a specific directional qualifier (allow vs. block)."
+        ],
+        "evidence_from_context": [
+          "Glossary definition: 'filter network traffic' is defined as 'Inspect and drop packets based on protocol and destination port'."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly defines 'filter' as an action involving 'drop', which supports the interpretation of selective exclusion over selective allowance.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "structural_issue": "none",
+      "explanation": "The controlled context provides explicit evidence to resolve the lexical ambiguity regarding the direction of the filtering action."
+    }
+  }
+}

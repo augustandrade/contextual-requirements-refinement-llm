@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity detected regarding the term 'medium-sized vehicles'. The controlled context is empty, providing no definition or taxonomy to resolve the vague descriptor.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 6.0m.",
+          "Vehicles with a cargo capacity between 10 and 20 cubic meters.",
+          "Vehicles classified as 'medium' by a specific manufacturer's internal taxonomy."
+        ],
+        "evidence_from_requirement": [
+          "The term 'medium-sized' lacks a precise definition in the requirement text."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Definition of 'medium-sized' within the controlled context."
+        ],
+        "justification": "The empty controlled context fails to provide the necessary definition or taxonomy to resolve the lexical ambiguity.",
+        "allowed_structuring_action": "request_context_enrichment"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "Ambiguity remains unresolved due to lack of context information. Execution must be routed away from Agent 3."
+    }
+  }
+}

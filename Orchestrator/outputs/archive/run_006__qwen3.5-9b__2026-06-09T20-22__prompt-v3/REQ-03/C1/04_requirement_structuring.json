@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "reason": "The controlled context describes the domain but does not specify the permission model (e.g., whether System-A acts as a gatekeeper or if the platform handles subscriptions automatically). Without explicit text defining the scope of 'allow', the distinction between a specific grant and a general capability cannot be made.",
+        "missing_information": [
+          "Whether the permission to subscribe is a specific grant from System-A or a general system capability."
+        ],
+        "unsupported_interpretations": [
+          "System-A grants permission specifically for System-C to subscribe to the Reporting flow.",
+          "The system (implicitly defined) allows System-C to subscribe, and this is a separate statement from the previous one about System-A and System-B."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "add System-B to their downstream systems",
+        "reason": "The requirement text does not distinguish between adding to a static list versus updating a dynamic category. The controlled context defines the term but does not specify the mutability of the set upon addition.",
+        "missing_information": [
+          "Whether the 'downstream systems' category is a fixed configuration or a dynamic state updated by the action."
+        ],
+        "unsupported_interpretations": [
+          "System-B is added to an existing, static list of downstream systems.",
+          "System-B is added, and this action creates or updates the definition of the downstream systems category."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement is unambiguous and atomic. Structured as a single functional requirement defining the routing switch's capability to differentiate traffic types.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-11-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "when routing network traffic",
+          "condition_type": "none",
+          "system_or_component": "routing switches",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "filter network traffic",
+          "object": "between data-plane interfaces and management data traffic",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "network traffic"
+        },
+        "final_statement": "Routing switches shall filter network traffic between data-plane interfaces and management data traffic.",
+        "structuring_notes": [
+          "Requirement is clear and atomic. No decomposition needed. 'Ability to filter' interpreted as the functional capability to perform the action."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

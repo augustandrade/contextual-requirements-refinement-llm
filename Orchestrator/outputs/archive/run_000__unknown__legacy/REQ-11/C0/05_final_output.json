@@ -1,0 +1,117 @@
+{
+  "execution_id": "REQ-11-C0",
+  "requirement_id": "REQ-11",
+  "context_condition": "C0",
+  "input_requirement": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'switches' is polysemous; it can function as a noun (the device itself) or a verb (the action of changing). This creates two distinct interpretations regarding whether the device performs the filtering or if the device's capability is being altered.",
+        "possible_interpretations": [
+          "The routing switch (noun) has the ability to filter network traffic.",
+          "The routing switch (verb) changes its ability to filter network traffic."
+        ],
+        "textual_evidence": [
+          "Routing switches ability to filter network traffic"
+        ],
+        "context_evidence": [],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": null,
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'switches' is polysemous, but the controlled context is empty, preventing resolution.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The routing switch (noun) has the ability to filter network traffic.",
+          "The routing switch (verb) changes its ability to filter network traffic."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text contains the polysemous term 'switches' without further disambiguation."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether 'switches' refers to the device's static capability or a dynamic action."
+        ],
+        "justification": "The controlled context is empty (C0), providing no evidence to distinguish between the noun and verb interpretations.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "structural_issue": "none",
+      "explanation": "The lexical ambiguity regarding 'switches' cannot be resolved without external context; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic",
+        "reason": "The controlled context is empty (C0), providing no evidence to distinguish between the noun and verb interpretations.",
+        "missing_information": [
+          "Whether 'switches' refers to the device's static capability or a dynamic action."
+        ],
+        "unsupported_interpretations": [
+          "The routing switch (noun) has the ability to filter network traffic.",
+          "The routing switch (verb) changes its ability to filter network traffic."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic",
+        "reason": "The controlled context is empty (C0), providing no evidence to distinguish between the noun and verb interpretations.",
+        "missing_information": [
+          "Whether 'switches' refers to the device's static capability or a dynamic action."
+        ],
+        "unsupported_interpretations": [
+          "The routing switch (noun) has the ability to filter network traffic.",
+          "The routing switch (verb) changes its ability to filter network traffic."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether 'switches' refers to the device's static capability or a dynamic action."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}
