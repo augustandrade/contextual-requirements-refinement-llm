@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C2",
+    "requirement_id": "REQ-12",
+    "context_condition": "C2",
+    "structuring_summary": "Ambiguity resolved by Agent 2 using supported interpretation (AMB-01), confirming the conditional trigger based on the presence of a 'Keyword' within the 'Instruction'. Structured as a single functional requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-12-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "an 'Instruction' contains a 'Keyword'",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "user_interaction",
+          "actor": "The User",
+          "modality": "must",
+          "action": "upload",
+          "object": "the 'excel file'",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "System-A"
+        },
+        "final_statement": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "structuring_notes": [
+          "The condition is explicitly constrained by the business rule (BR-01) and the supported interpretation (AMB-01), confirming the trigger mechanism."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume the specific format or content of the 'Keyword' or 'Instruction'."
+    ],
+    "final_output_status": "structured"
+  }
+}

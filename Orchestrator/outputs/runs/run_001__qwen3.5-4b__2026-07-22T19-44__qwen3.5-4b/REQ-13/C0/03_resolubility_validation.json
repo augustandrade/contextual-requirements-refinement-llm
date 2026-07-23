@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'detector' is polysemous; no context or requirement text evidence supports exactly one interpretation.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the detector detects damage to the pane",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A dedicated damage detection device (e.g., a crack sensor) detects damage.",
+          "A general-purpose sensor detects the occurrence of damage."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text mentions 'detector' but does not specify its type, function, or scope."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The specific type of device intended by 'detector' (dedicated vs. general-purpose)."
+        ],
+        "justification": "The controlled context is empty (C0), and the requirement text provides no disambiguating details about the device type. Both interpretations remain equally plausible based on the text alone.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to insufficient evidence in the requirement text and empty controlled context. The case must bypass Agent 3."
+    }
+  }
+}

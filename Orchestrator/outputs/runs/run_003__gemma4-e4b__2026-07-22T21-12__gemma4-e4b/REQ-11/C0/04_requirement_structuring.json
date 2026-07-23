@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "reason": "The ambiguity hinges on the scope of the preposition 'between' in the absence of further contextual constraints or clarifying text.",
+        "missing_information": [
+          "The requirement text does not clarify if 'between' implies a simultaneous traversal or a directional flow (source to destination)."
+        ],
+        "unsupported_interpretations": [
+          "The switch filters traffic that is simultaneously traversing the data-plane interfaces AND the management data traffic.",
+          "The switch filters traffic originating from the data-plane interfaces, specifically when that traffic is intended for the management data traffic domain."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

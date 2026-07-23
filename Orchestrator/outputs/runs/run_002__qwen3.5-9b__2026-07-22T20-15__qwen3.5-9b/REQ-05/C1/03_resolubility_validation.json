@@ -1,0 +1,74 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the attachment of the prepositional phrase is resolved by the domain context; lexical ambiguities regarding 'enters' and 'access code' are resolved by the domain definition of the system components.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user inputs the access card information into the system using the access code as the means of verification.",
+        "unsupported_interpretations": [
+          "The user physically inserts a card that has a code on it."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'enters the access card with the access code' allows for syntactic attachment ambiguity."
+        ],
+        "evidence_from_context": [
+          "Domain: Access control system using card reader and keypad.",
+          "Glossary: access code is a Secret code used for second-factor verification."
+        ],
+        "missing_information": [],
+        "justification": "The domain context defines the system as using a 'card reader' and 'keypad'. The glossary defines 'access code' as a 'Secret code' (digital credential). Therefore, the action must involve inputting data (using the keypad) and the code is the method of verification, not a physical attribute of the card. The interpretation where the user physically inserts a card with a code on it is unsupported by the digital nature of the 'access code' defined in the glossary.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "enters the access card",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user inputs the access card information into the system.",
+        "unsupported_interpretations": [
+          "The user physically inserts the access card into a reader."
+        ],
+        "evidence_from_requirement": [
+          "The verb 'enters' is polysemous."
+        ],
+        "evidence_from_context": [
+          "Domain: Access control system using card reader and keypad.",
+          "Glossary: access code is a Secret code used for second-factor verification."
+        ],
+        "missing_information": [],
+        "justification": "The glossary defines 'access code' as a 'Secret code', which implies a digital input (PIN/password). The action of providing a secret code is 'inputting' data, not physically inserting an object. The physical insertion of a card is a separate action facilitated by the 'card reader' mentioned in the domain, but the specific phrase 'enters the access card' in conjunction with the digital 'access code' refers to the data entry action.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "with the access code",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user provides a PIN or password as the access code.",
+        "unsupported_interpretations": [
+          "The user provides a physical key or mechanical code as the access code."
+        ],
+        "evidence_from_requirement": [
+          "The noun phrase 'access code' is polysemous."
+        ],
+        "evidence_from_context": [
+          "Glossary: access code is a Secret code used for second-factor verification."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly defines 'access code' as a 'Secret code'. In the context of access control systems with keypads, a 'secret code' refers to a PIN or password. A physical key or mechanical code does not fit the definition of a 'secret code' provided in the glossary.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "All ambiguities are resolved using the controlled context (domain and glossary) which provides direct evidence for the supported interpretations."
+    }
+  }
+}

@@ -185,6 +185,7 @@ contextual_resolubility_validation:
 
 Strict output rules
 - Return ONLY the YAML document above. Do not include any explanatory text, delimiters, or commentary.
+- Always wrap string values in double quotes (`"..."`), never single quotes. If a value itself contains a double quote, escape it as `\"`. Never nest an unescaped quote of the same kind inside a quoted string — this breaks YAML parsing.
 - If a field has no value, set it to `null` or an empty list `[]` as appropriate.
 - Use precise, evidence-based short sentences in `justification` and `validation_summary`.
 - If any ambiguity is `unresolved`, the execution must be routed away from Agent 3.

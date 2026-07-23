@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically unambiguous: the subject ('glass break detector') and its action ('detects') are clear, the object ('pane') is explicitly identified, and the condition ('has been damaged') is specific. There are no competing antecedents for pronouns, no syntactic attachment conflicts, and no terms with multiple plausible meanings or inherent vagueness."
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "ambiguity_detection": {
-    "ambiguity_found": true,
-    "ambiguity_type": "Logical/Scope Ambiguity",
-    "ambiguity_description": "The logical structure connecting the conditions (\"window is damaged\" AND \"surveillance detects intruder\" AND \"door is open\") is unclear. It is ambiguous whether the system requires ALL three conditions to be true simultaneously, or if any single condition is sufficient to trigger the alarm.",
-    "suggested_clarification": "Specify the logical operator (AND/OR) required for the alarm to trigger. For example: 'If (window is damaged) OR (surveillance detects intruder) OR (door is open), the system shall raise an alarm.'"
-  }
-}

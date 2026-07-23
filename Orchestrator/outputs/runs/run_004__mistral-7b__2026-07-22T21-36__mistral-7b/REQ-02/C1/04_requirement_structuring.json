@@ -1,0 +1,46 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C1",
+    "requirement_id": "REQ-02",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "rejection order is received for a cancellation request",
+        "reason": "The requirement contains an implicit AND operator, and the ambiguity arises from the lack of explicit operator binding.",
+        "missing_information": [
+          "Explicit logical operator binding"
+        ],
+        "unsupported_interpretations": [
+          "A rejection order was received, and it was specifically for a cancellation request.",
+          "A rejection order that was intended for some other purpose was received, but it happened to be for a cancellation request."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "System-A must raise a web alert",
+        "reason": "The term 'web alert' is vague as it lacks measurable boundaries.",
+        "missing_information": [
+          "Specific nature, urgency, or format of the 'web alert'"
+        ],
+        "unsupported_interpretations": [
+          "System-A should display a notification on its web interface.",
+          "System-A should send an email to relevant parties.",
+          "System-A should trigger a pop-up message within its user interface."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

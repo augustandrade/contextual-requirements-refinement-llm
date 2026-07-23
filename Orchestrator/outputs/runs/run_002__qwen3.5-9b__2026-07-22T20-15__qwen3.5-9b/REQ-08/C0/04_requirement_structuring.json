@@ -1,0 +1,59 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C0",
+    "requirement_id": "REQ-08",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "reason": "In C0, there is no external context to define the temporal logic. The text alone does not explicitly rule out the interpretation that a single crossing event triggers the timer, nor does it explicitly mandate continuous monitoring without a timer reset mechanism.",
+        "missing_information": [
+          "Explicit definition of the logical relationship between the state condition and the duration threshold."
+        ],
+        "unsupported_interpretations": [
+          "The pumps shut off only if the water level stays above 100 meters continuously for a duration exceeding 4 seconds.",
+          "The pumps shut off if the water level exceeds 100 meters at any point, provided that this state persists for more than 4 seconds from the moment of crossing the threshold."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Shut off the pumps",
+        "reason": "The term 'Shut off' is ambiguous between complete cessation and standby reduction. Without a controlled context (C0), there is no evidence to prefer one interpretation over the other.",
+        "missing_information": [
+          "Domain glossary or business rules defining the specific meaning of 'Shut off' in this context."
+        ],
+        "unsupported_interpretations": [
+          "Stop the pumps completely and turn them off.",
+          "Reduce the pump operation to a minimal or standby state."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the water level",
+        "reason": "The term 'water level' is polysemous. In the absence of controlled context (C0), the requirement text does not provide evidence to distinguish between height and volume interpretations.",
+        "missing_information": [
+          "Glossary entry or business rule specifying whether 'water level' refers to height or volume."
+        ],
+        "unsupported_interpretations": [
+          "The vertical height of the water surface relative to a datum.",
+          "The total volume of water contained in the system."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

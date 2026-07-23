@@ -1,8 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
-  },
-  "model_raw": "```json\n{\n  \"ambiguity_analysis\": [\n    {\n      \"ambiguity_type\": \"Scope/Dependency\",\n      \"description\": \"It is unclear whether the action 'System-A must add System-B to System-C' implies a sequential dependency, or if all three actions (A->B, A->C, and the addition) must occur simultaneously or in a specific order.\",\n      \"potential_ambiguity\": \"The relationship between the three components (System-A, System-B, System-C) and the action 'add' is ambiguous. Does A add B to C, or does A add B, and separately, A must ensure C is configured?\",\n      \"suggested_clarification\": \"Specify the exact relationship: 'System-A must add System-B to System-C' (implying B is a component of C, managed by A), or 'System-A must perform two actions: 1) Add System-B, and 2) Configure System-C to accept System-B' (implying two separate steps).\"\n    }\n  ],\n  \"ambiguity_analysis_summary\": \"The primary ambiguity lies in the scope and dependency of the required actions involving three distinct systems (A, B, and C). The phrasing suggests a single, complex operation, but the precise technical relationship between the systems and the action 'add' needs clarification.\"\n}\n```"
-}

@@ -1,0 +1,185 @@
+{
+  "execution_id": "REQ-04-C0",
+  "requirement_id": "REQ-04",
+  "context_condition": "C0",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'personal identification number (PIN)'. It is unclear whether the system denies access because the card is invalid or because the PIN is invalid.",
+        "possible_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "textual_evidence": [
+          "inserts the access card",
+          "enters a personal identification number (PIN)",
+          "If it is invalid"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall deny the access",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'access' is used without a controlled identifier convention (such as quotes or ALL_CAPS). It could refer to the physical act of entering a secure area or the logical permission granted by the system, which may have different implications for logging or state changes.",
+        "possible_interpretations": [
+          "The system prevents the user from physically entering the secured area.",
+          "The system revokes the user's logical permission or session token."
+        ],
+        "textual_evidence": [
+          "deny the access"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Both referential and lexical ambiguities are unresolved in C0 as the requirement text lacks disambiguating evidence and no controlled context is available.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence mentions both 'access card' and 'personal identification number (PIN)' before the pronoun 'it'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit indication of which entity (card or PIN) the pronoun 'it' refers to."
+        ],
+        "justification": "The requirement text presents two valid antecedents for 'it' without grammatical or semantic cues to distinguish them. No context is available to resolve this.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall deny the access",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system prevents the user from physically entering the secured area.",
+          "The system revokes the user's logical permission or session token."
+        ],
+        "evidence_from_requirement": [
+          "The term 'access' is used without definition or specific identifier."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Definition of 'access' (physical vs. logical) or a controlled identifier convention."
+        ],
+        "justification": "The term 'access' is ambiguous between physical and logical meanings. The requirement text does not define the term, and no context is provided to clarify the intended scope.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "Ambiguities AMB-01 and AMB-02 are unresolved due to lack of evidence in the requirement text and absence of controlled context. The case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "The requirement text presents two valid antecedents for 'it' without grammatical or semantic cues to distinguish them. No context is available to resolve this.",
+        "missing_information": [
+          "Explicit indication of which entity (card or PIN) the pronoun 'it' refers to."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall deny the access",
+        "reason": "The term 'access' is ambiguous between physical and logical meanings. The requirement text does not define the term, and no context is provided to clarify the intended scope.",
+        "missing_information": [
+          "Definition of 'access' (physical vs. logical) or a controlled identifier convention."
+        ],
+        "unsupported_interpretations": [
+          "The system prevents the user from physically entering the secured area.",
+          "The system revokes the user's logical permission or session token."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "The requirement text presents two valid antecedents for 'it' without grammatical or semantic cues to distinguish them. No context is available to resolve this.",
+        "missing_information": [
+          "Explicit indication of which entity (card or PIN) the pronoun 'it' refers to."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall deny the access",
+        "reason": "The term 'access' is ambiguous between physical and logical meanings. The requirement text does not define the term, and no context is provided to clarify the intended scope.",
+        "missing_information": [
+          "Definition of 'access' (physical vs. logical) or a controlled identifier convention."
+        ],
+        "unsupported_interpretations": [
+          "The system prevents the user from physically entering the secured area.",
+          "The system revokes the user's logical permission or session token."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Explicit indication of which entity (card or PIN) the pronoun 'it' refers to.",
+      "Definition of 'access' (physical vs. logical) or a controlled identifier convention."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

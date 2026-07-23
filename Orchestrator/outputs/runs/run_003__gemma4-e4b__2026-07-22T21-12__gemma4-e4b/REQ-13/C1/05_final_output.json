@@ -1,0 +1,125 @@
+{
+  "execution_id": "REQ-13-C1",
+  "requirement_id": "REQ-13",
+  "context_condition": "C1",
+  "input_requirement": "R-F-18: If the detector detects damage to the pane, the system shall inform the security service.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the detector detects damage to the pane",
+        "ambiguity_type": "referential",
+        "explanation": "The phrase 'the pane' is potentially ambiguous because it is not clear whether 'the detector' is monitoring a single, specific pane, or if 'pane' refers to a general class of panes. If the system monitors multiple panes, the scope of 'the pane' is unclear.",
+        "possible_interpretations": [
+          "The detector detects damage to a specific, previously identified pane.",
+          "The detector detects damage to any pane within its field of view."
+        ],
+        "textual_evidence": [
+          "If the detector detects damage to the pane"
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-13-C1",
+    "requirement_id": "REQ-13",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity regarding the scope of 'the pane' remains unresolved because the controlled context does not specify if the detector monitors a single pane or a general area.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the detector detects damage to the pane",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The detector detects damage to a specific, previously identified pane.",
+          "The detector detects damage to any pane within its field of view."
+        ],
+        "evidence_from_requirement": [
+          "If the detector detects damage to the pane"
+        ],
+        "evidence_from_context": [
+          "Domain: Building alarm control system.",
+          "Glossary: term: detector, definition: Sensor that detects pane damage."
+        ],
+        "missing_information": [
+          "Whether the system monitors a single, specific pane or multiple panes within a field of view."
+        ],
+        "justification": "The controlled context defines 'detector' but provides no information regarding the scope or plurality of 'pane' monitored by the system.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the scope of 'the pane' is unresolved because the controlled context lacks information on the monitoring scope of the detector."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-13-C1",
+    "requirement_id": "REQ-13",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the detector detects damage to the pane",
+        "reason": "The controlled context defines 'detector' but provides no information regarding the scope or plurality of 'pane' monitored by the system.",
+        "missing_information": [
+          "Whether the system monitors a single, specific pane or multiple panes within a field of view."
+        ],
+        "unsupported_interpretations": [
+          "The detector detects damage to a specific, previously identified pane.",
+          "The detector detects damage to any pane within its field of view."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the detector detects damage to the pane",
+        "reason": "The controlled context defines 'detector' but provides no information regarding the scope or plurality of 'pane' monitored by the system.",
+        "missing_information": [
+          "Whether the system monitors a single, specific pane or multiple panes within a field of view."
+        ],
+        "unsupported_interpretations": [
+          "The detector detects damage to a specific, previously identified pane.",
+          "The detector detects damage to any pane within its field of view."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether the system monitors a single, specific pane or multiple panes within a field of view."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

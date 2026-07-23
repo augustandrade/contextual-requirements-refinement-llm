@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C2",
+    "requirement_id": "REQ-08",
+    "context_condition": "C2",
+    "structuring_summary": "Ambiguity resolved by Agent 2 using Business Rule BR-01. The requirement is structured as a single functional requirement, explicitly incorporating the resolved temporal condition.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-08-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "the water level stays above 100 meters for a continuous period exceeding 4 seconds",
+          "condition_type": "temporal",
+          "system_or_component": "the system",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "shall",
+          "action": "shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "If the water level stays above 100 meters for a continuous period exceeding 4 seconds, the system shall shut off the pumps.",
+        "structuring_notes": [
+          "The temporal ambiguity was resolved using the supported interpretation from AMB-01, which aligns with BR-01 defining the 4-second persistence window for the decision metric."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not specify the exact mechanism or component responsible for the shutdown, only the action itself."
+    ],
+    "final_output_status": "structured"
+  }
+}

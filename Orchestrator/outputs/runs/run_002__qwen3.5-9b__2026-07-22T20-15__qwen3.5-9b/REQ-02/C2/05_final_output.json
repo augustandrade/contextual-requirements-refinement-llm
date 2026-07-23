@@ -1,0 +1,191 @@
+{
+  "execution_id": "REQ-02-C2",
+  "requirement_id": "REQ-02",
+  "context_condition": "C2",
+  "input_requirement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical relationship between the 'rejection order' and the 'cancellation request' is underspecified. It is unclear whether the rejection order is the sole condition triggering the alert, or if the alert is triggered by the combination of receiving a rejection order AND the existence of a cancellation request.",
+        "possible_interpretations": [
+          "The system raises an alert whenever a rejection order is received, provided that a cancellation request exists in the context.",
+          "The system raises an alert only when a rejection order is received specifically for a cancellation request (implying a specific type of rejection event)."
+        ],
+        "textual_evidence": [
+          "When a rejection order is received for a cancellation request"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "rejection order is received for a cancellation request",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'rejection order for a cancellation request' is lexically ambiguous regarding the nature of the 'rejection'. It is unclear if the rejection is of the cancellation request itself (the request was denied) or if the rejection is of some other action related to the cancellation request.",
+        "possible_interpretations": [
+          "The cancellation request was rejected (denied).",
+          "An order to reject the cancellation request was received (an administrative action)."
+        ],
+        "textual_evidence": [
+          "rejection order is received for a cancellation request"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "rejection order is received for a cancellation request",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'for a cancellation request' has ambiguous attachment. It could modify 'rejection order' (the order is intended for the request) or it could be interpreted as the source/context of the rejection (rejection order [that came] for a cancellation request).",
+        "possible_interpretations": [
+          "The rejection order is directed at the cancellation request.",
+          "The rejection order pertains to the topic of a cancellation request."
+        ],
+        "textual_evidence": [
+          "rejection order is received for a cancellation request"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Semantic and lexical ambiguities regarding the nature of the rejection are resolved by business rules and glossary definitions; syntactic ambiguity is resolved by standard domain interpretation.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system raises an alert when a rejection order is received specifically for a cancellation request (the request was denied).",
+        "unsupported_interpretations": [
+          "The system raises an alert whenever a rejection order is received, provided that a cancellation request exists in the context."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'rejection order ... for a cancellation request' implies a specific relationship between the order and the request."
+        ],
+        "evidence_from_context": [
+          "Glossary: Security Manager is the workflow authority that approves or rejects cancellation requests.",
+          "Business rule BR-01: Rejection and approval orders are issued exclusively by Security Manager."
+        ],
+        "missing_information": [],
+        "justification": "The glossary defines the Security Manager as the authority that 'approves or rejects cancellation requests'. Business rule BR-01 confirms that rejection orders are issued by this authority regarding these requests. This evidence supports the interpretation that the rejection is of the cancellation request itself, rather than a generic rejection or an unrelated administrative action.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "rejection order is received for a cancellation request",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The cancellation request was rejected (denied).",
+        "unsupported_interpretations": [
+          "An order to reject the cancellation request was received (an administrative action)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'rejection order for a cancellation request' links the rejection directly to the request."
+        ],
+        "evidence_from_context": [
+          "Glossary: Security Manager ... approves or rejects cancellation requests.",
+          "Business rule BR-01: Rejection and approval orders are issued exclusively by Security Manager."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly states the Security Manager 'approves or rejects cancellation requests'. The term 'rejection' in this domain context lexically maps to the action of denying a request. The business rule confirms that 'rejection orders' are the mechanism for this denial. Therefore, the rejection is of the cancellation request itself.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "rejection order is received for a cancellation request",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The rejection order is directed at the cancellation request.",
+        "unsupported_interpretations": [
+          "The rejection order pertains to the topic of a cancellation request (but is not directed at it)."
+        ],
+        "evidence_from_requirement": [
+          "The prepositional phrase 'for a cancellation request' modifies 'rejection order'."
+        ],
+        "evidence_from_context": [
+          "Glossary: Security Manager ... approves or rejects cancellation requests.",
+          "Business rule BR-01: Rejection and approval orders are issued exclusively by Security Manager."
+        ],
+        "missing_information": [],
+        "justification": "In the context of the Security Manager workflow defined in the glossary and business rules, a 'rejection order' is an action taken *on* a specific request. The phrase 'for a cancellation request' indicates the target of the order. The domain logic implies the order is directed at the request to deny it, making the 'directed at' interpretation the only valid one supported by the defined workflow.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "All ambiguities are resolved using the controlled context (glossary and business rules) which define the specific domain actions and relationships."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "has_concern_mixing": false,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02",
+    "context_condition": "C2",
+    "structuring_summary": "Ambiguities regarding the nature of the rejection order (semantic, lexical, syntactic) were resolved using the controlled context (glossary and business rules). The requirement is structured as a single functional requirement where the system raises a web alert upon receiving a rejection order specifically for a cancellation request.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-02-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "When a rejection order is received for a cancellation request, System-A must raise a web alert."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01",
+            "AMB-02",
+            "AMB-03"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "a rejection order is received for a cancellation request",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "must",
+          "action": "raise",
+          "object": "a web alert",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "web alert"
+        },
+        "final_statement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+        "structuring_notes": [
+          "Resolved semantic, lexical, and syntactic ambiguities using glossary and business rules. The condition specifies that the rejection order is directed at the cancellation request."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume the content of the alert or the specific format of the web alert."
+    ],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

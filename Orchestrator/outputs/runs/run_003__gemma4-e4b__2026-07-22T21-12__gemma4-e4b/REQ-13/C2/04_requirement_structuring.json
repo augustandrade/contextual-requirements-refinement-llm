@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-13-C2",
+    "requirement_id": "REQ-13",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the detector detects damage to the pane",
+        "reason": "The requirement text mentions 'the pane' but provides no context, and the controlled context does not define the scope of monitoring for the detector, leaving the ambiguity unresolved.",
+        "missing_information": [
+          "Whether 'the pane' refers to a single, specific pane or a general class/area of panes monitored by the detector."
+        ],
+        "unsupported_interpretations": [
+          "The detector detects damage to a specific, previously identified pane.",
+          "The detector detects damage to any pane within its field of view."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

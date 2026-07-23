@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The requirement text presents two plausible syntactic interpretations, and since the controlled context is empty, there is no evidence to eliminate one interpretation safely.",
+        "missing_information": [
+          "The intended grammatical role of the prepositional phrase 'with the access code' (i.e., does it modify the verb 'enters' or the noun 'access card'?)."
+        ],
+        "unsupported_interpretations": [
+          "The user uses the access code as the method to perform the action of entering the card.",
+          "The user enters a specific access card that is associated with or marked by the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

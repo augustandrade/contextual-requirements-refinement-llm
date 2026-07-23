@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C2",
+    "requirement_id": "REQ-08",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "reason": "The controlled context specifies how the metric is calculated (minimum reading) but does not clarify if the threshold value itself (100 meters) triggers the shutdown condition. Without explicit inclusion/exclusion rules, the interpretation cannot be safely determined.",
+        "missing_information": [
+          "Whether the absolute minimum reading of exactly 100 meters satisfies the 'above' condition."
+        ],
+        "unsupported_interpretations": [
+          "Strictly greater than 100 meters.",
+          "At or greater than 100 meters."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "for more than 4 seconds",
+        "reason": "The controlled context confirms the existence of a 4-second window but does not define the boundary condition for the duration threshold. It is unclear if the condition is met at exactly 4 seconds or only if the duration exceeds it.",
+        "missing_information": [
+          "Whether a duration of exactly 4 seconds satisfies the 'more than' condition."
+        ],
+        "unsupported_interpretations": [
+          "Strictly greater than 4 seconds.",
+          "At least 4 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

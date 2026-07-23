@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-14-C0",
+    "requirement_id": "REQ-14",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity detected in 'damage'; no evidence in the requirement to decide safely.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "damage",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Physical damage (e.g., broken equipment).",
+          "Cybersecurity damage (e.g., a breach or hack)."
+        ],
+        "evidence_from_requirement": [
+          "The term 'damage' is ambiguous without additional context."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Specific type of damage the system should detect."
+        ],
+        "justification": "The requirement contains two possible interpretations and provides no disambiguating evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

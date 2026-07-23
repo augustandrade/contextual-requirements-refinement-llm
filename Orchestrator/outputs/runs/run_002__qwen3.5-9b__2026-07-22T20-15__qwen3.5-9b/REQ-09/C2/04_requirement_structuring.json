@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "navigation system",
+        "reason": "The glossary defines vehicle size but does not define 'navigation system'. No business rules or constraints in the context clarify the implementation scope (hardware vs. software).",
+        "missing_information": [
+          "The controlled context does not specify whether 'navigation system' refers to hardware, software, or a combination."
+        ],
+        "unsupported_interpretations": [
+          "A dedicated hardware unit (e.g., GPS receiver) installed in the vehicle.",
+          "A software application (e.g., a map app) running on the vehicle's infotainment screen."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "equipped with",
+        "reason": "The phrase 'equipped with' is ambiguous regarding the timing of installation. The controlled context lacks business rules to determine if factory installation or retroactive installation is required.",
+        "missing_information": [
+          "The controlled context does not contain rules specifying whether the requirement applies to new vehicle delivery or retrofitting."
+        ],
+        "unsupported_interpretations": [
+          "The vehicle must be delivered from the manufacturer with the navigation system already installed.",
+          "The vehicle must possess the capability to have a navigation system installed, regardless of initial state."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

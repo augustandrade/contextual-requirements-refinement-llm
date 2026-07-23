@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04",
+    "context_condition": "C1",
+    "structuring_summary": "Ambiguity resolved by Agent 2. The pronoun 'it' is interpreted as the PIN entered. Structured as a single functional requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-04-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "the personal identification number (PIN) entered is invalid",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "user_interaction",
+          "actor": "The customer",
+          "modality": "shall",
+          "action": "deny",
+          "object": "the access",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access"
+        },
+        "final_statement": "If the personal identification number (PIN) entered is invalid, the system shall deny the access.",
+        "structuring_notes": [
+          "The ambiguous pronoun 'it' was resolved using the supported interpretation (AMB-01), specifying that the invalid item is the PIN."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not specify the exact mechanism or component responsible for denying access, only the outcome."
+    ],
+    "final_output_status": "structured"
+  }
+}

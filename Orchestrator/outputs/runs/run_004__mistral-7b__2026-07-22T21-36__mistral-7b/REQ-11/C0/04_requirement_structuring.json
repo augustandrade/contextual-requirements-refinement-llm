@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "between data-plane interfaces and management data traffic",
+        "reason": "The requirement text does not provide direct evidence to support one interpretation over the other.",
+        "missing_information": [
+          "Whether the routing switches filter network traffic exclusively between data-plane interfaces or if they also handle other types of interfaces."
+        ],
+        "unsupported_interpretations": [
+          "The routing switches filter network traffic exclusively between data-plane interfaces.",
+          "The routing switches filter both data-plane and management data traffic, but only the traffic flowing between these two types of interfaces."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

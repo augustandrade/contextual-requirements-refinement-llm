@@ -1,0 +1,247 @@
+{
+  "execution_id": "REQ-08-C0",
+  "requirement_id": "REQ-08",
+  "context_condition": "C0",
+  "input_requirement": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical condition combines 'remains above 100 meters' and 'for more than 4 seconds' without explicit operator precedence. It is unclear whether the duration applies to the state of being above the threshold (continuous state) or if the condition triggers upon any single instance of exceeding the threshold followed by a 4-second window.",
+        "possible_interpretations": [
+          "The pumps shut off only if the water level stays above 100 meters continuously for a duration exceeding 4 seconds.",
+          "The pumps shut off if the water level exceeds 100 meters at any point, provided that this state persists for more than 4 seconds from the moment of crossing the threshold."
+        ],
+        "textual_evidence": [
+          "remains above 100 meters",
+          "for more than 4 seconds",
+          "Shut off the pumps if"
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Shut off the pumps",
+        "ambiguity_type": "lexical",
+        "explanation": "The verb phrase 'Shut off' can be interpreted as either a complete cessation of operation or a reduction to a standby/idle state, depending on domain conventions not present in the text.",
+        "possible_interpretations": [
+          "Stop the pumps completely and turn them off.",
+          "Reduce the pump operation to a minimal or standby state."
+        ],
+        "textual_evidence": [
+          "Shut off the pumps"
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the water level",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'water level' is polysemous; it could refer to the physical height of the water surface or the volume of water in the reservoir, which may have different implications for the control logic.",
+        "possible_interpretations": [
+          "The vertical height of the water surface relative to a datum.",
+          "The total volume of water contained in the system."
+        ],
+        "textual_evidence": [
+          "the water level"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-08-C0",
+    "requirement_id": "REQ-08",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "All detected ambiguities are unresolved because the controlled context is empty (C0) and the requirement text lacks explicit evidence to disambiguate semantic, lexical, or logical conditions.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The pumps shut off only if the water level stays above 100 meters continuously for a duration exceeding 4 seconds.",
+          "The pumps shut off if the water level exceeds 100 meters at any point, provided that this state persists for more than 4 seconds from the moment of crossing the threshold."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'remains above' suggests continuity, but the exact logical operator (AND vs. temporal window) is not explicitly defined."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit definition of the logical relationship between the state condition and the duration threshold."
+        ],
+        "justification": "In C0, there is no external context to define the temporal logic. The text alone does not explicitly rule out the interpretation that a single crossing event triggers the timer, nor does it explicitly mandate continuous monitoring without a timer reset mechanism.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Shut off the pumps",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Stop the pumps completely and turn them off.",
+          "Reduce the pump operation to a minimal or standby state."
+        ],
+        "evidence_from_requirement": [
+          "The verb phrase 'Shut off' is used without domain-specific glossary definitions."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Domain glossary or business rules defining the specific meaning of 'Shut off' in this context."
+        ],
+        "justification": "The term 'Shut off' is ambiguous between complete cessation and standby reduction. Without a controlled context (C0), there is no evidence to prefer one interpretation over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the water level",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The vertical height of the water surface relative to a datum.",
+          "The total volume of water contained in the system."
+        ],
+        "evidence_from_requirement": [
+          "The term 'water level' is used without a definition distinguishing height from volume."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Glossary entry or business rule specifying whether 'water level' refers to height or volume."
+        ],
+        "justification": "The term 'water level' is polysemous. In the absence of controlled context (C0), the requirement text does not provide evidence to distinguish between height and volume interpretations.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C0",
+    "requirement_id": "REQ-08",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "reason": "In C0, there is no external context to define the temporal logic. The text alone does not explicitly rule out the interpretation that a single crossing event triggers the timer, nor does it explicitly mandate continuous monitoring without a timer reset mechanism.",
+        "missing_information": [
+          "Explicit definition of the logical relationship between the state condition and the duration threshold."
+        ],
+        "unsupported_interpretations": [
+          "The pumps shut off only if the water level stays above 100 meters continuously for a duration exceeding 4 seconds.",
+          "The pumps shut off if the water level exceeds 100 meters at any point, provided that this state persists for more than 4 seconds from the moment of crossing the threshold."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Shut off the pumps",
+        "reason": "The term 'Shut off' is ambiguous between complete cessation and standby reduction. Without a controlled context (C0), there is no evidence to prefer one interpretation over the other.",
+        "missing_information": [
+          "Domain glossary or business rules defining the specific meaning of 'Shut off' in this context."
+        ],
+        "unsupported_interpretations": [
+          "Stop the pumps completely and turn them off.",
+          "Reduce the pump operation to a minimal or standby state."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the water level",
+        "reason": "The term 'water level' is polysemous. In the absence of controlled context (C0), the requirement text does not provide evidence to distinguish between height and volume interpretations.",
+        "missing_information": [
+          "Glossary entry or business rule specifying whether 'water level' refers to height or volume."
+        ],
+        "unsupported_interpretations": [
+          "The vertical height of the water surface relative to a datum.",
+          "The total volume of water contained in the system."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "reason": "In C0, there is no external context to define the temporal logic. The text alone does not explicitly rule out the interpretation that a single crossing event triggers the timer, nor does it explicitly mandate continuous monitoring without a timer reset mechanism.",
+        "missing_information": [
+          "Explicit definition of the logical relationship between the state condition and the duration threshold."
+        ],
+        "unsupported_interpretations": [
+          "The pumps shut off only if the water level stays above 100 meters continuously for a duration exceeding 4 seconds.",
+          "The pumps shut off if the water level exceeds 100 meters at any point, provided that this state persists for more than 4 seconds from the moment of crossing the threshold."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Shut off the pumps",
+        "reason": "The term 'Shut off' is ambiguous between complete cessation and standby reduction. Without a controlled context (C0), there is no evidence to prefer one interpretation over the other.",
+        "missing_information": [
+          "Domain glossary or business rules defining the specific meaning of 'Shut off' in this context."
+        ],
+        "unsupported_interpretations": [
+          "Stop the pumps completely and turn them off.",
+          "Reduce the pump operation to a minimal or standby state."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the water level",
+        "reason": "The term 'water level' is polysemous. In the absence of controlled context (C0), the requirement text does not provide evidence to distinguish between height and volume interpretations.",
+        "missing_information": [
+          "Glossary entry or business rule specifying whether 'water level' refers to height or volume."
+        ],
+        "unsupported_interpretations": [
+          "The vertical height of the water surface relative to a datum.",
+          "The total volume of water contained in the system."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Explicit definition of the logical relationship between the state condition and the duration threshold.",
+      "Domain glossary or business rules defining the specific meaning of 'Shut off' in this context.",
+      "Glossary entry or business rule specifying whether 'water level' refers to height or volume."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

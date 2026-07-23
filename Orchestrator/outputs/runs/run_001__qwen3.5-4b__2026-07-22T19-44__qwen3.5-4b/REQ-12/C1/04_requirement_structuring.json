@@ -1,0 +1,34 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C1",
+    "requirement_id": "REQ-12",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The glossary is empty and the domain description is too general to define 'User' or 'System-A'. No evidence exists to select one interpretation over the others.",
+        "missing_information": [
+          "The glossary does not define 'User' or 'System-A'.",
+          "The domain description does not specify the exact roles or system components involved."
+        ],
+        "unsupported_interpretations": [
+          "'User' refers to a specific authenticated role.",
+          "'User' refers to any person interacting with the system.",
+          "'System-A' refers to a specific backend service.",
+          "'System-A' refers to a generic system component."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

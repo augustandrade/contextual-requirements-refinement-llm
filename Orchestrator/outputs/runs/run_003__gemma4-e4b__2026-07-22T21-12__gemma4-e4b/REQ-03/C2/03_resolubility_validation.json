@@ -1,0 +1,58 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The possessive pronoun 'their' in AMB-01 is highly ambiguous, and the coordination structure in AMB-02 requires clarification regarding the scope of the 'allow' action.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A must add System-B to System-A's downstream systems.",
+          "System-A must add System-B to the downstream systems of another entity (e.g., the overall integration platform)."
+        ],
+        "evidence_from_requirement": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "evidence_from_context": [
+          "Domain: Integration platform that orchestrates downstream services and reporting subscriptions."
+        ],
+        "missing_information": [
+          "The specific entity that 'their' refers to (System-A, the platform, or another system)."
+        ],
+        "justification": "The context mentions the 'Integration platform' but does not explicitly state whether 'their' refers to System-A or the platform itself. This requires clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The requirement implies a single, combined action where the result of adding System-B somehow enables the allowance for System-C to subscribe."
+        ],
+        "evidence_from_requirement": [
+          "and allow System-C to subscribe to the Reporting flow"
+        ],
+        "evidence_from_context": [
+          "Business rule: Partner registration and reporting subscription are independent operations and must be specified clearly in the final requirement structure."
+        ],
+        "missing_information": [
+          "Whether the 'allow' action is an independent obligation performed by System-A, or if it is contingent upon the successful completion of the 'add System-B' action."
+        ],
+        "justification": "While BR-01 suggests independence, the grammatical structure using 'and' does not definitively separate the obligations, leaving the scope of 'allow' unclear.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "Both detected ambiguities are unresolved because the context and requirement text do not provide sufficient, unambiguous evidence to determine the intended scope or antecedent for the ambiguous phrases."
+    }
+  }
+}

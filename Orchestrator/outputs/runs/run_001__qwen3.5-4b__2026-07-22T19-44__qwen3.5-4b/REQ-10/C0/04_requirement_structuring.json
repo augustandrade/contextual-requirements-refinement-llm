@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-10-C0",
+    "requirement_id": "REQ-10",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "reason": "In C0, the controlled context is empty. The requirement text alone does not distinguish between producing an audible signal and performing the action of generation, as both interpretations are linguistically valid without further disambiguation.",
+        "missing_information": [
+          "Whether the requirement mandates an audible signal or simply the execution of the generation action."
+        ],
+        "unsupported_interpretations": [
+          "The system shall produce an audible dial tone to indicate the line is ready.",
+          "The system shall perform the action of generating a dial tone (regardless of whether it is audible)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

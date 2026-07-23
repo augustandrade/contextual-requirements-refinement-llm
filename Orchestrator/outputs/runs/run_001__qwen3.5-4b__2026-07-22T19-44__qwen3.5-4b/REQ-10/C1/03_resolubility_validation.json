@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement text and controlled context together provide sufficient evidence to resolve the lexical ambiguity regarding 'dial tone'.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system shall produce an audible dial tone to indicate the line is ready.",
+        "unsupported_interpretations": [
+          "The system shall perform the action of generating a dial tone (regardless of whether it is audible)."
+        ],
+        "evidence_from_requirement": [
+          "Generate a dial tone"
+        ],
+        "evidence_from_context": [
+          "Glossary definition: 'Tone signaling line readiness for dialing'.",
+          "Domain: Digital telephony exchange system."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly defines 'dial tone' as a 'Tone' (audible signal) used for 'signaling', which directly supports the interpretation of producing an audible signal rather than a generic action.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides a precise definition that eliminates the ambiguity between producing a sound and performing a generic action. Execution may proceed to Agent 3."
+    }
+  }
+}

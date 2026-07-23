@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "reason": "While the domain mentions 'reporting subscriptions', it does not define the specific 'Reporting flow' mechanism. The ambiguity between a specific named process and a generic mechanism cannot be resolved without further definition.",
+        "missing_information": [
+          "The specific mechanism, process name, or business rule defining 'Reporting flow' is not present in the requirement text or the provided glossary/business rules."
+        ],
+        "unsupported_interpretations": [
+          "A specific, named data transmission process defined elsewhere.",
+          "Any mechanism by which data is reported or transmitted."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

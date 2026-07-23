@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The requirement text contains a lexical ambiguity regarding the timing boundary ('at the latest'), but no evidence exists to resolve it.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 seconds at the latest",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The action must complete by the 2-second mark (inclusive).",
+          "The action must complete before the 2-second mark (exclusive)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'within 2 seconds at the latest' is present in the requirement text."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the 2-second boundary is inclusive or exclusive."
+        ],
+        "justification": "The requirement text uses the phrase 'at the latest' without defining the boundary condition. In the absence of controlled context (C0), there is no evidence to determine if the action must occur strictly before or at the 2-second mark.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The lexical ambiguity regarding the timing boundary cannot be resolved using only the provided requirement text. The case must bypass Agent 3."
+    }
+  }
+}

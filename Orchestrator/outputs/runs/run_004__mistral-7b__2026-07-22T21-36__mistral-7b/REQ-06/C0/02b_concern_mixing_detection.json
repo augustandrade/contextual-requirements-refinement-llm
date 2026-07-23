@@ -1,0 +1,8 @@
+{
+  "concern_mixing_detection": {
+    "has_concern_mixing": true,
+    "functional_action": "raise an alarm",
+    "quality_criterion": null,
+    "explanation": "The requirement specifies a functional action (raise alarm) but does not include a measurable property of HOW the system executes the action, making it concern-mixed."
+  }
+}

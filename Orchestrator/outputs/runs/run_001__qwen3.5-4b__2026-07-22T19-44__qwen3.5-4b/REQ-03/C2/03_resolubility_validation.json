@@ -1,0 +1,54 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguities regarding 'downstream systems' and 'Reporting flow' are resolved by the controlled context definitions.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Systems that receive data or output from System-A.",
+        "unsupported_interpretations": [
+          "Systems that are positioned physically or logically after System-A in a pipeline."
+        ],
+        "evidence_from_requirement": [
+          "downstream systems"
+        ],
+        "evidence_from_context": [
+          "Domain definition: Integration platform that orchestrates downstream services and reporting subscriptions."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context explicitly defines the domain as an 'Integration platform that orchestrates downstream services', which aligns with the interpretation of systems receiving data or output, rather than physical positioning.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Event stream used by subscribers for operational reporting.",
+        "unsupported_interpretations": [
+          "A specific, named data transmission process defined elsewhere.",
+          "Any mechanism by which data is reported or transmitted."
+        ],
+        "evidence_from_requirement": [
+          "Reporting flow"
+        ],
+        "evidence_from_context": [
+          "Glossary definition: Event stream used by subscribers for operational reporting."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context provides a specific glossary definition for 'Reporting flow' that eliminates the ambiguity between a named process, generic mechanism, or business rule.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "Both lexical ambiguities are resolved using the definitions provided in the controlled context. Execution may proceed to Agent 3."
+    }
+  }
+}

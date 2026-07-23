@@ -1,0 +1,49 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'between data-plane interfaces and management data traffic' can attach to either 'filter' (defining the scope of the filtering action) or 'ability' (defining the specific type of ability possessed by the switches), yielding two different syntactic trees and meanings regarding what is being filtered versus what capability is being described.",
+        "possible_interpretations": [
+          "The routing switches have the ability to filter traffic that exists between data-plane interfaces and management data traffic (the phrase modifies 'ability').",
+          "The routing switches have the ability to filter traffic, and this filtering applies to the boundary or flow between data-plane interfaces and management data traffic (the phrase modifies 'filter')."
+        ],
+        "textual_evidence": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'switches' is used without a controlled vocabulary definition. In networking contexts, it can refer to Layer 2 devices that forward frames based on MAC addresses or Layer 3 devices that route packets based on IP addresses. Without a glossary, both meanings are plausible.",
+        "possible_interpretations": [
+          "The requirement refers to Layer 2 network switches that forward frames.",
+          "The requirement refers to Layer 3 routers (often colloquially called switches) that route packets."
+        ],
+        "textual_evidence": [
+          "Routing switches"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical relationship between the filtering action and the traffic types is underspecified. It is unclear if the switch filters traffic flowing *between* these two types (segregation) or if it filters traffic *of* these types (classification/rejection), leading to different logical interpretations of the condition.",
+        "possible_interpretations": [
+          "The switch filters traffic that is transmitted between the data-plane interfaces and the management data traffic (segregating the flows).",
+          "The switch filters traffic belonging to either the data-plane interfaces or the management data traffic (classifying and dropping specific types)."
+        ],
+        "textual_evidence": [
+          "filter network traffic between data-plane interfaces and management data traffic"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  }
+}

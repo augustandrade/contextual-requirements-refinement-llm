@@ -1,0 +1,22 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'switches' is polysemous; it can function as a noun (the device itself) or a verb (the action of changing). The sentence structure allows for two distinct grammatical roles for this word.",
+        "possible_interpretations": [
+          "The routing device (noun) has the capability to filter network traffic.",
+          "The routing device performs the action of changing its ability to filter network traffic."
+        ],
+        "textual_evidence": [
+          "Routing switches ability"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the detector detects damage to the pane",
+        "reason": "In C0, there is no external context to define 'detector'. The requirement text alone does not distinguish between a specific device and the system acting as a detector.",
+        "missing_information": [
+          "A definition or glossary entry specifying whether 'detector' refers to a specific sensor or the entire system."
+        ],
+        "unsupported_interpretations": [
+          "A specific sensor device detects physical damage to the glass pane.",
+          "The security system (acting as a detector) identifies that the pane has been compromised."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "damage to the pane",
+        "reason": "The term 'damage' is inherently vague without a defined threshold. No evidence in the requirement or empty context defines what constitutes a triggerable event.",
+        "missing_information": [
+          "A glossary or business rule defining the specific types or severity levels of 'damage' that trigger the action."
+        ],
+        "unsupported_interpretations": [
+          "Any visible imperfection on the glass surface constitutes damage.",
+          "Only structural compromise (cracks or breaks) of the glass constitutes damage."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the system shall inform the security service",
+        "reason": "In C0, there is no context to resolve the referential ambiguity of 'system' and 'security service'. The requirement text does not specify the scope of these terms.",
+        "missing_information": [
+          "Clarification on which entity constitutes 'the system' and which entity constitutes 'the security service'."
+        ],
+        "unsupported_interpretations": [
+          "The specific detector unit sends an alert to the human security team.",
+          "The central security management system sends an alert to the third-party security vendor."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

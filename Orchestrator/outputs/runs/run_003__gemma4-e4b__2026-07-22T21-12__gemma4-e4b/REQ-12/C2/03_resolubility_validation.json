@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-12-C2",
+    "requirement_id": "REQ-12",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The business rule explicitly constrains the upload action, resolving the scope ambiguity in the requirement text.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The upload action is only required if the 'Instruction' contains a 'Keyword'.",
+        "unsupported_interpretations": [
+          "The upload action must occur regardless of whether the 'Instruction' contains a 'Keyword', provided the 'Instruction' exists."
+        ],
+        "evidence_from_requirement": [
+          "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
+        ],
+        "evidence_from_context": [
+          "Business rule: Upload action is triggered only when the instruction contains a cataloged keyword."
+        ],
+        "missing_information": [],
+        "justification": "The business rule (BR-01) directly mandates that the upload action is triggered only when the instruction contains a keyword, matching the conditional structure of the requirement.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides a direct business rule that confirms the conditional scope of the requirement, allowing safe structuring."
+    }
+  }
+}

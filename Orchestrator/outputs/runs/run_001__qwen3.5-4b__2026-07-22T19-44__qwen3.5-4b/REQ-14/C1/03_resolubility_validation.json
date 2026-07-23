@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-14-C1",
+    "requirement_id": "REQ-14",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The phrase 'within 2 s' remains ambiguous regarding the boundary condition (strictly less than vs. less than or equal to), and the controlled context provides no evidence to resolve this.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 s",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system shall inform the security service at any time t where t < 2 seconds.",
+          "The system shall inform the security service at any time t where t <= 2 seconds."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text states 'within 2 s' without specifying the boundary condition."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'within 2 s' as 'Maximum accepted elapsed time from detection to notification', but does not specify whether the maximum is inclusive or exclusive."
+        ],
+        "missing_information": [
+          "Whether the upper bound of 2 seconds is inclusive (<=) or exclusive (<)."
+        ],
+        "justification": "The controlled context provides a definition of the term but fails to specify the mathematical boundary condition required to distinguish between strict inequality and inclusive inequality. No external knowledge is permitted to fill this gap.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the boundary condition of the time limit cannot be resolved using only the provided requirement text and controlled context. The case must bypass Agent 3."
+    }
+  }
+}

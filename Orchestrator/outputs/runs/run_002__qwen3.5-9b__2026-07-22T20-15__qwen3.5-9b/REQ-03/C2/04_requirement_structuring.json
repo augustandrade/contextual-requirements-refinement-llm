@@ -1,0 +1,83 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03",
+    "context_condition": "C2",
+    "structuring_summary": "Ambiguities resolved via glossary and business rules. Requirement decomposed into two independent functional requirements per BR-01: one for adding a downstream system and one for allowing a subscription to a specific flow.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-03-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01",
+            "AMB-03"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "System-A performs the operation",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "must",
+          "action": "add",
+          "object": "System-B",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "downstream systems"
+        },
+        "final_statement": "System-A must add System-B to the downstream systems owned by System-A.",
+        "structuring_notes": [
+          "Resolved lexical ambiguity AMB-01: 'their' refers to System-A's ownership.",
+          "Decomposed from compound sentence per BR-01."
+        ]
+      },
+      {
+        "structured_id": "REQ-03-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "allow System-C to subscribe to the Reporting flow"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-02",
+            "AMB-03"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "System-A performs the operation",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "must",
+          "action": "allow",
+          "object": "System-C to subscribe to the Reporting flow",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "Reporting flow subscription"
+        },
+        "final_statement": "System-A must allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "Resolved lexical ambiguity AMB-02: 'Reporting flow' is a specific named flow per glossary.",
+          "Decomposed from compound sentence per BR-01."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume System-B or System-C owns the Reporting flow.",
+      "Did not assume System-A owns System-C."
+    ],
+    "final_output_status": "structured"
+  }
+}

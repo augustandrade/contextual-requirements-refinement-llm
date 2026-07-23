@@ -1,0 +1,257 @@
+{
+  "execution_id": "REQ-14-C1",
+  "requirement_id": "REQ-14",
+  "context_condition": "C1",
+  "input_requirement": "R-Q-2: The system shall inform the security service within 2 s after detecting damage.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detecting damage",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'damage' is polysemous; without a controlled vocabulary definition or glossary, it admits multiple interpretations regarding the specific type or severity of damage that triggers the notification.",
+        "possible_interpretations": [
+          "Any form of physical or logical damage detected by the system.",
+          "Only specific, critical types of damage (e.g., structural failure) that meet an implicit threshold."
+        ],
+        "textual_evidence": [
+          "detecting damage"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 2 s after detecting damage",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical scope of the temporal constraint is ambiguous. It is unclear whether the 2-second limit applies to the entire sequence (detection + notification) or only to the notification action after detection has occurred.",
+        "possible_interpretations": [
+          "The system must send the notification within 2 seconds from the moment damage is detected (detection time + transmission time <= 2s).",
+          "The system must detect the damage, and then separately ensure the notification is sent within 2 seconds of that detection event (effectively the same, but syntactically the 'after' phrase could imply a sequence where the 2s applies to the 'inform' action specifically).",
+          "The system must detect the damage, and the notification must occur within 2 seconds of the damage event itself (if detection is not instantaneous)."
+        ],
+        "textual_evidence": [
+          "within 2 s after detecting damage"
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "inform the security service",
+        "ambiguity_type": "lexical",
+        "explanation": "The verb 'inform' is polysemous in this context. It could mean simply transmitting a message or providing a detailed report/alert.",
+        "possible_interpretations": [
+          "Send a simple alert signal or log entry to the security service.",
+          "Provide a detailed report or notification message to the security service."
+        ],
+        "textual_evidence": [
+          "inform the security service"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": true,
+    "functional_action": "inform the security service",
+    "quality_criterion": "within 2 s",
+    "explanation": "The requirement simultaneously specifies a functional action (inform the security service) and a timing quality criterion (within 2 s) that describes how fast the system must execute the action."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-14-C1",
+    "requirement_id": "REQ-14",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'damage' and 'inform' remains unresolved as the controlled context lacks specific definitions or glossary entries to disambiguate these terms. The semantic ambiguity regarding the temporal scope is also unresolved due to lack of explicit sequencing rules.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detecting damage",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Any form of physical or logical damage detected by the system.",
+          "Only specific, critical types of damage (e.g., structural failure) that meet an implicit threshold."
+        ],
+        "evidence_from_requirement": [
+          "The term 'damage' is used without a specific qualifier."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'within 2 s' but does not define 'damage'.",
+          "Business rules and constraints are empty."
+        ],
+        "missing_information": [
+          "A definition or list of specific damage types that trigger the requirement."
+        ],
+        "justification": "The controlled context provides a definition for the time constraint but fails to provide a definition or glossary entry for 'damage'. Without this explicit evidence, the specific type of damage triggering the notification cannot be determined.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 2 s after detecting damage",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The system must send the notification within 2 seconds from the moment damage is detected (detection time + transmission time <= 2s).",
+          "The system must detect the damage, and then separately ensure the notification is sent within 2 seconds of that detection event.",
+          "The system must detect the damage, and the notification must occur within 2 seconds of the damage event itself."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'after detecting damage' introduces a sequence but does not explicitly define the boundary of the 2-second window relative to the detection event vs the damage event."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'within 2 s' as 'Maximum accepted elapsed time from detection to notification', which supports the interpretation that the window starts at detection."
+        ],
+        "missing_information": [
+          "Explicit business rules defining whether the 2-second limit includes the detection processing time or starts strictly after the detection event is logged."
+        ],
+        "justification": "While the glossary suggests the window is from detection to notification, the requirement text allows for an interpretation where the 2s applies to the notification action specifically after detection. Without a business rule explicitly stating 'the 2s limit applies to the notification action only' or 'includes detection processing', the exact scope remains ambiguous.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "inform the security service",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Send a simple alert signal or log entry to the security service.",
+          "Provide a detailed report or notification message to the security service."
+        ],
+        "evidence_from_requirement": [
+          "The verb 'inform' is used without a qualifier specifying the content or format of the message."
+        ],
+        "evidence_from_context": [
+          "The domain description mentions 'notification SLA' but does not define the content or format of the notification.",
+          "The glossary does not define 'inform'."
+        ],
+        "missing_information": [
+          "A definition of the expected content or format of the notification (e.g., alert signal vs detailed report)."
+        ],
+        "justification": "The controlled context does not contain a glossary entry for 'inform' nor a business rule specifying the content of the notification. Therefore, it is impossible to determine if a simple signal or a detailed report is required.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "All three ambiguities are unresolved because the controlled context (C1) lacks the specific definitions or rules needed to disambiguate 'damage', 'inform', and the precise temporal scope. The case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": true,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-14-C1",
+    "requirement_id": "REQ-14",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detecting damage",
+        "reason": "The controlled context provides a definition for the time constraint but fails to provide a definition or glossary entry for 'damage'. Without this explicit evidence, the specific type of damage triggering the notification cannot be determined.",
+        "missing_information": [
+          "A definition or list of specific damage types that trigger the requirement."
+        ],
+        "unsupported_interpretations": [
+          "Any form of physical or logical damage detected by the system.",
+          "Only specific, critical types of damage (e.g., structural failure) that meet an implicit threshold."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 2 s after detecting damage",
+        "reason": "While the glossary suggests the window is from detection to notification, the requirement text allows for an interpretation where the 2s applies to the notification action specifically after detection. Without a business rule explicitly stating 'the 2s limit applies to the notification action only' or 'includes detection processing', the exact scope remains ambiguous.",
+        "missing_information": [
+          "Explicit business rules defining whether the 2-second limit includes the detection processing time or starts strictly after the detection event is logged."
+        ],
+        "unsupported_interpretations": [
+          "The system must send the notification within 2 seconds from the moment damage is detected (detection time + transmission time <= 2s).",
+          "The system must detect the damage, and then separately ensure the notification is sent within 2 seconds of that detection event.",
+          "The system must detect the damage, and the notification must occur within 2 seconds of the damage event itself."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "inform the security service",
+        "reason": "The controlled context does not contain a glossary entry for 'inform' nor a business rule specifying the content of the notification. Therefore, it is impossible to determine if a simple signal or a detailed report is required.",
+        "missing_information": [
+          "A definition of the expected content or format of the notification (e.g., alert signal vs detailed report)."
+        ],
+        "unsupported_interpretations": [
+          "Send a simple alert signal or log entry to the security service.",
+          "Provide a detailed report or notification message to the security service."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detecting damage",
+        "reason": "The controlled context provides a definition for the time constraint but fails to provide a definition or glossary entry for 'damage'. Without this explicit evidence, the specific type of damage triggering the notification cannot be determined.",
+        "missing_information": [
+          "A definition or list of specific damage types that trigger the requirement."
+        ],
+        "unsupported_interpretations": [
+          "Any form of physical or logical damage detected by the system.",
+          "Only specific, critical types of damage (e.g., structural failure) that meet an implicit threshold."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 2 s after detecting damage",
+        "reason": "While the glossary suggests the window is from detection to notification, the requirement text allows for an interpretation where the 2s applies to the notification action specifically after detection. Without a business rule explicitly stating 'the 2s limit applies to the notification action only' or 'includes detection processing', the exact scope remains ambiguous.",
+        "missing_information": [
+          "Explicit business rules defining whether the 2-second limit includes the detection processing time or starts strictly after the detection event is logged."
+        ],
+        "unsupported_interpretations": [
+          "The system must send the notification within 2 seconds from the moment damage is detected (detection time + transmission time <= 2s).",
+          "The system must detect the damage, and then separately ensure the notification is sent within 2 seconds of that detection event.",
+          "The system must detect the damage, and the notification must occur within 2 seconds of the damage event itself."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "inform the security service",
+        "reason": "The controlled context does not contain a glossary entry for 'inform' nor a business rule specifying the content of the notification. Therefore, it is impossible to determine if a simple signal or a detailed report is required.",
+        "missing_information": [
+          "A definition of the expected content or format of the notification (e.g., alert signal vs detailed report)."
+        ],
+        "unsupported_interpretations": [
+          "Send a simple alert signal or log entry to the security service.",
+          "Provide a detailed report or notification message to the security service."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "A definition or list of specific damage types that trigger the requirement.",
+      "Explicit business rules defining whether the 2-second limit includes the detection processing time or starts strictly after the detection event is logged.",
+      "A definition of the expected content or format of the notification (e.g., alert signal vs detailed report)."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

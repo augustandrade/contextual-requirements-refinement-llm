@@ -1,0 +1,49 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02",
+    "context_condition": "C2",
+    "structuring_summary": "Ambiguities regarding the nature of the rejection order (semantic, lexical, syntactic) were resolved using the controlled context (glossary and business rules). The requirement is structured as a single functional requirement where the system raises a web alert upon receiving a rejection order specifically for a cancellation request.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-02-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "When a rejection order is received for a cancellation request, System-A must raise a web alert."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01",
+            "AMB-02",
+            "AMB-03"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "a rejection order is received for a cancellation request",
+          "condition_type": "event",
+          "system_or_component": "System-A",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "must",
+          "action": "raise",
+          "object": "a web alert",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "web alert"
+        },
+        "final_statement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+        "structuring_notes": [
+          "Resolved semantic, lexical, and syntactic ambiguities using glossary and business rules. The condition specifies that the rejection order is directed at the cancellation request."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume the content of the alert or the specific format of the web alert."
+    ],
+    "final_output_status": "structured"
+  }
+}

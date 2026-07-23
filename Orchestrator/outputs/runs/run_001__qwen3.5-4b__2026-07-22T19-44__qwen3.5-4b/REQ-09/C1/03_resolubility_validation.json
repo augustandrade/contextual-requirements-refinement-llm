@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' remains vague; the provided glossary definition is insufficient to establish a measurable boundary.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 5.5m.",
+          "Vehicles with a weight between 2,000kg and 3,500kg."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states 'All medium-sized vehicles shall be equipped with a navigation system'."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'medium-sized vehicle' as an 'Informal vehicle size category used by operations'."
+        ],
+        "missing_information": [
+          "A specific measurable boundary (e.g., length or weight range) is required to define 'medium-sized' objectively."
+        ],
+        "justification": "The glossary explicitly labels the category as 'informal' and provides no numerical thresholds or measurable criteria. Without a defined boundary, the interpretation cannot be safely resolved.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The controlled context confirms the term is informal and lacks a definition, but fails to provide the measurable evidence needed to resolve the vagueness. The case must bypass Agent 3."
+    }
+  }
+}

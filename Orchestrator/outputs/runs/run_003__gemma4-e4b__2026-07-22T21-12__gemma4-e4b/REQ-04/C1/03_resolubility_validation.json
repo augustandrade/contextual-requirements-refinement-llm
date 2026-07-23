@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity regarding the invalid item is highly likely to refer to the PIN because the PIN entry is the final action before the conditional statement, and the context defines PIN as a specific input.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The personal identification number (PIN) entered is invalid.",
+        "unsupported_interpretations": [
+          "The access card is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad."
+        ],
+        "evidence_from_context": [
+          "Domain: Corporate physical access control system with badge and PIN authentication.",
+          "Glossary: PIN definition: 4-digit personal identification number."
+        ],
+        "missing_information": [],
+        "justification": "The sequence of actions (card insert THEN PIN enter) and the context defining PIN as a specific, critical input strongly suggest that 'it' refers to the PIN when the condition 'invalid' is met, as this is the last piece of data entered before the check.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The combination of sequential action description and domain context allows for a safe resolution of the pronoun reference."
+    }
+  }
+}

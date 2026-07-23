@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'preferably' implies a weak preference, but no evidence in the requirement to decide whether the ECU must reset or may choose not to.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU must perform a reset when leaving the Factory mode.",
+          "The ECU may choose not to perform a reset when leaving the Factory mode."
+        ],
+        "evidence_from_requirement": [
+          "The term 'preferably' does not specify whether the ECU must or may choose not to perform a reset."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the preference for performing a reset is strong (must) or weak (may choose not to)."
+        ],
+        "justification": "The requirement contains no disambiguating evidence regarding the strength of the preference.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

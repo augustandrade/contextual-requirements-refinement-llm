@@ -1,0 +1,56 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the glass break detector of a window detects",
+        "reason": "The requirement contains two possible interpretations and provides no disambiguating evidence.",
+        "missing_information": [
+          "Whether 'glass break detector' refers to a specific device or a general intrusion detection system."
+        ],
+        "unsupported_interpretations": [
+          "A specific device designed to detect the breaking of glass is triggered.",
+          "An intrusion detection system with glass break sensors detects an event."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the pane has been damaged",
+        "reason": "The term 'damaged' is vague, as it does not specify the extent or severity of the damage.",
+        "missing_information": [
+          "The extent or severity of the damage required to trigger the system response."
+        ],
+        "unsupported_interpretations": [
+          "Minor damage (e.g., a small crack) triggers the system response.",
+          "Significant damage (e.g., complete shattering) triggers the system response."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest.",
+        "reason": "The logical operator 'at the latest' could imply that the system has up to 2 seconds to complete the action, or it could mean that the information must be sent exactly 2 seconds after the event.",
+        "missing_information": [
+          "Whether 'at the latest' implies an upper limit or an exact time for sending the information."
+        ],
+        "unsupported_interpretations": [],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

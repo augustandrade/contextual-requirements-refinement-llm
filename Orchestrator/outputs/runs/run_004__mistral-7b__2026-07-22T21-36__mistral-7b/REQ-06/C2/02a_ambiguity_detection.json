@@ -1,0 +1,50 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical operator 'and' lacks explicit binding, making it unclear whether both conditions (window damage and interior surveillance detection or door opening) must be met for the alarm to raise.",
+        "possible_interpretations": [
+          "Window damage is a necessary condition for the alarm to raise.",
+          "Window damage is a sufficient condition for the alarm to raise, regardless of other conditions."
+        ],
+        "textual_evidence": [
+          "If a window of the car is damaged"
+        ],
+        "context_dependency": "low"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and the interior surveillance of the car detects an intruder",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical operator 'and' lacks explicit binding, making it unclear whether this condition (interior surveillance detection) must be met for the alarm to raise.",
+        "possible_interpretations": [
+          "Interior surveillance detection is a necessary condition for the alarm to raise.",
+          "Interior surveillance detection is a sufficient condition for the alarm to raise, regardless of other conditions."
+        ],
+        "textual_evidence": [
+          "and the interior surveillance of the car detects an intruder"
+        ],
+        "context_dependency": "low"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "or a door of the car is opened without a car key,",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical operator 'or' lacks explicit binding, making it unclear whether this condition (door opening) must be met for the alarm to raise.",
+        "possible_interpretations": [
+          "Door opening is a necessary condition for the alarm to raise.",
+          "Door opening is a sufficient condition for the alarm to raise, regardless of other conditions."
+        ],
+        "textual_evidence": [
+          "or a door of the car is opened without a car key,"
+        ],
+        "context_dependency": "low"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

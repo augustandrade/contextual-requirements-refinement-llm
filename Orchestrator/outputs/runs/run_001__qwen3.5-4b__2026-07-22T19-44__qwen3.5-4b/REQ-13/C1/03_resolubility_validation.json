@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-13-C1",
+    "requirement_id": "REQ-13",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The controlled context defines 'detector' as a sensor, resolving the lexical ambiguity between specific damage detectors and general sensors.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the detector detects damage to the pane",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "A general-purpose sensor detects the occurrence of damage.",
+        "unsupported_interpretations": [
+          "A dedicated damage detection device (e.g., a crack sensor) detects damage."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text states 'the detector detects damage to the pane'."
+        ],
+        "evidence_from_context": [
+          "Glossary definition: 'detector' is defined as 'Sensor that detects pane damage'."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly defines 'detector' as a sensor, which aligns with the second interpretation and excludes the specific damage detection device interpretation.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides direct evidence to resolve the lexical ambiguity. Execution may proceed to Agent 3."
+    }
+  }
+}

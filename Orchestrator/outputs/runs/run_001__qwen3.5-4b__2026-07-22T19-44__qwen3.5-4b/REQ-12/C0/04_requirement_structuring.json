@@ -1,0 +1,51 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "reason": "The requirement text uses typographically demarcated terms but provides no internal definitions. The controlled context is empty (C0), so no external glossary or business rules exist to disambiguate these terms.",
+        "missing_information": [
+          "The specific definitions of 'Instruction', 'Keyword', and 'excel file' as controlled vocabulary identifiers."
+        ],
+        "unsupported_interpretations": [
+          "'Instruction' refers to a specific document type.",
+          "'Instruction' refers to a general directive.",
+          "'Keyword' refers to a specific string token.",
+          "'Keyword' refers to a general search term.",
+          "'excel file' refers to a specific file format.",
+          "'excel file' refers to any spreadsheet file."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The term 'User' is not typographically demarcated, and 'System-A' is demarcated but undefined. Without external context (C0), the specific actors and systems involved cannot be identified.",
+        "missing_information": [
+          "The specific role definition of 'User' and the functional identity of 'System-A'."
+        ],
+        "unsupported_interpretations": [
+          "'User' refers to a specific authenticated role.",
+          "'User' refers to any person interacting with the system.",
+          "'System-A' refers to a specific backend service.",
+          "'System-A' refers to a generic system component."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

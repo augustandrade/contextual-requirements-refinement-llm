@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-06-C0",
+    "requirement_id": "REQ-06",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key",
+        "reason": "In the absence of controlled context (C0), the requirement text alone does not provide explicit punctuation, grouping markers, or disambiguating phrasing to determine if the 'and' applies to both sides of the 'or' or only the first. Both interpretations are linguistically plausible without external inference.",
+        "missing_information": [
+          "The specific logical grouping intended by the author regarding the interaction between the window damage condition and the door opening condition."
+        ],
+        "unsupported_interpretations": [
+          "The alarm shall raise if (a window is damaged AND an intruder is detected) OR (a door is opened without a key).",
+          "The alarm shall raise if (a window is damaged AND an intruder is detected AND a door is opened without a key)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

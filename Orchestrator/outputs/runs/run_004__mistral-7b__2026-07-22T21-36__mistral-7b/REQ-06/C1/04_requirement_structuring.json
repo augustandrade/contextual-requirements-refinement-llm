@@ -1,0 +1,50 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-06-C1",
+    "requirement_id": "REQ-06",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged and the interior surveillance of the car detects an intruder",
+        "reason": "The requirement text does not provide direct evidence to determine whether both conditions are necessary or sufficient.",
+        "missing_information": [
+          "Whether both conditions (window damage and interior surveillance detection) must be met for the alarm to raise."
+        ],
+        "unsupported_interpretations": [],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and the interior surveillance of the car detects an intruder",
+        "reason": "The requirement text does not provide direct evidence to determine whether this condition is necessary or sufficient.",
+        "missing_information": [
+          "Whether this condition (interior surveillance detection) must be met for the alarm to raise."
+        ],
+        "unsupported_interpretations": [],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "or a door of the car is opened without a car key,",
+        "reason": "The requirement text does not provide direct evidence to determine whether this condition is necessary or sufficient.",
+        "missing_information": [
+          "Whether this condition (door opening) must be met for the alarm to raise."
+        ],
+        "unsupported_interpretations": [],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

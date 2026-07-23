@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'enters', 'access card', and 'access code' exists; no context provided to resolve.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user physically walks into a secure area using a physical card and a physical code.",
+          "The user inputs their credentials (card and code) into a system to gain digital access."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text states 'The user enters the access card with the access code'."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "The domain context (physical security vs. digital system) is required to distinguish between physical entry and data input."
+        ],
+        "justification": "The requirement text alone does not specify whether 'enters' refers to physical movement or data input, nor does it define the nature of the 'access card' or 'access code'. Without controlled context (C1/C2), the ambiguity cannot be resolved safely.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The lexical ambiguity is unresolved because the execution condition is C0 (no context), and the requirement text does not provide sufficient evidence to distinguish between physical and digital interpretations."
+    }
+  }
+}

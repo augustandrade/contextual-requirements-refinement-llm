@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-14-C0",
+    "requirement_id": "REQ-14",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "damage",
+        "reason": "The requirement contains two possible interpretations and provides no disambiguating evidence.",
+        "missing_information": [
+          "Specific type of damage the system should detect."
+        ],
+        "unsupported_interpretations": [
+          "Physical damage (e.g., broken equipment).",
+          "Cybersecurity damage (e.g., a breach or hack)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

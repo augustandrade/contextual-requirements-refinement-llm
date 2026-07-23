@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity regarding the scope of 'the pane' cannot be resolved as the requirement text does not specify if the detector monitors a single pane or multiple panes.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the detector detects damage to the pane",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The detector detects damage to a specific, previously identified pane.",
+          "The detector detects damage to any pane within its field of view."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'the pane' is used, but the requirement text does not provide context on whether the detector monitors one pane or many."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether 'the pane' refers to a single, specific pane or to any pane within the detector's monitored area."
+        ],
+        "justification": "The requirement text only states 'the pane' without defining the scope of monitoring, making it impossible to choose between a specific pane or any pane.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the scope of 'the pane' is unresolved because the requirement text lacks explicit definition of the monitoring scope."
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-06-C2",
+    "requirement_id": "REQ-06",
+    "context_condition": "C2",
+    "structuring_summary": "Ambiguity between conjunction and disjunction resolved by Business Rule BR-01. Requirement decomposed into two distinct functional requirements based on the supported interpretation: (1) Intruder detection and (2) Unauthorized door opening, both triggered by confirmed window damage.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-06-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If a window of the car is damaged and the interior surveillance of the car detects an intruder, the safety system shall raise an alarm."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "a window of the car is damaged AND the interior surveillance detects an intruder",
+          "condition_type": "logical",
+          "system_or_component": "the safety system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "raise",
+          "object": "an alarm",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "alarm"
+        },
+        "final_statement": "If a window of the car is damaged and the interior surveillance detects an intruder, the safety system shall raise an alarm.",
+        "structuring_notes": [
+          "Extracted first independent trigger event (intruder detection) from the resolved disjunction. Condition combines window damage (mandatory precondition) with intruder detection."
+        ]
+      },
+      {
+        "structured_id": "REQ-06-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "If a window of the car is damaged and a door of the car is opened without a car key, the safety system shall raise an alarm."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "a window of the car is damaged AND a door of the car is opened without a car key",
+          "condition_type": "logical",
+          "system_or_component": "the safety system",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "",
+          "modality": "shall",
+          "action": "raise",
+          "object": "an alarm",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "alarm"
+        },
+        "final_statement": "If a window of the car is damaged and a door of the car is opened without a car key, the safety system shall raise an alarm.",
+        "structuring_notes": [
+          "Extracted second independent trigger event (unauthorized door opening) from the resolved disjunction. Condition combines window damage (mandatory precondition) with unauthorized door opening."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

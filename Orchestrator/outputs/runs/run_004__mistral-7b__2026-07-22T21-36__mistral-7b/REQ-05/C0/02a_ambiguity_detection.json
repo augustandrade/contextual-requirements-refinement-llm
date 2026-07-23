@@ -1,0 +1,36 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card",
+        "ambiguity_type": "lexical",
+        "explanation": "The verb 'enters' can refer to either the user or the access card, leading to two different interpretations.",
+        "possible_interpretations": [
+          "The user enters the access card (user action).",
+          "The access card enters something (card action)."
+        ],
+        "textual_evidence": [
+          "enters the access card"
+        ],
+        "context_dependency": "none"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "with the access code",
+        "ambiguity_type": "referential",
+        "explanation": "The prepositional phrase 'with the access code' can refer to either the user or the access card, making it unclear who is supposed to have the access code.",
+        "possible_interpretations": [
+          "The user has the access code (user information).",
+          "The access card has the access code embedded (card information)."
+        ],
+        "textual_evidence": [
+          "with the access code"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

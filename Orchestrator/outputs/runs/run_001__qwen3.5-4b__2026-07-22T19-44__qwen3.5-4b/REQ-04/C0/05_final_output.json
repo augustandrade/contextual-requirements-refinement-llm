@@ -1,0 +1,124 @@
+{
+  "execution_id": "REQ-04-C0",
+  "requirement_id": "REQ-04",
+  "context_condition": "C0",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: the 'access card' and the 'personal identification number (PIN)'. It is unclear whether the system denies access because the card is invalid, the PIN is invalid, or both.",
+        "possible_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "textual_evidence": [
+          "inserts the access card",
+          "enters a personal identification number (PIN)",
+          "If it is invalid"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The pronoun 'it' has two competing antecedents (access card and PIN); no context or text evidence resolves which one is invalid.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The text mentions both the access card and the PIN before the pronoun 'it'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Which specific entity (access card or PIN) is referred to by 'it'."
+        ],
+        "justification": "The requirement text presents two distinct candidates for the antecedent of 'it' but provides no linguistic cues (such as proximity, grammatical number, or explicit reference) to distinguish between them. Without external context, both interpretations remain equally plausible.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to missing information regarding the pronoun's antecedent; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "The requirement text presents two distinct candidates for the antecedent of 'it' but provides no linguistic cues (such as proximity, grammatical number, or explicit reference) to distinguish between them. Without external context, both interpretations remain equally plausible.",
+        "missing_information": [
+          "Which specific entity (access card or PIN) is referred to by 'it'."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "The requirement text presents two distinct candidates for the antecedent of 'it' but provides no linguistic cues (such as proximity, grammatical number, or explicit reference) to distinguish between them. Without external context, both interpretations remain equally plausible.",
+        "missing_information": [
+          "Which specific entity (access card or PIN) is referred to by 'it'."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Which specific entity (access card or PIN) is referred to by 'it'."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

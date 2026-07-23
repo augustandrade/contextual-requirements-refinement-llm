@@ -1,0 +1,45 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C2",
+    "requirement_id": "REQ-08",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Shut off the pumps",
+        "reason": "The term 'Shut off' has multiple meanings (complete stop vs. standby). The controlled context provides domain rules but does not define the specific action of 'Shut off' for pumps. Without an explicit definition, the interpretation cannot be determined safely.",
+        "missing_information": [
+          "The controlled context does not define whether 'Shut off' implies complete cessation or a standby state in this specific domain."
+        ],
+        "unsupported_interpretations": [
+          "Stop the pumps completely and turn them off.",
+          "Reduce the pump operation to a minimal or standby state."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the water level",
+        "reason": "The term 'water level' is polysemous. The controlled context describes the system but does not explicitly define 'water level' as height or volume. Since the logic depends on a threshold (100 meters), which typically implies height, one might infer height, but the instructions forbid using external knowledge or plausibility. Strictly based on provided text, the definition is missing.",
+        "missing_information": [
+          "The controlled context does not specify whether 'water level' refers to height or volume."
+        ],
+        "unsupported_interpretations": [
+          "The vertical height of the water surface relative to a datum.",
+          "The total volume of water contained in the system."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

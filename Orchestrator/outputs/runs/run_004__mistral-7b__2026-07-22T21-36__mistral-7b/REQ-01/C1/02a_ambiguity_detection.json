@@ -1,0 +1,48 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the glass break detector of a window detects",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'glass break detector' could refer to either a device that specifically detects the breaking of glass or a more general intrusion detection system that includes glass break sensors among its capabilities. Without additional context, it is unclear which interpretation is intended.",
+        "possible_interpretations": [
+          "A specific device designed to detect the breaking of glass is triggered.",
+          "An intrusion detection system with glass break sensors detects an event."
+        ],
+        "textual_evidence": [
+          "the glass break detector",
+          "of a window"
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the pane has been damaged",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'damaged' is vague, as it does not specify the extent or severity of the damage required to trigger the system response. This ambiguity could lead to inconsistent behavior depending on how the term is interpreted.",
+        "possible_interpretations": [
+          "Minor damage (e.g., a small crack) triggers the system response.",
+          "Significant damage (e.g., complete shattering) triggers the system response."
+        ],
+        "textual_evidence": [
+          "the pane has been damaged"
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest.",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical operator 'at the latest' could imply that the system has up to 2 seconds to complete the action, or it could mean that the information must be sent exactly 2 seconds after the event. Without additional context, it is unclear which interpretation is intended.",
+        "possible_interpretations": [
+          "The system has up to 2 seconds to inform the security service.",
+          "The information must be sent exactly 2 seconds after the event."
+        ],
+        "textual_evidence": [
+          "the system shall inform the security service within 2 seconds at the latest"
+        ]
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

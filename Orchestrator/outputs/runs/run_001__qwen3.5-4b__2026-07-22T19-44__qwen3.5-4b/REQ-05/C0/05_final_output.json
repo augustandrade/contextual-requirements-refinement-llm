@@ -1,0 +1,124 @@
+{
+  "execution_id": "REQ-05-C0",
+  "requirement_id": "REQ-05",
+  "context_condition": "C0",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "lexical",
+        "explanation": "The verb 'enters' is polysemous and can mean either physically entering a location or inputting data into a system. Similarly, 'access card' and 'access code' are lexical terms that could refer to physical tokens or digital credentials depending on the domain context.",
+        "possible_interpretations": [
+          "The user physically walks into a secure area using a physical card and a physical code.",
+          "The user inputs their credentials (card and code) into a system to gain digital access."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'enters', 'access card', and 'access code' exists; no context provided to resolve.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user physically walks into a secure area using a physical card and a physical code.",
+          "The user inputs their credentials (card and code) into a system to gain digital access."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text states 'The user enters the access card with the access code'."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "The domain context (physical security vs. digital system) is required to distinguish between physical entry and data input."
+        ],
+        "justification": "The requirement text alone does not specify whether 'enters' refers to physical movement or data input, nor does it define the nature of the 'access card' or 'access code'. Without controlled context (C1/C2), the ambiguity cannot be resolved safely.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The lexical ambiguity is unresolved because the execution condition is C0 (no context), and the requirement text does not provide sufficient evidence to distinguish between physical and digital interpretations."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The requirement text alone does not specify whether 'enters' refers to physical movement or data input, nor does it define the nature of the 'access card' or 'access code'. Without controlled context (C1/C2), the ambiguity cannot be resolved safely.",
+        "missing_information": [
+          "The domain context (physical security vs. digital system) is required to distinguish between physical entry and data input."
+        ],
+        "unsupported_interpretations": [
+          "The user physically walks into a secure area using a physical card and a physical code.",
+          "The user inputs their credentials (card and code) into a system to gain digital access."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The requirement text alone does not specify whether 'enters' refers to physical movement or data input, nor does it define the nature of the 'access card' or 'access code'. Without controlled context (C1/C2), the ambiguity cannot be resolved safely.",
+        "missing_information": [
+          "The domain context (physical security vs. digital system) is required to distinguish between physical entry and data input."
+        ],
+        "unsupported_interpretations": [
+          "The user physically walks into a secure area using a physical card and a physical code.",
+          "The user inputs their credentials (card and code) into a system to gain digital access."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The domain context (physical security vs. digital system) is required to distinguish between physical entry and data input."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

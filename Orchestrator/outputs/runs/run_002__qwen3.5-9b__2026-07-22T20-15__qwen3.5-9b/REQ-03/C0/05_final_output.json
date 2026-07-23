@@ -1,0 +1,245 @@
+{
+  "execution_id": "REQ-03-C0",
+  "requirement_id": "REQ-03",
+  "context_condition": "C0",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "explanation": "The possessive pronoun 'their' lacks a clear antecedent in the text. It could refer to 'System-A' (singular they) or 'System-B' (if interpreted as a plural entity or a collective), creating ambiguity about which system owns the downstream systems.",
+        "possible_interpretations": [
+          "System-A must add System-B to the downstream systems owned by System-A.",
+          "System-A must add System-B to the downstream systems owned by System-B."
+        ],
+        "textual_evidence": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'Reporting flow' is not typographically demarcated (no quotes, CamelCase, or ALL_CAPS). Without a glossary, it is ambiguous whether this refers to a specific named flow, a generic category of flows, or a specific instance of a flow.",
+        "possible_interpretations": [
+          "System-C must subscribe to a specific, named flow called 'Reporting flow'.",
+          "System-C must subscribe to any flow that falls under the generic category of 'Reporting flows'."
+        ],
+        "textual_evidence": [
+          "subscribe to the Reporting flow"
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "explanation": "The conjunction 'and' creates a potential scope ambiguity regarding the subject of the second clause. It is unclear if 'allow' is an action performed by 'System-A' (parallel structure) or if the sentence implies a state where 'System-C' is allowed to subscribe (passive implication), though the latter is less likely syntactically, the primary ambiguity lies in whether 'add' and 'allow' are both actions of 'System-A' or if the structure implies a sequence where the second action's agent is unspecified or shared.",
+        "possible_interpretations": [
+          "System-A performs two actions: 1) adds System-B to its downstream systems, and 2) allows System-C to subscribe to the Reporting flow.",
+          "System-A adds System-B to its downstream systems, and [System-B or the system context] allows System-C to subscribe to the Reporting flow."
+        ],
+        "textual_evidence": [
+          "System-A must add System-B ... and allow System-C"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "All detected ambiguities are unresolved because the controlled context is empty (C0) and the requirement text alone does not provide sufficient evidence to disambiguate the pronoun 'their', the specific nature of 'Reporting flow', or the agent of the 'allow' action.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems owned by System-A.",
+          "System-A must add System-B to the downstream systems owned by System-B."
+        ],
+        "evidence_from_requirement": [
+          "The text uses the singular noun 'System-A' with the plural possessive 'their', allowing for either singular 'they' or a reference to an unstated plural entity."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A definition or convention stating whether 'System-A' is treated as a singular entity using 'they' or if 'their' refers to a collective group not explicitly named."
+        ],
+        "justification": "In C0, there is no context to resolve the singular/plural agreement ambiguity of 'their'. The text does not explicitly state who owns the downstream systems.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-C must subscribe to a specific, named flow called 'Reporting flow'.",
+          "System-C must subscribe to any flow that falls under the generic category of 'Reporting flows'."
+        ],
+        "evidence_from_requirement": [
+          "The term 'Reporting flow' lacks typographic demarcation (quotes, CamelCase) and there is no glossary to define it as a specific instance or a category."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A glossary entry or business rule defining 'Reporting flow' as a specific named entity versus a generic category."
+        ],
+        "justification": "Without a glossary or specific naming convention in the text, the distinction between a specific named flow and a generic category cannot be determined.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A performs two actions: 1) adds System-B to its downstream systems, and 2) allows System-C to subscribe to the Reporting flow.",
+          "System-A adds System-B to its downstream systems, and [System-B or the system context] allows System-C to subscribe to the Reporting flow."
+        ],
+        "evidence_from_requirement": [
+          "The conjunction 'and' connects two clauses with different subjects ('System-A' and 'System-C'), creating ambiguity about whether the second verb 'allow' shares the subject of the first clause or has an implicit/unspecified subject."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit statement clarifying whether 'allow' is an action performed by System-A or by another system (e.g., System-B)."
+        ],
+        "justification": "The syntactic structure allows for multiple interpretations of the agent for the second action. No evidence in the text or context resolves which system performs the 'allow' action.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "reason": "In C0, there is no context to resolve the singular/plural agreement ambiguity of 'their'. The text does not explicitly state who owns the downstream systems.",
+        "missing_information": [
+          "A definition or convention stating whether 'System-A' is treated as a singular entity using 'they' or if 'their' refers to a collective group not explicitly named."
+        ],
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems owned by System-A.",
+          "System-A must add System-B to the downstream systems owned by System-B."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "reason": "Without a glossary or specific naming convention in the text, the distinction between a specific named flow and a generic category cannot be determined.",
+        "missing_information": [
+          "A glossary entry or business rule defining 'Reporting flow' as a specific named entity versus a generic category."
+        ],
+        "unsupported_interpretations": [
+          "System-C must subscribe to a specific, named flow called 'Reporting flow'.",
+          "System-C must subscribe to any flow that falls under the generic category of 'Reporting flows'."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow",
+        "reason": "The syntactic structure allows for multiple interpretations of the agent for the second action. No evidence in the text or context resolves which system performs the 'allow' action.",
+        "missing_information": [
+          "Explicit statement clarifying whether 'allow' is an action performed by System-A or by another system (e.g., System-B)."
+        ],
+        "unsupported_interpretations": [
+          "System-A performs two actions: 1) adds System-B to its downstream systems, and 2) allows System-C to subscribe to the Reporting flow.",
+          "System-A adds System-B to its downstream systems, and [System-B or the system context] allows System-C to subscribe to the Reporting flow."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "reason": "In C0, there is no context to resolve the singular/plural agreement ambiguity of 'their'. The text does not explicitly state who owns the downstream systems.",
+        "missing_information": [
+          "A definition or convention stating whether 'System-A' is treated as a singular entity using 'they' or if 'their' refers to a collective group not explicitly named."
+        ],
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems owned by System-A.",
+          "System-A must add System-B to the downstream systems owned by System-B."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "reason": "Without a glossary or specific naming convention in the text, the distinction between a specific named flow and a generic category cannot be determined.",
+        "missing_information": [
+          "A glossary entry or business rule defining 'Reporting flow' as a specific named entity versus a generic category."
+        ],
+        "unsupported_interpretations": [
+          "System-C must subscribe to a specific, named flow called 'Reporting flow'.",
+          "System-C must subscribe to any flow that falls under the generic category of 'Reporting flows'."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow",
+        "reason": "The syntactic structure allows for multiple interpretations of the agent for the second action. No evidence in the text or context resolves which system performs the 'allow' action.",
+        "missing_information": [
+          "Explicit statement clarifying whether 'allow' is an action performed by System-A or by another system (e.g., System-B)."
+        ],
+        "unsupported_interpretations": [
+          "System-A performs two actions: 1) adds System-B to its downstream systems, and 2) allows System-C to subscribe to the Reporting flow.",
+          "System-A adds System-B to its downstream systems, and [System-B or the system context] allows System-C to subscribe to the Reporting flow."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "A definition or convention stating whether 'System-A' is treated as a singular entity using 'they' or if 'their' refers to a collective group not explicitly named.",
+      "A glossary entry or business rule defining 'Reporting flow' as a specific named entity versus a generic category.",
+      "Explicit statement clarifying whether 'allow' is an action performed by System-A or by another system (e.g., System-B)."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

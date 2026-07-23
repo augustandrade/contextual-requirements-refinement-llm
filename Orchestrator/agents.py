@@ -1,4 +1,5 @@
 import os
+import re
 from pathlib import Path
 
 import yaml
@@ -84,6 +85,94 @@ def _strip_markdown_fence(text: str) -> str:
     return text
 
 
+_SINGLE_QUOTED_LINE = re.compile(r"^(\s*(?:-\s+)?[\w.\-]+:\s*)'(.*)'\s*$")
+
+
+def _repair_yaml_quotes(text: str) -> str:
+    """Best-effort repair for the most common YAML break we see from local
+    models: a single-quoted scalar that itself contains an unescaped single
+    quote (e.g. `key: 'foo 'bar' baz'`). In valid YAML that inner quote would
+    need to be doubled (`''`), but models routinely forget this, which
+    truncates the string and corrupts the surrounding block mapping.
+    Rewrite such lines as double-quoted scalars instead, where an embedded
+    single quote is just a literal character.
+    """
+    fixed_lines = []
+    for line in text.split('\n'):
+        m = _SINGLE_QUOTED_LINE.match(line)
+        if m:
+            prefix, inner = m.groups()
+            if "'" in inner:
+                escaped = inner.replace('\\', '\\\\').replace('"', '\\"')
+                line = f'{prefix}"{escaped}"'
+        fixed_lines.append(line)
+    return '\n'.join(fixed_lines)
+
+
+_TRAILING_GARBAGE_AFTER_QUOTE = re.compile(r'^(.*"[^"]*")[.,;]+\s*$')
+
+
+def _repair_yaml_trailing_garbage(text: str) -> str:
+    """Best-effort repair for a second common YAML break: a properly closed
+    double-quoted scalar followed by stray punctuation the model appended
+    outside the string (e.g. `- "some text".`), which YAML treats as
+    trailing garbage after the scalar and refuses to parse. Strip it.
+    """
+    fixed_lines = []
+    for line in text.split('\n'):
+        m = _TRAILING_GARBAGE_AFTER_QUOTE.match(line)
+        fixed_lines.append(m.group(1) if m else line)
+    return '\n'.join(fixed_lines)
+
+
+_UNESCAPED_QUOTE = re.compile(r'(?<!\\)"')
+_OPENS_QUOTED_SCALAR = re.compile(r'^\s*(?:-\s+)?[\w.\-]+:\s*"')
+
+
+def _repair_yaml_unterminated_quote(text: str) -> str:
+    """Best-effort repair for a third common YAML break: a double-quoted
+    scalar that opens with `"` but is never closed on that line (the model
+    trails off, e.g. mid chain-of-thought, without a matching quote). YAML
+    then folds every following line into that same open string until it
+    happens to hit a later `"` elsewhere in the document, corrupting the
+    structure. Close the scalar right where it was left open.
+    """
+    fixed_lines = []
+    for line in text.split('\n'):
+        if len(_UNESCAPED_QUOTE.findall(line)) == 1 and _OPENS_QUOTED_SCALAR.match(line):
+            line = line + '"'
+        fixed_lines.append(line)
+    return '\n'.join(fixed_lines)
+
+
+def _parse_yaml_block(raw: str, root_key: str):
+    """Parse a model's YAML response, retrying with a few targeted repairs
+    if the first attempt fails. Returns the parsed dict, or None if all
+    attempts fail or the expected root_key is missing."""
+    candidate = _strip_markdown_fence(raw)
+    repairs = (
+        lambda t: t,
+        _repair_yaml_quotes,
+        _repair_yaml_trailing_garbage,
+        _repair_yaml_unterminated_quote,
+    )
+    # try single repairs first, then stacked combinations, in increasing order
+    # of how much of the raw text they alter
+    attempts = []
+    for r in repairs:
+        attempts.append(r(candidate))
+    attempts.append(_repair_yaml_unterminated_quote(_repair_yaml_trailing_garbage(_repair_yaml_quotes(candidate))))
+
+    for text in attempts:
+        try:
+            parsed = yaml.safe_load(text)
+        except Exception:
+            continue
+        if isinstance(parsed, dict) and root_key in parsed:
+            return parsed
+    return None
+
+
 def _ensure_local_client():
     global _llama_client, _llama_model_path
     if _llama_client is not None and _llama_model_path == LOCAL_MODEL_PATH:
@@ -112,7 +201,7 @@ def _call_model_local(system_prompt: str, user_content: str, timeout: int = 60):
     return str(resp)
 
 
-def _call_model_ollama(system_prompt: str, user_content: str, timeout: int = None, num_ctx: int = 2048):
+def _call_model_ollama(system_prompt: str, user_content: str, timeout: int = None, num_ctx: int = 2048, num_predict: int = 1500):
     """Call Ollama via REST API with thinking disabled for faster responses."""
     import urllib.request
     import json as _json
@@ -127,8 +216,8 @@ def _call_model_ollama(system_prompt: str, user_content: str, timeout: int = Non
         'think': False,
         'options': {
             'temperature': 0.0,
-            'num_ctx': num_ctx,    # caller sets context window per agent complexity
-            'num_predict': 1500,   # YAML responses stay well under this limit
+            'num_ctx': num_ctx,         # caller sets context window per agent complexity
+            'num_predict': num_predict, # caller sets generation budget; verbose agents need more headroom
         },
     }).encode()
     req = urllib.request.Request(
@@ -161,18 +250,21 @@ def detect_ambiguity(execution_input: dict) -> dict:
     if LLM_PROVIDER == 'openai':
         raw = _call_model_openai(system_prompt, user_content)
     elif LLM_PROVIDER == 'ollama':
-        raw = _call_model_ollama(system_prompt, user_content, num_ctx=2048)
+        # system_prompt alone is ~2.8k tokens (taxonomy + few-shot examples);
+        # num_ctx must cover prompt + user_content + num_predict or smaller
+        # models silently drop the output-format instructions and fall back
+        # to a schema of their own invention. num_predict is bumped too:
+        # requirements with several concurrent ambiguities (e.g. compound
+        # conditionals) produce long enough YAML to hit the default 1500-token
+        # cap mid-string, which truncates the response into invalid YAML.
+        raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=3000)
     elif LLM_PROVIDER == 'local':
         raw = _call_model_local(system_prompt, user_content)
     else:
         raw = _call_model_mock({'ambiguity_detection': {'has_ambiguity': False, 'ambiguities': []}})
 
-    try:
-        parsed = yaml.safe_load(_strip_markdown_fence(raw))
-    except Exception:
-        parsed = None
-
-    if isinstance(parsed, dict) and 'ambiguity_detection' in parsed:
+    parsed = _parse_yaml_block(raw, 'ambiguity_detection')
+    if parsed is not None:
         return {'ambiguity_detection': parsed['ambiguity_detection']}
 
     return {
@@ -196,7 +288,8 @@ def detect_concern_mixing(execution_input: dict) -> dict:
     if LLM_PROVIDER == 'openai':
         raw = _call_model_openai(system_prompt, user_content)
     elif LLM_PROVIDER == 'ollama':
-        raw = _call_model_ollama(system_prompt, user_content, num_ctx=2048)
+        # same context-truncation risk as Agent 1a — see note there
+        raw = _call_model_ollama(system_prompt, user_content, num_ctx=4096)
     elif LLM_PROVIDER == 'local':
         raw = _call_model_local(system_prompt, user_content)
     else:
@@ -205,12 +298,8 @@ def detect_concern_mixing(execution_input: dict) -> dict:
                                                               'quality_criterion': None,
                                                               'explanation': None}})
 
-    try:
-        parsed = yaml.safe_load(_strip_markdown_fence(raw))
-    except Exception:
-        parsed = None
-
-    if isinstance(parsed, dict) and 'concern_mixing_detection' in parsed:
+    parsed = _parse_yaml_block(raw, 'concern_mixing_detection')
+    if parsed is not None:
         return {'concern_mixing_detection': parsed['concern_mixing_detection']}
 
     return {
@@ -240,11 +329,16 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
     }
 
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
-    # Agent 2 receives requirement + context + Agent 1 output — needs larger ctx
+    # Agent 2 receives requirement + context + Agent 1 output — needs larger ctx.
+    # prompt alone is ~2.4k tokens; C2 controlled_context + a multi-ambiguity
+    # Agent 1 block can add several hundred more. num_predict is also bumped:
+    # a single ambiguity's justification can run 1000+ tokens on its own when
+    # the model reasons at length, so the default 1500 cap can truncate
+    # mid-string on cases with 2+ ambiguities to resolve.
     if LLM_PROVIDER == 'openai':
         raw = _call_model_openai(system_prompt, user_content)
     elif LLM_PROVIDER == 'ollama':
-        raw = _call_model_ollama(system_prompt, user_content, num_ctx=4096)
+        raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
     elif LLM_PROVIDER == 'local':
         raw = _call_model_local(system_prompt, user_content)
     else:
@@ -258,18 +352,15 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
             'overall_resolubility': {'status': 'no_ambiguity', 'explanation': ''}
         }})
 
-    try:
-        parsed = yaml.safe_load(_strip_markdown_fence(raw))
-        if isinstance(parsed, dict) and 'contextual_resolubility_validation' in parsed:
-            # Enforce correct IDs
-            crv = parsed['contextual_resolubility_validation']
-            if isinstance(crv, dict):
-                crv['execution_id'] = execution_input.get('execution_id')
-                crv['requirement_id'] = execution_input.get('requirement_id')
-                crv['context_condition'] = execution_input.get('context_condition')
-            return parsed
-    except Exception:
-        pass
+    parsed = _parse_yaml_block(raw, 'contextual_resolubility_validation')
+    if parsed is not None:
+        # Enforce correct IDs
+        crv = parsed['contextual_resolubility_validation']
+        if isinstance(crv, dict):
+            crv['execution_id'] = execution_input.get('execution_id')
+            crv['requirement_id'] = execution_input.get('requirement_id')
+            crv['context_condition'] = execution_input.get('context_condition')
+        return parsed
     return {
         'contextual_resolubility_validation': {
             'execution_id': execution_input.get('execution_id'),
@@ -315,18 +406,15 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
             'final_output_status': 'preserved'
         }})
 
-    try:
-        parsed = yaml.safe_load(_strip_markdown_fence(raw))
-        if isinstance(parsed, dict) and 'requirement_structuring' in parsed:
-            # Enforce correct IDs — models sometimes invent their own
-            rs = parsed['requirement_structuring']
-            if isinstance(rs, dict):
-                rs['execution_id'] = execution_input.get('execution_id')
-                rs['requirement_id'] = execution_input.get('requirement_id')
-                rs['context_condition'] = execution_input.get('context_condition')
-            return parsed
-    except Exception:
-        pass
+    parsed = _parse_yaml_block(raw, 'requirement_structuring')
+    if parsed is not None:
+        # Enforce correct IDs — models sometimes invent their own
+        rs = parsed['requirement_structuring']
+        if isinstance(rs, dict):
+            rs['execution_id'] = execution_input.get('execution_id')
+            rs['requirement_id'] = execution_input.get('requirement_id')
+            rs['context_condition'] = execution_input.get('context_condition')
+        return parsed
     return {
         'requirement_structuring': {
             'execution_id': execution_input.get('execution_id'),

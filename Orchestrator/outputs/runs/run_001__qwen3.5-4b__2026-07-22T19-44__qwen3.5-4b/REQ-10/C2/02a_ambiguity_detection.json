@@ -1,0 +1,22 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'dial tone' is a domain-specific term that can refer to either the audible signal indicating a line is ready for dialing, or the physical act of generating that signal. Without a glossary or context, the requirement does not specify whether the system must produce the sound or perform the action of creating the signal.",
+        "possible_interpretations": [
+          "The system shall produce an audible dial tone to indicate the line is ready.",
+          "The system shall perform the action of generating a dial tone (regardless of whether it is audible)."
+        ],
+        "textual_evidence": [
+          "Generate a dial tone"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

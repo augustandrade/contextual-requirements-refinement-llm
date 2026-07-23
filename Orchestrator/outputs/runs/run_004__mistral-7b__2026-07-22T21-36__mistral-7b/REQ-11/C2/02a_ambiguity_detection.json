@@ -1,0 +1,23 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "between data-plane interfaces and management data traffic",
+        "ambiguity_type": "semantic",
+        "explanation": "The preposition 'between' can imply either that the routing switches filter network traffic exclusively between data-plane interfaces (excluding other types of interfaces) or that they filter both data-plane and management data traffic, but only the traffic flowing between these two types of interfaces.",
+        "possible_interpretations": [
+          "The routing switches filter network traffic exclusively between data-plane interfaces.",
+          "The routing switches filter both data-plane and management data traffic, but only the traffic flowing between these two types of interfaces."
+        ],
+        "textual_evidence": [
+          "between data-plane interfaces",
+          "and management data traffic"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

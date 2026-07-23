@@ -1,0 +1,22 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'preferably' introduces a fuzzy constraint on the action. It does not specify the conditions under which the reset must occur, nor does it define the acceptable deviation from this preference.",
+        "possible_interpretations": [
+          "The reset should occur unless a specific, unstated condition prevents it.",
+          "The reset should occur, but if it causes minor disruption, that disruption is acceptable."
+        ],
+        "textual_evidence": [
+          "should preferably perform a reset"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

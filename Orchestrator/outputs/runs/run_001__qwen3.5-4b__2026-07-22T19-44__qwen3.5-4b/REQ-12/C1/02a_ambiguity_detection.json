@@ -1,0 +1,39 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "ambiguity_type": "lexical",
+        "explanation": "The terms 'Instruction', 'Keyword', and 'excel file' are typographically demarcated as controlled vocabulary identifiers (single quotes, CamelCase, ALL_CAPS). However, without external glossary definitions provided to this agent, the specific meaning of these identifiers within the domain context is unknown, leading to potential lexical ambiguity regarding their precise definition.",
+        "possible_interpretations": [
+          "'Instruction' refers to a specific document type, 'Keyword' refers to a specific string token, and 'excel file' refers to a specific file format.",
+          "'Instruction' refers to a general directive, 'Keyword' refers to a general search term, and 'excel file' refers to any spreadsheet file."
+        ],
+        "textual_evidence": [
+          "an 'Instruction'",
+          "a 'Keyword'",
+          "'excel file'"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'User' is not typographically demarcated and lacks a unique definition in the text, potentially referring to any actor or a specific role. Additionally, 'System-A' is typographically demarcated but its specific function or identity within the system architecture is undefined without external context.",
+        "possible_interpretations": [
+          "'User' refers to a specific authenticated role, and 'System-A' refers to a specific backend service.",
+          "'User' refers to any person interacting with the system, and 'System-A' refers to a generic system component."
+        ],
+        "textual_evidence": [
+          "The User",
+          "System-A"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

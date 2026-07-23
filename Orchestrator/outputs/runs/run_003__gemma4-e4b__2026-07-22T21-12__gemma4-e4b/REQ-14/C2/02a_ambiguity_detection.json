@@ -1,0 +1,22 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 s after detecting damage",
+        "ambiguity_type": "syntactic",
+        "explanation": "The temporal phrase 'within 2 s' can modify the action of 'inform' (the notification must happen within 2 seconds) or it can modify the action of 'detecting damage' (the detection itself must occur within 2 seconds). This creates ambiguity regarding the scope of the time constraint.",
+        "possible_interpretations": [
+          "The system must inform the security service within 2 seconds after the damage has been detected (Time constraint on informing).",
+          "The system must detect the damage within 2 seconds, and then inform the security service (Time constraint on detection)."
+        ],
+        "textual_evidence": [
+          "within 2 s after detecting damage"
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

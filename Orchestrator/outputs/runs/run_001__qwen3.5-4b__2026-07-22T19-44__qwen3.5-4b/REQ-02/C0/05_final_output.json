@@ -1,0 +1,130 @@
+{
+  "execution_id": "REQ-02-C0",
+  "requirement_id": "REQ-02",
+  "context_condition": "C0",
+  "input_requirement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'rejection order' is lexically ambiguous as it can refer to either a formal notification that a request has been denied, or a specific command/order to reject the request. Similarly, 'cancellation request' could be interpreted as a request to cancel an existing order or a request to cancel a specific transaction, creating potential scope confusion regarding the trigger event.",
+        "possible_interpretations": [
+          "A formal notification indicating that the cancellation request has been denied.",
+          "A specific command or directive instructing the system to reject the cancellation request."
+        ],
+        "textual_evidence": [
+          "rejection order",
+          "cancellation request"
+        ],
+        "context_dependency": "moderate"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity exists regarding 'rejection order' and 'cancellation request'; no context or text evidence resolves the specific meaning.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A formal notification indicating that the cancellation request has been denied.",
+          "A specific command or directive instructing the system to reject the cancellation request."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text mentions 'rejection order' and 'cancellation request' but does not define them.",
+          "The phrase 'received for' does not explicitly distinguish between a notification of denial and a command to reject."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "The specific definition of 'rejection order' (notification vs. command).",
+          "The specific scope of 'cancellation request' (order vs. transaction)."
+        ],
+        "justification": "The controlled context is empty (C0), and the requirement text itself lacks definitions or disambiguating clauses for the terms 'rejection order' and 'cancellation request'. Without external context or explicit definitions in the text, the two possible interpretations remain equally valid based on the provided evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved due to missing definitions in the requirement text and the absence of controlled context. The execution must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "reason": "The controlled context is empty (C0), and the requirement text itself lacks definitions or disambiguating clauses for the terms 'rejection order' and 'cancellation request'. Without external context or explicit definitions in the text, the two possible interpretations remain equally valid based on the provided evidence.",
+        "missing_information": [
+          "The specific definition of 'rejection order' (notification vs. command).",
+          "The specific scope of 'cancellation request' (order vs. transaction)."
+        ],
+        "unsupported_interpretations": [
+          "A formal notification indicating that the cancellation request has been denied.",
+          "A specific command or directive instructing the system to reject the cancellation request."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "reason": "The controlled context is empty (C0), and the requirement text itself lacks definitions or disambiguating clauses for the terms 'rejection order' and 'cancellation request'. Without external context or explicit definitions in the text, the two possible interpretations remain equally valid based on the provided evidence.",
+        "missing_information": [
+          "The specific definition of 'rejection order' (notification vs. command).",
+          "The specific scope of 'cancellation request' (order vs. transaction)."
+        ],
+        "unsupported_interpretations": [
+          "A formal notification indicating that the cancellation request has been denied.",
+          "A specific command or directive instructing the system to reject the cancellation request."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The specific definition of 'rejection order' (notification vs. command).",
+      "The specific scope of 'cancellation request' (order vs. transaction)."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,32 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-02-C1",
+    "requirement_id": "REQ-02",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "reason": "While the domain is identified as a Post-trade financial platform, the glossary and business rules are empty. The requirement text alone does not distinguish between a notification of denial and a command to reject, nor does the context provide the specific terminology definitions needed to select one interpretation over the other.",
+        "missing_information": [
+          "Specific definitions for 'rejection order' and 'cancellation request' within the Post-trade financial platform domain.",
+          "Business rules defining the trigger event for System-A alerts."
+        ],
+        "unsupported_interpretations": [
+          "A formal notification indicating that the cancellation request has been denied.",
+          "A specific command or directive instructing the system to reject the cancellation request."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

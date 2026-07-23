@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "with the access code",
+        "reason": "The controlled context does not provide direct evidence to disambiguate who has the access code.",
+        "missing_information": [
+          "Who has the access code?"
+        ],
+        "unsupported_interpretations": [
+          "The user has the access code (user information).",
+          "The access card has the access code embedded (card information)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

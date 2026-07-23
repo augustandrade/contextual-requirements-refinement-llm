@@ -1,0 +1,121 @@
+{
+  "execution_id": "REQ-07-C0",
+  "requirement_id": "REQ-07",
+  "context_condition": "C0",
+  "input_requirement": "When leaving the Factory mode, the ECU should preferably perform a reset.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform",
+        "ambiguity_type": "semantic",
+        "explanation": "The term 'preferably' implies a preference or recommendation, but it does not specify whether the ECU must reset (strong preference) or may choose not to (weak preference). This ambiguity arises due to logical operator precedence.",
+        "possible_interpretations": [
+          "The ECU must perform a reset when leaving the Factory mode.",
+          "The ECU may choose not to perform a reset when leaving the Factory mode."
+        ],
+        "textual_evidence": [
+          "preferably perform"
+        ],
+        "context_dependency": "low"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'preferably' implies a weak preference, but no evidence in the requirement to decide whether the ECU must reset or may choose not to.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU must perform a reset when leaving the Factory mode.",
+          "The ECU may choose not to perform a reset when leaving the Factory mode."
+        ],
+        "evidence_from_requirement": [
+          "The term 'preferably' does not specify whether the ECU must or may choose not to perform a reset."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the preference for performing a reset is strong (must) or weak (may choose not to)."
+        ],
+        "justification": "The requirement contains no disambiguating evidence regarding the strength of the preference.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform",
+        "reason": "The requirement contains no disambiguating evidence regarding the strength of the preference.",
+        "missing_information": [
+          "Whether the preference for performing a reset is strong (must) or weak (may choose not to)."
+        ],
+        "unsupported_interpretations": [
+          "The ECU must perform a reset when leaving the Factory mode.",
+          "The ECU may choose not to perform a reset when leaving the Factory mode."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform",
+        "reason": "The requirement contains no disambiguating evidence regarding the strength of the preference.",
+        "missing_information": [
+          "Whether the preference for performing a reset is strong (must) or weak (may choose not to)."
+        ],
+        "unsupported_interpretations": [
+          "The ECU must perform a reset when leaving the Factory mode.",
+          "The ECU may choose not to perform a reset when leaving the Factory mode."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether the preference for performing a reset is strong (must) or weak (may choose not to)."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

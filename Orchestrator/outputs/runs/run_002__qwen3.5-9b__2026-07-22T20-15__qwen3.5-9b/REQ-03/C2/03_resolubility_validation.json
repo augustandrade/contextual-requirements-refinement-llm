@@ -1,0 +1,72 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Ambiguity AMB-01 is resolvable via glossary context; AMB-02 is resolvable via glossary definition; AMB-03 is resolvable via business rule requiring clear specification of independent operations.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A must add System-B to the downstream systems owned by System-A.",
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems owned by System-B."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure 'System-A must add System-B to their downstream systems' implies ownership by the subject (System-A) using the singular 'they'."
+        ],
+        "evidence_from_context": [
+          "Glossary entry for 'Reporting flow' defines the domain as an integration platform orchestrating services, implying System-A is the orchestrator owning the downstream systems."
+        ],
+        "missing_information": [],
+        "justification": "The requirement text uses 'their' as a singular possessive for System-A. The context confirms System-A is the orchestrator, making the ownership by System-A the only logical interpretation within the domain.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-C must subscribe to a specific, named flow called 'Reporting flow'.",
+        "unsupported_interpretations": [
+          "System-C must subscribe to any flow that falls under the generic category of 'Reporting flows'."
+        ],
+        "evidence_from_requirement": [
+          "The term 'Reporting flow' appears as a specific noun phrase in the requirement text."
+        ],
+        "evidence_from_context": [
+          "Glossary: term 'Reporting flow' definition: Event stream used by subscribers for operational reporting."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context glossary explicitly defines 'Reporting flow' as a specific term, resolving the ambiguity between a generic category and a specific named flow.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A performs two actions: 1) adds System-B to its downstream systems, and 2) allows System-C to subscribe to the Reporting flow.",
+        "unsupported_interpretations": [
+          "System-A adds System-B to its downstream systems, and [System-B or the system context] allows System-C to subscribe to the Reporting flow."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure presents a compound imperative starting with 'System-A must'."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01: Partner registration and reporting subscription are independent operations and must be specified clearly in the final requirement structure."
+        ],
+        "missing_information": [],
+        "justification": "Business rule BR-01 mandates that these operations be specified clearly. The parallel structure where System-A performs both actions satisfies the requirement for clear specification of independent operations performed by the subject.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "All ambiguities are resolved using evidence from the requirement text and the controlled context (glossary and business rules). Execution may proceed to Agent 3."
+    }
+  }
+}

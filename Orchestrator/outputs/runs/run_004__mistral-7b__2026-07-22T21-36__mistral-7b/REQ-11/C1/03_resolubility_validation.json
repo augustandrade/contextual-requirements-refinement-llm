@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-11-C1",
+    "requirement_id": "REQ-11",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Semantic ambiguity detected in the preposition 'between'.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "between data-plane interfaces and management data traffic",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The routing switches filter network traffic exclusively between data-plane interfaces.",
+          "The routing switches filter both data-plane and management data traffic, but only the traffic flowing between these two types of interfaces."
+        ],
+        "evidence_from_requirement": [
+          "The sentence introduces 'data-plane interfaces' and 'management data traffic', but does not specify whether other types of interfaces are involved."
+        ],
+        "evidence_from_context": [
+          "Industrial railway communication network using routing switches. This context suggests that there might be multiple types of interfaces in the network, making the interpretation ambiguous."
+        ],
+        "missing_information": [
+          "Whether 'between' implies filtering exclusively between data-plane interfaces or including both data-plane and management data traffic."
+        ],
+        "justification": "The requirement text does not provide direct evidence to support one interpretation over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

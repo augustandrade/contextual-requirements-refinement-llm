@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04",
+    "context_condition": "C2",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "reason": "The context provides conflicting rules: BR-01 mandates immediate denial for invalid cards, while BR-02 mandates a retry for invalid PINs. Since the requirement states a blanket 'deny access' for 'it is invalid', and the context shows different behaviors for the two possible antecedents, the ambiguity cannot be resolved to a single, safe interpretation.",
+        "missing_information": [
+          "The requirement text states 'If it is invalid, the system shall deny the access.' The context provides two different behaviors for invalid inputs (card vs. PIN), but the requirement itself does not specify which invalid input triggers the 'deny access' action, as the context rules conflict with the requirement's singular statement."
+        ],
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) entered is invalid."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

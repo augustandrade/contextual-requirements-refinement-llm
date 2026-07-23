@@ -1,8 +1,0 @@
-{
-  "concern_mixing_detection": {
-    "has_concern_mixing": true,
-    "functional_action": "raise a web alert",
-    "quality_criterion": null,
-    "explanation": "The requirement simultaneously specifies a functional action (raise web alert) and does not contain a quality criterion, but it is still non-atomic because the action's execution is implicitly tied to a trigger condition ('When a rejection order is received for a cancellation request'). However, since no measurable property of HOW the system executes the action is provided, this example only contains a functional action."
-  }
-}

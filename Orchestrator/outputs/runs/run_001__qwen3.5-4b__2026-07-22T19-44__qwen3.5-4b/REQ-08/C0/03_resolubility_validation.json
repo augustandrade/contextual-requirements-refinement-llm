@@ -1,0 +1,55 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-08-C0",
+    "requirement_id": "REQ-08",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Ambiguities regarding numerical thresholds exist in the requirement text, but no controlled context is available to resolve them.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Strictly greater than 100 meters.",
+          "At or greater than 100 meters."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'above 100 meters' lacks a precise numerical cutoff."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A precise definition of the threshold (e.g., strictly greater than vs. inclusive) is missing."
+        ],
+        "justification": "The requirement text uses the term 'above' which is inherently vague regarding boundary inclusion. No controlled context (C0) provides a glossary, business rule, or constraint to define the exact threshold.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "for more than 4 seconds",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Strictly greater than 4 seconds.",
+          "At least 4 seconds."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'more than 4 seconds' lacks a precise boundary."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A precise definition of the duration threshold (e.g., strictly greater than vs. inclusive) is missing."
+        ],
+        "justification": "The requirement text uses the term 'more than' which is inherently vague regarding boundary inclusion. No controlled context (C0) provides a glossary, business rule, or constraint to define the exact duration.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "Ambiguities regarding numerical thresholds are unresolved because the controlled context is empty (C0) and the requirement text itself does not provide disambiguating evidence."
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "While the domain mentions a 'card reader' and 'keypad', the requirement text does not explicitly state if the user is performing a physical entry or a data input action. The verb 'enters' is polysemous, and the context does not definitively rule out the physical interpretation (e.g., walking into a room with a card) versus the digital interpretation (typing a code). Therefore, the specific action cannot be confirmed with certainty.",
+        "missing_information": [
+          "Whether 'enters' refers to physical movement into a location or data entry into a system.",
+          "Whether 'access card' refers to a physical token or a digital credential."
+        ],
+        "unsupported_interpretations": [
+          "The user physically walks into a secure area using a physical card and a physical code.",
+          "The user inputs their credentials (card and code) into a system to gain digital access."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

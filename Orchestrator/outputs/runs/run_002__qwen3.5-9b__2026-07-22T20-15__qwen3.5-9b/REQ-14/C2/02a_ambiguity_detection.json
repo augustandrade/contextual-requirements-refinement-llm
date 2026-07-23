@@ -1,0 +1,50 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detecting damage",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'damage' is polysemous; without a controlled vocabulary definition or glossary, it admits multiple interpretations regarding the specific type or severity of damage that triggers the notification.",
+        "possible_interpretations": [
+          "Any form of physical or logical damage detected by the system.",
+          "Only specific, critical types of damage (e.g., structural failure) that meet an implicit threshold."
+        ],
+        "textual_evidence": [
+          "detecting damage"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 2 s after detecting damage",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical scope of the temporal constraint is ambiguous. It is unclear whether the 2-second limit applies to the entire sequence (detection + notification) or only to the notification action after detection has occurred.",
+        "possible_interpretations": [
+          "The system must send the notification within 2 seconds from the moment damage is detected (detection time + transmission time <= 2s).",
+          "The system must detect the damage, and then separately ensure the notification is sent within 2 seconds of that detection event (effectively the same, but syntactically the 'after' phrase could imply a sequence where the 2s applies to the 'inform' action specifically).",
+          "The system must detect the damage, and the notification must occur within 2 seconds of the damage event itself (if detection is not instantaneous)."
+        ],
+        "textual_evidence": [
+          "within 2 s after detecting damage"
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "inform the security service",
+        "ambiguity_type": "lexical",
+        "explanation": "The verb 'inform' is polysemous in this context. It could mean simply transmitting a message or providing a detailed report/alert.",
+        "possible_interpretations": [
+          "Send a simple alert signal or log entry to the security service.",
+          "Provide a detailed report or notification message to the security service."
+        ],
+        "textual_evidence": [
+          "inform the security service"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  }
+}

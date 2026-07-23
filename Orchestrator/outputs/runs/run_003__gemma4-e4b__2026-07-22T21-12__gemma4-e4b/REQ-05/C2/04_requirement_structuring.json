@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05",
+    "context_condition": "C2",
+    "structuring_summary": "Syntactic ambiguity resolved by Agent 2 using the supported interpretation. The requirement is structured as a single functional requirement reflecting the mandated sequence of actions.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-05-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "The user initiates the access process",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "user_interaction",
+          "actor": "user",
+          "modality": "shall",
+          "action": "perform access control sequence",
+          "object": "access card and access code",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access control process"
+        },
+        "final_statement": "The user shall perform the access control sequence by first inserting the access card into the card reader, followed by entering the access code on the keypad.",
+        "structuring_notes": [
+          "The original ambiguous statement was rewritten to explicitly reflect the mandatory sequence defined in BR-01: Card insertion first, then code entry. The action is modeled as a sequence of user interactions."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume specific components (e.g., 'card reader', 'keypad') are the only components involved, only that the sequence must be followed."
+    ],
+    "final_output_status": "structured"
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically unambiguous: 'the system' has a single subject, 'the security service' has a single object, and 'detecting damage' is a clear event trigger. There are no competing antecedents for pronouns or modifiers, no syntactic attachment conflicts, and no terms with inherent lack of measurable boundaries."
-  }
-}

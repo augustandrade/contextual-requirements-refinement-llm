@@ -1,0 +1,124 @@
+{
+  "execution_id": "REQ-09-C1",
+  "requirement_id": "REQ-09",
+  "context_condition": "C1",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' is inherently vague as it lacks measurable boundaries, making it impossible to determine definitively which vehicles qualify for this requirement.",
+        "possible_interpretations": [
+          "Vehicles falling within a specific, but undefined, size range (e.g., 2 to 3 meters in length).",
+          "Vehicles whose size is considered 'medium' by a standard not provided in the text."
+        ],
+        "textual_evidence": [
+          "medium-sized vehicles"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The vagueness of 'medium-sized' remains unresolved because the controlled context only provides a glossary definition without establishing measurable boundaries.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles falling within a specific, but undefined, size range (e.g., 2 to 3 meters in length).",
+          "Vehicles whose size is considered 'medium' by a standard not provided in the text."
+        ],
+        "evidence_from_requirement": [
+          "All medium-sized vehicles shall be equipped with a navigation system."
+        ],
+        "evidence_from_context": [
+          "Glossary: term 'medium-sized vehicle' has definition: 'Informal vehicle size category used by operations.'"
+        ],
+        "missing_information": [
+          "The controlled context defines 'medium-sized vehicle' as an 'Informal vehicle size category' but fails to provide the objective, measurable criteria (e.g., length range, weight class) required to resolve the vagueness."
+        ],
+        "justification": "The context confirms the term is informal but provides no quantitative or definitive boundaries to select one interpretation over the others.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the definition of 'medium-sized' is unresolved because the controlled context lacks the necessary measurable criteria to proceed."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The context confirms the term is informal but provides no quantitative or definitive boundaries to select one interpretation over the others.",
+        "missing_information": [
+          "The controlled context defines 'medium-sized vehicle' as an 'Informal vehicle size category' but fails to provide the objective, measurable criteria (e.g., length range, weight class) required to resolve the vagueness."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles falling within a specific, but undefined, size range (e.g., 2 to 3 meters in length).",
+          "Vehicles whose size is considered 'medium' by a standard not provided in the text."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The context confirms the term is informal but provides no quantitative or definitive boundaries to select one interpretation over the others.",
+        "missing_information": [
+          "The controlled context defines 'medium-sized vehicle' as an 'Informal vehicle size category' but fails to provide the objective, measurable criteria (e.g., length range, weight class) required to resolve the vagueness."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles falling within a specific, but undefined, size range (e.g., 2 to 3 meters in length).",
+          "Vehicles whose size is considered 'medium' by a standard not provided in the text."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The controlled context defines 'medium-sized vehicle' as an 'Informal vehicle size category' but fails to provide the objective, measurable criteria (e.g., length range, weight class) required to resolve the vagueness."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

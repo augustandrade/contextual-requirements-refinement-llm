@@ -1,0 +1,51 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05",
+    "context_condition": "C2",
+    "structuring_summary": "Syntactic and lexical ambiguities regarding the physical interaction with the card reader and keypad were resolved using business rule BR-01 and domain definitions. The requirement was decomposed into a single functional requirement describing the sequence of inserting the card and entering the code.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-05-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01",
+            "AMB-02",
+            "AMB-03"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "the user inserts the access card into the card reader and then enters the access code on the keypad",
+          "condition_type": "event",
+          "system_or_component": "the access control system",
+          "interaction_pattern": "user_interaction",
+          "actor": "the user",
+          "modality": "shall",
+          "action": "authenticate",
+          "object": "the user",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "user access"
+        },
+        "final_statement": "The user shall insert the access card into the card reader and then enter the access code on the keypad.",
+        "structuring_notes": [
+          "Resolved syntactic ambiguity: 'enters the access card' interpreted as physical insertion per BR-01.",
+          "Resolved lexical ambiguity: 'enters the access code' interpreted as digital input on keypad per BR-01.",
+          "Combined sequence of actions into a single functional requirement statement."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume specific authentication logic (e.g., AND vs OR) beyond the sequential action described."
+    ],
+    "final_output_status": "structured"
+  }
+}

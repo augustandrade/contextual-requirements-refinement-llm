@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-09-C0",
+    "requirement_id": "REQ-09",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' is vague, and since no context is provided, the ambiguity cannot be resolved.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles falling within a specific, but undefined, size range (e.g., 2 to 3 meters in length).",
+          "Vehicles whose size is considered 'medium' by a standard not provided in the text."
+        ],
+        "evidence_from_requirement": [
+          "The term 'medium-sized' is used without quantitative definition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A measurable definition or boundary for 'medium-sized' vehicles is required."
+        ],
+        "justification": "The ambiguity is inherent to the term itself, and the absence of any controlled context prevents establishing a single, safe interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the definition of 'medium-sized' is unresolved because the requirement text lacks measurable boundaries, and no controlled context can provide clarification."
+    }
+  }
+}

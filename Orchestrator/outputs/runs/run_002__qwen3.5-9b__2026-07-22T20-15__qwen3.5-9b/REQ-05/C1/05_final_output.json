@@ -1,0 +1,194 @@
+{
+  "execution_id": "REQ-05-C1",
+  "requirement_id": "REQ-05",
+  "context_condition": "C1",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' can attach either to the verb 'enters' (the user uses the code as the instrument/method of entry) or to the noun phrase 'the access card' (the card is the one associated with or containing the code), yielding two different syntax trees and two different meanings.",
+        "possible_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters a specific access card that is associated with or has the access code on it (the code identifies the card)."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "enters the access card",
+        "ambiguity_type": "lexical",
+        "explanation": "The verb 'enters' is polysemous. In this context, it could mean 'inputs' (data entry) or 'physically inserts/places' (physical action), leading to different interpretations of the user's action.",
+        "possible_interpretations": [
+          "The user inputs the access card information into the system.",
+          "The user physically inserts the access card into a reader."
+        ],
+        "textual_evidence": [
+          "enters the access card"
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "with the access code",
+        "ambiguity_type": "lexical",
+        "explanation": "The noun phrase 'access code' is polysemous. It could refer to a PIN/password (digital credential) or a physical key/code (mechanical credential), changing the nature of the interaction.",
+        "possible_interpretations": [
+          "The user provides a PIN or password as the access code.",
+          "The user provides a physical key or mechanical code as the access code."
+        ],
+        "textual_evidence": [
+          "with the access code"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the attachment of the prepositional phrase is resolved by the domain context; lexical ambiguities regarding 'enters' and 'access code' are resolved by the domain definition of the system components.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user inputs the access card information into the system using the access code as the means of verification.",
+        "unsupported_interpretations": [
+          "The user physically inserts a card that has a code on it."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'enters the access card with the access code' allows for syntactic attachment ambiguity."
+        ],
+        "evidence_from_context": [
+          "Domain: Access control system using card reader and keypad.",
+          "Glossary: access code is a Secret code used for second-factor verification."
+        ],
+        "missing_information": [],
+        "justification": "The domain context defines the system as using a 'card reader' and 'keypad'. The glossary defines 'access code' as a 'Secret code' (digital credential). Therefore, the action must involve inputting data (using the keypad) and the code is the method of verification, not a physical attribute of the card. The interpretation where the user physically inserts a card with a code on it is unsupported by the digital nature of the 'access code' defined in the glossary.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "enters the access card",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user inputs the access card information into the system.",
+        "unsupported_interpretations": [
+          "The user physically inserts the access card into a reader."
+        ],
+        "evidence_from_requirement": [
+          "The verb 'enters' is polysemous."
+        ],
+        "evidence_from_context": [
+          "Domain: Access control system using card reader and keypad.",
+          "Glossary: access code is a Secret code used for second-factor verification."
+        ],
+        "missing_information": [],
+        "justification": "The glossary defines 'access code' as a 'Secret code', which implies a digital input (PIN/password). The action of providing a secret code is 'inputting' data, not physically inserting an object. The physical insertion of a card is a separate action facilitated by the 'card reader' mentioned in the domain, but the specific phrase 'enters the access card' in conjunction with the digital 'access code' refers to the data entry action.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "with the access code",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user provides a PIN or password as the access code.",
+        "unsupported_interpretations": [
+          "The user provides a physical key or mechanical code as the access code."
+        ],
+        "evidence_from_requirement": [
+          "The noun phrase 'access code' is polysemous."
+        ],
+        "evidence_from_context": [
+          "Glossary: access code is a Secret code used for second-factor verification."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly defines 'access code' as a 'Secret code'. In the context of access control systems with keypads, a 'secret code' refers to a PIN or password. A physical key or mechanical code does not fit the definition of a 'secret code' provided in the glossary.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "All ambiguities are resolved using the controlled context (domain and glossary) which provides direct evidence for the supported interpretations."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "has_concern_mixing": false,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement contains syntactic and lexical ambiguities regarding the action 'enters' and the object 'access card' with 'access code'. All ambiguities are fully resolvable using the controlled context (domain and glossary). The supported interpretation clarifies that the user inputs card information via a keypad using a secret code (PIN) for verification. Structured as a single functional requirement reflecting the supported interpretation.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-05-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The user enters the access card with the access code."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01",
+            "AMB-02",
+            "AMB-03"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "user initiates access attempt",
+          "condition_type": "event",
+          "system_or_component": "access control system",
+          "interaction_pattern": "user_interaction",
+          "actor": "user",
+          "modality": "shall",
+          "action": "input",
+          "object": "access card information",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "access control system"
+        },
+        "final_statement": "The user shall input the access card information into the access control system using the access code as the means of verification.",
+        "structuring_notes": [
+          "Resolved syntactic ambiguity: 'enters the access card with the access code' interpreted as inputting card info using the code.",
+          "Resolved lexical ambiguity: 'enters' interpreted as 'inputs data' rather than physical insertion.",
+          "Resolved lexical ambiguity: 'access code' interpreted as 'Secret code' (PIN/password) per glossary, not a physical attribute.",
+          "Action refined to 'input' to reflect digital data entry rather than physical insertion."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not assume specific card reader hardware or keypad layout beyond the domain definition.",
+      "Did not invent specific PIN length or complexity rules not present in the text."
+    ],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

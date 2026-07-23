@@ -1,0 +1,55 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguities regarding 'downstream systems' and 'Reporting flow' exist; controlled context is empty, preventing resolution.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Systems that receive data or output from System-A.",
+          "Systems that are positioned physically or logically after System-A in a pipeline."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text mentions 'downstream systems' without defining the term."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A definition or glossary entry for 'downstream systems' to distinguish between data-receiving and pipeline-positioned interpretations."
+        ],
+        "justification": "The controlled context is empty (C0), providing no evidence to select between the two possible interpretations of 'downstream systems'. The requirement text itself does not disambiguate the term.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A specific, named data transmission process defined elsewhere.",
+          "Any mechanism by which data is reported or transmitted."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text mentions 'Reporting flow' without defining the term."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A definition or glossary entry for 'Reporting flow' to distinguish between a specific named process and a generic mechanism."
+        ],
+        "justification": "The controlled context is empty (C0), providing no evidence to select between the two possible interpretations of 'Reporting flow'. The requirement text itself does not disambiguate the term.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "Both identified ambiguities are unresolved due to the absence of controlled context (C0). The execution must bypass Agent 3 and proceed to the alternative formatting/review path."
+    }
+  }
+}

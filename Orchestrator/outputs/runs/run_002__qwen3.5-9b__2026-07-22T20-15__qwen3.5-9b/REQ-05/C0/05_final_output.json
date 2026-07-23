@@ -1,0 +1,249 @@
+{
+  "execution_id": "REQ-05-C0",
+  "requirement_id": "REQ-05",
+  "context_condition": "C0",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' can attach either to the verb 'enters' (the user uses the code as the instrument/method of entry) or to the noun phrase 'the access card' (the card is the one associated with or containing the code), yielding two different syntax trees and two different meanings.",
+        "possible_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters a specific access card that is associated with or has the access code on it (the code identifies the card)."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "enters the access card",
+        "ambiguity_type": "lexical",
+        "explanation": "The verb 'enters' is polysemous. In this context, it could mean 'inputs' (data entry) or 'physically inserts/places' (physical action), leading to different interpretations of the user's action.",
+        "possible_interpretations": [
+          "The user inputs the access card information into the system.",
+          "The user physically inserts the access card into a reader."
+        ],
+        "textual_evidence": [
+          "enters the access card"
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "with the access code",
+        "ambiguity_type": "lexical",
+        "explanation": "The noun phrase 'access code' is polysemous. It could refer to a PIN/password (digital credential) or a physical key/code (mechanical credential), changing the nature of the interaction.",
+        "possible_interpretations": [
+          "The user provides a PIN or password as the access code.",
+          "The user provides a physical key or mechanical code as the access code."
+        ],
+        "textual_evidence": [
+          "with the access code"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "All detected ambiguities are unresolved because the controlled context is empty and the requirement text alone does not provide evidence to disambiguate syntactic attachment or lexical meanings.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters a specific access card that is associated with or has the access code on it (the code identifies the card)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'enters the access card with the access code' contains both potential antecedents and structural attachments without explicit disambiguation."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether the system expects a physical card insertion or a digital code entry.",
+          "Whether the 'access code' refers to a PIN or a physical key."
+        ],
+        "justification": "The requirement text presents two syntactically valid interpretations with no internal evidence to prefer one over the other. No controlled context is available to resolve the ambiguity.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "enters the access card",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user inputs the access card information into the system.",
+          "The user physically inserts the access card into a reader."
+        ],
+        "evidence_from_requirement": [
+          "The verb 'enters' is used without a modifier specifying whether the action is digital input or physical insertion."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The nature of the interaction (digital vs. physical) is not specified in the text."
+        ],
+        "justification": "The polysemy of 'enters' cannot be resolved without external context or explicit clarification in the requirement text.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "with the access code",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user provides a PIN or password as the access code.",
+          "The user provides a physical key or mechanical code as the access code."
+        ],
+        "evidence_from_requirement": [
+          "The term 'access code' is used without specifying if it is a digital credential or a physical object."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "The type of credential (digital PIN vs. physical key) is not defined in the text."
+        ],
+        "justification": "The ambiguity regarding the type of 'access code' cannot be resolved without additional context or clarification.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The requirement text presents two syntactically valid interpretations with no internal evidence to prefer one over the other. No controlled context is available to resolve the ambiguity.",
+        "missing_information": [
+          "Whether the system expects a physical card insertion or a digital code entry.",
+          "Whether the 'access code' refers to a PIN or a physical key."
+        ],
+        "unsupported_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters a specific access card that is associated with or has the access code on it (the code identifies the card)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "enters the access card",
+        "reason": "The polysemy of 'enters' cannot be resolved without external context or explicit clarification in the requirement text.",
+        "missing_information": [
+          "The nature of the interaction (digital vs. physical) is not specified in the text."
+        ],
+        "unsupported_interpretations": [
+          "The user inputs the access card information into the system.",
+          "The user physically inserts the access card into a reader."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "with the access code",
+        "reason": "The ambiguity regarding the type of 'access code' cannot be resolved without additional context or clarification.",
+        "missing_information": [
+          "The type of credential (digital PIN vs. physical key) is not defined in the text."
+        ],
+        "unsupported_interpretations": [
+          "The user provides a PIN or password as the access code.",
+          "The user provides a physical key or mechanical code as the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The requirement text presents two syntactically valid interpretations with no internal evidence to prefer one over the other. No controlled context is available to resolve the ambiguity.",
+        "missing_information": [
+          "Whether the system expects a physical card insertion or a digital code entry.",
+          "Whether the 'access code' refers to a PIN or a physical key."
+        ],
+        "unsupported_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters a specific access card that is associated with or has the access code on it (the code identifies the card)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "enters the access card",
+        "reason": "The polysemy of 'enters' cannot be resolved without external context or explicit clarification in the requirement text.",
+        "missing_information": [
+          "The nature of the interaction (digital vs. physical) is not specified in the text."
+        ],
+        "unsupported_interpretations": [
+          "The user inputs the access card information into the system.",
+          "The user physically inserts the access card into a reader."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "with the access code",
+        "reason": "The ambiguity regarding the type of 'access code' cannot be resolved without additional context or clarification.",
+        "missing_information": [
+          "The type of credential (digital PIN vs. physical key) is not defined in the text."
+        ],
+        "unsupported_interpretations": [
+          "The user provides a PIN or password as the access code.",
+          "The user provides a physical key or mechanical code as the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Whether the system expects a physical card insertion or a digital code entry.",
+      "Whether the 'access code' refers to a PIN or a physical key.",
+      "The nature of the interaction (digital vs. physical) is not specified in the text.",
+      "The type of credential (digital PIN vs. physical key) is not defined in the text."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C0",
+    "requirement_id": "REQ-09",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The requirement text contains no measurable boundaries or definitions for 'medium-sized', and the controlled context is empty. Therefore, no single interpretation can be supported with evidence.",
+        "missing_information": [
+          "A precise definition of 'medium-sized' regarding length, weight, or other criteria."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 5.5m.",
+          "Vehicles with a weight between 2,000kg and 3,500kg."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

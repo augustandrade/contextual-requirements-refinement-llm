@@ -1,0 +1,8 @@
+{
+  "concern_mixing_detection": {
+    "has_concern_mixing": true,
+    "functional_action": "raise a web alert",
+    "quality_criterion": null,
+    "explanation": "The requirement specifies a functional action (raise web alert) and does not include a quality criterion, but it is still concern-mixed because the action's execution is implicitly tied to a trigger condition (when a rejection order is received for a cancellation request), which is outside the scope of quality criteria."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-11-C1",
+    "requirement_id": "REQ-11",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The lexical ambiguity regarding 'switches' is resolved by the domain context, which identifies the entity as a hardware device.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The routing device (noun) has the capability to filter network traffic.",
+        "unsupported_interpretations": [
+          "The routing device performs the action of changing its ability to filter network traffic."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'Routing switches ability' structurally supports both noun and verb interpretations."
+        ],
+        "evidence_from_context": [
+          "Domain: Industrial railway communication network using routing switches."
+        ],
+        "missing_information": [],
+        "justification": "The domain context explicitly defines the subject as 'routing switches' within a network infrastructure, confirming the noun interpretation (the device) over the verb interpretation (the action).",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides sufficient evidence to disambiguate the lexical term 'switches' as a noun referring to a device."
+    }
+  }
+}

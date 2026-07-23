@@ -1,0 +1,72 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-14-C2",
+    "requirement_id": "REQ-14",
+    "context_condition": "C2",
+    "structuring_summary": "Concern-mixing detected per Pohl §25.2. Decomposed into one functional requirement (inform the security service) and one quality requirement (2 s notification constraint).",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-14-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "The system shall inform the security service"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after detecting damage",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "shall",
+          "action": "inform",
+          "object": "the security service",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "security service"
+        },
+        "final_statement": "When the system detects damage, it shall inform the security service.",
+        "structuring_notes": [
+          "Extracted functional action from concern-mixed requirement. Response time constraint moved to separate quality requirement."
+        ]
+      },
+      {
+        "structured_id": "REQ-14-SR-02",
+        "type": "quality_requirement",
+        "source_fragments": [
+          "within 2 s"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [],
+          "applied_action": "no_action_needed"
+        },
+        "fields": {
+          "condition": "after damage detection",
+          "condition_type": "event",
+          "system_or_component": "the system",
+          "interaction_pattern": "not_applicable",
+          "actor": "",
+          "modality": "shall",
+          "action": "",
+          "object": "",
+          "quality_attribute": "notification time",
+          "measurable_criterion": "within 2 s of damage detection",
+          "constraint_category": "performance",
+          "affected_element": "security service notification"
+        },
+        "final_statement": "The security service shall be notified within 2 seconds of the system detecting damage.",
+        "structuring_notes": [
+          "Extracted quality criterion (notification time) as a separate artefact per Pohl §25.2."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  }
+}

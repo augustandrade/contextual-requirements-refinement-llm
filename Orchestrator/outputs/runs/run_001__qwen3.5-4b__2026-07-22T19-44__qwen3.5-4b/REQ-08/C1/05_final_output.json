@@ -1,0 +1,189 @@
+{
+  "execution_id": "REQ-08-C1",
+  "requirement_id": "REQ-08",
+  "context_condition": "C1",
+  "input_requirement": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'above' defines a fuzzy boundary where it is impossible to determine the exact threshold at which the condition is met or not met, as there is no precise numerical cutoff provided.",
+        "possible_interpretations": [
+          "The water level is strictly greater than 100 meters (e.g., 100.01 meters).",
+          "The water level is at or greater than 100 meters (e.g., exactly 100 meters)."
+        ],
+        "textual_evidence": [
+          "remains above 100 meters"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "for more than 4 seconds",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'more than 4 seconds' lacks a precise boundary, making it impossible to determine if a duration of exactly 4 seconds satisfies the condition.",
+        "possible_interpretations": [
+          "The duration must be strictly greater than 4 seconds (e.g., 4.01 seconds).",
+          "The duration must be at least 4 seconds (e.g., exactly 4 seconds)."
+        ],
+        "textual_evidence": [
+          "for more than 4 seconds"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Ambiguities regarding numerical thresholds exist in the requirement text but are not resolved by the provided controlled context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Strictly greater than 100 meters.",
+          "At or greater than 100 meters."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'above 100 meters' lacks a precise numerical cutoff."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'water level' as a sensor reading but does not specify a threshold for 'above'.",
+          "The domain description mentions 'Dam water level control system' but does not define the shutdown trigger threshold."
+        ],
+        "missing_information": [
+          "A precise definition of the term 'above' relative to the value 100 meters."
+        ],
+        "justification": "The controlled context provides domain and glossary definitions but contains no business rules or constraints that define the specific threshold behavior for 'above'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "for more than 4 seconds",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Strictly greater than 4 seconds.",
+          "At least 4 seconds."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'more than 4 seconds' lacks a precise boundary."
+        ],
+        "evidence_from_context": [
+          "The domain description mentions 'automatic pump shutdown' but does not specify the timing threshold."
+        ],
+        "missing_information": [
+          "A precise definition of the duration threshold for 'more than 4 seconds'."
+        ],
+        "justification": "The controlled context lacks any business rule or constraint that clarifies whether the duration must be strictly greater than or equal to 4 seconds.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "Ambiguities regarding numerical thresholds are present in the requirement text and cannot be resolved using the provided controlled context. The case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "reason": "The controlled context provides domain and glossary definitions but contains no business rules or constraints that define the specific threshold behavior for 'above'.",
+        "missing_information": [
+          "A precise definition of the term 'above' relative to the value 100 meters."
+        ],
+        "unsupported_interpretations": [
+          "Strictly greater than 100 meters.",
+          "At or greater than 100 meters."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "for more than 4 seconds",
+        "reason": "The controlled context lacks any business rule or constraint that clarifies whether the duration must be strictly greater than or equal to 4 seconds.",
+        "missing_information": [
+          "A precise definition of the duration threshold for 'more than 4 seconds'."
+        ],
+        "unsupported_interpretations": [
+          "Strictly greater than 4 seconds.",
+          "At least 4 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "reason": "The controlled context provides domain and glossary definitions but contains no business rules or constraints that define the specific threshold behavior for 'above'.",
+        "missing_information": [
+          "A precise definition of the term 'above' relative to the value 100 meters."
+        ],
+        "unsupported_interpretations": [
+          "Strictly greater than 100 meters.",
+          "At or greater than 100 meters."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "for more than 4 seconds",
+        "reason": "The controlled context lacks any business rule or constraint that clarifies whether the duration must be strictly greater than or equal to 4 seconds.",
+        "missing_information": [
+          "A precise definition of the duration threshold for 'more than 4 seconds'."
+        ],
+        "unsupported_interpretations": [
+          "Strictly greater than 4 seconds.",
+          "At least 4 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "A precise definition of the term 'above' relative to the value 100 meters.",
+      "A precise definition of the duration threshold for 'more than 4 seconds'."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

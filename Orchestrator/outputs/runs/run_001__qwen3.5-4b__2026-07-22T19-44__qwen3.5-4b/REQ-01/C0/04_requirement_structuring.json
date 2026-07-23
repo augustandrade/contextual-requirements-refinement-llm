@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 seconds at the latest",
+        "reason": "The requirement text uses the phrase 'at the latest' without defining the boundary condition. In the absence of controlled context (C0), there is no evidence to determine if the action must occur strictly before or at the 2-second mark.",
+        "missing_information": [
+          "Whether the 2-second boundary is inclusive or exclusive."
+        ],
+        "unsupported_interpretations": [
+          "The action must complete by the 2-second mark (inclusive).",
+          "The action must complete before the 2-second mark (exclusive)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-09-C0",
+    "requirement_id": "REQ-09",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' is vague with multiple possible interpretations, but no evidence exists in the requirement text or context to resolve it.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 5.5m.",
+          "Vehicles with a weight between 2,000kg and 3,500kg."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states 'medium-sized vehicles' without defining the term."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "A precise definition of 'medium-sized' regarding length, weight, or other criteria."
+        ],
+        "justification": "The requirement text contains no measurable boundaries or definitions for 'medium-sized', and the controlled context is empty. Therefore, no single interpretation can be supported with evidence.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding 'medium-sized' cannot be resolved using only the provided requirement text and empty context. Execution must bypass Agent 3."
+    }
+  }
+}

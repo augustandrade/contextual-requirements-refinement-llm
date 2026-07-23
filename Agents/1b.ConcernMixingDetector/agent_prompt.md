@@ -50,6 +50,7 @@ concern_mixing_detection:
 
 ## Output rules
 - Return ONLY the YAML document above. No explanatory text, delimiters, or commentary outside the YAML.
+- Always wrap string values in double quotes (`"..."`), never single quotes. If a value itself contains a double quote, escape it as `\"`.
 - If `has_concern_mixing: false`, set `functional_action`, `quality_criterion`, and `explanation` to `null`.
 - `functional_action` and `quality_criterion` must be exact excerpts from `base_requirement_text`.
 

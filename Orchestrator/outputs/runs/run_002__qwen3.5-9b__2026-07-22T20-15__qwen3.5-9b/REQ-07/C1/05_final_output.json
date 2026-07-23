@@ -1,0 +1,249 @@
+{
+  "execution_id": "REQ-07-C1",
+  "requirement_id": "REQ-07",
+  "context_condition": "C1",
+  "input_requirement": "When leaving the Factory mode, the ECU should preferably perform a reset.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When leaving the Factory mode",
+        "ambiguity_type": "syntactic",
+        "explanation": "The temporal clause 'When leaving the Factory mode' can attach to the main action 'perform a reset' (the reset happens during the transition) or to the subject 'the ECU' (the ECU leaves the mode, and the reset is a separate subsequent action), creating ambiguity about the precise timing and causal relationship between leaving the mode and performing the reset.",
+        "possible_interpretations": [
+          "The ECU performs the reset as part of the process of leaving Factory mode (simultaneous or immediate consequence).",
+          "The ECU leaves Factory mode first, and then (preferably) performs a reset as a separate subsequent action."
+        ],
+        "textual_evidence": [
+          "When leaving the Factory mode, the ECU should preferably perform a reset."
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "should preferably perform",
+        "ambiguity_type": "semantic",
+        "explanation": "The combination of the modal verb 'should' (indicating recommendation) and the adverb 'preferably' (indicating preference) creates a logical ambiguity regarding the strength of the requirement. It is unclear if the reset is a soft recommendation that can be ignored, a strong recommendation that should be followed unless impossible, or if 'preferably' modifies the manner of performing the reset rather than the obligation to perform it.",
+        "possible_interpretations": [
+          "The reset is a strong recommendation; the system must attempt it, but failure is acceptable if not possible.",
+          "The reset is a weak suggestion; the system may choose to ignore it entirely if it prefers other behaviors.",
+          "The system should perform the reset, and 'preferably' implies that if there are multiple ways to reset, the preferred method should be chosen (though only one is listed)."
+        ],
+        "textual_evidence": [
+          "should preferably perform"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "perform a reset",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'reset' is polysemous in the context of embedded systems. Without a controlled vocabulary definition, it could refer to a full system reboot, a state machine reset to initial conditions, a memory clear, or a specific diagnostic reset procedure, each having distinct implications for data loss and system state.",
+        "possible_interpretations": [
+          "A full system reboot to restore all hardware and software states to their default.",
+          "A logical reset of the ECU's internal state machine without rebooting the hardware."
+        ],
+        "textual_evidence": [
+          "perform a reset"
+        ],
+        "context_dependency": "high"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic and lexical ambiguities remain unresolved due to lack of specific business rules or glossary definitions in the controlled context; semantic ambiguity regarding obligation strength is also unresolved.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When leaving the Factory mode",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU performs the reset as part of the process of leaving Factory mode (simultaneous or immediate consequence).",
+          "The ECU leaves Factory mode first, and then (preferably) performs a reset as a separate subsequent action."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure allows attachment of the temporal clause to either the action or the subject transition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A business rule or constraint defining the precise timing relationship between mode transition and reset execution."
+        ],
+        "justification": "The controlled context provides domain and glossary information but lacks specific business rules or constraints that define the temporal causality between leaving the mode and performing the reset.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "should preferably perform",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The reset is a strong recommendation; the system must attempt it, but failure is acceptable if not possible.",
+          "The reset is a weak suggestion; the system may choose to ignore it entirely if it prefers other behaviors.",
+          "The system should perform the reset, and 'preferably' implies that if there are multiple ways to reset, the preferred method should be chosen."
+        ],
+        "evidence_from_requirement": [
+          "The text uses 'should' combined with 'preferably', creating overlap in obligation strength."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A business rule defining the severity of 'should' or 'preferably' within this automotive domain."
+        ],
+        "justification": "The controlled context does not contain business rules that clarify the hierarchy of obligation between 'should' and 'preferably'.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "perform a reset",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "A full system reboot to restore all hardware and software states to their default.",
+          "A logical reset of the ECU's internal state machine without rebooting the hardware."
+        ],
+        "evidence_from_requirement": [
+          "The term 'reset' is used without a specific definition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A glossary entry or business rule defining the specific type of reset required for the ECU in this domain."
+        ],
+        "justification": "Although the glossary defines 'ECU', it does not define the term 'reset'. The business rules and constraints sections are empty, providing no evidence to distinguish between reboot, state machine reset, or other reset types.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "Multiple ambiguities (syntactic, semantic, lexical) are unresolved because the controlled context lacks the specific business rules, constraints, or glossary definitions needed to disambiguate timing, obligation strength, and reset type."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When leaving the Factory mode",
+        "reason": "The controlled context provides domain and glossary information but lacks specific business rules or constraints that define the temporal causality between leaving the mode and performing the reset.",
+        "missing_information": [
+          "A business rule or constraint defining the precise timing relationship between mode transition and reset execution."
+        ],
+        "unsupported_interpretations": [
+          "The ECU performs the reset as part of the process of leaving Factory mode (simultaneous or immediate consequence).",
+          "The ECU leaves Factory mode first, and then (preferably) performs a reset as a separate subsequent action."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "should preferably perform",
+        "reason": "The controlled context does not contain business rules that clarify the hierarchy of obligation between 'should' and 'preferably'.",
+        "missing_information": [
+          "A business rule defining the severity of 'should' or 'preferably' within this automotive domain."
+        ],
+        "unsupported_interpretations": [
+          "The reset is a strong recommendation; the system must attempt it, but failure is acceptable if not possible.",
+          "The reset is a weak suggestion; the system may choose to ignore it entirely if it prefers other behaviors.",
+          "The system should perform the reset, and 'preferably' implies that if there are multiple ways to reset, the preferred method should be chosen."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "perform a reset",
+        "reason": "Although the glossary defines 'ECU', it does not define the term 'reset'. The business rules and constraints sections are empty, providing no evidence to distinguish between reboot, state machine reset, or other reset types.",
+        "missing_information": [
+          "A glossary entry or business rule defining the specific type of reset required for the ECU in this domain."
+        ],
+        "unsupported_interpretations": [
+          "A full system reboot to restore all hardware and software states to their default.",
+          "A logical reset of the ECU's internal state machine without rebooting the hardware."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When leaving the Factory mode",
+        "reason": "The controlled context provides domain and glossary information but lacks specific business rules or constraints that define the temporal causality between leaving the mode and performing the reset.",
+        "missing_information": [
+          "A business rule or constraint defining the precise timing relationship between mode transition and reset execution."
+        ],
+        "unsupported_interpretations": [
+          "The ECU performs the reset as part of the process of leaving Factory mode (simultaneous or immediate consequence).",
+          "The ECU leaves Factory mode first, and then (preferably) performs a reset as a separate subsequent action."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "should preferably perform",
+        "reason": "The controlled context does not contain business rules that clarify the hierarchy of obligation between 'should' and 'preferably'.",
+        "missing_information": [
+          "A business rule defining the severity of 'should' or 'preferably' within this automotive domain."
+        ],
+        "unsupported_interpretations": [
+          "The reset is a strong recommendation; the system must attempt it, but failure is acceptable if not possible.",
+          "The reset is a weak suggestion; the system may choose to ignore it entirely if it prefers other behaviors.",
+          "The system should perform the reset, and 'preferably' implies that if there are multiple ways to reset, the preferred method should be chosen."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "perform a reset",
+        "reason": "Although the glossary defines 'ECU', it does not define the term 'reset'. The business rules and constraints sections are empty, providing no evidence to distinguish between reboot, state machine reset, or other reset types.",
+        "missing_information": [
+          "A glossary entry or business rule defining the specific type of reset required for the ECU in this domain."
+        ],
+        "unsupported_interpretations": [
+          "A full system reboot to restore all hardware and software states to their default.",
+          "A logical reset of the ECU's internal state machine without rebooting the hardware."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "A business rule or constraint defining the precise timing relationship between mode transition and reset execution.",
+      "A business rule defining the severity of 'should' or 'preferably' within this automotive domain.",
+      "A glossary entry or business rule defining the specific type of reset required for the ECU in this domain."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

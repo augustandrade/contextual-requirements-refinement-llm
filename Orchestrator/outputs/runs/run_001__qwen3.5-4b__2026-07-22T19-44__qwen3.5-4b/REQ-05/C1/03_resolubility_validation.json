@@ -1,0 +1,39 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding 'enters' and 'access card' is partially resolved by the domain context, but the specific action (physical vs. input) remains ambiguous.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user physically walks into a secure area using a physical card and a physical code.",
+          "The user inputs their credentials (card and code) into a system to gain digital access."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text states 'enters the access card with the access code'."
+        ],
+        "evidence_from_context": [
+          "Domain: Access control system using card reader and keypad.",
+          "Glossary: 'access code' is a secret code for second-factor verification."
+        ],
+        "missing_information": [
+          "Whether 'enters' refers to physical movement into a location or data entry into a system.",
+          "Whether 'access card' refers to a physical token or a digital credential."
+        ],
+        "justification": "While the domain mentions a 'card reader' and 'keypad', the requirement text does not explicitly state if the user is performing a physical entry or a data input action. The verb 'enters' is polysemous, and the context does not definitively rule out the physical interpretation (e.g., walking into a room with a card) versus the digital interpretation (typing a code). Therefore, the specific action cannot be confirmed with certainty.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The lexical ambiguity regarding the action 'enters' and the nature of the 'access card' cannot be fully resolved using only the provided requirement text and domain context. The case must bypass Agent 3."
+    }
+  }
+}

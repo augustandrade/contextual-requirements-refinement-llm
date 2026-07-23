@@ -1,0 +1,11 @@
+{
+  "run_id": "run_003__gemma4-e4b__2026-07-22T21-12__gemma4-e4b",
+  "model": "gemma4:e4b",
+  "provider": "ollama",
+  "ollama_host": "http://localhost:11434",
+  "temperature": 0.0,
+  "think": false,
+  "started_at": "2026-07-22T21:12:42.623986",
+  "corpus": "manifest.yaml",
+  "label": "gemma4-e4b"
+}

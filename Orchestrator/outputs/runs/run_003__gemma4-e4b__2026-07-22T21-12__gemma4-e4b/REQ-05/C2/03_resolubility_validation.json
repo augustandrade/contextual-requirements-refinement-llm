@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The business rule dictates a specific sequence of actions (card first, then code), resolving the syntactic ambiguity regarding the method of entry.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The user performs the action of entering the card, and the access code is the method used for this action.",
+        "unsupported_interpretations": [
+          "The user enters a specific access card that is associated with or marked by the access code."
+        ],
+        "evidence_from_requirement": [
+          "The user enters the access card with the access code."
+        ],
+        "evidence_from_context": [
+          "Business rule: User first inserts the card into the card reader, then enters the access code on the keypad."
+        ],
+        "missing_information": [],
+        "justification": "The business rule explicitly mandates the sequence: card insertion first, followed by code entry. This structure supports the interpretation that the code is the subsequent action/method, not a descriptor of the card itself.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides a clear, sequential business rule that resolves the syntactic ambiguity in the requirement text."
+    }
+  }
+}

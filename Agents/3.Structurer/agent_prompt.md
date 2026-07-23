@@ -69,6 +69,7 @@ When `concern_mixing_detection.has_concern_mixing: true`, the sentence contains 
 | `not_applicable` | Quality requirement or constraint (no interaction pattern applies) |
 
 What to avoid
+- Always wrap string values in double quotes (`"..."`), never single quotes. If a value itself contains a double quote, escape it as `\"`. Never nest an unescaped quote of the same kind inside a quoted string — this breaks YAML parsing.
 - Do not resolve unresolved cases.
 - Do not invent actors, business rules, metrics, thresholds, conditions, objects, or technical constraints.
 - Do not use knowledge outside the requirement and controlled context.

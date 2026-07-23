@@ -1,0 +1,37 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity regarding the specific parameters of the 'dial tone' remains unresolved because the controlled context only provides a definition, not measurable specifications.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Generate a tone matching the standard audible frequency range (e.g., 2000 Hz).",
+          "Generate a tone that lasts for a specific, unstated duration (e.g., 3 seconds)."
+        ],
+        "evidence_from_requirement": [
+          "Generate a dial tone"
+        ],
+        "evidence_from_context": [
+          "term: dial tone\ndefinition: Tone signaling line readiness for dialing."
+        ],
+        "missing_information": [
+          "The required measurable parameters (frequency, duration, quality) for the 'dial tone' are not specified in the requirement or the controlled context."
+        ],
+        "justification": "The controlled context defines 'dial tone' but does not provide the quantitative specifications needed to resolve the vagueness regarding frequency or duration.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity regarding the measurable parameters of the 'dial tone' is unresolved, requiring human clarification before proceeding to structured generation."
+    }
+  }
+}

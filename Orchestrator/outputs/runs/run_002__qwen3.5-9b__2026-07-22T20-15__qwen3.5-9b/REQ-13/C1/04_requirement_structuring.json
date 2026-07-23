@@ -1,0 +1,59 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-13-C1",
+    "requirement_id": "REQ-13",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the detector detects damage to the pane",
+        "reason": "The controlled context provides a definition for 'detector' as a sensor but does not provide evidence to rule out the system acting as a detector, nor does it define the scope of 'the system'.",
+        "missing_information": [
+          "A definition or business rule specifying whether 'detector' refers strictly to the sensor hardware or can refer to the system logic."
+        ],
+        "unsupported_interpretations": [
+          "A specific sensor device detects physical damage to the glass pane.",
+          "The security system (acting as a detector) identifies that the pane has been compromised."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "damage to the pane",
+        "reason": "The controlled context lacks the necessary business rules or glossary entries to define the boundaries of 'damage'.",
+        "missing_information": [
+          "A specific definition of 'damage' (e.g., scratch vs. crack vs. break) or a threshold for triggering the alert."
+        ],
+        "unsupported_interpretations": [
+          "Any visible imperfection on the glass surface constitutes damage.",
+          "Only structural compromise (cracks or breaks) of the glass constitutes damage."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the system shall inform the security service",
+        "reason": "The controlled context does not provide evidence to distinguish between the possible interpretations of 'system' and 'security service'.",
+        "missing_information": [
+          "Identification of what constitutes 'the system' and 'the security service' within this specific building alarm control system."
+        ],
+        "unsupported_interpretations": [
+          "The specific detector unit sends an alert to the human security team.",
+          "The central security management system sends an alert to the third-party security vendor."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

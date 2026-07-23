@@ -1,0 +1,124 @@
+{
+  "execution_id": "REQ-09-C1",
+  "requirement_id": "REQ-09",
+  "context_condition": "C1",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' lacks a measurable boundary, making it impossible to determine which specific vehicles qualify as 'medium-sized' without external context or a glossary definition.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4.5m and 5.5m (e.g., mid-size SUVs).",
+          "Vehicles with a weight between 2,000kg and 3,500kg (e.g., compact trucks)."
+        ],
+        "textual_evidence": [
+          "medium-sized vehicles"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' remains vague; the provided glossary definition is insufficient to establish a measurable boundary.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 5.5m.",
+          "Vehicles with a weight between 2,000kg and 3,500kg."
+        ],
+        "evidence_from_requirement": [
+          "The requirement states 'All medium-sized vehicles shall be equipped with a navigation system'."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'medium-sized vehicle' as an 'Informal vehicle size category used by operations'."
+        ],
+        "missing_information": [
+          "A specific measurable boundary (e.g., length or weight range) is required to define 'medium-sized' objectively."
+        ],
+        "justification": "The glossary explicitly labels the category as 'informal' and provides no numerical thresholds or measurable criteria. Without a defined boundary, the interpretation cannot be safely resolved.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The controlled context confirms the term is informal and lacks a definition, but fails to provide the measurable evidence needed to resolve the vagueness. The case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The glossary explicitly labels the category as 'informal' and provides no numerical thresholds or measurable criteria. Without a defined boundary, the interpretation cannot be safely resolved.",
+        "missing_information": [
+          "A specific measurable boundary (e.g., length or weight range) is required to define 'medium-sized' objectively."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 5.5m.",
+          "Vehicles with a weight between 2,000kg and 3,500kg."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "reason": "The glossary explicitly labels the category as 'informal' and provides no numerical thresholds or measurable criteria. Without a defined boundary, the interpretation cannot be safely resolved.",
+        "missing_information": [
+          "A specific measurable boundary (e.g., length or weight range) is required to define 'medium-sized' objectively."
+        ],
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 5.5m.",
+          "Vehicles with a weight between 2,000kg and 3,500kg."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "A specific measurable boundary (e.g., length or weight range) is required to define 'medium-sized' objectively."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

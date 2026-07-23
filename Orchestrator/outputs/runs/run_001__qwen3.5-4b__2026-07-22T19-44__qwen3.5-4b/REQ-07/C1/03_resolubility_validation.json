@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'preferably' creates a lexical ambiguity between mandatory and optional actions. The controlled context defines the ECU but lacks specific business rules or constraints to resolve the obligation level.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU must perform a reset when leaving Factory mode.",
+          "The ECU should perform a reset when leaving Factory mode, but it is not strictly required."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses the adverb 'preferably'."
+        ],
+        "evidence_from_context": [
+          "Domain: Automotive embedded system with Factory mode transitions.",
+          "Glossary: ECU = Engine Control Unit."
+        ],
+        "missing_information": [
+          "A specific business rule or constraint defining the mandatory nature of the reset action in Factory mode transitions."
+        ],
+        "justification": "While the glossary defines the ECU, the controlled context contains no business rules or constraints that clarify whether 'preferably' implies a mandatory or optional action. The requirement text alone does not provide sufficient evidence to distinguish between the two interpretations.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The lexical ambiguity regarding the obligation level ('preferably') cannot be resolved with the provided controlled context. The case must bypass Agent 3."
+    }
+  }
+}

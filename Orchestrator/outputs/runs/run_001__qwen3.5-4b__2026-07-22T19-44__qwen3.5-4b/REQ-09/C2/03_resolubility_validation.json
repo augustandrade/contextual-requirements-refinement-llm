@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'medium-sized' is disambiguated by the glossary definition provided in the controlled context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles with gross weight strictly between 1500 kg and 2000 kg.",
+        "unsupported_interpretations": [
+          "Vehicles with a length between 4.5m and 5.5m.",
+          "Vehicles with a weight between 2,000kg and 3,500kg."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses the term 'medium-sized vehicles'."
+        ],
+        "evidence_from_context": [
+          "Glossary definition: 'medium-sized vehicle' is defined as a vehicle with gross weight strictly between 1500 kg and 2000 kg."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context provides a precise glossary definition that directly resolves the vagueness of the term 'medium-sized'.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The glossary in the controlled context provides explicit evidence to resolve the ambiguity. Execution may proceed to Agent 3."
+    }
+  }
+}

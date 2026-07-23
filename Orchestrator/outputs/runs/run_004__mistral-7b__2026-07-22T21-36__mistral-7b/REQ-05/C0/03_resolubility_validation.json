@@ -1,0 +1,53 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Two lexical ambiguities detected in the requirement text.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card enters something."
+        ],
+        "evidence_from_requirement": [
+          "Both interpretations are plausible given the verb 'enters'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Context is needed to determine who performs the action of entering the access card."
+        ],
+        "justification": "The requirement text does not provide direct evidence for one interpretation over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "with the access code",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user has the access code."
+        ],
+        "evidence_from_requirement": [
+          "Both interpretations are plausible given the prepositional phrase 'with the access code'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Context is needed to determine who possesses the access code."
+        ],
+        "justification": "The requirement text does not provide direct evidence for one interpretation over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

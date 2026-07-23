@@ -1,0 +1,75 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Ambiguity AMB-01 is resolvable via context glossary; AMB-02 is resolvable via context domain definition; AMB-03 is unresolved due to lack of explicit agent definition for the second clause in the requirement text.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A must add System-B to the downstream systems owned by System-A.",
+        "unsupported_interpretations": [
+          "System-A must add System-B to the downstream systems owned by System-B."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure implies System-A is the actor managing its own configuration."
+        ],
+        "evidence_from_context": [
+          "Glossary definition: 'downstream systems' are 'External systems that receive events from System-A'."
+        ],
+        "missing_information": [],
+        "justification": "The glossary explicitly defines 'downstream systems' as systems receiving events from System-A, implying ownership and management reside with System-A, resolving the 'their' reference.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-C must subscribe to a specific, named flow called 'Reporting flow'.",
+        "unsupported_interpretations": [
+          "System-C must subscribe to any flow that falls under the generic category of 'Reporting flows'."
+        ],
+        "evidence_from_requirement": [
+          "The term appears as a specific identifier within the sentence structure."
+        ],
+        "evidence_from_context": [
+          "Domain description: 'orchestrates downstream services and reporting subscriptions' implies specific managed entities."
+        ],
+        "missing_information": [],
+        "justification": "While the glossary is empty, the domain context describes an orchestration platform managing specific 'reporting subscriptions', supporting the interpretation of a specific named flow rather than a generic category. However, strict adherence to evidence-only rules suggests this is borderline. Given the instruction to use controlled context for C1/C2, the domain description supports the specific entity interpretation.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "System-A performs two actions: 1) adds System-B to its downstream systems, and 2) allows System-C to subscribe to the Reporting flow.",
+          "System-A adds System-B to its downstream systems, and [System-B or the system context] allows System-C to subscribe to the Reporting flow."
+        ],
+        "evidence_from_requirement": [
+          "The conjunction 'and' connects two clauses without explicitly restating the subject for the second clause."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "Explicit statement in the requirement text or controlled context confirming that System-A is the sole agent for both 'add' and 'allow' actions."
+        ],
+        "justification": "The requirement text uses a compound sentence structure where the subject of the second clause is omitted. Without an explicit rule in the context stating that System-A is the only entity capable of 'allowing' subscriptions, or a grammatical convention defined in the context that mandates parallel subject application, the agent for the second action cannot be definitively determined solely from the provided text.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "Ambiguity AMB-03 regarding the agent of the second action cannot be resolved with the provided evidence; the case must bypass Agent 3."
+    }
+  }
+}

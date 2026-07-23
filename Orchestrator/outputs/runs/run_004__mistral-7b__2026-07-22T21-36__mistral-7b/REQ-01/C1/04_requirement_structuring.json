@@ -1,0 +1,59 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the glass break detector of a window detects",
+        "reason": "The requirement text alone does not provide enough context to determine whether the glass break detector is a specific device or part of a broader system.",
+        "missing_information": [
+          "Whether 'glass break detector' refers to a specific device or a broader intrusion detection system."
+        ],
+        "unsupported_interpretations": [
+          "A specific device designed to detect the breaking of glass is triggered.",
+          "An intrusion detection system with glass break sensors detects an event."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the pane has been damaged",
+        "reason": "The requirement text alone does not provide enough context to determine the meaning of 'damaged'.",
+        "missing_information": [
+          "The definition of 'damaged' in this context, including the extent or severity required to trigger the system response."
+        ],
+        "unsupported_interpretations": [
+          "Minor damage (e.g., a small crack) triggers the system response.",
+          "Significant damage (e.g., complete shattering) triggers the system response."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest.",
+        "reason": "The requirement text alone does not provide enough context to determine the meaning of 'at the latest'.",
+        "missing_information": [
+          "Whether 'at the latest' implies a strict deadline or a maximum time limit for the system to respond."
+        ],
+        "unsupported_interpretations": [
+          "The system has up to 2 seconds to inform the security service.",
+          "The information must be sent exactly 2 seconds after the event."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

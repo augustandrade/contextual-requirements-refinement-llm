@@ -1,0 +1,72 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-06-C2",
+    "requirement_id": "REQ-06",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Three semantic ambiguities detected due to unclear logical operator binding.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Window damage is a necessary condition for the alarm to raise."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure does not explicitly state whether window damage is a necessary or sufficient condition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether window damage is a necessary or sufficient condition for the alarm to raise."
+        ],
+        "justification": "The requirement text provides no direct evidence to support either interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "and the interior surveillance of the car detects an intruder",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Interior surveillance detection is a necessary condition for the alarm to raise."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure does not explicitly state whether interior surveillance detection is a necessary or sufficient condition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether interior surveillance detection is a necessary or sufficient condition for the alarm to raise."
+        ],
+        "justification": "The requirement text provides no direct evidence to support either interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "or a door of the car is opened without a car key,",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Door opening is a necessary condition for the alarm to raise."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure does not explicitly state whether door opening is a necessary or sufficient condition."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether door opening is a necessary or sufficient condition for the alarm to raise."
+        ],
+        "justification": "The requirement text provides no direct evidence to support either interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

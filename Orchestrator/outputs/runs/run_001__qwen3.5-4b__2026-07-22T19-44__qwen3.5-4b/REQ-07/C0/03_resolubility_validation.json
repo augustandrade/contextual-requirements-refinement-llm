@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "The term 'preferably' creates a lexical ambiguity between mandatory and optional actions, and no context exists to resolve it.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform a reset",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The ECU must perform a reset when leaving Factory mode.",
+          "The ECU should perform a reset when leaving Factory mode, but it is not strictly required."
+        ],
+        "evidence_from_requirement": [
+          "The requirement text uses the adverb 'preferably' to modify the action 'perform a reset'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Whether 'preferably' implies a strict obligation or a non-mandatory preference in this specific domain context."
+        ],
+        "justification": "The requirement text alone does not define the semantic weight of 'preferably' as mandatory or optional. Without controlled context (C1/C2) defining the business rule for 'preferably', the interpretation remains ambiguous.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The lexical ambiguity regarding the term 'preferably' cannot be resolved using only the provided requirement text. The case must bypass Agent 3 and proceed to human clarification or alternative formatting."
+    }
+  }
+}

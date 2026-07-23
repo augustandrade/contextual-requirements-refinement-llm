@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "preferably perform",
+        "reason": "The requirement text does not provide direct evidence for either interpretation, and the controlled context does not offer additional clarification.",
+        "missing_information": [
+          "Whether the ECU is required to perform a reset or if it has the option to choose."
+        ],
+        "unsupported_interpretations": [
+          "The ECU must perform a reset when leaving the Factory mode.",
+          "The ECU may choose not to perform a reset when leaving the Factory mode."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

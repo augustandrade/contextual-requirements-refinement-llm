@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically unambiguous: the subject 'Routing switches' clearly refers to the hardware or software component performing the action, the object 'ability to filter' specifies the capability, and the prepositional phrase 'between data-plane interfaces and management data traffic' defines the scope of the filtering without competing antecedents or multiple parse trees."
-  }
-}

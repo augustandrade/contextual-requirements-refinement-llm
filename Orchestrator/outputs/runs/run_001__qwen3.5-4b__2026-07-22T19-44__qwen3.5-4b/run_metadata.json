@@ -1,0 +1,11 @@
+{
+  "run_id": "run_001__qwen3.5-4b__2026-07-22T19-44__qwen3.5-4b",
+  "model": "qwen3.5:4b",
+  "provider": "ollama",
+  "ollama_host": "http://localhost:11434",
+  "temperature": 0.0,
+  "think": false,
+  "started_at": "2026-07-22T19:44:46.535198",
+  "corpus": "manifest.yaml",
+  "label": "qwen3.5-4b"
+}

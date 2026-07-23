@@ -1,0 +1,60 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The requirement text presents two syntactically valid interpretations with no internal evidence to prefer one over the other. No controlled context is available to resolve the ambiguity.",
+        "missing_information": [
+          "Whether the system expects a physical card insertion or a digital code entry.",
+          "Whether the 'access code' refers to a PIN or a physical key."
+        ],
+        "unsupported_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters a specific access card that is associated with or has the access code on it (the code identifies the card)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "enters the access card",
+        "reason": "The polysemy of 'enters' cannot be resolved without external context or explicit clarification in the requirement text.",
+        "missing_information": [
+          "The nature of the interaction (digital vs. physical) is not specified in the text."
+        ],
+        "unsupported_interpretations": [
+          "The user inputs the access card information into the system.",
+          "The user physically inserts the access card into a reader."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "with the access code",
+        "reason": "The ambiguity regarding the type of 'access code' cannot be resolved without additional context or clarification.",
+        "missing_information": [
+          "The type of credential (digital PIN vs. physical key) is not defined in the text."
+        ],
+        "unsupported_interpretations": [
+          "The user provides a PIN or password as the access code.",
+          "The user provides a physical key or mechanical code as the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring",
+      "AMB-03: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

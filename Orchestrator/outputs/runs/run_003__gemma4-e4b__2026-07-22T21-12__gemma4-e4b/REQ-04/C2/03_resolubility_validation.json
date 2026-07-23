@@ -1,0 +1,39 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity regarding the invalid item is resolved by conflicting business rules provided in the controlled context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) entered is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad.",
+          "If it is invalid"
+        ],
+        "evidence_from_context": [
+          "Business rule: Invalid card causes immediate access denial at turnstile.",
+          "Business rule: Invalid PIN triggers retry request and does not immediately deny access."
+        ],
+        "missing_information": [
+          "The requirement text states 'If it is invalid, the system shall deny the access.' The context provides two different behaviors for invalid inputs (card vs. PIN), but the requirement itself does not specify which invalid input triggers the 'deny access' action, as the context rules conflict with the requirement's singular statement."
+        ],
+        "justification": "The context provides conflicting rules: BR-01 mandates immediate denial for invalid cards, while BR-02 mandates a retry for invalid PINs. Since the requirement states a blanket 'deny access' for 'it is invalid', and the context shows different behaviors for the two possible antecedents, the ambiguity cannot be resolved to a single, safe interpretation.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The ambiguity cannot be resolved because the controlled context provides conflicting business rules regarding the system's response to invalid card versus invalid PIN, contradicting the single 'deny access' statement in the requirement."
+    }
+  }
+}

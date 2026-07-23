@@ -1,0 +1,36 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'above' defines a fuzzy boundary where it is impossible to determine the exact threshold at which the condition is met or not met, as there is no precise numerical cutoff provided.",
+        "possible_interpretations": [
+          "The water level is strictly greater than 100 meters (e.g., 100.01 meters).",
+          "The water level is at or greater than 100 meters (e.g., exactly 100 meters)."
+        ],
+        "textual_evidence": [
+          "remains above 100 meters"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "for more than 4 seconds",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'more than 4 seconds' lacks a precise boundary, making it impossible to determine if a duration of exactly 4 seconds satisfies the condition.",
+        "possible_interpretations": [
+          "The duration must be strictly greater than 4 seconds (e.g., 4.01 seconds).",
+          "The duration must be at least 4 seconds (e.g., exactly 4 seconds)."
+        ],
+        "textual_evidence": [
+          "for more than 4 seconds"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

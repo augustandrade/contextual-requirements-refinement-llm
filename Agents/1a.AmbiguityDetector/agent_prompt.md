@@ -63,6 +63,7 @@ ambiguity_detection:
 
 ## Output rules
 - Return ONLY the YAML document above. No explanatory text, delimiters, or commentary outside the YAML.
+- Always wrap string values in double quotes (`"..."`), never single quotes. If a value itself contains a double quote, escape it as `\"`.
 - `ambiguities` must be an empty list `[]` when `has_ambiguity: false`.
 - Each ambiguity must list at least two plausible `possible_interpretations`.
 - `fragment` and `textual_evidence` must be exact excerpts from `base_requirement_text`, not paraphrases.

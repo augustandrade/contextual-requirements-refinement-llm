@@ -1,0 +1,184 @@
+{
+  "execution_id": "REQ-03-C2",
+  "requirement_id": "REQ-03",
+  "context_condition": "C2",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'downstream systems' is lexically ambiguous as it lacks a specific definition within the text, allowing for multiple interpretations of what constitutes a downstream system.",
+        "possible_interpretations": [
+          "Systems that receive data or output from System-A.",
+          "Systems that are positioned physically or logically after System-A in a pipeline."
+        ],
+        "textual_evidence": [
+          "downstream systems"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'Reporting flow' is lexically ambiguous without a glossary, as it could refer to a specific named process, a generic data transmission mechanism, or a specific business rule.",
+        "possible_interpretations": [
+          "A specific, named data transmission process defined elsewhere.",
+          "Any mechanism by which data is reported or transmitted."
+        ],
+        "textual_evidence": [
+          "Reporting flow"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguities regarding 'downstream systems' and 'Reporting flow' are resolved by the controlled context definitions.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Systems that receive data or output from System-A.",
+        "unsupported_interpretations": [
+          "Systems that are positioned physically or logically after System-A in a pipeline."
+        ],
+        "evidence_from_requirement": [
+          "downstream systems"
+        ],
+        "evidence_from_context": [
+          "Domain definition: Integration platform that orchestrates downstream services and reporting subscriptions."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context explicitly defines the domain as an 'Integration platform that orchestrates downstream services', which aligns with the interpretation of systems receiving data or output, rather than physical positioning.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Event stream used by subscribers for operational reporting.",
+        "unsupported_interpretations": [
+          "A specific, named data transmission process defined elsewhere.",
+          "Any mechanism by which data is reported or transmitted."
+        ],
+        "evidence_from_requirement": [
+          "Reporting flow"
+        ],
+        "evidence_from_context": [
+          "Glossary definition: Event stream used by subscribers for operational reporting."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context provides a specific glossary definition for 'Reporting flow' that eliminates the ambiguity between a named process, generic mechanism, or business rule.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "Both lexical ambiguities are resolved using the definitions provided in the controlled context. Execution may proceed to Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "has_concern_mixing": false,
+    "route": "structured",
+    "structurer_invoked": true
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03",
+    "context_condition": "C2",
+    "structuring_summary": "Lexical ambiguities regarding 'downstream systems' and 'Reporting flow' were resolved using the controlled context definitions. The requirement is decomposed into two separate functional requirements per Pohl §25.2 to ensure clear specification of the two distinct actions: adding a system to downstream connections and enabling subscription to a reporting event stream.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-03-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "System-B is a target for integration",
+          "condition_type": "logical",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "System-A",
+          "modality": "must",
+          "action": "add",
+          "object": "System-B",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "System-B"
+        },
+        "final_statement": "System-A must add System-B to its downstream systems.",
+        "structuring_notes": [
+          "Decomposed from the original sentence. 'Downstream systems' interpreted as systems receiving data/output based on domain definition."
+        ]
+      },
+      {
+        "structured_id": "REQ-03-SR-02",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "allow System-C to subscribe to the Reporting flow"
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-02"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "System-C requests subscription to the Reporting flow",
+          "condition_type": "logical",
+          "system_or_component": "System-A",
+          "interaction_pattern": "autonomous_system_activity",
+          "actor": "System-A",
+          "modality": "must",
+          "action": "allow",
+          "object": "System-C",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "System-C"
+        },
+        "final_statement": "System-A must allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "Decomposed from the original sentence. 'Reporting flow' interpreted as an event stream for operational reporting based on glossary definition."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [],
+    "final_output_status": "structured"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [],
+    "missing_information": [],
+    "requires_human_clarification": false
+  },
+  "final_assessment_notes": "Structured output generated from supported interpretation."
+}

@@ -1,0 +1,22 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 seconds at the latest",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'at the latest' creates ambiguity regarding the exact timing boundary. It is unclear whether the 2-second window is inclusive (the action must complete by the 2-second mark) or exclusive (the action must complete before the 2-second mark).",
+        "possible_interpretations": [
+          "The system must inform the security service no later than the 2-second mark (inclusive).",
+          "The system must inform the security service before the 2-second mark (exclusive)."
+        ],
+        "textual_evidence": [
+          "within 2 seconds at the latest"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  }
+}

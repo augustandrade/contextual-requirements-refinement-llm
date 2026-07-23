@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "reason": "The controlled context defines 'dial tone' but does not provide the quantitative specifications needed to resolve the vagueness regarding frequency or duration.",
+        "missing_information": [
+          "The required measurable parameters (frequency, duration, quality) for the 'dial tone' are not specified in the requirement or the controlled context."
+        ],
+        "unsupported_interpretations": [
+          "Generate a tone matching the standard audible frequency range (e.g., 2000 Hz).",
+          "Generate a tone that lasts for a specific, unstated duration (e.g., 3 seconds)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

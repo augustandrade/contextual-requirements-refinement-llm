@@ -1,0 +1,47 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08",
+    "context_condition": "C1",
+    "structuring_summary": "Ambiguity resolved by Agent 2. The temporal modifier is interpreted as applying to the duration of the water level state, leading to a single functional requirement.",
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-08-SR-01",
+        "type": "functional_requirement",
+        "source_fragments": [
+          "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+        ],
+        "based_on_resolubility": {
+          "ambiguity_ids": [
+            "AMB-01"
+          ],
+          "applied_action": "use_supported_interpretation"
+        },
+        "fields": {
+          "condition": "the water level stays above 100 meters for a continuous period exceeding 4 seconds",
+          "condition_type": "temporal",
+          "system_or_component": "the system",
+          "interaction_pattern": "external_interface_or_reactive_behavior",
+          "actor": "",
+          "modality": "shall",
+          "action": "shut off",
+          "object": "the pumps",
+          "quality_attribute": "",
+          "measurable_criterion": "",
+          "constraint_category": "",
+          "affected_element": "pumps"
+        },
+        "final_statement": "The system shall shut off the pumps if the water level stays above 100 meters for a continuous period exceeding 4 seconds.",
+        "structuring_notes": [
+          "The ambiguous temporal phrase was resolved using the supported interpretation (AMB-01), clarifying that the duration applies to the measured state (water level > 100m)."
+        ]
+      }
+    ],
+    "unresolved_ambiguities": [],
+    "preserved_uncertainties": [],
+    "unsupported_inferences_avoided": [
+      "Did not specify the component responsible for the shutdown action, only that the pumps must be shut off."
+    ],
+    "final_output_status": "structured"
+  }
+}

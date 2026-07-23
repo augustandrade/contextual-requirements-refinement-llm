@@ -1,0 +1,35 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-07-C2",
+    "requirement_id": "REQ-07",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "The vagueness of 'preferably' is overridden by a mandatory business rule in the controlled context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "should preferably perform a reset",
+        "ambiguity_type": "vagueness",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The reset must occur when leaving Factory mode.",
+        "unsupported_interpretations": [
+          "The reset should occur unless a specific, unstated condition prevents it.",
+          "The reset should occur, but if it causes minor disruption, that disruption is acceptable."
+        ],
+        "evidence_from_requirement": [
+          "When leaving the Factory mode, the ECU should preferably perform a reset."
+        ],
+        "evidence_from_context": [
+          "Business rule: ECU reset is mandatory when leaving Factory mode for critical control modules."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context provides a mandatory business rule (BR-01) that directly contradicts the soft constraint ('preferably') in the requirement text, establishing a mandatory requirement.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "The controlled context provides a mandatory business rule that resolves the vagueness of the requirement text, allowing safe structuring."
+    }
+  }
+}

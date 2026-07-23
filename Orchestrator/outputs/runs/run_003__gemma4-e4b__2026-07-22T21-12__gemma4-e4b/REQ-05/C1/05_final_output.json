@@ -1,0 +1,125 @@
+{
+  "execution_id": "REQ-05-C1",
+  "requirement_id": "REQ-05",
+  "context_condition": "C1",
+  "input_requirement": "The user enters the access card with the access code.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' can modify either the verb 'enters' (indicating the means by which the action is performed) or the noun 'access card' (indicating which specific card is being used).",
+        "possible_interpretations": [
+          "The user uses the access code as the method to perform the action of entering the card.",
+          "The user enters a specific access card that is associated with or marked by the access code."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": false,
+    "functional_action": null,
+    "quality_criterion": null,
+    "explanation": null
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The ambiguity regarding the modification scope of 'with the access code' is highly dependent on the context, but the provided context does not resolve the syntactic attachment.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The user uses the access code as the method to perform the action of entering the card.",
+          "The user enters a specific access card that is associated with or marked by the access code."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'with the access code' follows both 'access card' and the verb 'enters'."
+        ],
+        "evidence_from_context": [
+          "Domain: Access control system using card reader and keypad.",
+          "Glossary: 'access code' is defined as a Secret code used for second-factor verification."
+        ],
+        "missing_information": [
+          "The context does not specify the required sequence or relationship between the physical act of card entry and the provision of the access code (e.g., if the code is entered via a keypad *after* the card is read, or if the code is required *to* read the card)."
+        ],
+        "justification": "The context confirms the existence of both components (card, code) but fails to establish the grammatical relationship (modifier of verb vs. modifier of noun) required to resolve the syntactic ambiguity.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The syntactic ambiguity remains unresolved because the controlled context only defines the terms but does not dictate the required operational sequence or grammatical attachment of the modifying phrase."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": false,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The context confirms the existence of both components (card, code) but fails to establish the grammatical relationship (modifier of verb vs. modifier of noun) required to resolve the syntactic ambiguity.",
+        "missing_information": [
+          "The context does not specify the required sequence or relationship between the physical act of card entry and the provision of the access code (e.g., if the code is entered via a keypad *after* the card is read, or if the code is required *to* read the card)."
+        ],
+        "unsupported_interpretations": [
+          "The user uses the access code as the method to perform the action of entering the card.",
+          "The user enters a specific access card that is associated with or marked by the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "reason": "The context confirms the existence of both components (card, code) but fails to establish the grammatical relationship (modifier of verb vs. modifier of noun) required to resolve the syntactic ambiguity.",
+        "missing_information": [
+          "The context does not specify the required sequence or relationship between the physical act of card entry and the provision of the access code (e.g., if the code is entered via a keypad *after* the card is read, or if the code is required *to* read the card)."
+        ],
+        "unsupported_interpretations": [
+          "The user uses the access code as the method to perform the action of entering the card.",
+          "The user enters a specific access card that is associated with or marked by the access code."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "The context does not specify the required sequence or relationship between the physical act of card entry and the provision of the access code (e.g., if the code is entered via a keypad *after* the card is read, or if the code is required *to* read the card)."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

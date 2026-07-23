@@ -1,0 +1,125 @@
+{
+  "execution_id": "REQ-01-C1",
+  "requirement_id": "REQ-01",
+  "context_condition": "C1",
+  "input_requirement": "If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service within 2 seconds at the latest.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 seconds at the latest",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'at the latest' creates ambiguity regarding the exact timing boundary. It is unclear whether the 2-second window is inclusive (the action must complete by the 2-second mark) or exclusive (the action must complete before the 2-second mark).",
+        "possible_interpretations": [
+          "The system must inform the security service no later than the 2-second mark (inclusive).",
+          "The system must inform the security service before the 2-second mark (exclusive)."
+        ],
+        "textual_evidence": [
+          "within 2 seconds at the latest"
+        ],
+        "context_dependency": "high"
+      }
+    ],
+    "no_ambiguity_reason": null
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": true,
+    "functional_action": "inform the security service",
+    "quality_criterion": "within 2 seconds at the latest",
+    "explanation": "The requirement simultaneously specifies a functional action (inform the security service) and a timing quality criterion (within 2 seconds at the latest) that describes how fast the system must execute the action."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity regarding the timing boundary ('at the latest') exists, but the controlled context provides no evidence to resolve it.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 seconds at the latest",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The action must complete by the 2-second mark (inclusive).",
+          "The action must complete before the 2-second mark (exclusive)."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'within 2 seconds at the latest' is present in the requirement text."
+        ],
+        "evidence_from_context": [
+          "The domain is defined as a building security and alarm monitoring system.",
+          "The glossary defines 'glass break detector' as a sensor detecting vibration or sound."
+        ],
+        "missing_information": [
+          "A specific business rule or constraint defining the inclusive/exclusive nature of the 2-second deadline."
+        ],
+        "justification": "The requirement text uses the ambiguous phrase 'at the latest', and the controlled context (domain and glossary) does not contain any business rules or constraints that specify whether the deadline is inclusive or exclusive. Therefore, the ambiguity cannot be resolved without inference.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The lexical ambiguity regarding the timing boundary cannot be resolved using the provided requirement text or controlled context. The case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": true,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 seconds at the latest",
+        "reason": "The requirement text uses the ambiguous phrase 'at the latest', and the controlled context (domain and glossary) does not contain any business rules or constraints that specify whether the deadline is inclusive or exclusive. Therefore, the ambiguity cannot be resolved without inference.",
+        "missing_information": [
+          "A specific business rule or constraint defining the inclusive/exclusive nature of the 2-second deadline."
+        ],
+        "unsupported_interpretations": [
+          "The action must complete by the 2-second mark (inclusive).",
+          "The action must complete before the 2-second mark (exclusive)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 seconds at the latest",
+        "reason": "The requirement text uses the ambiguous phrase 'at the latest', and the controlled context (domain and glossary) does not contain any business rules or constraints that specify whether the deadline is inclusive or exclusive. Therefore, the ambiguity cannot be resolved without inference.",
+        "missing_information": [
+          "A specific business rule or constraint defining the inclusive/exclusive nature of the 2-second deadline."
+        ],
+        "unsupported_interpretations": [
+          "The action must complete by the 2-second mark (inclusive).",
+          "The action must complete before the 2-second mark (exclusive)."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "A specific business rule or constraint defining the inclusive/exclusive nature of the 2-second deadline."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

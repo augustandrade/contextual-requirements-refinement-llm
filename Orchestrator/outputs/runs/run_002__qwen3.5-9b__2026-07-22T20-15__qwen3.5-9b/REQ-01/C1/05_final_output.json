@@ -1,0 +1,189 @@
+{
+  "execution_id": "REQ-01-C1",
+  "requirement_id": "REQ-01",
+  "context_condition": "C1",
+  "input_requirement": "If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service within 2 seconds at the latest.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "ambiguity_type": "syntactic",
+        "explanation": "The relative clause 'has been damaged' is syntactically ambiguous regarding its attachment. It can modify 'pane' (the pane is damaged) or 'window' (the window is damaged), leading to different interpretations of what constitutes the triggering event.",
+        "possible_interpretations": [
+          "The glass break detector detects that the pane (the glass itself) has been damaged.",
+          "The glass break detector detects that the window (the frame or assembly) has been damaged."
+        ],
+        "textual_evidence": [
+          "detects the pane has been damaged",
+          "detects the pane has been damaged"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'within 2 seconds at the latest' creates a semantic ambiguity regarding the temporal scope. It is unclear if the 2-second limit applies to the total duration from detection to notification, or if it applies strictly to the notification latency after the detection event is fully registered, potentially allowing for a longer total time if detection takes time.",
+        "possible_interpretations": [
+          "The total time elapsed from the moment the damage is detected until the security service is informed must not exceed 2 seconds.",
+          "The system must inform the security service within 2 seconds after the detection event is confirmed, but the total time from damage occurrence to notification is not strictly bounded by 2 seconds."
+        ],
+        "textual_evidence": [
+          "within 2 seconds at the latest",
+          "within 2 seconds at the latest"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": true,
+    "functional_action": "inform the security service",
+    "quality_criterion": "within 2 seconds at the latest",
+    "explanation": "The requirement simultaneously specifies a functional action (inform the security service) and a timing quality criterion (within 2 seconds at the latest) that describes how fast the system must execute the action."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding 'pane' vs 'window' is unresolved due to lack of domain definitions; semantic ambiguity regarding timing scope is unresolved as business rules do not specify detection latency constraints.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The glass break detector detects that the pane (the glass itself) has been damaged.",
+          "The glass break detector detects that the window (the frame or assembly) has been damaged."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'pane has been damaged' is syntactically ambiguous regarding its attachment to 'pane' or 'window'."
+        ],
+        "evidence_from_context": [
+          "The glossary defines 'glass break detector' as a sensor detecting vibration or sound patterns from broken glass, implying the event is the breaking of the glass (pane), but does not explicitly rule out frame damage or clarify the syntactic attachment."
+        ],
+        "missing_information": [
+          "Explicit definition or rule stating that the triggering event is strictly the damage to the glass pane and not the window frame."
+        ],
+        "justification": "The controlled context defines the detector's function but does not provide a rule to disambiguate the syntactic attachment of the relative clause between 'pane' and 'window'. Without an explicit rule, the interpretation cannot be determined safely.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The total time elapsed from the moment the damage is detected until the security service is informed must not exceed 2 seconds.",
+          "The system must inform the security service within 2 seconds after the detection event is confirmed, but the total time from damage occurrence to notification is not strictly bounded by 2 seconds."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'within 2 seconds at the latest' is ambiguous regarding whether it bounds total duration or just notification latency."
+        ],
+        "evidence_from_context": [
+          "Business rules are empty; no constraints define the relationship between detection event registration and notification latency."
+        ],
+        "missing_information": [
+          "A business rule or constraint specifying whether the 2-second limit applies to the total end-to-end latency or only the notification phase after detection confirmation."
+        ],
+        "justification": "The controlled context contains no business rules or constraints to clarify the temporal scope of the 2-second limit. The ambiguity requires an explicit rule to resolve.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "Both ambiguities are unresolved because the controlled context lacks the specific rules or definitions needed to disambiguate the syntactic attachment and the temporal scope. The case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": true,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "reason": "The controlled context defines the detector's function but does not provide a rule to disambiguate the syntactic attachment of the relative clause between 'pane' and 'window'. Without an explicit rule, the interpretation cannot be determined safely.",
+        "missing_information": [
+          "Explicit definition or rule stating that the triggering event is strictly the damage to the glass pane and not the window frame."
+        ],
+        "unsupported_interpretations": [
+          "The glass break detector detects that the pane (the glass itself) has been damaged.",
+          "The glass break detector detects that the window (the frame or assembly) has been damaged."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest",
+        "reason": "The controlled context contains no business rules or constraints to clarify the temporal scope of the 2-second limit. The ambiguity requires an explicit rule to resolve.",
+        "missing_information": [
+          "A business rule or constraint specifying whether the 2-second limit applies to the total end-to-end latency or only the notification phase after detection confirmation."
+        ],
+        "unsupported_interpretations": [
+          "The total time elapsed from the moment the damage is detected until the security service is informed must not exceed 2 seconds.",
+          "The system must inform the security service within 2 seconds after the detection event is confirmed, but the total time from damage occurrence to notification is not strictly bounded by 2 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "reason": "The controlled context defines the detector's function but does not provide a rule to disambiguate the syntactic attachment of the relative clause between 'pane' and 'window'. Without an explicit rule, the interpretation cannot be determined safely.",
+        "missing_information": [
+          "Explicit definition or rule stating that the triggering event is strictly the damage to the glass pane and not the window frame."
+        ],
+        "unsupported_interpretations": [
+          "The glass break detector detects that the pane (the glass itself) has been damaged.",
+          "The glass break detector detects that the window (the frame or assembly) has been damaged."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest",
+        "reason": "The controlled context contains no business rules or constraints to clarify the temporal scope of the 2-second limit. The ambiguity requires an explicit rule to resolve.",
+        "missing_information": [
+          "A business rule or constraint specifying whether the 2-second limit applies to the total end-to-end latency or only the notification phase after detection confirmation."
+        ],
+        "unsupported_interpretations": [
+          "The total time elapsed from the moment the damage is detected until the security service is informed must not exceed 2 seconds.",
+          "The system must inform the security service within 2 seconds after the detection event is confirmed, but the total time from damage occurrence to notification is not strictly bounded by 2 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Explicit definition or rule stating that the triggering event is strictly the damage to the glass pane and not the window frame.",
+      "A business rule or constraint specifying whether the 2-second limit applies to the total end-to-end latency or only the notification phase after detection confirmation."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01",
+    "context_condition": "C1",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 seconds at the latest",
+        "reason": "The requirement text presents two distinct interpretations for the scope of the temporal constraint, and the controlled context provides no business rules or constraints to resolve this structural ambiguity.",
+        "missing_information": [
+          "It is unclear whether 'at the latest' modifies the action of 'inform' (the notification time) or if it modifies the timing of the detection event itself."
+        ],
+        "unsupported_interpretations": [
+          "The system must inform the security service within 2 seconds, and this 2-second limit applies to the entire notification process.",
+          "The system must inform the security service, and the condition that the detection must happen 'at the latest' within 2 seconds is the critical constraint."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

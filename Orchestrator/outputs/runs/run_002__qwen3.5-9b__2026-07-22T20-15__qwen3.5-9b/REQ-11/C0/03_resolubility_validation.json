@@ -1,0 +1,75 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "All detected ambiguities are unresolved because the controlled context is empty (C0) and the requirement text alone does not provide sufficient evidence to disambiguate syntactic attachment, device type, or logical filtering scope.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The phrase modifies 'ability'.",
+          "The phrase modifies 'filter'."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure allows attachment to either 'filter' or 'ability' without explicit grammatical markers to distinguish them."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Grammatical or structural evidence within the requirement text to determine the attachment site of the prepositional phrase."
+        ],
+        "justification": "In the absence of controlled context (C0), the syntactic ambiguity cannot be resolved as the text supports both interpretations equally.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Layer 2 network switches.",
+          "Layer 3 routers colloquially called switches."
+        ],
+        "evidence_from_requirement": [
+          "The term 'switches' is used without a controlled vocabulary definition or glossary entry."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "A glossary definition or business rule specifying whether 'switches' refers to Layer 2 or Layer 3 devices."
+        ],
+        "justification": "Without a controlled context to define the term, the lexical ambiguity remains unresolved based on the requirement text alone.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "Filtering traffic flowing between the two types (segregation).",
+          "Filtering traffic belonging to either type (classification/rejection)."
+        ],
+        "evidence_from_requirement": [
+          "The logical relationship between the filtering action and the traffic types is underspecified in the text."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit logical operators or semantic definitions within the requirement text to clarify the scope of the filtering action."
+        ],
+        "justification": "The requirement text does not contain evidence to distinguish between segregation and classification semantics.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "At least one ambiguity is unresolved; the case must bypass Agent 3."
+    }
+  }
+}

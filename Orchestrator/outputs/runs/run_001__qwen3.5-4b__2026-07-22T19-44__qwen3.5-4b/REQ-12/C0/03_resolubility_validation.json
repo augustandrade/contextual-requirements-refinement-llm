@@ -1,0 +1,65 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguities exist regarding controlled vocabulary terms; no external context is available to resolve them.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "'Instruction' refers to a specific document type.",
+          "'Instruction' refers to a general directive.",
+          "'Keyword' refers to a specific string token.",
+          "'Keyword' refers to a general search term.",
+          "'excel file' refers to a specific file format.",
+          "'excel file' refers to any spreadsheet file."
+        ],
+        "evidence_from_requirement": [
+          "The terms 'Instruction', 'Keyword', and 'excel file' are used without explicit definitions in the text."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "The specific definitions of 'Instruction', 'Keyword', and 'excel file' as controlled vocabulary identifiers."
+        ],
+        "justification": "The requirement text uses typographically demarcated terms but provides no internal definitions. The controlled context is empty (C0), so no external glossary or business rules exist to disambiguate these terms.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "'User' refers to a specific authenticated role.",
+          "'User' refers to any person interacting with the system.",
+          "'System-A' refers to a specific backend service.",
+          "'System-A' refers to a generic system component."
+        ],
+        "evidence_from_requirement": [
+          "The terms 'User' and 'System-A' lack unique definitions within the text."
+        ],
+        "evidence_from_context": [
+          []
+        ],
+        "missing_information": [
+          "The specific role definition of 'User' and the functional identity of 'System-A'."
+        ],
+        "justification": "The term 'User' is not typographically demarcated, and 'System-A' is demarcated but undefined. Without external context (C0), the specific actors and systems involved cannot be identified.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "All detected ambiguities are unresolved because the controlled context is empty (C0) and the requirement text does not provide sufficient evidence to define the controlled vocabulary terms or actors."
+    }
+  }
+}

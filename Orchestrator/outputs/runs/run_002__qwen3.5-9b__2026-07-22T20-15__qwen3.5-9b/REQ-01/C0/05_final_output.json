@@ -1,0 +1,185 @@
+{
+  "execution_id": "REQ-01-C0",
+  "requirement_id": "REQ-01",
+  "context_condition": "C0",
+  "input_requirement": "If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service within 2 seconds at the latest.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "ambiguity_type": "syntactic",
+        "explanation": "The relative clause 'has been damaged' is syntactically ambiguous regarding its attachment. It can modify 'pane' (the pane is damaged) or 'window' (the window is damaged), leading to different interpretations of what constitutes the triggering event.",
+        "possible_interpretations": [
+          "The glass break detector detects that the pane (the glass itself) has been damaged.",
+          "The glass break detector detects that the window (the frame or assembly) has been damaged."
+        ],
+        "textual_evidence": [
+          "detects the pane has been damaged",
+          "detects the pane has been damaged"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'within 2 seconds at the latest' creates a semantic ambiguity regarding the temporal scope. It is unclear if the 2-second limit applies to the total duration from detection to notification, or if it applies strictly to the notification latency after the detection event is fully registered, potentially allowing for a longer total time if detection takes time.",
+        "possible_interpretations": [
+          "The total time elapsed from the moment the damage is detected until the security service is informed must not exceed 2 seconds.",
+          "The system must inform the security service within 2 seconds after the detection event is confirmed, but the total time from damage occurrence to notification is not strictly bounded by 2 seconds."
+        ],
+        "textual_evidence": [
+          "within 2 seconds at the latest",
+          "within 2 seconds at the latest"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  },
+  "concern_mixing_analysis": {
+    "has_concern_mixing": true,
+    "functional_action": "inform the security service",
+    "quality_criterion": "within 2 seconds at the latest",
+    "explanation": "The requirement simultaneously specifies a functional action (inform the security service) and a timing quality criterion (within 2 seconds at the latest) that describes how fast the system must execute the action."
+  },
+  "contextual_resolubility_analysis": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01",
+    "context_condition": "C0",
+    "has_ambiguity": true,
+    "validation_summary": "Syntactic ambiguity regarding the damaged entity and semantic ambiguity regarding temporal scope cannot be resolved without external context; execution must bypass Agent 3.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "ambiguity_type": "syntactic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The glass break detector detects that the pane (the glass itself) has been damaged.",
+          "The glass break detector detects that the window (the frame or assembly) has been damaged."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'detects the pane has been damaged' allows attachment to either 'pane' or 'window'."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Explicit definition of whether 'pane' or 'window' is the intended target of the damage detection."
+        ],
+        "justification": "In C0, there is no controlled context to disambiguate the syntactic attachment. The requirement text alone does not explicitly exclude one interpretation over the other.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest",
+        "ambiguity_type": "semantic",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The total time elapsed from the moment the damage is detected until the security service is informed must not exceed 2 seconds.",
+          "The system must inform the security service within 2 seconds after the detection event is confirmed, but the total time from damage occurrence to notification is not strictly bounded by 2 seconds."
+        ],
+        "evidence_from_requirement": [
+          "The phrase 'within 2 seconds at the latest' is semantically open to interpretation regarding the start point of the timer."
+        ],
+        "evidence_from_context": [],
+        "missing_information": [
+          "Clarification on whether the 2-second limit applies to the entire process or only the notification latency after detection confirmation."
+        ],
+        "justification": "In C0, there is no controlled context to define the temporal scope. The requirement text does not explicitly specify the start point for the 2-second window.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "Ambiguities AMB-01 and AMB-02 are unresolved due to lack of context in C0; the case must bypass Agent 3."
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "has_concern_mixing": true,
+    "route": "signaling",
+    "structurer_invoked": false
+  },
+  "requirement_structuring": {
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "reason": "In C0, there is no controlled context to disambiguate the syntactic attachment. The requirement text alone does not explicitly exclude one interpretation over the other.",
+        "missing_information": [
+          "Explicit definition of whether 'pane' or 'window' is the intended target of the damage detection."
+        ],
+        "unsupported_interpretations": [
+          "The glass break detector detects that the pane (the glass itself) has been damaged.",
+          "The glass break detector detects that the window (the frame or assembly) has been damaged."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest",
+        "reason": "In C0, there is no controlled context to define the temporal scope. The requirement text does not explicitly specify the start point for the 2-second window.",
+        "missing_information": [
+          "Clarification on whether the 2-second limit applies to the entire process or only the notification latency after detection confirmation."
+        ],
+        "unsupported_interpretations": [
+          "The total time elapsed from the moment the damage is detected until the security service is informed must not exceed 2 seconds.",
+          "The system must inform the security service within 2 seconds after the detection event is confirmed, but the total time from damage occurrence to notification is not strictly bounded by 2 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  },
+  "non_resolvable_signal": {
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If the glass break detector of a window detects the pane has been damaged",
+        "reason": "In C0, there is no controlled context to disambiguate the syntactic attachment. The requirement text alone does not explicitly exclude one interpretation over the other.",
+        "missing_information": [
+          "Explicit definition of whether 'pane' or 'window' is the intended target of the damage detection."
+        ],
+        "unsupported_interpretations": [
+          "The glass break detector detects that the pane (the glass itself) has been damaged.",
+          "The glass break detector detects that the window (the frame or assembly) has been damaged."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the system shall inform the security service within 2 seconds at the latest",
+        "reason": "In C0, there is no controlled context to define the temporal scope. The requirement text does not explicitly specify the start point for the 2-second window.",
+        "missing_information": [
+          "Clarification on whether the 2-second limit applies to the entire process or only the notification latency after detection confirmation."
+        ],
+        "unsupported_interpretations": [
+          "The total time elapsed from the moment the damage is detected until the security service is informed must not exceed 2 seconds.",
+          "The system must inform the security service within 2 seconds after the detection event is confirmed, but the total time from damage occurrence to notification is not strictly bounded by 2 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "missing_information": [
+      "Explicit definition of whether 'pane' or 'window' is the intended target of the damage detection.",
+      "Clarification on whether the 2-second limit applies to the entire process or only the notification latency after detection confirmation."
+    ],
+    "requires_human_clarification": true
+  },
+  "final_assessment_notes": "Automatic structuring skipped due to non_resolvable ambiguity; clarification required."
+}

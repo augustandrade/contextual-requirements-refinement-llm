@@ -1,0 +1,31 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-14-C0",
+    "requirement_id": "REQ-14",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 2 s",
+        "reason": "The controlled context is empty (C0), and the requirement text does not explicitly define the boundary condition for 'within 2 s'. Without this explicit definition, the ambiguity cannot be resolved safely.",
+        "missing_information": [
+          "Whether the upper bound is inclusive (<=) or exclusive (<)."
+        ],
+        "unsupported_interpretations": [
+          "The system shall inform the security service at any time t where t < 2 seconds.",
+          "The system shall inform the security service at any time t where t <= 2 seconds."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}

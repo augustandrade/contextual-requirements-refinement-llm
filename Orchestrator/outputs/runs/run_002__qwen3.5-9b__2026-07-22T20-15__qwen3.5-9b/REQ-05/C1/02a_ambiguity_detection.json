@@ -1,0 +1,49 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "enters the access card with the access code",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'with the access code' can attach either to the verb 'enters' (the user uses the code as the instrument/method of entry) or to the noun phrase 'the access card' (the card is the one associated with or containing the code), yielding two different syntax trees and two different meanings.",
+        "possible_interpretations": [
+          "The user performs the action of entering by using the access code (the code is the means of entry).",
+          "The user enters a specific access card that is associated with or has the access code on it (the code identifies the card)."
+        ],
+        "textual_evidence": [
+          "enters the access card with the access code"
+        ],
+        "context_dependency": "high"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "enters the access card",
+        "ambiguity_type": "lexical",
+        "explanation": "The verb 'enters' is polysemous. In this context, it could mean 'inputs' (data entry) or 'physically inserts/places' (physical action), leading to different interpretations of the user's action.",
+        "possible_interpretations": [
+          "The user inputs the access card information into the system.",
+          "The user physically inserts the access card into a reader."
+        ],
+        "textual_evidence": [
+          "enters the access card"
+        ],
+        "context_dependency": "moderate"
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "with the access code",
+        "ambiguity_type": "lexical",
+        "explanation": "The noun phrase 'access code' is polysemous. It could refer to a PIN/password (digital credential) or a physical key/code (mechanical credential), changing the nature of the interaction.",
+        "possible_interpretations": [
+          "The user provides a PIN or password as the access code.",
+          "The user provides a physical key or mechanical code as the access code."
+        ],
+        "textual_evidence": [
+          "with the access code"
+        ],
+        "context_dependency": "moderate"
+      }
+    ]
+  }
+}

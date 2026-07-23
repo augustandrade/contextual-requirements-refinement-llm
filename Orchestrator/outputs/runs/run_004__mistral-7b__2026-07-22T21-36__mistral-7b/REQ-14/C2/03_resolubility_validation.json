@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-14-C2",
+    "requirement_id": "REQ-14",
+    "context_condition": "C2",
+    "has_ambiguity": true,
+    "validation_summary": "Lexical ambiguity detected in 'damage'. Controlled context provides a plausible interpretation.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "damage",
+        "ambiguity_type": "lexical",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Physical damage (e.g., broken equipment).",
+        "unsupported_interpretations": [
+          "Cybersecurity damage (e.g., a breach or hack)."
+        ],
+        "evidence_from_requirement": [
+          "The requirement mentions 'damage' without specifying the type."
+        ],
+        "evidence_from_context": [
+          "Business rule QLT-01 states that notification deadline is 2 seconds after pane damage detection. This suggests physical damage as a plausible interpretation."
+        ],
+        "missing_information": [],
+        "justification": "The controlled context provides a plausible interpretation for the ambiguous term 'damage'.",
+        "allowed_structuring_action": "use_supported_interpretation"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable",
+      "explanation": "Controlled context provides direct evidence for the supported interpretation."
+    }
+  }
+}

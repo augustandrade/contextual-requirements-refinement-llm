@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04",
+    "context_condition": "C1",
+    "has_ambiguity": true,
+    "validation_summary": "The pronoun 'it' refers to either the card or the PIN; however, the business rule for invalid PINs is not explicitly stated in the provided context.",
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "resolubility_status": "unresolved",
+        "supported_interpretation": null,
+        "unsupported_interpretations": [
+          "The access card is invalid.",
+          "The personal identification number (PIN) is invalid."
+        ],
+        "evidence_from_requirement": [
+          "The sentence structure allows both the 'access card' and the 'personal identification number (PIN)' to serve as antecedents for 'it'."
+        ],
+        "evidence_from_context": [
+          "Domain: Corporate physical access control system with badge and PIN authentication.",
+          "Glossary: PIN is a 4-digit personal identification number."
+        ],
+        "missing_information": [
+          "The specific business rule defining the consequence of an invalid PIN is absent from the controlled context."
+        ],
+        "justification": "While the domain mentions PIN authentication, the controlled context lacks the explicit business rule stating that an invalid PIN results in access denial. Without this rule, the system cannot be assumed to deny access based on the PIN alone, leaving the antecedent ambiguous.",
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved",
+      "explanation": "The controlled context does not provide sufficient evidence to distinguish between the two possible antecedents for 'it' without inferring external knowledge about standard PIN protocols."
+    }
+  }
+}

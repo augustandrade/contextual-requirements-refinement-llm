@@ -1,0 +1,46 @@
+{
+  "requirement_structuring": {
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0",
+    "structuring_summary": "Requirement structuring was skipped because at least one ambiguity is non_resolvable.",
+    "structured_requirements": [],
+    "unresolved_ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If an 'Instruction' contains a 'Keyword'",
+        "reason": "The requirement contains two possible interpretations and provides no disambiguating evidence.",
+        "missing_information": [
+          "The intended meaning of the logical operator (AND or OR)"
+        ],
+        "unsupported_interpretations": [
+          "The instruction must contain the keyword.",
+          "The instruction is a keyword."
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "The User must upload the 'excel file' to System-A.",
+        "reason": "The requirement mentions a single system, but does not specify which one.",
+        "missing_information": [
+          "Which specific system ('System-A') is intended for the user to upload the excel file."
+        ],
+        "unsupported_interpretations": [
+          "The user must upload the excel file to System A1.",
+          "The user must upload the excel file to System A2.",
+          "... (add more plausible interpretations as needed)"
+        ],
+        "allowed_structuring_action": "flag_for_human_clarification"
+      }
+    ],
+    "preserved_uncertainties": [
+      "AMB-01: insufficient evidence for safe structuring",
+      "AMB-02: insufficient evidence for safe structuring"
+    ],
+    "unsupported_inferences_avoided": [
+      "No additional interpretation was introduced without explicit evidence from requirement/context."
+    ],
+    "final_output_status": "preserved"
+  }
+}
