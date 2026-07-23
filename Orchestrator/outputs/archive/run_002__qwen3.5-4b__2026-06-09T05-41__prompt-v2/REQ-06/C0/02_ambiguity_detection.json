@@ -1,8 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
-  },
-  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key\"\n      ambiguity_type: \"semantic\"\n      explanation: \"The logical operator 'or' creates ambiguity regarding whether the safety system triggers on a single event (window damage OR intruder detection OR door opening) or if the conditions must be combined in a specific way (e.g., (window damage AND intruder detection) OR door opening). Without explicit precedence rules, the grouping of the three conditions is unclear.\"\n      possible_interpretations:\n        - \"The system raises an alarm if ANY of the following occurs: (1) a window is damaged, (2) an intruder is detected, or (3) a door is opened without a key.\"\n        - \"The system raises an alarm if (a window is damaged AND an intruder is detected) OR (a door is opened without a key).\"\n      textual_evidence:\n        - \"If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key\"\n      context_evidence: []\n      context_dependency: \"high\"\n  no_ambiguity_reason: null\n```"
-}

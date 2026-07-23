@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement expresses a pure functional action ('Generate') without a quality criterion (e.g., timing, reliability, or success rate). It does not mix functional and quality attributes in a single sentence, so it is not a concern-mixing problem. Additionally, the term 'dial tone' is demarcated in the glossary with a precise definition ('Tone signaling line readiness for dialing'), eliminating lexical ambiguity. The requirement is clear and unambiguous."
-  }
-}

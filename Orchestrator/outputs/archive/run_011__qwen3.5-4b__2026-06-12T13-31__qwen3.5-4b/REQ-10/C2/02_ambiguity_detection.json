@@ -1,8 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "has_concern_mixing": true,
-    "ambiguities": null,
-    "no_ambiguity_reason": "The sentence 'Generate a dial tone' contains no syntactic, semantic, referential, lexical, or vagueness ambiguities. The term 'dial tone' is a standard controlled vocabulary term in telecommunications and does not exhibit lexical ambiguity. The imperative verb 'Generate' has a single clear subject (the system) and object ('a dial tone'). There are no competing antecedents for pronouns, no structural attachment issues, and no terms with inherently undefined boundaries."
-  }
-}

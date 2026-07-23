@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically clear but non-atomic: it intermingles a functional action (inform the security service) and a quality/timing condition (If the detector detects damage). While this mixes a functional requirement and a trigger condition, it does not contain a measurable quality criterion (e.g., 'within X seconds') to constitute concern-mixing per Pohl §25.2. Furthermore, there are no lexical, syntactic, semantic, referential, or vague ambiguities present; 'it' refers uniquely to 'damage', and 'inform' is used as a defined functional action."
-  }
-}

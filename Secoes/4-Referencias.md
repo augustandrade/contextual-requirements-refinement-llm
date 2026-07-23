@@ -9,6 +9,8 @@ Bashir, M. et al. 2025. Requirements ambiguity detection and explanation with LL
 
 Cheng, L. et al. 2025. Generative AI for requirements engineering: a systematic literature review. *Requirements Engineering*. Cham: Springer.
 
+Frattini, J. et al. 2023. Requirements quality research: a harmonized theory, evaluation, and roadmap. *Requirements Engineering*, v. 28, p. 507-520. Cham: Springer.
+
 Gulli, A. 2025. *Agentic design patterns: a hands-on guide to building intelligent systems*. Sebastopol: O'Reilly Media.
 
 Guo, Y. et al. 2025. Do large language models have an English accent? Evaluating and improving the naturalness of multilingual LLMs. In: *Annual meeting of the association for computational linguistics (ACL)*. [S.l.]: Association for Computational Linguistics.

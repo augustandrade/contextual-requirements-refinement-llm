@@ -1,7 +1,0 @@
-{
-  "execution_id": "REQ-12-C0",
-  "requirement_id": "REQ-12",
-  "context_condition": "C0",
-  "base_requirement_text": "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A.",
-  "controlled_context": {}
-}

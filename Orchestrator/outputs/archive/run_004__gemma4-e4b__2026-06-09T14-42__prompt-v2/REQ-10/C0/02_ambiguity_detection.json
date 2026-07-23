@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is a pure functional statement ('Generate a dial tone') and does not contain any structural ambiguities, referential ambiguities, or vague terms. It is not concern-mixing as it lacks a measurable quality criterion."
-  }
-}

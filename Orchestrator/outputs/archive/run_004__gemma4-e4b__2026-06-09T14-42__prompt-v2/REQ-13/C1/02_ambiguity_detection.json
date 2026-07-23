@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically clear and does not exhibit ambiguity according to Pohl's taxonomy. The conditional structure ('If... then...') is standard, and all terms ('detector', 'pane', 'system', 'inform', 'security service') are either common or defined in the glossary, leaving no lexical, syntactic, semantic, referential, or vagueness ambiguities."
-  }
-}

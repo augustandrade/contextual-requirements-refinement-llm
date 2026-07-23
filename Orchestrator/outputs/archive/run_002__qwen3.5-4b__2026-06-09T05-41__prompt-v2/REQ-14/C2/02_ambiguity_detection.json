@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically clear and unambiguous. It expresses a functional action ('inform') and a quality criterion ('within 2 s') simultaneously, which constitutes a non-atomic concern-mixing problem (Pohl §25.2) rather than a linguistic ambiguity. The term '2 s' has a determinate numeric extension and is not vague. The term 'damage' refers to a single concept within the domain context and does not admit multiple valid interpretations."
-  }
-}

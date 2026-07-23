@@ -1,8 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
-  },
-  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"enters the access card with the access code\"\n      ambiguity_type: \"syntactic\"\n      explanation: \"The prepositional phrase 'with the access code' is structurally ambiguous, attaching either to the verb 'enters' (indicating the method of entry) or to the noun 'access card' (indicating the card's property).\"\n      possible_interpretations:\n        - \"The user enters the access card using the access code as a second-factor verification method.\"\n        - \"The user enters the access card, and the access card itself contains or is associated with the access code.\"\n      textual_evidence:\n        - \"enters the access card with the access code\"\n      context_evidence:\n        - \"domain: Access control system using card reader and keypad.\"\n        - \"term: access code; definition: Secret code used for second-factor verification.\"\n      context_dependency: \"moderate\"\n  no_ambiguity_reason: null\n```"
-}

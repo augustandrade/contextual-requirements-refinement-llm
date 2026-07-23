@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically clear but non-atomic: it intermingles a functional requirement (raise a web alert) and a quality/timing requirement (implied by the conditional trigger 'When a rejection order is received'). However, per Pohl §25.2, concern-mixing requires BOTH a functional action AND a quality criterion (measurable property like 'within X seconds') in the same sentence. This sentence expresses only a functional action triggered by a condition, lacking a specific quality metric (e.g., 'within 5 seconds'). Therefore, it is a pure functional requirement with an implicit trigger, not a concern-mixing structural problem, and contains no lexical, syntactic, semantic, referential, or vague ambiguities."
-  }
-}

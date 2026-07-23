@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is structurally sound and does not exhibit linguistic ambiguity. It is a clear conditional statement (IF/THEN) and the timing constraint ('within 2 seconds at the latest') is a precise, measurable quality criterion, not a vague one. No ambiguity was detected."
-  }
-}

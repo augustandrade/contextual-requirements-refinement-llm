@@ -1,7 +1,0 @@
-{
-  "execution_id": "REQ-10-C0",
-  "requirement_id": "REQ-10",
-  "context_condition": "C0",
-  "base_requirement_text": "Generate a dial tone.",
-  "controlled_context": {}
-}

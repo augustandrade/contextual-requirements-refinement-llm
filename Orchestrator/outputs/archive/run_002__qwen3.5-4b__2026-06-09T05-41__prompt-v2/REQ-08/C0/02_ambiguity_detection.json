@@ -1,8 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
-  },
-  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"remains above 100 meters for more than 4 seconds\"\n      ambiguity_type: \"syntactic\"\n      explanation: \"The prepositional phrase 'for more than 4 seconds' creates a structural ambiguity regarding its attachment point. It can modify the state 'remains' (the duration of the high water level) or the action 'Shut off' (the duration the pumps must remain off).\"\n      possible_interpretations:\n        - \"The water level remains above 100 meters for a duration exceeding 4 seconds, at which point the pumps are shut off.\"\n        - \"The pumps are shut off and remain shut off for a duration exceeding 4 seconds.\"\n      textual_evidence:\n        - \"remains above 100 meters for more than 4 seconds\"\n      context_evidence: []\n      context_dependency: \"high\"\n  no_ambiguity_reason: null\n```"
-}

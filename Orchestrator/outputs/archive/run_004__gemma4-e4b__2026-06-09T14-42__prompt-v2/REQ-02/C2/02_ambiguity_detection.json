@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is structurally clear and does not exhibit linguistic ambiguity according to Pohl's taxonomy. The phrase 'System-A must raise a web alert' is a direct functional statement, and the trigger ('When a rejection order is received for a cancellation request') is clearly defined. No lexical, syntactic, semantic, referential, or vagueness ambiguities were detected."
-  }
-}

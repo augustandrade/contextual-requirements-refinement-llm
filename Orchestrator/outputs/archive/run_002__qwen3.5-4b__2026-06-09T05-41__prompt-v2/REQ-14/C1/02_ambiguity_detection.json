@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically clear and unambiguous. It expresses a functional action ('inform') and a quality criterion ('within 2 s') simultaneously, which constitutes a non-atomic concern-mixing problem (Pohl §25.2) rather than a linguistic ambiguity. The term 'within 2 s' is demarcated in the glossary with a precise numeric definition, eliminating vagueness. The referential pronoun 'it' (implied in 'detecting') has a single clear antecedent ('damage')."
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically clear and unambiguous. The term 'medium-sized vehicle' is demarcated as controlled vocabulary (via the glossary definition provided in the context) and has a determinate extension (gross weight strictly between 1500 kg and 2000 kg). The sentence expresses a single functional action ('shall be equipped') without a quality criterion, so it is not a concern-mixing problem. No lexical, syntactic, semantic, referential, or vagueness ambiguities exist."
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is structurally clear and does not exhibit linguistic ambiguity. The condition 'remains above 100 meters for more than 4 seconds' is precisely defined by the combination of a threshold (100 meters), a comparison operator (above), and a time duration (more than 4 seconds). The business rule BR-01 clarifies the decision metric for this persistence window, resolving any potential ambiguity regarding the measurement within that time frame."
-  }
-}

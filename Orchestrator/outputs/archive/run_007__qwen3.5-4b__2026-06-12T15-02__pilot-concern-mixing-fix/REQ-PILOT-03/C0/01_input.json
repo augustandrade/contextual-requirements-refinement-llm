@@ -1,7 +1,0 @@
-{
-  "execution_id": "REQ-PILOT-03-C0",
-  "requirement_id": "REQ-PILOT-03",
-  "context_condition": "C0",
-  "base_requirement_text": "The system shall automatically approve the leave request if the employee is eligible.",
-  "controlled_context": {}
-}

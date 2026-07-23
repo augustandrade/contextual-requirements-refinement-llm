@@ -56,7 +56,7 @@ Requisitos intencionalmente livres de ambiguidades linguísticas. REQ-13 e REQ-1
 
 ## Rodada-piloto (REQ-PILOT-01 a REQ-PILOT-04)
 
-Os quatro requisitos utilizados na execução-piloto foram elaborados pelo autor com base em padrões recorrentes na literatura de Engenharia de Requisitos. A rodada-piloto precedeu a construção do corpus principal e orientou o ajuste dos prompts e a definição das categorias de defeito adotadas.
+Os quatro requisitos utilizados na execução-piloto foram gerados sinteticamente com apoio de IA, seguindo a mesma estrutura de categorias de defeito e condições de contexto que o corpus principal buscava verificar. A rodada-piloto precedeu a construção do corpus principal e orientou o ajuste dos prompts e a definição das categorias de defeito adotadas.
 
 | ID | Requisito | Tipo de caso |
 |---|---|---|

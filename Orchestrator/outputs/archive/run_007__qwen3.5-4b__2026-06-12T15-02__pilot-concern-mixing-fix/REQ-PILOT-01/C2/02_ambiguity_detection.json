@@ -1,8 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "has_concern_mixing": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is syntactically clear (Condition: 'When a customer submits an order', Action: 'send a confirmation email', Object: 'to the customer', Quality: 'within 30 seconds'). There are no competing antecedents for pronouns, no syntactic attachment conflicts, and no terms lacking measurable boundaries. The term '30 seconds' is a precise temporal constraint, not vague. The requirement follows the canonical structure [Condition → System Modality Action Object Quality] without mixing functional actions with quality criteria in a way that creates structural ambiguity."
-  }
-}

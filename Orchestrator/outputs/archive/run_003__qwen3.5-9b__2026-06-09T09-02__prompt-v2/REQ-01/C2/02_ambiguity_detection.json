@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically clear but non-atomic: it intermingles a functional action ('inform the security service') and a quality/timing criterion ('within 2 seconds at the latest'). According to Pohl §25.2, this constitutes concern-mixing (structural decomposition needed) rather than a linguistic ambiguity. The terms 'glass break detector', 'pane', and 'security service' are either uniquely identifiable within the sentence or defined in the controlled_context glossary, so no lexical ambiguity exists. The timing constraint has a precise numeric extension, so no vagueness exists."
-  }
-}

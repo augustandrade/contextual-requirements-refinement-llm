@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is structurally clear and does not exhibit linguistic ambiguity according to Pohl's taxonomy. The term 'System-A' is defined in the glossary, resolving potential lexical ambiguity. The structure is a direct conditional statement (When X, then Y)."
-  }
-}

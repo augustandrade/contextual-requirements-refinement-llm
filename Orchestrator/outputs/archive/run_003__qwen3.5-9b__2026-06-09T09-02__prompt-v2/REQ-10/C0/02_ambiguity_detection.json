@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement expresses only a functional action ('Generate a dial tone') without any quality criterion (e.g., timing, reliability, format). According to Pohl §25.2, this is a pure functional requirement, not a concern-mixing issue, and contains no linguistic ambiguity."
-  }
-}

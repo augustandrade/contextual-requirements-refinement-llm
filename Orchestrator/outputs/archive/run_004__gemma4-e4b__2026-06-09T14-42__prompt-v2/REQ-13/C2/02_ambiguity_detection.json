@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically clear and does not exhibit ambiguity according to Pohl's taxonomy. The structure 'If A, the system shall B' is a standard, unambiguous conditional statement. No lexical, syntactic, semantic, referential, or vagueness issues were detected."
-  }
-}

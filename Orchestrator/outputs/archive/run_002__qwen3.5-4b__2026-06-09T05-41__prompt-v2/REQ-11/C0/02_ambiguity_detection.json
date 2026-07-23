@@ -1,8 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "model_output_unexpected_or_unparsable"
-  },
-  "model_raw": "ambiguity_detection:\n  has_ambiguity: true\n  ambiguities:\n    - ambiguity_id: \"AMB-01\"\n      fragment: \"Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.\"\n      ambiguity_type: \"lexical\"\n      explanation: \"The term 'Routing switches' is syntactically and lexically ambiguous. It could mean the system performs the action of routing (verb) and switching (verb), or it could mean the system possesses the capability/ability to perform these actions (noun phrase). Without a glossary defining 'Routing switches' as a specific domain entity or action, the meaning is unclear.\"\n      possible_interpretations:\n        - \"The system performs the actions of routing and switching network traffic...\"\n        - \"The system has the capability/ability to route and switch network traffic...\"\n      textual_evidence:\n        - \"Routing switches ability\"\n      context_evidence:\n        - []\n      context_dependency: \"high\"\n  no_ambiguity_reason: null\n```"
-}
