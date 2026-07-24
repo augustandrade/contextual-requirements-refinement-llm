@@ -4,7 +4,7 @@ category_name: Formulation and final structuring problems
 title: Passive voice with hidden actor
 source:
   citation: Veizaga et al. (2024)
-base_requirement_text: "When a rejection order is received for a cancellation request, System-A must raise a web alert."
+base_requirement_text: "When a \"rejection order\" is received for a \"cancellation request\", System-A must raise a web alert."
 expected_problem: Passive condition hides the actor responsible for issuing the rejection order.
 expected_behavior: Identify actor omission and explicitly introduce actor when context is sufficient.
 contexts:
