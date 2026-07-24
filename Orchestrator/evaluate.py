@@ -48,6 +48,20 @@ _CAT_LABELS = {
     'category-04-control':    'Cat-04 Controle',
 }
 
+# Requisitos de Cat-02 desenhados para testar uma categoria específica da
+# taxonomia de Pohl (2025) via Agente 1a — o rótulo esperado vem das tags do
+# corpus e da definição de cada tipo em Agents/1a.AmbiguityDetector/agent_prompt.md
+# (ex.: ambiguidade lógica AND/OR é classificada como "semantic" pelo próprio
+# prompt, não "logical"). D1 só mede has_ambiguity; isto mede se o AGENTE
+# ACERTA A CLASSIFICAÇÃO — o próprio objetivo do Agente 1a, nunca avaliado
+# separadamente até aqui.
+TAXONOMY_TARGETS = {
+    'REQ-04': 'referential',  # ambiguidade referencial (pronome)
+    'REQ-05': 'syntactic',    # ambiguidade sintática (attachment)
+    'REQ-06': 'semantic',     # ambiguidade lógica AND/OR -> categoria "semantic"
+    'REQ-07': 'vagueness',    # vaguidade (weak word)
+}
+
 
 # ── Carrega corpus ────────────────────────────────────────────────────────────
 def load_corpus():
@@ -113,46 +127,46 @@ def evaluate_one(final: dict, manual_ref: dict) -> dict:
     else:
         d1_error_type = None
 
-    # D2 — route
+    # D2 — concern_mixing (verifica tanto falsos positivos quanto falsos negativos)
+    exp_cm = 'detect_concern_mixing' in exp_actions
+    act_cm = bool(_get(final, 'concern_mixing_analysis', 'has_concern_mixing', default=False))
+    d2 = (act_cm == exp_cm)
+    applicable += 1
+    correct    += int(d2)
+
+    # D2 error type (concern mixing): só preenchido quando há erro
+    d2_error_type = None if d2 else ('false_positive' if act_cm and not exp_cm else 'false_negative')
+
+    # D3 — route
     exp_rt = _exp_route(exp_res)
     act_rt = _get(final, 'pipeline_decision', 'route', default='')
     if exp_rt is not None:
-        d2 = (act_rt == exp_rt)
-        applicable += 1
-        correct    += int(d2)
-
-    # D3 — completude do output (independente de D2)
-    act_route = _get(final, 'pipeline_decision', 'route', default='')
-    struct_reqs = _get(final, 'requirement_structuring', 'structured_requirements', default=[]) or []
-    if act_route == 'structured':
-        d3 = len(struct_reqs) > 0
-    elif act_route == 'signaling':
-        unresolved = _get(final, 'non_resolvable_signal', 'unresolved_ambiguities', default=[]) or []
-        d3 = len(unresolved) > 0
-    else:
-        d3 = None
-
-    if d3 is not None:
+        d3 = (act_rt == exp_rt)
         applicable += 1
         correct    += int(d3)
-
-    # D4 — concern_mixing (verifica tanto falsos positivos quanto falsos negativos)
-    exp_cm = 'detect_concern_mixing' in exp_actions
-    act_cm = bool(_get(final, 'concern_mixing_analysis', 'has_concern_mixing', default=False))
-    d4 = (act_cm == exp_cm)
-    applicable += 1
-    correct    += int(d4)
-
-    # D2 error type (concern mixing): só preenchido quando há erro
-    d2_error_type = None if d4 else ('false_positive' if act_cm and not exp_cm else 'false_negative')
 
     # D3 error type (rota): só preenchido quando há erro e a dimensão é aplicável
     # FP = routed structured quando deveria ser signaling (sobre-confiança)
     # FN = routed signaling quando deveria ser structured (sub-detecção)
-    if exp_rt is not None and d2 is False:
+    if exp_rt is not None and d3 is False:
         d3_error_type = 'false_positive' if act_rt == 'structured' and exp_rt == 'signaling' else 'false_negative'
     else:
         d3_error_type = None
+
+    # D4 — completude do output (independente de D3)
+    act_route = _get(final, 'pipeline_decision', 'route', default='')
+    struct_reqs = _get(final, 'requirement_structuring', 'structured_requirements', default=[]) or []
+    if act_route == 'structured':
+        d4 = len(struct_reqs) > 0
+    elif act_route == 'signaling':
+        unresolved = _get(final, 'non_resolvable_signal', 'unresolved_ambiguities', default=[]) or []
+        d4 = len(unresolved) > 0
+    else:
+        d4 = None
+
+    if d4 is not None:
+        applicable += 1
+        correct    += int(d4)
 
     score = (correct / applicable) if applicable > 0 else None
 
@@ -173,9 +187,9 @@ def evaluate_one(final: dict, manual_ref: dict) -> dict:
 
     return {
         'D1_has_ambiguity':   d1,
-        'D2_route':           d2,
-        'D3_output_complete': d3,
-        'D4_concern_mixing':  d4,
+        'D2_concern_mixing':  d2,
+        'D3_route':           d3,
+        'D4_output_complete': d4,
         'correct':            correct,
         'applicable':         applicable,
         'score':              score,
@@ -226,6 +240,62 @@ def evaluate_run(run_dir: Path, corpus: dict) -> list[dict]:
     return rows
 
 
+# ── Taxonomia de Pohl (classificação, não apenas detecção) ───────────────────
+def evaluate_taxonomy(run_dir: Path) -> list[dict]:
+    """Para os requisitos de TAXONOMY_TARGETS, verifica se o Agente 1a
+    classificou a ambiguidade no tipo esperado (Pohl 5-way), não só se
+    detectou 'has_ambiguity'. Usa C0 como representativo — ambiguity_type
+    já foi verificado como idêntico entre C0/C1/C2 (Agente 1a é context-free).
+    """
+    rows: list[dict] = []
+    for req_id, expected_type in TAXONOMY_TARGETS.items():
+        output_file = run_dir / req_id / 'C0' / '05_final_output.json'
+        if not output_file.exists():
+            continue
+        final = json.loads(output_file.read_text(encoding='utf-8'))
+        ambiguities = _get(final, 'ambiguity_analysis', 'ambiguities', default=[]) or []
+        detected_types = [a.get('ambiguity_type', '') for a in ambiguities]
+        rows.append({
+            'run':            run_dir.name,
+            'req_id':         req_id,
+            'expected_type':  expected_type,
+            'detected_types': ', '.join(detected_types) if detected_types else '(nenhuma)',
+            'match':          expected_type in detected_types,
+        })
+    return rows
+
+
+def summarize_taxonomy(rows: list[dict]) -> None:
+    if not rows:
+        return
+    runs = sorted({r['run'] for r in rows})
+    req_ids = list(TAXONOMY_TARGETS.keys())
+
+    print(f'\n{"═" * 74}')
+    print('CLASSIFICAÇÃO POR TAXONOMIA DE POHL (Agente 1a — só Cat-02)')
+    print(f'{"─" * 74}')
+    header = f'  {"Requisito (esperado)":<28}' + ''.join(f'{_model_short(r):>16}' for r in runs)
+    print(header)
+    for req_id in req_ids:
+        expected = TAXONOMY_TARGETS[req_id]
+        line = f'  {req_id + " (" + expected + ")":<28}'
+        for run in runs:
+            match = next((r['match'] for r in rows if r['run'] == run and r['req_id'] == req_id), None)
+            cell = '✓' if match else ('✗' if match is False else '—')
+            line += f'{cell:>16}'
+        print(line)
+
+    total = len(rows)
+    correct = sum(1 for r in rows if r['match'])
+    print(f'{"─" * 74}')
+    print(f'  Acerto de classificação: {correct}/{total} ({correct/total*100:.1f}%)')
+
+
+def _model_short(run_name: str) -> str:
+    parts = run_name.split('__')
+    return parts[1] if len(parts) >= 2 else run_name
+
+
 # ── Helpers de display ────────────────────────────────────────────────────────
 def _pct(values: list) -> str:
     vals = [v for v in values if v is not None]
@@ -237,13 +307,13 @@ def _pct(values: list) -> str:
 def _row_line(label: str, rows: list[dict], width: int = 32, hide_detection: bool = False) -> str:
     na = '    —  '
     d1 = na if hide_detection else f'{_pct([r["D1_has_ambiguity"]  for r in rows]):>14} '
-    d2 = na if hide_detection else f'{_pct([r["D4_concern_mixing"] for r in rows]):>13} '
+    d2 = na if hide_detection else f'{_pct([r["D2_concern_mixing"] for r in rows]):>13} '
     return (
         f'  {label:<{width}} '
         f'{d1:>14} '
         f'{d2:>13} '
-        f'{_pct([r["D2_route"]           for r in rows]):>7} '
-        f'{_pct([r["D3_output_complete"] for r in rows]):>12} '
+        f'{_pct([r["D3_route"]           for r in rows]):>7} '
+        f'{_pct([r["D4_output_complete"] for r in rows]):>12} '
         f'{_pct([r["score"]             for r in rows]):>8} '
         f'  {len(rows)}'
     )
@@ -375,12 +445,18 @@ def main():
 
     summarize(all_rows)
 
+    taxonomy_rows: list[dict] = []
+    for rd in run_dirs:
+        taxonomy_rows.extend(evaluate_taxonomy(rd))
+    summarize_taxonomy(taxonomy_rows)
+
     ts = datetime.now().strftime('%Y-%m-%dT%H-%M')
     suffix = f'__{args.label}' if args.label else ''
     eval_dir = _HERE / 'outputs' / 'evaluation' / f'eval__{ts}{suffix}'
     eval_dir.mkdir(parents=True, exist_ok=True)
 
     export_csv(all_rows, eval_dir / 'evaluation_results.csv')
+    export_csv(taxonomy_rows, eval_dir / 'taxonomy_classification.csv')
     export_metadata(run_dirs, eval_dir)
 
     try:
@@ -393,12 +469,14 @@ def main():
         charts_dir.mkdir(exist_ok=True)
         print('\nGerando gráficos...')
         gc.chart_context_line(df, charts_dir)
-        gc.chart_category_bar(df, charts_dir)
+        gc.chart_category_by_model(df, charts_dir)
         gc.chart_error_type_bar(df, charts_dir)
         gc.chart_error_type_d2(df, charts_dir)
         gc.chart_route_error_context(df, charts_dir)
         for run in sorted(df['run'].unique()):
             gc.chart_heatmap(df[df['run'] == run], run, charts_dir)
+        df_tax = pd.read_csv(eval_dir / 'taxonomy_classification.csv')
+        gc.chart_taxonomy_grid(df_tax, charts_dir)
     except Exception as e:
         print(f'  [WARN] Gráficos não gerados: {e}')
 

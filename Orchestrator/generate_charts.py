@@ -35,11 +35,11 @@ import pandas as pd
 _HERE = Path(__file__).parent
 _OUTPUTS_DIR = _HERE / 'outputs'
 
-DIM_COLS   = ['D1_has_ambiguity', 'D4_concern_mixing', 'D2_route', 'D3_output_complete']
+DIM_COLS   = ['D1_has_ambiguity', 'D2_concern_mixing', 'D3_route', 'D4_output_complete']
 DIM_LABELS = ['D1 Ambiguidade', 'D2 ConcernMix', 'D3 Rota', 'D4 Output']
 DIM_COLORS = ['#5c6bc0', '#26a69a', '#ef6c00', '#8d6e63']
 
-CTX_SENSITIVE_COLS   = ['D2_route', 'D3_output_complete']
+CTX_SENSITIVE_COLS   = ['D3_route', 'D4_output_complete']
 CTX_SENSITIVE_LABELS = ['D3 Rota', 'D4 Output']
 
 CTX_ORDER = ['C0', 'C1', 'C2']
@@ -117,67 +117,66 @@ def chart_context_line(df: pd.DataFrame, out_dir: Path):
     print(f'  Salvo: {out_path.name}')
 
 
-# ── Chart 2: category bar por modelo (RQ3) ───────────────────────────────────
+# ── Chart 2: category bar por dimensão, agrupado por modelo (RQ3) ────────────
+# D4 (output_complete) fica em 100% em toda categoria/modelo — sem valor
+# discriminante — então é omitido aqui em vez de ocupar 1/4 do espaço visual
+# à toa. Um painel por dimensão (D1/D2/D3) com barras agrupadas por modelo
+# deixa a comparação entre modelos dentro de uma categoria direta (barras
+# adjacentes), em vez de exigir pular entre painéis por modelo.
 
-def _draw_category_bars(ax, df: pd.DataFrame, title: str,
-                        fontsize_title: float = 10,
-                        fontsize_tick: float  = 8,
-                        fontsize_label: float = 7,
-                        show_legend: bool = False,
-                        show_ylabel: bool = True,
-                        hide_full: bool = True):
+_CATEGORY_BY_MODEL_DIMS = [
+    (c, l) for c, l in zip(DIM_COLS, DIM_LABELS) if c != 'D4_output_complete'
+]
+
+
+def chart_category_by_model(df: pd.DataFrame, out_dir: Path):
+    """D1–D3 por categoria — 1 painel por dimensão, barras agrupadas por modelo."""
+    runs  = sorted(df['run'].unique())
+    dims  = _CATEGORY_BY_MODEL_DIMS
     x     = np.arange(len(CAT_IDS))
-    width = 0.2
+    width = 0.8 / len(runs)
 
-    for i, (col, label, color) in enumerate(zip(DIM_COLS, DIM_LABELS, DIM_COLORS)):
-        vals   = [_pct(df[df['category'] == cat][col]) for cat in CAT_IDS]
-        offset = (i - 1.5) * width
-        bars   = ax.bar(x + offset, vals, width, label=label, color=color,
-                        edgecolor='white', linewidth=0.5)
-        for bar, val in zip(bars, vals):
-            if not math.isnan(val) and not (hide_full and val >= 99.5):
-                ax.text(bar.get_x() + bar.get_width() / 2,
-                        bar.get_height() + 1,
-                        f'{val:.0f}%', ha='center', va='bottom',
-                        fontsize=fontsize_label)
+    # N por categoria (igual para todos os modelos: mesmo corpus)
+    ref_run = df[df['run'] == runs[0]]
+    totals  = [len(ref_run[ref_run['category'] == cat]) for cat in CAT_IDS]
+    tick_labels = [f'{lbl}\n(N={t})' for lbl, t in zip(CAT_LABELS_SHORT, totals)]
 
-    ax.set_ylim(0, 122)
-    ax.set_xticks(x)
-    ax.set_xticklabels(CAT_LABELS_SHORT, fontsize=fontsize_tick)
-    ax.yaxis.grid(True, linestyle='--', alpha=0.4)
-    ax.set_axisbelow(True)
-    ax.set_title(title, fontsize=fontsize_title, fontweight='bold')
-    if show_ylabel:
-        ax.set_ylabel('Acurácia (%)', fontsize=fontsize_tick + 1)
-    if show_legend:
-        ax.legend(title='Dimensão', fontsize=fontsize_tick - 1, loc='lower right')
+    fig, axes = plt.subplots(1, len(dims), figsize=(5.2 * len(dims), 5.5), sharey=True)
+    if len(dims) == 1:
+        axes = [axes]
 
+    for ax, (col, label) in zip(axes, dims):
+        for i, (run, color) in enumerate(zip(runs, MODEL_PALETTE)):
+            sub    = df[df['run'] == run]
+            vals   = [_pct(sub[sub['category'] == cat][col]) for cat in CAT_IDS]
+            offset = (i - (len(runs) - 1) / 2) * width
+            bars   = ax.bar(x + offset, vals, width, color=color,
+                            label=_model_label(run), edgecolor='white', linewidth=0.5)
+            for bar, val in zip(bars, vals):
+                if not math.isnan(val):
+                    ax.text(bar.get_x() + bar.get_width() / 2,
+                            bar.get_height() + 1.5,
+                            f'{val:.0f}', ha='center', va='bottom', fontsize=6.5)
 
-def chart_category_bar(df: pd.DataFrame, out_dir: Path):
-    """D1–D4 por categoria — grade 2×2, um painel por modelo."""
-    runs = sorted(df['run'].unique())
+        ax.set_title(label, fontsize=11, fontweight='bold')
+        ax.set_xticks(x)
+        ax.set_xticklabels(tick_labels, fontsize=8)
+        ax.set_ylim(0, 118)
+        ax.yaxis.grid(True, linestyle='--', alpha=0.4)
+        ax.set_axisbelow(True)
 
-    fig = plt.figure(figsize=(13, 10))
-    axes = _grid_axes(fig, runs)
+    axes[0].set_ylabel('Acurácia (%)', fontsize=10)
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc='lower center', ncol=len(runs), fontsize=9,
+               bbox_to_anchor=(0.5, -0.05), title='Modelo')
 
-    for i, (ax, run) in enumerate(zip(axes, runs)):
-        _draw_category_bars(ax, df[df['run'] == run],
-                            title=_model_label(run),
-                            fontsize_title=10, fontsize_tick=8, fontsize_label=7,
-                            show_legend=False, show_ylabel=(i % 2 == 0),
-                            hide_full=True)
-
-    # Legenda compartilhada
-    handles = [mpatches.Patch(color=c, label=l) for c, l in zip(DIM_COLORS, DIM_LABELS)]
-    fig.legend(handles=handles, loc='lower center', ncol=4, fontsize=9,
-               bbox_to_anchor=(0.5, -0.02), title='Dimensão')
-
-    fig.suptitle('Desempenho por categoria do corpus — D1–D4\n'
-                 '(barras sem rótulo = 100%; valores mostrados apenas nos desvios)',
+    fig.suptitle('Desempenho por categoria do corpus — D1, D2, D3 por modelo\n'
+                 '(D4 Output omitido: 100% em todos os casos, sem valor discriminante; '
+                 'N por categoria indicado no eixo X)',
                  fontsize=12, fontweight='bold')
     plt.tight_layout()
 
-    out_path = out_dir / 'category_bar__D1_D4.png'
+    out_path = out_dir / 'category_bar__by_model.png'
     fig.savefig(out_path, dpi=150, bbox_inches='tight')
     plt.close(fig)
     print(f'  Salvo: {out_path.name}')
@@ -243,8 +242,13 @@ def chart_error_type_bar(df: pd.DataFrame, out_dir: Path):
     fig = plt.figure(figsize=(13, 10))
     axes = _grid_axes(fig, runs)
 
+    max_val = 0
     for ax, run in zip(axes, runs):
-        _draw_fp_fn(ax, df[df['run'] == run], 'd1_error_type', run)
+        fp, fn = _draw_fp_fn(ax, df[df['run'] == run], 'd1_error_type', run)
+        max_val = max(max_val, max(fp, default=0), max(fn, default=0))
+    for ax in axes:
+        if ax.get_visible():
+            ax.set_ylim(0, max_val * 1.15 if max_val else 1)
 
     _fp_fn_shared_legend(fig)
     fig.suptitle('D1 Ambiguidade — Falsos Positivos e Negativos por categoria\n'
@@ -270,8 +274,13 @@ def chart_error_type_d2(df: pd.DataFrame, out_dir: Path):
     fig = plt.figure(figsize=(13, 10))
     axes = _grid_axes(fig, runs)
 
+    max_val = 0
     for ax, run in zip(axes, runs):
-        _draw_fp_fn(ax, df[df['run'] == run], 'd2_error_type', run)
+        fp, fn = _draw_fp_fn(ax, df[df['run'] == run], 'd2_error_type', run)
+        max_val = max(max_val, max(fp, default=0), max(fn, default=0))
+    for ax in axes:
+        if ax.get_visible():
+            ax.set_ylim(0, max_val * 1.15 if max_val else 1)
 
     _fp_fn_shared_legend(fig)
     fig.suptitle('D2 ConcernMix — Falsos Positivos e Negativos por categoria\n'
@@ -305,17 +314,19 @@ def chart_route_error_context(df: pd.DataFrame, out_dir: Path):
     fig = plt.figure(figsize=(13, 10))
     axes = _grid_axes(fig, runs)
 
+    max_val = 0
     for ax, run in zip(axes, runs):
         sub = df[df['run'] == run]
 
         # total de execuções com D3 aplicável por condição
-        totals = [len(sub[(sub['context'] == ctx) & sub['D2_route'].notna()])
+        totals = [len(sub[(sub['context'] == ctx) & sub['D3_route'].notna()])
                   for ctx in CTX_ORDER]
 
         fp = [len(sub[(sub['context'] == ctx) & (sub['d3_error_type'] == 'false_positive')])
               for ctx in CTX_ORDER]
         fn = [len(sub[(sub['context'] == ctx) & (sub['d3_error_type'] == 'false_negative')])
               for ctx in CTX_ORDER]
+        max_val = max(max_val, max(fp, default=0), max(fn, default=0))
 
         bars_fp = ax.bar(x - width / 2, fp, width,
                          label='FP (structured indevido)', color='#ef6c00', edgecolor='white')
@@ -337,6 +348,10 @@ def chart_route_error_context(df: pd.DataFrame, out_dir: Path):
         ax.set_axisbelow(True)
         # sem legenda por painel — legenda compartilhada abaixo
 
+    for ax in axes:
+        if ax.get_visible():
+            ax.set_ylim(0, max_val * 1.15 if max_val else 1)
+
     import matplotlib.patches as mpatches
     fig.legend(handles=[
         mpatches.Patch(color='#ef6c00', label='FP — rota structured indevida (sobre-confiança)'),
@@ -355,130 +370,27 @@ def chart_route_error_context(df: pd.DataFrame, out_dir: Path):
     print(f'  Salvo: {out_path.name}')
 
 
-# ── Chart 4: distribuição de global_status por modelo (RQ1 diagnóstico) ──────
-# REMOVIDO: chart_status_distribution — coberto com mais precisão por
-# context_line (acurácia D3/D4), error_type D1/D2 (FP/FN) e D3 rota por contexto.
-
-def _chart_status_distribution_removed(df: pd.DataFrame, out_dir: Path):
-    """Status global por condição C0/C1/C2 — filtrado a requisitos com ambiguidade esperada.
-
-    expected_resolubility varia por condição no corpus (C0 tem poucos resolúveis;
-    C2 tem mais). Marcadores diamante/quadrado mostram o esperado por condição:
-      ◆ verde  = expected fully_resolvable por condição (teto ideal para barra verde)
-      ■ laranja = expected não-resolvido por condição (piso ideal para barra laranja)
-    Legenda compartilhada abaixo dos subgráficos.
-    """
-    import matplotlib.patches as mpatches
-    import matplotlib.lines  as mlines
-
-    runs   = sorted(df['run'].unique())
-    amb_df = df[df['expected_resolubility'].isin(['resolvable', 'unresolved'])]
-
-    statuses = ['fully_resolvable', 'no_ambiguity', 'non_resolvable', 'unresolved']
-    labels   = ['Totalmente resolúvel', 'Ambig. não detectada (FN)', 'Irresolvível', 'Não resolvido']
-    colors   = ['#43a047', '#90caf9', '#e53935', '#ef6c00']
-
-    x       = np.arange(len(CTX_ORDER))
-    width   = 0.18
-    offsets = np.linspace(-(len(statuses) - 1) / 2,
-                           (len(statuses) - 1) / 2,
-                           len(statuses)) * width
-
-    # expected varia por condição — calculado do corpus (idêntico entre runs)
-    first_run = runs[0]
-    exp_resolvable   = [len(amb_df[(amb_df['run'] == first_run) &
-                                   (amb_df['context'] == ctx) &
-                                   (amb_df['expected_resolubility'] == 'resolvable')])
-                        for ctx in CTX_ORDER]
-    exp_unresolvable = [len(amb_df[(amb_df['run'] == first_run) &
-                                   (amb_df['context'] == ctx) &
-                                   (amb_df['expected_resolubility'] == 'unresolved')])
-                        for ctx in CTX_ORDER]
-    n_total = exp_resolvable[0] + exp_unresolvable[0]  # total fixo (independe de condição)
-
-    fig = plt.figure(figsize=(13, 11))
-    axes = _grid_axes(fig, runs)
-
-    for ax, run in zip(axes, runs):
-        sub = amb_df[amb_df['run'] == run]
-
-        for status, label, color, offset in zip(statuses, labels, colors, offsets):
-            counts = [len(sub[(sub['context'] == ctx) &
-                              (sub['act_global_status'] == status)])
-                      for ctx in CTX_ORDER]
-            bars = ax.bar(x + offset, counts, width, color=color,
-                          edgecolor='white', linewidth=0.5)
-            for bar, val in zip(bars, counts):
-                if val > 0:
-                    ax.text(bar.get_x() + bar.get_width() / 2,
-                            bar.get_height() + 0.12,
-                            str(val), ha='center', va='bottom', fontsize=8)
-
-        # marcadores de referência por condição (corpus-defined)
-        ax.plot(x, exp_resolvable, 'D--', color='#1b5e20',
-                markersize=8, linewidth=1.4, zorder=5,
-                markeredgecolor='white', markeredgewidth=0.8)
-        for xi, val in zip(x, exp_resolvable):
-            ax.annotate(f'{val}', (xi, val), textcoords='offset points',
-                        xytext=(10, 2), fontsize=7.5, color='#1b5e20', fontstyle='italic')
-
-        ax.plot(x, exp_unresolvable, 's:', color='#bf360c',
-                markersize=8, linewidth=1.4, zorder=5,
-                markeredgecolor='white', markeredgewidth=0.8)
-        for xi, val in zip(x, exp_unresolvable):
-            ax.annotate(f'{val}', (xi, val), textcoords='offset points',
-                        xytext=(10, 2), fontsize=7.5, color='#bf360c', fontstyle='italic')
-
-        ax.set_title(_model_label(run), fontsize=10, fontweight='bold')
-        ax.set_xticks(x)
-        ax.set_xticklabels(CTX_ORDER, fontsize=10)
-        ax.set_xlabel('Condição de contexto', fontsize=8)
-        ax.set_ylabel(f'Nº de execuções (N={n_total} c/ ambig. esperada)', fontsize=8)
-        ax.set_ylim(0, n_total + 2)
-        ax.yaxis.grid(True, linestyle='--', alpha=0.3)
-        ax.set_axisbelow(True)
-
-    # legenda compartilhada abaixo de todos os painéis
-    patch_handles = [mpatches.Patch(color=c, label=l) for c, l in zip(colors, labels)]
-    line_handles  = [
-        mlines.Line2D([], [], color='#1b5e20', linestyle='--', linewidth=1.4,
-                      marker='D', markersize=7, markeredgecolor='white',
-                      label='◆ Esperado como resolúvel (por condição)'),
-        mlines.Line2D([], [], color='#bf360c', linestyle=':', linewidth=1.4,
-                      marker='s', markersize=7, markeredgecolor='white',
-                      label='■ Esperado como irresolvível (por condição)'),
-    ]
-    fig.legend(handles=patch_handles + line_handles,
-               loc='lower center', ncol=3, fontsize=8.5,
-               bbox_to_anchor=(0.5, -0.06),
-               frameon=True, framealpha=0.95)
-
-    fig.suptitle('Status do pipeline por contexto — apenas requisitos com ambiguidade esperada\n'
-                 '(Cat-04 excluída; marcadores = referência esperada por condição)',
-                 fontsize=11, fontweight='bold')
-    plt.tight_layout()
-
-    out_path = out_dir / 'status_distribution_by_context.png'
-    fig.savefig(out_path, dpi=150, bbox_inches='tight')
-    plt.close(fig)
-    print(f'  Salvo: {out_path.name}')
-
-
-# ── Chart 5: heatmap diagnóstico por modelo ───────────────────────────────────
+# ── Chart 4: heatmap diagnóstico por modelo ───────────────────────────────────
 
 def chart_heatmap(df: pd.DataFrame, run_name: str, out_dir: Path):
-    """Grade requisito×condição (42 linhas) × 4 dimensões — diagnóstico granular."""
+    """Grade requisito×condição (42 linhas) × D1-D3 — diagnóstico granular.
+
+    D4 (output_complete) fica de fora: é 100% em todo o corpus, para todo
+    modelo, então não discrimina nada — só ocuparia espaço com uma coluna
+    inteiramente verde.
+    """
     reqs = sorted(df['req_id'].unique())
+    dims = _CATEGORY_BY_MODEL_DIMS
 
     fig, axes = plt.subplots(
-        1, len(DIM_COLS),
-        figsize=(3.2 * len(DIM_COLS), max(5, 0.42 * len(reqs) * len(CTX_ORDER) / 3 + 2)),
+        1, len(dims),
+        figsize=(3.2 * len(dims), max(5, 0.42 * len(reqs) * len(CTX_ORDER) / 3 + 2)),
         sharey=False,
     )
 
     row_labels = [f'{r} {c}' for r in reqs for c in CTX_ORDER]
 
-    for ax, col, label in zip(axes, DIM_COLS, DIM_LABELS):
+    for ax, (col, label) in zip(axes, dims):
         values = []
         for req in reqs:
             for ctx in CTX_ORDER:
@@ -514,6 +426,58 @@ def chart_heatmap(df: pd.DataFrame, run_name: str, out_dir: Path):
     plt.tight_layout()
 
     out_path = out_dir / f'heatmap__{run_name}.png'
+    fig.savefig(out_path, dpi=150, bbox_inches='tight')
+    plt.close(fig)
+    print(f'  Salvo: {out_path.name}')
+
+
+# ── Chart 5: classificação por taxonomia de Pohl (Agente 1a) ─────────────────
+# D1 só mede has_ambiguity; este gráfico mede se o Agente 1a acerta o TIPO
+# de ambiguidade (lexical/sintática/semântica/referencial/vaguidade) nos 4
+# requisitos de Cat-02 desenhados para testar cada categoria — o próprio
+# objetivo de "identificar e classificar" do Agente 1a, nunca avaliado antes.
+
+def chart_taxonomy_grid(df: pd.DataFrame, out_dir: Path):
+    """Grade requisito×modelo: célula mostra o(s) tipo(s) detectado(s) e se
+    o esperado (pela taxonomia de Pohl) está entre eles."""
+    req_ids = list(df['req_id'].unique())
+    runs    = sorted(df['run'].unique())
+
+    fig, ax = plt.subplots(figsize=(2.6 * len(runs) + 2, 1.3 * len(req_ids) + 1.5))
+
+    for i, req_id in enumerate(req_ids):
+        row = df[df['req_id'] == req_id].iloc[0]
+        expected = row['expected_type']
+        for j, run in enumerate(runs):
+            cell = df[(df['req_id'] == req_id) & (df['run'] == run)]
+            match = bool(cell['match'].iloc[0]) if len(cell) else None
+            detected = cell['detected_types'].iloc[0] if len(cell) else '—'
+            color = PASS_COLOR if match else (FAIL_COLOR if match is False else NA_COLOR)
+            ax.add_patch(plt.Rectangle((j, i), 1, 1, color=color,
+                                       linewidth=0.6, edgecolor='white'))
+            ax.text(j + 0.5, i + 0.5, detected, ha='center', va='center',
+                    fontsize=8, color='white', wrap=True)
+
+    ax.set_xlim(0, len(runs))
+    ax.set_ylim(0, len(req_ids))
+    ax.set_xticks([j + 0.5 for j in range(len(runs))])
+    ax.set_xticklabels([_model_label(r) for r in runs], fontsize=9)
+    ax.set_yticks([i + 0.5 for i in range(len(req_ids))])
+    ax.set_yticklabels(
+        [f"{r}\n(esperado: {df[df['req_id'] == r]['expected_type'].iloc[0]})" for r in req_ids],
+        fontsize=9,
+    )
+    ax.invert_yaxis()
+    ax.set_title('Classificação por tipo (Pohl) — texto na célula = tipo(s) que o Agente 1a atribuiu',
+                 fontsize=10.5, fontweight='bold', pad=10)
+
+    legend = [mpatches.Patch(color=PASS_COLOR, label='Tipo esperado presente'),
+              mpatches.Patch(color=FAIL_COLOR, label='Tipo esperado ausente')]
+    fig.legend(handles=legend, loc='lower center', ncol=2, fontsize=9,
+               bbox_to_anchor=(0.5, -0.05))
+    plt.tight_layout()
+
+    out_path = out_dir / 'taxonomy_classification.png'
     fig.savefig(out_path, dpi=150, bbox_inches='tight')
     plt.close(fig)
     print(f'  Salvo: {out_path.name}')
@@ -560,7 +524,7 @@ def main():
 
     print('\nGerando gráficos...')
     chart_context_line(df, out_dir)
-    chart_category_bar(df, out_dir)
+    chart_category_by_model(df, out_dir)
     chart_error_type_bar(df, out_dir)
     for run in runs:
         chart_heatmap(df[df['run'] == run], run, out_dir)

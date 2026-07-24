@@ -1,7 +1,0 @@
-{
-  "execution_id": "REQ-03-C0",
-  "requirement_id": "REQ-03",
-  "context_condition": "C0",
-  "base_requirement_text": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
-  "controlled_context": {}
-}

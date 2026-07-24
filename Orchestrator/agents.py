@@ -85,17 +85,19 @@ def _strip_markdown_fence(text: str) -> str:
     return text
 
 
-_SINGLE_QUOTED_LINE = re.compile(r"^(\s*(?:-\s+)?[\w.\-]+:\s*)'(.*)'\s*$")
+_SINGLE_QUOTED_LINE = re.compile(r"^(\s*(?:-\s+)?(?:[\w.\-]+:\s*)?)'(.*)'\s*$")
 
 
 def _repair_yaml_quotes(text: str) -> str:
     """Best-effort repair for the most common YAML break we see from local
     models: a single-quoted scalar that itself contains an unescaped single
-    quote (e.g. `key: 'foo 'bar' baz'`). In valid YAML that inner quote would
-    need to be doubled (`''`), but models routinely forget this, which
-    truncates the string and corrupts the surrounding block mapping.
-    Rewrite such lines as double-quoted scalars instead, where an embedded
-    single quote is just a literal character.
+    quote (e.g. `key: 'foo 'bar' baz'` or a bare list item `- 'foo 'bar' baz'`).
+    In valid YAML that inner quote would need to be doubled (`''`), but models
+    routinely forget this, which truncates the string and corrupts the
+    surrounding block mapping/sequence. Rewrite such lines as double-quoted
+    scalars instead, where an embedded single quote is just a literal
+    character. The key: prefix is optional so this also catches quoted
+    scalars in plain list items (`- '...'`), not just `key: '...'`.
     """
     fixed_lines = []
     for line in text.split('\n'):
@@ -145,23 +147,87 @@ def _repair_yaml_unterminated_quote(text: str) -> str:
     return '\n'.join(fixed_lines)
 
 
+def _repair_yaml_bad_escape(text: str) -> str:
+    """Best-effort repair for a fourth common YAML break: the model escapes
+    apostrophes as `\\'` (valid in Python/JSON strings, but not a recognized
+    YAML escape sequence inside a double-quoted scalar), which makes the
+    parser abort with "found unknown escape character". Since YAML never
+    needs a backslash before a literal single quote, unescaping it is safe
+    everywhere it appears.
+    """
+    return text.replace("\\'", "'")
+
+
+_OPENS_QUOTED_SCALAR_QUOTE_COUNT = re.compile(r'^\s*(?:-\s+)?(?:[\w.\-]+:\s*)?"')
+
+
+def _repair_yaml_embedded_quote(text: str) -> str:
+    """Best-effort repair for a fifth common YAML break: a double-quoted
+    scalar that contains a literal, unescaped `"` in the middle of the text
+    (e.g. the model quotes a sub-phrase with straight double quotes instead
+    of single quotes), which closes the scalar early and leaves the rest of
+    the sentence as trailing garbage. Escape every quote strictly between
+    the opening and the true final quote on the line.
+    """
+    fixed_lines = []
+    for line in text.split('\n'):
+        if _OPENS_QUOTED_SCALAR_QUOTE_COUNT.match(line):
+            positions = [m.start() for m in _UNESCAPED_QUOTE.finditer(line)]
+            if len(positions) > 2:
+                chars = list(line)
+                for pos in positions[1:-1]:
+                    chars[pos] = '\\"'
+                line = ''.join(chars)
+        fixed_lines.append(line)
+    return '\n'.join(fixed_lines)
+
+
+_LIST_ITEM_START = re.compile(r'^\s*-(\s|$)')
+_KEY_LINE_START = re.compile(r'^\s*[\w.\-]+:(\s|$)')
+
+
+def _repair_yaml_orphan_continuation(text: str) -> str:
+    """Best-effort repair for a sixth common YAML break: the model wraps a
+    sentence onto a new line without list/flow syntax (e.g. a `- key: value`
+    item followed by a plain-text line at the same or deeper indent that is
+    neither a new list item nor a `key: value` pair). YAML then tries to read
+    that orphan line as a new mapping key and aborts with "could not find
+    expected ':'". Fold it back into the previous line as a continuation of
+    that scalar value instead.
+    """
+    fixed_lines = []
+    for line in text.split('\n'):
+        stripped = line.strip()
+        if (stripped and not _LIST_ITEM_START.match(line) and not _KEY_LINE_START.match(stripped)
+                and fixed_lines):
+            fixed_lines[-1] = fixed_lines[-1].rstrip() + ' ' + stripped
+            continue
+        fixed_lines.append(line)
+    return '\n'.join(fixed_lines)
+
+
 def _parse_yaml_block(raw: str, root_key: str):
     """Parse a model's YAML response, retrying with a few targeted repairs
     if the first attempt fails. Returns the parsed dict, or None if all
     attempts fail or the expected root_key is missing."""
-    candidate = _strip_markdown_fence(raw)
+    candidate = _repair_yaml_bad_escape(_strip_markdown_fence(raw))
     repairs = (
         lambda t: t,
         _repair_yaml_quotes,
         _repair_yaml_trailing_garbage,
         _repair_yaml_unterminated_quote,
+        _repair_yaml_embedded_quote,
+        _repair_yaml_orphan_continuation,
     )
     # try single repairs first, then stacked combinations, in increasing order
     # of how much of the raw text they alter
     attempts = []
     for r in repairs:
         attempts.append(r(candidate))
-    attempts.append(_repair_yaml_unterminated_quote(_repair_yaml_trailing_garbage(_repair_yaml_quotes(candidate))))
+    stacked = _repair_yaml_embedded_quote(_repair_yaml_unterminated_quote(
+        _repair_yaml_trailing_garbage(_repair_yaml_quotes(candidate))))
+    attempts.append(stacked)
+    attempts.append(_repair_yaml_orphan_continuation(stacked))
 
     for text in attempts:
         try:

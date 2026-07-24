@@ -1,8 +1,0 @@
-{
-  "concern_mixing_detection": {
-    "has_concern_mixing": true,
-    "functional_action": "inform the security service",
-    "quality_criterion": "within 2 s",
-    "explanation": "The requirement simultaneously specifies a functional action (inform the security service) and a timing quality criterion (within 2 s) that describes how fast the system must execute the action."
-  }
-}

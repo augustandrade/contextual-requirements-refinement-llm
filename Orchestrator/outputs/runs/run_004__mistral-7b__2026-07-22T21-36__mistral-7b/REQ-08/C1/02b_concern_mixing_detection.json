@@ -1,8 +1,0 @@
-{
-  "concern_mixing_detection": {
-    "has_concern_mixing": true,
-    "functional_action": "shut off the pumps",
-    "quality_criterion": "for more than 4 seconds",
-    "explanation": "The requirement simultaneously specifies a functional action (shut off pumps) and a timing quality criterion (more than 4 seconds) that describes how long the system must execute the action."
-  }
-}

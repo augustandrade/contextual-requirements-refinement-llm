@@ -1,8 +1,0 @@
-{
-  "concern_mixing_detection": {
-    "has_concern_mixing": false,
-    "functional_action": "Generate a dial tone",
-    "quality_criterion": null,
-    "explanation": null
-  }
-}

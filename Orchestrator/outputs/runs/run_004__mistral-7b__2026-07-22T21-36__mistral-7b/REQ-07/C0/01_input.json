@@ -1,7 +1,0 @@
-{
-  "execution_id": "REQ-07-C0",
-  "requirement_id": "REQ-07",
-  "context_condition": "C0",
-  "base_requirement_text": "When leaving the Factory mode, the ECU should preferably perform a reset.",
-  "controlled_context": {}
-}

@@ -1,7 +1,0 @@
-{
-  "ambiguity_detection": {
-    "has_ambiguity": false,
-    "ambiguities": [],
-    "no_ambiguity_reason": "The requirement is linguistically unambiguous. The trigger ('When a rejection order is received for a cancellation request') clearly precedes the mandatory action ('System-A must raise a web alert'), and all terms appear to have a single, contextually appropriate meaning within the scope of a system requirement."
-  }
-}
