@@ -1,11 +1,11 @@
 id: REQ-12
 category_id: category-04-control
 category_name: Control group
-title: Controlled functional requirement pattern
+title: Genuine well-formed condition-response requirement
 source:
-  citation: Veizaga et al. (2024)
-base_requirement_text: "If an 'Instruction' contains a 'Keyword', The User must upload the 'excel file' to System-A."
-expected_problem: No significant structural problem expected.
+  citation: "Veizaga et al. (2024), Table 6 (Tregex pattern C2), IEEE Transactions on Software Engineering"
+base_requirement_text: "Once System-A has successfully validated a \"settlement request\", System-A must send an \"acknowledge message\" to System-B."
+expected_problem: "No ambiguity or structural defect expected. Anonymized requirement from the source's industrial case study, presented by the authors as a correctly segmented single-condition, single-actor, single-response requirement (not associated with any smell in the source). Domain-specific terms are typographically demarcated with quotes as controlled vocabulary, per the corpus's standardized requirement-writing convention and per Agent 1a's own documented exemption for typographically demarcated terms (Pohl 2025, §25.4.1) — this is the only departure from the source's exact surface form."
 expected_behavior: Preserve requirement structure with minimal formal adjustments only.
 contexts:
   C0:
@@ -15,25 +15,25 @@ contexts:
     intent: general_context
     inject_context: true
     controlled_context:
-      domain: Financial file upload workflow.
+      domain: Financial post-trade settlement workflow.
       glossary:
-        - term: Instruction
-          definition: Input message received by the workflow.
-        - term: Keyword
-          definition: Cataloged trigger word.
+        - term: settlement request
+          definition: Message requesting settlement of a financial instrument.
+        - term: acknowledge message
+          definition: Confirmation message indicating successful processing of a settlement request.
       business_rules: []
       constraints: []
   C2:
     intent: resolutive_context
     inject_context: true
     controlled_context:
-      domain: Financial file upload workflow.
+      domain: Financial post-trade settlement workflow.
       glossary:
-        - term: System-A
-          definition: Target upload service endpoint.
+        - term: System-B
+          definition: Downstream system that receives settlement acknowledgements.
       business_rules:
         - id: BR-01
-          rule: Upload action is triggered only when the instruction contains a cataloged keyword.
+          rule: An acknowledge message is sent to System-B only after the settlement request has passed validation.
       constraints: []
 tags: [control, preserve-structure]
 status: ready

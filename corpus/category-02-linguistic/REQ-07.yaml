@@ -1,12 +1,12 @@
 id: REQ-07
 category_id: category-02-linguistic
 category_name: Linguistic and syntactic ambiguities
-title: Weak modality with should preferably
+title: Vague quantifier in weak word smell
 source:
-  citation: Unterbusch; Vogelsang (2026)
-base_requirement_text: "When leaving the Factory mode, the ECU should preferably perform a reset."
-expected_problem: should preferably creates weak and non-verifiable obligation.
-expected_behavior: Flag weak modality and refine into explicit mandatory or optional behavior when context resolves policy.
+  citation: "Unterbusch & Vogelsang (2026), Table 1, ID 255"
+base_requirement_text: "The TCU is connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls on certain crash levels."
+expected_problem: "'certain' is a vague quantifier (Pohl 2025, §25.3.5) with no measurable boundary — it is unclear which crash levels trigger automatic emergency calls. Verbatim example from the source, annotated by the authors as a genuine defect (weak word)."
+expected_behavior: Flag vagueness and refine into explicit, enumerated crash levels when context resolves the policy.
 contexts:
   C0:
     intent: no_context
@@ -15,23 +15,25 @@ contexts:
     intent: general_context
     inject_context: true
     controlled_context:
-      domain: Automotive embedded system with Factory mode transitions.
+      domain: Automotive crash-detection and emergency-call system (TCU/ORC).
       glossary:
-        - term: ECU
-          definition: Engine Control Unit.
+        - term: TCU
+          definition: Telematics Control Unit.
+        - term: ORC
+          definition: Occupant Restraint Controller.
       business_rules: []
       constraints: []
   C2:
     intent: resolutive_context
     inject_context: true
     controlled_context:
-      domain: Automotive embedded system with Factory mode transitions.
+      domain: Automotive crash-detection and emergency-call system (TCU/ORC).
       glossary: []
       business_rules:
         - id: BR-01
-          rule: ECU reset is mandatory when leaving Factory mode for critical control modules.
+          rule: Automatic emergency calls are triggered for crash severity levels 2 (moderate) and 3 (severe) on the internal crash severity scale; level 1 (minor) does not trigger a call.
       constraints: []
-tags: [linguistic, weak-modality, non-verifiable]
+tags: [linguistic, vagueness, weak-word]
 status: ready
 manual_reference:
   C0:
@@ -42,11 +44,11 @@ manual_reference:
       - refine_text
       - avoid_unsupported_inference
     expected_findings:
-      - weak modality
-      - non-verifiable obligation
+      - vagueness in "certain crash levels"
+      - no measurable boundary defined
     should_not_do:
-      - infer a mandatory rule without policy evidence
-      - infer an optional rule without policy evidence
+      - infer which crash levels trigger the call without evidence
+      - treat the requirement as fully specified
     applicable_criteria:
       - clarity
       - semantic_explicitation
@@ -60,11 +62,11 @@ manual_reference:
       - refine_text
       - preserve_requirement
     expected_findings:
-      - weak modality
-      - non-verifiable obligation
+      - vagueness in "certain crash levels"
+      - general domain context (TCU/ORC glossary) does not define which crash levels are meant
     should_not_do:
-      - infer a mandatory rule without policy evidence
-      - infer an optional rule without policy evidence
+      - infer which crash levels trigger the call without evidence
+      - treat the requirement as fully specified
     applicable_criteria:
       - clarity
       - semantic_explicitation
@@ -78,11 +80,10 @@ manual_reference:
       - refine_text
       - preserve_requirement
     expected_findings:
-      - weak modality
-      - non-verifiable obligation
+      - vagueness in "certain crash levels" resolved by BR-01 (levels 2 and 3 explicitly enumerated)
     should_not_do:
-      - keep the weak modality unchanged
-      - ignore the explicit policy about reset behavior
+      - keep the vague quantifier unchanged
+      - ignore the explicit crash-level policy
     applicable_criteria:
       - clarity
       - semantic_explicitation

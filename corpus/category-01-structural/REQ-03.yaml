@@ -7,7 +7,7 @@ source:
 
 base_requirement_text: "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow."
 
-expected_problem: The requirement combines two distinct actions in a single sentence, requiring final structuring to preserve both actions clearly.
+expected_problem: "The requirement combines two distinct actions in a single sentence, requiring final structuring to preserve both actions clearly. Additionally, the sentence genuinely contains two linguistic ambiguities under Pohl's (2025) taxonomy, independent of the structuring problem: (a) referential ambiguity in \"their downstream systems\" (the plural possessive \"their\" lacks a clear singular antecedent — System-A is singular, so the referent of \"their\" is not grammatically fixed), and (b) lexical ambiguity in \"Reporting flow\" (capitalized but not typographically demarcated by quotes/CamelCase/ALL_CAPS per Pohl §25.4.1, so it does not qualify as a signaled controlled-vocabulary term and is expected to be flagged absent a glossary)."
 
 expected_behavior: Produce a structured final output that preserves both actions and, when appropriate, represents them as independent structured requirements without treating decomposition as an independent objective.
 
@@ -35,6 +35,8 @@ contexts:
       glossary:
         - term: Reporting flow
           definition: Event stream used by subscribers for operational reporting.
+        - term: their downstream systems
+          definition: System-A's own downstream systems list (the possessive refers back to System-A, the sole actor of the sentence).
       business_rules:
         - id: BR-01
           rule: Partner registration and reporting subscription are independent operations and must be specified clearly in the final requirement structure.
@@ -54,6 +56,8 @@ manual_reference:
     expected_findings:
       - the sentence contains two distinct actions
       - both actions must be preserved in the final structured output
+      - referential ambiguity in "their downstream systems" (unclear antecedent) is genuinely present and may be flagged by Agent 1a
+      - lexical ambiguity in "Reporting flow" (undefined, not typographically demarcated) is genuinely present and may be flagged by Agent 1a
     should_not_do:
       - merge multiple actions into an unclear final requirement
       - drop one of the actions during structuring
@@ -74,6 +78,8 @@ manual_reference:
       - the sentence contains two distinct actions
       - general context clarifies the integration domain but does not add new actions
       - both actions must remain explicit in the final structured output
+      - referential ambiguity in "their downstream systems" is not resolved by this context (glossary defines "downstream systems" but not the antecedent of "their")
+      - lexical ambiguity in "Reporting flow" is not resolved by this context (no glossary entry defines it)
     should_not_do:
       - merge multiple actions into an unclear final requirement
       - infer new actions from the integration context
@@ -95,6 +101,8 @@ manual_reference:
       - the sentence contains two independent operations
       - the resolutive context supports representing partner registration and reporting subscription clearly in the final structure
       - both actions must remain explicit and independent in the structured output
+      - referential ambiguity in "their downstream systems" is resolved (glossary confirms the antecedent is System-A itself)
+      - lexical ambiguity in "Reporting flow" is resolved (glossary defines the term)
     should_not_do:
       - merge the two independent operations into one unclear requirement
       - alter the independent scope of either action

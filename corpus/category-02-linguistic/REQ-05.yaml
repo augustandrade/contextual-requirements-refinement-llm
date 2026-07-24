@@ -3,7 +3,7 @@ category_id: category-02-linguistic
 category_name: Linguistic and syntactic ambiguities
 title: Syntactic attachment ambiguity
 source:
-  citation: Pohl (2025)
+  citation: "Pohl (2025), Chapter 25, Example 25-4 (R2)"
 base_requirement_text: "The user enters the access card with the access code."
 expected_problem: "Unclear attachment: with the access code may describe the card or a separate user action."
 expected_behavior: Enumerate plausible interpretations and refine only when context defines interaction flow.

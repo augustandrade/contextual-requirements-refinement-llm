@@ -1,11 +1,11 @@
 id: REQ-13
 category_id: category-04-control
 category_name: Control group
-title: Already separated functional requirement
+title: Self-contained functional requirement
 source:
-  citation: Pohl (2025)
-base_requirement_text: "R-F-18: If the detector detects damage to the pane, the system shall inform the security service."
-expected_problem: Functional requirement is already isolated.
+  citation: "Pohl (2025), Chapter 3, Example 3-1 (FR-2)"
+base_requirement_text: "The \"electronic door locking system\" shall generate monthly reports containing all granted and denied \"admittances\" to the building."
+expected_problem: "No ambiguity or structural defect expected. Self-contained functional requirement with a single actor, single action, and single scope, requiring no external cross-reference to be understood. Domain-specific terms are typographically demarcated with quotes as controlled vocabulary, per the corpus's standardized requirement-writing convention and per Agent 1a's own documented exemption for typographically demarcated terms (Pohl 2025, §25.4.1) — this is the only departure from the source's exact surface form."
 expected_behavior: Preserve functional structure and semantics.
 contexts:
   C0:
@@ -15,20 +15,20 @@ contexts:
     intent: general_context
     inject_context: true
     controlled_context:
-      domain: Building alarm control system.
+      domain: Building access control system.
       glossary:
-        - term: detector
-          definition: Sensor that detects pane damage.
+        - term: admittance
+          definition: A recorded event of granted or denied entry to the building.
       business_rules: []
       constraints: []
   C2:
     intent: resolutive_context
     inject_context: true
     controlled_context:
-      domain: Building alarm control system.
+      domain: Building access control system.
       glossary:
-        - term: security service
-          definition: External responder notified by the alarm controller.
+        - term: electronic door locking system
+          definition: Subsystem responsible for controlling and logging physical access to the building.
       business_rules: []
       constraints: []
 tags: [control, functional, preserve-structure]

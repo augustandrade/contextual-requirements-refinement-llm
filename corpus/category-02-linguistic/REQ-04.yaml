@@ -3,7 +3,7 @@ category_id: category-02-linguistic
 category_name: Linguistic and syntactic ambiguities
 title: Referential ambiguity in pronoun
 source:
-  citation: Pohl (2025)
+  citation: "Pohl (2025), Chapter 25, Example 25-8 (R42)"
 base_requirement_text: "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access."
 expected_problem: The pronoun it can refer to either the access card or the PIN.
 expected_behavior: Detect referential ambiguity and only resolve when context provides decisive evidence.

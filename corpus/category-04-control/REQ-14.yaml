@@ -1,12 +1,12 @@
 id: REQ-14
 category_id: category-04-control
 category_name: Control group
-title: Already separated quality requirement
+title: Self-contained quality requirement
 source:
-  citation: Pohl (2025)
-base_requirement_text: "R-Q-2: The system shall inform the security service within 2 s after detecting damage."
-expected_problem: Quality requirement is already isolated from the related functional requirement.
-expected_behavior: Preserve quality requirement semantics and timing attribute.
+  citation: "Pohl (2025), Chapter 1, Section 1.5"
+base_requirement_text: "The system shall process 95 percent of all \"queries\" within 1.5 seconds and must not take longer than 4 seconds to process \"queries\" at any given time."
+expected_problem: "No ambiguity or structural defect expected. Quantified, objective, and verifiable quality requirement, requiring no external cross-reference to be understood. Domain-specific terms are typographically demarcated with quotes as controlled vocabulary, per the corpus's standardized requirement-writing convention and per Agent 1a's own documented exemption for typographically demarcated terms (Pohl 2025, §25.4.1) — this is the only departure from the source's exact surface form."
+expected_behavior: Preserve quality requirement semantics and quantified thresholds.
 contexts:
   C0:
     intent: no_context
@@ -15,22 +15,22 @@ contexts:
     intent: general_context
     inject_context: true
     controlled_context:
-      domain: Building alarm control system with notification SLA.
+      domain: Query-processing system with a performance SLA.
       glossary:
-        - term: within 2 s
-          definition: Maximum accepted elapsed time from detection to notification.
+        - term: query
+          definition: A single request submitted to the system for processing.
       business_rules: []
       constraints: []
   C2:
     intent: resolutive_context
     inject_context: true
     controlled_context:
-      domain: Building alarm control system with notification SLA.
+      domain: Query-processing system with a performance SLA.
       glossary: []
       business_rules: []
       constraints:
         - id: QLT-01
-          text: Notification deadline is 2 seconds after pane damage detection.
+          text: 95% of queries must complete within 1.5 seconds; no query may exceed 4 seconds.
 tags: [control, quality, preserve-structure]
 status: ready
 manual_reference:
@@ -42,7 +42,7 @@ manual_reference:
     expected_findings:
       - no relevant issue expected
     should_not_do:
-      - remove the timing attribute
+      - remove the quantified thresholds
       - degrade a well-structured requirement
     applicable_criteria:
       - syntactic_structuring
@@ -57,7 +57,7 @@ manual_reference:
     expected_findings:
       - no relevant issue expected
     should_not_do:
-      - remove the timing attribute
+      - remove the quantified thresholds
       - degrade a well-structured requirement
     applicable_criteria:
       - syntactic_structuring
@@ -72,8 +72,8 @@ manual_reference:
     expected_findings:
       - no relevant issue expected
     should_not_do:
-      - remove the timing attribute
-      - infer extra constraints beyond the stated deadline
+      - remove the quantified thresholds
+      - infer extra constraints beyond the stated thresholds
     applicable_criteria:
       - syntactic_structuring
       - clarity

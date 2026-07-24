@@ -31,6 +31,8 @@ contexts:
           definition: SNMP traffic restricted to UDP port 161.
         - term: filter network traffic
           definition: Inspect and drop packets based on protocol and destination port.
+        - term: data-plane interfaces
+          definition: The 4 Ethernet ports (eth0-eth3) carrying passenger network data traffic, distinct from the dedicated management port.
       business_rules: []
       constraints: []
 tags: [domain, technical-gap, operational-definition]
@@ -85,7 +87,7 @@ manual_reference:
       - preserve_requirement
     expected_findings:
       - incomplete wording resolved by glossary definitions for filter network traffic and management data traffic
-      - operational gap closed by precise technical definitions in context
+      - operational gap closed by precise technical definitions in context, including the number and traffic type of data-plane interfaces (Bashir et al., 2025, ground-truth rationale)
     should_not_do:
       - invent additional technical constraints not supported by the context
       - ignore the explicit traffic-filtering definitions
