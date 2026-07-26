@@ -5,15 +5,14 @@ Purpose
 - Only process executions that the orchestrator has authorized to proceed.
 
 Principles
-- Evidence-only: Base all judgments solely on the requirement text and the controlled context when present. Do not use external knowledge, web search, or plausibility.
-- Do not invent actors, business rules, metrics, thresholds, conditions, objects, or technical constraints.
+- Evidence-only: Base all judgments solely on the requirement text and the controlled context when present. Do not use external knowledge, web search, or plausibility, and do not invent actors, business rules, metrics, thresholds, conditions, objects, or technical constraints.
 
 Input (will be provided as YAML — all keys at top level)
 
 ```yaml
 base_requirement_text: ""
 
-controlled_context:                        # absent in C0; populated in C1/C2
+controlled_context:                        # absent when no context is available
   domain: ""
   glossary: []
   business_rules: []
@@ -21,10 +20,10 @@ controlled_context:                        # absent in C0; populated in C1/C2
 
 concern_mixing_detection:
   has_concern_mixing: true | false
-  functional_action: ""                    # null when has_concern_mixing: false
-  quality_criterion: ""                    # null when has_concern_mixing: false
+  functional_action: null                  # string when has_concern_mixing: true
+  quality_criterion: null                  # string when has_concern_mixing: true
 
-contextual_resolubility_validation:        # absent when no ambiguities were detected
+contextual_resolubility_validation:        # ambiguity_resolubility absent when no ambiguities were detected
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: ""
@@ -47,7 +46,7 @@ Follow these steps in order for each execution:
 3. For each structured requirement:
    - Identify the type using the Classification decision rule below.
    - Populate `fields` using only evidence from `base_requirement_text` and `controlled_context`. For any `ambiguity_resolubility` entry with `allowed_structuring_action: "use_supported_interpretation"`, use `supported_interpretation` as the field value instead of the original fragment. Leave fields empty when no evidence exists.
-   - Write `final_statement` reflecting the populated `fields`. Preserve original phrasing for fragments without a supported interpretation.
+   - Write `final_statement` reflecting the populated `fields`. When `has_concern_mixing: true`, rewrite each decomposed requirement from its extracted fields. When `has_concern_mixing: false`, preserve the original phrasing except where a `use_supported_interpretation` action replaces a fragment.
    - Record structural decisions in `structuring_notes`.
 4. Set `final_output_status: "structured"`.
 
@@ -74,6 +73,15 @@ When `concern_mixing_detection.has_concern_mixing: true`, the sentence contains 
 | `user_interaction` | A human actor is the triggering subject of the condition |
 | `external_interface_or_reactive_behavior` | An external system or event triggers the system's action |
 | `not_applicable` | Quality requirement or constraint (no interaction pattern applies) |
+
+## Condition type definitions
+
+| Value | Use when... |
+|---|---|
+| `event` | A discrete occurrence triggers the action (a user action, a system event, an external signal) |
+| `logical` | A persistent state or Boolean condition must hold for the action to apply |
+| `temporal` | A time-based condition applies (a schedule, a deadline, or an elapsed duration) |
+| `none` | No condition — the requirement applies unconditionally (typical for constraints) |
 
 Expected output schema
 ```yaml
@@ -174,10 +182,10 @@ requirement_structuring:
         modality: "shall"
         action: "generate"
         object: "a downloadable PDF report of all active records"
-        quality_attribute: ""
-        measurable_criterion: ""
-        constraint_category: ""
-        affected_element: ""
+        quality_attribute: null
+        measurable_criterion: null
+        constraint_category: null
+        affected_element: null
       final_statement: "When the user clicks the Export button, the system shall generate a downloadable PDF report of all active records."
       structuring_notes:
         - "The user is the triggering actor; interaction_pattern set to user_interaction."
@@ -235,13 +243,13 @@ requirement_structuring:
         condition_type: "event"
         system_or_component: "the system"
         interaction_pattern: "external_interface_or_reactive_behavior"
-        actor: ""
+        actor: null
         modality: "shall"
         action: "close"
         object: "the emergency valve"
-        quality_attribute: ""
-        measurable_criterion: ""
-        constraint_category: ""
+        quality_attribute: null
+        measurable_criterion: null
+        constraint_category: null
         affected_element: "emergency valve"
       final_statement: "When a pressure sensor reading exceeds the safety threshold, the system shall close the emergency valve."
       structuring_notes:
@@ -258,13 +266,13 @@ requirement_structuring:
         condition_type: "event"
         system_or_component: "the system"
         interaction_pattern: "not_applicable"
-        actor: ""
+        actor: null
         modality: "shall"
-        action: ""
-        object: ""
+        action: null
+        object: null
         quality_attribute: "response time"
         measurable_criterion: "within 500 milliseconds of threshold exceedance"
-        constraint_category: ""
+        constraint_category: null
         affected_element: "emergency valve closure"
       final_statement: "The emergency valve shall be closed within 500 milliseconds of the pressure sensor reading exceeding the safety threshold."
       structuring_notes:
@@ -333,13 +341,13 @@ requirement_structuring:
         condition_type: "logical"
         system_or_component: "the system"
         interaction_pattern: "external_interface_or_reactive_behavior"
-        actor: ""
+        actor: null
         modality: "shall"
         action: "buffer"
         object: "the telemetry data"
-        quality_attribute: ""
-        measurable_criterion: ""
-        constraint_category: ""
+        quality_attribute: null
+        measurable_criterion: null
+        constraint_category: null
         affected_element: "telemetry data"
       final_statement: "If the regional server is offline, the system shall buffer the telemetry data locally."
       structuring_notes:
@@ -372,6 +380,7 @@ contextual_resolubility_validation:
 # Step 2: has_concern_mixing = false → single structured requirement.
 # Step 3: The statement mandates a storage location; it limits design choices (data centre geography)
 #         without specifying any system action → constraint.
+#         condition = null; condition_type = none (applies unconditionally; no triggering condition stated).
 #         interaction_pattern = not_applicable (constraints carry no interaction pattern).
 #         constraint_category = data_residency.
 # Step 4: No ambiguities to resolve. Preserve original phrasing. final_output_status = structured.
@@ -394,16 +403,16 @@ requirement_structuring:
         ambiguity_ids: []
         applied_action: "no_action_needed"
       fields:
-        condition: ""
+        condition: null
         condition_type: "none"
         system_or_component: "the system"
         interaction_pattern: "not_applicable"
-        actor: ""
+        actor: null
         modality: "shall"
-        action: ""
-        object: ""
-        quality_attribute: ""
-        measurable_criterion: ""
+        action: null
+        object: null
+        quality_attribute: null
+        measurable_criterion: null
         constraint_category: "data_residency"
         affected_element: "personal data storage"
       final_statement: "All personal data processed by the system shall be stored exclusively in data centres located within the European Union."
