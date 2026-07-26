@@ -388,16 +388,21 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
     # Agent 2 receives only Agent 1a output — concern mixing is handled separately by Agent 1b
     amb_block = ambiguity_detection.get('ambiguity_detection', ambiguity_detection)
     payload_exec = {
-        'context_condition': execution_input.get('context_condition', ''),
         'base_requirement_text': execution_input.get('base_requirement_text', ''),
     }
     ctx = execution_input.get('controlled_context') or {}
     if ctx:
         payload_exec['controlled_context'] = ctx
 
+    _amb_keep = {'ambiguity_id', 'fragment', 'ambiguity_type', 'explanation', 'possible_interpretations'}
+    filtered_ambiguities = [
+        {k: v for k, v in amb.items() if k in _amb_keep}
+        for amb in amb_block.get('ambiguities', [])
+    ]
+
     payload = {
         'execution_input': payload_exec,
-        'ambiguity_detection': {k: v for k, v in amb_block.items() if k != 'has_concern_mixing'}
+        'ambiguity_detection': {'ambiguities': filtered_ambiguities},
     }
 
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)

@@ -14,16 +14,13 @@ Input (will be provided as YAML — two top-level keys: `execution_input` and `a
 
 ```yaml
 execution_input:
-  context_condition: ""              # metadata field — echoed to output; not used for evidence evaluation
   base_requirement_text: ""
   controlled_context:                # present only when context is available; absent otherwise
     domain: ""
     glossary: []
     business_rules: []
     constraints: []
-ambiguity_detection:                 # exact structure returned by Agent 1a (sibling of execution_input)
-  has_ambiguity: true | false
-  no_ambiguity_reason: ""            # present when has_ambiguity: false
+ambiguity_detection:
   ambiguities:
     - ambiguity_id: "AMB-01"
       fragment: ""
@@ -31,17 +28,13 @@ ambiguity_detection:                 # exact structure returned by Agent 1a (sib
       explanation: ""
       possible_interpretations:
         - ""
-      textual_evidence:
-        - ""
-      context_dependency: "none | low | moderate | high"
 ```
 
 Processing Steps
 
 Follow these steps in order for each execution:
 
-1. Check `has_ambiguity`: if false, set `overall_resolubility.status` to `no_ambiguity`, return `ambiguity_resolubility: []`, and stop.
-2. For each ambiguity in `ambiguity_detection.ambiguities`:
+1. For each ambiguity in `ambiguity_detection.ambiguities`:
    a. Locate the `fragment` in `base_requirement_text` and confirm the ambiguity type.
    b. Examine `possible_interpretations` to identify all candidate readings.
    c. Search `base_requirement_text` for direct textual evidence that eliminates all but one interpretation. Record matches in `evidence_from_requirement`.
@@ -57,7 +50,7 @@ Follow these steps in order for each execution:
       - `unresolved`: evidence is absent, indirect, or requires inference beyond what is explicitly stated.
       - `not_applicable`: the flagged fragment introduces no genuine choice between interpretations (e.g., the fragment is absent from the requirement text, or the ambiguity type does not match the fragment's actual linguistic behavior).
    f. Populate `supported_interpretation`, `unsupported_interpretations`, `missing_information`, and `justification` accordingly.
-3. Determine `overall_resolubility.status`:
+2. Determine `overall_resolubility.status`:
    - `fully_resolvable` if every ambiguity is `resolvable` or `not_applicable`.
    - `unresolved` if any ambiguity is `unresolved`.
 
@@ -66,11 +59,6 @@ Decision Rules
 **Evidence standard:**
 Mark `resolvable` only when the controlled context or requirement text provides direct evidence that supports exactly one interpretation over all others. Mark `unresolved` when evidence is absent, indirect, or requires inference beyond what is explicitly stated — document the gap in `missing_information`.
 
-**When `has_ambiguity: false`:**
-- Set `overall_resolubility.status` to `no_ambiguity`.
-- `ambiguity_resolubility` must be an empty list `[]`.
-
-**When `has_ambiguity: true`:**
 - Classify each ambiguity into one of: `resolvable`, `unresolved`, or `not_applicable`.
 - Use only evidence present in the requirement text and in `controlled_context` (when provided). If no context was provided, `evidence_from_context` must be empty.
 - When marking `resolvable`, provide the `supported_interpretation` and show the exact evidence that supports it.
@@ -88,9 +76,7 @@ Return a single YAML document named `contextual_resolubility_validation` with th
 contextual_resolubility_validation:
   execution_id: "REQ-XX-CX"         # orchestration may fill this; include if present
   requirement_id: null               # keep null if not given
-  context_condition: ""              # echo the value received in input
 
-  has_ambiguity: true | false
   validation_summary: ""             # short natural-language summary (one or two sentences)
 
   ambiguity_resolubility:
@@ -129,8 +115,6 @@ Examples
 contextual_resolubility_validation:
   execution_id: "REQ-XX-01"
   requirement_id: null
-  context_condition: "C0"
-  has_ambiguity: true
   validation_summary: "Pronoun antecedent is unclear; no evidence in the requirement to decide safely."
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
@@ -158,8 +142,6 @@ contextual_resolubility_validation:
 contextual_resolubility_validation:
   execution_id: "REQ-XX-02"
   requirement_id: null
-  context_condition: "C2"
-  has_ambiguity: true
   validation_summary: "Controlled context identifies the relevant device; interpretation supported."
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
@@ -186,8 +168,6 @@ contextual_resolubility_validation:
 contextual_resolubility_validation:
   execution_id: "REQ-XX-03"
   requirement_id: null
-  context_condition: "C0"
-  has_ambiguity: true
   validation_summary: "Referential ambiguity resolved by the requirement text itself: only one candidate antecedent is present for the pronoun."
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
