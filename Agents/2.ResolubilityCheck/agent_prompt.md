@@ -14,7 +14,7 @@ Input (will be provided as YAML — two top-level keys: `execution_input` and `a
 execution_input:
   context_condition: ""              # metadata field — echoed to output; not used for evidence evaluation
   base_requirement_text: ""
-  controlled_context:                # may be empty or populated
+  controlled_context:                # present only when context is available; absent otherwise
     domain: ""
     glossary: []
     business_rules: []
