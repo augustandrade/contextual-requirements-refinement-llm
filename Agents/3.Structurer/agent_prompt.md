@@ -123,11 +123,11 @@ requirement_structuring:
 
 ## Examples
 
-### Example 1 — No ambiguity, no concern-mixing: single functional requirement
+### Example 1 — No ambiguity, no concern-mixing: single functional requirement (user_interaction)
 
 Input:
 ```yaml
-base_requirement_text: "When a login attempt fails three consecutive times, the system shall lock the user account."
+base_requirement_text: "When the user clicks the Export button, the system shall generate a downloadable PDF report of all active records."
 controlled_context: {}
 concern_mixing_detection:
   has_concern_mixing: false
@@ -142,10 +142,12 @@ contextual_resolubility_validation:
 # Reasoning
 # Step 1: status = no_ambiguity → proceed.
 # Step 2: has_concern_mixing = false → single structured requirement.
-# Step 3: Core predicate is "lock" (system action) → functional_requirement.
-#         condition = "login attempt fails three consecutive times" → type = event.
-#         interaction_pattern = autonomous_system_activity (system reacts to event; no human or external-system trigger).
-# Step 4: No ambiguities to resolve. Preserve original statement verbatim. final_output_status = structured.
+# Step 3: Core predicate is "generate" (system action) → functional_requirement.
+#         condition = "user clicks the Export button" → type = event.
+#         Triggering subject is a human actor (user) → user_interaction.
+#         actor = "the user".
+# Step 4: No ambiguities to resolve. Preserve original phrasing. final_output_status = structured.
+#         Inference avoided: report format details, record filters, storage destination.
 ```
 
 Output:
@@ -154,31 +156,31 @@ requirement_structuring:
   execution_id: null
   requirement_id: null
   context_condition: null
-  structuring_summary: "Requirement is unambiguous and atomic. Structured as a single functional requirement preserving the original meaning."
+  structuring_summary: "Requirement is unambiguous and atomic. Structured as a single functional requirement; the triggering actor is a human user."
   structured_requirements:
     - structured_id: "REQ-XX-SR-01"
       type: "functional_requirement"
       source_fragments:
-        - "When a login attempt fails three consecutive times, the system shall lock the user account."
+        - "When the user clicks the Export button, the system shall generate a downloadable PDF report of all active records."
       based_on_resolubility:
         ambiguity_ids: []
         applied_action: "no_action_needed"
       fields:
-        condition: "a login attempt fails three consecutive times"
+        condition: "the user clicks the Export button"
         condition_type: "event"
         system_or_component: "the system"
-        interaction_pattern: "autonomous_system_activity"
-        actor: ""
+        interaction_pattern: "user_interaction"
+        actor: "the user"
         modality: "shall"
-        action: "lock"
-        object: "the user account"
+        action: "generate"
+        object: "a downloadable PDF report of all active records"
         quality_attribute: ""
         measurable_criterion: ""
         constraint_category: ""
-        affected_element: "user account"
-      final_statement: "When a login attempt fails three consecutive times, the system shall lock the user account."
+        affected_element: ""
+      final_statement: "When the user clicks the Export button, the system shall generate a downloadable PDF report of all active records."
       structuring_notes:
-        - "No decomposition required. Requirement is atomic and unambiguous."
+        - "The user is the triggering actor; interaction_pattern set to user_interaction."
   unsupported_inferences_avoided: []
   final_output_status: "structured"
 ```
@@ -219,7 +221,7 @@ requirement_structuring:
   execution_id: null
   requirement_id: null
   context_condition: null
-  structuring_summary: "Concern-mixing detected per Pohl §25.2. Decomposed into one functional requirement (close emergency valve) and one quality requirement (500 ms response constraint)."
+  structuring_summary: "Concern-mixing detected per Pohl §25.2. Decomposed into one functional requirement (close emergency valve) and one quality requirement (500 ms response time)."
   structured_requirements:
     - structured_id: "REQ-XX-SR-01"
       type: "functional_requirement"
@@ -262,7 +264,7 @@ requirement_structuring:
         object: ""
         quality_attribute: "response time"
         measurable_criterion: "within 500 milliseconds of threshold exceedance"
-        constraint_category: "performance"
+        constraint_category: ""
         affected_element: "emergency valve closure"
       final_statement: "The emergency valve shall be closed within 500 milliseconds of the pressure sensor reading exceeding the safety threshold."
       structuring_notes:
@@ -342,11 +344,109 @@ requirement_structuring:
       final_statement: "If the regional server is offline, the system shall buffer the telemetry data locally."
       structuring_notes:
         - "Ambiguous pronoun 'it' replaced by the explicit referent 'the regional server' as authorized by the supported interpretation (BR-01)."
-  unresolved_ambiguities: []
-  preserved_uncertainties: []
   unsupported_inferences_avoided:
     - "Did not assume buffering duration, capacity, or retry behaviour — not stated in the requirement or context."
   final_output_status: "structured"
+```
+
+---
+
+### Example 4 — No ambiguity, no concern-mixing: single constraint
+
+Input:
+```yaml
+base_requirement_text: "All personal data processed by the system shall be stored exclusively in data centres located within the European Union."
+controlled_context: {}
+concern_mixing_detection:
+  has_concern_mixing: false
+  functional_action: null
+  quality_criterion: null
+contextual_resolubility_validation:
+  overall_resolubility:
+    status: "no_ambiguity"
+```
+
+```yaml
+# Reasoning
+# Step 1: status = no_ambiguity → proceed.
+# Step 2: has_concern_mixing = false → single structured requirement.
+# Step 3: The statement mandates a storage location; it limits design choices (data centre geography)
+#         without specifying any system action → constraint.
+#         interaction_pattern = not_applicable (constraints carry no interaction pattern).
+#         constraint_category = data_residency.
+# Step 4: No ambiguities to resolve. Preserve original phrasing. final_output_status = structured.
+#         Inference avoided: specific providers, encryption requirements, transfer protocols.
+```
+
+Output:
+```yaml
+requirement_structuring:
+  execution_id: null
+  requirement_id: null
+  context_condition: null
+  structuring_summary: "Data residency mandate classified as a single constraint per Pohl §3.2: limits design choices without specifying system behaviour."
+  structured_requirements:
+    - structured_id: "REQ-XX-SR-01"
+      type: "constraint"
+      source_fragments:
+        - "All personal data processed by the system shall be stored exclusively in data centres located within the European Union."
+      based_on_resolubility:
+        ambiguity_ids: []
+        applied_action: "no_action_needed"
+      fields:
+        condition: ""
+        condition_type: "none"
+        system_or_component: "the system"
+        interaction_pattern: "not_applicable"
+        actor: ""
+        modality: "shall"
+        action: ""
+        object: ""
+        quality_attribute: ""
+        measurable_criterion: ""
+        constraint_category: "data_residency"
+        affected_element: "personal data storage"
+      final_statement: "All personal data processed by the system shall be stored exclusively in data centres located within the European Union."
+      structuring_notes:
+        - "No system action stated; requirement limits storage location choices → constraint."
+        - "interaction_pattern set to not_applicable; constraint_category set to data_residency."
+  unsupported_inferences_avoided:
+    - "Did not infer which providers, encryption requirements, or transfer protocols apply — none stated in the requirement."
+  final_output_status: "structured"
+```
+
+---
+
+### Example 5 (negative) — Unresolved ambiguity: execution halted at step 1
+
+Input:
+```yaml
+base_requirement_text: "The report module shall generate a summary whenever the threshold is reached."
+controlled_context: {}
+concern_mixing_detection:
+  has_concern_mixing: false
+  functional_action: null
+  quality_criterion: null
+contextual_resolubility_validation:
+  ambiguity_resolubility:
+    - ambiguity_id: "AMB-01"
+      fragment: "the threshold"
+      supported_interpretation: null
+      allowed_structuring_action: "flag_for_human_clarification"
+  overall_resolubility:
+    status: "unresolved"
+```
+
+```yaml
+# Reasoning
+# Step 1: status = unresolved → stop. Do not produce output.
+# AMB-01 ("the threshold") has no definition in the requirement text or context.
+# Structuring would require inventing a metric value — prohibited by the evidence-only principle.
+```
+
+Output:
+```yaml
+# No output produced. Execution halted at step 1: overall_resolubility.status = unresolved.
 ```
 
 Strict output rules
