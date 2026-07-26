@@ -362,7 +362,8 @@ def detect_concern_mixing(execution_input: dict) -> dict:
         raw = _call_model_mock({'concern_mixing_detection': {'has_concern_mixing': False,
                                                               'functional_action': None,
                                                               'quality_criterion': None,
-                                                              'explanation': None}})
+                                                              'explanation': None,
+                                                              'no_concern_mixing_reason': 'mock'}})
 
     parsed = _parse_yaml_block(raw, 'concern_mixing_detection')
     if parsed is not None:
@@ -373,7 +374,8 @@ def detect_concern_mixing(execution_input: dict) -> dict:
             'has_concern_mixing': False,
             'functional_action': None,
             'quality_criterion': None,
-            'explanation': None
+            'explanation': None,
+            'no_concern_mixing_reason': None
         },
         'model_raw': raw if raw is not None else ''
     }
