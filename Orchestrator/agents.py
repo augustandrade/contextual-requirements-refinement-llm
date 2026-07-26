@@ -307,7 +307,7 @@ def _call_model_mock(payload: dict) -> str:
 
 def detect_ambiguity(execution_input: dict) -> dict:
     """Agent 1a — detects linguistic ambiguities only. Runs in parallel with detect_concern_mixing."""
-    prompt_path = _TCC_ROOT / 'Agents/1a.AmbiguityDetector/agent_prompt.md'
+    prompt_path = _TCC_ROOT / 'Agents/1a_ambiguity_detector.md'
     system_prompt = _load_prompt(prompt_path)
 
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
@@ -345,7 +345,7 @@ def detect_ambiguity(execution_input: dict) -> dict:
 
 def detect_concern_mixing(execution_input: dict) -> dict:
     """Agent 1b — detects concern mixing only. Runs in parallel with detect_ambiguity."""
-    prompt_path = _TCC_ROOT / 'Agents/1b.ConcernMixingDetector/agent_prompt.md'
+    prompt_path = _TCC_ROOT / 'Agents/1b_concern_mixing_detector.md'
     system_prompt = _load_prompt(prompt_path)
 
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
@@ -382,7 +382,7 @@ def detect_concern_mixing(execution_input: dict) -> dict:
 
 
 def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> dict:
-    prompt_path = _TCC_ROOT / 'Agents/2.ResolubilityCheck/agent_prompt.md'
+    prompt_path = _TCC_ROOT / 'Agents/2_resolubility_check.md'
     system_prompt = _load_prompt(prompt_path)
 
     # Agent 2 receives only Agent 1a output — concern mixing is handled separately by Agent 1b
@@ -446,7 +446,7 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
 
 
 def structure_requirement(execution_input: dict, concern_mixing: dict, resolubility: dict) -> dict:
-    prompt_path = _TCC_ROOT / 'Agents/3.Structurer/agent_prompt.md'
+    prompt_path = _TCC_ROOT / 'Agents/3_structurer.md'
     system_prompt = _load_prompt(prompt_path)
 
     payload = {
