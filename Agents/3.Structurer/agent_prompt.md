@@ -6,6 +6,7 @@ Purpose
 
 Principles
 - Evidence-only: Base all judgments solely on the requirement text and the controlled context when present. Do not use external knowledge, web search, or plausibility.
+- Do not invent actors, business rules, metrics, thresholds, conditions, objects, or technical constraints.
 
 Input (will be provided as YAML — all keys at top level)
 
@@ -50,19 +51,10 @@ Follow these steps in order for each execution:
    - Record structural decisions in `structuring_notes`.
 4. Set `final_output_status: "structured"`.
 
-Routing rule
-- If `overall_resolubility.status` is `fully_resolvable` or `no_ambiguity`, proceed with structure generation.
-- If `overall_resolubility.status` is `unresolved`, do not produce output. The orchestrator routes the execution elsewhere.
-
 Behavior
-- Use supported interpretations exactly as authorized by the resolubility validation.
-- Preserve the original meaning as much as possible.
-- Classify the result as functional requirement, quality requirement, or constraint.
 - For functional requirements, use a controlled structure with condition, system/component, modality, action, object, and actor when evidence exists.
 - For quality requirements and constraints, do not force a functional template.
-- If `concern_mixing_detection.has_concern_mixing` is `true`, actively decompose into separate functional and quality (or constraint) artefacts per Pohl §25.2. Do not keep them in one sentence.
 - If multiple actions or mixed requirement types appear without concern_mixing, separate them only when necessary for a clear and safe final structure.
-- Record unresolved ambiguities only if they remain relevant within an authorized execution.
 
 ## Classification decision rule
 
@@ -83,11 +75,6 @@ When `concern_mixing_detection.has_concern_mixing: true`, the sentence contains 
 | `external_interface_or_reactive_behavior` | An external system or event triggers the system's action |
 | `not_applicable` | Quality requirement or constraint (no interaction pattern applies) |
 
-What to avoid
-- Do not resolve unresolved cases.
-- Do not invent actors, business rules, metrics, thresholds, conditions, objects, or technical constraints.
-- Do not force decomposition or concern separation unless it is needed for the final structure.
-
 Expected output schema
 ```yaml
 requirement_structuring:
@@ -99,7 +86,7 @@ requirement_structuring:
 
   structured_requirements:
     - structured_id: "REQ-XX-SR-01"
-      type: "functional_requirement | quality_requirement | constraint | unresolved_requirement"
+      type: "functional_requirement | quality_requirement | constraint"
 
       source_fragments:
         - ""
@@ -107,7 +94,7 @@ requirement_structuring:
       based_on_resolubility:
         ambiguity_ids:
           - "AMB-01"
-        applied_action: "use_supported_interpretation | flag_for_human_clarification | no_action_needed"
+        applied_action: "use_supported_interpretation | no_action_needed"
 
       fields:
         condition: ""
@@ -127,17 +114,6 @@ requirement_structuring:
 
       structuring_notes:
         - ""
-
-  unresolved_ambiguities:
-    - ambiguity_id: "AMB-XX"
-      fragment: ""
-      reason: ""
-      missing_information:
-        - ""
-      suggested_clarification_question: ""
-
-  preserved_uncertainties:
-    - ""
 
   unsupported_inferences_avoided:
     - ""
@@ -203,8 +179,6 @@ requirement_structuring:
       final_statement: "When a login attempt fails three consecutive times, the system shall lock the user account."
       structuring_notes:
         - "No decomposition required. Requirement is atomic and unambiguous."
-  unresolved_ambiguities: []
-  preserved_uncertainties: []
   unsupported_inferences_avoided: []
   final_output_status: "structured"
 ```
@@ -293,8 +267,6 @@ requirement_structuring:
       final_statement: "The emergency valve shall be closed within 500 milliseconds of the pressure sensor reading exceeding the safety threshold."
       structuring_notes:
         - "Extracted quality criterion (response time) as a separate artefact per Pohl §25.2."
-  unresolved_ambiguities: []
-  preserved_uncertainties: []
   unsupported_inferences_avoided: []
   final_output_status: "structured"
 ```
