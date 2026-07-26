@@ -54,16 +54,9 @@ Follow these steps in order for each execution:
 
 Decision Rules
 
-**Evidence standard:**
-Mark `resolvable` only when the controlled context or requirement text provides direct evidence that supports exactly one interpretation over all others. Mark `unresolved` when evidence is absent, indirect, or requires inference beyond what is explicitly stated — document the gap in `missing_information`.
-
-- Classify each ambiguity into one of: `resolvable`, `unresolved`, or `not_applicable`.
 - Evaluate ambiguities exactly as reported — do not add, remove, or alter the reported fragments, types, or interpretations.
-- Use only evidence present in the requirement text and in `controlled_context` (when provided) — no external knowledge, web search, or plausibility. If no context was provided, `evidence_from_context` must be empty.
-- When marking `resolvable`, provide the `supported_interpretation` and show the exact evidence that supports it.
-- When marking `unresolved`, indicate what information is still missing and why the ambiguity cannot be eliminated safely.
-- When marking `not_applicable`, indicate that the flagged fragment introduces no genuine choice between interpretations.
-- Map classification to an action for the pipeline via `allowed_structuring_action`:
+- Use only evidence present in the requirement text and in `controlled_context` (when provided) — no external knowledge, web search, or plausibility.
+- Map classification to an action via `allowed_structuring_action`:
   - `resolvable` → `use_supported_interpretation`
   - `unresolved` → `flag_for_human_clarification`
   - `not_applicable` → `no_action_needed`
