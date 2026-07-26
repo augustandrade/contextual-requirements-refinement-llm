@@ -11,6 +11,8 @@ Principles
 - Routing-aware: If all ambiguities are resolvable, execution proceeds to the structuring step. If any ambiguity is unresolved, the orchestrator routes the case for human clarification.
 
 Input (will be provided as YAML — two top-level keys: `execution_input` and `ambiguity_detection`)
+
+```yaml
 execution_input:
   context_condition: ""              # metadata field — echoed to output; not used for evidence evaluation
   base_requirement_text: ""
@@ -19,9 +21,9 @@ execution_input:
     glossary: []
     business_rules: []
     constraints: []
-ambiguity_detection:   # exact structure returned by Agent 1a (sibling of execution_input)
+ambiguity_detection:                 # exact structure returned by Agent 1a (sibling of execution_input)
   has_ambiguity: true | false
-  no_ambiguity_reason: ""   # present when has_ambiguity: false; explains why there is no linguistic ambiguity
+  no_ambiguity_reason: ""            # present when has_ambiguity: false
   ambiguities:
     - ambiguity_id: "AMB-01"
       fragment: ""
@@ -32,6 +34,7 @@ ambiguity_detection:   # exact structure returned by Agent 1a (sibling of execut
       textual_evidence:
         - ""
       context_dependency: "none | low | moderate | high"
+```
 
 Processing Steps
 
@@ -81,13 +84,14 @@ Mark `resolvable` only when the controlled context or requirement text provides 
 Output format (strict YAML only)
 Return a single YAML document named `contextual_resolubility_validation` with the following structure:
 
+```yaml
 contextual_resolubility_validation:
   execution_id: "REQ-XX-CX"         # orchestration may fill this; include if present
   requirement_id: null               # keep null if not given
   context_condition: ""              # echo the value received in input
 
   has_ambiguity: true | false
-  validation_summary: ""            # short natural-language summary (one or two sentences)
+  validation_summary: ""             # short natural-language summary (one or two sentences)
 
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
@@ -116,10 +120,12 @@ contextual_resolubility_validation:
   overall_resolubility:
     status: "fully_resolvable | unresolved | no_ambiguity"
     explanation: ""
+```
 
 Examples
 
 # Unresolved — no context provided
+```yaml
 contextual_resolubility_validation:
   execution_id: "REQ-XX-01"
   requirement_id: null
@@ -144,10 +150,11 @@ contextual_resolubility_validation:
       allowed_structuring_action: "flag_for_human_clarification"
   overall_resolubility:
     status: "unresolved"
-
     explanation: "At least one ambiguity is unresolved; the orchestrator must route the case for human clarification."
+```
 
 # Resolvable — with context
+```yaml
 contextual_resolubility_validation:
   execution_id: "REQ-XX-02"
   requirement_id: null
@@ -171,10 +178,11 @@ contextual_resolubility_validation:
       allowed_structuring_action: "use_supported_interpretation"
   overall_resolubility:
     status: "fully_resolvable"
-
     explanation: "Controlled context provides direct evidence for the supported interpretation."
+```
 
 # Resolvable — via requirement text only (no context provided)
+```yaml
 contextual_resolubility_validation:
   execution_id: "REQ-XX-03"
   requirement_id: null
@@ -197,8 +205,8 @@ contextual_resolubility_validation:
       allowed_structuring_action: "use_supported_interpretation"
   overall_resolubility:
     status: "fully_resolvable"
-
     explanation: "All ambiguities resolved using only the requirement text. Execution may proceed to the structuring step."
+```
 
 Strict output rules
 - Return ONLY the YAML document above. Do not include any explanatory text, delimiters, or commentary.
