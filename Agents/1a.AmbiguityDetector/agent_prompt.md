@@ -15,7 +15,7 @@ Use exactly one of the five labels below. No other labels are valid.
 
 | Label | Definition | Example trigger |
 |---|---|---|
-| `lexical` | A word has more than one meaning due to synonymy, homonymy, or polysemy. | "trunk", "enter", "valid" — the term has multiple plausible meanings in the text |
+| `lexical` | A word has more than one meaning due to synonymy, homonymy, or polysemy. | — |
 | `syntactic` | The sentence has at least two valid parse trees that yield different meanings (structural/attachment ambiguity). | PP attachment, conjunct scope, modifier scope |
 | `semantic` | The sentence has more than one interpretation even with no lexical, syntactic, or referential ambiguity — typically due to logical operator precedence (AND/OR) or underspecified conditions. | "if A and B or C" without defined operator binding |
 | `referential` | A pronoun or definite anaphor has two or more plausible antecedents within the same or adjacent sentence. | "it", "the system", "this value" with multiple candidates in scope |
