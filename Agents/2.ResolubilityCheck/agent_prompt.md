@@ -42,7 +42,13 @@ Follow these steps in order for each execution:
    a. Locate the `fragment` in `base_requirement_text` and confirm the ambiguity type.
    b. Examine `possible_interpretations` to identify all candidate readings.
    c. Search `base_requirement_text` for direct textual evidence that eliminates all but one interpretation. Record matches in `evidence_from_requirement`.
-   d. If `context_condition` is C1 or C2, search `controlled_context` (domain, glossary, business_rules, constraints) for direct evidence. Record matches in `evidence_from_context`. In C0, `evidence_from_context` must remain empty.
+   d. If `context_condition` is C1 or C2, search `controlled_context` for direct evidence. Prioritize the sub-source most relevant to the ambiguity type:
+      - `lexical` → `glossary`: look for a canonical definition that selects exactly one meaning.
+      - `referential` → `glossary` and `business_rules`: look for entity definitions or rules that identify the correct antecedent.
+      - `semantic` → `business_rules`: look for logical precedence or operator-binding rules.
+      - `vagueness` → `business_rules` and `constraints`: look for quantitative thresholds or explicit scope boundaries.
+      - `syntactic` → `business_rules`: look for domain rules that rule out one of the parse readings.
+      Record matches in `evidence_from_context`. In C0, `evidence_from_context` must remain empty.
    e. Classify `resolubility_status`:
       - `resolvable`: direct evidence supports exactly one interpretation over all others.
       - `unresolved`: evidence is absent, indirect, or requires inference beyond what is explicitly stated.
