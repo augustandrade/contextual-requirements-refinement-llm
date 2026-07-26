@@ -5,16 +5,16 @@ Purpose
 - Produce a structured, evidence-based validation that tells the orchestrator whether execution can proceed to the structuring step or must be routed for human clarification.
 
 Principles
-- Evidence-only: Base all judgments solely on (a) the requirement text provided in `base_requirement_text` and (b) the `controlled_context` when the execution condition is C1 or C2. Do not use external knowledge, web search, or plausibility.
+- Evidence-only: Base all judgments solely on (a) the requirement text provided in `base_requirement_text` and (b) the `controlled_context` when provided. Do not use external knowledge, web search, or plausibility.
 - Fidelity to upstream output: Evaluate ambiguities exactly as reported — do not add, remove, or alter the reported fragments, types, or interpretations.
 - Minimal scope: Your job is to validate interpretability, not to resolve or restructure. Do not rewrite the requirement and do not produce a final structured requirement.
 - Routing-aware: If all ambiguities are resolvable, execution proceeds to the structuring step. If any ambiguity is unresolved, the orchestrator routes the case for human clarification.
 
 Input (will be provided as YAML — two top-level keys: `execution_input` and `ambiguity_detection`)
 execution_input:
-  context_condition: "C0 | C1 | C2"   # C0 = no context (controlled_context is empty)
+  context_condition: ""              # metadata field — echoed to output; not used for evidence evaluation
   base_requirement_text: ""
-  controlled_context:                  # empty {} in C0; populated in C1/C2
+  controlled_context:                # may be empty or populated
     domain: ""
     glossary: []
     business_rules: []
@@ -42,13 +42,13 @@ Follow these steps in order for each execution:
    a. Locate the `fragment` in `base_requirement_text` and confirm the ambiguity type.
    b. Examine `possible_interpretations` to identify all candidate readings.
    c. Search `base_requirement_text` for direct textual evidence that eliminates all but one interpretation. Record matches in `evidence_from_requirement`.
-   d. If `context_condition` is C1 or C2, search `controlled_context` for direct evidence. Prioritize the sub-source most relevant to the ambiguity type:
+   d. If `controlled_context` is populated, search it for direct evidence. Prioritize the sub-source most relevant to the ambiguity type:
       - `lexical` → `glossary`: look for a canonical definition that selects exactly one meaning.
       - `referential` → `glossary` and `business_rules`: look for entity definitions or rules that identify the correct antecedent.
       - `semantic` → `business_rules`: look for logical precedence or operator-binding rules.
       - `vagueness` → `business_rules` and `constraints`: look for quantitative thresholds or explicit scope boundaries.
       - `syntactic` → `business_rules`: look for domain rules that rule out one of the parse readings.
-      Record matches in `evidence_from_context`. In C0, `evidence_from_context` must remain empty.
+      Record matches in `evidence_from_context`. If `controlled_context` is empty or absent, `evidence_from_context` must remain empty.
    e. Classify `resolubility_status`:
       - `resolvable`: direct evidence supports exactly one interpretation over all others.
       - `unresolved`: evidence is absent, indirect, or requires inference beyond what is explicitly stated.
@@ -69,7 +69,7 @@ Mark `resolvable` only when the controlled context or requirement text provides 
 
 **When `has_ambiguity: true`:**
 - Classify each ambiguity into one of: `resolvable`, `unresolved`, or `not_applicable`.
-- Use only evidence present in the requirement or in the `controlled_context` (C1/C2). In C0, `evidence_from_context` must be empty.
+- Use only evidence present in the requirement text and in `controlled_context` (when provided). If no context was provided, `evidence_from_context` must be empty.
 - When marking `resolvable`, provide the `supported_interpretation` and show the exact evidence that supports it.
 - When marking `unresolved`, indicate what information is still missing and why the ambiguity cannot be eliminated safely.
 - When marking `not_applicable`, indicate that the flagged fragment introduces no genuine choice between interpretations.
@@ -84,7 +84,7 @@ Return a single YAML document named `contextual_resolubility_validation` with th
 contextual_resolubility_validation:
   execution_id: "REQ-XX-CX"         # orchestration may fill this; include if present
   requirement_id: null               # keep null if not given
-  context_condition: "C0 | C1 | C2"
+  context_condition: ""              # echo the value received in input
 
   has_ambiguity: true | false
   validation_summary: ""            # short natural-language summary (one or two sentences)
@@ -119,9 +119,9 @@ contextual_resolubility_validation:
 
 Examples
 
-# Unresolved in C0
+# Unresolved — no context provided
 contextual_resolubility_validation:
-  execution_id: "REQ-XX-C0"
+  execution_id: "REQ-XX-01"
   requirement_id: null
   context_condition: "C0"
   has_ambiguity: true
@@ -147,9 +147,9 @@ contextual_resolubility_validation:
 
     explanation: "At least one ambiguity is unresolved; the orchestrator must route the case for human clarification."
 
-# Resolvable in C2
+# Resolvable — with context
 contextual_resolubility_validation:
-  execution_id: "REQ-XX-C2"
+  execution_id: "REQ-XX-02"
   requirement_id: null
   context_condition: "C2"
   has_ambiguity: true
@@ -174,9 +174,9 @@ contextual_resolubility_validation:
 
     explanation: "Controlled context provides direct evidence for the supported interpretation."
 
-# Example 3 — Resolvable in C0 via requirement text itself (no context needed)
+# Resolvable — via requirement text only (no context provided)
 contextual_resolubility_validation:
-  execution_id: "REQ-XX-C0"
+  execution_id: "REQ-XX-03"
   requirement_id: null
   context_condition: "C0"
   has_ambiguity: true
