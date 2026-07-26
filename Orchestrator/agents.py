@@ -422,11 +422,8 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
         raw = _call_model_mock({'contextual_resolubility_validation': {
             'execution_id': execution_input.get('execution_id'),
             'requirement_id': execution_input.get('requirement_id'),
-            'context_condition': execution_input.get('context_condition'),
-            'has_ambiguity': False,
-            'validation_summary': 'mocked',
             'ambiguity_resolubility': [],
-            'overall_resolubility': {'status': 'no_ambiguity', 'explanation': ''}
+            'overall_resolubility': {'status': 'no_ambiguity'}
         }})
 
     parsed = _parse_yaml_block(raw, 'contextual_resolubility_validation')
@@ -436,17 +433,13 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
         if isinstance(crv, dict):
             crv['execution_id'] = execution_input.get('execution_id')
             crv['requirement_id'] = execution_input.get('requirement_id')
-            crv['context_condition'] = execution_input.get('context_condition')
         return parsed
     return {
         'contextual_resolubility_validation': {
             'execution_id': execution_input.get('execution_id'),
             'requirement_id': execution_input.get('requirement_id'),
-            'context_condition': execution_input.get('context_condition'),
-            'has_ambiguity': False,
-            'validation_summary': 'Model returned unparsable or invalid response',
             'ambiguity_resolubility': [],
-            'overall_resolubility': {'status': 'non_resolvable', 'explanation': 'parsing_error'}
+            'overall_resolubility': {'status': 'non_resolvable'}
         },
         'model_raw': raw if raw is not None else ''
     }

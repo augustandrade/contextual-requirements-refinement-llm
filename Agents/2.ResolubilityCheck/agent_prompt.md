@@ -69,12 +69,9 @@ contextual_resolubility_validation:
   execution_id: "REQ-XX-CX"         # orchestration may fill this; include if present
   requirement_id: null               # keep null if not given
 
-  validation_summary: ""             # short natural-language summary (one or two sentences)
-
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: ""
-      ambiguity_type: ""
 
       resolubility_status: "resolvable | unresolved | not_applicable"
 
@@ -97,7 +94,6 @@ contextual_resolubility_validation:
 
   overall_resolubility:
     status: "fully_resolvable | unresolved | no_ambiguity"
-    explanation: ""
 ```
 
 Examples
@@ -107,11 +103,9 @@ Examples
 contextual_resolubility_validation:
   execution_id: "REQ-XX-01"
   requirement_id: null
-  validation_summary: "Pronoun antecedent is unclear; no evidence in the requirement to decide safely."
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: "If it is faulty"
-      ambiguity_type: "referential"
       resolubility_status: "unresolved"
       supported_interpretation: null
       unsupported_interpretations:
@@ -126,7 +120,6 @@ contextual_resolubility_validation:
       allowed_structuring_action: "flag_for_human_clarification"
   overall_resolubility:
     status: "unresolved"
-    explanation: "At least one ambiguity is unresolved; the orchestrator must route the case for human clarification."
 ```
 
 # Resolvable — with context
@@ -134,11 +127,9 @@ contextual_resolubility_validation:
 contextual_resolubility_validation:
   execution_id: "REQ-XX-02"
   requirement_id: null
-  validation_summary: "Controlled context identifies the relevant device; interpretation supported."
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: "If it is faulty"
-      ambiguity_type: "referential"
       resolubility_status: "resolvable"
       supported_interpretation: "The scanner is faulty."
       unsupported_interpretations:
@@ -152,7 +143,6 @@ contextual_resolubility_validation:
       allowed_structuring_action: "use_supported_interpretation"
   overall_resolubility:
     status: "fully_resolvable"
-    explanation: "Controlled context provides direct evidence for the supported interpretation."
 ```
 
 # Resolvable — via requirement text only (no context provided)
@@ -160,11 +150,9 @@ contextual_resolubility_validation:
 contextual_resolubility_validation:
   execution_id: "REQ-XX-03"
   requirement_id: null
-  validation_summary: "Referential ambiguity resolved by the requirement text itself: only one candidate antecedent is present for the pronoun."
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: "it"
-      ambiguity_type: "referential"
       resolubility_status: "resolvable"
       supported_interpretation: "The invoice amount is what exceeds the threshold."
       unsupported_interpretations:
@@ -177,13 +165,12 @@ contextual_resolubility_validation:
       allowed_structuring_action: "use_supported_interpretation"
   overall_resolubility:
     status: "fully_resolvable"
-    explanation: "All ambiguities resolved using only the requirement text. Execution may proceed to the structuring step."
 ```
 
 Strict output rules
 - Return ONLY the YAML document above. Do not include any explanatory text, delimiters, or commentary.
 - Always wrap string values in double quotes (`"..."`), never single quotes. If a value itself contains a double quote, escape it as `\"`. Never nest an unescaped quote of the same kind inside a quoted string — this breaks YAML parsing.
 - If a field has no value, set it to `null` or an empty list `[]` as appropriate.
-- Use precise, evidence-based short sentences in `justification` and `validation_summary`.
+- Use precise, evidence-based short sentences in `justification`.
 - If any ambiguity is `unresolved`, the overall status must be `unresolved`.
 - Always return well-formed YAML so the orchestrator can consume your output programmatically.
