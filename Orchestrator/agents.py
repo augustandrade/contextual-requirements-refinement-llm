@@ -27,6 +27,47 @@ OLLAMA_TIMEOUT = int(os.getenv('OLLAMA_TIMEOUT', '600'))
 _TCC_ROOT = Path(__file__).parent.parent
 
 
+def ensure_ollama_running(timeout: int = 30) -> None:
+    """Start Ollama if not already running, then block until ready.
+
+    Pings OLLAMA_HOST/api/tags. If unreachable, launches `ollama serve`
+    as a background process and polls until the server responds or timeout
+    expires. Safe to call when Ollama is already up — it returns immediately.
+    """
+    import subprocess
+    import time
+    import urllib.request as _urlreq
+
+    health_url = f'{OLLAMA_HOST}/api/tags'
+
+    try:
+        _urlreq.urlopen(health_url, timeout=3)
+        return  # already running
+    except Exception:
+        pass
+
+    print('Ollama não está rodando — iniciando servidor...', flush=True)
+    subprocess.Popen(
+        ['ollama', 'serve'],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        try:
+            _urlreq.urlopen(health_url, timeout=2)
+            print('Ollama pronto.', flush=True)
+            return
+        except Exception:
+            time.sleep(1)
+
+    raise RuntimeError(
+        f'Ollama não respondeu após {timeout}s. '
+        'Verifique se está instalado e se o modelo está disponível.'
+    )
+
+
 def _load_prompt(path: Path) -> str:
     with open(path, 'r', encoding='utf-8') as f:
         return f.read()

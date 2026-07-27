@@ -19,6 +19,7 @@ import yaml
 _HERE = Path(__file__).parent
 sys.path.insert(0, str(_HERE))
 import run_pipeline as rp
+from agents import ensure_ollama_running
 
 BASE = _HERE.parent / 'corpus'
 MANIFEST = BASE / 'manifest.yaml'
@@ -131,6 +132,8 @@ def main():
     parser.add_argument('--resume',   default='', help='Nome da run a retomar (ex: run_002__qwen3.5-4b__2026-06-13T10-44)')
     parser.add_argument('--subset',   action='store_true', help='Smoke test: 1 req por categoria, 1 contexto (~4 execuções)')
     args = parser.parse_args()
+
+    ensure_ollama_running()
 
     manifest_path = BASE / args.manifest if args.manifest else MANIFEST
 

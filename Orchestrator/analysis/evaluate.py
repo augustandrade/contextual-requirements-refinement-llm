@@ -72,9 +72,10 @@ TAXONOMY_TARGETS: dict[str, set[str]] = {
 
 
 # ── Carrega corpus ────────────────────────────────────────────────────────────
-def load_corpus():
+def load_corpus(manifest_name: str = 'manifest.yaml'):
     """Retorna {req_id: corpus_doc} para todos os itens do manifest."""
-    manifest = yaml.safe_load(_MANIFEST.read_text(encoding='utf-8'))
+    manifest_path = _CORPUS / manifest_name
+    manifest = yaml.safe_load(manifest_path.read_text(encoding='utf-8'))
     index: dict[str, dict] = {}
     for item in manifest.get('items', []):
         path = _CORPUS / item['file']
@@ -616,13 +617,15 @@ def export_metadata(run_dirs: list[Path], eval_dir: Path) -> None:
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(description='Avalia runs do pipeline contra o corpus')
-    parser.add_argument('--run',     default='', help='Prefixo do run a avaliar (ex: run_002)')
-    parser.add_argument('--exclude', default='', help='Prefixo do run a ignorar (ex: run_001)')
-    parser.add_argument('--label',   default='', help='Label para nomear a pasta de saída (ex: qwen3.5-4b)')
+    parser.add_argument('--run',      default='', help='Prefixo do run a avaliar (ex: run_002)')
+    parser.add_argument('--exclude',  default='', help='Prefixo do run a ignorar (ex: run_001)')
+    parser.add_argument('--label',    default='', help='Label para nomear a pasta de saída (ex: qwen3.5-4b)')
+    parser.add_argument('--manifest', default='manifest.yaml',
+                        help='Manifesto do corpus (relativo a corpus/). Default: manifest.yaml')
     args = parser.parse_args()
 
-    corpus = load_corpus()
-    print(f'Corpus: {len(corpus)} requisitos carregados')
+    corpus = load_corpus(args.manifest)
+    print(f'Corpus: {len(corpus)} requisitos carregados (manifest: {args.manifest})')
 
     if not _RUNS_DIR.exists():
         sys.exit(f'Diretório não encontrado: {_RUNS_DIR}')
