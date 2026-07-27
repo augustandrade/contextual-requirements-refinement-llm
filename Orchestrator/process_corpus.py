@@ -89,7 +89,7 @@ def process_item(item, run_dir: Path):
         if rp.should_invoke_structurer(res):
             struct = rp.run_requirement_structurer(execution_input, cm, res)
         else:
-            struct = rp.build_non_resolvable_structuring(execution_input, res)
+            struct = rp.build_non_resolvable_structuring(execution_input)
 
         final = rp.run_output_consolidator(execution_input, amb, cm, res, struct)
         rp.save_outputs(run_dir, f"{req_id}/{ctx}", execution_input, amb, cm, res, struct, final)

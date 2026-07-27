@@ -139,7 +139,7 @@ def should_invoke_structurer(res_out: dict) -> bool:
     return normalize_overall_resolubility_status(res_out) in {'fully_resolvable', 'no_ambiguity'}
 
 
-def build_non_resolvable_structuring(execution_input: dict, res_out: dict) -> dict:
+def build_non_resolvable_structuring(execution_input: dict) -> dict:
     """Orchestrator placeholder when Agent 3 is not invoked due to unresolved ambiguity."""
     return {
         'requirement_structuring': {
@@ -237,7 +237,7 @@ def main():
     if should_invoke_structurer(res):
         struct = run_requirement_structurer(execution_input, cm, res)
     else:
-        struct = build_non_resolvable_structuring(execution_input, res)
+        struct = build_non_resolvable_structuring(execution_input)
 
     final = run_output_consolidator(execution_input, amb, cm, res, struct)
     save_outputs(run_dir, execution_id, execution_input, amb, cm, res, struct, final)

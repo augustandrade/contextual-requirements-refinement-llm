@@ -24,7 +24,6 @@ def _strip_markdown_fence(text: str) -> str:
     When multiple fences are present (e.g. Reasoning + Output blocks),
     prefer the last block that looks like a YAML document (starts with a key:).
     """
-    import re
     blocks = re.findall(r'```(?:yaml)?\s*\n(.*?)```', text, re.DOTALL)
     if blocks:
         # Prefer the last block that starts with a YAML key (not a comment)
@@ -42,7 +41,7 @@ _SINGLE_QUOTED_LINE = re.compile(r"^(\s*(?:-\s+)?(?:[\w.\-]+:\s*)?)'(.*)'\s*$")
 
 
 def _repair_yaml_quotes(text: str) -> str:
-    """Best-effort repair for the most common YAML break we see from local
+    """Best-effort repair for the most common YAML break we see from language
     models: a single-quoted scalar that itself contains an unescaped single
     quote (e.g. `key: 'foo 'bar' baz'` or a bare list item `- 'foo 'bar' baz'`).
     In valid YAML that inner quote would need to be doubled (`''`), but models
@@ -223,7 +222,6 @@ def _call_model_ollama(system_prompt: str, user_content: str, timeout: int = Non
             return data['message']['content']
     except Exception as e:
         raise RuntimeError(f'Ollama API call failed: {e}') from e
-
 
 
 def _call_model_mock(payload: dict) -> str:

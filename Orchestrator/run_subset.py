@@ -62,14 +62,19 @@ def main():
 
         print('Running:', exec_input['requirement_id'], exec_input['context_condition'])
         amb = agents_mod.detect_ambiguity(exec_input)
-        res = agents_mod.validate_resolubility(exec_input, amb)
-        if rp.should_invoke_structurer(res):
-            struct = agents_mod.structure_requirement(exec_input, res)
+        cm = agents_mod.detect_concern_mixing(exec_input)
+        has_ambiguity = amb.get('ambiguity_detection', {}).get('has_ambiguity', False)
+        if has_ambiguity:
+            res = agents_mod.validate_resolubility(exec_input, amb)
         else:
-            struct = rp.build_non_resolvable_structuring(exec_input, res)
-        final = rp.run_output_consolidator(exec_input, amb, res, struct)
+            res = rp.build_synthetic_resolubility(exec_input)
+        if rp.should_invoke_structurer(res):
+            struct = agents_mod.structure_requirement(exec_input, cm, res)
+        else:
+            struct = rp.build_non_resolvable_structuring(exec_input)
+        final = rp.run_output_consolidator(exec_input, amb, cm, res, struct)
 
-        rp.save_outputs(run_dir, exec_input['execution_id'], exec_input, amb, res, struct, final)
+        rp.save_outputs(run_dir, exec_input['execution_id'], exec_input, amb, cm, res, struct, final)
         summary.append({
             'requirement_id': exec_input['requirement_id'],
             'context': exec_input['context_condition'],
