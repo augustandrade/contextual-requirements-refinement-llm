@@ -218,11 +218,19 @@ class TestParseYamlBlock:
         _, err = parse_yaml_block(raw, ROOT)
         assert isinstance(err, (yaml.YAMLError, Exception))
 
-    def test_last_err_is_string_on_structural_mismatch(self):
-        # YAML is valid but root key maps to a list, not a dict
+    def test_list_value_returned_successfully_agent_handles_type_check(self):
+        # yaml_parser does NOT inspect the type of the root key's value;
+        # it returns the full parsed dict so agents.py can do the isinstance check.
+        # A list value is NOT a structural mismatch from yaml_parser's perspective.
         raw = _wrap(f"{ROOT}:\n  - item1\n  - item2")
         parsed, err = parse_yaml_block(raw, ROOT)
-        # Root key exists but value is a list → root_key in parsed is True,
-        # parse_yaml_block returns the dict; agent handles isinstance check
-        # This confirms yaml_parser is not responsible for the isinstance check
-        assert parsed is not None or isinstance(err, str)
+        assert parsed == {ROOT: ['item1', 'item2']}
+        assert err is None
+
+    def test_last_err_is_string_when_root_key_missing(self):
+        # YAML parses ok but root_key is absent → last_err is a descriptive str
+        raw = _wrap("other_key:\n  field: value")
+        parsed, err = parse_yaml_block(raw, ROOT)
+        assert parsed is None
+        assert isinstance(err, str)
+        assert ROOT in err

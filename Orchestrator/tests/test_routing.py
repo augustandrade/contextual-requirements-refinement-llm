@@ -48,12 +48,14 @@ def test_normalize_unknown_status_returns_non_resolvable_with_warning(capsys):
     assert '[WARN]' in captured.err
 
 
-def test_normalize_empty_status_returns_non_resolvable(capsys):
+def test_normalize_empty_status_returns_non_resolvable_with_warning(capsys):
     res_out = {'contextual_resolubility_validation': {
         'overall_resolubility': {'status': ''}
     }}
     result = normalize_overall_resolubility_status(res_out)
     assert result == 'non_resolvable'
+    captured = capsys.readouterr()
+    assert '[WARN]' in captured.err
 
 
 def test_normalize_missing_keys_returns_non_resolvable():
@@ -168,11 +170,16 @@ class TestRunOutputConsolidator:
 
     def test_output_contains_all_top_level_keys(self):
         final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
-        for key in ('execution_id', 'requirement_id', 'ambiguity_analysis',
-                    'concern_mixing_analysis', 'contextual_resolubility_analysis',
-                    'pipeline_decision', 'requirement_structuring',
-                    'non_resolvable_signal', 'final_assessment_notes'):
+        for key in ('execution_id', 'requirement_id', 'input_requirement',
+                    'ambiguity_analysis', 'concern_mixing_analysis',
+                    'contextual_resolubility_analysis', 'pipeline_decision',
+                    'requirement_structuring', 'non_resolvable_signal',
+                    'final_assessment_notes'):
             assert key in final, f'missing key: {key}'
+
+    def test_input_requirement_copied_from_execution_input(self):
+        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
+        assert final['input_requirement'] == _EXEC['base_requirement_text']
 
     def test_has_concern_mixing_propagates(self):
         cm = {'concern_mixing_detection': {'has_concern_mixing': True}}
