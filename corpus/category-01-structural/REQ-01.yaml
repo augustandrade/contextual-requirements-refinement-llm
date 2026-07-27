@@ -4,7 +4,7 @@ category_name: Structural requirement defects
 title: Function and quality mixed in one sentence
 source:
   citation: Pohl (2025)
-base_requirement_text: "If the \"glass break detector\" of a window detects the pane has been damaged, the system shall inform the \"security service\" within 2 seconds at the latest."
+base_requirement_text: If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service within 2 seconds at the latest.
 expected_problem: Functional behavior and timing quality are mixed in one requirement sentence.
 expected_behavior: Split into at least one functional requirement and one quality requirement.
 contexts:

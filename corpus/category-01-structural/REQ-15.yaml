@@ -4,7 +4,7 @@ category_name: Structural requirement defects
 title: Incomplete requirement with condition but no system response
 source:
   citation: Veizaga et al. (2024), Table 3, Incomplete requirement smell
-base_requirement_text: "When System-A receives a message from \"Security Manager\" and if the message is part of the \"B-file\", according to the mapping rules."
+base_requirement_text: When System-A receives a message from Security Manager and if the message is part of the B-file, according to the mapping rules.
 expected_problem: "The requirement has a complete condition but no system response — the <Process> and <Object> elements of Pohl's syntactic sentence pattern (§25.4.2) are entirely absent."
 expected_behavior: Detect structural incompleteness and signal the missing system response rather than inferring it; complete the requirement only when a business rule explicitly provides the action.
 notes: "Structural incompleteness (missing system response per Pohl §25.4.2): distinct from concern mixing (REQ-01) and multiple bundled actions (REQ-03). The condition segment is fully formed but the action the system must take is absent."

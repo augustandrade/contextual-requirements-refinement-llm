@@ -4,8 +4,8 @@ category_name: Control group
 title: Genuine well-formed condition-response requirement
 source:
   citation: Veizaga et al. (2024), Table 6 (Tregex pattern C2), IEEE Transactions on Software Engineering
-base_requirement_text: "Once System-A has successfully validated a \"settlement request\", System-A must send an \"acknowledge message\" to System-B."
-expected_problem: No ambiguity or structural defect expected. Anonymized requirement from the source's industrial case study, presented by the authors as a correctly segmented single-condition, single-actor, single-response requirement (not associated with any smell in the source). Domain-specific terms are typographically demarcated with quotes as controlled vocabulary, per the corpus's standardized requirement-writing convention and per Agent 1a's own documented exemption for typographically demarcated terms (Pohl 2025, §25.4.1) — this is the only departure from the source's exact surface form.
+base_requirement_text: Once System-A has successfully validated a settlement request, System-A must send an acknowledge message to System-B.
+expected_problem: No ambiguity or structural defect expected. Anonymized requirement from the source's industrial case study, presented by the authors as a correctly segmented single-condition, single-actor, single-response requirement (not associated with any smell in the source).
 expected_behavior: Preserve requirement structure with minimal formal adjustments only.
 contexts:
   C0:

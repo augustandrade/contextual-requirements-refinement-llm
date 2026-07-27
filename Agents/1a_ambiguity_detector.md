@@ -23,8 +23,6 @@ Use exactly one of the five labels below. No other labels are valid.
 
 ## Ambiguity scope boundaries
 
-- **Typographically-demarcated vocabulary** (Pohl §25.4.1, §25.4.3): treat terms explicitly marked as domain identifiers through typographic convention — single quotes, double quotes, backticks, CamelCase, or ALL_CAPS — as defined controlled vocabulary and therefore unambiguous. If a term is not typographically demarcated and has multiple plausible meanings in the text, classify it as lexical ambiguity regardless of whether a domain glossary might define it.
-
 - **Referential ambiguity requires competing antecedents** (Pohl §25.3.4): flag referential ambiguity only when an anaphor (pronoun or definite phrase) has two or more distinct plausible antecedents in scope. A definite description that refers to a single, uniquely identifiable entity in the sentence is unambiguous by Pohl's definition.
 
 - **Vagueness requires fuzzy extension** (Pohl §25.3.5): apply the vagueness label only to terms whose extension is indeterminate — i.e., at least one object exists for which membership cannot be determined. The term must inherently lack measurable boundaries.
