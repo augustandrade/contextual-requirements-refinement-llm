@@ -5,7 +5,7 @@ language_policy:
   contexts: en
   metadata: en
 methodology:
-  base_requirements: 13
+  base_requirements: 15
   context_levels: [C0, C1, C2]
   context_level_encoding: key_based
   context_injection_policy:
@@ -22,11 +22,11 @@ methodology:
     C0: [intent, inject_context]
     C1: [intent, inject_context, controlled_context]
     C2: [intent, inject_context, controlled_context]
-  total_executions: 39
+  total_executions: 45
   categories:
     - id: category-01-structural
       name: Structural requirement defects
-      req_ids: [REQ-01, REQ-03]
+      req_ids: [REQ-01, REQ-03, REQ-15]
     - id: category-02-linguistic
       name: Linguistic ambiguities and formulation defects
       req_ids: [REQ-02, REQ-04, REQ-06]
@@ -38,7 +38,7 @@ methodology:
       req_ids: [REQ-12, REQ-13, REQ-14]
     - id: category-05-vagueness
       name: Vagueness
-      req_ids: [REQ-07, REQ-09]
+      req_ids: [REQ-07, REQ-09, REQ-16]
 items:
   - id: REQ-01
     file: category-01-structural/REQ-01.yaml
@@ -66,5 +66,9 @@ items:
     file: category-04-control/REQ-13.yaml
   - id: REQ-14
     file: category-04-control/REQ-14.yaml
+  - id: REQ-15
+    file: category-01-structural/REQ-15.yaml
+  - id: REQ-16
+    file: category-05-vagueness/REQ-16.yaml
 status: ready
 manual_reference: true
