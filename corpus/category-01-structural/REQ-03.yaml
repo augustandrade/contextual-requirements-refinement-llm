@@ -36,7 +36,7 @@ contexts:
         - term: Reporting flow
           definition: Event stream used by subscribers for operational reporting.
         - term: their downstream systems
-          definition: System-A's own downstream systems list (the possessive refers back to System-A, the sole actor of the sentence).
+          definition: "System-A's own downstream systems list (the possessive refers back to System-A, the sole actor of the sentence)."
       business_rules:
         - id: BR-01
           rule: Partner registration and reporting subscription are independent operations and must be specified clearly in the final requirement structure.
