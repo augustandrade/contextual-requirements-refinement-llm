@@ -84,7 +84,11 @@ def detect_ambiguity(execution_input: dict) -> dict:
 
     parsed, parse_err = parse_yaml_block(raw, 'ambiguity_detection')
     if parsed is not None:
-        return {'ambiguity_detection': parsed['ambiguity_detection']}
+        ad = parsed['ambiguity_detection']
+        if not isinstance(ad, dict):
+            raise AgentParseError('detect_ambiguity', raw,
+                                  f"root key 'ambiguity_detection' is not a dict (got {type(ad).__name__})")
+        return {'ambiguity_detection': ad}
     raise AgentParseError('detect_ambiguity', raw, parse_err)
 
 
@@ -101,7 +105,11 @@ def detect_concern_mixing(execution_input: dict) -> dict:
 
     parsed, parse_err = parse_yaml_block(raw, 'concern_mixing_detection')
     if parsed is not None:
-        return {'concern_mixing_detection': parsed['concern_mixing_detection']}
+        cmd = parsed['concern_mixing_detection']
+        if not isinstance(cmd, dict):
+            raise AgentParseError('detect_concern_mixing', raw,
+                                  f"root key 'concern_mixing_detection' is not a dict (got {type(cmd).__name__})")
+        return {'concern_mixing_detection': cmd}
     raise AgentParseError('detect_concern_mixing', raw, parse_err)
 
 
