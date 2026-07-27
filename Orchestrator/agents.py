@@ -4,7 +4,7 @@ from pathlib import Path
 
 import yaml
 
-# Provider configuration: 'ollama' | 'local' | 'mock'
+# Provider configuration: 'ollama' | 'mock'
 LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'ollama')
 OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'qwen3.5:latest')
 OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
@@ -13,12 +13,6 @@ OLLAMA_TIMEOUT = int(os.getenv('OLLAMA_TIMEOUT', '600'))
 # Base directory for resolving agent prompts (TCC root)
 _TCC_ROOT = Path(__file__).parent.parent
 
-# Local model config (used when LLM_PROVIDER=local)
-LOCAL_MODEL_PATH = os.getenv('LLM_LOCAL_MODEL_PATH', '')  # path to ggml model for llama.cpp
-
-# lazy imports for local runtime
-_llama_client = None
-_llama_model_path = None
 
 def _load_prompt(path: Path) -> str:
     with open(path, 'r', encoding='utf-8') as f:
@@ -198,34 +192,6 @@ def _parse_yaml_block(raw: str, root_key: str):
     return None
 
 
-def _ensure_local_client():
-    global _llama_client, _llama_model_path
-    if _llama_client is not None and _llama_model_path == LOCAL_MODEL_PATH:
-        return _llama_client
-    try:
-        from llama_cpp import Llama
-    except Exception:
-        raise EnvironmentError('llama-cpp-python not installed. Install with `pip install "llama-cpp-python"` and provide a LOCAL GGUF model path via LLM_LOCAL_MODEL_PATH')
-    if not LOCAL_MODEL_PATH:
-        raise EnvironmentError('LLM_LOCAL_MODEL_PATH not set. Export path to your GGUF model (for example Qwen2.5 7B Instruct GGUF)')
-    _llama_client = Llama(model_path=LOCAL_MODEL_PATH)
-    _llama_model_path = LOCAL_MODEL_PATH
-    return _llama_client
-
-
-def _call_model_local(system_prompt: str, user_content: str, timeout: int = 60):
-    client = _ensure_local_client()
-    prompt = system_prompt + "\n\n" + user_content
-    # llama-cpp-python supports simple call interface
-    resp = client(prompt, max_tokens=2000, temperature=0.0)
-    if isinstance(resp, dict):
-        choices = resp.get('choices')
-        if choices and isinstance(choices, list):
-            c0 = choices[0]
-            return c0.get('text') or (c0.get('message') or {}).get('content') or str(c0)
-    return str(resp)
-
-
 def _call_model_ollama(system_prompt: str, user_content: str, timeout: int = None, num_ctx: int = 2048, num_predict: int = 1500):
     """Call Ollama via REST API with thinking disabled for faster responses."""
     import urllib.request
@@ -281,8 +247,6 @@ def detect_ambiguity(execution_input: dict) -> dict:
         # conditionals) produce long enough YAML to hit the default 1500-token
         # cap mid-string, which truncates the response into invalid YAML.
         raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=3000)
-    elif LLM_PROVIDER == 'local':
-        raw = _call_model_local(system_prompt, user_content)
     else:
         raw = _call_model_mock({'ambiguity_detection': {'has_ambiguity': False, 'ambiguities': []}})
 
@@ -311,8 +275,6 @@ def detect_concern_mixing(execution_input: dict) -> dict:
     if LLM_PROVIDER == 'ollama':
         # same context-truncation risk as Agent 1a — see note there
         raw = _call_model_ollama(system_prompt, user_content, num_ctx=4096)
-    elif LLM_PROVIDER == 'local':
-        raw = _call_model_local(system_prompt, user_content)
     else:
         raw = _call_model_mock({'concern_mixing_detection': {'has_concern_mixing': False,
                                                               'functional_action': None,
@@ -369,8 +331,6 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
     # mid-string on cases with 2+ ambiguities to resolve.
     if LLM_PROVIDER == 'ollama':
         raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
-    elif LLM_PROVIDER == 'local':
-        raw = _call_model_local(system_prompt, user_content)
     else:
         raw = _call_model_mock({'contextual_resolubility_validation': {
             'execution_id': execution_input.get('execution_id'),
@@ -427,8 +387,6 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
     # Agent 3 receives requirement + context + Agent 2 output — needs larger ctx
     if LLM_PROVIDER == 'ollama':
         raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192)
-    elif LLM_PROVIDER == 'local':
-        raw = _call_model_local(system_prompt, user_content)
     else:
         raw = _call_model_mock({'requirement_structuring': {
             'execution_id': execution_input.get('execution_id'),
