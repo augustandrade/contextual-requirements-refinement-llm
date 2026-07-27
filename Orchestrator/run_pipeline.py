@@ -12,6 +12,8 @@ _HERE = Path(__file__).parent
 sys.path.insert(0, str(_HERE))
 import agents as agents_mod
 
+AgentParseError = agents_mod.AgentParseError
+
 _OUTPUTS_DIR = _HERE / 'outputs'
 _RUNS_DIR = _OUTPUTS_DIR / 'runs'
 
@@ -107,7 +109,7 @@ def normalize_overall_resolubility_status(res_out: dict) -> str:
         return 'fully_resolvable'
     if status in {'no_ambiguity', 'not_applicable'}:
         return 'no_ambiguity'
-    if status in {'non_resolvable', 'unresolved', 'blocking', 'parse_error'}:
+    if status in {'non_resolvable', 'unresolved', 'blocking'}:
         return 'non_resolvable'
     print(f'[WARN] normalize_overall_resolubility_status: status desconhecido "{status}" → non_resolvable', file=sys.stderr)
     return 'non_resolvable'
@@ -176,9 +178,7 @@ def run_output_consolidator(execution_input: dict, amb_out: dict, cm_out: dict, 
             'requires_human_clarification': route == 'signaling'
         },
         'final_assessment_notes': (
-            'Structuring failed: model returned unparsable response.'
-            if route == 'structured' and struct_out.get('requirement_structuring', {}).get('final_output_status') == 'parse_error'
-            else 'Structured output generated from supported interpretation.'
+            'Structured output generated from supported interpretation.'
             if route == 'structured'
             else 'Automatic structuring skipped due to non_resolvable ambiguity; clarification required.'
         )

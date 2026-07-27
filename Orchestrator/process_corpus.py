@@ -67,8 +67,12 @@ def process_item(item, run_dir: Path, contexts: list = None):
     # output is identical across contexts for the same requirement. Run once and
     # reuse to avoid redundant model calls.
     detection_input = {'base_requirement_text': base_text}
-    amb = rp.run_ambiguity_detector(detection_input)
-    cm = rp.run_concern_mixing_detector(detection_input)
+    try:
+        amb = rp.run_ambiguity_detector(detection_input)
+        cm = rp.run_concern_mixing_detector(detection_input)
+    except (rp.AgentParseError, RuntimeError) as e:
+        print(f'[ERROR] {req_id} — {e}: skipping all contexts (use --resume to retry)', file=sys.stderr)
+        return
 
     for ctx in _ctxs:
         if _already_done(run_dir, req_id, ctx):
@@ -88,15 +92,19 @@ def process_item(item, run_dir: Path, contexts: list = None):
         }
 
         has_ambiguity = amb.get('ambiguity_detection', {}).get('has_ambiguity', False)
-        if has_ambiguity:
-            res = rp.run_resolubility_validator(execution_input, amb)
-        else:
-            res = rp.build_synthetic_resolubility(execution_input)
+        try:
+            if has_ambiguity:
+                res = rp.run_resolubility_validator(execution_input, amb)
+            else:
+                res = rp.build_synthetic_resolubility(execution_input)
 
-        if rp.should_invoke_structurer(res):
-            struct = rp.run_requirement_structurer(execution_input, cm, res)
-        else:
-            struct = rp.build_non_resolvable_structuring(execution_input)
+            if rp.should_invoke_structurer(res):
+                struct = rp.run_requirement_structurer(execution_input, cm, res)
+            else:
+                struct = rp.build_non_resolvable_structuring(execution_input)
+        except (rp.AgentParseError, RuntimeError) as e:
+            print(f'[ERROR] {req_id}/{ctx} — {e}: skipping (use --resume to retry)', file=sys.stderr)
+            continue
 
         final = rp.run_output_consolidator(execution_input, amb, cm, res, struct)
         rp.save_outputs(run_dir, f"{req_id}/{ctx}", execution_input, amb, cm, res, struct, final)

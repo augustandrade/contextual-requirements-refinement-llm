@@ -1,10 +1,21 @@
 import os
-import sys
 from pathlib import Path
 
 import yaml
 
 from yaml_parser import parse_yaml_block
+
+
+class AgentParseError(RuntimeError):
+    """Raised when an agent's model response cannot be parsed as valid YAML.
+
+    Callers must catch this, log req_id/ctx and self.raw, skip the execution,
+    and rely on --resume to retry. Do NOT fall back to a placeholder result.
+    """
+    def __init__(self, agent: str, raw: str):
+        super().__init__(f'{agent}: model response unparsable — skip and re-run this item')
+        self.agent = agent
+        self.raw = raw
 
 OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'qwen3.5:latest')
 OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
@@ -73,15 +84,7 @@ def detect_ambiguity(execution_input: dict) -> dict:
     if parsed is not None:
         return {'ambiguity_detection': parsed['ambiguity_detection']}
 
-    print('[WARN] detect_ambiguity: parse failed — routing as no_ambiguity (Agent 2 will be skipped)', file=sys.stderr)
-    return {
-        'ambiguity_detection': {
-            'has_ambiguity': False,
-            'ambiguities': [],
-            'no_ambiguity_reason': 'model_output_unexpected_or_unparsable'
-        },
-        'model_raw': raw if raw is not None else ''
-    }
+    raise AgentParseError('detect_ambiguity', raw)
 
 
 def detect_concern_mixing(execution_input: dict) -> dict:
@@ -99,17 +102,7 @@ def detect_concern_mixing(execution_input: dict) -> dict:
     if parsed is not None:
         return {'concern_mixing_detection': parsed['concern_mixing_detection']}
 
-    print('[WARN] detect_concern_mixing: parse failed — routing as no_concern_mixing (D2 may record false negative)', file=sys.stderr)
-    return {
-        'concern_mixing_detection': {
-            'has_concern_mixing': False,
-            'functional_action': None,
-            'quality_criterion': None,
-            'explanation': None,
-            'no_concern_mixing_reason': 'model_output_unparsable'
-        },
-        'model_raw': raw if raw is not None else ''
-    }
+    raise AgentParseError('detect_concern_mixing', raw)
 
 
 def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> dict:
@@ -146,23 +139,14 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
     raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
 
     parsed = parse_yaml_block(raw, 'contextual_resolubility_validation')
-    if parsed is not None:
-        # Enforce correct IDs
-        crv = parsed['contextual_resolubility_validation']
-        if isinstance(crv, dict):
-            crv['execution_id'] = execution_input.get('execution_id')
-            crv['requirement_id'] = execution_input.get('requirement_id')
-            return parsed
-        print(f'[WARN] validate_resolubility: root key type={type(crv).__name__}, treating as parse_error', file=sys.stderr)
-    return {
-        'contextual_resolubility_validation': {
-            'execution_id': execution_input.get('execution_id'),
-            'requirement_id': execution_input.get('requirement_id'),
-            'ambiguity_resolubility': [],
-            'overall_resolubility': {'status': 'parse_error'}
-        },
-        'model_raw': raw if raw is not None else ''
-    }
+    if parsed is None:
+        raise AgentParseError('validate_resolubility', raw)
+    crv = parsed['contextual_resolubility_validation']
+    if not isinstance(crv, dict):
+        raise AgentParseError('validate_resolubility', raw)
+    crv['execution_id'] = execution_input.get('execution_id')
+    crv['requirement_id'] = execution_input.get('requirement_id')
+    return parsed
 
 
 def structure_requirement(execution_input: dict, concern_mixing: dict, resolubility: dict) -> dict:
@@ -195,24 +179,12 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
     raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192)
 
     parsed = parse_yaml_block(raw, 'requirement_structuring')
-    if parsed is not None:
-        # Enforce correct IDs — models sometimes invent their own
-        rs = parsed['requirement_structuring']
-        if isinstance(rs, dict):
-            rs['execution_id'] = execution_input.get('execution_id')
-            rs['requirement_id'] = execution_input.get('requirement_id')
-            rs['context_condition'] = execution_input.get('context_condition')
-            return parsed
-        print(f'[WARN] structure_requirement: root key type={type(rs).__name__}, treating as parse_error', file=sys.stderr)
-    return {
-        'requirement_structuring': {
-            'execution_id': execution_input.get('execution_id'),
-            'requirement_id': execution_input.get('requirement_id'),
-            'context_condition': execution_input.get('context_condition'),
-            'structuring_summary': 'Model returned unparsable or invalid response',
-            'structured_requirements': [],
-            'unsupported_inferences_avoided': [],
-            'final_output_status': 'parse_error'
-        },
-        'model_raw': raw if raw is not None else ''
-    }
+    if parsed is None:
+        raise AgentParseError('structure_requirement', raw)
+    rs = parsed['requirement_structuring']
+    if not isinstance(rs, dict):
+        raise AgentParseError('structure_requirement', raw)
+    rs['execution_id'] = execution_input.get('execution_id')
+    rs['requirement_id'] = execution_input.get('requirement_id')
+    rs['context_condition'] = execution_input.get('context_condition')
+    return parsed
