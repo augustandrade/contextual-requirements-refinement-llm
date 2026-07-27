@@ -45,7 +45,7 @@ def write_run_metadata(run_dir: Path, extra: dict = None):
     metadata = {
         'run_id': run_dir.name,
         'model': agents_mod.OLLAMA_MODEL,
-        'provider': agents_mod.LLM_PROVIDER,
+        'provider': 'ollama',
         'ollama_host': agents_mod.OLLAMA_HOST,
         'temperature': 0.0,
         'think': False,
@@ -107,8 +107,9 @@ def normalize_overall_resolubility_status(res_out: dict) -> str:
         return 'fully_resolvable'
     if status in {'no_ambiguity', 'not_applicable'}:
         return 'no_ambiguity'
-    if status in {'non_resolvable', 'unresolved', 'blocking'}:
+    if status in {'non_resolvable', 'unresolved', 'blocking', 'parse_error'}:
         return 'non_resolvable'
+    print(f'[WARN] normalize_overall_resolubility_status: status desconhecido "{status}" → non_resolvable', file=sys.stderr)
     return 'non_resolvable'
 
 
@@ -175,7 +176,9 @@ def run_output_consolidator(execution_input: dict, amb_out: dict, cm_out: dict, 
             'requires_human_clarification': route == 'signaling'
         },
         'final_assessment_notes': (
-            'Structured output generated from supported interpretation.'
+            'Structuring failed: model returned unparsable response.'
+            if route == 'structured' and struct_out.get('requirement_structuring', {}).get('final_output_status') == 'parse_error'
+            else 'Structured output generated from supported interpretation.'
             if route == 'structured'
             else 'Automatic structuring skipped due to non_resolvable ambiguity; clarification required.'
         )

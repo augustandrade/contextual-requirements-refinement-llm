@@ -5,6 +5,7 @@ Public API: parse_yaml_block(raw, root_key) -> dict | None
 Everything else is an internal repair heuristic.
 """
 import re
+import sys
 
 import yaml
 
@@ -121,11 +122,14 @@ def parse_yaml_block(raw: str, root_key: str):
     attempts.append(_repair_yaml_embedded_quote(_repair_yaml_unterminated_quote(
         _repair_yaml_trailing_garbage(_repair_yaml_quotes(candidate)))))
 
-    for text in attempts:
+    for i, text in enumerate(attempts):
         try:
             parsed = yaml.safe_load(text)
         except Exception:
             continue
         if isinstance(parsed, dict) and root_key in parsed:
+            if i > 0:
+                repair_label = _REPAIRS[i].__name__ if i < len(_REPAIRS) else 'stacked'
+                print(f'[WARN] yaml_parser: repair #{i} ({repair_label}) succeeded for root_key={root_key!r}', file=sys.stderr)
             return parsed
     return None

@@ -103,7 +103,7 @@ def detect_concern_mixing(execution_input: dict) -> dict:
             'functional_action': None,
             'quality_criterion': None,
             'explanation': None,
-            'no_concern_mixing_reason': None
+            'no_concern_mixing_reason': 'model_output_unparsable'
         },
         'model_raw': raw if raw is not None else ''
     }
@@ -155,7 +155,7 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
             'execution_id': execution_input.get('execution_id'),
             'requirement_id': execution_input.get('requirement_id'),
             'ambiguity_resolubility': [],
-            'overall_resolubility': {'status': 'unresolved'}
+            'overall_resolubility': {'status': 'parse_error'}
         },
         'model_raw': raw if raw is not None else ''
     }
@@ -207,7 +207,7 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
             'structuring_summary': 'Model returned unparsable or invalid response',
             'structured_requirements': [],
             'unsupported_inferences_avoided': [],
-            'final_output_status': 'structured'
+            'final_output_status': 'parse_error'
         },
         'model_raw': raw if raw is not None else ''
     }
