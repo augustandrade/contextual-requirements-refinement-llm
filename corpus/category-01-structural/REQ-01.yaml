@@ -40,7 +40,7 @@ status: ready
 notes: "Concern mixing is not classified as linguistic ambiguity (Pohl §25.2). Agent 1a returns has_ambiguity: false; Agent 1b returns has_concern_mixing: true. Agent 2 is bypassed — orchestrator uses synthetic no_ambiguity block. Agent 3 decomposes based on Agent 1b output."
 manual_reference:
   C0:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - detect_concern_mixing
       - decompose_requirement
@@ -48,7 +48,7 @@ manual_reference:
       - preserve_requirement
 
   C1:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - detect_concern_mixing
       - decompose_requirement
@@ -56,7 +56,7 @@ manual_reference:
       - structure_with_template
 
   C2:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - detect_concern_mixing
       - decompose_requirement

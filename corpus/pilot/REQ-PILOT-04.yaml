@@ -4,7 +4,7 @@ category_name: "Pilot — control (clean requirement)"
 title: Unambiguous save operation in a document editor
 source:
   citation: Author-constructed
-base_requirement_text: "When the user selects the Save option, the system shall write the current document to disk and display a confirmation message."
+base_requirement_text: When the user selects the Save option, the system shall write the current document to disk and display a confirmation message.
 expected_problem: None — this requirement is intentionally free of ambiguity and concern mixing. It serves as a control case to verify that the pipeline does not introduce false positives.
 expected_behavior: Agent 1 must flag has_ambiguity as false and has_concern_mixing as false. Agent 2 must set status no_ambiguity with no structural_issue. Agent 3 must produce a single structured functional requirement without decomposition.
 contexts:
@@ -43,7 +43,7 @@ tags: [control, clean, no-ambiguity, no-concern-mixing, pilot]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - confirm_no_ambiguity
       - confirm_no_concern_mixing
@@ -64,7 +64,7 @@ manual_reference:
       - syntactic_structuring
 
   C1:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - confirm_no_ambiguity
       - confirm_no_concern_mixing
@@ -82,7 +82,7 @@ manual_reference:
       - syntactic_structuring
 
   C2:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - confirm_no_ambiguity
       - confirm_no_concern_mixing

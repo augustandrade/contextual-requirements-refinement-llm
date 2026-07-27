@@ -4,7 +4,7 @@ category_name: "Pilot — linguistic (referential ambiguity)"
 title: Pronoun with two competing antecedents in a healthcare alert context
 source:
   citation: Author-constructed
-base_requirement_text: "The nurse administers the prescribed medication to the patient. If she does not respond within 10 minutes, the system shall escalate the alert to the duty physician."
+base_requirement_text: The nurse administers the prescribed medication to the patient. If she does not respond within 10 minutes, the system shall escalate the alert to the duty physician.
 expected_problem: The pronoun "she" has two plausible antecedents (nurse, patient). Without context, it is impossible to determine which person's non-response triggers the escalation.
 expected_behavior: Agent 1 flags referential ambiguity. In C0 and C1 the ambiguity is unresolved. In C2 the business rule identifies the patient as the referent and the ambiguity becomes resolvable.
 contexts:
@@ -43,7 +43,7 @@ tags: [linguistic, referential, pronoun, pilot]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -62,7 +62,7 @@ manual_reference:
       - referential_clarity
 
   C1:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -79,7 +79,7 @@ manual_reference:
       - referential_clarity
 
   C2:
-    expected_resolubility: "resolvable"
+    expected_resolubility: resolvable
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity

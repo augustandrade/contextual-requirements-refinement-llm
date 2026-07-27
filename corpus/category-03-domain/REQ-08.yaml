@@ -4,7 +4,7 @@ category_name: Domain or context-specific ambiguities
 title: Continuous measurement evaluation ambiguity
 source:
   citation: Kamsties (2001)
-base_requirement_text: "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+base_requirement_text: Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.
 expected_problem: Missing rule for evaluating continuous measurement within the time window.
 expected_behavior: Mark as unresolved ambiguity unless context specifies the evaluation metric.
 contexts:
@@ -35,7 +35,7 @@ tags: [domain, unresolved, measurement-window]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -43,7 +43,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C1:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -51,7 +51,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C2:
-    expected_resolubility: "resolvable"
+    expected_resolubility: resolvable
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity

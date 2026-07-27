@@ -4,7 +4,7 @@ category_name: Linguistic and syntactic ambiguities
 title: Logical ambiguity with and or precedence
 source:
   citation: Pohl (2025)
-base_requirement_text: "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm."
+base_requirement_text: If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.
 expected_problem: Logical grouping is unclear due to and or precedence ambiguity.
 expected_behavior: Signal multiple logical interpretations and apply explicit grouping only when business logic is provided.
 contexts:
@@ -39,7 +39,7 @@ tags: [linguistic, logical-ambiguity, and-or]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -47,7 +47,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C1:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -55,7 +55,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C2:
-    expected_resolubility: "resolvable"
+    expected_resolubility: resolvable
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity

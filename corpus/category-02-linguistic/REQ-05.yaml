@@ -3,8 +3,8 @@ category_id: category-02-linguistic
 category_name: Linguistic and syntactic ambiguities
 title: Syntactic attachment ambiguity
 source:
-  citation: "Pohl (2025), Chapter 25, Example 25-4 (R2)"
-base_requirement_text: "The user enters the access card with the access code."
+  citation: Pohl (2025), Chapter 25, Example 25-4 (R2)
+base_requirement_text: The user enters the access card with the access code.
 expected_problem: "Unclear attachment: with the access code may describe the card or a separate user action."
 expected_behavior: Enumerate plausible interpretations and refine only when context defines interaction flow.
 contexts:
@@ -35,7 +35,7 @@ tags: [linguistic, syntactic-ambiguity, attachment]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -43,7 +43,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C1:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -51,7 +51,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C2:
-    expected_resolubility: "resolvable"
+    expected_resolubility: resolvable
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity

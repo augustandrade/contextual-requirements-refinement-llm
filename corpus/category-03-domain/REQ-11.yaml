@@ -4,7 +4,7 @@ category_name: Domain or context-specific ambiguities
 title: Operational technical gap in traffic filtering statement
 source:
   citation: Bashir et al. (2025)
-base_requirement_text: "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic."
+base_requirement_text: Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.
 expected_problem: Incomplete wording and missing technical definitions for filtering behavior and management traffic.
 expected_behavior: Identify operational gaps and require technical definitions before precise restructuring.
 contexts:
@@ -40,7 +40,7 @@ status: ready
 notes: "Technical gap here is a data-scope deficiency, not concern mixing — do not classify as concern_mixing (Pohl §25.2: concern mixing = functional action + quality criterion in the same sentence; this is an operational definition gap)."
 manual_reference:
   C0:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -48,7 +48,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C1:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -56,7 +56,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C2:
-    expected_resolubility: "resolvable"
+    expected_resolubility: resolvable
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity

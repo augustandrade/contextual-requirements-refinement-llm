@@ -4,7 +4,7 @@ category_name: "Pilot — structural (concern mixing)"
 title: Functional action with delivery time constraint combined in one sentence
 source:
   citation: Author-constructed
-base_requirement_text: "When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds."
+base_requirement_text: When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds.
 expected_problem: A functional requirement (send confirmation email) and a quality/timing requirement (within 30 seconds) are merged in a single sentence.
 expected_behavior: Agent 1 must flag has_concern_mixing as true and has_ambiguity as false. Agent 3 must decompose into one functional requirement and one quality requirement.
 contexts:
@@ -39,7 +39,7 @@ tags: [structural, concern-mixing, function-quality, pilot]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - detect_concern_mixing
       - decompose_requirement
@@ -59,7 +59,7 @@ manual_reference:
       - syntactic_structuring
 
   C1:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - detect_concern_mixing
       - decompose_requirement
@@ -78,7 +78,7 @@ manual_reference:
       - syntactic_structuring
 
   C2:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - detect_concern_mixing
       - decompose_requirement

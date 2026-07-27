@@ -3,9 +3,9 @@ category_id: category-04-control
 category_name: Control group
 title: Self-contained quality requirement
 source:
-  citation: "Pohl (2025), Chapter 1, Section 1.5"
+  citation: Pohl (2025), Chapter 1, Section 1.5
 base_requirement_text: "The system shall process 95 percent of all \"queries\" within 1.5 seconds and must not take longer than 4 seconds to process \"queries\" at any given time."
-expected_problem: "No ambiguity or structural defect expected. Quantified, objective, and verifiable quality requirement, requiring no external cross-reference to be understood. Domain-specific terms are typographically demarcated with quotes as controlled vocabulary, per the corpus's standardized requirement-writing convention and per Agent 1a's own documented exemption for typographically demarcated terms (Pohl 2025, §25.4.1) — this is the only departure from the source's exact surface form."
+expected_problem: No ambiguity or structural defect expected. Quantified, objective, and verifiable quality requirement, requiring no external cross-reference to be understood. Domain-specific terms are typographically demarcated with quotes as controlled vocabulary, per the corpus's standardized requirement-writing convention and per Agent 1a's own documented exemption for typographically demarcated terms (Pohl 2025, §25.4.1) — this is the only departure from the source's exact surface form.
 expected_behavior: Preserve quality requirement semantics and quantified thresholds.
 contexts:
   C0:
@@ -35,19 +35,19 @@ tags: [control, quality, preserve-structure]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - preserve_requirement
       - avoid_unsupported_inference
 
   C1:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - preserve_requirement
       - avoid_unsupported_inference
 
   C2:
-    expected_resolubility: "not_applicable"
+    expected_resolubility: not_applicable
     expected_actions:
       - preserve_requirement
       - avoid_unsupported_inference

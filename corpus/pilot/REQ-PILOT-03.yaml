@@ -4,7 +4,7 @@ category_name: "Pilot — domain (vagueness)"
 title: Eligibility criterion without measurable definition in an HR leave system
 source:
   citation: Author-constructed
-base_requirement_text: "The system shall automatically approve the leave request if the employee is eligible."
+base_requirement_text: The system shall automatically approve the leave request if the employee is eligible.
 expected_problem: The term "eligible" is vague — its extension is indeterminate without a formal eligibility definition, making automatic approval criteria impossible to implement.
 expected_behavior: Agent 1 flags vagueness ambiguity for "eligible". In C0 the ambiguity is unresolved. In C1 the general HR domain does not supply a specific rule. In C2 a business rule defines eligibility criteria precisely, making the ambiguity resolvable.
 contexts:
@@ -45,7 +45,7 @@ tags: [domain, vagueness, eligibility, pilot]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -65,7 +65,7 @@ manual_reference:
       - measurability
 
   C1:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -83,7 +83,7 @@ manual_reference:
       - measurability
 
   C2:
-    expected_resolubility: "resolvable"
+    expected_resolubility: resolvable
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity

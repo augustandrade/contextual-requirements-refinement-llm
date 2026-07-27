@@ -4,7 +4,7 @@ category_name: Domain or context-specific ambiguities
 title: Pragmatic ambiguity in dial tone generation
 source:
   citation: Kamsties (2001)
-base_requirement_text: "Generate a dial tone."
+base_requirement_text: Generate a dial tone.
 expected_problem: Dial tone parameters depend on the telecommunications standard and region.
 expected_behavior: Mark missing operational standard unless context specifies the applicable telephony profile.
 contexts:
@@ -35,7 +35,7 @@ tags: [domain, pragmatic-ambiguity, standards]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -43,7 +43,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C1:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -51,7 +51,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C2:
-    expected_resolubility: "resolvable"
+    expected_resolubility: resolvable
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity

@@ -4,7 +4,7 @@ category_name: Domain or context-specific ambiguities
 title: Boundary vagueness for medium sized vehicles
 source:
   citation: Pohl (2025)
-base_requirement_text: "All medium-sized vehicles shall be equipped with a navigation system."
+base_requirement_text: All medium-sized vehicles shall be equipped with a navigation system.
 expected_problem: medium-sized has no objective domain boundary.
 expected_behavior: Signal missing category definition unless context defines measurable boundaries.
 contexts:
@@ -35,7 +35,7 @@ tags: [domain, boundary-vagueness, definition-needed]
 status: ready
 manual_reference:
   C0:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -43,7 +43,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C1:
-    expected_resolubility: "unresolved"
+    expected_resolubility: unresolved
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
@@ -51,7 +51,7 @@ manual_reference:
       - avoid_unsupported_inference
 
   C2:
-    expected_resolubility: "resolvable"
+    expected_resolubility: resolvable
     expected_actions:
       - identify_ambiguity
       - classify_ambiguity
