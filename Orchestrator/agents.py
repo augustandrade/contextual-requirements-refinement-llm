@@ -114,13 +114,6 @@ def detect_ambiguity(execution_input: dict) -> dict:
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
 
-    # system_prompt alone is ~2.8k tokens (taxonomy + few-shot examples);
-    # num_ctx must cover prompt + user_content + num_predict or smaller
-    # models silently drop the output-format instructions and fall back
-    # to a schema of their own invention. num_predict is bumped too:
-    # requirements with several concurrent ambiguities (e.g. compound
-    # conditionals) produce long enough YAML to hit the default 1500-token
-    # cap mid-string, which truncates the response into invalid YAML.
     raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=3000)
 
     parsed, parse_err = parse_yaml_block(raw, 'ambiguity_detection')
@@ -141,8 +134,7 @@ def detect_concern_mixing(execution_input: dict) -> dict:
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
 
-    # same context-truncation risk as Agent 1a — see note there
-    raw = _call_model_ollama(system_prompt, user_content, num_ctx=4096)
+    raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192)
 
     parsed, parse_err = parse_yaml_block(raw, 'concern_mixing_detection')
     if parsed is not None:
@@ -203,7 +195,7 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
     system_prompt = _load_prompt(prompt_path)
 
     # Filter resolubility block to only the fields Agent 3's input schema expects
-    _crv_keep = {'ambiguity_id', 'fragment', 'supported_interpretation', 'allowed_structuring_action'}
+    _crv_keep = {'ambiguity_id', 'fragment', 'resolubility_status', 'supported_interpretation'}
     crv_raw = resolubility.get('contextual_resolubility_validation', {})
     filtered_ambs = [
         {k: v for k, v in item.items() if k in _crv_keep}
@@ -225,7 +217,7 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
 
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
     # Agent 3 receives requirement + context + Agent 2 output — needs larger ctx
-    raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192)
+    raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
 
     parsed, parse_err = parse_yaml_block(raw, 'requirement_structuring')
     if parsed is None:

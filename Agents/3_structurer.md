@@ -27,8 +27,8 @@ contextual_resolubility_validation:        # ambiguity_resolubility absent when 
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: ""
-      supported_interpretation: null    # string when resolvable; null otherwise
-      allowed_structuring_action: "use_supported_interpretation | flag_for_human_clarification | no_action_needed"
+      resolubility_status: "resolvable | unresolved | not_applicable"
+      supported_interpretation: null    # string when resolvable; absent otherwise
   overall_resolubility:
     status: "fully_resolvable | unresolved | no_ambiguity"
 ```
@@ -45,7 +45,7 @@ Follow these steps in order for each execution:
    - `false` → produce a single structured requirement.
 3. For each structured requirement:
    - Identify the type using the Classification decision rule below.
-   - Populate `fields` using only evidence from `base_requirement_text` and `controlled_context`. For any `ambiguity_resolubility` entry with `allowed_structuring_action: "use_supported_interpretation"`, use `supported_interpretation` as the field value instead of the original fragment. Leave fields empty when no evidence exists.
+   - Populate `fields` using only evidence from `base_requirement_text` and `controlled_context`. For any `ambiguity_resolubility` entry with `resolubility_status: "resolvable"`, use `supported_interpretation` as the field value instead of the original fragment. Leave fields empty when no evidence exists.
    - Write `final_statement` reflecting the populated `fields`. When `has_concern_mixing: true`, rewrite each decomposed requirement from its extracted fields. When `has_concern_mixing: false`, preserve the original phrasing except where a `use_supported_interpretation` action replaces a fragment.
    - Record structural decisions in `structuring_notes`.
 4. Set `final_output_status: "structured"`.
@@ -303,8 +303,8 @@ contextual_resolubility_validation:
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: "If it is offline"
+      resolubility_status: "resolvable"
       supported_interpretation: "The regional server is offline."
-      allowed_structuring_action: "use_supported_interpretation"
   overall_resolubility:
     status: "fully_resolvable"
 ```
@@ -313,7 +313,7 @@ contextual_resolubility_validation:
 # Reasoning
 # Step 1: status = fully_resolvable → proceed.
 # Step 2: has_concern_mixing = false → single structured requirement.
-# Step 3: AMB-01 allowed_structuring_action = use_supported_interpretation.
+# Step 3: AMB-01 resolubility_status = resolvable.
 #         Replace "it" with "the regional server" in condition and final_statement.
 #         Core predicate is "buffer" (system action) → functional_requirement.
 #         interaction_pattern = external_interface_or_reactive_behavior (reaction to external server state).
@@ -440,8 +440,7 @@ contextual_resolubility_validation:
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: "the threshold"
-      supported_interpretation: null
-      allowed_structuring_action: "flag_for_human_clarification"
+      resolubility_status: "unresolved"
   overall_resolubility:
     status: "unresolved"
 ```

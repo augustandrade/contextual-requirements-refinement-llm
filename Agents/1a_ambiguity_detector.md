@@ -34,10 +34,11 @@ When multiple fragments of the same sentence contribute to a single underlying a
 
 ## Required output format (strict YAML only)
 
+When `has_ambiguity: true`:
 ```yaml
 ambiguity_detection:
-  has_ambiguity: true | false
-  ambiguities:                        # list; empty when has_ambiguity: false
+  has_ambiguity: true
+  ambiguities:
     - ambiguity_id: "AMB-01"
       fragment: "..."                 # exact excerpt from base_requirement_text
       ambiguity_type: "lexical | syntactic | semantic | referential | vagueness"
@@ -45,18 +46,21 @@ ambiguity_detection:
       possible_interpretations:
         - "Interpretation A"
         - "Interpretation B"
-      textual_evidence:
-        - "..."                       # exact supporting excerpts from base_requirement_text
-      context_dependency: "none | low | moderate | high"
-  no_ambiguity_reason: "..."          # required when has_ambiguity: false; explain why there is no linguistic ambiguity
+```
+
+When `has_ambiguity: false`:
+```yaml
+ambiguity_detection:
+  has_ambiguity: false
+  no_ambiguity_reason: "..."         # explain why there is no linguistic ambiguity
 ```
 
 ## Output rules
 - Return ONLY the YAML document above. No explanatory text, delimiters, or commentary outside the YAML.
 - Always wrap string values in double quotes (`"..."`), never single quotes. If a value itself contains a double quote, escape it as `\"`.
-- `ambiguities` must be an empty list `[]` when `has_ambiguity: false`.
+- When `has_ambiguity: true`, omit `no_ambiguity_reason`. When `has_ambiguity: false`, omit `ambiguities`.
 - Each ambiguity must list at least two plausible `possible_interpretations`.
-- `fragment` and `textual_evidence` must be exact excerpts from `base_requirement_text`, not paraphrases.
+- `fragment` must be an exact excerpt from `base_requirement_text`, not a paraphrase.
 - `ambiguity_type` must be one of the five labels exactly as listed.
 
 ## Processing guidance
@@ -68,9 +72,8 @@ ambiguity_detection:
    - Semantic: logical operator precedence (AND/OR/NOT), implicit condition scope
    - Referential: pronouns or definite phrases with multiple antecedent candidates
    - Vagueness: terms or phrases whose extension is inherently indeterminate (no measurable membership boundary)
-3. For each genuine ambiguity: isolate the fragment, classify it, produce 2+ interpretations, attach supporting evidence.
+3. For each genuine ambiguity: isolate the fragment, classify it, produce 2+ interpretations.
 4. Apply the consolidation rule: merge fragments with the same root cause into one entry.
-5. Assign `context_dependency` based on whether external/contextual information is required to resolve the ambiguity.
 
 ## Examples (grounded in Pohl 2025)
 
@@ -91,10 +94,6 @@ ambiguity_detection:
       possible_interpretations:
         - "The operator uses the diagnostic panel to monitor the conveyor (panel is the instrument)."
         - "The operator monitors the specific conveyor that is equipped with the diagnostic panel (panel identifies the conveyor)."
-      textual_evidence:
-        - "monitors the conveyor with the diagnostic panel"
-      context_dependency: "high"
-  no_ambiguity_reason: null
 ```
 
 ### Example 2 — Referential ambiguity (Pohl §25.3.4)
@@ -114,11 +113,6 @@ ambiguity_detection:
       possible_interpretations:
         - "The scanner is faulty."
         - "The docking station is faulty."
-      textual_evidence:
-        - "connects the scanner to the docking station"
-        - "If it is faulty"
-      context_dependency: "high"
-  no_ambiguity_reason: null
 ```
 
 ### Example 3 — No ambiguity
@@ -130,7 +124,6 @@ base_requirement_text: "Upon successful payment authorisation, the system shall 
 # Output
 ambiguity_detection:
   has_ambiguity: false
-  ambiguities: []
   no_ambiguity_reason: "The requirement is linguistically unambiguous: each term has a single plausible meaning, there are no competing antecedents, and the sentence admits only one parse tree."
 ```
 
@@ -151,10 +144,7 @@ ambiguity_detection:
       possible_interpretations:
         - "An access code is valid if it conforms to the required format and length."
         - "An access code is valid if it is currently active and has not expired or been revoked."
-      textual_evidence:
-        - "valid access codes"
-      context_dependency: "high"
-  no_ambiguity_reason: null
+
 ```
 
 ### Example 5 — Semantic ambiguity (Pohl §25.3.3)
@@ -174,10 +164,7 @@ ambiguity_detection:
       possible_interpretations:
         - "Alert triggers when both temperature exceeds 90°C and pressure drops below 2 bar, independently of humidity (AND binds tighter than OR)."
         - "Alert triggers when temperature exceeds 90°C and at least one of the remaining conditions is met (OR binds tighter than AND)."
-      textual_evidence:
-        - "temperature exceeds 90°C and the pressure drops below 2 bar or the humidity rises above 80%"
-      context_dependency: "high"
-  no_ambiguity_reason: null
+
 ```
 
 ### Example 6 — Vagueness (Pohl §25.3.5)
@@ -197,9 +184,6 @@ ambiguity_detection:
       possible_interpretations:
         - "The interface responds within 100 milliseconds, consistent with human perception of immediacy."
         - "The interface responds within 1 second, a common usability threshold."
-      textual_evidence:
-        - "respond quickly"
-      context_dependency: "high"
-  no_ambiguity_reason: null
+
 ```
 

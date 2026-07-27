@@ -41,20 +41,26 @@ Apply this test: remove the quality criterion from the sentence. Does what remai
 
 ## Required output format (strict YAML only)
 
+When `has_concern_mixing: true`:
 ```yaml
 concern_mixing_detection:
-  has_concern_mixing: true | false
-  functional_action: "..."        # the functional verb phrase identified; null if has_concern_mixing: false
-  quality_criterion: "..."        # the quality criterion identified; null if has_concern_mixing: false
-  explanation: "..."              # one sentence justification; null if has_concern_mixing: false
-  no_concern_mixing_reason: "..."  # required when has_concern_mixing: false; null when has_concern_mixing: true
+  has_concern_mixing: true
+  functional_action: "..."        # exact excerpt from base_requirement_text
+  quality_criterion: "..."        # exact excerpt from base_requirement_text
+  explanation: "..."              # one sentence justification
+```
+
+When `has_concern_mixing: false`:
+```yaml
+concern_mixing_detection:
+  has_concern_mixing: false
+  no_concern_mixing_reason: "..."  # brief explanation of which exclusion applies
 ```
 
 ## Output rules
 - Return ONLY the YAML document above. No explanatory text, delimiters, or commentary outside the YAML.
 - Always wrap string values in double quotes (`"..."`), never single quotes. If a value itself contains a double quote, escape it as `\"`.
-- If `has_concern_mixing: false`, set `functional_action`, `quality_criterion`, and `explanation` to `null`, and populate `no_concern_mixing_reason` with a brief explanation of which exclusion applies.
-- If `has_concern_mixing: true`, set `no_concern_mixing_reason` to `null`.
+- When `has_concern_mixing: true`, omit `no_concern_mixing_reason`. When `has_concern_mixing: false`, omit `functional_action`, `quality_criterion`, and `explanation`.
 - `functional_action` and `quality_criterion` must be exact excerpts from `base_requirement_text`.
 
 ## Processing guidance
@@ -81,7 +87,6 @@ concern_mixing_detection:
   functional_action: "send a confirmation email to the customer"
   quality_criterion: "within 5 seconds"
   explanation: "The requirement simultaneously specifies a functional action (send email) and a timing quality criterion (within 5 seconds) that describes how fast the system must execute the action."
-  no_concern_mixing_reason: null
 ```
 
 ### Example 2 — Trigger condition, NOT concern mixing
@@ -93,9 +98,6 @@ base_requirement_text: "If the battery charge level drops below 20% for more tha
 # Output
 concern_mixing_detection:
   has_concern_mixing: false
-  functional_action: null
-  quality_criterion: null
-  explanation: null
   no_concern_mixing_reason: "The phrase 'for more than 10 minutes' is a trigger condition (persistence window) defining when the requirement applies, not a measurable property of how the system executes the action."
 ```
 
@@ -108,9 +110,6 @@ base_requirement_text: "All active subscriptions shall be included in the monthl
 # Output
 concern_mixing_detection:
   has_concern_mixing: false
-  functional_action: null
-  quality_criterion: null
-  explanation: null
   no_concern_mixing_reason: "The phrase 'active subscriptions' is a subject-classification attribute that identifies which entities the requirement applies to, not a quality criterion describing how the system executes the action."
 ```
 
@@ -123,9 +122,6 @@ base_requirement_text: "When the user selects the Save option, the system shall 
 # Output
 concern_mixing_detection:
   has_concern_mixing: false
-  functional_action: null
-  quality_criterion: null
-  explanation: null
   no_concern_mixing_reason: "The sentence lists two sequential functional actions ('write the current document to disk' and 'display a confirmation message'); neither constitutes a quality criterion describing how the system performs."
 ```
 
@@ -138,9 +134,6 @@ base_requirement_text: "The system shall complete 98 percent of all \"transactio
 # Output
 concern_mixing_detection:
   has_concern_mixing: false
-  functional_action: null
-  quality_criterion: null
-  explanation: null
   no_concern_mixing_reason: "Removing the timing clauses leaves 'the system shall complete transactions', which is not an independently meaningful functional action — it merely restates the operation the performance metric already measures. The sentence is a self-contained quality requirement per Pohl (2025) §3.2.2."
 ```
 
