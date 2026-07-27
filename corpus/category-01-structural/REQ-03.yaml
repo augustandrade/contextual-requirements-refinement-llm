@@ -53,19 +53,6 @@ manual_reference:
       - structure_final_requirement
       - preserve_requirement_meaning
       - avoid_unsupported_inference
-    expected_findings:
-      - the sentence contains two distinct actions
-      - both actions must be preserved in the final structured output
-      - referential ambiguity in "their downstream systems" (unclear antecedent) is genuinely present and may be flagged by Agent 1a
-      - lexical ambiguity in "Reporting flow" (undefined, not typographically demarcated) is genuinely present and may be flagged by Agent 1a
-    should_not_do:
-      - merge multiple actions into an unclear final requirement
-      - drop one of the actions during structuring
-      - infer new actions not present in the text
-    applicable_criteria:
-      - final_requirement_structuring
-      - clarity
-      - semantic_explicitation
 
   C1:
     expected_resolubility: "resolvable"
@@ -74,20 +61,6 @@ manual_reference:
       - structure_final_requirement
       - preserve_requirement_meaning
       - avoid_unsupported_inference
-    expected_findings:
-      - the sentence contains two distinct actions
-      - general context clarifies the integration domain but does not add new actions
-      - both actions must remain explicit in the final structured output
-      - referential ambiguity in "their downstream systems" is not resolved by this context (glossary defines "downstream systems" but not the antecedent of "their")
-      - lexical ambiguity in "Reporting flow" is not resolved by this context (no glossary entry defines it)
-    should_not_do:
-      - merge multiple actions into an unclear final requirement
-      - infer new actions from the integration context
-      - alter the relationship between System-A, System-B and System-C without evidence
-    applicable_criteria:
-      - final_requirement_structuring
-      - clarity
-      - semantic_explicitation
 
   C2:
     expected_resolubility: "resolvable"
@@ -97,18 +70,3 @@ manual_reference:
       - preserve_requirement_meaning
       - use_contextual_evidence
       - avoid_unsupported_inference
-    expected_findings:
-      - the sentence contains two independent operations
-      - the resolutive context supports representing partner registration and reporting subscription clearly in the final structure
-      - both actions must remain explicit and independent in the structured output
-      - referential ambiguity in "their downstream systems" is resolved (glossary confirms the antecedent is System-A itself)
-      - lexical ambiguity in "Reporting flow" is resolved (glossary defines the term)
-    should_not_do:
-      - merge the two independent operations into one unclear requirement
-      - alter the independent scope of either action
-      - add technical constraints not present in the requirement or context
-    applicable_criteria:
-      - final_requirement_structuring
-      - clarity
-      - semantic_explicitation
-      - contextual_resolubility

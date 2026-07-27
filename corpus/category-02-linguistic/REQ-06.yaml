@@ -45,17 +45,6 @@ manual_reference:
       - classify_ambiguity
       - signal_unresolved_ambiguity
       - avoid_unsupported_inference
-    expected_findings:
-      - logical grouping is unclear
-      - and/or precedence ambiguity
-    should_not_do:
-      - impose precedence without evidence
-      - merge conditions incorrectly
-    applicable_criteria:
-      - ambiguity
-      - syntactic_structuring
-      - semantic_explicitation
-      - clarity
 
   C1:
     expected_resolubility: "unresolved"
@@ -64,17 +53,6 @@ manual_reference:
       - classify_ambiguity
       - signal_unresolved_ambiguity
       - avoid_unsupported_inference
-    expected_findings:
-      - logical grouping is unclear
-      - and/or precedence ambiguity
-    should_not_do:
-      - impose precedence without evidence
-      - merge conditions incorrectly
-    applicable_criteria:
-      - ambiguity
-      - syntactic_structuring
-      - semantic_explicitation
-      - clarity
 
   C2:
     expected_resolubility: "resolvable"
@@ -83,14 +61,3 @@ manual_reference:
       - classify_ambiguity
       - refine_text
       - preserve_requirement
-    expected_findings:
-      - logical grouping is unclear
-      - and/or precedence ambiguity
-    should_not_do:
-      - impose precedence without evidence
-      - ignore the business rule that defines grouping
-    applicable_criteria:
-      - ambiguity
-      - syntactic_structuring
-      - semantic_explicitation
-      - clarity

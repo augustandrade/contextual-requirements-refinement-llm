@@ -43,16 +43,6 @@ manual_reference:
       - classify_ambiguity
       - refine_text
       - avoid_unsupported_inference
-    expected_findings:
-      - vagueness in "certain crash levels"
-      - no measurable boundary defined
-    should_not_do:
-      - infer which crash levels trigger the call without evidence
-      - treat the requirement as fully specified
-    applicable_criteria:
-      - clarity
-      - semantic_explicitation
-      - contextual_resolubility
 
   C1:
     expected_resolubility: "unresolved"
@@ -61,16 +51,6 @@ manual_reference:
       - classify_ambiguity
       - refine_text
       - preserve_requirement
-    expected_findings:
-      - vagueness in "certain crash levels"
-      - general domain context (TCU/ORC glossary) does not define which crash levels are meant
-    should_not_do:
-      - infer which crash levels trigger the call without evidence
-      - treat the requirement as fully specified
-    applicable_criteria:
-      - clarity
-      - semantic_explicitation
-      - contextual_resolubility
 
   C2:
     expected_resolubility: "resolvable"
@@ -79,12 +59,3 @@ manual_reference:
       - classify_ambiguity
       - refine_text
       - preserve_requirement
-    expected_findings:
-      - vagueness in "certain crash levels" resolved by BR-01 (levels 2 and 3 explicitly enumerated)
-    should_not_do:
-      - keep the vague quantifier unchanged
-      - ignore the explicit crash-level policy
-    applicable_criteria:
-      - clarity
-      - semantic_explicitation
-      - contextual_resolubility

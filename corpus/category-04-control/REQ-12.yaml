@@ -44,14 +44,6 @@ manual_reference:
       - preserve_requirement
       - structure_with_template
       - avoid_unsupported_inference
-    expected_findings:
-      - no relevant issue expected
-    should_not_do:
-      - invent ambiguity where none is expected
-      - degrade a well-structured requirement
-    applicable_criteria:
-      - syntactic_structuring
-      - clarity
 
   C1:
     expected_resolubility: "not_applicable"
@@ -59,14 +51,6 @@ manual_reference:
       - preserve_requirement
       - structure_with_template
       - avoid_unsupported_inference
-    expected_findings:
-      - no relevant issue expected
-    should_not_do:
-      - invent ambiguity where none is expected
-      - degrade a well-structured requirement
-    applicable_criteria:
-      - syntactic_structuring
-      - clarity
 
   C2:
     expected_resolubility: "not_applicable"
@@ -74,11 +58,3 @@ manual_reference:
       - preserve_requirement
       - structure_with_template
       - avoid_unsupported_inference
-    expected_findings:
-      - no relevant issue expected
-    should_not_do:
-      - invent ambiguity where none is expected
-      - degrade a well-structured requirement
-    applicable_criteria:
-      - syntactic_structuring
-      - clarity

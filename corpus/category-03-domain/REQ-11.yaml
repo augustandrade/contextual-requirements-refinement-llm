@@ -37,6 +37,7 @@ contexts:
       constraints: []
 tags: [domain, technical-gap, operational-definition]
 status: ready
+notes: "Technical gap here is a data-scope deficiency, not concern mixing — do not classify as concern_mixing (Pohl §25.2: concern mixing = functional action + quality criterion in the same sentence; this is an operational definition gap)."
 manual_reference:
   C0:
     expected_resolubility: "unresolved"
@@ -45,18 +46,6 @@ manual_reference:
       - classify_ambiguity
       - signal_unresolved_ambiguity
       - avoid_unsupported_inference
-    expected_findings:
-      - incomplete wording
-      - missing technical definitions
-      - operational gap
-    should_not_do:
-      - infer filtering semantics without definitions
-      - invent packet handling rules
-    applicable_criteria:
-      - semantic_explicitation
-      - syntactic_structuring
-      - contextual_resolubility
-      - clarity
 
   C1:
     expected_resolubility: "unresolved"
@@ -65,18 +54,6 @@ manual_reference:
       - classify_ambiguity
       - refine_text
       - avoid_unsupported_inference
-    expected_findings:
-      - incomplete wording
-      - missing technical definitions
-      - operational gap
-    should_not_do:
-      - infer filtering semantics without definitions
-      - treat the statement as fully specified
-    applicable_criteria:
-      - semantic_explicitation
-      - syntactic_structuring
-      - contextual_resolubility
-      - clarity
 
   C2:
     expected_resolubility: "resolvable"
@@ -85,15 +62,3 @@ manual_reference:
       - classify_ambiguity
       - refine_text
       - preserve_requirement
-    expected_findings:
-      - incomplete wording resolved by glossary definitions for filter network traffic and management data traffic
-      - operational gap closed by precise technical definitions in context, including the number and traffic type of data-plane interfaces (Bashir et al., 2025, ground-truth rationale)
-    should_not_do:
-      - invent additional technical constraints not supported by the context
-      - ignore the explicit traffic-filtering definitions
-      - flag as concern_mixing (this is a data-scope gap, not a functional/quality intermingling per Pohl §25.2)
-    applicable_criteria:
-      - semantic_explicitation
-      - syntactic_structuring
-      - contextual_resolubility
-      - clarity

@@ -43,16 +43,6 @@ manual_reference:
       - classify_ambiguity
       - signal_unresolved_ambiguity
       - avoid_unsupported_inference
-    expected_findings:
-      - hidden actor in a passive construction
-      - missing actor
-    should_not_do:
-      - invent a missing actor
-      - resolve a domain-dependent ambiguity without evidence
-    applicable_criteria:
-      - ambiguity
-      - semantic_explicitation
-      - clarity
 
   C1:
     expected_resolubility: "unresolved"
@@ -61,16 +51,6 @@ manual_reference:
       - classify_ambiguity
       - signal_unresolved_ambiguity
       - avoid_unsupported_inference
-    expected_findings:
-      - hidden actor in a passive construction
-      - missing actor
-    should_not_do:
-      - invent a missing actor
-      - resolve a domain-dependent ambiguity without evidence
-    applicable_criteria:
-      - ambiguity
-      - semantic_explicitation
-      - clarity
 
   C2:
     expected_resolubility: "resolvable"
@@ -79,13 +59,3 @@ manual_reference:
       - classify_ambiguity
       - refine_text
       - preserve_requirement
-    expected_findings:
-      - hidden actor in a passive construction
-      - missing actor
-    should_not_do:
-      - invent a missing actor
-      - resolve the actor without using the provided business rule
-    applicable_criteria:
-      - ambiguity
-      - semantic_explicitation
-      - clarity

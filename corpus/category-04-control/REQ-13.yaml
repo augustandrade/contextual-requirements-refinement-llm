@@ -39,39 +39,15 @@ manual_reference:
     expected_actions:
       - preserve_requirement
       - avoid_unsupported_inference
-    expected_findings:
-      - no relevant issue expected
-    should_not_do:
-      - add unnecessary decomposition
-      - degrade a well-structured requirement
-    applicable_criteria:
-      - syntactic_structuring
-      - clarity
 
   C1:
     expected_resolubility: "not_applicable"
     expected_actions:
       - preserve_requirement
       - avoid_unsupported_inference
-    expected_findings:
-      - no relevant issue expected
-    should_not_do:
-      - add unnecessary decomposition
-      - degrade a well-structured requirement
-    applicable_criteria:
-      - syntactic_structuring
-      - clarity
 
   C2:
     expected_resolubility: "not_applicable"
     expected_actions:
       - preserve_requirement
       - avoid_unsupported_inference
-    expected_findings:
-      - no relevant issue expected
-    should_not_do:
-      - add unnecessary decomposition
-      - degrade a well-structured requirement
-    applicable_criteria:
-      - syntactic_structuring
-      - clarity

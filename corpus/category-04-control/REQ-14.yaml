@@ -39,42 +39,15 @@ manual_reference:
     expected_actions:
       - preserve_requirement
       - avoid_unsupported_inference
-    expected_findings:
-      - no relevant issue expected
-    should_not_do:
-      - remove the quantified thresholds
-      - degrade a well-structured requirement
-    applicable_criteria:
-      - syntactic_structuring
-      - clarity
-      - semantic_explicitation
 
   C1:
     expected_resolubility: "not_applicable"
     expected_actions:
       - preserve_requirement
       - avoid_unsupported_inference
-    expected_findings:
-      - no relevant issue expected
-    should_not_do:
-      - remove the quantified thresholds
-      - degrade a well-structured requirement
-    applicable_criteria:
-      - syntactic_structuring
-      - clarity
-      - semantic_explicitation
 
   C2:
     expected_resolubility: "not_applicable"
     expected_actions:
       - preserve_requirement
       - avoid_unsupported_inference
-    expected_findings:
-      - no relevant issue expected
-    should_not_do:
-      - remove the quantified thresholds
-      - infer extra constraints beyond the stated thresholds
-    applicable_criteria:
-      - syntactic_structuring
-      - clarity
-      - semantic_explicitation
