@@ -46,9 +46,8 @@ Follow these steps in order for each execution:
 3. For each structured requirement:
    - Identify the type using the Classification decision rule below.
    - Populate `fields` using only evidence from `base_requirement_text` and `controlled_context`. For any `ambiguity_resolubility` entry with `resolubility_status: "resolvable"`, use `supported_interpretation` as the field value instead of the original fragment. Leave fields empty when no evidence exists.
-   - Write `final_statement` reflecting the populated `fields`. When `has_concern_mixing: true`, rewrite each decomposed requirement from its extracted fields. When `has_concern_mixing: false`, preserve the original phrasing except where a `use_supported_interpretation` action replaces a fragment.
+   - Write `final_statement` reflecting the populated `fields`. When `has_concern_mixing: true`, rewrite each decomposed requirement from its extracted fields. When `has_concern_mixing: false`, preserve the original phrasing except where a `resolvable` ambiguity replaces a fragment with `supported_interpretation`.
    - Record structural decisions in `structuring_notes`.
-4. Set `final_output_status: "structured"`.
 
 Behavior
 - For functional requirements, use a controlled structure with condition, system/component, modality, action, object, and actor when evidence exists.
@@ -84,49 +83,86 @@ When `concern_mixing_detection.has_concern_mixing: true`, the sentence contains 
 | `none` | No condition — the requirement applies unconditionally (typical for constraints) |
 
 Expected output schema
+
+The `fields` block varies by `type`. Include only the fields that apply to the type being structured.
+
+When `type: "functional_requirement"`:
 ```yaml
 requirement_structuring:
-  execution_id: null           # filled by the orchestrator post-hoc; keep null
-  requirement_id: null         # filled by the orchestrator post-hoc; keep null
-  context_condition: null              # orchestrator injects this after parsing
-
   structuring_summary: ""
-
   structured_requirements:
     - structured_id: "REQ-XX-SR-01"
-      type: "functional_requirement | quality_requirement | constraint"
-
+      type: "functional_requirement"
       source_fragments:
         - ""
-
-      based_on_resolubility:
+      based_on_resolubility:        # omit when no ambiguities were applied
         ambiguity_ids:
           - "AMB-01"
-        applied_action: "use_supported_interpretation | no_action_needed"
-
       fields:
-        condition: ""
-        condition_type: "logical | temporal | event | none"
+        condition: ""               # omit when no condition
+        condition_type: "logical | temporal | event"   # omit when no condition
         system_or_component: ""
-        interaction_pattern: "autonomous_system_activity | user_interaction | external_interface_or_reactive_behavior | not_applicable"
-        actor: ""
+        interaction_pattern: "autonomous_system_activity | user_interaction | external_interface_or_reactive_behavior"
+        actor: ""                   # omit when no actor
         modality: "shall | should | may | unspecified"
         action: ""
         object: ""
-        quality_attribute: ""
-        measurable_criterion: ""
-        constraint_category: ""
-        affected_element: ""
-
       final_statement: ""
-
       structuring_notes:
         - ""
-
   unsupported_inferences_avoided:
     - ""
+```
 
-  final_output_status: "structured"
+When `type: "quality_requirement"`:
+```yaml
+requirement_structuring:
+  structuring_summary: ""
+  structured_requirements:
+    - structured_id: "REQ-XX-SR-01"
+      type: "quality_requirement"
+      source_fragments:
+        - ""
+      based_on_resolubility:        # omit when no ambiguities were applied
+        ambiguity_ids:
+          - "AMB-01"
+      fields:
+        condition: ""               # omit when no condition
+        condition_type: "logical | temporal | event"   # omit when no condition
+        system_or_component: ""
+        modality: "shall | should | may | unspecified"
+        quality_attribute: ""
+        measurable_criterion: ""
+        affected_element: ""        # omit when not identifiable
+      final_statement: ""
+      structuring_notes:
+        - ""
+  unsupported_inferences_avoided:
+    - ""
+```
+
+When `type: "constraint"`:
+```yaml
+requirement_structuring:
+  structuring_summary: ""
+  structured_requirements:
+    - structured_id: "REQ-XX-SR-01"
+      type: "constraint"
+      source_fragments:
+        - ""
+      based_on_resolubility:        # omit when no ambiguities were applied
+        ambiguity_ids:
+          - "AMB-01"
+      fields:
+        system_or_component: ""
+        modality: "shall | should | may | unspecified"
+        constraint_category: ""
+        affected_element: ""
+      final_statement: ""
+      structuring_notes:
+        - ""
+  unsupported_inferences_avoided:
+    - ""
 ```
 
 ## Examples
@@ -154,25 +190,19 @@ contextual_resolubility_validation:
 #         condition = "user clicks the Export button" → type = event.
 #         Triggering subject is a human actor (user) → user_interaction.
 #         actor = "the user".
-# Step 4: No ambiguities to resolve. Preserve original phrasing. final_output_status = structured.
+# Step 4: No ambiguities to resolve. Preserve original phrasing.
 #         Inference avoided: report format details, record filters, storage destination.
 ```
 
 Output:
 ```yaml
 requirement_structuring:
-  execution_id: null
-  requirement_id: null
-  context_condition: null
   structuring_summary: "Requirement is unambiguous and atomic. Structured as a single functional requirement; the triggering actor is a human user."
   structured_requirements:
     - structured_id: "REQ-XX-SR-01"
       type: "functional_requirement"
       source_fragments:
         - "When the user clicks the Export button, the system shall generate a downloadable PDF report of all active records."
-      based_on_resolubility:
-        ambiguity_ids: []
-        applied_action: "no_action_needed"
       fields:
         condition: "the user clicks the Export button"
         condition_type: "event"
@@ -182,15 +212,10 @@ requirement_structuring:
         modality: "shall"
         action: "generate"
         object: "a downloadable PDF report of all active records"
-        quality_attribute: null
-        measurable_criterion: null
-        constraint_category: null
-        affected_element: null
       final_statement: "When the user clicks the Export button, the system shall generate a downloadable PDF report of all active records."
       structuring_notes:
         - "The user is the triggering actor; interaction_pattern set to user_interaction."
   unsupported_inferences_avoided: []
-  final_output_status: "structured"
 ```
 
 ---
@@ -226,31 +251,20 @@ contextual_resolubility_validation:
 Output:
 ```yaml
 requirement_structuring:
-  execution_id: null
-  requirement_id: null
-  context_condition: null
   structuring_summary: "Concern-mixing detected per Pohl §25.2. Decomposed into one functional requirement (close emergency valve) and one quality requirement (500 ms response time)."
   structured_requirements:
     - structured_id: "REQ-XX-SR-01"
       type: "functional_requirement"
       source_fragments:
         - "the system shall close the emergency valve"
-      based_on_resolubility:
-        ambiguity_ids: []
-        applied_action: "no_action_needed"
       fields:
         condition: "a pressure sensor reading exceeds the safety threshold"
         condition_type: "event"
         system_or_component: "the system"
         interaction_pattern: "external_interface_or_reactive_behavior"
-        actor: null
         modality: "shall"
         action: "close"
         object: "the emergency valve"
-        quality_attribute: null
-        measurable_criterion: null
-        constraint_category: null
-        affected_element: "emergency valve"
       final_statement: "When a pressure sensor reading exceeds the safety threshold, the system shall close the emergency valve."
       structuring_notes:
         - "Extracted functional action from concern-mixed requirement. Response time constraint moved to separate quality requirement."
@@ -258,27 +272,18 @@ requirement_structuring:
       type: "quality_requirement"
       source_fragments:
         - "within 500 milliseconds"
-      based_on_resolubility:
-        ambiguity_ids: []
-        applied_action: "no_action_needed"
       fields:
         condition: "after pressure threshold is exceeded"
         condition_type: "event"
         system_or_component: "the system"
-        interaction_pattern: "not_applicable"
-        actor: null
         modality: "shall"
-        action: null
-        object: null
         quality_attribute: "response time"
         measurable_criterion: "within 500 milliseconds of threshold exceedance"
-        constraint_category: null
         affected_element: "emergency valve closure"
       final_statement: "The emergency valve shall be closed within 500 milliseconds of the pressure sensor reading exceeding the safety threshold."
       structuring_notes:
         - "Extracted quality criterion (response time) as a separate artefact per Pohl §25.2."
   unsupported_inferences_avoided: []
-  final_output_status: "structured"
 ```
 
 ---
@@ -317,15 +322,12 @@ contextual_resolubility_validation:
 #         Replace "it" with "the regional server" in condition and final_statement.
 #         Core predicate is "buffer" (system action) → functional_requirement.
 #         interaction_pattern = external_interface_or_reactive_behavior (reaction to external server state).
-# Step 4: final_output_status = structured. Inference avoided: buffering duration, capacity, retry behaviour.
+# Step 4: Inference avoided: buffering duration, capacity, retry behaviour.
 ```
 
 Output:
 ```yaml
 requirement_structuring:
-  execution_id: null
-  requirement_id: null
-  context_condition: null
   structuring_summary: "Referential ambiguity resolved via business rule BR-01. Requirement rewritten with the explicit referent (regional server) and structured as a single functional requirement."
   structured_requirements:
     - structured_id: "REQ-XX-SR-01"
@@ -335,26 +337,19 @@ requirement_structuring:
       based_on_resolubility:
         ambiguity_ids:
           - "AMB-01"
-        applied_action: "use_supported_interpretation"
       fields:
         condition: "the regional server is offline"
         condition_type: "logical"
         system_or_component: "the system"
         interaction_pattern: "external_interface_or_reactive_behavior"
-        actor: null
         modality: "shall"
         action: "buffer"
         object: "the telemetry data"
-        quality_attribute: null
-        measurable_criterion: null
-        constraint_category: null
-        affected_element: "telemetry data"
       final_statement: "If the regional server is offline, the system shall buffer the telemetry data locally."
       structuring_notes:
         - "Ambiguous pronoun 'it' replaced by the explicit referent 'the regional server' as authorized by the supported interpretation (BR-01)."
   unsupported_inferences_avoided:
     - "Did not assume buffering duration, capacity, or retry behaviour — not stated in the requirement or context."
-  final_output_status: "structured"
 ```
 
 ---
@@ -383,45 +378,30 @@ contextual_resolubility_validation:
 #         condition = null; condition_type = none (applies unconditionally; no triggering condition stated).
 #         interaction_pattern = not_applicable (constraints carry no interaction pattern).
 #         constraint_category = data_residency.
-# Step 4: No ambiguities to resolve. Preserve original phrasing. final_output_status = structured.
+# Step 4: No ambiguities to resolve. Preserve original phrasing.
 #         Inference avoided: specific providers, encryption requirements, transfer protocols.
 ```
 
 Output:
 ```yaml
 requirement_structuring:
-  execution_id: null
-  requirement_id: null
-  context_condition: null
   structuring_summary: "Data residency mandate classified as a single constraint per Pohl §3.2: limits design choices without specifying system behaviour."
   structured_requirements:
     - structured_id: "REQ-XX-SR-01"
       type: "constraint"
       source_fragments:
         - "All personal data processed by the system shall be stored exclusively in data centres located within the European Union."
-      based_on_resolubility:
-        ambiguity_ids: []
-        applied_action: "no_action_needed"
       fields:
-        condition: null
-        condition_type: "none"
         system_or_component: "the system"
-        interaction_pattern: "not_applicable"
-        actor: null
         modality: "shall"
-        action: null
-        object: null
-        quality_attribute: null
-        measurable_criterion: null
         constraint_category: "data_residency"
         affected_element: "personal data storage"
       final_statement: "All personal data processed by the system shall be stored exclusively in data centres located within the European Union."
       structuring_notes:
         - "No system action stated; requirement limits storage location choices → constraint."
-        - "interaction_pattern set to not_applicable; constraint_category set to data_residency."
+        - "constraint_category set to data_residency."
   unsupported_inferences_avoided:
     - "Did not infer which providers, encryption requirements, or transfer protocols apply — none stated in the requirement."
-  final_output_status: "structured"
 ```
 
 ---
@@ -460,7 +440,9 @@ Output:
 Strict output rules
 - Return ONLY the YAML document above. Do not include any explanatory text, delimiters, or commentary.
 - Always wrap string values in double quotes (`"..."`), never single quotes. If a value itself contains a double quote, escape it as `\"`. Never nest an unescaped quote of the same kind inside a quoted string — this breaks YAML parsing.
-- If a field has no value, use `null` for scalar fields and `[]` for list fields.
+- Omit `based_on_resolubility` when no ambiguities were applied to the structured requirement.
+- Omit optional fields (condition, condition_type, actor, affected_element) when no evidence exists for them.
+- When a list has no entries, use `[]`.
 
 ## User turn template (inject per execution — all keys at top level)
 ```yaml
