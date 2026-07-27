@@ -1,38 +1,71 @@
-# Local LLM Setup
+# Local Setup
 
-This orchestrator is provider-agnostic. For the TCC, the default runtime is local.
-
-Recommended local model:
-- Qwen2.5 7B Instruct GGUF
-
-Why this default:
-- Good balance of quality and memory usage on a MacBook Pro M5
-- No Meta Llama license required
-- Works well with `llama-cpp-python`
-
-Environment variables:
+## Requirements
 
 ```bash
-export LLM_PROVIDER=local
-export LLM_LOCAL_MODEL_PATH="/absolute/path/to/Qwen2.5-7B-Instruct-GGUF.gguf"
+pip install -r requirements.txt
 ```
 
-Optional future providers:
-- `LLM_PROVIDER=openai` with `OPENAI_API_KEY`
-- `LLM_PROVIDER=mock` for offline tests
-
-Suggested install for local execution:
+Ollama must be running locally with the target model pulled:
 
 ```bash
-pip install pyyaml openai llama-cpp-python
+ollama pull qwen2.5:7b
 ```
 
-Run the pipeline:
+## Environment variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `LLM_PROVIDER` | `ollama` | `ollama` or `mock` |
+| `OLLAMA_MODEL` | `qwen3.5:latest` | Any model available in your Ollama instance |
+| `OLLAMA_HOST` | `http://localhost:11434` | Ollama server URL |
+| `OLLAMA_TIMEOUT` | `600` | Request timeout in seconds |
+
+## Running the corpus
 
 ```bash
-python3 TCC/Orchestrator/run_pipeline.py
+# Full corpus (42 executions)
+python3 process_corpus.py
+
+# Smoke test — 1 req per category, 1 context (~4 executions)
+python3 process_corpus.py --subset
+
+# Pilot corpus (12 executions)
+python3 process_corpus.py --manifest pilot-manifest.yaml
+
+# Resume an interrupted run
+python3 process_corpus.py --resume run_001__qwen2.5-7b__2026-07-27
+
+# Use a different model
+OLLAMA_MODEL=qwen2.5:14b python3 process_corpus.py --label v2
 ```
 
-Notes:
-- Keep the `LLM_LOCAL_MODEL_PATH` pointed at a GGUF file, not a Meta Llama-only package.
-- If you later want to switch providers, only the environment variables need to change.
+## Offline / mock mode
+
+```bash
+LLM_PROVIDER=mock python3 process_corpus.py --subset
+```
+
+Mock mode returns static valid responses without calling Ollama. Useful for testing pipeline routing and output structure.
+
+## Output structure
+
+```
+outputs/runs/<run_id>/<REQ-ID>/<CTX>/
+    01_input.json
+    02a_ambiguity_detection.json
+    02b_concern_mixing_detection.json
+    03_resolubility_validation.json
+    04_requirement_structuring.json
+    05_final_output.json
+```
+
+## Analysis
+
+```bash
+# Evaluate a run against the corpus manual reference
+python3 analysis/evaluate.py
+
+# Generate charts from evaluation results
+python3 analysis/generate_charts.py
+```
