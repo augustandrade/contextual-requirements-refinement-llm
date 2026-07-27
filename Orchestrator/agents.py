@@ -4,17 +4,8 @@ from pathlib import Path
 
 import yaml
 
-try:
-    from openai import OpenAI
-    _openai_client = None
-except Exception:  # optional dependency for future cloud backends
-    OpenAI = None
-    _openai_client = None
-
-# Provider configuration: 'local' | 'openai' | 'ollama' | 'mock'
+# Provider configuration: 'ollama' | 'local' | 'mock'
 LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'ollama')
-OPENAI_MODEL = os.getenv('OPENAI_MODEL', 'gpt-4o-mini')
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'qwen3.5:latest')
 OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
 OLLAMA_TIMEOUT = int(os.getenv('OLLAMA_TIMEOUT', '600'))
@@ -28,38 +19,6 @@ LOCAL_MODEL_PATH = os.getenv('LLM_LOCAL_MODEL_PATH', '')  # path to ggml model f
 # lazy imports for local runtime
 _llama_client = None
 _llama_model_path = None
-
-def _ensure_openai_client():
-    global _openai_client
-    if _openai_client is not None:
-        return _openai_client
-    if OpenAI is None:
-        raise EnvironmentError('openai package is not installed. Install it if you want to use LLM_PROVIDER=openai')
-    if not OPENAI_API_KEY:
-        raise EnvironmentError('OPENAI_API_KEY is not set for OpenAI provider')
-    _openai_client = OpenAI(api_key=OPENAI_API_KEY)
-    return _openai_client
-
-def _call_model_openai(system_prompt: str, user_content: str, timeout: int = 60):
-    client = _ensure_openai_client()
-    messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": user_content}
-    ]
-    resp = client.chat.completions.create(
-        model=OPENAI_MODEL,
-        messages=messages,
-        temperature=0.0,
-        max_tokens=2000,
-    )
-    choice = resp.choices[0]
-    message = getattr(choice, 'message', None)
-    if message is not None:
-        content = getattr(message, 'content', None)
-        if content:
-            return content
-    return getattr(choice, 'text', None) or str(choice)
-
 
 def _load_prompt(path: Path) -> str:
     with open(path, 'r', encoding='utf-8') as f:
@@ -313,9 +272,7 @@ def detect_ambiguity(execution_input: dict) -> dict:
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
 
-    if LLM_PROVIDER == 'openai':
-        raw = _call_model_openai(system_prompt, user_content)
-    elif LLM_PROVIDER == 'ollama':
+    if LLM_PROVIDER == 'ollama':
         # system_prompt alone is ~2.8k tokens (taxonomy + few-shot examples);
         # num_ctx must cover prompt + user_content + num_predict or smaller
         # models silently drop the output-format instructions and fall back
@@ -351,9 +308,7 @@ def detect_concern_mixing(execution_input: dict) -> dict:
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
 
-    if LLM_PROVIDER == 'openai':
-        raw = _call_model_openai(system_prompt, user_content)
-    elif LLM_PROVIDER == 'ollama':
+    if LLM_PROVIDER == 'ollama':
         # same context-truncation risk as Agent 1a — see note there
         raw = _call_model_ollama(system_prompt, user_content, num_ctx=4096)
     elif LLM_PROVIDER == 'local':
@@ -412,9 +367,7 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
     # a single ambiguity's justification can run 1000+ tokens on its own when
     # the model reasons at length, so the default 1500 cap can truncate
     # mid-string on cases with 2+ ambiguities to resolve.
-    if LLM_PROVIDER == 'openai':
-        raw = _call_model_openai(system_prompt, user_content)
-    elif LLM_PROVIDER == 'ollama':
+    if LLM_PROVIDER == 'ollama':
         raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
     elif LLM_PROVIDER == 'local':
         raw = _call_model_local(system_prompt, user_content)
@@ -472,9 +425,7 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
 
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
     # Agent 3 receives requirement + context + Agent 2 output — needs larger ctx
-    if LLM_PROVIDER == 'openai':
-        raw = _call_model_openai(system_prompt, user_content)
-    elif LLM_PROVIDER == 'ollama':
+    if LLM_PROVIDER == 'ollama':
         raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192)
     elif LLM_PROVIDER == 'local':
         raw = _call_model_local(system_prompt, user_content)
