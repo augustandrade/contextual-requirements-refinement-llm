@@ -237,3 +237,71 @@ class TestScoreAndApplicable:
         final['ambiguity_analysis']['ambiguities'] = [{'id': 'A1'}, {'id': 'A2'}]
         r = evaluate_one(final, make_ref('not_applicable'))
         assert r['ambiguity_count'] == 2
+
+
+# ---------------------------------------------------------------------------
+# decomposed field
+# ---------------------------------------------------------------------------
+
+class TestDecomposed:
+    def test_concern_mixing_two_reqs_decomposed_true(self):
+        final = make_final(
+            has_concern_mixing=True, route='structured',
+            structured_requirements=[{'id': 'SR-01'}, {'id': 'SR-02'}],
+        )
+        r = evaluate_one(final, make_ref('resolvable', expected_actions=['detect_concern_mixing']))
+        assert r['decomposed'] is True
+
+    def test_concern_mixing_one_req_decomposed_false(self):
+        final = make_final(
+            has_concern_mixing=True, route='structured',
+            structured_requirements=[{'id': 'SR-01'}],
+        )
+        r = evaluate_one(final, make_ref('resolvable', expected_actions=['detect_concern_mixing']))
+        assert r['decomposed'] is False
+
+    def test_no_concern_mixing_decomposed_none(self):
+        final = make_final(
+            has_concern_mixing=False, route='structured',
+            structured_requirements=[{'id': 'SR-01'}],
+        )
+        r = evaluate_one(final, make_ref('resolvable'))
+        assert r['decomposed'] is None
+
+    def test_signaling_route_decomposed_none_even_with_concern_mixing(self):
+        final = make_final(
+            has_concern_mixing=True, route='signaling', overall_status='non_resolvable',
+            unresolved_ambiguities=[{'ambiguity_id': 'A1', 'resolubility_status': 'non_resolvable'}],
+        )
+        r = evaluate_one(final, make_ref('unresolved'))
+        assert r['decomposed'] is None
+
+
+# ---------------------------------------------------------------------------
+# Edge cases — unknown expected_resolubility and unknown act_route
+# ---------------------------------------------------------------------------
+
+class TestEdgeCases:
+    def test_unknown_expected_resolubility_d1_and_d3_not_applicable(self):
+        # _exp_has_ambiguity and _exp_route both return None for unknown values
+        # → only D2 and D4 are applicable
+        final = make_final(route='structured', structured_requirements=[{'id': 'SR-01'}])
+        r = evaluate_one(final, make_ref('totally_unknown'))
+        assert r['D1_has_ambiguity'] is None
+        assert r['D3_route'] is None
+        assert r['applicable'] == 2
+
+    def test_unknown_expected_resolubility_score_uses_d2_and_d4_only(self):
+        final = make_final(
+            has_concern_mixing=False, route='structured',
+            structured_requirements=[{'id': 'SR-01'}],
+        )
+        r = evaluate_one(final, make_ref('totally_unknown'))
+        # D2 correct (no mixing expected, none detected), D4 correct → 2/2
+        assert r['score'] == 1.0
+
+    def test_unknown_act_route_d4_not_applicable(self):
+        final = make_final(route='structured', structured_requirements=[{'id': 'SR-01'}])
+        final['pipeline_decision']['route'] = 'unknown'
+        r = evaluate_one(final, make_ref('not_applicable'))
+        assert r['D4_output_complete'] is None

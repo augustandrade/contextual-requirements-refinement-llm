@@ -11,6 +11,8 @@ from run_pipeline import (
     should_invoke_structurer,
     get_has_concern_mixing,
     run_output_consolidator,
+    build_synthetic_resolubility,
+    build_non_resolvable_structuring,
 )
 
 
@@ -187,3 +189,61 @@ class TestRunOutputConsolidator:
         # build_non_resolvable_structuring returns a dict, but test robustness
         final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('non_resolvable'), None)
         assert final['requirement_structuring'] is None
+
+
+# ---------------------------------------------------------------------------
+# build_synthetic_resolubility
+# ---------------------------------------------------------------------------
+
+class TestBuildSyntheticResolubility:
+    _EI = {'execution_id': 'REQ-01-C0', 'requirement_id': 'REQ-01'}
+
+    def test_status_is_no_ambiguity(self):
+        out = build_synthetic_resolubility(self._EI)
+        crv = out['contextual_resolubility_validation']
+        assert crv['overall_resolubility']['status'] == 'no_ambiguity'
+
+    def test_ambiguity_resolubility_empty(self):
+        out = build_synthetic_resolubility(self._EI)
+        assert out['contextual_resolubility_validation']['ambiguity_resolubility'] == []
+
+    def test_ids_copied_from_execution_input(self):
+        out = build_synthetic_resolubility(self._EI)
+        crv = out['contextual_resolubility_validation']
+        assert crv['execution_id'] == 'REQ-01-C0'
+        assert crv['requirement_id'] == 'REQ-01'
+
+    def test_empty_execution_input_does_not_crash(self):
+        out = build_synthetic_resolubility({})
+        crv = out['contextual_resolubility_validation']
+        assert crv['execution_id'] is None
+        assert crv['requirement_id'] is None
+
+
+# ---------------------------------------------------------------------------
+# build_non_resolvable_structuring
+# ---------------------------------------------------------------------------
+
+class TestBuildNonResolvableStructuring:
+    _EI = {'execution_id': 'REQ-01-C0', 'requirement_id': 'REQ-01', 'context_condition': 'C0'}
+
+    def test_final_output_status_blocked(self):
+        out = build_non_resolvable_structuring(self._EI)
+        assert out['requirement_structuring']['final_output_status'] == 'blocked'
+
+    def test_structured_requirements_empty(self):
+        out = build_non_resolvable_structuring(self._EI)
+        assert out['requirement_structuring']['structured_requirements'] == []
+
+    def test_ids_and_context_copied(self):
+        out = build_non_resolvable_structuring(self._EI)
+        rs = out['requirement_structuring']
+        assert rs['execution_id'] == 'REQ-01-C0'
+        assert rs['requirement_id'] == 'REQ-01'
+        assert rs['context_condition'] == 'C0'
+
+    def test_compatible_with_consolidator_struct_out(self):
+        out = build_non_resolvable_structuring(self._EI)
+        rs = out['requirement_structuring']
+        assert 'unsupported_inferences_avoided' in rs
+        assert isinstance(rs['unsupported_inferences_avoided'], list)
