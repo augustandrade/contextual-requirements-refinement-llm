@@ -95,14 +95,8 @@ def build_synthetic_resolubility(execution_input: dict) -> dict:
         'contextual_resolubility_validation': {
             'execution_id': execution_input.get('execution_id'),
             'requirement_id': execution_input.get('requirement_id'),
-            'context_condition': execution_input.get('context_condition'),
-            'has_ambiguity': False,
-            'validation_summary': 'No linguistic ambiguity detected by Agent 1a. Resolubility validation bypassed.',
             'ambiguity_resolubility': [],
-            'overall_resolubility': {
-                'status': 'no_ambiguity',
-                'explanation': 'Agent 1a reported has_ambiguity: false. Orchestrator synthetic block.'
-            }
+            'overall_resolubility': {'status': 'no_ambiguity'}
         }
     }
 
@@ -146,39 +140,16 @@ def should_invoke_structurer(res_out: dict) -> bool:
 
 
 def build_non_resolvable_structuring(execution_input: dict, res_out: dict) -> dict:
-    validation = res_out.get('contextual_resolubility_validation', {})
-    ambiguity_items = validation.get('ambiguity_resolubility', []) or []
-
-    unresolved_ambiguities = []
-    preserved_uncertainties = []
-    for item in ambiguity_items:
-        item_status = str(item.get('resolubility_status', '')).strip().lower()
-        if item_status in {'non_resolvable', 'unresolved', 'blocking', 'partially_resolvable'}:
-            unresolved_ambiguities.append({
-                'ambiguity_id': item.get('ambiguity_id'),
-                'fragment': item.get('fragment'),
-                'reason': item.get('justification', ''),
-                'missing_information': item.get('missing_information', []) or [],
-                'unsupported_interpretations': item.get('unsupported_interpretations', []) or [],
-                'allowed_structuring_action': item.get('allowed_structuring_action', 'flag_for_human_clarification')
-            })
-            preserved_uncertainties.append(
-                f"{item.get('ambiguity_id', 'AMB-UNKNOWN')}: insufficient evidence for safe structuring"
-            )
-
+    """Orchestrator placeholder when Agent 3 is not invoked due to unresolved ambiguity."""
     return {
         'requirement_structuring': {
             'execution_id': execution_input.get('execution_id'),
             'requirement_id': execution_input.get('requirement_id'),
             'context_condition': execution_input.get('context_condition'),
-            'structuring_summary': 'Requirement structuring was skipped because at least one ambiguity is non_resolvable.',
+            'structuring_summary': 'Structuring skipped: unresolved ambiguity requires human clarification.',
             'structured_requirements': [],
-            'unresolved_ambiguities': unresolved_ambiguities,
-            'preserved_uncertainties': preserved_uncertainties,
-            'unsupported_inferences_avoided': [
-                'No additional interpretation was introduced without explicit evidence from requirement/context.'
-            ],
-            'final_output_status': 'preserved'
+            'unsupported_inferences_avoided': [],
+            'final_output_status': 'blocked'
         }
     }
 
@@ -188,9 +159,12 @@ def run_output_consolidator(execution_input: dict, amb_out: dict, cm_out: dict, 
     route = 'structured' if normalized_status in {'fully_resolvable', 'no_ambiguity'} else 'signaling'
     struct_out = struct_out or {}
 
+    validation = res_out.get('contextual_resolubility_validation', {})
+    ambiguity_items = validation.get('ambiguity_resolubility', []) or []
     unresolved_ambiguities = [
-        i for i in (struct_out.get('requirement_structuring', {}).get('unresolved_ambiguities', []) or [])
-        if isinstance(i, dict)
+        item for item in ambiguity_items
+        if isinstance(item, dict) and str(item.get('resolubility_status', '')).strip().lower()
+        in {'unresolved', 'non_resolvable', 'blocking', 'partially_resolvable'}
     ]
     missing_information = []
     for item in unresolved_ambiguities:

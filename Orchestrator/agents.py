@@ -439,7 +439,7 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
             'execution_id': execution_input.get('execution_id'),
             'requirement_id': execution_input.get('requirement_id'),
             'ambiguity_resolubility': [],
-            'overall_resolubility': {'status': 'non_resolvable'}
+            'overall_resolubility': {'status': 'unresolved'}
         },
         'model_raw': raw if raw is not None else ''
     }
@@ -449,13 +449,26 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
     prompt_path = _TCC_ROOT / 'Agents/3_structurer.md'
     system_prompt = _load_prompt(prompt_path)
 
-    payload = {
-        'context_condition': execution_input.get('context_condition', ''),
-        'base_requirement_text': execution_input.get('base_requirement_text', ''),
-        'controlled_context': execution_input.get('controlled_context', {}),
-        'concern_mixing_detection': concern_mixing.get('concern_mixing_detection', concern_mixing),
-        'contextual_resolubility_validation': resolubility.get('contextual_resolubility_validation', resolubility)
+    # Filter resolubility block to only the fields Agent 3's input schema expects
+    _crv_keep = {'ambiguity_id', 'fragment', 'supported_interpretation', 'allowed_structuring_action'}
+    crv_raw = resolubility.get('contextual_resolubility_validation', {})
+    filtered_ambs = [
+        {k: v for k, v in item.items() if k in _crv_keep}
+        for item in (crv_raw.get('ambiguity_resolubility') or [])
+    ]
+    filtered_crv = {}
+    if filtered_ambs:
+        filtered_crv['ambiguity_resolubility'] = filtered_ambs
+    filtered_crv['overall_resolubility'] = {
+        'status': crv_raw.get('overall_resolubility', {}).get('status', 'no_ambiguity')
     }
+
+    ctx = execution_input.get('controlled_context') or {}
+    payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
+    if ctx:
+        payload['controlled_context'] = ctx
+    payload['concern_mixing_detection'] = concern_mixing.get('concern_mixing_detection', concern_mixing)
+    payload['contextual_resolubility_validation'] = filtered_crv
 
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
     # Agent 3 receives requirement + context + Agent 2 output — needs larger ctx
@@ -472,8 +485,8 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
             'context_condition': execution_input.get('context_condition'),
             'structuring_summary': 'mocked',
             'structured_requirements': [],
-            'unresolved_ambiguities': [],
-            'final_output_status': 'preserved'
+            'unsupported_inferences_avoided': [],
+            'final_output_status': 'structured'
         }})
 
     parsed = _parse_yaml_block(raw, 'requirement_structuring')
@@ -492,8 +505,8 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
             'context_condition': execution_input.get('context_condition'),
             'structuring_summary': 'Model returned unparsable or invalid response',
             'structured_requirements': [],
-            'unresolved_ambiguities': [],
-            'final_output_status': 'partially_structured'
+            'unsupported_inferences_avoided': [],
+            'final_output_status': 'structured'
         },
         'model_raw': raw if raw is not None else ''
     }
