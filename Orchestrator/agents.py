@@ -1,8 +1,9 @@
 import os
-import re
 from pathlib import Path
 
 import yaml
+
+from yaml_parser import parse_yaml_block
 
 # Provider configuration: 'ollama' | 'mock'
 LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'ollama')
@@ -17,151 +18,6 @@ _TCC_ROOT = Path(__file__).parent.parent
 def _load_prompt(path: Path) -> str:
     with open(path, 'r', encoding='utf-8') as f:
         return f.read()
-
-
-def _strip_markdown_fence(text: str) -> str:
-    """Remove ```yaml / ``` fences that models often wrap responses in.
-    When multiple fences are present (e.g. Reasoning + Output blocks),
-    prefer the last block that looks like a YAML document (starts with a key:).
-    """
-    blocks = re.findall(r'```(?:yaml)?\s*\n(.*?)```', text, re.DOTALL)
-    if blocks:
-        # Prefer the last block that starts with a YAML key (not a comment)
-        for block in reversed(blocks):
-            stripped = block.strip()
-            if stripped and not stripped.startswith('#'):
-                return stripped
-        return blocks[-1]
-    # Case 2: trailing ``` without opening fence (qwen3.5-4b artifact)
-    text = re.sub(r'\n```\s*$', '', text.strip())
-    return text
-
-
-_SINGLE_QUOTED_LINE = re.compile(r"^(\s*(?:-\s+)?(?:[\w.\-]+:\s*)?)'(.*)'\s*$")
-
-
-def _repair_yaml_quotes(text: str) -> str:
-    """Best-effort repair for the most common YAML break we see from language
-    models: a single-quoted scalar that itself contains an unescaped single
-    quote (e.g. `key: 'foo 'bar' baz'` or a bare list item `- 'foo 'bar' baz'`).
-    In valid YAML that inner quote would need to be doubled (`''`), but models
-    routinely forget this, which truncates the string and corrupts the
-    surrounding block mapping/sequence. Rewrite such lines as double-quoted
-    scalars instead, where an embedded single quote is just a literal
-    character. The key: prefix is optional so this also catches quoted
-    scalars in plain list items (`- '...'`), not just `key: '...'`.
-    """
-    fixed_lines = []
-    for line in text.split('\n'):
-        m = _SINGLE_QUOTED_LINE.match(line)
-        if m:
-            prefix, inner = m.groups()
-            if "'" in inner:
-                escaped = inner.replace('\\', '\\\\').replace('"', '\\"')
-                line = f'{prefix}"{escaped}"'
-        fixed_lines.append(line)
-    return '\n'.join(fixed_lines)
-
-
-_TRAILING_GARBAGE_AFTER_QUOTE = re.compile(r'^(.*"[^"]*")[.,;]+\s*$')
-
-
-def _repair_yaml_trailing_garbage(text: str) -> str:
-    """Best-effort repair for a second common YAML break: a properly closed
-    double-quoted scalar followed by stray punctuation the model appended
-    outside the string (e.g. `- "some text".`), which YAML treats as
-    trailing garbage after the scalar and refuses to parse. Strip it.
-    """
-    fixed_lines = []
-    for line in text.split('\n'):
-        m = _TRAILING_GARBAGE_AFTER_QUOTE.match(line)
-        fixed_lines.append(m.group(1) if m else line)
-    return '\n'.join(fixed_lines)
-
-
-_UNESCAPED_QUOTE = re.compile(r'(?<!\\)"')
-_OPENS_QUOTED_SCALAR = re.compile(r'^\s*(?:-\s+)?[\w.\-]+:\s*"')
-
-
-def _repair_yaml_unterminated_quote(text: str) -> str:
-    """Best-effort repair for a third common YAML break: a double-quoted
-    scalar that opens with `"` but is never closed on that line (the model
-    trails off, e.g. mid chain-of-thought, without a matching quote). YAML
-    then folds every following line into that same open string until it
-    happens to hit a later `"` elsewhere in the document, corrupting the
-    structure. Close the scalar right where it was left open.
-    """
-    fixed_lines = []
-    for line in text.split('\n'):
-        if len(_UNESCAPED_QUOTE.findall(line)) == 1 and _OPENS_QUOTED_SCALAR.match(line):
-            line = line + '"'
-        fixed_lines.append(line)
-    return '\n'.join(fixed_lines)
-
-
-def _repair_yaml_bad_escape(text: str) -> str:
-    """Best-effort repair for a fourth common YAML break: the model escapes
-    apostrophes as `\\'` (valid in Python/JSON strings, but not a recognized
-    YAML escape sequence inside a double-quoted scalar), which makes the
-    parser abort with "found unknown escape character". Since YAML never
-    needs a backslash before a literal single quote, unescaping it is safe
-    everywhere it appears.
-    """
-    return text.replace("\\'", "'")
-
-
-_OPENS_QUOTED_SCALAR_QUOTE_COUNT = re.compile(r'^\s*(?:-\s+)?(?:[\w.\-]+:\s*)?"')
-
-
-def _repair_yaml_embedded_quote(text: str) -> str:
-    """Best-effort repair for a fifth common YAML break: a double-quoted
-    scalar that contains a literal, unescaped `"` in the middle of the text
-    (e.g. the model quotes a sub-phrase with straight double quotes instead
-    of single quotes), which closes the scalar early and leaves the rest of
-    the sentence as trailing garbage. Escape every quote strictly between
-    the opening and the true final quote on the line.
-    """
-    fixed_lines = []
-    for line in text.split('\n'):
-        if _OPENS_QUOTED_SCALAR_QUOTE_COUNT.match(line):
-            positions = [m.start() for m in _UNESCAPED_QUOTE.finditer(line)]
-            if len(positions) > 2:
-                chars = list(line)
-                for pos in positions[1:-1]:
-                    chars[pos] = '\\"'
-                line = ''.join(chars)
-        fixed_lines.append(line)
-    return '\n'.join(fixed_lines)
-
-
-def _parse_yaml_block(raw: str, root_key: str):
-    """Parse a model's YAML response, retrying with a few targeted repairs
-    if the first attempt fails. Returns the parsed dict, or None if all
-    attempts fail or the expected root_key is missing."""
-    candidate = _repair_yaml_bad_escape(_strip_markdown_fence(raw))
-    repairs = (
-        lambda t: t,
-        _repair_yaml_quotes,
-        _repair_yaml_trailing_garbage,
-        _repair_yaml_unterminated_quote,
-        _repair_yaml_embedded_quote,
-    )
-    # try single repairs first, then the full stack in increasing order
-    # of how much of the raw text they alter
-    attempts = []
-    for r in repairs:
-        attempts.append(r(candidate))
-    attempts.append(_repair_yaml_embedded_quote(_repair_yaml_unterminated_quote(
-        _repair_yaml_trailing_garbage(_repair_yaml_quotes(candidate)))))
-
-    for text in attempts:
-        try:
-            parsed = yaml.safe_load(text)
-        except Exception:
-            continue
-        if isinstance(parsed, dict) and root_key in parsed:
-            return parsed
-    return None
 
 
 def _call_model_ollama(system_prompt: str, user_content: str, timeout: int = None, num_ctx: int = 2048, num_predict: int = 1500):
@@ -221,7 +77,7 @@ def detect_ambiguity(execution_input: dict) -> dict:
     else:
         raw = _call_model_mock({'ambiguity_detection': {'has_ambiguity': False, 'ambiguities': []}})
 
-    parsed = _parse_yaml_block(raw, 'ambiguity_detection')
+    parsed = parse_yaml_block(raw, 'ambiguity_detection')
     if parsed is not None:
         return {'ambiguity_detection': parsed['ambiguity_detection']}
 
@@ -253,7 +109,7 @@ def detect_concern_mixing(execution_input: dict) -> dict:
                                                               'explanation': None,
                                                               'no_concern_mixing_reason': 'mock'}})
 
-    parsed = _parse_yaml_block(raw, 'concern_mixing_detection')
+    parsed = parse_yaml_block(raw, 'concern_mixing_detection')
     if parsed is not None:
         return {'concern_mixing_detection': parsed['concern_mixing_detection']}
 
@@ -310,7 +166,7 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
             'overall_resolubility': {'status': 'no_ambiguity'}
         }})
 
-    parsed = _parse_yaml_block(raw, 'contextual_resolubility_validation')
+    parsed = parse_yaml_block(raw, 'contextual_resolubility_validation')
     if parsed is not None:
         # Enforce correct IDs
         crv = parsed['contextual_resolubility_validation']
@@ -369,7 +225,7 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
             'final_output_status': 'structured'
         }})
 
-    parsed = _parse_yaml_block(raw, 'requirement_structuring')
+    parsed = parse_yaml_block(raw, 'requirement_structuring')
     if parsed is not None:
         # Enforce correct IDs — models sometimes invent their own
         rs = parsed['requirement_structuring']
