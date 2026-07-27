@@ -1,21 +1,6 @@
-#!/usr/bin/env python3
-"""
-Protótipo de orquestrador para o pipeline de agentes descrito no TCC.
+"""Pipeline library: stages, routing, output saving.
 
-Etapas implementadas:
- - load_requirement()
- - run_ambiguity_detector()
- - run_resolubility_validator()
- - run_requirement_structurer()  # apenas quando a resolubilidade permitir
- - run_output_consolidator()  # consolidação determinística em Python
-
-Gera arquivos em:
-  outputs/runs/<run_id>/REQ-XX/CX/
-
-Cada run é identificada por: run_<NNN>__<model>__<timestamp>
-O modelo e parâmetros são lidos de agents.py em tempo de execução.
-
-Uso: python3 run_pipeline.py
+Imported by process_corpus.py — not executed directly.
 """
 import json
 import re
@@ -29,7 +14,6 @@ import agents as agents_mod
 
 _OUTPUTS_DIR = _HERE / 'outputs'
 _RUNS_DIR = _OUTPUTS_DIR / 'runs'
-_EXAMPLE_INPUT = _HERE / 'example_input.json'
 
 
 def ensure_dir(p: Path):
@@ -210,40 +194,3 @@ def save_outputs(base_dir: Path, execution_id: str, execution_input: dict, a, cm
     (outdir / '05_final_output.json').write_text(json.dumps(final, indent=2, ensure_ascii=False))
 
 
-def main():
-    run_dir = make_run_dir()
-    write_run_metadata(run_dir)
-
-    example_path = _EXAMPLE_INPUT
-    if not example_path.exists():
-        print('Exemplo não encontrado:', example_path)
-        return
-
-    execution_input = load_requirement(example_path)
-    execution_id = f"{execution_input.get('requirement_id')}/{execution_input.get('context_condition')}"
-
-    # Stage 1: Agents 1a and 1b run independently (parallel by design)
-    amb = run_ambiguity_detector(execution_input)
-    cm = run_concern_mixing_detector(execution_input)
-
-    # Stage 2: Agent 2 runs only when ambiguity was detected; otherwise use synthetic block
-    has_ambiguity = amb.get('ambiguity_detection', {}).get('has_ambiguity', False)
-    if has_ambiguity:
-        res = run_resolubility_validator(execution_input, amb)
-    else:
-        res = build_synthetic_resolubility(execution_input)
-
-    # Stage 3: Agent 3 runs when resolubility allows, receives both 1b and Agent 2 outputs
-    if should_invoke_structurer(res):
-        struct = run_requirement_structurer(execution_input, cm, res)
-    else:
-        struct = build_non_resolvable_structuring(execution_input)
-
-    final = run_output_consolidator(execution_input, amb, cm, res, struct)
-    save_outputs(run_dir, execution_id, execution_input, amb, cm, res, struct, final)
-    print('Pipeline executado. Run:', run_dir.name)
-    print('Saídas em', run_dir / execution_id)
-
-
-if __name__ == '__main__':
-    main()

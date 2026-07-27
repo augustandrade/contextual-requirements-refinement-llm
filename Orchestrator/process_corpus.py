@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 """
-Processador de corpus: itera sobre o manifesto e executa o orquestrador para cada requisito e condição de contexto.
-
-Cada execução é salva em uma run identificada por modelo e timestamp:
-  outputs/runs/run_<NNN>__<model>__<timestamp>/
+Processador de corpus: itera sobre o manifesto e executa o pipeline para cada requisito e contexto.
 
 Uso:
-  python3 process_corpus.py
-  python3 process_corpus.py --manifest pilot-manifest.yaml
-  OLLAMA_MODEL=qwen3.5:9b python3 process_corpus.py
-  OLLAMA_MODEL=qwen3.5:9b python3 process_corpus.py --manifest pilot-manifest.yaml --label pilot-v1
+  python3 process_corpus.py                                   # corpus completo (42 execuções)
+  python3 process_corpus.py --subset                          # 1 req por categoria, 1 contexto (~4 execuções)
+  python3 process_corpus.py --manifest pilot-manifest.yaml   # corpus piloto (12 execuções)
+  python3 process_corpus.py --resume run_001__...             # retoma run interrompida
+  OLLAMA_MODEL=qwen3.5:9b python3 process_corpus.py --label pilot-v1
 
 Requisitos: `pyyaml` (instalar via `pip install pyyaml`) ou `pip install -r requirements.txt`.
 """
@@ -42,7 +40,15 @@ def _already_done(run_dir: Path, req_id: str, ctx: str) -> bool:
     return (run_dir / req_id / ctx / '05_final_output.json').exists()
 
 
-def process_item(item, run_dir: Path):
+def _pick_context(contexts: dict) -> str:
+    """Pick best single context for subset runs: prefer inject_context=True, fallback to first."""
+    for k, v in contexts.items():
+        if isinstance(v, dict) and v.get('inject_context'):
+            return k
+    return list(contexts.keys())[0] if contexts else 'C0'
+
+
+def process_item(item, run_dir: Path, contexts: list = None):
     file_rel = item.get('file')
     req_path = BASE / file_rel
     data = load_yaml(req_path)
@@ -51,19 +57,20 @@ def process_item(item, run_dir: Path):
     req_id = data.get('id')
     base_text = data.get('base_requirement_text')
 
-    pending = [ctx for ctx in ['C0', 'C1', 'C2'] if not _already_done(run_dir, req_id, ctx)]
+    _ctxs = contexts or ['C0', 'C1', 'C2']
+    pending = [ctx for ctx in _ctxs if not _already_done(run_dir, req_id, ctx)]
     if not pending:
         print(f'Skipped {req_id} (already complete)')
         return
 
     # Agents 1a and 1b receive only base_requirement_text (no context) — their
-    # output is identical across C0/C1/C2 for the same requirement. Run once and
+    # output is identical across contexts for the same requirement. Run once and
     # reuse to avoid redundant model calls.
     detection_input = {'base_requirement_text': base_text}
     amb = rp.run_ambiguity_detector(detection_input)
     cm = rp.run_concern_mixing_detector(detection_input)
 
-    for ctx in ['C0', 'C1', 'C2']:
+    for ctx in _ctxs:
         if _already_done(run_dir, req_id, ctx):
             print(f'Skipped {req_id} {ctx} (already complete)')
             continue
@@ -97,10 +104,11 @@ def process_item(item, run_dir: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Processa corpus completo em uma nova run.')
-    parser.add_argument('--label',    default='', help='Label opcional para identificar a run (ex: "prompt-v2")')
+    parser = argparse.ArgumentParser(description='Processa corpus em uma nova run.')
+    parser.add_argument('--label',    default='', help='Label opcional para a run (ex: "prompt-v2")')
     parser.add_argument('--manifest', default=None, help='Manifesto alternativo (relativo a corpus/). Default: manifest.yaml')
     parser.add_argument('--resume',   default='', help='Nome da run a retomar (ex: run_002__qwen3.5-4b__2026-06-13T10-44)')
+    parser.add_argument('--subset',   action='store_true', help='Smoke test: 1 req por categoria, 1 contexto (~4 execuções)')
     args = parser.parse_args()
 
     manifest_path = BASE / args.manifest if args.manifest else MANIFEST
@@ -112,8 +120,12 @@ def main():
             return
         print(f'Retomando run: {run_dir.name}')
     else:
-        run_dir = rp.make_run_dir(label=args.label)
-        rp.write_run_metadata(run_dir, extra={'corpus': str(manifest_path.name), 'label': args.label or None})
+        run_dir = rp.make_run_dir(label=args.label or ('subset' if args.subset else ''))
+        rp.write_run_metadata(run_dir, extra={
+            'corpus': str(manifest_path.name),
+            'label': args.label or None,
+            'subset': args.subset or None,
+        })
         print(f'Run iniciada: {run_dir.name}')
 
     manifest = load_yaml(manifest_path)
@@ -122,8 +134,26 @@ def main():
         return
 
     items = manifest.get('items', [])
-    for it in items:
-        process_item(it, run_dir)
+
+    if args.subset:
+        # Pick the first req_id from each category, one context per item
+        first_per_cat = {}
+        for cat in manifest.get('methodology', {}).get('categories', []):
+            req_ids = cat.get('req_ids', [])
+            if req_ids:
+                first_per_cat[cat['id']] = req_ids[0]
+        subset_ids = set(first_per_cat.values())
+        items = [it for it in items if it.get('id') in subset_ids]
+
+        for it in items:
+            data = load_yaml(BASE / it['file'])
+            if not data:
+                continue
+            ctx = _pick_context(data.get('contexts', {}))
+            process_item(it, run_dir, contexts=[ctx])
+    else:
+        for it in items:
+            process_item(it, run_dir)
 
     print(f'\nConcluído. Saídas em: {run_dir}')
 
