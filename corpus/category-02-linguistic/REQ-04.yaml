@@ -1,12 +1,12 @@
 id: REQ-04
 category_id: category-02-linguistic
 category_name: Linguistic ambiguities and formulation defects
-title: Referential ambiguity in pronoun
+title: Passive voice with hidden actor
 source:
-  citation: Pohl (2025), Chapter 25, Example 25-8 (R42)
-base_requirement_text: The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.
-expected_problem: The pronoun it can refer to either the access card or the PIN.
-expected_behavior: Detect referential ambiguity and only resolve when context provides decisive evidence.
+  citation: Veizaga et al. (2024), Table 3, Passive voice smell
+base_requirement_text: When a rejection order is received for a cancellation request, System-A must raise a web alert.
+expected_problem: Passive condition hides the actor responsible for issuing the rejection order.
+expected_behavior: Identify actor omission and explicitly introduce actor when context is sufficient.
 contexts:
   C0:
     intent: no_context
@@ -15,25 +15,25 @@ contexts:
     intent: general_context
     inject_context: true
     controlled_context:
-      domain: Corporate physical access control system with badge and PIN authentication.
+      domain: Post-trade financial platform with cancellation workflows and alerts.
       glossary:
-        - term: PIN
-          definition: 4-digit personal identification number.
+        - term: System-A
+          definition: User-facing alert module.
       business_rules: []
       constraints: []
   C2:
     intent: resolutive_context
     inject_context: true
     controlled_context:
-      domain: Corporate physical access control system with badge and PIN authentication.
-      glossary: []
+      domain: Post-trade financial platform with cancellation workflows and alerts.
+      glossary:
+        - term: Security Manager
+          definition: Workflow authority that approves or rejects cancellation requests.
       business_rules:
         - id: BR-01
-          rule: Invalid card causes immediate access denial at turnstile.
-        - id: BR-02
-          rule: Invalid PIN triggers retry request and does not immediately deny access.
+          rule: Rejection and approval orders are issued exclusively by Security Manager.
       constraints: []
-tags: [linguistic, referential-ambiguity, pronoun]
+tags: [linguistic, passive-voice, hidden-actor]
 status: ready
 manual_reference:
   C0:

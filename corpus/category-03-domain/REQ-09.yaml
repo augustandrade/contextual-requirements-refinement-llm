@@ -1,9 +1,9 @@
-id: REQ-11
+id: REQ-09
 category_id: category-03-domain
 category_name: Domain or context-specific ambiguities
 title: Operational technical gap in traffic filtering statement
 source:
-  citation: Bashir et al. (2025)
+  citation: Bashir et al. (2025), ICSME 2025, Listing 1 (R1), Westermo dataset
 base_requirement_text: Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.
 expected_problem: Incomplete wording and missing technical definitions for filtering behavior and management traffic.
 expected_behavior: Identify operational gaps and require technical definitions before precise restructuring.

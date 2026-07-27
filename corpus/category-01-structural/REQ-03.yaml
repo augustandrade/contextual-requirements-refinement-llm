@@ -1,72 +1,64 @@
 id: REQ-03
 category_id: category-01-structural
 category_name: Structural requirement defects
-title: Multiple actions requiring final requirement structuring
+title: Incomplete requirement with condition but no system response
 source:
-  citation: Veizaga et al. (2024)
-
-base_requirement_text: System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.
-
-expected_problem: "The requirement combines two distinct actions in a single sentence, requiring final structuring to preserve both actions clearly. Additionally, the sentence genuinely contains two linguistic ambiguities under Pohl's (2025) taxonomy, independent of the structuring problem: (a) referential ambiguity in \"their downstream systems\" (the plural possessive \"their\" lacks a clear singular antecedent — System-A is singular, so the referent of \"their\" is not grammatically fixed), and (b) lexical ambiguity in \"Reporting flow\" (the term has no glossary definition and its meaning — which flow, which reporting scope — is not inferrable from the sentence alone, so it is expected to be flagged as lexically ambiguous absent a definition)."
-
-expected_behavior: Produce a structured final output that preserves both actions and, when appropriate, represents them as independent structured requirements without treating decomposition as an independent objective.
-
+  citation: Veizaga et al. (2024), Table 3, Incomplete requirement smell
+base_requirement_text: When System-A receives a message from Security Manager and if the message is part of the B-file, according to the mapping rules.
+expected_problem: "The requirement has a complete condition but no system response — the <Process> and <Object> elements of Pohl's syntactic sentence pattern (§25.4.2) are entirely absent."
+expected_behavior: Detect structural incompleteness and signal the missing system response rather than inferring it; complete the requirement only when a business rule explicitly provides the action.
+notes: "Structural incompleteness (missing system response per Pohl §25.4.2): distinct from concern mixing (REQ-01) and multiple bundled actions (REQ-02). The condition segment is fully formed but the action the system must take is absent."
 contexts:
   C0:
     intent: no_context
     inject_context: false
-
   C1:
     intent: general_context
     inject_context: true
     controlled_context:
-      domain: Integration platform that orchestrates downstream services and reporting subscriptions.
+      domain: Post-trade financial platform with message routing and B-file classification.
       glossary:
-        - term: downstream systems
-          definition: External systems that receive events from System-A.
+        - term: Security Manager
+          definition: Workflow authority that sends approval and rejection orders.
+        - term: B-file
+          definition: Reference file used for message classification and routing.
       business_rules: []
       constraints: []
-
   C2:
     intent: resolutive_context
     inject_context: true
     controlled_context:
-      domain: Integration platform that orchestrates downstream services and reporting subscriptions.
+      domain: Post-trade financial platform with message routing and B-file classification.
       glossary:
-        - term: Reporting flow
-          definition: Event stream used by subscribers for operational reporting.
-        - term: their downstream systems
-          definition: "System-A's own downstream systems list (the possessive refers back to System-A, the sole actor of the sentence)."
+        - term: B-file
+          definition: Reference file used for message classification and routing.
       business_rules:
         - id: BR-01
-          rule: Partner registration and reporting subscription are independent operations and must be specified clearly in the final requirement structure.
+          rule: When System-A receives a B-file message from Security Manager according to the mapping rules, System-A must forward the message to the downstream processing queue and log the event in the Audit Trail.
       constraints: []
-
-tags: [textual-formulation, final-structuring, multiple-actions]
+tags: [structural, incomplete-requirement, missing-system-response]
 status: ready
-
 manual_reference:
   C0:
-    expected_resolubility: resolvable
+    expected_resolubility: unresolved
     expected_actions:
-      - identify_textual_formulation_problem
-      - structure_final_requirement
-      - preserve_requirement_meaning
+      - identify_structural_defect
+      - detect_missing_system_response
+      - signal_unresolved_defect
       - avoid_unsupported_inference
 
   C1:
-    expected_resolubility: resolvable
+    expected_resolubility: unresolved
     expected_actions:
-      - identify_textual_formulation_problem
-      - structure_final_requirement
-      - preserve_requirement_meaning
+      - identify_structural_defect
+      - detect_missing_system_response
+      - signal_unresolved_defect
       - avoid_unsupported_inference
 
   C2:
     expected_resolubility: resolvable
     expected_actions:
-      - identify_textual_formulation_problem
-      - structure_final_requirement
-      - preserve_requirement_meaning
-      - use_contextual_evidence
-      - avoid_unsupported_inference
+      - identify_structural_defect
+      - detect_missing_system_response
+      - complete_requirement
+      - preserve_requirement

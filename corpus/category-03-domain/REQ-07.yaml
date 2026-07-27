@@ -1,12 +1,12 @@
-id: REQ-10
+id: REQ-07
 category_id: category-03-domain
 category_name: Domain or context-specific ambiguities
-title: Pragmatic ambiguity in dial tone generation
+title: Continuous measurement evaluation ambiguity
 source:
-  citation: Kamsties (2001)
-base_requirement_text: Generate a dial tone.
-expected_problem: Dial tone parameters depend on the telecommunications standard and region.
-expected_behavior: Mark missing operational standard unless context specifies the applicable telephony profile.
+  citation: Kamsties et al. (2001), §1 Introduction, example (2)
+base_requirement_text: Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.
+expected_problem: Missing rule for evaluating continuous measurement within the time window.
+expected_behavior: Mark as unresolved ambiguity unless context specifies the evaluation metric.
 contexts:
   C0:
     intent: no_context
@@ -15,23 +15,23 @@ contexts:
     intent: general_context
     inject_context: true
     controlled_context:
-      domain: Digital telephony exchange system.
+      domain: Dam water level control system with automatic pump shutdown.
       glossary:
-        - term: dial tone
-          definition: Tone signaling line readiness for dialing.
+        - term: water level
+          definition: Sensor reading sampled continuously.
       business_rules: []
       constraints: []
   C2:
     intent: resolutive_context
     inject_context: true
     controlled_context:
-      domain: Digital telephony exchange system.
+      domain: Dam water level control system with automatic pump shutdown.
       glossary: []
-      business_rules: []
-      constraints:
-        - id: CST-01
-          text: System follows North American telephony standard using simultaneous 350 Hz and 440 Hz dial tone.
-tags: [domain, pragmatic-ambiguity, standards]
+      business_rules:
+        - id: BR-01
+          rule: For a 4-second persistence window, the decision metric is the absolute minimum reading in the window.
+      constraints: []
+tags: [domain, unresolved, measurement-window]
 status: ready
 manual_reference:
   C0:

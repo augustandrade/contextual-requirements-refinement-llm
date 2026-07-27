@@ -26,49 +26,49 @@ methodology:
   categories:
     - id: category-01-structural
       name: Structural requirement defects
-      req_ids: [REQ-01, REQ-03, REQ-15]
+      req_ids: [REQ-01, REQ-02, REQ-03]
     - id: category-02-linguistic
       name: Linguistic ambiguities and formulation defects
-      req_ids: [REQ-02, REQ-04, REQ-06]
+      req_ids: [REQ-04, REQ-05, REQ-06]
     - id: category-03-domain
       name: Domain or context-specific ambiguities
-      req_ids: [REQ-08, REQ-10, REQ-11]
+      req_ids: [REQ-07, REQ-08, REQ-09]
     - id: category-04-control
       name: Control group
-      req_ids: [REQ-12, REQ-13, REQ-14]
+      req_ids: [REQ-10, REQ-11, REQ-12]
     - id: category-05-vagueness
       name: Vagueness
-      req_ids: [REQ-07, REQ-09, REQ-16]
+      req_ids: [REQ-13, REQ-14, REQ-15]
 items:
   - id: REQ-01
     file: category-01-structural/REQ-01.yaml
   - id: REQ-02
-    file: category-02-linguistic/REQ-02.yaml
+    file: category-01-structural/REQ-02.yaml
   - id: REQ-03
     file: category-01-structural/REQ-03.yaml
   - id: REQ-04
     file: category-02-linguistic/REQ-04.yaml
+  - id: REQ-05
+    file: category-02-linguistic/REQ-05.yaml
   - id: REQ-06
     file: category-02-linguistic/REQ-06.yaml
   - id: REQ-07
-    file: category-05-vagueness/REQ-07.yaml
+    file: category-03-domain/REQ-07.yaml
   - id: REQ-08
     file: category-03-domain/REQ-08.yaml
   - id: REQ-09
-    file: category-05-vagueness/REQ-09.yaml
+    file: category-03-domain/REQ-09.yaml
   - id: REQ-10
-    file: category-03-domain/REQ-10.yaml
+    file: category-04-control/REQ-10.yaml
   - id: REQ-11
-    file: category-03-domain/REQ-11.yaml
+    file: category-04-control/REQ-11.yaml
   - id: REQ-12
     file: category-04-control/REQ-12.yaml
   - id: REQ-13
-    file: category-04-control/REQ-13.yaml
+    file: category-05-vagueness/REQ-13.yaml
   - id: REQ-14
-    file: category-04-control/REQ-14.yaml
+    file: category-05-vagueness/REQ-14.yaml
   - id: REQ-15
-    file: category-01-structural/REQ-15.yaml
-  - id: REQ-16
-    file: category-05-vagueness/REQ-16.yaml
+    file: category-05-vagueness/REQ-15.yaml
 status: ready
 manual_reference: true

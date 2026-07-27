@@ -1,0 +1,60 @@
+id: REQ-10
+category_id: category-04-control
+category_name: Control group
+title: Genuine well-formed condition-response requirement
+source:
+  citation: Veizaga et al. (2024), Table 6 (Tregex pattern C2), IEEE Transactions on Software Engineering
+base_requirement_text: Once System-A has successfully validated a settlement request, System-A must send an acknowledge message to System-B.
+expected_problem: No ambiguity or structural defect expected. Anonymized requirement from the source's industrial case study, presented by the authors as a correctly segmented single-condition, single-actor, single-response requirement (not associated with any smell in the source).
+expected_behavior: Preserve requirement structure with minimal formal adjustments only.
+contexts:
+  C0:
+    intent: no_context
+    inject_context: false
+  C1:
+    intent: general_context
+    inject_context: true
+    controlled_context:
+      domain: Financial post-trade settlement workflow.
+      glossary:
+        - term: settlement request
+          definition: Message requesting settlement of a financial instrument.
+        - term: acknowledge message
+          definition: Confirmation message indicating successful processing of a settlement request.
+      business_rules: []
+      constraints: []
+  C2:
+    intent: resolutive_context
+    inject_context: true
+    controlled_context:
+      domain: Financial post-trade settlement workflow.
+      glossary:
+        - term: System-B
+          definition: Downstream system that receives settlement acknowledgements.
+      business_rules:
+        - id: BR-01
+          rule: An acknowledge message is sent to System-B only after the settlement request has passed validation.
+      constraints: []
+tags: [control, preserve-structure]
+status: ready
+manual_reference:
+  C0:
+    expected_resolubility: not_applicable
+    expected_actions:
+      - preserve_requirement
+      - structure_with_template
+      - avoid_unsupported_inference
+
+  C1:
+    expected_resolubility: not_applicable
+    expected_actions:
+      - preserve_requirement
+      - structure_with_template
+      - avoid_unsupported_inference
+
+  C2:
+    expected_resolubility: not_applicable
+    expected_actions:
+      - preserve_requirement
+      - structure_with_template
+      - avoid_unsupported_inference
