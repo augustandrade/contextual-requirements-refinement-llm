@@ -30,22 +30,16 @@ def make_final(
         },
         'contextual_resolubility_analysis': {
             'overall_resolubility': {'status': overall_status},
-            'ambiguity_resolubility': [],
+            'ambiguity_resolubility': unresolved_ambiguities or [],
         },
         'pipeline_decision': {
             'route': route,
             'overall_resolubility_status': overall_status,
             'has_concern_mixing': has_concern_mixing,
-            'structurer_invoked': route == 'structured',
         },
         'requirement_structuring': {
             'final_output_status': 'structured' if route == 'structured' else 'blocked',
             'structured_requirements': structured_requirements or [],
-        },
-        'non_resolvable_signal': {
-            'unresolved_ambiguities': unresolved_ambiguities or [],
-            'missing_information': [],
-            'requires_human_clarification': route == 'signaling',
         },
     }
 

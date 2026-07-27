@@ -6,6 +6,8 @@ Uso:
   python3 process_corpus.py                                   # corpus completo (42 execuções)
   python3 process_corpus.py --subset                          # 1 req por categoria, 1 contexto (~4 execuções)
   python3 process_corpus.py --manifest pilot-manifest.yaml   # corpus piloto (12 execuções)
+  python3 process_corpus.py --req REQ-PILOT-04               # requisito específico (3 execuções)
+  python3 process_corpus.py --req REQ-01 REQ-02              # múltiplos requisitos
   python3 process_corpus.py --resume run_001__...             # retoma run interrompida
   OLLAMA_MODEL=qwen3.5:9b python3 process_corpus.py --label pilot-v1
 
@@ -131,6 +133,7 @@ def main():
     parser.add_argument('--manifest', default=None, help='Manifesto alternativo (relativo a corpus/). Default: manifest.yaml')
     parser.add_argument('--resume',   default='', help='Nome da run a retomar (ex: run_002__qwen3.5-4b__2026-06-13T10-44)')
     parser.add_argument('--subset',   action='store_true', help='Smoke test: 1 req por categoria, 1 contexto (~4 execuções)')
+    parser.add_argument('--req',      nargs='+', metavar='REQ_ID', help='Rodar apenas para requisito(s) específico(s) (ex: REQ-PILOT-04)')
     args = parser.parse_args()
 
     ensure_ollama_running()
@@ -158,6 +161,13 @@ def main():
         return
 
     items = manifest.get('items', [])
+
+    if args.req:
+        req_set = set(args.req)
+        items = [it for it in items if it.get('id') in req_set]
+        if not items:
+            print(f'Erro: nenhum item encontrado para {args.req}')
+            return
 
     if args.subset:
         # Pick the first req_id from each category, one context per item

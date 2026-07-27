@@ -42,7 +42,7 @@ Follow these steps in order for each execution:
    - Classify `resolubility_status`:
      - `resolvable`: direct evidence supports exactly one interpretation over all others.
      - `unresolved`: evidence is absent, indirect, or requires inference beyond what is explicitly stated.
-     - `not_applicable`: evidence search reveals that no genuine choice exists between the reported interpretations — the reported ambiguity does not survive confrontation with the available text or context.
+     - `not_applicable`: evidence search reveals that no genuine choice exists between the reported interpretations — the reported ambiguity does not survive confrontation with the available text or context. Reach this classification only when the evidence actively eliminates one or more reported interpretations; when all interpretations remain plausible but are considered functionally equivalent or equally acceptable, classify as `unresolved`, because the requirement still fails to specify which behavior the implementer must produce.
    - Populate output fields based on the classification:
      - If `resolvable`: set `supported_interpretation` to the evidenced reading; list remaining interpretations in `unsupported_interpretations`; set `missing_information: []`.
      - If `unresolved`: set `supported_interpretation: null`; list all interpretations in `unsupported_interpretations`; describe what evidence is missing in `missing_information`.

@@ -158,12 +158,15 @@ def evaluate_one(final: dict, manual_ref: dict) -> dict:
         d3_error_type = None
 
     # D4 — completude do output
+    _UNRESOLVED_STATUSES = {'unresolved', 'non_resolvable', 'blocking', 'partially_resolvable'}
     act_route  = _get(final, 'pipeline_decision', 'route', default='')
     struct_reqs = _get(final, 'requirement_structuring', 'structured_requirements', default=[]) or []
     if act_route == 'structured':
         d4 = len(struct_reqs) > 0
     elif act_route == 'signaling':
-        unresolved = _get(final, 'non_resolvable_signal', 'unresolved_ambiguities', default=[]) or []
+        amb_items  = _get(final, 'contextual_resolubility_analysis', 'ambiguity_resolubility', default=[]) or []
+        unresolved = [a for a in amb_items if isinstance(a, dict)
+                      and str(a.get('resolubility_status', '')).strip().lower() in _UNRESOLVED_STATUSES]
         d4 = len(unresolved) > 0
     else:
         d4 = None

@@ -141,21 +141,18 @@ def build_non_resolvable_structuring(execution_input: dict) -> dict:
     }
 
 
+def _strip_envelope_ids(d: dict) -> dict:
+    """Remove IDs the orchestrator declares at root level from embedded agent sub-objects."""
+    return {k: v for k, v in d.items() if k not in ('execution_id', 'requirement_id', 'context_condition')}
+
+
 def run_output_consolidator(execution_input: dict, amb_out: dict, cm_out: dict, res_out: dict, struct_out: dict):
     normalized_status = normalize_overall_resolubility_status(res_out)
     route = 'structured' if normalized_status in {'fully_resolvable', 'no_ambiguity'} else 'signaling'
     struct_out = struct_out or {}
 
-    validation = res_out.get('contextual_resolubility_validation', {})
-    ambiguity_items = validation.get('ambiguity_resolubility', []) or []
-    unresolved_ambiguities = [
-        item for item in ambiguity_items
-        if isinstance(item, dict) and str(item.get('resolubility_status', '')).strip().lower()
-        in {'unresolved', 'non_resolvable', 'blocking', 'partially_resolvable'}
-    ]
-    missing_information = []
-    for item in unresolved_ambiguities:
-        missing_information.extend(item.get('missing_information', []) or [])
+    crv    = res_out.get('contextual_resolubility_validation') or {}
+    struct = struct_out.get('requirement_structuring')
 
     final = {
         'execution_id': execution_input.get('execution_id'),
@@ -164,24 +161,12 @@ def run_output_consolidator(execution_input: dict, amb_out: dict, cm_out: dict, 
         'input_requirement': execution_input.get('base_requirement_text'),
         'ambiguity_analysis': amb_out.get('ambiguity_detection'),
         'concern_mixing_analysis': cm_out.get('concern_mixing_detection'),
-        'contextual_resolubility_analysis': res_out.get('contextual_resolubility_validation'),
+        'contextual_resolubility_analysis': _strip_envelope_ids(crv),
         'pipeline_decision': {
             'overall_resolubility_status': normalized_status,
-            'has_concern_mixing': get_has_concern_mixing(cm_out),
             'route': route,
-            'structurer_invoked': route == 'structured'
         },
-        'requirement_structuring': struct_out.get('requirement_structuring'),
-        'non_resolvable_signal': {
-            'unresolved_ambiguities': unresolved_ambiguities,
-            'missing_information': missing_information,
-            'requires_human_clarification': route == 'signaling'
-        },
-        'final_assessment_notes': (
-            'Structured output generated from supported interpretation.'
-            if route == 'structured'
-            else 'Automatic structuring skipped due to non_resolvable ambiguity; clarification required.'
-        )
+        'requirement_structuring': _strip_envelope_ids(struct) if struct is not None else None,
     }
     return final
 

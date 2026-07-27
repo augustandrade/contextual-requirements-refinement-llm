@@ -138,7 +138,6 @@ class TestRunOutputConsolidator:
         final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
         pd = final['pipeline_decision']
         assert pd['route'] == 'structured'
-        assert pd['structurer_invoked'] is True
         assert pd['overall_resolubility_status'] == 'no_ambiguity'
 
     def test_structured_route_fully_resolvable(self):
@@ -153,38 +152,19 @@ class TestRunOutputConsolidator:
             'overall_resolubility': {'status': 'non_resolvable'},
         }}
         final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, res, _blocked())
-        pd = final['pipeline_decision']
-        assert pd['route'] == 'signaling'
-        assert pd['structurer_invoked'] is False
-        sig = final['non_resolvable_signal']
-        assert sig['requires_human_clarification'] is True
-        assert 'clarify X' in sig['missing_information']
-
-    def test_final_assessment_notes_structured(self):
-        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
-        assert 'Structured output' in final['final_assessment_notes']
-
-    def test_final_assessment_notes_signaling(self):
-        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('non_resolvable'), _blocked())
-        assert 'clarification' in final['final_assessment_notes'].lower()
+        assert final['pipeline_decision']['route'] == 'signaling'
 
     def test_output_contains_all_top_level_keys(self):
         final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
-        for key in ('execution_id', 'requirement_id', 'input_requirement',
+        for key in ('execution_id', 'requirement_id', 'context_condition', 'input_requirement',
                     'ambiguity_analysis', 'concern_mixing_analysis',
                     'contextual_resolubility_analysis', 'pipeline_decision',
-                    'requirement_structuring', 'non_resolvable_signal',
-                    'final_assessment_notes'):
+                    'requirement_structuring'):
             assert key in final, f'missing key: {key}'
 
     def test_input_requirement_copied_from_execution_input(self):
         final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
         assert final['input_requirement'] == _EXEC['base_requirement_text']
-
-    def test_has_concern_mixing_propagates(self):
-        cm = {'concern_mixing_detection': {'has_concern_mixing': True}}
-        final = run_output_consolidator(_EXEC, _AMB_NONE, cm, _res('no_ambiguity'), _struct())
-        assert final['pipeline_decision']['has_concern_mixing'] is True
 
     def test_ids_copied_from_execution_input(self):
         final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
