@@ -52,9 +52,10 @@ manual_reference:
       - separate_concerns
       - preserve_requirement
     expected_findings:
-      - concern_mixing flagged in no_ambiguity_reason (functional action + quality criterion in same sentence)
-      - structural_issue set to concern_mixing by Agent 2
-      - Agent 3 decomposes into at least one functional requirement and one quality requirement
+      - Agent 1a returns has_ambiguity false; no_ambiguity_reason explains the concern_mixing structural issue
+      - Agent 1b returns has_concern_mixing true (functional action + quality criterion in same sentence)
+      - Agent 2 is bypassed — synthetic no_ambiguity block used by the orchestrator
+      - Agent 3 receives concern_mixing_detection from Agent 1b and decomposes into at least one functional requirement and one quality requirement
     should_not_do:
       - flag concern_mixing as a linguistic ambiguity (has_ambiguity must be false)
       - merge functional and quality requirements in final output
@@ -74,9 +75,10 @@ manual_reference:
       - separate_concerns
       - structure_with_template
     expected_findings:
-      - concern_mixing flagged in no_ambiguity_reason (functional action + quality criterion in same sentence)
-      - structural_issue set to concern_mixing by Agent 2
-      - Agent 3 decomposes into at least one functional requirement and one quality requirement
+      - Agent 1a returns has_ambiguity false; no_ambiguity_reason explains the concern_mixing structural issue
+      - Agent 1b returns has_concern_mixing true (functional action + quality criterion in same sentence)
+      - Agent 2 is bypassed — synthetic no_ambiguity block used by the orchestrator
+      - Agent 3 receives concern_mixing_detection from Agent 1b and decomposes into at least one functional requirement and one quality requirement
       - glossary term used to clarify glass break detector role
     should_not_do:
       - flag concern_mixing as a linguistic ambiguity (has_ambiguity must be false)
@@ -97,9 +99,10 @@ manual_reference:
       - separate_concerns
       - refine_text
     expected_findings:
-      - concern_mixing flagged in no_ambiguity_reason (functional action + quality criterion in same sentence)
-      - structural_issue set to concern_mixing by Agent 2
-      - Agent 3 decomposes; quality requirement uses constraint QLT-01 (within 2 seconds)
+      - Agent 1a returns has_ambiguity false; no_ambiguity_reason explains the concern_mixing structural issue
+      - Agent 1b returns has_concern_mixing true (functional action + quality criterion in same sentence)
+      - Agent 2 is bypassed — synthetic no_ambiguity block used by the orchestrator
+      - Agent 3 receives concern_mixing_detection from Agent 1b and decomposes; quality requirement uses constraint QLT-01 (within 2 seconds)
     should_not_do:
       - flag concern_mixing as a linguistic ambiguity (has_ambiguity must be false)
       - merge functional and quality requirements in final output
