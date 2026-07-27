@@ -5,8 +5,6 @@ import yaml
 
 from yaml_parser import parse_yaml_block
 
-# Provider configuration: 'ollama' | 'mock'
-LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'ollama')
 OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'qwen3.5:latest')
 OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
 OLLAMA_TIMEOUT = int(os.getenv('OLLAMA_TIMEOUT', '600'))
@@ -53,10 +51,6 @@ def _call_model_ollama(system_prompt: str, user_content: str, timeout: int = Non
         raise RuntimeError(f'Ollama API call failed: {e}') from e
 
 
-def _call_model_mock(payload: dict) -> str:
-    return yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
-
-
 def detect_ambiguity(execution_input: dict) -> dict:
     """Agent 1a — detects linguistic ambiguities only. Runs in parallel with detect_concern_mixing."""
     prompt_path = _TCC_ROOT / 'Agents/1a_ambiguity_detector.md'
@@ -65,17 +59,14 @@ def detect_ambiguity(execution_input: dict) -> dict:
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
 
-    if LLM_PROVIDER == 'ollama':
-        # system_prompt alone is ~2.8k tokens (taxonomy + few-shot examples);
-        # num_ctx must cover prompt + user_content + num_predict or smaller
-        # models silently drop the output-format instructions and fall back
-        # to a schema of their own invention. num_predict is bumped too:
-        # requirements with several concurrent ambiguities (e.g. compound
-        # conditionals) produce long enough YAML to hit the default 1500-token
-        # cap mid-string, which truncates the response into invalid YAML.
-        raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=3000)
-    else:
-        raw = _call_model_mock({'ambiguity_detection': {'has_ambiguity': False, 'ambiguities': []}})
+    # system_prompt alone is ~2.8k tokens (taxonomy + few-shot examples);
+    # num_ctx must cover prompt + user_content + num_predict or smaller
+    # models silently drop the output-format instructions and fall back
+    # to a schema of their own invention. num_predict is bumped too:
+    # requirements with several concurrent ambiguities (e.g. compound
+    # conditionals) produce long enough YAML to hit the default 1500-token
+    # cap mid-string, which truncates the response into invalid YAML.
+    raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=3000)
 
     parsed = parse_yaml_block(raw, 'ambiguity_detection')
     if parsed is not None:
@@ -99,15 +90,8 @@ def detect_concern_mixing(execution_input: dict) -> dict:
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
 
-    if LLM_PROVIDER == 'ollama':
-        # same context-truncation risk as Agent 1a — see note there
-        raw = _call_model_ollama(system_prompt, user_content, num_ctx=4096)
-    else:
-        raw = _call_model_mock({'concern_mixing_detection': {'has_concern_mixing': False,
-                                                              'functional_action': None,
-                                                              'quality_criterion': None,
-                                                              'explanation': None,
-                                                              'no_concern_mixing_reason': 'mock'}})
+    # same context-truncation risk as Agent 1a — see note there
+    raw = _call_model_ollama(system_prompt, user_content, num_ctx=4096)
 
     parsed = parse_yaml_block(raw, 'concern_mixing_detection')
     if parsed is not None:
@@ -156,15 +140,7 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
     # a single ambiguity's justification can run 1000+ tokens on its own when
     # the model reasons at length, so the default 1500 cap can truncate
     # mid-string on cases with 2+ ambiguities to resolve.
-    if LLM_PROVIDER == 'ollama':
-        raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
-    else:
-        raw = _call_model_mock({'contextual_resolubility_validation': {
-            'execution_id': execution_input.get('execution_id'),
-            'requirement_id': execution_input.get('requirement_id'),
-            'ambiguity_resolubility': [],
-            'overall_resolubility': {'status': 'no_ambiguity'}
-        }})
+    raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
 
     parsed = parse_yaml_block(raw, 'contextual_resolubility_validation')
     if parsed is not None:
@@ -212,18 +188,7 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
 
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
     # Agent 3 receives requirement + context + Agent 2 output — needs larger ctx
-    if LLM_PROVIDER == 'ollama':
-        raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192)
-    else:
-        raw = _call_model_mock({'requirement_structuring': {
-            'execution_id': execution_input.get('execution_id'),
-            'requirement_id': execution_input.get('requirement_id'),
-            'context_condition': execution_input.get('context_condition'),
-            'structuring_summary': 'mocked',
-            'structured_requirements': [],
-            'unsupported_inferences_avoided': [],
-            'final_output_status': 'structured'
-        }})
+    raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192)
 
     parsed = parse_yaml_block(raw, 'requirement_structuring')
     if parsed is not None:

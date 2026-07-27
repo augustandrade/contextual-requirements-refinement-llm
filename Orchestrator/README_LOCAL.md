@@ -16,7 +16,6 @@ ollama pull qwen2.5:7b
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `LLM_PROVIDER` | `ollama` | `ollama` or `mock` |
 | `OLLAMA_MODEL` | `qwen3.5:latest` | Any model available in your Ollama instance |
 | `OLLAMA_HOST` | `http://localhost:11434` | Ollama server URL |
 | `OLLAMA_TIMEOUT` | `600` | Request timeout in seconds |
@@ -39,14 +38,6 @@ python3 process_corpus.py --resume run_001__qwen2.5-7b__2026-07-27
 # Use a different model
 OLLAMA_MODEL=qwen2.5:14b python3 process_corpus.py --label v2
 ```
-
-## Offline / mock mode
-
-```bash
-LLM_PROVIDER=mock python3 process_corpus.py --subset
-```
-
-Mock mode returns static valid responses without calling Ollama. Useful for testing pipeline routing and output structure.
 
 ## Output structure
 
