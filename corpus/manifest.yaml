@@ -5,7 +5,7 @@ language_policy:
   contexts: en
   metadata: en
 methodology:
-  base_requirements: 14
+  base_requirements: 13
   context_levels: [C0, C1, C2]
   context_level_encoding: key_based
   context_injection_policy:
@@ -22,39 +22,40 @@ methodology:
     C0: [intent, inject_context]
     C1: [intent, inject_context, controlled_context]
     C2: [intent, inject_context, controlled_context]
-  total_executions: 42
+  total_executions: 39
   categories:
     - id: category-01-structural
-      name: Formulation and final structuring problems
-      req_ids: [REQ-01, REQ-02, REQ-03]
+      name: Structural requirement defects
+      req_ids: [REQ-01, REQ-03]
     - id: category-02-linguistic
-      name: Linguistic and syntactic ambiguities
-      req_ids: [REQ-04, REQ-05, REQ-06, REQ-07]
+      name: Linguistic ambiguities and formulation defects
+      req_ids: [REQ-02, REQ-04, REQ-06]
     - id: category-03-domain
       name: Domain or context-specific ambiguities
-      req_ids: [REQ-08, REQ-09, REQ-10, REQ-11]
+      req_ids: [REQ-08, REQ-10, REQ-11]
     - id: category-04-control
       name: Control group
       req_ids: [REQ-12, REQ-13, REQ-14]
+    - id: category-05-vagueness
+      name: Vagueness
+      req_ids: [REQ-07, REQ-09]
 items:
   - id: REQ-01
     file: category-01-structural/REQ-01.yaml
   - id: REQ-02
-    file: category-01-structural/REQ-02.yaml
+    file: category-02-linguistic/REQ-02.yaml
   - id: REQ-03
     file: category-01-structural/REQ-03.yaml
   - id: REQ-04
     file: category-02-linguistic/REQ-04.yaml
-  - id: REQ-05
-    file: category-02-linguistic/REQ-05.yaml
   - id: REQ-06
     file: category-02-linguistic/REQ-06.yaml
   - id: REQ-07
-    file: category-02-linguistic/REQ-07.yaml
+    file: category-05-vagueness/REQ-07.yaml
   - id: REQ-08
     file: category-03-domain/REQ-08.yaml
   - id: REQ-09
-    file: category-03-domain/REQ-09.yaml
+    file: category-05-vagueness/REQ-09.yaml
   - id: REQ-10
     file: category-03-domain/REQ-10.yaml
   - id: REQ-11

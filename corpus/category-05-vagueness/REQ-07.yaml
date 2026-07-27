@@ -1,6 +1,6 @@
 id: REQ-07
-category_id: category-02-linguistic
-category_name: Linguistic and syntactic ambiguities
+category_id: category-05-vagueness
+category_name: Vagueness
 title: Vague quantifier in weak word smell
 source:
   citation: Unterbusch & Vogelsang (2026), Table 1, ID 255
@@ -33,7 +33,7 @@ contexts:
         - id: BR-01
           rule: Automatic emergency calls are triggered for crash severity levels 2 (moderate) and 3 (severe) on the internal crash severity scale; level 1 (minor) does not trigger a call.
       constraints: []
-tags: [linguistic, vagueness, weak-word]
+tags: [vagueness, weak-word]
 status: ready
 manual_reference:
   C0:

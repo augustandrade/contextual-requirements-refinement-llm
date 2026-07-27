@@ -1,6 +1,6 @@
 id: REQ-02
-category_id: category-01-structural
-category_name: Formulation and final structuring problems
+category_id: category-02-linguistic
+category_name: Linguistic ambiguities and formulation defects
 title: Passive voice with hidden actor
 source:
   citation: Veizaga et al. (2024)
@@ -33,7 +33,7 @@ contexts:
         - id: BR-01
           rule: Rejection and approval orders are issued exclusively by Security Manager.
       constraints: []
-tags: [structural, passive-voice, hidden-actor]
+tags: [linguistic, passive-voice, hidden-actor]
 status: ready
 manual_reference:
   C0:

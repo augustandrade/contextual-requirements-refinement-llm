@@ -1,6 +1,6 @@
 id: REQ-09
-category_id: category-03-domain
-category_name: Domain or context-specific ambiguities
+category_id: category-05-vagueness
+category_name: Vagueness
 title: Boundary vagueness for medium sized vehicles
 source:
   citation: Pohl (2025)
@@ -31,7 +31,7 @@ contexts:
           definition: Vehicle with gross weight strictly between 1500 kg and 2000 kg.
       business_rules: []
       constraints: []
-tags: [domain, boundary-vagueness, definition-needed]
+tags: [vagueness, boundary-vagueness, definition-needed]
 status: ready
 manual_reference:
   C0:
