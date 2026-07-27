@@ -33,11 +33,11 @@ methodology:
     - id: category-03-domain
       name: Domain or context-specific ambiguities
       req_ids: [REQ-07, REQ-08, REQ-09]
-    - id: category-04-control
-      name: Control group
-      req_ids: [REQ-10, REQ-11, REQ-12]
-    - id: category-05-vagueness
+    - id: category-04-vagueness
       name: Vagueness
+      req_ids: [REQ-10, REQ-11, REQ-12]
+    - id: category-05-control
+      name: Control group
       req_ids: [REQ-13, REQ-14, REQ-15]
 items:
   - id: REQ-01
@@ -59,16 +59,16 @@ items:
   - id: REQ-09
     file: category-03-domain/REQ-09.yaml
   - id: REQ-10
-    file: category-04-control/REQ-10.yaml
+    file: category-04-vagueness/REQ-10.yaml
   - id: REQ-11
-    file: category-04-control/REQ-11.yaml
+    file: category-04-vagueness/REQ-11.yaml
   - id: REQ-12
-    file: category-04-control/REQ-12.yaml
+    file: category-04-vagueness/REQ-12.yaml
   - id: REQ-13
-    file: category-05-vagueness/REQ-13.yaml
+    file: category-05-control/REQ-13.yaml
   - id: REQ-14
-    file: category-05-vagueness/REQ-14.yaml
+    file: category-05-control/REQ-14.yaml
   - id: REQ-15
-    file: category-05-vagueness/REQ-15.yaml
+    file: category-05-control/REQ-15.yaml
 status: ready
 manual_reference: true
