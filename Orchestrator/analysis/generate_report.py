@@ -3,7 +3,8 @@ import json
 from pathlib import Path
 import csv
 
-OUT_DIR = Path('TCC/Orchestrator/outputs')
+_HERE = Path(__file__).parent
+OUT_DIR = _HERE.parent / 'outputs'
 
 
 def scan_outputs(out_dir: Path):

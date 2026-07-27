@@ -34,11 +34,12 @@ from datetime import datetime
 from pathlib import Path
 
 # ── Caminhos ─────────────────────────────────────────────────────────────────
-_HERE      = Path(__file__).parent
-_TCC_ROOT  = _HERE.parent
-_CORPUS    = _TCC_ROOT / 'corpus'
-_MANIFEST  = _CORPUS / 'manifest.yaml'
-_RUNS_DIR  = _HERE / 'outputs' / 'runs'
+_HERE         = Path(__file__).parent
+_ORCHESTRATOR = _HERE.parent
+_TCC_ROOT     = _ORCHESTRATOR.parent
+_CORPUS       = _TCC_ROOT / 'corpus'
+_MANIFEST     = _CORPUS / 'manifest.yaml'
+_RUNS_DIR     = _ORCHESTRATOR / 'outputs' / 'runs'
 
 # Nomes legíveis para categorias
 _CAT_LABELS = {

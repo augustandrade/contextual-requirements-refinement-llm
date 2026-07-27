@@ -33,7 +33,7 @@ import numpy as np
 import pandas as pd
 
 _HERE = Path(__file__).parent
-_OUTPUTS_DIR = _HERE / 'outputs'
+_OUTPUTS_DIR = _HERE.parent / 'outputs'
 
 DIM_COLS   = ['D1_has_ambiguity', 'D2_concern_mixing', 'D3_route', 'D4_output_complete']
 DIM_LABELS = ['D1 Ambiguidade', 'D2 ConcernMix', 'D3 Rota', 'D4 Output']
