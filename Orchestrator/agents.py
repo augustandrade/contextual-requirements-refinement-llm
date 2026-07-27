@@ -12,10 +12,12 @@ class AgentParseError(RuntimeError):
     Callers must catch this, log req_id/ctx and self.raw, skip the execution,
     and rely on --resume to retry. Do NOT fall back to a placeholder result.
     """
-    def __init__(self, agent: str, raw: str):
-        super().__init__(f'{agent}: model response unparsable — skip and re-run this item')
+    def __init__(self, agent: str, raw: str, parse_err=None):
+        reason = f': {parse_err}' if parse_err else ''
+        super().__init__(f'{agent}: model response unparsable{reason}')
         self.agent = agent
         self.raw = raw
+        self.parse_err = parse_err
 
 OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'qwen3.5:latest')
 OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
@@ -80,11 +82,10 @@ def detect_ambiguity(execution_input: dict) -> dict:
     # cap mid-string, which truncates the response into invalid YAML.
     raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=3000)
 
-    parsed = parse_yaml_block(raw, 'ambiguity_detection')
+    parsed, parse_err = parse_yaml_block(raw, 'ambiguity_detection')
     if parsed is not None:
         return {'ambiguity_detection': parsed['ambiguity_detection']}
-
-    raise AgentParseError('detect_ambiguity', raw)
+    raise AgentParseError('detect_ambiguity', raw, parse_err)
 
 
 def detect_concern_mixing(execution_input: dict) -> dict:
@@ -98,11 +99,10 @@ def detect_concern_mixing(execution_input: dict) -> dict:
     # same context-truncation risk as Agent 1a — see note there
     raw = _call_model_ollama(system_prompt, user_content, num_ctx=4096)
 
-    parsed = parse_yaml_block(raw, 'concern_mixing_detection')
+    parsed, parse_err = parse_yaml_block(raw, 'concern_mixing_detection')
     if parsed is not None:
         return {'concern_mixing_detection': parsed['concern_mixing_detection']}
-
-    raise AgentParseError('detect_concern_mixing', raw)
+    raise AgentParseError('detect_concern_mixing', raw, parse_err)
 
 
 def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> dict:
@@ -138,12 +138,12 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
     # mid-string on cases with 2+ ambiguities to resolve.
     raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
 
-    parsed = parse_yaml_block(raw, 'contextual_resolubility_validation')
+    parsed, parse_err = parse_yaml_block(raw, 'contextual_resolubility_validation')
     if parsed is None:
-        raise AgentParseError('validate_resolubility', raw)
+        raise AgentParseError('validate_resolubility', raw, parse_err)
     crv = parsed['contextual_resolubility_validation']
     if not isinstance(crv, dict):
-        raise AgentParseError('validate_resolubility', raw)
+        raise AgentParseError('validate_resolubility', raw, parse_err)
     crv['execution_id'] = execution_input.get('execution_id')
     crv['requirement_id'] = execution_input.get('requirement_id')
     return parsed
@@ -178,12 +178,12 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
     # Agent 3 receives requirement + context + Agent 2 output — needs larger ctx
     raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192)
 
-    parsed = parse_yaml_block(raw, 'requirement_structuring')
+    parsed, parse_err = parse_yaml_block(raw, 'requirement_structuring')
     if parsed is None:
-        raise AgentParseError('structure_requirement', raw)
+        raise AgentParseError('structure_requirement', raw, parse_err)
     rs = parsed['requirement_structuring']
     if not isinstance(rs, dict):
-        raise AgentParseError('structure_requirement', raw)
+        raise AgentParseError('structure_requirement', raw, parse_err)
     rs['execution_id'] = execution_input.get('execution_id')
     rs['requirement_id'] = execution_input.get('requirement_id')
     rs['context_condition'] = execution_input.get('context_condition')

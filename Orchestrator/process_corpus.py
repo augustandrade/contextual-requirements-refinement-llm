@@ -24,6 +24,19 @@ BASE = _HERE.parent / 'corpus'
 MANIFEST = BASE / 'manifest.yaml'
 
 
+def _log_agent_error(req_id: str, ctx, exc: Exception) -> None:
+    location = f'{req_id}/{ctx}' if ctx else req_id
+    lines = [f'[ERROR] {location} — {exc}']
+    if isinstance(exc, rp.AgentParseError):
+        lines.append(f'  agent : {exc.agent}')
+        if exc.parse_err:
+            lines.append(f'  reason: {exc.parse_err}')
+        lines.append(f'  raw   : {exc.raw[:400]!r}')
+    action = 'skipping all contexts' if ctx is None else 'skipping'
+    lines.append(f'  → {action} — use --resume to retry')
+    print('\n'.join(lines), file=sys.stderr)
+
+
 def load_yaml(path: Path):
     try:
         with open(path, 'r', encoding='utf-8') as f:
@@ -71,7 +84,7 @@ def process_item(item, run_dir: Path, contexts: list = None):
         amb = rp.run_ambiguity_detector(detection_input)
         cm = rp.run_concern_mixing_detector(detection_input)
     except (rp.AgentParseError, RuntimeError) as e:
-        print(f'[ERROR] {req_id} — {e}: skipping all contexts (use --resume to retry)', file=sys.stderr)
+        _log_agent_error(req_id, None, e)
         return
 
     for ctx in _ctxs:
@@ -103,7 +116,7 @@ def process_item(item, run_dir: Path, contexts: list = None):
             else:
                 struct = rp.build_non_resolvable_structuring(execution_input)
         except (rp.AgentParseError, RuntimeError) as e:
-            print(f'[ERROR] {req_id}/{ctx} — {e}: skipping (use --resume to retry)', file=sys.stderr)
+            _log_agent_error(req_id, ctx, e)
             continue
 
         final = rp.run_output_consolidator(execution_input, amb, cm, res, struct)

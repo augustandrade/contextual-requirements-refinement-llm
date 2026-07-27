@@ -114,7 +114,9 @@ _REPAIRS = (
 def parse_yaml_block(raw: str, root_key: str):
     """Parse a model's YAML response, retrying with targeted repairs on failure.
 
-    Returns the parsed dict when root_key is present, or None if all attempts fail.
+    Returns (parsed_dict, None) on success, or (None, last_err) on failure.
+    last_err is the last yaml exception, or a string describing a structural
+    mismatch (parsed ok but root key absent or not a dict).
     """
     candidate = _repair_yaml_bad_escape(_strip_markdown_fence(raw))
 
@@ -122,14 +124,18 @@ def parse_yaml_block(raw: str, root_key: str):
     attempts.append(_repair_yaml_embedded_quote(_repair_yaml_unterminated_quote(
         _repair_yaml_trailing_garbage(_repair_yaml_quotes(candidate)))))
 
+    last_err = None
     for i, text in enumerate(attempts):
         try:
             parsed = yaml.safe_load(text)
-        except Exception:
+        except Exception as exc:
+            last_err = exc
             continue
         if isinstance(parsed, dict) and root_key in parsed:
             if i > 0:
                 repair_label = _REPAIRS[i].__name__ if i < len(_REPAIRS) else 'stacked'
                 print(f'[WARN] yaml_parser: repair #{i} ({repair_label}) succeeded for root_key={root_key!r}', file=sys.stderr)
-            return parsed
-    return None
+            return parsed, None
+        if last_err is None:
+            last_err = f'parsed ok but root key {root_key!r} not found (got {type(parsed).__name__})'
+    return None, last_err
