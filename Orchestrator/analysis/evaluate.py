@@ -155,13 +155,16 @@ def evaluate_one(final: dict, manual_ref: dict) -> dict:
         d3_error_type = None
 
     # D4 — completude do output (independente de D3)
+    # parse_error em Agent 2 ou 3 é marcado N/A: não penaliza o score como erro do modelo
     act_route = _get(final, 'pipeline_decision', 'route', default='')
     struct_reqs = _get(final, 'requirement_structuring', 'structured_requirements', default=[]) or []
     if act_route == 'structured':
-        d4 = len(struct_reqs) > 0
+        struct_status = _get(final, 'requirement_structuring', 'final_output_status', default='')
+        d4 = None if struct_status == 'parse_error' else len(struct_reqs) > 0
     elif act_route == 'signaling':
+        res_status = _get(final, 'contextual_resolubility_analysis', 'overall_resolubility', 'status', default='')
         unresolved = _get(final, 'non_resolvable_signal', 'unresolved_ambiguities', default=[]) or []
-        d4 = len(unresolved) > 0
+        d4 = None if res_status == 'parse_error' else len(unresolved) > 0
     else:
         d4 = None
 

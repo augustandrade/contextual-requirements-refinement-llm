@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 import yaml
@@ -72,6 +73,7 @@ def detect_ambiguity(execution_input: dict) -> dict:
     if parsed is not None:
         return {'ambiguity_detection': parsed['ambiguity_detection']}
 
+    print('[WARN] detect_ambiguity: parse failed — routing as no_ambiguity (Agent 2 will be skipped)', file=sys.stderr)
     return {
         'ambiguity_detection': {
             'has_ambiguity': False,
@@ -97,6 +99,7 @@ def detect_concern_mixing(execution_input: dict) -> dict:
     if parsed is not None:
         return {'concern_mixing_detection': parsed['concern_mixing_detection']}
 
+    print('[WARN] detect_concern_mixing: parse failed — routing as no_concern_mixing (D2 may record false negative)', file=sys.stderr)
     return {
         'concern_mixing_detection': {
             'has_concern_mixing': False,
@@ -149,7 +152,8 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
         if isinstance(crv, dict):
             crv['execution_id'] = execution_input.get('execution_id')
             crv['requirement_id'] = execution_input.get('requirement_id')
-        return parsed
+            return parsed
+        print(f'[WARN] validate_resolubility: root key type={type(crv).__name__}, treating as parse_error', file=sys.stderr)
     return {
         'contextual_resolubility_validation': {
             'execution_id': execution_input.get('execution_id'),
@@ -198,7 +202,8 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
             rs['execution_id'] = execution_input.get('execution_id')
             rs['requirement_id'] = execution_input.get('requirement_id')
             rs['context_condition'] = execution_input.get('context_condition')
-        return parsed
+            return parsed
+        print(f'[WARN] structure_requirement: root key type={type(rs).__name__}, treating as parse_error', file=sys.stderr)
     return {
         'requirement_structuring': {
             'execution_id': execution_input.get('execution_id'),
