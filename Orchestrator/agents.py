@@ -134,30 +134,6 @@ def _repair_yaml_embedded_quote(text: str) -> str:
     return '\n'.join(fixed_lines)
 
 
-_LIST_ITEM_START = re.compile(r'^\s*-(\s|$)')
-_KEY_LINE_START = re.compile(r'^\s*[\w.\-]+:(\s|$)')
-
-
-def _repair_yaml_orphan_continuation(text: str) -> str:
-    """Best-effort repair for a sixth common YAML break: the model wraps a
-    sentence onto a new line without list/flow syntax (e.g. a `- key: value`
-    item followed by a plain-text line at the same or deeper indent that is
-    neither a new list item nor a `key: value` pair). YAML then tries to read
-    that orphan line as a new mapping key and aborts with "could not find
-    expected ':'". Fold it back into the previous line as a continuation of
-    that scalar value instead.
-    """
-    fixed_lines = []
-    for line in text.split('\n'):
-        stripped = line.strip()
-        if (stripped and not _LIST_ITEM_START.match(line) and not _KEY_LINE_START.match(stripped)
-                and fixed_lines):
-            fixed_lines[-1] = fixed_lines[-1].rstrip() + ' ' + stripped
-            continue
-        fixed_lines.append(line)
-    return '\n'.join(fixed_lines)
-
-
 def _parse_yaml_block(raw: str, root_key: str):
     """Parse a model's YAML response, retrying with a few targeted repairs
     if the first attempt fails. Returns the parsed dict, or None if all
@@ -169,17 +145,14 @@ def _parse_yaml_block(raw: str, root_key: str):
         _repair_yaml_trailing_garbage,
         _repair_yaml_unterminated_quote,
         _repair_yaml_embedded_quote,
-        _repair_yaml_orphan_continuation,
     )
-    # try single repairs first, then stacked combinations, in increasing order
+    # try single repairs first, then the full stack in increasing order
     # of how much of the raw text they alter
     attempts = []
     for r in repairs:
         attempts.append(r(candidate))
-    stacked = _repair_yaml_embedded_quote(_repair_yaml_unterminated_quote(
-        _repair_yaml_trailing_garbage(_repair_yaml_quotes(candidate))))
-    attempts.append(stacked)
-    attempts.append(_repair_yaml_orphan_continuation(stacked))
+    attempts.append(_repair_yaml_embedded_quote(_repair_yaml_unterminated_quote(
+        _repair_yaml_trailing_garbage(_repair_yaml_quotes(candidate)))))
 
     for text in attempts:
         try:
