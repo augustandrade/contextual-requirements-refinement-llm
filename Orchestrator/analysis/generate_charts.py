@@ -515,25 +515,62 @@ def chart_heatmap(df: pd.DataFrame, run_name: str, out_dir: Path):
 
 # ── DIAGNÓSTICO: Chart 7 — taxonomia de Pohl (Agente 1a) ─────────────────────
 
+_TAX_EXACT_COLOR = '#2e7d32'    # verde  — todos os aceitos presentes, sem extras
+_TAX_OVER_COLOR  = '#f9a825'    # amarelo — aceito presente, mas há tipos extras
+_TAX_MISS_COLOR  = '#c62828'    # vermelho — nenhum tipo aceito detectado
+
+
+def _taxonomy_result(accepted_str: str, detected_str: str):
+    """Classify a taxonomy cell as 'exact', 'over', or 'miss'.
+
+    accepted_types is an OR list — any one accepted type present is a valid hit.
+
+    Returns ('exact', color) when every detected type is within the accepted set
+                             (detected ⊆ accepted) and at least one matches.
+    Returns ('over',  color) when at least one accepted type is detected but the
+                             agent also produced types outside the accepted set.
+    Returns ('miss',  color) when no accepted type appears in detected.
+    """
+    accepted = {t.strip() for t in accepted_str.split(',') if t.strip()}
+    detected = {t.strip() for t in detected_str.split(',')
+                if t.strip() and t.strip() != '(nenhuma)'}
+    if not accepted:
+        return 'n/a', NA_COLOR
+    hit = accepted & detected
+    if not hit:
+        return 'miss', _TAX_MISS_COLOR
+    if detected <= accepted:
+        return 'exact', _TAX_EXACT_COLOR
+    return 'over', _TAX_OVER_COLOR
+
+
 def chart_taxonomy_grid(df: pd.DataFrame, out_dir: Path):
-    """Grade req×modelo: tipo(s) detectado(s) pelo Agente 1a vs. aceitos."""
+    """Grade req×modelo: tipo(s) detectado(s) pelo Agente 1a vs. aceitos.
+
+    Verde   = correspondência exata (sem sobre-detecção).
+    Amarelo = tipo aceito presente, mas há tipos extras detectados.
+    Vermelho = nenhum tipo aceito detectado.
+    """
     req_ids = list(df['req_id'].unique())
     runs    = sorted(df['run'].unique())
 
     fig, ax = plt.subplots(figsize=(2.6 * len(runs) + 2, 1.3 * len(req_ids) + 1.5))
 
     for i, req_id in enumerate(req_ids):
-        # coluna 'accepted_types' contém a lista de rótulos aceitos (pode ser múltipla)
-        row_ref = df[df['req_id'] == req_id].iloc[0]
+        row_ref        = df[df['req_id'] == req_id].iloc[0]
         accepted_label = row_ref.get('accepted_types', row_ref.get('expected_type', ''))
         for j, run in enumerate(runs):
-            cell     = df[(df['req_id'] == req_id) & (df['run'] == run)]
-            match    = bool(cell['match'].iloc[0]) if len(cell) else None
-            detected = cell['detected_types'].iloc[0] if len(cell) else '—'
-            color    = PASS_COLOR if match else (FAIL_COLOR if match is False else NA_COLOR)
+            cell          = df[(df['req_id'] == req_id) & (df['run'] == run)]
+            if not len(cell):
+                ax.add_patch(plt.Rectangle((j, i), 1, 1, facecolor=NA_COLOR,
+                                           linewidth=0.6, edgecolor='white'))
+                continue
+            detected_str  = str(cell['detected_types'].iloc[0])
+            accepted_str  = str(cell['accepted_types'].iloc[0])
+            result, color = _taxonomy_result(accepted_str, detected_str)
             ax.add_patch(plt.Rectangle((j, i), 1, 1, facecolor=color,
                                        linewidth=0.6, edgecolor='white'))
-            ax.text(j + 0.5, i + 0.5, str(detected), ha='center', va='center',
+            ax.text(j + 0.5, i + 0.5, detected_str, ha='center', va='center',
                     fontsize=8, color='white', wrap=True)
 
     ax.set_xlim(0, len(runs))
@@ -552,9 +589,12 @@ def chart_taxonomy_grid(df: pd.DataFrame, out_dir: Path):
         'Rótulos múltiplos = divergência na literatura (qualquer um aceito)',
         fontsize=10, fontweight='bold', pad=10,
     )
-    legend = [mpatches.Patch(color=PASS_COLOR, label='Tipo aceito presente'),
-              mpatches.Patch(color=FAIL_COLOR, label='Tipo aceito ausente')]
-    fig.legend(handles=legend, loc='lower center', ncol=2, fontsize=9,
+    legend = [
+        mpatches.Patch(color=_TAX_EXACT_COLOR, label='Correspondência exata'),
+        mpatches.Patch(color=_TAX_OVER_COLOR,  label='Aceito presente + sobre-detecção'),
+        mpatches.Patch(color=_TAX_MISS_COLOR,  label='Tipo aceito ausente'),
+    ]
+    fig.legend(handles=legend, loc='lower center', ncol=3, fontsize=9,
                bbox_to_anchor=(0.5, -0.05))
     plt.tight_layout()
     out_path = out_dir / 'taxonomy_classification.png'
