@@ -5,8 +5,8 @@ title: Unambiguous save operation in a document editor
 source:
   citation: Author-constructed
 base_requirement_text: When the user selects the Save option, the system shall write the current document to disk and display a confirmation message.
-expected_problem: None — this requirement is intentionally free of ambiguity and concern mixing. It serves as a control case to verify that the pipeline does not introduce false positives.
-expected_behavior: Agent 1 must flag has_ambiguity as false and has_concern_mixing as false. Agent 2 must set status no_ambiguity with no structural_issue. Agent 3 must produce a single structured functional requirement without decomposition.
+expected_problem: None — this requirement is intentionally free of ambiguity. It serves as a control case to verify that the pipeline does not introduce false positives.
+expected_behavior: Agent 1a must flag has_ambiguity as false. Agent 2 must set status no_ambiguity. Agent 3 must produce a single structured functional requirement.
 contexts:
   C0:
     inject_context: false
@@ -39,16 +39,12 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
-      - has_concern_mixing must be false
       - '"Save option" is a typographically-demarcated controlled identifier; must NOT be flagged as lexical ambiguity'
-      - '"write the current document to disk" is a single functional action; "display a confirmation message" is a second functional action, not a quality criterion — no concern mixing'
       - Agent 3 produces a single functional requirement covering the full save sequence
     should_not_do:
       - flag "Save option" as lexically ambiguous
-      - classify the two sequential actions as concern mixing (both are functional actions, not a functional + quality pair)
       - route the case to signaling/bypass
       - produce two separate requirements for the write and the display steps
     applicable_criteria:
@@ -57,14 +53,12 @@ manual_reference:
 
   C1:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
-      - has_concern_mixing must be false
-      - Glossary enriches the FR description; requirement remains clean and atomic in the context of two sequential functional actions
+      - Glossary enriches the FR description; requirement remains clean and atomic
       - Agent 3 produces a single structured functional requirement
     should_not_do:
-      - introduce ambiguity or concern-mixing findings that are absent in the text
+      - introduce ambiguity findings that are absent in the text
       - decompose into separate requirements
     applicable_criteria:
       - false_positive_check
@@ -72,14 +66,12 @@ manual_reference:
 
   C2:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
-      - has_concern_mixing must be false
       - Agent 3 incorporates glossary definition for "confirmation message" and error-handling rule from BR-01 into the structured output
       - Single functional requirement output; no decomposition required
     should_not_do:
-      - introduce ambiguity or concern-mixing findings that are absent in the text
+      - introduce ambiguity findings that are absent in the text
       - decompose into two requirements based on BR-01
       - ignore BR-01 error handling in the structured output
     applicable_criteria:

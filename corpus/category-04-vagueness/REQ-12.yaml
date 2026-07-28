@@ -6,7 +6,7 @@ source:
   citation: Vogelsang et al. (2025), arXiv:2501.04810, Introduction
 base_requirement_text: The system shall generate a report at the end of each day.
 expected_problem: "'end of each day' is a temporally vague predicate (Pohl 2025, §25.3.5) — it is impossible to determine whether it refers to midnight, end of business hours, or another cutoff."
-expected_behavior: Flag temporal vagueness and resolve into a precise time specification only when context provides the business rule.
+expected_behavior: "Per Vogelsang et al. (2025), temporally vague predicates should be replaced by precise time specifications with explicit timezone and cutoff definitions."
 taxonomy_accepted_types:
   - vagueness
 contexts:
@@ -33,12 +33,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false

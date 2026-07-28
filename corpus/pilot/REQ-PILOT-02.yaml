@@ -41,10 +41,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
-      - has_concern_mixing must be false
+
       - AMB-01 referential — fragment "she" — two competing antecedents "nurse" and "patient"
       - No evidence in the text to choose one antecedent over the other
       - Overall status unresolved; pipeline must bypass Agent 3
@@ -57,10 +56,9 @@ manual_reference:
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
-      - has_concern_mixing must be false
+
       - AMB-01 referential remains unresolved — domain description and glossary do not specify which person's response is monitored
       - context_dependency rated high
     should_not_do:
@@ -71,10 +69,9 @@ manual_reference:
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
-      - has_concern_mixing must be false
+
       - AMB-01 referential — supported interpretation "patient" — evidence BR-01 explicitly states monitoring applies to the patient
       - overall_resolubility status fully_resolvable; Agent 3 may proceed
     should_not_do:

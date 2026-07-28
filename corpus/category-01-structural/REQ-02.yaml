@@ -9,7 +9,7 @@ base_requirement_text: System-A must add System-B to their downstream systems an
 
 expected_problem: "The requirement combines two distinct actions in a single sentence (non-atomic requirement smell per Veizaga et al. 2024, Table 3), requiring final structuring to preserve both actions clearly."
 
-expected_behavior: Produce atomic requirements that preserve the meaning of both actions as separate, independent statements.
+expected_behavior: "Per Veizaga et al. (2024), non-atomic requirements should be decomposed into separate, independent statements, each expressing a single action."
 
 contexts:
   C0:
@@ -32,11 +32,11 @@ contexts:
       glossary:
         - term: Reporting flow
           definition: Event stream used by subscribers for operational reporting.
-        - term: their downstream systems
-          definition: "System-A's own downstream systems list (the possessive refers back to System-A, the sole actor of the sentence)."
+        - term: downstream systems
+          definition: External systems that receive events from System-A.
       business_rules:
         - id: BR-01
-          rule: Partner registration and reporting subscription are independent operations and must be specified clearly in the final requirement structure.
+          rule: Partner registration and reporting subscription are independent operations and must be specified as separate requirements.
       constraints: []
 
 notes: "Classified as category-01-structural because the defect is structural: two distinct actions are bundled in one sentence (non-atomic requirement smell, Veizaga et al. 2024, Table 3). Additional linguistic ambiguities may exist in the text (e.g. referential antecedent of 'their', lexical scope of 'Reporting flow') but are not documented in the cited source and are therefore out_of_scope for evaluation. The non-atomic smell is resolvable mechanically without domain context; the three context levels add no evaluative differentiation for this defect specifically."
@@ -44,12 +44,9 @@ notes: "Classified as category-01-structural because the defect is structural: t
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false

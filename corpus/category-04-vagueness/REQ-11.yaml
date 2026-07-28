@@ -5,8 +5,8 @@ title: Boundary vagueness for medium sized vehicles
 source:
   citation: Pohl (2025), Chapter 25, §25.3.5, Example 25-9
 base_requirement_text: All medium-sized vehicles shall be equipped with a navigation system.
-expected_problem: medium-sized has no objective domain boundary.
-expected_behavior: Signal missing category definition unless context defines measurable boundaries.
+expected_problem: "Per Pohl (2025), Example 25-9, 'medium-sized' is a vague term with no objective boundary — there exist vehicles for which it is impossible to determine whether they belong to this category."
+expected_behavior: "Per Pohl (2025), §25.3.5, vague terms should have their extension precisely defined, typically via a glossary entry with measurable boundaries."
 taxonomy_accepted_types:
   - vagueness
 contexts:
@@ -33,12 +33,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false

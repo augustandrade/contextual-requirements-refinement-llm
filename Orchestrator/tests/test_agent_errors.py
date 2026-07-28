@@ -38,7 +38,7 @@ class TestAgentParseError:
         assert e.parse_err is exc
 
     def test_parse_err_none_by_default(self):
-        e = AgentParseError('detect_concern_mixing', 'raw')
+        e = AgentParseError('validate_resolubility', 'raw')
         assert e.parse_err is None
 
     def test_catchable_as_runtime_error(self):

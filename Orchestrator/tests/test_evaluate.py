@@ -14,7 +14,6 @@ from evaluate import evaluate_one
 
 def make_final(
     has_ambiguity=False,
-    has_concern_mixing=False,
     route='structured',
     structured_requirements=None,
     unresolved_ambiguities=None,
@@ -25,9 +24,6 @@ def make_final(
             'has_ambiguity': has_ambiguity,
             'ambiguities': [],
         },
-        'concern_mixing_analysis': {
-            'has_concern_mixing': has_concern_mixing,
-        },
         'contextual_resolubility_analysis': {
             'overall_resolubility': {'status': overall_status},
             'ambiguity_resolubility': unresolved_ambiguities or [],
@@ -35,7 +31,6 @@ def make_final(
         'pipeline_decision': {
             'route': route,
             'overall_resolubility_status': overall_status,
-            'has_concern_mixing': has_concern_mixing,
         },
         'requirement_structuring': {
             'final_output_status': 'structured' if route == 'structured' else 'blocked',
@@ -44,10 +39,9 @@ def make_final(
     }
 
 
-def make_ref(expected_resolubility, expected_has_concern_mixing=False):
+def make_ref(expected_resolubility):
     return {
         'expected_resolubility': expected_resolubility,
-        'expected_has_concern_mixing': expected_has_concern_mixing,
     }
 
 
@@ -85,44 +79,10 @@ class TestD1HasAmbiguity:
 
 
 # ---------------------------------------------------------------------------
-# D2 — concern mixing detection
+# D2 — route decision
 # ---------------------------------------------------------------------------
 
-class TestD2ConcernMixing:
-    def test_expected_and_detected(self):
-        r = evaluate_one(
-            make_final(has_concern_mixing=True),
-            make_ref('resolvable', expected_has_concern_mixing=True),
-        )
-        assert r['D2_concern_mixing'] is True
-
-    def test_not_expected_and_not_detected(self):
-        r = evaluate_one(make_final(has_concern_mixing=False), make_ref('resolvable'))
-        assert r['D2_concern_mixing'] is True
-
-    def test_false_positive(self):
-        r = evaluate_one(make_final(has_concern_mixing=True), make_ref('resolvable'))
-        assert r['D2_concern_mixing'] is False
-        assert r['d2_error_type'] == 'false_positive'
-
-    def test_false_negative(self):
-        r = evaluate_one(
-            make_final(has_concern_mixing=False),
-            make_ref('resolvable', expected_has_concern_mixing=True),
-        )
-        assert r['D2_concern_mixing'] is False
-        assert r['d2_error_type'] == 'false_negative'
-
-    def test_d2_error_type_none_when_correct(self):
-        r = evaluate_one(make_final(has_concern_mixing=False), make_ref('not_applicable'))
-        assert r['d2_error_type'] is None
-
-
-# ---------------------------------------------------------------------------
-# D3 — route decision
-# ---------------------------------------------------------------------------
-
-class TestD3Route:
+class TestD2Route:
     @pytest.mark.parametrize('exp_res,route', [
         ('resolvable',    'structured'),
         ('not_applicable','structured'),
@@ -135,35 +95,35 @@ class TestD3Route:
             overall_status='non_resolvable' if route == 'signaling' else 'no_ambiguity',
         )
         r = evaluate_one(final, make_ref(exp_res))
-        assert r['D3_route'] is True
+        assert r['D2_route'] is True
 
     def test_wrong_route_signaling_when_should_be_structured(self):
         final = make_final(has_ambiguity=True, route='signaling', overall_status='non_resolvable')
         r = evaluate_one(final, make_ref('resolvable'))
-        assert r['D3_route'] is False
-        assert r['d3_error_type'] == 'false_negative'
+        assert r['D2_route'] is False
+        assert r['d2_error_type'] == 'false_negative'
 
     def test_wrong_route_structured_when_should_be_signaling(self):
         final = make_final(has_ambiguity=True, route='structured')
         r = evaluate_one(final, make_ref('unresolved'))
-        assert r['D3_route'] is False
-        assert r['d3_error_type'] == 'false_positive'
+        assert r['D2_route'] is False
+        assert r['d2_error_type'] == 'false_positive'
 
 
 # ---------------------------------------------------------------------------
-# D4 — output completeness
+# D3 — output completeness
 # ---------------------------------------------------------------------------
 
-class TestD4OutputComplete:
+class TestD3OutputComplete:
     def test_structured_with_results_complete(self):
         final = make_final(route='structured', structured_requirements=[{'id': 'SR-01'}])
         r = evaluate_one(final, make_ref('resolvable'))
-        assert r['D4_output_complete'] is True
+        assert r['D3_output_complete'] is True
 
     def test_structured_with_empty_results_incomplete(self):
         final = make_final(route='structured', structured_requirements=[])
         r = evaluate_one(final, make_ref('resolvable'))
-        assert r['D4_output_complete'] is False
+        assert r['D3_output_complete'] is False
 
     def test_signaling_with_unresolved_complete(self):
         final = make_final(
@@ -171,7 +131,7 @@ class TestD4OutputComplete:
             unresolved_ambiguities=[{'ambiguity_id': 'A1', 'resolubility_status': 'non_resolvable'}],
         )
         r = evaluate_one(final, make_ref('unresolved'))
-        assert r['D4_output_complete'] is True
+        assert r['D3_output_complete'] is True
 
     def test_signaling_with_empty_unresolved_incomplete(self):
         final = make_final(
@@ -179,7 +139,7 @@ class TestD4OutputComplete:
             unresolved_ambiguities=[],
         )
         r = evaluate_one(final, make_ref('unresolved'))
-        assert r['D4_output_complete'] is False
+        assert r['D3_output_complete'] is False
 
 
 # ---------------------------------------------------------------------------
@@ -196,10 +156,10 @@ class TestScoreAndApplicable:
         assert r['score'] == 1.0
 
     def test_partial_score(self):
-        # D1 correct, D2 correct, D3 correct, D4 wrong (empty structured_requirements)
+        # D1 correct, D3 correct, D4 wrong (empty structured_requirements)
         final = make_final(route='structured', structured_requirements=[])
         r = evaluate_one(final, make_ref('not_applicable'))
-        assert r['score'] == pytest.approx(3 / 4)
+        assert r['score'] == pytest.approx(2 / 3)
 
     def test_d1_not_applicable_counted_as_correct(self):
         # expected_resolubility='not_applicable' → _exp_has_ambiguity returns False
@@ -208,12 +168,11 @@ class TestScoreAndApplicable:
         ref = make_ref('not_applicable')
         r = evaluate_one(final, ref)
         assert r['D1_has_ambiguity'] is True
-        assert r['applicable'] == 4
+        assert r['applicable'] == 3
 
     def test_all_wrong_score_zero(self):
         final = make_final(
             has_ambiguity=True,           # wrong (expected not_applicable)
-            has_concern_mixing=True,      # wrong (not expected)
             route='signaling',            # wrong (expected structured)
             unresolved_ambiguities=[],    # empty → D4 False
             overall_status='non_resolvable',
@@ -234,68 +193,27 @@ class TestScoreAndApplicable:
 
 
 # ---------------------------------------------------------------------------
-# decomposed field
-# ---------------------------------------------------------------------------
-
-class TestDecomposed:
-    def test_concern_mixing_two_reqs_decomposed_true(self):
-        final = make_final(
-            has_concern_mixing=True, route='structured',
-            structured_requirements=[{'id': 'SR-01'}, {'id': 'SR-02'}],
-        )
-        r = evaluate_one(final, make_ref('resolvable', expected_has_concern_mixing=True))
-        assert r['decomposed'] is True
-
-    def test_concern_mixing_one_req_decomposed_false(self):
-        final = make_final(
-            has_concern_mixing=True, route='structured',
-            structured_requirements=[{'id': 'SR-01'}],
-        )
-        r = evaluate_one(final, make_ref('resolvable', expected_has_concern_mixing=True))
-        assert r['decomposed'] is False
-
-    def test_no_concern_mixing_decomposed_none(self):
-        final = make_final(
-            has_concern_mixing=False, route='structured',
-            structured_requirements=[{'id': 'SR-01'}],
-        )
-        r = evaluate_one(final, make_ref('resolvable'))
-        assert r['decomposed'] is None
-
-    def test_signaling_route_decomposed_none_even_with_concern_mixing(self):
-        final = make_final(
-            has_concern_mixing=True, route='signaling', overall_status='non_resolvable',
-            unresolved_ambiguities=[{'ambiguity_id': 'A1', 'resolubility_status': 'non_resolvable'}],
-        )
-        r = evaluate_one(final, make_ref('unresolved'))
-        assert r['decomposed'] is None
-
-
-# ---------------------------------------------------------------------------
 # Edge cases — unknown expected_resolubility and unknown act_route
 # ---------------------------------------------------------------------------
 
 class TestEdgeCases:
     def test_unknown_expected_resolubility_d1_and_d3_not_applicable(self):
         # _exp_has_ambiguity and _exp_route both return None for unknown values
-        # → only D2 and D4 are applicable
+        # → only D4 is applicable
         final = make_final(route='structured', structured_requirements=[{'id': 'SR-01'}])
         r = evaluate_one(final, make_ref('totally_unknown'))
         assert r['D1_has_ambiguity'] is None
-        assert r['D3_route'] is None
-        assert r['applicable'] == 2
+        assert r['D2_route'] is None
+        assert r['applicable'] == 1
 
-    def test_unknown_expected_resolubility_score_uses_d2_and_d4_only(self):
-        final = make_final(
-            has_concern_mixing=False, route='structured',
-            structured_requirements=[{'id': 'SR-01'}],
-        )
+    def test_unknown_expected_resolubility_score_uses_d4_only(self):
+        final = make_final(route='structured', structured_requirements=[{'id': 'SR-01'}])
         r = evaluate_one(final, make_ref('totally_unknown'))
-        # D2 correct (no mixing expected, none detected), D4 correct → 2/2
+        # D4 correct → 1/1
         assert r['score'] == 1.0
 
     def test_unknown_act_route_d4_not_applicable(self):
         final = make_final(route='structured', structured_requirements=[{'id': 'SR-01'}])
         final['pipeline_decision']['route'] = 'unknown'
         r = evaluate_one(final, make_ref('not_applicable'))
-        assert r['D4_output_complete'] is None
+        assert r['D3_output_complete'] is None

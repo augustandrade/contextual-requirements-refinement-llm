@@ -7,21 +7,18 @@ Compara cada 05_final_output.json de um run contra a referência manual
 
 BLOCO 1 — Detecção (context-free, calculado uma vez por requisito via C0)
   D1  has_ambiguity_correct   Agente 1a detectou (ou não) ambiguidade conforme esperado
-  D2  concern_mixing_correct  Agente 1b sinalizou concern mixing apenas quando esperado
   Métricas derivadas: precision / recall / specificity (via TP, TN, FP, FN)
 
 BLOCO 2 — Resolução (context-dependent, calculado por condição de contexto)
-  D3  route_correct            pipeline seguiu a rota certa (structured / signaling)
-  D4  output_complete          Agente 3 foi/não foi invocado conforme esperado
-  Context lift: ΔD3(C2 − C0), staged gains C0→C1 e C1→C2
+  D2  route_correct            pipeline seguiu a rota certa (structured / signaling)
+  D3  output_complete          Agente 3 foi/não foi invocado conforme esperado
+  Context lift: ΔD2(C2 − C0), staged gains C0→C1 e C1→C2
 
 Campos adicionais por execução:
   d1_error_type       false_positive | false_negative | null (quando D1 correto ou N/A)
-  d2_error_type       false_positive | false_negative | null (quando D2 correto)
-  d3_error_type       false_positive | false_negative | null (quando D3 correto ou N/A)
+  d2_error_type       false_positive | false_negative | null (quando D2 correto ou N/A)
   act_global_status   fully_resolvable | non_resolvable | no_ambiguity
   ambiguity_count     número de ambiguidades detectadas pelo Agente 1a
-  decomposed          True se Agente 3 produziu 2+ artefatos (concern mixing), None se não aplicável
 
 Score por execução = D_corretas / D_aplicáveis
 
@@ -56,7 +53,7 @@ _CAT_LABELS = {
 }
 
 # Categorias cujos requisitos têm expected_has_ambiguity=True (positivos para D1).
-# Cat-01 (concern mixing, não ambiguidade linguística) e Cat-05 são negativos.
+# Cat-01 (defects estruturais, não ambiguidade linguística) e Cat-05 são negativos.
 _POSITIVE_CATS = frozenset({'category-02-linguistic', 'category-03-domain', 'category-04-vagueness'})
 _NEGATIVE_CATS = frozenset({'category-01-structural', 'category-05-control'})
 
@@ -112,7 +109,7 @@ def evaluate_one(final: dict, manual_ref: dict) -> dict:
     """
     exp_res = manual_ref.get('expected_resolubility', '')
 
-    d1 = d2 = d3 = d4 = None
+    d1 = d2 = d3 = None
     applicable = correct = 0
 
     # D1 — has_ambiguity
@@ -128,78 +125,61 @@ def evaluate_one(final: dict, manual_ref: dict) -> dict:
     else:
         d1_error_type = None
 
-    # D2 — concern_mixing
-    exp_cm = manual_ref.get('expected_has_concern_mixing', False)
-    act_cm = bool(_get(final, 'concern_mixing_analysis', 'has_concern_mixing', default=False))
-    d2 = (act_cm == exp_cm)
-    applicable += 1
-    correct    += int(d2)
-
-    d2_error_type = None if d2 else ('false_positive' if act_cm and not exp_cm else 'false_negative')
-
-    # D3 — route
+    # D2 — route
     exp_rt = _exp_route(exp_res)
     act_rt = _get(final, 'pipeline_decision', 'route', default='')
     if exp_rt is not None:
-        d3 = (act_rt == exp_rt)
+        d2 = (act_rt == exp_rt)
         applicable += 1
-        correct    += int(d3)
+        correct    += int(d2)
 
-    if exp_rt is not None and d3 is False:
-        d3_error_type = 'false_positive' if act_rt == 'structured' and exp_rt == 'signaling' else 'false_negative'
+    if exp_rt is not None and d2 is False:
+        d2_error_type = 'false_positive' if act_rt == 'structured' and exp_rt == 'signaling' else 'false_negative'
     else:
-        d3_error_type = None
+        d2_error_type = None
 
-    # D4 — completude do output
+    # D3 — completude do output
     _UNRESOLVED_STATUSES = {'unresolved', 'non_resolvable', 'blocking', 'partially_resolvable'}
     act_route  = _get(final, 'pipeline_decision', 'route', default='')
     struct_reqs = _get(final, 'requirement_structuring', 'structured_requirements', default=[]) or []
     if act_route == 'structured':
-        d4 = len(struct_reqs) > 0
+        d3 = len(struct_reqs) > 0
     elif act_route == 'signaling':
         amb_items  = _get(final, 'contextual_resolubility_analysis', 'ambiguity_resolubility', default=[]) or []
         unresolved = [a for a in amb_items if isinstance(a, dict)
                       and str(a.get('resolubility_status', '')).strip().lower() in _UNRESOLVED_STATUSES]
-        d4 = len(unresolved) > 0
+        d3 = len(unresolved) > 0
     else:
-        d4 = None
+        d3 = None
 
-    if d4 is not None:
+    if d3 is not None:
         applicable += 1
-        correct    += int(d4)
+        correct    += int(d3)
 
     score = (correct / applicable) if applicable > 0 else None
 
-    act_global_status = _get(final, 'contextual_resolubility_analysis', 'overall_resolubility', 'status', default='')
+    act_global_status = _get(final, 'pipeline_decision', 'overall_resolubility_status', default='')
     ambiguities       = _get(final, 'ambiguity_analysis', 'ambiguities', default=[]) or []
     ambiguity_count   = len(ambiguities)
 
-    if act_cm and act_route == 'structured':
-        decomposed = len(struct_reqs) >= 2
-    else:
-        decomposed = None
-
     return {
-        'D1_has_ambiguity':   d1,
-        'D2_concern_mixing':  d2,
-        'D3_route':           d3,
-        'D4_output_complete': d4,
-        'correct':            correct,
-        'applicable':         applicable,
-        'score':              score,
-        'd1_error_type':      d1_error_type,
-        'd2_error_type':      d2_error_type,
-        'd3_error_type':      d3_error_type,
-        'act_global_status':  act_global_status,
-        'ambiguity_count':    ambiguity_count,
-        'decomposed':         decomposed,
+        'D1_has_ambiguity':    d1,
+        'D2_route':            d2,
+        'D3_output_complete':  d3,
+        'correct':             correct,
+        'applicable':          applicable,
+        'score':               score,
+        'd1_error_type':       d1_error_type,
+        'd2_error_type':       d2_error_type,
+        'act_global_status':   act_global_status,
+        'ambiguity_count':     ambiguity_count,
     }
 
 
 # ── Processa um run ───────────────────────────────────────────────────────────
 def evaluate_run(run_dir: Path, corpus: dict) -> list[dict]:
     rows: list[dict] = []
-    for output_file in sorted(run_dir.rglob('05_final_output.json')):
+    for output_file in sorted(run_dir.rglob('final_output.json')):
         try:
             final = json.loads(output_file.read_text(encoding='utf-8'))
         except Exception as e:
@@ -221,14 +201,13 @@ def evaluate_run(run_dir: Path, corpus: dict) -> list[dict]:
 
         eval_r = evaluate_one(final, manual_ref)
         rows.append({
-            'run':                    run_dir.name,
-            'req_id':                 req_id,
-            'context':                cond,
-            'category':               doc.get('category_id', ''),
-            'expected_resolubility':  manual_ref.get('expected_resolubility', ''),
-            'act_has_ambiguity':      _get(final, 'ambiguity_analysis', 'has_ambiguity'),
-            'act_route':              _get(final, 'pipeline_decision', 'route', default=''),
-            'act_has_concern_mixing': _get(final, 'concern_mixing_analysis', 'has_concern_mixing', default=False),
+            'run':                   run_dir.name,
+            'req_id':                req_id,
+            'context':               cond,
+            'category':              doc.get('category_id', ''),
+            'expected_resolubility': manual_ref.get('expected_resolubility', ''),
+            'act_has_ambiguity':     _get(final, 'ambiguity_analysis', 'has_ambiguity'),
+            'act_route':             _get(final, 'pipeline_decision', 'route', default=''),
             **eval_r,
         })
     return rows
@@ -248,36 +227,6 @@ def _detection_metrics_d1(c0_rows: list[dict]) -> dict:
         act = r.get('act_has_ambiguity')
         if exp is None:
             continue
-        if exp and act:
-            tp += 1
-        elif not exp and act:
-            fp += 1
-        elif exp and not act:
-            fn += 1
-        else:
-            tn += 1
-    precision   = tp / (tp + fp) if (tp + fp) > 0 else None
-    recall      = tp / (tp + fn) if (tp + fn) > 0 else None
-    specificity = tn / (tn + fp) if (tn + fp) > 0 else None
-    return {'tp': tp, 'fp': fp, 'fn': fn, 'tn': tn,
-            'precision': precision, 'recall': recall, 'specificity': specificity}
-
-
-def _detection_metrics_d2(c0_rows: list[dict]) -> dict:
-    """Precision, recall e specificity para D2 (concern_mixing).
-
-    Ground truth derived from expected_has_concern_mixing in the corpus manual_reference.
-    Using category as proxy would diverge for pilot requirements that don't map 1:1
-    to category-01-structural.
-    """
-    tp = fp = fn = tn = 0
-    for r in c0_rows:
-        d2_correct = r.get('D2_concern_mixing')
-        if d2_correct is None:
-            continue
-        act = bool(r.get('act_has_concern_mixing', False))
-        # Reconstruct expected from act + correctness flag
-        exp = act if d2_correct else (not act)
         if exp and act:
             tp += 1
         elif not exp and act:
@@ -322,14 +271,14 @@ def evaluate_context_lift(all_rows: list[dict]) -> list[dict]:
             if not (c0 and c1 and c2):
                 continue
 
-            d3_c0 = c0.get('D3_route')
-            d3_c1 = c1.get('D3_route')
-            d3_c2 = c2.get('D3_route')
+            d2_c0 = c0.get('D2_route')
+            d2_c1 = c1.get('D2_route')
+            d2_c2 = c2.get('D2_route')
 
             def _bool_int(v):
                 return int(v) if isinstance(v, bool) else None
 
-            b0, b1, b2 = _bool_int(d3_c0), _bool_int(d3_c1), _bool_int(d3_c2)
+            b0, b1, b2 = _bool_int(d2_c0), _bool_int(d2_c1), _bool_int(d2_c2)
 
             lift_c2_c0  = (b2 - b0)  if (b2 is not None and b0 is not None) else None
             stage_c0_c1 = (b1 - b0)  if (b1 is not None and b0 is not None) else None
@@ -338,15 +287,15 @@ def evaluate_context_lift(all_rows: list[dict]) -> list[dict]:
             def _bit(v):
                 return str(int(v)) if isinstance(v, bool) else '?'
 
-            transition = f'{_bit(d3_c0)}→{_bit(d3_c1)}→{_bit(d3_c2)}'
+            transition = f'{_bit(d2_c0)}→{_bit(d2_c1)}→{_bit(d2_c2)}'
 
             lift_rows.append({
                 'run':        run,
                 'req_id':     req_id,
                 'category':   c0.get('category', ''),
-                'd3_c0':      b0,
-                'd3_c1':      b1,
-                'd3_c2':      b2,
+                'd2_c0':      b0,
+                'd2_c1':      b1,
+                'd2_c2':      b2,
                 'lift_c2_c0':  lift_c2_c0,
                 'stage_c0_c1': stage_c0_c1,
                 'stage_c1_c2': stage_c1_c2,
@@ -367,7 +316,7 @@ def evaluate_taxonomy(run_dir: Path, corpus: dict) -> list[dict]:
         if not accepted_list:
             continue
         accepted_types = set(accepted_list)
-        output_file = run_dir / req_id / 'C0' / '05_final_output.json'
+        output_file = run_dir / req_id / 'C0' / 'final_output.json'
         if not output_file.exists():
             continue
         final          = json.loads(output_file.read_text(encoding='utf-8'))
@@ -409,8 +358,8 @@ def _summarize_detection_block(run_rows: list[dict]) -> None:
 
     W = 24
     print(f'\n  {"BLOCO 1 — Detecção (context-free, N=":}{len(c0_rows)} via C0)')
-    print(f'  {"─" * 60}')
-    header = f'  {"":>{W}}  {"D1 Ambig":>9}  {"D2 ConcernMix":>13}   N'
+    print(f'  {"─" * 48}')
+    header = f'  {"":>{W}}  {"D1 Ambig":>9}   N'
     print(header)
 
     for cat_id, cat_label in _CAT_LABELS.items():
@@ -419,16 +368,14 @@ def _summarize_detection_block(run_rows: list[dict]) -> None:
             short = cat_label.split(' ', 1)[1] if ' ' in cat_label else cat_label
             print(
                 f'  {short:>{W}}  '
-                f'{_pct([r["D1_has_ambiguity"]  for r in cr]):>9}  '
-                f'{_pct([r["D2_concern_mixing"] for r in cr]):>13}  '
+                f'{_pct([r["D1_has_ambiguity"] for r in cr]):>9}  '
                 f'{len(cr):>3}'
             )
 
-    print(f'  {"─" * 60}')
+    print(f'  {"─" * 48}')
     print(
         f'  {"OVERALL":>{W}}  '
-        f'{_pct([r["D1_has_ambiguity"]  for r in c0_rows]):>9}  '
-        f'{_pct([r["D2_concern_mixing"] for r in c0_rows]):>13}  '
+        f'{_pct([r["D1_has_ambiguity"] for r in c0_rows]):>9}  '
         f'{len(c0_rows):>3}'
     )
 
@@ -443,23 +390,12 @@ def _summarize_detection_block(run_rows: list[dict]) -> None:
           f'Recall: {_fmt_pct(m1["recall"]):>7}   '
           f'Specificity: {_fmt_pct(m1["specificity"]):>7}')
 
-    # Precision / Recall / Specificity para D2
-    m2 = _detection_metrics_d2(c0_rows)
-    pos2 = m2['tp'] + m2['fn']
-    neg2 = m2['tn'] + m2['fp']
-    print(f'\n  Métricas de detecção — D2 (positivos: Cat-01   negativos: Cat-02..05)')
-    print(f'    Positivos: {pos2}  (TP={m2["tp"]} FN={m2["fn"]})   '
-          f'Negativos: {neg2}  (TN={m2["tn"]} FP={m2["fp"]})')
-    print(f'    Precision: {_fmt_pct(m2["precision"]):>7}   '
-          f'Recall: {_fmt_pct(m2["recall"]):>7}   '
-          f'Specificity: {_fmt_pct(m2["specificity"]):>7}')
-
 
 # ── Sumário — Bloco 2: Resolução (context-dependent) ─────────────────────────
 def _summarize_resolution_block(run_rows: list[dict]) -> None:
     print(f'\n  BLOCO 2 — Resolução por condição de contexto (N={len(run_rows)})')
     print(f'  {"─" * 60}')
-    header = f'  {"":>12}  {"D3 Rota":>9}  {"D4 Output":>9}   N'
+    header = f'  {"":>12}  {"D2 Rota":>9}  {"D3 Output":>9}   N'
     print(header)
 
     for cond in ['C0', 'C1', 'C2']:
@@ -468,8 +404,8 @@ def _summarize_resolution_block(run_rows: list[dict]) -> None:
             labels = {'C0': 'C0 (sem ctx)', 'C1': 'C1 (domínio)', 'C2': 'C2 (+ BR)'}
             print(
                 f'  {labels[cond]:>12}  '
-                f'{_pct([r["D3_route"]           for r in cr]):>9}  '
-                f'{_pct([r["D4_output_complete"] for r in cr]):>9}  '
+                f'{_pct([r["D2_route"]            for r in cr]):>9}  '
+                f'{_pct([r["D3_output_complete"]  for r in cr]):>9}  '
                 f'{len(cr):>3}'
             )
 
@@ -496,7 +432,7 @@ def _summarize_context_lift(lift_rows: list[dict], run_name: str) -> None:
     gain_01  = sum(1 for r in ambiguous if r['stage_c0_c1'] == 1)
     gain_12  = sum(1 for r in ambiguous if r['stage_c1_c2'] == 1)
 
-    print(f'\n  Context lift ΔD3(C2 − C0)  [N={n} req ambíguos: Cat-02/03/04]')
+    print(f'\n  Context lift ΔD2(C2 − C0)  [N={n} req ambíguos: Cat-02/03/04]')
     print(f'  {"─" * 60}')
     print(f'    lift=+1  (C2 resolve o que C0 não resolvia): {lift_pos:>2}/{n}  ({lift_pos/n*100:.1f}%)')
     print(f'    lift= 0  (sem variação):                     {lift_zer:>2}/{n}  ({lift_zer/n*100:.1f}%)')
@@ -582,9 +518,9 @@ def summarize(all_rows: list[dict], lift_rows: list[dict]) -> None:
             lift_pct  = f'{lift_pos/n_lift*100:.1f}%' if n_lift else '—'
             print(
                 f'  {label:>20}  '
-                f'{_pct([r["D3_route"] for r in c0r]):>8}  '
-                f'{_pct([r["D3_route"] for r in c1r]):>8}  '
-                f'{_pct([r["D3_route"] for r in c2r]):>8}  '
+                f'{_pct([r["D2_route"] for r in c0r]):>8}  '
+                f'{_pct([r["D2_route"] for r in c1r]):>8}  '
+                f'{_pct([r["D2_route"] for r in c2r]):>8}  '
                 f'{lift_pct:>8}  '
                 f'{len(run_rows):>3}'
             )
@@ -686,7 +622,6 @@ def main():
         print('\nGerando gráficos...')
         gc.chart_detection_bar(df, charts_dir)
         gc.chart_error_type_bar(df, charts_dir)
-        gc.chart_error_type_d2(df, charts_dir)
         gc.chart_context_line(df, charts_dir)
         gc.chart_route_error_context(df, charts_dir)
         df_lift = pd.read_csv(eval_dir / 'context_lift.csv')

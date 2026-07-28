@@ -1,45 +1,51 @@
 id: REQ-01
 category_id: category-01-structural
 category_name: Structural requirement defects
-title: Function and quality mixed in one sentence
+title: Non-feasible absolute availability requirement
 source:
-  citation: Pohl (2025), Chapter 25, Example 25-2 (R2)
-base_requirement_text: If the glass break detector of a window detects the pane has been damaged, the system shall inform the security service within 2 seconds at the latest.
-expected_problem: Functional behavior and timing quality are mixed in one requirement sentence.
-expected_behavior: Split into at least one functional requirement and one quality requirement.
+  citation: "Pohl (2025), §25.1 — requirement quality criteria: feasibility and verifiability"
+base_requirement_text: "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades."
+expected_problem: "The requirement specifies an absolute availability guarantee (100% uptime) that explicitly includes planned maintenance and infrastructure upgrades. Per Pohl (2025) §25.1, requirements must be feasible and verifiable. A 100% availability guarantee including maintenance periods is physically non-feasible for any real system and cannot be validated by any acceptance test."
+expected_behavior: "Agent 1a must flag has_ambiguity as false — the language is precise and unambiguous; the defect is structural, not linguistic. Agent 3 must classify the requirement as quality_requirement and note the non-feasibility of the 100% availability constraint in structuring_notes."
+notes: "Structural defect only — no linguistic ambiguity is present. Every term is precise: '100%', 'maintenance windows', and 'infrastructure upgrades' have clear, unambiguous meanings. The defect is non-feasibility: no physical system can satisfy 100% availability while undergoing maintenance. This violates Pohl (2025) §25.1 quality criteria (feasibility and verifiability). Context does not resolve the defect because the infeasibility is inherent to the stated value, not to missing or unclear information. Distinct from multiple bundled actions (REQ-02) and missing system response (REQ-03)."
 contexts:
   C0:
     inject_context: false
+
   C1:
     inject_context: true
     controlled_context:
-      domain: Building security and alarm monitoring system for offices.
-      glossary: []
+      domain: Online payment processing platform handling real-time card authorisations for e-commerce merchants.
+      glossary:
+        - term: payment service
+          definition: Core transaction processing component responsible for card authorisation, settlement, and refund operations.
+        - term: maintenance window
+          definition: Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes.
       business_rules: []
       constraints: []
+
   C2:
     inject_context: true
     controlled_context:
-      domain: Building security and alarm monitoring system for offices.
+      domain: Online payment processing platform handling real-time card authorisations for e-commerce merchants.
       glossary:
-        - term: security service
-          definition: External emergency response service connected to the building controller.
+        - term: payment service
+          definition: Core transaction processing component responsible for card authorisation, settlement, and refund operations.
+        - term: maintenance window
+          definition: Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes.
       business_rules:
         - id: BR-01
-          rule: Damage detection and alarm notification are modeled as a functional requirement.
+          rule: The payment service is subject to a maximum of four scheduled maintenance windows per year, each not exceeding two hours, during which transaction processing is suspended.
       constraints:
         - id: QLT-01
-          text: Alarm notification must be sent within 2 seconds after damage detection.
-notes: "Concern mixing is not classified as linguistic ambiguity (Pohl §25.2). The defect is structural: a functional behavior and a quality criterion co-exist in the same sentence."
+          text: Availability targets must be expressed as a percentage with explicit exclusions for scheduled maintenance, and must be measurable over a defined rolling period (e.g. 99.95% over any 30-day window).
+
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: true
 
   C1:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: true
 
   C2:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: true

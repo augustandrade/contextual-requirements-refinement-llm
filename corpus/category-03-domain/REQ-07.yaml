@@ -6,7 +6,7 @@ source:
   citation: Kamsties et al. (2001), §1 Introduction, example (2)
 base_requirement_text: Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.
 expected_problem: Missing rule for evaluating continuous measurement within the time window.
-expected_behavior: Mark as unresolved ambiguity unless context specifies the evaluation metric.
+expected_behavior: "Per Kamsties et al. (2001), this type of ambiguity requires an explicit evaluation rule for continuous measurements within a time window; without it, different valid interpretations of the condition lead to different system behaviours."
 taxonomy_accepted_types:
   - semantic
 contexts:
@@ -33,12 +33,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false

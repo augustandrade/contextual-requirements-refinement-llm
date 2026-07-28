@@ -6,7 +6,7 @@ source:
   citation: Veizaga et al. (2024), Table 3, Passive voice smell
 base_requirement_text: When a rejection order is received for a cancellation request, System-A must raise a web alert.
 expected_problem: Passive condition hides the actor responsible for issuing the rejection order.
-expected_behavior: Identify actor omission and explicitly introduce actor when context is sufficient.
+expected_behavior: "Per Veizaga et al. (2024), passive voice constructions that hide the responsible actor should be rewritten to make the actor explicit."
 taxonomy_accepted_types:
   - syntactic
   - referential
@@ -36,12 +36,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false

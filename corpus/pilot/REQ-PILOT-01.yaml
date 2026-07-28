@@ -1,12 +1,12 @@
 id: REQ-PILOT-01
 category_id: pilot
-category_name: "Pilot — structural (concern mixing)"
+category_name: "Pilot — structural (bundled functional and quality criteria)"
 title: Functional action with delivery time constraint combined in one sentence
 source:
   citation: Author-constructed
 base_requirement_text: When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds.
-expected_problem: A functional requirement (send confirmation email) and a quality/timing requirement (within 30 seconds) are merged in a single sentence.
-expected_behavior: Agent 1 must flag has_concern_mixing as true and has_ambiguity as false. Agent 3 must decompose into one functional requirement and one quality requirement.
+expected_problem: A functional action (send confirmation email) and a quality/timing criterion (within 30 seconds) are merged in a single sentence, requiring structural disambiguation during requirement structuring.
+expected_behavior: Agent 1a must flag has_ambiguity as false. Agent 3 must produce a single structured functional requirement preserving the timing element.
 contexts:
   C0:
     inject_context: false
@@ -35,48 +35,33 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
-      - has_concern_mixing must be true
-      - Agent 3 decomposes into one functional requirement (send confirmation email) and one quality requirement (within 30 seconds)
+      - Agent 3 produces a single structured functional requirement preserving the timing element
     should_not_do:
-      - flag concern_mixing as a linguistic ambiguity (has_ambiguity must be false)
-      - merge functional action and timing constraint in a single structured requirement
+      - flag the requirement as linguistically ambiguous
       - invent delivery mechanisms or retry policies not present in the text
     applicable_criteria:
-      - atomicity
-      - concern_separation
       - syntactic_structuring
 
   C1:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
-      - has_concern_mixing must be true
-      - Agent 3 decomposes into FR (send email) + QR (30 seconds); glossary term may enrich the FR
+      - Agent 3 produces a single structured functional requirement; glossary term may enrich the final_statement
     should_not_do:
-      - flag concern_mixing as a linguistic ambiguity
-      - merge functional and quality requirements
+      - flag the requirement as linguistically ambiguous
     applicable_criteria:
-      - atomicity
-      - concern_separation
       - syntactic_structuring
 
   C2:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
-      - has_concern_mixing must be true
-      - Agent 3 decomposes; QR explicitly uses constraint QLT-01 (30 seconds); BR-01 confirms the functional independence of the sending action
+      - Agent 3 produces a single structured functional requirement; BR-01 and QLT-01 provide additional context for the timing element
     should_not_do:
-      - flag concern_mixing as a linguistic ambiguity
-      - merge functional and quality requirements
-      - ignore QLT-01 when structuring the quality requirement
+      - flag the requirement as linguistically ambiguous
+      - ignore QLT-01 when structuring the requirement
     applicable_criteria:
-      - atomicity
-      - concern_separation
       - syntactic_structuring
       - semantic_explicitation

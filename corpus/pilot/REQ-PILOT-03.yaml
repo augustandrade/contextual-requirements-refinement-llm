@@ -43,10 +43,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
-      - has_concern_mixing must be false
+
       - AMB-01 vagueness — fragment "eligible" — extension is fuzzy without a definition; at least one employee situation exists where membership cannot be determined
       - No evidence in text to determine what "eligible" means; context_dependency rated high
       - Overall status unresolved; pipeline must bypass Agent 3
@@ -60,10 +59,9 @@ manual_reference:
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
-      - has_concern_mixing must be false
+
       - AMB-01 vagueness — "eligible" — C1 domain and glossary do not define the criteria; controlled_context provides only generic HR descriptions
       - Overall status unresolved; pipeline must bypass Agent 3
     should_not_do:
@@ -75,10 +73,9 @@ manual_reference:
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
-      - has_concern_mixing must be false
+
       - AMB-01 vagueness — supported interpretation — all four conditions in glossary entry for "eligible" must be satisfied simultaneously; evidence from glossary definition and BR-01
       - overall_resolubility status fully_resolvable; Agent 3 may proceed
       - Structured requirement must enumerate the four eligibility conditions and reference constraint HR-01 for logging

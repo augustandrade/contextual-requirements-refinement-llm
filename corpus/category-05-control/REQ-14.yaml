@@ -6,7 +6,7 @@ source:
   citation: Pohl (2025), Chapter 3, Example 3-1 (FR-2)
 base_requirement_text: The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.
 expected_problem: No ambiguity or structural defect expected. Self-contained functional requirement with a single actor, single action, and single scope, requiring no external cross-reference to be understood.
-expected_behavior: Preserve functional structure and semantics.
+expected_behavior: "Per Pohl (2025), Chapter 3, FR-2 exemplifies a well-specified functional requirement; its structure and semantics should be preserved without modification."
 contexts:
   C0:
     inject_context: false
@@ -31,12 +31,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false

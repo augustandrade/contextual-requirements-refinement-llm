@@ -9,7 +9,6 @@ import pytest
 from run_pipeline import (
     normalize_overall_resolubility_status,
     should_invoke_structurer,
-    get_has_concern_mixing,
     run_output_consolidator,
     build_synthetic_resolubility,
     build_non_resolvable_structuring,
@@ -81,24 +80,6 @@ def test_should_invoke_structurer(status, expected):
 
 
 # ---------------------------------------------------------------------------
-# get_has_concern_mixing
-# ---------------------------------------------------------------------------
-
-def test_get_has_concern_mixing_true():
-    cm = {'concern_mixing_detection': {'has_concern_mixing': True}}
-    assert get_has_concern_mixing(cm) is True
-
-
-def test_get_has_concern_mixing_false():
-    cm = {'concern_mixing_detection': {'has_concern_mixing': False}}
-    assert get_has_concern_mixing(cm) is False
-
-
-def test_get_has_concern_mixing_missing_key():
-    assert get_has_concern_mixing({}) is False
-
-
-# ---------------------------------------------------------------------------
 # run_output_consolidator
 # ---------------------------------------------------------------------------
 
@@ -110,7 +91,6 @@ _EXEC = {
 }
 
 _AMB_NONE = {'ambiguity_detection': {'has_ambiguity': False, 'ambiguities': []}}
-_CM_NONE  = {'concern_mixing_detection': {'has_concern_mixing': False}}
 
 def _res(status):
     return {'contextual_resolubility_validation': {
@@ -135,13 +115,13 @@ def _blocked():
 
 class TestRunOutputConsolidator:
     def test_structured_route_no_ambiguity(self):
-        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
+        final = run_output_consolidator(_EXEC, _AMB_NONE, _res('no_ambiguity'), _struct())
         pd = final['pipeline_decision']
         assert pd['route'] == 'structured'
         assert pd['overall_resolubility_status'] == 'no_ambiguity'
 
     def test_structured_route_fully_resolvable(self):
-        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('fully_resolvable'), _struct())
+        final = run_output_consolidator(_EXEC, _AMB_NONE, _res('fully_resolvable'), _struct())
         assert final['pipeline_decision']['route'] == 'structured'
 
     def test_signaling_route_non_resolvable(self):
@@ -151,30 +131,30 @@ class TestRunOutputConsolidator:
             'ambiguity_resolubility': unresolved,
             'overall_resolubility': {'status': 'non_resolvable'},
         }}
-        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, res, _blocked())
+        final = run_output_consolidator(_EXEC, _AMB_NONE, res, _blocked())
         assert final['pipeline_decision']['route'] == 'signaling'
 
     def test_output_contains_all_top_level_keys(self):
-        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
+        final = run_output_consolidator(_EXEC, _AMB_NONE, _res('no_ambiguity'), _struct())
         for key in ('execution_id', 'requirement_id', 'context_condition', 'input_requirement',
-                    'ambiguity_analysis', 'concern_mixing_analysis',
+                    'ambiguity_analysis',
                     'contextual_resolubility_analysis', 'pipeline_decision',
                     'requirement_structuring'):
             assert key in final, f'missing key: {key}'
 
     def test_input_requirement_copied_from_execution_input(self):
-        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
+        final = run_output_consolidator(_EXEC, _AMB_NONE, _res('no_ambiguity'), _struct())
         assert final['input_requirement'] == _EXEC['base_requirement_text']
 
     def test_ids_copied_from_execution_input(self):
-        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('no_ambiguity'), _struct())
+        final = run_output_consolidator(_EXEC, _AMB_NONE, _res('no_ambiguity'), _struct())
         assert final['execution_id'] == 'REQ-01-C0'
         assert final['requirement_id'] == 'REQ-01'
         assert final['context_condition'] == 'C0'
 
     def test_struct_out_none_handled(self):
         # build_non_resolvable_structuring returns a dict, but test robustness
-        final = run_output_consolidator(_EXEC, _AMB_NONE, _CM_NONE, _res('non_resolvable'), None)
+        final = run_output_consolidator(_EXEC, _AMB_NONE, _res('non_resolvable'), None)
         assert final['requirement_structuring'] is None
 
 

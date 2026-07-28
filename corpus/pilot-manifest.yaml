@@ -30,7 +30,7 @@ methodology:
   total_executions: 12
   categories:
     - id: pilot-structural
-      name: "Pilot structural — concern mixing (functional + quality in one sentence)"
+      name: "Pilot structural — bundled functional and quality criteria"
       req_ids: [REQ-PILOT-01]
     - id: pilot-linguistic
       name: "Pilot linguistic — referential ambiguity (pronoun with two antecedents)"
@@ -39,7 +39,7 @@ methodology:
       name: "Pilot domain — vagueness (fuzzy eligibility criterion)"
       req_ids: [REQ-PILOT-03]
     - id: pilot-control
-      name: "Pilot control — clean requirement (no ambiguity, no concern mixing)"
+      name: "Pilot control — clean requirement (no ambiguity)"
       req_ids: [REQ-PILOT-04]
 items:
   - id: REQ-PILOT-01

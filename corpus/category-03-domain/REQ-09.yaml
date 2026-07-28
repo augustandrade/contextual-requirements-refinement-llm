@@ -5,8 +5,10 @@ title: Operational technical gap in traffic filtering statement
 source:
   citation: Bashir et al. (2025), ICSME 2025, Listing 1 (R1), Westermo dataset
 base_requirement_text: Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.
-expected_problem: Incomplete wording and missing technical definitions for filtering behavior and management traffic.
-expected_behavior: Identify operational gaps and require technical definitions before precise restructuring.
+expected_problem: "Key technical terms ('filter network traffic', 'data-plane interfaces', 'management data traffic') lack operational definitions, making the filtering behaviour unimplementable. Per Bashir et al. (2025), this characterises an operational definition gap in industrial requirements."
+expected_behavior: "Per Bashir et al. (2025), requirements with operational definition gaps require explicit technical definitions for each underspecified term before the requirement can be precisely structured."
+taxonomy_accepted_types:
+  - lexical
 contexts:
   C0:
     inject_context: false
@@ -32,16 +34,13 @@ contexts:
           definition: The 4 Ethernet ports (eth0-eth3) carrying passenger network data traffic, distinct from the dedicated management port.
       business_rules: []
       constraints: []
-notes: "Technical gap here is a data-scope deficiency, not concern mixing — do not classify as concern_mixing (Pohl §25.2: concern mixing = functional action + quality criterion in the same sentence; this is an operational definition gap)."
+notes: "Operational definition gap (Bashir et al. 2025): the three key technical terms are used without operational definitions, making each term lexically ambiguous across different network configurations and vendor conventions. C1 provides a generic definition of 'management data traffic' that does not resolve the ambiguity; C2 resolves all three terms with precise operational definitions (protocol, port, interface identifiers). Distinct from REQ-08 (regional standard ambiguity) in that resolution here requires vendor/system-specific operational definitions rather than selection of a published standard."
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false

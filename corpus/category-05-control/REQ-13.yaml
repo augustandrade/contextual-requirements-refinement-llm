@@ -6,7 +6,7 @@ source:
   citation: Veizaga et al. (2024), Table 6 (Tregex pattern C2), IEEE Transactions on Software Engineering
 base_requirement_text: Once System-A has successfully validated a settlement request, System-A must send an acknowledge message to System-B.
 expected_problem: No ambiguity or structural defect expected. Anonymized requirement from the source's industrial case study, presented by the authors as a correctly segmented single-condition, single-actor, single-response requirement (not associated with any smell in the source).
-expected_behavior: Preserve requirement structure with minimal formal adjustments only.
+expected_behavior: "Per Veizaga et al. (2024), a well-formed single-condition, single-actor, single-response requirement requires no restructuring beyond minimal formal adjustments."
 contexts:
   C0:
     inject_context: false
@@ -35,12 +35,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false

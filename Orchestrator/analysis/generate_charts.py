@@ -5,19 +5,18 @@ generate_charts.py — Geração de gráficos a partir dos resultados de avalia�
 Todas as visualizações mostram resultados por modelo (sem agregação entre modelos).
 
 BLOCO 1 — Detecção (context-free, usa C0)
-  1. detection_bar         — D1/D2 accuracy por categoria (C0 only, N=3/cat)
-  2a. error_type_d1        — FP/FN de D1 por categoria (C0 only)
-  2b. error_type_d2        — FP/FN de D2 por categoria (C0 only)
+  1. detection_bar         — D1 accuracy por categoria (C0 only, N=3/cat)
+  2. error_type_d1         — FP/FN de D1 por categoria (C0 only)
 
 BLOCO 2 — Resolução (context-dependent)
-  3. context_line          — D3 e D4 por C0/C1/C2, uma linha por modelo
-  4. route_error_context   — FP/FN de D3 por C0/C1/C2
+  3. context_line          — D2 e D3 por C0/C1/C2, uma linha por modelo
+  4. route_error_context   — FP/FN de D2 por C0/C1/C2
 
 CONTEXT LIFT (contribuição central)
-  5. context_lift          — ΔD3(C2−C0): lift=+1/0/−1 e staged gains por modelo
+  5. context_lift          — ΔD2(C2−C0): lift=+1/0/−1 e staged gains por modelo
 
 DIAGNÓSTICO
-  6. heatmap               — grade req×condição, pass/fail D1–D3
+  6. heatmap               — grade req×condição, pass/fail D1–D2
   7. taxonomy_grid         — classificação por tipo (Pohl), Agente 1a
 
 Uso:
@@ -42,12 +41,12 @@ import pandas as pd
 _HERE        = Path(__file__).parent
 _OUTPUTS_DIR = _HERE.parent / 'outputs'
 
-DIM_COLS   = ['D1_has_ambiguity', 'D2_concern_mixing', 'D3_route', 'D4_output_complete']
-DIM_LABELS = ['D1 Ambiguidade', 'D2 ConcernMix', 'D3 Rota', 'D4 Output']
-DIM_COLORS = ['#5c6bc0', '#26a69a', '#ef6c00', '#8d6e63']
+DIM_COLS   = ['D1_has_ambiguity', 'D2_route', 'D3_output_complete']
+DIM_LABELS = ['D1 Ambiguidade', 'D2 Rota', 'D3 Output']
+DIM_COLORS = ['#5c6bc0', '#ef6c00', '#8d6e63']
 
-CTX_SENSITIVE_COLS   = ['D3_route', 'D4_output_complete']
-CTX_SENSITIVE_LABELS = ['D3 Rota', 'D4 Output']
+CTX_SENSITIVE_COLS   = ['D2_route', 'D3_output_complete']
+CTX_SENSITIVE_LABELS = ['D2 Rota', 'D3 Output']
 CTX_ORDER            = ['C0', 'C1', 'C2']
 
 # 5 categorias canônicas do corpus principal com labels curtos
@@ -119,52 +118,50 @@ def _grid_axes(fig, runs: list) -> list:
 # ── BLOCO 1: Chart 1 — D1/D2 accuracy por categoria (C0 only) ────────────────
 
 def chart_detection_bar(df: pd.DataFrame, out_dir: Path):
-    """D1 e D2 por categoria — usa apenas C0 (context-free, N=3 por categoria)."""
+    """D1 por categoria — usa apenas C0 (context-free, N=3 por categoria)."""
     df_c0       = df[df['context'] == 'C0']
     runs        = sorted(df['run'].unique())
     cat_ids, cat_labels = _cats_from_data(df_c0)
     x     = np.arange(len(cat_ids))
     width = 0.8 / len(runs)
 
-    dims = [('D1_has_ambiguity', 'D1 Ambiguidade'), ('D2_concern_mixing', 'D2 ConcernMix')]
-    fig, axes = plt.subplots(1, 2, figsize=(11, 5.5), sharey=True)
+    fig, ax = plt.subplots(1, 1, figsize=(7, 5.5))
 
-    for ax, (col, label) in zip(axes, dims):
-        ref_run    = df_c0[df_c0['run'] == runs[0]]
-        totals     = [len(ref_run[ref_run['category'] == cat]) for cat in cat_ids]
-        tick_labels = [f'{lbl}\n(N={t})' for lbl, t in zip(cat_labels, totals)]
+    ref_run     = df_c0[df_c0['run'] == runs[0]]
+    totals      = [len(ref_run[ref_run['category'] == cat]) for cat in cat_ids]
+    tick_labels = [f'{lbl}\n(N={t})' for lbl, t in zip(cat_labels, totals)]
 
-        for i, (run, color) in enumerate(zip(runs, MODEL_PALETTE)):
-            sub    = df_c0[df_c0['run'] == run]
-            vals   = [_pct(sub[sub['category'] == cat][col]) for cat in cat_ids]
-            offset = (i - (len(runs) - 1) / 2) * width
-            bars   = ax.bar(x + offset, vals, width, color=color,
-                            label=_model_label(run), edgecolor='white', linewidth=0.5)
-            for bar, val in zip(bars, vals):
-                if not math.isnan(val):
-                    ax.text(bar.get_x() + bar.get_width() / 2,
-                            bar.get_height() + 1.5,
-                            f'{val:.0f}', ha='center', va='bottom', fontsize=7)
+    for i, (run, color) in enumerate(zip(runs, MODEL_PALETTE)):
+        sub    = df_c0[df_c0['run'] == run]
+        vals   = [_pct(sub[sub['category'] == cat]['D1_has_ambiguity']) for cat in cat_ids]
+        offset = (i - (len(runs) - 1) / 2) * width
+        bars   = ax.bar(x + offset, vals, width, color=color,
+                        label=_model_label(run), edgecolor='white', linewidth=0.5)
+        for bar, val in zip(bars, vals):
+            if not math.isnan(val):
+                ax.text(bar.get_x() + bar.get_width() / 2,
+                        bar.get_height() + 1.5,
+                        f'{val:.0f}', ha='center', va='bottom', fontsize=7)
 
-        ax.set_title(label, fontsize=11, fontweight='bold')
-        ax.set_xticks(x)
-        ax.set_xticklabels(tick_labels, fontsize=7.5)
-        ax.set_ylim(0, 120)
-        ax.yaxis.grid(True, linestyle='--', alpha=0.4)
-        ax.set_axisbelow(True)
+    ax.set_title('D1 Ambiguidade', fontsize=11, fontweight='bold')
+    ax.set_xticks(x)
+    ax.set_xticklabels(tick_labels, fontsize=7.5)
+    ax.set_ylim(0, 120)
+    ax.set_ylabel('Acurácia (%)', fontsize=10)
+    ax.yaxis.grid(True, linestyle='--', alpha=0.4)
+    ax.set_axisbelow(True)
 
-    axes[0].set_ylabel('Acurácia (%)', fontsize=10)
-    handles, labels = axes[0].get_legend_handles_labels()
+    handles, labels = ax.get_legend_handles_labels()
     fig.legend(handles, labels, loc='lower center', ncol=len(runs), fontsize=9,
                bbox_to_anchor=(0.5, -0.05), title='Modelo')
     n_per_cat = len(df_c0[df_c0['run'] == runs[0]]) // max(len(cat_ids), 1)
     fig.suptitle(
         'Bloco 1 — Detecção (context-free)\n'
-        f'D1 e D2 calculados via C0 (N={n_per_cat} por categoria por modelo)',
+        f'D1 calculado via C0 (N={n_per_cat} por categoria por modelo)',
         fontsize=11, fontweight='bold',
     )
     plt.tight_layout()
-    out_path = out_dir / 'detection_bar__D1_D2.png'
+    out_path = out_dir / 'detection_bar__D1.png'
     fig.savefig(out_path, dpi=150, bbox_inches='tight')
     plt.close(fig)
     print(f'  Salvo: {out_path.name}')
@@ -238,32 +235,6 @@ def chart_error_type_bar(df: pd.DataFrame, out_dir: Path):
     print(f'  Salvo: {out_path.name}')
 
 
-def chart_error_type_d2(df: pd.DataFrame, out_dir: Path):
-    """FP e FN de D2 por categoria (C0 only) — grade 2×2 por modelo."""
-    df_c0 = df[df['context'] == 'C0']
-    runs  = sorted(df['run'].unique())
-    fig   = plt.figure(figsize=(13, 10))
-    axes  = _grid_axes(fig, runs)
-    max_val = 0
-    for ax, run in zip(axes, runs):
-        fp, fn = _draw_fp_fn_c0(ax, df_c0[df_c0['run'] == run], 'd2_error_type', run)
-        max_val = max(max_val, max(fp, default=0), max(fn, default=0))
-    for ax in axes:
-        if ax.get_visible():
-            ax.set_ylim(0, max_val * 1.15 if max_val else 1)
-    _fp_fn_shared_legend(fig)
-    fig.suptitle(
-        'D2 ConcernMix — Falsos Positivos e Negativos por categoria (C0 only)\n'
-        'Positivos: Cat-01 (REQ-01..03)  |  Negativos: Cat-02..05',
-        fontsize=11, fontweight='bold',
-    )
-    plt.tight_layout()
-    out_path = out_dir / 'error_type__D2_concernmix.png'
-    fig.savefig(out_path, dpi=150, bbox_inches='tight')
-    plt.close(fig)
-    print(f'  Salvo: {out_path.name}')
-
-
 # ── BLOCO 2: Chart 3 — D3/D4 por condição de contexto (RQ1) ─────────────────
 
 def chart_context_line(df: pd.DataFrame, out_dir: Path):
@@ -293,12 +264,12 @@ def chart_context_line(df: pd.DataFrame, out_dir: Path):
     fig.legend(handles, labels, loc='lower center', ncol=len(runs),
                fontsize=9, bbox_to_anchor=(0.5, -0.06))
     fig.suptitle(
-        'Bloco 2 — Resolução: impacto do contexto sobre D3 e D4\n'
-        '(D1/D2 são context-free; variação de C0→C2 é o efeito do contexto)',
+        'Bloco 2 — Resolução: impacto do contexto sobre D2 e D3\n'
+        '(D1 é context-free; variação de C0→C2 é o efeito do contexto)',
         fontsize=11, fontweight='bold',
     )
     plt.tight_layout()
-    out_path = out_dir / 'context_line__D3_D4.png'
+    out_path = out_dir / 'context_line__D2_D3.png'
     fig.savefig(out_path, dpi=150, bbox_inches='tight')
     plt.close(fig)
     print(f'  Salvo: {out_path.name}')
@@ -317,11 +288,11 @@ def chart_route_error_context(df: pd.DataFrame, out_dir: Path):
 
     for ax, run in zip(axes, runs):
         sub    = df[df['run'] == run]
-        totals = [len(sub[(sub['context'] == ctx) & sub['D3_route'].notna()])
+        totals = [len(sub[(sub['context'] == ctx) & sub['D2_route'].notna()])
                   for ctx in CTX_ORDER]
-        fp = [len(sub[(sub['context'] == ctx) & (sub['d3_error_type'] == 'false_positive')])
+        fp = [len(sub[(sub['context'] == ctx) & (sub['d2_error_type'] == 'false_positive')])
               for ctx in CTX_ORDER]
-        fn = [len(sub[(sub['context'] == ctx) & (sub['d3_error_type'] == 'false_negative')])
+        fn = [len(sub[(sub['context'] == ctx) & (sub['d2_error_type'] == 'false_negative')])
               for ctx in CTX_ORDER]
         max_val = max(max_val, max(fp, default=0), max(fn, default=0))
 
@@ -352,12 +323,12 @@ def chart_route_error_context(df: pd.DataFrame, out_dir: Path):
     ], loc='lower center', ncol=2, fontsize=9,
        bbox_to_anchor=(0.5, -0.04), frameon=True, framealpha=0.95)
     fig.suptitle(
-        'D3 Rota — Erros por tipo e condição de contexto\n'
+        'D2 Rota — Erros por tipo e condição de contexto\n'
         '(redução de C0 → C2 confirma impacto do contexto controlado)',
         fontsize=11, fontweight='bold',
     )
     plt.tight_layout()
-    out_path = out_dir / 'error_type__D3_rota_por_contexto.png'
+    out_path = out_dir / 'error_type__D2_rota_por_contexto.png'
     fig.savefig(out_path, dpi=150, bbox_inches='tight')
     plt.close(fig)
     print(f'  Salvo: {out_path.name}')
@@ -409,7 +380,7 @@ def chart_context_lift(df_lift: pd.DataFrame, out_dir: Path):
                          str(val), ha='center', va='center', fontsize=9,
                          color='white', fontweight='bold')
 
-    ax_lift.set_title(f'ΔD3(C2 − C0) — lift por modelo\n(N={n} req: Cat-02, Cat-03, Cat-04)',
+    ax_lift.set_title(f'ΔD2(C2 − C0) — lift por modelo\n(N={n} req: Cat-02, Cat-03, Cat-04)',
                       fontsize=10, fontweight='bold')
     ax_lift.set_xticks(x)
     ax_lift.set_xticklabels([_model_label(r) for r in runs], fontsize=9, rotation=15, ha='right')
@@ -444,12 +415,12 @@ def chart_context_lift(df_lift: pd.DataFrame, out_dir: Path):
     ax_stage.legend(fontsize=8.5, loc='upper right')
 
     fig.suptitle(
-        'Context Lift — impacto do contexto controlado sobre a resolubilidade (D3)\n'
+        'Context Lift — impacto do contexto controlado sobre a resolubilidade (D2)\n'
         'Staged gains separam contribuição do glossário (C1) da regra de negócio (C2)',
         fontsize=11, fontweight='bold',
     )
     plt.tight_layout()
-    out_path = out_dir / 'context_lift__D3_delta.png'
+    out_path = out_dir / 'context_lift__D2_delta.png'
     fig.savefig(out_path, dpi=150, bbox_inches='tight')
     plt.close(fig)
     print(f'  Salvo: {out_path.name}')
@@ -458,7 +429,7 @@ def chart_context_lift(df_lift: pd.DataFrame, out_dir: Path):
 # ── DIAGNÓSTICO: Chart 6 — heatmap req×condição ──────────────────────────────
 
 _HEATMAP_DIMS = [
-    (c, l) for c, l in zip(DIM_COLS, DIM_LABELS) if c != 'D4_output_complete'
+    (c, l) for c, l in zip(DIM_COLS, DIM_LABELS) if c != 'D3_output_complete'
 ]
 
 
@@ -566,7 +537,7 @@ def chart_taxonomy_grid(df: pd.DataFrame, out_dir: Path):
                                            linewidth=0.6, edgecolor='white'))
                 continue
             detected_str  = str(cell['detected_types'].iloc[0])
-            accepted_str  = str(cell['accepted_types'].iloc[0])
+            accepted_str  = str(cell['accepted_types'].iloc[0]) if 'accepted_types' in cell.columns else ''
             result, color = _taxonomy_result(accepted_str, detected_str)
             ax.add_patch(plt.Rectangle((j, i), 1, 1, facecolor=color,
                                        linewidth=0.6, edgecolor='white'))
@@ -649,7 +620,6 @@ def main():
     # Bloco 1 — Detecção
     chart_detection_bar(df, out_dir)
     chart_error_type_bar(df, out_dir)
-    chart_error_type_d2(df, out_dir)
 
     # Bloco 2 — Resolução
     chart_context_line(df, out_dir)

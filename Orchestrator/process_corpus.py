@@ -53,7 +53,7 @@ def load_yaml(path: Path):
 
 
 def _already_done(run_dir: Path, req_id: str, ctx: str) -> bool:
-    return (run_dir / req_id / ctx / '05_final_output.json').exists()
+    return (run_dir / req_id / ctx / 'final_output.json').exists()
 
 
 def _pick_context(contexts: dict) -> str:
@@ -70,29 +70,41 @@ def process_item(item, run_dir: Path, contexts: list = None):
     data = load_yaml(req_path)
     if not data:
         return
-    req_id = data.get('id')
+    req_id    = data.get('id')
+    title     = data.get('title', '')
+    category  = data.get('category_name', data.get('category_id', ''))
     base_text = data.get('base_requirement_text')
 
     _ctxs = contexts or ['C0', 'C1', 'C2']
     pending = [ctx for ctx in _ctxs if not _already_done(run_dir, req_id, ctx)]
     if not pending:
-        print(f'Skipped {req_id} (already complete)')
+        print(f'  {req_id}  skipped (already complete)')
         return
 
-    # Agents 1a and 1b receive only base_requirement_text (no context) — their
-    # output is identical across contexts for the same requirement. Run once and
-    # reuse to avoid redundant model calls.
-    detection_input = {'base_requirement_text': base_text}
+    # Agent 1 is context-free — run once per requirement and reuse across contexts.
+    req_input = {'base_requirement_text': base_text}
     try:
-        amb = rp.run_ambiguity_detector(detection_input)
-        cm = rp.run_concern_mixing_detector(detection_input)
+        amb = rp.run_ambiguity_detector(req_input)
     except (rp.AgentParseError, RuntimeError) as e:
         _log_agent_error(req_id, None, e)
         return
 
-    for ctx in _ctxs:
+    req_dir       = run_dir / req_id
+    has_ambiguity = amb.get('ambiguity_detection', {}).get('has_ambiguity', False)
+    amb_tag       = 'ambiguous' if has_ambiguity else 'no ambiguity'
+    print(f'\n{req_id}  {amb_tag}')
+    print(f'  {"ctx":<4}  {"agent-2":<18}  {"route":<10}  {"agent-3":<8}  output')
+
+    # Save Agent 1 input/output once at the requirement level.
+    rp.save_req_outputs(req_dir, req_input, amb)
+
+    # Context only matters when there is ambiguity to resolve. Non-ambiguous
+    # requirements run a single canonical pass (C0, no context injection).
+    ctxs_to_run = _ctxs if has_ambiguity else ['C0']
+
+    for ctx in ctxs_to_run:
         if _already_done(run_dir, req_id, ctx):
-            print(f'Skipped {req_id} {ctx} (already complete)')
+            print(f'  {ctx:<4}  skipped')
             continue
 
         ctx_block = data.get('contexts', {}).get(ctx, {})
@@ -104,27 +116,49 @@ def process_item(item, run_dir: Path, contexts: list = None):
             'requirement_id': req_id,
             'context_condition': ctx,
             'base_requirement_text': base_text,
-            'controlled_context': controlled_context
+            'controlled_context': controlled_context,
         }
 
-        has_ambiguity = amb.get('ambiguity_detection', {}).get('has_ambiguity', False)
+        a2_status = a3_status = 'error'
+        res = struct = None
         try:
             if has_ambiguity:
-                res = rp.run_resolubility_validator(execution_input, amb)
+                res         = rp.run_resolubility_validator(execution_input, amb)
+                crv_raw     = res.get('contextual_resolubility_validation', {}).get('overall_resolubility', {}).get('status', '')
+                known       = {'fully_resolvable', 'resolvable', 'no_ambiguity', 'not_applicable',
+                               'non_resolvable', 'unresolved', 'blocking'}
+                raw_status  = rp.normalize_overall_resolubility_status(res)
+                a2_status   = 'unexpected' if str(crv_raw).strip().lower() not in known else raw_status
             else:
-                res = rp.build_synthetic_resolubility(execution_input)
+                res       = rp.build_synthetic_resolubility(execution_input)
+                a2_status = '—'
+
+            route = 'structured' if rp.should_invoke_structurer(res) else 'signaling'
 
             if rp.should_invoke_structurer(res):
-                struct = rp.run_requirement_structurer(execution_input, cm, res)
+                struct      = rp.run_requirement_structurer(execution_input, res)
+                struct_reqs = struct.get('requirement_structuring', {}).get('structured_requirements') or []
+                a3_status   = 'ok' if struct_reqs else 'empty'
             else:
-                struct = rp.build_non_resolvable_structuring(execution_input)
+                a3_status = '—'
         except (rp.AgentParseError, RuntimeError) as e:
             _log_agent_error(req_id, ctx, e)
+            print(f'  {ctx:<4}  {a2_status:<18}  {"—":<10}  {a3_status:<8}  error')
             continue
 
-        final = rp.run_output_consolidator(execution_input, amb, cm, res, struct)
-        rp.save_outputs(run_dir, f"{req_id}/{ctx}", execution_input, amb, cm, res, struct, final)
-        print('Processed', req_id, ctx)
+        # Pass None for synthetic resolubility and skipped structuring — save_ctx_outputs
+        # omits those files so absence signals the agent was not invoked.
+        r_to_save = res if has_ambiguity else None
+        s_to_save = struct
+
+        final         = rp.run_output_consolidator(execution_input, amb, res, struct)
+        output_status = 'error'
+        try:
+            rp.save_ctx_outputs(req_dir / ctx, controlled_context, r_to_save, s_to_save, final)
+            output_status = 'saved' if (req_dir / ctx / 'final_output.json').exists() else 'error'
+        except Exception as e:
+            print(f'[ERROR] {req_id}/{ctx} — failed to save outputs: {e}', file=sys.stderr)
+        print(f'  {ctx:<4}  {a2_status:<18}  {route:<10}  {a3_status:<8}  {output_status}')
 
 
 def main():

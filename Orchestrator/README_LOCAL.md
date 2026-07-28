@@ -23,7 +23,7 @@ ollama pull qwen2.5:7b
 ## Running the corpus
 
 ```bash
-# Full corpus (42 executions)
+# Full corpus (45 executions)
 python3 process_corpus.py
 
 # Smoke test — 1 req per category, 1 context (~4 executions)
@@ -44,8 +44,7 @@ OLLAMA_MODEL=qwen2.5:14b python3 process_corpus.py --label v2
 ```
 outputs/runs/<run_id>/<REQ-ID>/<CTX>/
     01_input.json
-    02a_ambiguity_detection.json
-    02b_concern_mixing_detection.json
+    02_ambiguity_detection.json
     03_resolubility_validation.json
     04_requirement_structuring.json
     05_final_output.json

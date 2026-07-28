@@ -6,9 +6,9 @@ source:
   citation: Pohl (2025), Chapter 25, Example 25-6 (R24)
 base_requirement_text: If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.
 expected_problem: Logical grouping is unclear due to and or precedence ambiguity.
-expected_behavior: Signal multiple logical interpretations and apply explicit grouping only when business logic is provided.
+expected_behavior: "Per Pohl (2025), Example 25-6, logical connective ambiguity should be resolved by making the precedence explicit through parenthesisation or restructuring of the condition."
 taxonomy_accepted_types:
-  - semantic
+  - syntactic
 contexts:
   C0:
     inject_context: false
@@ -37,12 +37,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false

@@ -6,7 +6,7 @@ source:
   citation: Pohl (2025), Chapter 25, Example 25-8 (R42)
 base_requirement_text: The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.
 expected_problem: The pronoun it can refer to either the access card or the PIN.
-expected_behavior: Detect referential ambiguity and only resolve when context provides decisive evidence.
+expected_behavior: "Per Pohl (2025), Example 25-8, referential ambiguity caused by an unresolved pronoun should be resolved by replacing the pronoun with the explicit referent."
 taxonomy_accepted_types:
   - referential
 contexts:
@@ -35,12 +35,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false

@@ -70,11 +70,6 @@ def run_ambiguity_detector(execution_input: dict):
     return agents_mod.detect_ambiguity(execution_input)
 
 
-def run_concern_mixing_detector(execution_input: dict):
-    """Agent 1b — concern mixing detection. Runs in parallel with Agent 1a."""
-    return agents_mod.detect_concern_mixing(execution_input)
-
-
 def build_synthetic_resolubility(execution_input: dict) -> dict:
     """Orchestrator synthetic block when has_ambiguity: false — bypasses Agent 2."""
     return {
@@ -92,9 +87,9 @@ def run_resolubility_validator(execution_input: dict, ambiguity_detection: dict)
     return agents_mod.validate_resolubility(execution_input, ambiguity_detection)
 
 
-def run_requirement_structurer(execution_input: dict, concern_mixing: dict, resolubility: dict):
-    """Agent 3 — requirement structuring. Receives both Agent 1b and Agent 2 outputs."""
-    return agents_mod.structure_requirement(execution_input, concern_mixing, resolubility)
+def run_requirement_structurer(execution_input: dict, resolubility: dict):
+    """Agent 3 — requirement structuring. Receives Agent 2 output."""
+    return agents_mod.structure_requirement(execution_input, resolubility)
 
 
 def normalize_overall_resolubility_status(res_out: dict) -> str:
@@ -113,13 +108,6 @@ def normalize_overall_resolubility_status(res_out: dict) -> str:
         return 'non_resolvable'
     print(f'[WARN] normalize_overall_resolubility_status: status desconhecido "{status}" → non_resolvable', file=sys.stderr)
     return 'non_resolvable'
-
-
-def get_has_concern_mixing(cm_out: dict) -> bool:
-    return bool(
-        cm_out.get('concern_mixing_detection', {})
-        .get('has_concern_mixing', False)
-    )
 
 
 def should_invoke_structurer(res_out: dict) -> bool:
@@ -146,7 +134,7 @@ def _strip_envelope_ids(d: dict) -> dict:
     return {k: v for k, v in d.items() if k not in ('execution_id', 'requirement_id', 'context_condition')}
 
 
-def run_output_consolidator(execution_input: dict, amb_out: dict, cm_out: dict, res_out: dict, struct_out: dict):
+def run_output_consolidator(execution_input: dict, amb_out: dict, res_out: dict, struct_out: dict):
     normalized_status = normalize_overall_resolubility_status(res_out)
     route = 'structured' if normalized_status in {'fully_resolvable', 'no_ambiguity'} else 'signaling'
     struct_out = struct_out or {}
@@ -154,14 +142,19 @@ def run_output_consolidator(execution_input: dict, amb_out: dict, cm_out: dict, 
     crv    = res_out.get('contextual_resolubility_validation') or {}
     struct = struct_out.get('requirement_structuring')
 
+    # contextual_resolubility_analysis is null when Agent 2 was not invoked
+    # (no ambiguity detected). The synthetic block would be misleading here —
+    # pipeline_decision already carries the normalized status.
+    has_ambiguity = amb_out.get('ambiguity_detection', {}).get('has_ambiguity', False)
+    crv_analysis = _strip_envelope_ids(crv) if has_ambiguity else None
+
     final = {
         'execution_id': execution_input.get('execution_id'),
         'requirement_id': execution_input.get('requirement_id'),
         'context_condition': execution_input.get('context_condition'),
         'input_requirement': execution_input.get('base_requirement_text'),
         'ambiguity_analysis': amb_out.get('ambiguity_detection'),
-        'concern_mixing_analysis': cm_out.get('concern_mixing_detection'),
-        'contextual_resolubility_analysis': _strip_envelope_ids(crv),
+        'contextual_resolubility_analysis': crv_analysis,
         'pipeline_decision': {
             'overall_resolubility_status': normalized_status,
             'route': route,
@@ -171,14 +164,25 @@ def run_output_consolidator(execution_input: dict, amb_out: dict, cm_out: dict, 
     return final
 
 
-def save_outputs(base_dir: Path, execution_id: str, execution_input: dict, a, cm, r, s, final):
-    outdir = base_dir / execution_id
-    ensure_dir(outdir)
-    (outdir / '01_input.json').write_text(json.dumps(execution_input, indent=2, ensure_ascii=False))
-    (outdir / '02a_ambiguity_detection.json').write_text(json.dumps(a, indent=2, ensure_ascii=False))
-    (outdir / '02b_concern_mixing_detection.json').write_text(json.dumps(cm, indent=2, ensure_ascii=False))
-    (outdir / '03_resolubility_validation.json').write_text(json.dumps(r, indent=2, ensure_ascii=False))
-    (outdir / '04_requirement_structuring.json').write_text(json.dumps(s, indent=2, ensure_ascii=False))
-    (outdir / '05_final_output.json').write_text(json.dumps(final, indent=2, ensure_ascii=False))
+def save_req_outputs(req_dir: Path, req_input: dict, ambiguity_detection: dict):
+    """Saves Agent 1 input and output at the requirement level (context-free)."""
+    ensure_dir(req_dir)
+    (req_dir / 'req_input.json').write_text(json.dumps(req_input, indent=2, ensure_ascii=False))
+    (req_dir / 'ambiguity_detection.json').write_text(json.dumps(ambiguity_detection, indent=2, ensure_ascii=False))
+
+
+def save_ctx_outputs(ctx_dir: Path, controlled_context: dict, r, s, final):
+    """Saves context and Agents 2+3 outputs at the context level.
+
+    resolubility_validation.json is omitted when Agent 2 was not invoked (r is None).
+    requirement_structuring.json is omitted when Agent 3 was not invoked (s is None).
+    """
+    ensure_dir(ctx_dir)
+    (ctx_dir / 'context.json').write_text(json.dumps(controlled_context, indent=2, ensure_ascii=False))
+    if r is not None:
+        (ctx_dir / 'resolubility_validation.json').write_text(json.dumps(r, indent=2, ensure_ascii=False))
+    if s is not None:
+        (ctx_dir / 'requirement_structuring.json').write_text(json.dumps(s, indent=2, ensure_ascii=False))
+    (ctx_dir / 'final_output.json').write_text(json.dumps(final, indent=2, ensure_ascii=False))
 
 

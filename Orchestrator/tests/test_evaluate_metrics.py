@@ -2,13 +2,12 @@
 Tests for the new metrics and lift functions added to evaluate.py:
 
   _detection_metrics_d1    precision / recall / specificity for D1 (has_ambiguity)
-  _detection_metrics_d2    precision / recall / specificity for D2 (concern_mixing)
-  evaluate_context_lift    ΔD3 between context conditions, staged gains, transitions
+  evaluate_context_lift    ΔD2 between context conditions, staged gains, transitions
 
 All inputs are hand-crafted dicts — no file I/O.
 """
 import pytest
-from evaluate import _detection_metrics_d1, _detection_metrics_d2, evaluate_context_lift
+from evaluate import _detection_metrics_d1, evaluate_context_lift
 
 
 # ── Builders ─────────────────────────────────────────────────────────────────
@@ -22,18 +21,6 @@ def _d1_row(expected_resolubility, act_has_ambiguity, category='category-02-ling
         'expected_resolubility': expected_resolubility,
         'act_has_ambiguity':     act_has_ambiguity,
         'category':              category,
-        'act_has_concern_mixing': False,
-    }
-
-
-def _d2_row(d2_correct, act_has_concern_mixing, category='category-05-control'):
-    """Build a D2 row. d2_correct reflects whether act matched expected."""
-    return {
-        'category':               category,
-        'act_has_concern_mixing': act_has_concern_mixing,
-        'D2_concern_mixing':      d2_correct,
-        'expected_resolubility':  'not_applicable',
-        'act_has_ambiguity':      False,
     }
 
 
@@ -42,9 +29,9 @@ def _lift_rows(run, req_id, category, d3_c0, d3_c1, d3_c2):
     base = {'run': run, 'req_id': req_id, 'category': category,
             'act_route': 'structured', 'score': 1.0}
     return [
-        {**base, 'context': 'C0', 'D3_route': d3_c0},
-        {**base, 'context': 'C1', 'D3_route': d3_c1},
-        {**base, 'context': 'C2', 'D3_route': d3_c2},
+        {**base, 'context': 'C0', 'D2_route': d3_c0},
+        {**base, 'context': 'C1', 'D2_route': d3_c1},
+        {**base, 'context': 'C2', 'D2_route': d3_c2},
     ]
 
 
@@ -135,56 +122,6 @@ class TestDetectionMetricsD1:
         assert m['tn'] == 0
         assert m['fp'] == 0
         assert m['specificity'] is None
-
-
-# ── _detection_metrics_d2 ─────────────────────────────────────────────────────
-
-class TestDetectionMetricsD2:
-
-    def test_perfect_classifier(self):
-        # TP: expected=True, act=True, d2_correct=True
-        # TN: expected=False, act=False, d2_correct=True
-        rows = (
-            [_d2_row(True,  True)]  * 3 +   # TP × 3
-            [_d2_row(True,  False)] * 4      # TN × 4
-        )
-        m = _detection_metrics_d2(rows)
-        assert m['tp'] == 3
-        assert m['tn'] == 4
-        assert m['fp'] == 0
-        assert m['fn'] == 0
-        assert m['precision']   == pytest.approx(1.0)
-        assert m['recall']      == pytest.approx(1.0)
-        assert m['specificity'] == pytest.approx(1.0)
-
-    def test_false_positive_non_structural_cat(self):
-        # FP: expected=False, act=True → d2_correct=False, act=True
-        rows = [_d2_row(False, True)]
-        m = _detection_metrics_d2(rows)
-        assert m['fp'] == 1
-        assert m['tp'] == 0
-        assert m['precision'] == pytest.approx(0.0)
-
-    def test_false_negative_structural_cat_not_detected(self):
-        # FN: expected=True, act=False → d2_correct=False, act=False
-        rows = [_d2_row(False, False)]
-        m = _detection_metrics_d2(rows)
-        assert m['fn'] == 1
-        assert m['tp'] == 0
-        assert m['recall'] == pytest.approx(0.0)
-
-    def test_true_negative_control_cat(self):
-        # TN: expected=False, act=False → d2_correct=True, act=False
-        rows = [_d2_row(True, False)]
-        m = _detection_metrics_d2(rows)
-        assert m['tn'] == 1
-        assert m['fp'] == 0
-
-    def test_no_positives_recall_is_none(self):
-        # All TN → recall undefined
-        rows = [_d2_row(True, False)]
-        m = _detection_metrics_d2(rows)
-        assert m['recall'] is None
 
 
 # ── evaluate_context_lift ─────────────────────────────────────────────────────

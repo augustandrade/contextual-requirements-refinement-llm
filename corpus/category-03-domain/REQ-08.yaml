@@ -6,10 +6,9 @@ source:
   citation: Kamsties et al. (2001), §4 Application-domain ambiguity, example (10)
 base_requirement_text: Generate a dial tone.
 expected_problem: Dial tone parameters depend on the telecommunications standard and region.
-expected_behavior: Mark missing operational standard unless context specifies the applicable telephony profile.
+expected_behavior: "Per Kamsties et al. (2001), application-domain ambiguity of this type requires the requirement to specify the applicable operational standard explicitly."
 taxonomy_accepted_types:
   - lexical
-  - vagueness
 contexts:
   C0:
     inject_context: false
@@ -34,12 +33,9 @@ contexts:
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_has_concern_mixing: false

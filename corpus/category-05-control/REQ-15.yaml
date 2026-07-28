@@ -6,7 +6,7 @@ source:
   citation: Pohl (2025), Chapter 1, Section 1.5
 base_requirement_text: The system shall process 95 percent of all queries within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.
 expected_problem: No ambiguity or structural defect expected. Quantified, objective, and verifiable quality requirement, requiring no external cross-reference to be understood.
-expected_behavior: Preserve quality requirement semantics and quantified thresholds.
+expected_behavior: "Per Pohl (2025), §1.5, a quantified quality requirement with objective and verifiable thresholds should have its semantics and numerical criteria preserved without modification."
 contexts:
   C0:
     inject_context: false
@@ -28,16 +28,13 @@ contexts:
       constraints:
         - id: QLT-01
           text: 95% of queries must complete within 1.5 seconds; no query may exceed 4 seconds.
-notes: "Pohl (§1.5) presents this as a well-formed quality requirement without flagging a defect. However, the sentence combines two distinct quality criteria (95th-percentile latency and absolute maximum latency), which under Pohl §25.2 could be read as concern mixing between two quality requirements. The source does not identify this as a defect, so the ground truth is no-defect. Any pipeline detection of concern mixing here is a known benign FP risk — not an error — and should be documented as such in evaluation notes."
+notes: "Pohl (§1.5) presents this as a well-formed quality requirement without flagging a defect. The sentence combines two distinct quality criteria (95th-percentile latency and absolute maximum latency) in one statement but the source does not identify this as a defect, so the ground truth is no-defect."
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: not_applicable
-    expected_has_concern_mixing: false

@@ -107,7 +107,7 @@ def _call_model_ollama(system_prompt: str, user_content: str, timeout: int = Non
 
 
 def detect_ambiguity(execution_input: dict) -> dict:
-    """Agent 1a — detects linguistic ambiguities only. Runs in parallel with detect_concern_mixing."""
+    """Agent 1a — detects linguistic ambiguities."""
     prompt_path = _TCC_ROOT / 'Agents/1a_ambiguity_detector.md'
     system_prompt = _load_prompt(prompt_path)
 
@@ -126,31 +126,10 @@ def detect_ambiguity(execution_input: dict) -> dict:
     raise AgentParseError('detect_ambiguity', raw, parse_err)
 
 
-def detect_concern_mixing(execution_input: dict) -> dict:
-    """Agent 1b — detects concern mixing only. Runs in parallel with detect_ambiguity."""
-    prompt_path = _TCC_ROOT / 'Agents/1b_concern_mixing_detector.md'
-    system_prompt = _load_prompt(prompt_path)
-
-    payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
-    user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
-
-    raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192)
-
-    parsed, parse_err = parse_yaml_block(raw, 'concern_mixing_detection')
-    if parsed is not None:
-        cmd = parsed['concern_mixing_detection']
-        if not isinstance(cmd, dict):
-            raise AgentParseError('detect_concern_mixing', raw,
-                                  f"root key 'concern_mixing_detection' is not a dict (got {type(cmd).__name__})")
-        return {'concern_mixing_detection': cmd}
-    raise AgentParseError('detect_concern_mixing', raw, parse_err)
-
-
 def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> dict:
     prompt_path = _TCC_ROOT / 'Agents/2_resolubility_check.md'
     system_prompt = _load_prompt(prompt_path)
 
-    # Agent 2 receives only Agent 1a output — concern mixing is handled separately by Agent 1b
     amb_block = ambiguity_detection.get('ambiguity_detection', ambiguity_detection)
     payload_exec = {
         'base_requirement_text': execution_input.get('base_requirement_text', ''),
@@ -190,7 +169,7 @@ def validate_resolubility(execution_input: dict, ambiguity_detection: dict) -> d
     return parsed
 
 
-def structure_requirement(execution_input: dict, concern_mixing: dict, resolubility: dict) -> dict:
+def structure_requirement(execution_input: dict, resolubility: dict) -> dict:
     prompt_path = _TCC_ROOT / 'Agents/3_structurer.md'
     system_prompt = _load_prompt(prompt_path)
 
@@ -208,15 +187,13 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
         'status': crv_raw.get('overall_resolubility', {}).get('status', 'no_ambiguity')
     }
 
-    payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
-
-    _cmd_keep = {'has_concern_mixing', 'functional_action', 'quality_criterion'}
-    cmd_raw = concern_mixing.get('concern_mixing_detection', concern_mixing)
-    payload['concern_mixing_detection'] = {k: v for k, v in cmd_raw.items() if k in _cmd_keep}
-    payload['contextual_resolubility_validation'] = filtered_crv
+    payload = {
+        'base_requirement_text': execution_input.get('base_requirement_text', ''),
+        'contextual_resolubility_validation': filtered_crv,
+    }
 
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
-    # Agent 3 receives requirement text + Agent 1b + Agent 2 output — no raw context
+    # Agent 3 receives requirement text + Agent 2 output — no raw context
     raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
 
     parsed, parse_err = parse_yaml_block(raw, 'requirement_structuring')
