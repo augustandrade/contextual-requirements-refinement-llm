@@ -82,6 +82,9 @@ def _repair_yaml_bad_escape(text: str) -> str:
 
 _OPENS_QUOTED_SCALAR_QUOTE_COUNT = re.compile(r'^\s*(?:-\s+)?(?:[\w.\-]+:\s*)?"')
 
+_CLOSED_QUOTED_SCALAR = re.compile(r'^(\s*(?:-\s+)?(?:[\w.\-]+:\s*)?)".*"\s*$')
+_YAML_STRUCTURAL = re.compile(r'^\s*(?:[\w.\-]+\s*:|-\s)')
+
 
 def _repair_yaml_embedded_quote(text: str) -> str:
     """Literal unescaped " inside a double-quoted scalar closes it early."""
@@ -98,6 +101,67 @@ def _repair_yaml_embedded_quote(text: str) -> str:
     return '\n'.join(fixed_lines)
 
 
+def _repair_yaml_value_continuation(text: str) -> str:
+    """Merge continuation text after quoted scalars into the value.
+
+    llama3.1:8b produces two problematic patterns:
+      1. Single-line:  - "value"\n          continuation...
+      2. Multi-line:   - "value start\n        value end"\n          continuation...
+
+    Phase 1 collapses multi-line quoted strings into single lines.
+    Phase 2 merges continuation lines (deeper-indented, non-structural) into
+    the preceding closed quoted scalar.
+    """
+    # Phase 1: collapse multi-line double-quoted scalars into one line each
+    lines = text.split('\n')
+    collapsed = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        count = len(_UNESCAPED_QUOTE.findall(line))
+        if count % 2 == 1:  # unclosed quote — consume lines until closed
+            combined = line.rstrip()
+            j = i + 1
+            while j < len(lines) and count % 2 == 1:
+                count += len(_UNESCAPED_QUOTE.findall(lines[j]))
+                combined += ' ' + lines[j].strip()
+                j += 1
+            collapsed.append(combined)
+            i = j
+        else:
+            collapsed.append(line)
+            i += 1
+
+    # Phase 2: merge non-structural continuation lines into preceding closed scalar
+    result = []
+    i = 0
+    while i < len(collapsed):
+        line = collapsed[i]
+        m = _CLOSED_QUOTED_SCALAR.match(line)
+        if m and i + 1 < len(collapsed):
+            curr_indent = len(line) - len(line.lstrip())
+            merged = line.rstrip()
+            j = i + 1
+            while j < len(collapsed):
+                next_line = collapsed[j]
+                if not next_line.strip():
+                    break
+                next_indent = len(next_line) - len(next_line.lstrip())
+                if next_indent > curr_indent and not _YAML_STRUCTURAL.match(next_line):
+                    if merged.endswith('"'):
+                        merged = merged[:-1] + ' ' + next_line.strip() + '"'
+                    j += 1
+                else:
+                    break
+            if j > i + 1:
+                result.append(merged)
+                i = j
+                continue
+        result.append(line)
+        i += 1
+    return '\n'.join(result)
+
+
 # ---------------------------------------------------------------------------
 # Public entry point
 # ---------------------------------------------------------------------------
@@ -108,6 +172,7 @@ _REPAIRS = (
     _repair_yaml_trailing_garbage,
     _repair_yaml_unterminated_quote,
     _repair_yaml_embedded_quote,
+    _repair_yaml_value_continuation,
 )
 
 
