@@ -7,6 +7,8 @@ source:
 base_requirement_text: All medium-sized vehicles shall be equipped with a navigation system.
 expected_problem: medium-sized has no objective domain boundary.
 expected_behavior: Signal missing category definition unless context defines measurable boundaries.
+taxonomy_accepted_types:
+  - vagueness
 contexts:
   C0:
     intent: no_context

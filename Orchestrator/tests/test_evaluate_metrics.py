@@ -26,12 +26,14 @@ def _d1_row(expected_resolubility, act_has_ambiguity, category='category-02-ling
     }
 
 
-def _d2_row(category, act_has_concern_mixing):
+def _d2_row(d2_correct, act_has_concern_mixing, category='category-05-control'):
+    """Build a D2 row. d2_correct reflects whether act matched expected."""
     return {
-        'category':              category,
+        'category':               category,
         'act_has_concern_mixing': act_has_concern_mixing,
-        'expected_resolubility': 'not_applicable',
-        'act_has_ambiguity':     False,
+        'D2_concern_mixing':      d2_correct,
+        'expected_resolubility':  'not_applicable',
+        'act_has_ambiguity':      False,
     }
 
 
@@ -140,10 +142,11 @@ class TestDetectionMetricsD1:
 class TestDetectionMetricsD2:
 
     def test_perfect_classifier(self):
+        # TP: expected=True, act=True, d2_correct=True
+        # TN: expected=False, act=False, d2_correct=True
         rows = (
-            [_d2_row('category-01-structural', True)] * 3 +   # TP × 3
-            [_d2_row(cat, False) for cat in _POS_CATS] +      # TN × 3
-            [_d2_row('category-05-control', False)]            # TN × 1
+            [_d2_row(True,  True)]  * 3 +   # TP × 3
+            [_d2_row(True,  False)] * 4      # TN × 4
         )
         m = _detection_metrics_d2(rows)
         assert m['tp'] == 3
@@ -155,27 +158,31 @@ class TestDetectionMetricsD2:
         assert m['specificity'] == pytest.approx(1.0)
 
     def test_false_positive_non_structural_cat(self):
-        rows = [_d2_row('category-02-linguistic', True)]   # FP: Cat-02 não tem concern mixing
+        # FP: expected=False, act=True → d2_correct=False, act=True
+        rows = [_d2_row(False, True)]
         m = _detection_metrics_d2(rows)
         assert m['fp'] == 1
         assert m['tp'] == 0
         assert m['precision'] == pytest.approx(0.0)
 
     def test_false_negative_structural_cat_not_detected(self):
-        rows = [_d2_row('category-01-structural', False)]  # FN: Cat-01 esperava concern mixing
+        # FN: expected=True, act=False → d2_correct=False, act=False
+        rows = [_d2_row(False, False)]
         m = _detection_metrics_d2(rows)
         assert m['fn'] == 1
         assert m['tp'] == 0
         assert m['recall'] == pytest.approx(0.0)
 
     def test_true_negative_control_cat(self):
-        rows = [_d2_row('category-05-control', False)]
+        # TN: expected=False, act=False → d2_correct=True, act=False
+        rows = [_d2_row(True, False)]
         m = _detection_metrics_d2(rows)
         assert m['tn'] == 1
         assert m['fp'] == 0
 
     def test_no_positives_recall_is_none(self):
-        rows = [_d2_row('category-05-control', False)]
+        # All TN → recall undefined
+        rows = [_d2_row(True, False)]
         m = _detection_metrics_d2(rows)
         assert m['recall'] is None
 

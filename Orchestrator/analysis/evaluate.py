@@ -60,15 +60,9 @@ _CAT_LABELS = {
 _POSITIVE_CATS = frozenset({'category-02-linguistic', 'category-03-domain', 'category-04-vagueness'})
 _NEGATIVE_CATS = frozenset({'category-01-structural', 'category-05-control'})
 
-# Rótulos de tipo de ambiguidade aceitos por requisito (taxonomia de Pohl, 5 vias).
-# Conjunto com ≥ 2 entradas = casos com divergência na literatura (ambos aceitos).
-# Cobrança com rótulo único quando há convergência na literatura.
-TAXONOMY_TARGETS: dict[str, set[str]] = {
-    'REQ-04': {'referential', 'syntactic'},  # voz passiva: ambos defensáveis
-    'REQ-05': {'syntactic'},                  # attachment ambiguity: consenso
-    'REQ-06': {'semantic', 'logical'},        # AND/OR: ambos usados na literatura
-    'REQ-07': {'vagueness'},                  # weak word: consenso
-}
+# Taxonomy targets are declared per-requirement in the corpus YAML via
+# `taxonomy_accepted_types`. No hardcoding here — evaluate_taxonomy reads
+# accepted types directly from the loaded corpus.
 
 
 # ── Carrega corpus ────────────────────────────────────────────────────────────
@@ -271,11 +265,20 @@ def _detection_metrics_d1(c0_rows: list[dict]) -> dict:
 
 
 def _detection_metrics_d2(c0_rows: list[dict]) -> dict:
-    """Precision, recall e specificity para D2 (concern_mixing)."""
+    """Precision, recall e specificity para D2 (concern_mixing).
+
+    Ground truth derived from D2_concern_mixing (which uses expected_actions from
+    the corpus), consistent with evaluate_one. Using category as proxy would diverge
+    for pilot requirements that don't map 1:1 to category-01-structural.
+    """
     tp = fp = fn = tn = 0
     for r in c0_rows:
-        exp = r.get('category') in {'category-01-structural'}  # só Cat-01 espera concern mixing
+        d2_correct = r.get('D2_concern_mixing')
+        if d2_correct is None:
+            continue
         act = bool(r.get('act_has_concern_mixing', False))
+        # Reconstruct expected from act + correctness flag
+        exp = act if d2_correct else (not act)
         if exp and act:
             tp += 1
         elif not exp and act:
@@ -354,20 +357,24 @@ def evaluate_context_lift(all_rows: list[dict]) -> list[dict]:
 
 
 # ── Taxonomia de Pohl (classificação, não apenas detecção) ───────────────────
-def evaluate_taxonomy(run_dir: Path) -> list[dict]:
-    """Para os requisitos de TAXONOMY_TARGETS, verifica se o Agente 1a
-    classificou a ambiguidade em um dos tipos aceitos (Pohl 5-way).
+def evaluate_taxonomy(run_dir: Path, corpus: dict) -> list[dict]:
+    """Para cada requisito do corpus com `taxonomy_accepted_types`, verifica se
+    o Agente 1a classificou a ambiguidade em um dos tipos aceitos (Pohl 5-way).
     Usa C0 como representativo — Agente 1a é context-free.
     """
     rows: list[dict] = []
-    for req_id, accepted_types in TAXONOMY_TARGETS.items():
+    for req_id, doc in sorted(corpus.items()):
+        accepted_list = doc.get('taxonomy_accepted_types') or []
+        if not accepted_list:
+            continue
+        accepted_types = set(accepted_list)
         output_file = run_dir / req_id / 'C0' / '05_final_output.json'
         if not output_file.exists():
             continue
-        final           = json.loads(output_file.read_text(encoding='utf-8'))
-        ambiguities     = _get(final, 'ambiguity_analysis', 'ambiguities', default=[]) or []
-        detected_types  = [a.get('ambiguity_type', '') for a in ambiguities]
-        match           = any(t in accepted_types for t in detected_types)
+        final          = json.loads(output_file.read_text(encoding='utf-8'))
+        ambiguities    = _get(final, 'ambiguity_analysis', 'ambiguities', default=[]) or []
+        detected_types = [a.get('ambiguity_type', '') for a in ambiguities]
+        match          = any(t in accepted_types for t in detected_types)
         rows.append({
             'run':            run_dir.name,
             'req_id':         req_id,
@@ -515,18 +522,19 @@ def summarize_taxonomy(rows: list[dict]) -> None:
     if not rows:
         return
     runs    = sorted({r['run']    for r in rows})
-    req_ids = list(TAXONOMY_TARGETS.keys())
+    req_ids = sorted({r['req_id'] for r in rows})
 
     print(f'\n{"═" * 74}')
-    print('CLASSIFICAÇÃO POR TAXONOMIA DE POHL (Agente 1a — Cat-02 e Cat-03)')
-    print('Tipos aceitos: conjunto único = consenso; conjunto múltiplo = divergência na literatura')
+    print('CLASSIFICAÇÃO POR TAXONOMIA DE POHL (Agente 1a)')
+    print('Tipos aceitos declarados em taxonomy_accepted_types no corpus.')
+    print('Conjunto único = consenso; conjunto múltiplo = ambos defensáveis.')
     print(f'{"─" * 74}')
     header = f'  {"Requisito (aceitos)":<34}' + ''.join(f'{_model_short(r):>14}' for r in runs)
     print(header)
     for req_id in req_ids:
-        accepted = TAXONOMY_TARGETS[req_id]
-        label    = req_id + ' (' + '/'.join(sorted(accepted)) + ')'
-        line     = f'  {label:<34}'
+        accepted_str = next((r['accepted_types'] for r in rows if r['req_id'] == req_id), '')
+        label = req_id + ' (' + accepted_str + ')'
+        line  = f'  {label:<34}'
         for run in runs:
             match = next((r['match'] for r in rows if r['run'] == run and r['req_id'] == req_id), None)
             cell  = '✓' if match else ('✗' if match is False else '—')
@@ -655,7 +663,7 @@ def main():
 
     taxonomy_rows: list[dict] = []
     for rd in run_dirs:
-        taxonomy_rows.extend(evaluate_taxonomy(rd))
+        taxonomy_rows.extend(evaluate_taxonomy(rd, corpus))
     summarize_taxonomy(taxonomy_rows)
 
     ts     = datetime.now().strftime('%Y-%m-%dT%H-%M')
@@ -686,8 +694,10 @@ def main():
         gc.chart_context_lift(df_lift, charts_dir)
         for run in sorted(df['run'].unique()):
             gc.chart_heatmap(df[df['run'] == run], run, charts_dir)
-        df_tax = pd.read_csv(eval_dir / 'taxonomy_classification.csv')
-        gc.chart_taxonomy_grid(df_tax, charts_dir)
+        tax_csv = eval_dir / 'taxonomy_classification.csv'
+        if tax_csv.exists():
+            df_tax = pd.read_csv(tax_csv)
+            gc.chart_taxonomy_grid(df_tax, charts_dir)
     except Exception as e:
         print(f'  [WARN] Gráficos não gerados: {e}')
 

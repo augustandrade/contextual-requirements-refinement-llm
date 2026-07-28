@@ -7,6 +7,8 @@ source:
 base_requirement_text: If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.
 expected_problem: Logical grouping is unclear due to and or precedence ambiguity.
 expected_behavior: Signal multiple logical interpretations and apply explicit grouping only when business logic is provided.
+taxonomy_accepted_types:
+  - semantic
 contexts:
   C0:
     intent: no_context

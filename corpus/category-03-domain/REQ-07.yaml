@@ -7,6 +7,8 @@ source:
 base_requirement_text: Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.
 expected_problem: Missing rule for evaluating continuous measurement within the time window.
 expected_behavior: Mark as unresolved ambiguity unless context specifies the evaluation metric.
+taxonomy_accepted_types:
+  - semantic
 contexts:
   C0:
     intent: no_context

@@ -7,6 +7,8 @@ source:
 base_requirement_text: The system shall automatically approve the leave request if the employee is eligible.
 expected_problem: The term "eligible" is vague — its extension is indeterminate without a formal eligibility definition, making automatic approval criteria impossible to implement.
 expected_behavior: Agent 1 flags vagueness ambiguity for "eligible". In C0 the ambiguity is unresolved. In C1 the general HR domain does not supply a specific rule. In C2 a business rule defines eligibility criteria precisely, making the ambiguity resolvable.
+taxonomy_accepted_types:
+  - vagueness
 contexts:
   C0:
     intent: no_context

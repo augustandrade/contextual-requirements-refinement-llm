@@ -7,6 +7,9 @@ source:
 base_requirement_text: Generate a dial tone.
 expected_problem: Dial tone parameters depend on the telecommunications standard and region.
 expected_behavior: Mark missing operational standard unless context specifies the applicable telephony profile.
+taxonomy_accepted_types:
+  - lexical
+  - vagueness
 contexts:
   C0:
     intent: no_context

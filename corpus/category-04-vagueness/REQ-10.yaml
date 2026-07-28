@@ -7,6 +7,8 @@ source:
 base_requirement_text: The TCU is connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls on certain crash levels.
 expected_problem: "'certain' is a vague quantifier (Pohl 2025, §25.3.5) with no measurable boundary — it is unclear which crash levels trigger automatic emergency calls. Verbatim example from the source, annotated by the authors as a genuine defect (weak word)."
 expected_behavior: Flag vagueness and refine into explicit, enumerated crash levels when context resolves the policy.
+taxonomy_accepted_types:
+  - vagueness
 contexts:
   C0:
     intent: no_context
