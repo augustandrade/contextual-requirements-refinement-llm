@@ -50,21 +50,36 @@ CTX_SENSITIVE_COLS   = ['D3_route', 'D4_output_complete']
 CTX_SENSITIVE_LABELS = ['D3 Rota', 'D4 Output']
 CTX_ORDER            = ['C0', 'C1', 'C2']
 
-# Todas as 5 categorias do corpus
-CAT_IDS = [
-    'category-01-structural',
-    'category-02-linguistic',
-    'category-03-domain',
-    'category-04-vagueness',
-    'category-05-control',
-]
-CAT_LABELS_SHORT = [
-    'Cat-01\nEstrutural',
-    'Cat-02\nLinguística',
-    'Cat-03\nDomínio',
-    'Cat-04\nVaguidade',
-    'Cat-05\nControle',
-]
+# 5 categorias canônicas do corpus principal com labels curtos
+_CANONICAL_CAT_LABELS = {
+    'category-01-structural': 'Cat-01\nEstrutural',
+    'category-02-linguistic': 'Cat-02\nLinguística',
+    'category-03-domain':     'Cat-03\nDomínio',
+    'category-04-vagueness':  'Cat-04\nVaguidade',
+    'category-05-control':    'Cat-05\nControle',
+}
+
+# Mantidos para compatibilidade com código externo (evaluate.py importa DIM_COLS)
+CAT_IDS          = list(_CANONICAL_CAT_LABELS.keys())
+CAT_LABELS_SHORT = list(_CANONICAL_CAT_LABELS.values())
+
+
+def _cats_from_data(df: pd.DataFrame):
+    """Derive (cat_ids, cat_labels) from the data present in df.
+
+    Uses the canonical mapping when standard corpus categories are present.
+    Falls back to sorted unique values with generic labels for non-standard
+    manifests (e.g. pilot with category_id='pilot').
+    """
+    present_standard = [c for c in CAT_IDS if c in df['category'].values]
+    if present_standard:
+        return present_standard, [_CANONICAL_CAT_LABELS[c] for c in present_standard]
+    fallback = sorted(df['category'].dropna().unique())
+    labels   = [
+        _CANONICAL_CAT_LABELS.get(c, c.replace('category-', 'Cat-').replace('-', '\n').title())
+        for c in fallback
+    ]
+    return fallback, labels
 
 # Categorias positivas (expected ambiguity = True) para D1
 _POSITIVE_CATS = frozenset({'category-02-linguistic', 'category-03-domain', 'category-04-vagueness'})
@@ -105,9 +120,10 @@ def _grid_axes(fig, runs: list) -> list:
 
 def chart_detection_bar(df: pd.DataFrame, out_dir: Path):
     """D1 e D2 por categoria — usa apenas C0 (context-free, N=3 por categoria)."""
-    df_c0 = df[df['context'] == 'C0']
-    runs  = sorted(df['run'].unique())
-    x     = np.arange(len(CAT_IDS))
+    df_c0       = df[df['context'] == 'C0']
+    runs        = sorted(df['run'].unique())
+    cat_ids, cat_labels = _cats_from_data(df_c0)
+    x     = np.arange(len(cat_ids))
     width = 0.8 / len(runs)
 
     dims = [('D1_has_ambiguity', 'D1 Ambiguidade'), ('D2_concern_mixing', 'D2 ConcernMix')]
@@ -115,12 +131,12 @@ def chart_detection_bar(df: pd.DataFrame, out_dir: Path):
 
     for ax, (col, label) in zip(axes, dims):
         ref_run    = df_c0[df_c0['run'] == runs[0]]
-        totals     = [len(ref_run[ref_run['category'] == cat]) for cat in CAT_IDS]
-        tick_labels = [f'{lbl}\n(N={t})' for lbl, t in zip(CAT_LABELS_SHORT, totals)]
+        totals     = [len(ref_run[ref_run['category'] == cat]) for cat in cat_ids]
+        tick_labels = [f'{lbl}\n(N={t})' for lbl, t in zip(cat_labels, totals)]
 
         for i, (run, color) in enumerate(zip(runs, MODEL_PALETTE)):
             sub    = df_c0[df_c0['run'] == run]
-            vals   = [_pct(sub[sub['category'] == cat][col]) for cat in CAT_IDS]
+            vals   = [_pct(sub[sub['category'] == cat][col]) for cat in cat_ids]
             offset = (i - (len(runs) - 1) / 2) * width
             bars   = ax.bar(x + offset, vals, width, color=color,
                             label=_model_label(run), edgecolor='white', linewidth=0.5)
@@ -141,9 +157,10 @@ def chart_detection_bar(df: pd.DataFrame, out_dir: Path):
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc='lower center', ncol=len(runs), fontsize=9,
                bbox_to_anchor=(0.5, -0.05), title='Modelo')
+    n_per_cat = len(df_c0[df_c0['run'] == runs[0]]) // max(len(cat_ids), 1)
     fig.suptitle(
         'Bloco 1 — Detecção (context-free)\n'
-        'D1 e D2 calculados via C0 (N=3 por categoria por modelo)',
+        f'D1 e D2 calculados via C0 (N={n_per_cat} por categoria por modelo)',
         fontsize=11, fontweight='bold',
     )
     plt.tight_layout()
@@ -157,13 +174,14 @@ def chart_detection_bar(df: pd.DataFrame, out_dir: Path):
 
 def _draw_fp_fn_c0(ax, sub_c0: pd.DataFrame, col: str, run: str):
     """Helper: barras FP/FN por categoria usando apenas linhas C0."""
-    x     = np.arange(len(CAT_IDS))
+    cat_ids, cat_labels = _cats_from_data(sub_c0)
+    x     = np.arange(len(cat_ids))
     width = 0.35
-    totals = [len(sub_c0[sub_c0['category'] == cat]) for cat in CAT_IDS]
+    totals = [len(sub_c0[sub_c0['category'] == cat]) for cat in cat_ids]
     fp = [len(sub_c0[(sub_c0['category'] == cat) & (sub_c0[col] == 'false_positive')])
-          for cat in CAT_IDS]
+          for cat in cat_ids]
     fn = [len(sub_c0[(sub_c0['category'] == cat) & (sub_c0[col] == 'false_negative')])
-          for cat in CAT_IDS]
+          for cat in cat_ids]
 
     bars_fp = ax.bar(x - width / 2, fp, width, label='Falso Positivo',
                      color='#ef6c00', edgecolor='white')
@@ -175,7 +193,7 @@ def _draw_fp_fn_c0(ax, sub_c0: pd.DataFrame, col: str, run: str):
             ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.08,
                     str(val), ha='center', va='bottom', fontsize=9)
 
-    tick_labels = [f'{lbl}\n(N={t})' for lbl, t in zip(CAT_LABELS_SHORT, totals)]
+    tick_labels = [f'{lbl}\n(N={t})' for lbl, t in zip(cat_labels, totals)]
     ax.set_title(_model_label(run), fontsize=10, fontweight='bold')
     ax.set_xticks(x)
     ax.set_xticklabels(tick_labels, fontsize=7.5)
