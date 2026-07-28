@@ -212,7 +212,10 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
     if ctx:
         payload['controlled_context'] = ctx
-    payload['concern_mixing_detection'] = concern_mixing.get('concern_mixing_detection', concern_mixing)
+
+    _cmd_keep = {'has_concern_mixing', 'functional_action', 'quality_criterion'}
+    cmd_raw = concern_mixing.get('concern_mixing_detection', concern_mixing)
+    payload['concern_mixing_detection'] = {k: v for k, v in cmd_raw.items() if k in _cmd_keep}
     payload['contextual_resolubility_validation'] = filtered_crv
 
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
