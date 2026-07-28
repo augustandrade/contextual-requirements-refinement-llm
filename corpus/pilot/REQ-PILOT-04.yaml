@@ -9,10 +9,8 @@ expected_problem: None — this requirement is intentionally free of ambiguity a
 expected_behavior: Agent 1 must flag has_ambiguity as false and has_concern_mixing as false. Agent 2 must set status no_ambiguity with no structural_issue. Agent 3 must produce a single structured functional requirement without decomposition.
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Desktop document editing application.
@@ -24,7 +22,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Desktop document editing application.
@@ -39,15 +36,10 @@ contexts:
         - id: BR-01
           rule: The write operation must complete successfully before the confirmation message is displayed. If the write fails, an error notification must be shown instead and no confirmation message is displayed.
       constraints: []
-tags: [control, clean, no-ambiguity, no-concern-mixing, pilot]
-status: ready
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_actions:
-      - confirm_no_ambiguity
-      - confirm_no_concern_mixing
-      - structure_requirement
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
       - has_concern_mixing must be false
@@ -65,10 +57,7 @@ manual_reference:
 
   C1:
     expected_resolubility: not_applicable
-    expected_actions:
-      - confirm_no_ambiguity
-      - confirm_no_concern_mixing
-      - structure_requirement
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
       - has_concern_mixing must be false
@@ -83,10 +72,7 @@ manual_reference:
 
   C2:
     expected_resolubility: not_applicable
-    expected_actions:
-      - confirm_no_ambiguity
-      - confirm_no_concern_mixing
-      - structure_requirement
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
       - has_concern_mixing must be false

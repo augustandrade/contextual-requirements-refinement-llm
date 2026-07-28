@@ -44,10 +44,10 @@ def make_final(
     }
 
 
-def make_ref(expected_resolubility, expected_actions=None):
+def make_ref(expected_resolubility, expected_has_concern_mixing=False):
     return {
         'expected_resolubility': expected_resolubility,
-        'expected_actions': expected_actions or [],
+        'expected_has_concern_mixing': expected_has_concern_mixing,
     }
 
 
@@ -92,7 +92,7 @@ class TestD2ConcernMixing:
     def test_expected_and_detected(self):
         r = evaluate_one(
             make_final(has_concern_mixing=True),
-            make_ref('resolvable', expected_actions=['detect_concern_mixing']),
+            make_ref('resolvable', expected_has_concern_mixing=True),
         )
         assert r['D2_concern_mixing'] is True
 
@@ -108,7 +108,7 @@ class TestD2ConcernMixing:
     def test_false_negative(self):
         r = evaluate_one(
             make_final(has_concern_mixing=False),
-            make_ref('resolvable', expected_actions=['detect_concern_mixing']),
+            make_ref('resolvable', expected_has_concern_mixing=True),
         )
         assert r['D2_concern_mixing'] is False
         assert r['d2_error_type'] == 'false_negative'
@@ -243,7 +243,7 @@ class TestDecomposed:
             has_concern_mixing=True, route='structured',
             structured_requirements=[{'id': 'SR-01'}, {'id': 'SR-02'}],
         )
-        r = evaluate_one(final, make_ref('resolvable', expected_actions=['detect_concern_mixing']))
+        r = evaluate_one(final, make_ref('resolvable', expected_has_concern_mixing=True))
         assert r['decomposed'] is True
 
     def test_concern_mixing_one_req_decomposed_false(self):
@@ -251,7 +251,7 @@ class TestDecomposed:
             has_concern_mixing=True, route='structured',
             structured_requirements=[{'id': 'SR-01'}],
         )
-        r = evaluate_one(final, make_ref('resolvable', expected_actions=['detect_concern_mixing']))
+        r = evaluate_one(final, make_ref('resolvable', expected_has_concern_mixing=True))
         assert r['decomposed'] is False
 
     def test_no_concern_mixing_decomposed_none(self):

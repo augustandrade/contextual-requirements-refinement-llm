@@ -9,10 +9,8 @@ expected_problem: Incomplete wording and missing technical definitions for filte
 expected_behavior: Identify operational gaps and require technical definitions before precise restructuring.
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Industrial railway communication network using routing switches.
@@ -22,7 +20,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Industrial railway communication network using routing switches.
@@ -35,30 +32,16 @@ contexts:
           definition: The 4 Ethernet ports (eth0-eth3) carrying passenger network data traffic, distinct from the dedicated management port.
       business_rules: []
       constraints: []
-tags: [domain, technical-gap, operational-definition]
-status: ready
 notes: "Technical gap here is a data-scope deficiency, not concern mixing — do not classify as concern_mixing (Pohl §25.2: concern mixing = functional action + quality criterion in the same sentence; this is an operational definition gap)."
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - signal_unresolved_ambiguity
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - refine_text
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - refine_text
-      - preserve_requirement
+    expected_has_concern_mixing: false

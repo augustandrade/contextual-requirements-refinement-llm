@@ -110,8 +110,7 @@ def evaluate_one(final: dict, manual_ref: dict) -> dict:
     Retorna dict com resultado de cada dimensão (True/False/None = N/A),
     score agregado e campos diagnósticos adicionais.
     """
-    exp_res     = manual_ref.get('expected_resolubility', '')
-    exp_actions = manual_ref.get('expected_actions', []) or []
+    exp_res = manual_ref.get('expected_resolubility', '')
 
     d1 = d2 = d3 = d4 = None
     applicable = correct = 0
@@ -130,7 +129,7 @@ def evaluate_one(final: dict, manual_ref: dict) -> dict:
         d1_error_type = None
 
     # D2 — concern_mixing
-    exp_cm = 'detect_concern_mixing' in exp_actions
+    exp_cm = manual_ref.get('expected_has_concern_mixing', False)
     act_cm = bool(_get(final, 'concern_mixing_analysis', 'has_concern_mixing', default=False))
     d2 = (act_cm == exp_cm)
     applicable += 1
@@ -267,9 +266,9 @@ def _detection_metrics_d1(c0_rows: list[dict]) -> dict:
 def _detection_metrics_d2(c0_rows: list[dict]) -> dict:
     """Precision, recall e specificity para D2 (concern_mixing).
 
-    Ground truth derived from D2_concern_mixing (which uses expected_actions from
-    the corpus), consistent with evaluate_one. Using category as proxy would diverge
-    for pilot requirements that don't map 1:1 to category-01-structural.
+    Ground truth derived from expected_has_concern_mixing in the corpus manual_reference.
+    Using category as proxy would diverge for pilot requirements that don't map 1:1
+    to category-01-structural.
     """
     tp = fp = fn = tn = 0
     for r in c0_rows:

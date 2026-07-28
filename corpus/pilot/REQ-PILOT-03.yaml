@@ -11,10 +11,8 @@ taxonomy_accepted_types:
   - vagueness
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Human resources management system for a mid-sized enterprise.
@@ -26,7 +24,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Human resources management system for a mid-sized enterprise.
@@ -43,15 +40,10 @@ contexts:
       constraints:
         - id: HR-01
           text: The system must log the specific eligibility condition that caused automatic approval or the specific condition that triggered manual review routing.
-tags: [domain, vagueness, eligibility, pilot]
-status: ready
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - signal_non_resolvable
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
       - has_concern_mixing must be false
@@ -68,10 +60,7 @@ manual_reference:
 
   C1:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - signal_non_resolvable
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
       - has_concern_mixing must be false
@@ -86,11 +75,7 @@ manual_reference:
 
   C2:
     expected_resolubility: resolvable
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - resolve_with_context
-      - structure_requirement
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
       - has_concern_mixing must be false

@@ -11,10 +11,8 @@ taxonomy_accepted_types:
   - referential
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Hospital patient monitoring system for post-operative care.
@@ -26,7 +24,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Hospital patient monitoring system for post-operative care.
@@ -41,15 +38,10 @@ contexts:
       constraints:
         - id: OBS-01
           text: "The observation window for response detection is 10 minutes from the administration timestamp recorded by the system."
-tags: [linguistic, referential, pronoun, pilot]
-status: ready
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - signal_non_resolvable
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
       - has_concern_mixing must be false
@@ -65,10 +57,7 @@ manual_reference:
 
   C1:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - signal_non_resolvable
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
       - has_concern_mixing must be false
@@ -82,11 +71,7 @@ manual_reference:
 
   C2:
     expected_resolubility: resolvable
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - resolve_with_context
-      - structure_requirement
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be true
       - has_concern_mixing must be false

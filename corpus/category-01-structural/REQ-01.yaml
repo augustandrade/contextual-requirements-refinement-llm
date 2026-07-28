@@ -9,20 +9,15 @@ expected_problem: Functional behavior and timing quality are mixed in one requir
 expected_behavior: Split into at least one functional requirement and one quality requirement.
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Building security and alarm monitoring system for offices.
-      glossary:
-        - term: glass break detector
-          definition: Sensor that detects vibration or sound patterns from broken glass.
+      glossary: []
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Building security and alarm monitoring system for offices.
@@ -35,30 +30,16 @@ contexts:
       constraints:
         - id: QLT-01
           text: Alarm notification must be sent within 2 seconds after damage detection.
-tags: [structural, concern-separation, function-quality]
-status: ready
-notes: "Concern mixing is not classified as linguistic ambiguity (Pohl §25.2). Agent 1a returns has_ambiguity: false; Agent 1b returns has_concern_mixing: true. Agent 2 is bypassed — orchestrator uses synthetic no_ambiguity block. Agent 3 decomposes based on Agent 1b output."
+notes: "Concern mixing is not classified as linguistic ambiguity (Pohl §25.2). The defect is structural: a functional behavior and a quality criterion co-exist in the same sentence."
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_actions:
-      - detect_concern_mixing
-      - decompose_requirement
-      - separate_concerns
-      - preserve_requirement
+    expected_has_concern_mixing: true
 
   C1:
     expected_resolubility: not_applicable
-    expected_actions:
-      - detect_concern_mixing
-      - decompose_requirement
-      - separate_concerns
-      - structure_with_template
+    expected_has_concern_mixing: true
 
   C2:
     expected_resolubility: not_applicable
-    expected_actions:
-      - detect_concern_mixing
-      - decompose_requirement
-      - separate_concerns
-      - refine_text
+    expected_has_concern_mixing: true

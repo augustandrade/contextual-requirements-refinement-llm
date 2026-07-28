@@ -9,10 +9,8 @@ expected_problem: No ambiguity or structural defect expected. Self-contained fun
 expected_behavior: Preserve functional structure and semantics.
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Building access control system.
@@ -22,7 +20,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Building access control system.
@@ -31,23 +28,15 @@ contexts:
           definition: Subsystem responsible for controlling and logging physical access to the building.
       business_rules: []
       constraints: []
-tags: [control, functional, preserve-structure]
-status: ready
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_actions:
-      - preserve_requirement
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: not_applicable
-    expected_actions:
-      - preserve_requirement
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: not_applicable
-    expected_actions:
-      - preserve_requirement
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false

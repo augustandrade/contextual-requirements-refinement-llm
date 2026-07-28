@@ -12,10 +12,8 @@ taxonomy_accepted_types:
   - vagueness
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Digital telephony exchange system.
@@ -25,7 +23,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Digital telephony exchange system.
@@ -34,29 +31,15 @@ contexts:
       constraints:
         - id: CST-01
           text: System follows North American telephony standard using simultaneous 350 Hz and 440 Hz dial tone.
-tags: [domain, pragmatic-ambiguity, standards]
-status: ready
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - signal_unresolved_ambiguity
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - signal_unresolved_ambiguity
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - refine_text
-      - preserve_requirement
+    expected_has_concern_mixing: false

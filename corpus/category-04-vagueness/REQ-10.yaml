@@ -11,10 +11,8 @@ taxonomy_accepted_types:
   - vagueness
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Automotive crash-detection and emergency-call system (TCU/ORC).
@@ -26,7 +24,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Automotive crash-detection and emergency-call system (TCU/ORC).
@@ -35,29 +32,15 @@ contexts:
         - id: BR-01
           rule: Automatic emergency calls are triggered for crash severity levels 2 (moderate) and 3 (severe) on the internal crash severity scale; level 1 (minor) does not trigger a call.
       constraints: []
-tags: [vagueness, weak-word]
-status: ready
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - refine_text
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - refine_text
-      - preserve_requirement
+    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - refine_text
-      - preserve_requirement
+    expected_has_concern_mixing: false

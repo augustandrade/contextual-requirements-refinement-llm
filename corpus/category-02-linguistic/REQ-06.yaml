@@ -11,10 +11,8 @@ taxonomy_accepted_types:
   - semantic
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: In-vehicle safety system with intrusion detection and door state monitoring.
@@ -24,7 +22,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: In-vehicle safety system with intrusion detection and door state monitoring.
@@ -37,29 +34,15 @@ contexts:
             by either of two events: (1) the interior surveillance detects an intruder,
             or (2) a door is opened without a car key.
       constraints: []
-tags: [linguistic, logical-ambiguity, and-or]
-status: ready
 manual_reference:
   C0:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - signal_unresolved_ambiguity
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: unresolved
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - signal_unresolved_ambiguity
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: resolvable
-    expected_actions:
-      - identify_ambiguity
-      - classify_ambiguity
-      - refine_text
-      - preserve_requirement
+    expected_has_concern_mixing: false

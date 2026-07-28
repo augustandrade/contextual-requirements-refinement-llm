@@ -9,10 +9,8 @@ expected_problem: A functional requirement (send confirmation email) and a quali
 expected_behavior: Agent 1 must flag has_concern_mixing as true and has_ambiguity as false. Agent 3 must decompose into one functional requirement and one quality requirement.
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Online retail platform for consumer electronics.
@@ -22,7 +20,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Online retail platform for consumer electronics.
@@ -35,16 +32,10 @@ contexts:
       constraints:
         - id: QLT-01
           text: Confirmation emails must be delivered within 30 seconds of order submission. This is a quality of service constraint, not part of the functional sending action.
-tags: [structural, concern-mixing, function-quality, pilot]
-status: ready
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_actions:
-      - detect_concern_mixing
-      - decompose_requirement
-      - separate_concerns
-      - preserve_requirement
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
       - has_concern_mixing must be true
@@ -60,11 +51,7 @@ manual_reference:
 
   C1:
     expected_resolubility: not_applicable
-    expected_actions:
-      - detect_concern_mixing
-      - decompose_requirement
-      - separate_concerns
-      - structure_with_template
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
       - has_concern_mixing must be true
@@ -79,11 +66,7 @@ manual_reference:
 
   C2:
     expected_resolubility: not_applicable
-    expected_actions:
-      - detect_concern_mixing
-      - decompose_requirement
-      - separate_concerns
-      - refine_text
+    expected_has_concern_mixing: false
     expected_findings:
       - has_ambiguity must be false
       - has_concern_mixing must be true

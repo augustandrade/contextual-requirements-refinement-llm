@@ -208,10 +208,7 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
         'status': crv_raw.get('overall_resolubility', {}).get('status', 'no_ambiguity')
     }
 
-    ctx = execution_input.get('controlled_context') or {}
     payload = {'base_requirement_text': execution_input.get('base_requirement_text', '')}
-    if ctx:
-        payload['controlled_context'] = ctx
 
     _cmd_keep = {'has_concern_mixing', 'functional_action', 'quality_criterion'}
     cmd_raw = concern_mixing.get('concern_mixing_detection', concern_mixing)
@@ -219,7 +216,7 @@ def structure_requirement(execution_input: dict, concern_mixing: dict, resolubil
     payload['contextual_resolubility_validation'] = filtered_crv
 
     user_content = yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
-    # Agent 3 receives requirement + context + Agent 2 output — needs larger ctx
+    # Agent 3 receives requirement text + Agent 1b + Agent 2 output — no raw context
     raw = _call_model_ollama(system_prompt, user_content, num_ctx=8192, num_predict=2500)
 
     parsed, parse_err = parse_yaml_block(raw, 'requirement_structuring')

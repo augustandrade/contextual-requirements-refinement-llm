@@ -9,10 +9,8 @@ expected_problem: No ambiguity or structural defect expected. Quantified, object
 expected_behavior: Preserve quality requirement semantics and quantified thresholds.
 contexts:
   C0:
-    intent: no_context
     inject_context: false
   C1:
-    intent: general_context
     inject_context: true
     controlled_context:
       domain: Query-processing system with a performance SLA.
@@ -22,7 +20,6 @@ contexts:
       business_rules: []
       constraints: []
   C2:
-    intent: resolutive_context
     inject_context: true
     controlled_context:
       domain: Query-processing system with a performance SLA.
@@ -31,23 +28,16 @@ contexts:
       constraints:
         - id: QLT-01
           text: 95% of queries must complete within 1.5 seconds; no query may exceed 4 seconds.
-tags: [control, quality, preserve-structure]
-status: ready
+notes: "Pohl (§1.5) presents this as a well-formed quality requirement without flagging a defect. However, the sentence combines two distinct quality criteria (95th-percentile latency and absolute maximum latency), which under Pohl §25.2 could be read as concern mixing between two quality requirements. The source does not identify this as a defect, so the ground truth is no-defect. Any pipeline detection of concern mixing here is a known benign FP risk — not an error — and should be documented as such in evaluation notes."
 manual_reference:
   C0:
     expected_resolubility: not_applicable
-    expected_actions:
-      - preserve_requirement
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C1:
     expected_resolubility: not_applicable
-    expected_actions:
-      - preserve_requirement
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
 
   C2:
     expected_resolubility: not_applicable
-    expected_actions:
-      - preserve_requirement
-      - avoid_unsupported_inference
+    expected_has_concern_mixing: false
