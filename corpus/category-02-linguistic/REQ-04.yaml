@@ -4,12 +4,13 @@ category_name: Linguistic ambiguities and formulation defects
 title: Passive voice with hidden actor
 source:
   citation: Veizaga et al. (2024), Table 3, Passive voice smell
-base_requirement_text: When a rejection order is received for a cancellation request, System-A must raise a web alert.
-expected_problem: Passive condition hides the actor responsible for issuing the rejection order.
-expected_behavior: "Per Veizaga et al. (2024), passive voice constructions that hide the responsible actor should be rewritten to make the actor explicit."
+base_requirement_text: When a rejection order is received for a cancellation request,
+  System-A must raise a web alert.
+expected_problem: Passive condition hides the actor responsible for issuing the rejection
+  order.
 taxonomy_accepted_types:
-  - syntactic
-  - referential
+- syntactic
+- referential
 contexts:
   C0:
     inject_context: false
@@ -18,8 +19,9 @@ contexts:
     controlled_context:
       domain: Post-trade financial platform with cancellation workflows and alerts.
       glossary:
-        - term: System-A
-          definition: User-facing alert module.
+      - &id001
+        term: System-A
+        definition: User-facing alert module.
       business_rules: []
       constraints: []
   C2:
@@ -27,18 +29,25 @@ contexts:
     controlled_context:
       domain: Post-trade financial platform with cancellation workflows and alerts.
       glossary:
-        - term: Security Manager
-          definition: Workflow authority that approves or rejects cancellation requests.
+      - *id001
+      - term: Security Manager
+        definition: Workflow authority that approves or rejects cancellation requests.
       business_rules:
-        - id: BR-01
-          rule: Rejection and approval orders are issued exclusively by Security Manager.
+      - id: BR-01
+        rule: Rejection and approval orders are issued exclusively by Security Manager.
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-
-  C1:
-    expected_resolubility: unresolved
-
-  C2:
-    expected_resolubility: resolvable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Post-trade financial platform with cancellation workflows and alerts.
+      glossary:
+      - *id001
+      - term: alert severity level
+        definition: Classification label (INFO, WARNING, CRITICAL) assigned to a web
+          alert to indicate urgency and drive visual presentation on the operator dashboard.
+      business_rules:
+      - id: BR-01
+        rule: A web alert raised for a rejection order must be classified as CRITICAL
+          severity, remain visible on the operator dashboard until explicitly acknowledged,
+          and generate a persistent audit log entry upon acknowledgment.
+      constraints: []

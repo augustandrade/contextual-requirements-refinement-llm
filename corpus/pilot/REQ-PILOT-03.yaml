@@ -1,14 +1,16 @@
 id: REQ-PILOT-03
 category_id: pilot
-category_name: "Pilot — domain (vagueness)"
+category_name: Pilot — domain (vagueness)
 title: Eligibility criterion without measurable definition in an HR leave system
 source:
   citation: Author-constructed
-base_requirement_text: The system shall automatically approve the leave request if the employee is eligible.
-expected_problem: The term "eligible" is vague — its extension is indeterminate without a formal eligibility definition, making automatic approval criteria impossible to implement.
-expected_behavior: Agent 1 flags vagueness ambiguity for "eligible". In C0 the ambiguity is unresolved. In C1 the general HR domain does not supply a specific rule. In C2 a business rule defines eligibility criteria precisely, making the ambiguity resolvable.
+base_requirement_text: The system shall automatically approve the leave request if
+  the employee is eligible.
+expected_problem: The term "eligible" is vague — its extension is indeterminate without
+  a formal eligibility definition, making automatic approval criteria impossible to
+  implement.
 taxonomy_accepted_types:
-  - vagueness
+- vagueness
 contexts:
   C0:
     inject_context: false
@@ -17,10 +19,12 @@ contexts:
     controlled_context:
       domain: Human resources management system for a mid-sized enterprise.
       glossary:
-        - term: leave request
-          definition: A formal employee request for planned absence from work, submitted through the HR system.
-        - term: automatic approval
-          definition: Approval granted by the system without requiring manual review by a manager.
+      - term: leave request
+        definition: A formal employee request for planned absence from work, submitted
+          through the HR system.
+      - term: automatic approval
+        definition: Approval granted by the system without requiring manual review
+          by a manager.
       business_rules: []
       constraints: []
   C2:
@@ -28,61 +32,47 @@ contexts:
     controlled_context:
       domain: Human resources management system for a mid-sized enterprise.
       glossary:
-        - term: leave request
-          definition: A formal employee request for planned absence from work, submitted through the HR system.
-        - term: automatic approval
-          definition: Approval granted by the system without requiring manual review by a manager.
-        - term: eligible
-          definition: "An employee is eligible for automatic leave approval when ALL of the following conditions are simultaneously met: (a) accrued leave balance is at least equal to the number of days requested; (b) no active disciplinary action on record; (c) the requested dates do not overlap a mandatory attendance window; and (d) the direct manager has not placed a temporary approval hold on the employee's account."
+      - term: leave request
+        definition: A formal employee request for planned absence from work, submitted
+          through the HR system.
+      - term: automatic approval
+        definition: Approval granted by the system without requiring manual review
+          by a manager.
+      - term: eligible
+        definition: 'An employee is eligible for automatic leave approval when ALL
+          of the following conditions are simultaneously met: (a) accrued leave balance
+          is at least equal to the number of days requested; (b) no active disciplinary
+          action on record; (c) the requested dates do not overlap a mandatory attendance
+          window; and (d) the direct manager has not placed a temporary approval hold
+          on the employee''s account.'
       business_rules:
-        - id: BR-01
-          rule: Automatic approval is granted when all four eligibility conditions defined in the glossary entry for 'eligible' are satisfied. Any single condition failing causes the system to route the request to manual review instead.
+      - id: BR-01
+        rule: Automatic approval is granted when all four eligibility conditions defined
+          in the glossary entry for 'eligible' are satisfied. Any single condition
+          failing causes the system to route the request to manual review instead.
       constraints:
-        - id: HR-01
-          text: The system must log the specific eligibility condition that caused automatic approval or the specific condition that triggered manual review routing.
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-    expected_findings:
-      - has_ambiguity must be true
-
-      - AMB-01 vagueness — fragment "eligible" — extension is fuzzy without a definition; at least one employee situation exists where membership cannot be determined
-      - No evidence in text to determine what "eligible" means; context_dependency rated high
-      - Overall status unresolved; pipeline must bypass Agent 3
-    should_not_do:
-      - invent a definition of eligibility from common sense
-      - classify "eligible" as lexical rather than vagueness
-      - route the case to Agent 3
-    applicable_criteria:
-      - vagueness
-      - measurability
-
-  C1:
-    expected_resolubility: unresolved
-    expected_findings:
-      - has_ambiguity must be true
-
-      - AMB-01 vagueness — "eligible" — C1 domain and glossary do not define the criteria; controlled_context provides only generic HR descriptions
-      - Overall status unresolved; pipeline must bypass Agent 3
-    should_not_do:
-      - infer eligibility conditions from generic HR domain description
-      - route the case to Agent 3
-    applicable_criteria:
-      - vagueness
-      - measurability
-
-  C2:
-    expected_resolubility: resolvable
-    expected_findings:
-      - has_ambiguity must be true
-
-      - AMB-01 vagueness — supported interpretation — all four conditions in glossary entry for "eligible" must be satisfied simultaneously; evidence from glossary definition and BR-01
-      - overall_resolubility status fully_resolvable; Agent 3 may proceed
-      - Structured requirement must enumerate the four eligibility conditions and reference constraint HR-01 for logging
-    should_not_do:
-      - select only some eligibility conditions and ignore others
-      - ignore constraint HR-01 in the structured output
-    applicable_criteria:
-      - vagueness
-      - measurability
-      - semantic_explicitation
+      - id: HR-01
+        text: The system must log the specific eligibility condition that caused automatic
+          approval or the specific condition that triggered manual review routing.
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Human resources management system for a mid-sized enterprise.
+      glossary:
+      - term: leave request
+        definition: A formal employee request for planned absence from work, submitted
+          through the HR system.
+      - term: automatic approval
+        definition: Approval granted by the system without requiring manual review
+          by a manager.
+      - term: leave submission window
+        definition: The period during which a leave request must be submitted relative
+          to the requested start date; requests submitted fewer than 2 business days
+          before the start date are routed to expedited manual review regardless of
+          eligibility status.
+      business_rules:
+      - id: BR-01
+        rule: Upon automatic approval or manual review routing, the system must send
+          the employee a notification within 60 seconds stating the outcome and, in
+          the case of manual review routing, the expected response time from the manager.
+      constraints: []

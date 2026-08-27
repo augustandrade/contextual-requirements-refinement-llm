@@ -4,9 +4,11 @@ category_name: Control group
 title: Self-contained functional requirement
 source:
   citation: Pohl (2025), Chapter 3, Example 3-1 (FR-2)
-base_requirement_text: The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.
-expected_problem: No ambiguity or structural defect expected. Self-contained functional requirement with a single actor, single action, and single scope, requiring no external cross-reference to be understood.
-expected_behavior: "Per Pohl (2025), Chapter 3, FR-2 exemplifies a well-specified functional requirement; its structure and semantics should be preserved without modification."
+base_requirement_text: The electronic door locking system shall generate monthly reports
+  containing all granted and denied admittances to the building.
+expected_problem: No ambiguity or structural defect expected. Self-contained functional
+  requirement with a single actor, single action, and single scope, requiring no external
+  cross-reference to be understood.
 contexts:
   C0:
     inject_context: false
@@ -15,8 +17,9 @@ contexts:
     controlled_context:
       domain: Building access control system.
       glossary:
-        - term: admittance
-          definition: A recorded event of granted or denied entry to the building.
+      - &id001
+        term: admittance
+        definition: A recorded event of granted or denied entry to the building.
       business_rules: []
       constraints: []
   C2:
@@ -24,16 +27,27 @@ contexts:
     controlled_context:
       domain: Building access control system.
       glossary:
-        - term: electronic door locking system
-          definition: Subsystem responsible for controlling and logging physical access to the building.
-      business_rules: []
+      - *id001
+      business_rules:
+      - id: BR-01
+        rule: Monthly admittance reports shall cover all access events recorded within
+          the calendar month and must include the event timestamp, the access point
+          identifier, and the outcome (granted or denied).
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: not_applicable
-
-  C1:
-    expected_resolubility: not_applicable
-
-  C2:
-    expected_resolubility: not_applicable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Building access control system.
+      glossary:
+      - *id001
+      - term: report distribution list
+        definition: Registered set of recipients (security officer and building manager
+          roles) who receive each monthly admittance report via the corporate SFTP
+          endpoint.
+      business_rules:
+      - id: BR-01
+        rule: Each monthly admittance report must be deposited to the corporate SFTP
+          endpoint and made available to all recipients on the distribution list within
+          24 hours of the last calendar day of the covered month; failed deposits must
+          be retried and flagged to the system administrator.
+      constraints: []

@@ -1,12 +1,14 @@
 id: REQ-PILOT-01
 category_id: pilot
-category_name: "Pilot — structural (bundled functional and quality criteria)"
+category_name: Pilot — structural (bundled functional and quality criteria)
 title: Functional action with delivery time constraint combined in one sentence
 source:
   citation: Author-constructed
-base_requirement_text: When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds.
-expected_problem: A functional action (send confirmation email) and a quality/timing criterion (within 30 seconds) are merged in a single sentence, requiring structural disambiguation during requirement structuring.
-expected_behavior: Agent 1a must flag has_ambiguity as false. Agent 3 must produce a single structured functional requirement preserving the timing element.
+base_requirement_text: When a customer submits an order, the system shall send a confirmation
+  email to the customer within 30 seconds.
+expected_problem: A functional action (send confirmation email) and a quality/timing
+  criterion (within 30 seconds) are merged in a single sentence, requiring structural
+  disambiguation during requirement structuring.
 contexts:
   C0:
     inject_context: false
@@ -15,8 +17,9 @@ contexts:
     controlled_context:
       domain: Online retail platform for consumer electronics.
       glossary:
-        - term: confirmation email
-          definition: Automated transactional message sent to the customer after a successful order placement.
+      - term: confirmation email
+        definition: Automated transactional message sent to the customer after a successful
+          order placement.
       business_rules: []
       constraints: []
   C2:
@@ -24,44 +27,32 @@ contexts:
     controlled_context:
       domain: Online retail platform for consumer electronics.
       glossary:
-        - term: confirmation email
-          definition: Automated transactional message sent to the customer after a successful order placement.
+      - term: confirmation email
+        definition: Automated transactional message sent to the customer after a successful
+          order placement.
       business_rules:
-        - id: BR-01
-          rule: Sending the confirmation email is a mandatory functional action triggered by order submission and is independent of the delivery time window.
+      - id: BR-01
+        rule: Sending the confirmation email is a mandatory functional action triggered
+          by order submission and is independent of the delivery time window.
       constraints:
-        - id: QLT-01
-          text: Confirmation emails must be delivered within 30 seconds of order submission. This is a quality of service constraint, not part of the functional sending action.
-manual_reference:
-  C0:
-    expected_resolubility: not_applicable
-    expected_findings:
-      - has_ambiguity must be false
-      - Agent 3 produces a single structured functional requirement preserving the timing element
-    should_not_do:
-      - flag the requirement as linguistically ambiguous
-      - invent delivery mechanisms or retry policies not present in the text
-    applicable_criteria:
-      - syntactic_structuring
-
-  C1:
-    expected_resolubility: not_applicable
-    expected_findings:
-      - has_ambiguity must be false
-      - Agent 3 produces a single structured functional requirement; glossary term may enrich the final_statement
-    should_not_do:
-      - flag the requirement as linguistically ambiguous
-    applicable_criteria:
-      - syntactic_structuring
-
-  C2:
-    expected_resolubility: not_applicable
-    expected_findings:
-      - has_ambiguity must be false
-      - Agent 3 produces a single structured functional requirement; BR-01 and QLT-01 provide additional context for the timing element
-    should_not_do:
-      - flag the requirement as linguistically ambiguous
-      - ignore QLT-01 when structuring the requirement
-    applicable_criteria:
-      - syntactic_structuring
-      - semantic_explicitation
+      - id: QLT-01
+        text: Confirmation emails must be delivered within 30 seconds of order submission.
+          This is a quality of service constraint, not part of the functional sending
+          action.
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Online retail platform for consumer electronics.
+      glossary:
+      - term: confirmation email
+        definition: Automated transactional message sent to the customer after a successful
+          order placement.
+      - term: transactional email provider
+        definition: Third-party SMTP relay service used to dispatch confirmation emails,
+          configured with retry logic and delivery receipt tracking.
+      business_rules:
+      - id: BR-01
+        rule: Confirmation emails must be formatted in HTML and include the order number,
+          itemised product list, total amount charged, and estimated delivery date;
+          plain-text fallback is mandatory for clients that do not render HTML.
+      constraints: []

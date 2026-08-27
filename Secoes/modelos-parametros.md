@@ -1,0 +1,5 @@
+# Modelos e parâmetros de execução
+
+Os experimentos foram conduzidos com sete modelos de linguagem de código aberto executados localmente via Ollama: `qwen3.5:4b`, `qwen3.5:9b`, `gemma3:4b`, `mistral:7b`, `llama3.1:8b`, `phi4-mini` e `deepseek-r1:7b`. A execução local elimina a variabilidade introduzida por atualizações de API e garante reprodutibilidade integral.
+
+Para garantir determinismo nas respostas, todos os modelos foram configurados com temperatura 0,0, eliminando amostragem estocástica e produzindo a sequência de tokens de maior probabilidade a cada passo. Adicionalmente, o parâmetro `think` foi definido como `false` e enviado a todos os modelos via API REST do Ollama; para modelos que suportam modo de raciocínio interno — especificamente `qwen3.5:4b`, `qwen3.5:9b` e `deepseek-r1:7b` — esse parâmetro desabilita o encadeamento de pensamento interno, de modo que a saída seja diretamente o documento YAML especificado no prompt de sistema de cada agente. Para os demais modelos (`gemma3:4b`, `mistral:7b`, `llama3.1:8b` e `phi4-mini`), o parâmetro é ignorado pelo servidor sem consequências.

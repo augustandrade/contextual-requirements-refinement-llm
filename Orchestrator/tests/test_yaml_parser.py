@@ -15,6 +15,7 @@ from yaml_parser import (
     _repair_yaml_trailing_garbage,
     _repair_yaml_unterminated_quote,
     _repair_yaml_embedded_quote,
+    _repair_yaml_value_continuation,
     parse_yaml_block,
 )
 
@@ -234,3 +235,153 @@ class TestParseYamlBlock:
         assert parsed is None
         assert isinstance(err, str)
         assert ROOT in err
+
+
+# ---------------------------------------------------------------------------
+# _repair_yaml_value_continuation — Phase 2 and Phase 4 (new in repair #6)
+# ---------------------------------------------------------------------------
+
+class TestRepairYamlValueContinuationPhase2:
+    """Phase 2: list item where KEY: 'SINGLE_QUOTED_VALUE' rest is misread as mapping."""
+
+    def test_single_line_list_item_with_mapping_key_and_single_quote(self):
+        # llama3.1:8b REQ-01/C1: evidence_from_context item
+        text = (
+            "contextual_resolubility_validation:\n"
+            "  evidence_from_context:\n"
+            "    - Glossary: 'maintenance window' definition — \"Scheduled period.\""
+        )
+        result = _repair_yaml_value_continuation(text)
+        import yaml
+        parsed = yaml.safe_load(result)
+        items = parsed['contextual_resolubility_validation']['evidence_from_context']
+        assert len(items) == 1
+        assert 'Glossary' in items[0]
+        assert 'maintenance window' in items[0]
+        assert 'Scheduled period' in items[0]
+
+    def test_multiline_list_item_collapsed_then_fixed(self):
+        # Phase 1 collapses two lines, then Phase 2 fixes the result
+        text = (
+            "root:\n"
+            "  items:\n"
+            "    - Label: 'foo bar' rest text and more\n"
+            "      continuation of rest\n"
+        )
+        result = _repair_yaml_value_continuation(text)
+        import yaml
+        parsed = yaml.safe_load(result)
+        item = parsed['root']['items'][0]
+        assert isinstance(item, str)
+        assert 'Label' in item
+        assert 'foo bar' in item
+
+    def test_valid_list_item_without_single_quote_issue_unchanged(self):
+        # A list item like - "clean value" should not be touched by Phase 2
+        text = (
+            "root:\n"
+            "  items:\n"
+            '    - "clean double-quoted value"\n'
+        )
+        result = _repair_yaml_value_continuation(text)
+        import yaml
+        parsed = yaml.safe_load(result)
+        assert parsed['root']['items'] == ['clean double-quoted value']
+
+
+class TestRepairYamlValueContinuationPhase4:
+    """Phase 4: list item with empty-value key followed by nested YAML + continuation."""
+
+    def test_nested_mapping_list_item_flattened(self):
+        # llama3.1:8b REQ-13/C1: evidence_from_context with glossary sub-structure
+        text = (
+            "contextual_resolubility_validation:\n"
+            "  evidence_from_context:\n"
+            "    - glossary: \n"
+            "        - term: settlement request\n"
+            "          definition: Message requesting settlement.\n"
+            "      This definition focuses on the content.\n"
+        )
+        result = _repair_yaml_value_continuation(text)
+        import yaml
+        parsed = yaml.safe_load(result)
+        items = parsed['contextual_resolubility_validation']['evidence_from_context']
+        assert len(items) == 1
+        assert isinstance(items[0], str)
+        assert 'glossary' in items[0]
+        assert 'settlement request' in items[0]
+
+    def test_empty_value_list_item_without_nested_content_left_alone(self):
+        # If a - KEY: has no following deeper lines, Phase 4 must not consume anything
+        text = (
+            "root:\n"
+            "  items:\n"
+            "    - key: \n"
+            "  other_field: value\n"
+        )
+        result = _repair_yaml_value_continuation(text)
+        # Should not crash and must not consume 'other_field'
+        assert 'other_field' in result
+
+    def test_known_schema_mapping_fields_at_sequence_level_not_flattened(self):
+        # The outer ambiguity_resolubility items start with '- ambiguity_id: "..."'
+        # (non-empty value) — Phase 4 must not touch them.
+        text = (
+            "contextual_resolubility_validation:\n"
+            "  ambiguity_resolubility:\n"
+            '    - ambiguity_id: "AMB-01"\n'
+            '      resolubility_status: "resolvable"\n'
+        )
+        result = _repair_yaml_value_continuation(text)
+        import yaml
+        parsed = yaml.safe_load(result)
+        items = parsed['contextual_resolubility_validation']['ambiguity_resolubility']
+        assert items[0]['ambiguity_id'] == 'AMB-01'
+
+
+class TestParseYamlBlockPhase2And4:
+    """End-to-end parse_yaml_block tests for the two new llama3.1:8b patterns."""
+
+    def test_list_item_with_mapping_key_single_quote_parseable(self):
+        # Reproduces REQ-01/C1 evidence_from_context pattern
+        raw = (
+            "contextual_resolubility_validation:\n"
+            "  ambiguity_resolubility:\n"
+            "    - ambiguity_id: \"AMB-01\"\n"
+            "      resolubility_status: \"resolvable\"\n"
+            "      evidence_from_context:\n"
+            "        - Glossary: 'maintenance window' definition — \"Scheduled period.\"\n"
+            "  overall_resolubility:\n"
+            "    status: fully_resolvable\n"
+        )
+        parsed, err = parse_yaml_block(raw, 'contextual_resolubility_validation')
+        assert parsed is not None, f'Should parse but got error: {err}'
+        crv = parsed['contextual_resolubility_validation']
+        items = crv['ambiguity_resolubility'][0]['evidence_from_context']
+        assert len(items) == 1
+        assert isinstance(items[0], str)
+
+    def test_nested_mapping_list_item_in_evidence_parseable(self):
+        # Reproduces REQ-13/C1 evidence_from_context pattern
+        raw = (
+            "contextual_resolubility_validation:\n"
+            "  ambiguity_resolubility:\n"
+            "    - ambiguity_id: \"AMB-01\"\n"
+            "      resolubility_status: \"resolvable\"\n"
+            "      evidence_from_requirement:\n"
+            "        - \"Once validated...\"\n"
+            "          This phrase implies it was successful.\n"
+            "      evidence_from_context:\n"
+            "        - glossary: \n"
+            "            - term: settlement request\n"
+            "              definition: A financial instrument request.\n"
+            "          This definition supports the interpretation.\n"
+            "  overall_resolubility:\n"
+            "    status: \"fully_resolvable\"\n"
+        )
+        parsed, err = parse_yaml_block(raw, 'contextual_resolubility_validation')
+        assert parsed is not None, f'Should parse but got error: {err}'
+        crv = parsed['contextual_resolubility_validation']
+        amb = crv['ambiguity_resolubility'][0]
+        assert isinstance(amb['evidence_from_requirement'][0], str)
+        assert isinstance(amb['evidence_from_context'][0], str)

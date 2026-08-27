@@ -6,23 +6,42 @@ language_policy:
   metadata: en
 methodology:
   base_requirements: 15
-  context_levels: [C0, C1, C2]
+  context_levels: [C0, C1, C2, C3]
   context_level_encoding: key_based
   context_injection_policy:
     C0:
       inject_context: false
       includes_controlled_context: false
+      execution: always
+      specificity: none
+      relevant_to_ambiguity: false
     C1:
       inject_context: true
       includes_controlled_context: true
+      execution: when_ambiguity_detected
+      specificity: low
+      relevant_to_ambiguity: false
     C2:
       inject_context: true
       includes_controlled_context: true
+      execution: when_ambiguity_detected
+      specificity: high
+      relevant_to_ambiguity: true
+    C3:
+      inject_context: true
+      includes_controlled_context: true
+      execution: when_ambiguity_detected
+      specificity: high
+      relevant_to_ambiguity: false
   context_entry_fields:
-    C0: [intent, inject_context]
-    C1: [intent, inject_context, controlled_context]
-    C2: [intent, inject_context, controlled_context]
-  total_executions: 45
+    C0: [inject_context]
+    C1: [inject_context, controlled_context]
+    C2: [inject_context, controlled_context]
+    C3: [inject_context, controlled_context]
+  # C2 vs C3 isolates relevance (specificity held constant)
+  # C3 vs C1 isolates specificity (non-relevance held constant)
+  # C1 vs C0 measures effect of generic context
+  total_executions: 60  # 15 base_requirements × 4 context_levels
   categories:
     - id: category-01-structural
       name: Structural requirement defects

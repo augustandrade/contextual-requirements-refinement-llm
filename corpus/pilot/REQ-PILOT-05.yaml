@@ -1,0 +1,69 @@
+id: REQ-PILOT-05
+category_id: pilot
+category_name: Pilot — lexical (polysemous term in financial batch context)
+title: Lexical ambiguity in settlement exception logging
+source:
+  citation: Author-constructed; lexical ambiguity type per Pohl (2025), §25.3.1
+base_requirement_text: The system shall log all exceptions raised during the nightly
+  settlement batch and notify the operations team.
+expected_problem: 'The term ''exceptions'' is polysemous: it may refer to (a) technical
+  runtime errors (unhandled software failures during batch execution) or (b) business
+  exceptions (transactions that deviate from standard settlement rules and require
+  manual review). Each interpretation defines a different logging scope and a different
+  notification trigger for the operations team.'
+taxonomy_accepted_types:
+- lexical
+contexts:
+  C0:
+    inject_context: false
+  C1:
+    inject_context: true
+    controlled_context:
+      domain: Financial post-trade settlement platform executing overnight batch processing.
+      glossary:
+      - term: settlement batch
+        definition: Automated overnight process that finalises and records all pending
+          transactions from the trading day.
+      - &id001
+        term: operations team
+        definition: Group responsible for monitoring and resolving issues in the post-trade
+          workflow.
+      business_rules: []
+      constraints: []
+  C2:
+    inject_context: true
+    controlled_context:
+      domain: Financial post-trade settlement platform executing overnight batch processing.
+      glossary:
+      - *id001
+      - term: exceptions
+        definition: Transactions that cannot be settled automatically due to a deviation
+          from standard settlement rules (e.g. missing counterparty confirmation,
+          currency mismatch, or settlement date conflict). Runtime software errors
+          are recorded separately in the system error log and are outside the scope
+          of this requirement.
+      - term: settlement batch
+        definition: Automated overnight process that finalises and records all pending
+          transactions from the trading day.
+      business_rules: []
+      constraints: []
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Financial post-trade settlement platform executing overnight batch processing.
+      glossary:
+      - *id001
+      - term: settlement batch
+        definition: Automated overnight process that finalises and records all pending
+          transactions from the trading day.
+      - term: batch completion report
+        definition: Summary document generated at the end of each settlement batch
+          run, listing total transactions processed, count of exceptions, and batch
+          execution duration.
+      business_rules:
+      - id: BR-01
+        rule: The operations team must be notified via the incident management platform
+          within 15 minutes of batch completion; the notification must include the
+          batch completion report as an attachment, and unacknowledged alerts must
+          be re-sent every 30 minutes until acknowledged.
+      constraints: []

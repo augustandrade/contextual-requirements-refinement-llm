@@ -16,7 +16,7 @@ contextual_resolubility_validation:        # ambiguity_resolubility absent when 
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: ""
-      resolubility_status: "resolvable | unresolved | not_applicable"
+      resolubility_status: "resolvable | unresolved | false_positive"
       supported_interpretation: null    # string when resolvable; absent otherwise
   overall_resolubility:
     status: "fully_resolvable | unresolved | no_ambiguity"

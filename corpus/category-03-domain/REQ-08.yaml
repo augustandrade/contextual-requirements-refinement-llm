@@ -1,14 +1,14 @@
 id: REQ-08
 category_id: category-03-domain
 category_name: Domain or context-specific ambiguities
-title: Pragmatic ambiguity in dial tone generation
+title: Domain-specific lexical ambiguity in dial tone generation
 source:
   citation: Kamsties et al. (2001), §4 Application-domain ambiguity, example (10)
 base_requirement_text: Generate a dial tone.
-expected_problem: Dial tone parameters depend on the telecommunications standard and region.
-expected_behavior: "Per Kamsties et al. (2001), application-domain ambiguity of this type requires the requirement to specify the applicable operational standard explicitly."
+expected_problem: Dial tone parameters depend on the telecommunications standard and
+  region.
 taxonomy_accepted_types:
-  - lexical
+- lexical
 contexts:
   C0:
     inject_context: false
@@ -16,9 +16,7 @@ contexts:
     inject_context: true
     controlled_context:
       domain: Digital telephony exchange system.
-      glossary:
-        - term: dial tone
-          definition: Tone signaling line readiness for dialing.
+      glossary: []
       business_rules: []
       constraints: []
   C2:
@@ -28,14 +26,20 @@ contexts:
       glossary: []
       business_rules: []
       constraints:
-        - id: CST-01
-          text: System follows North American telephony standard using simultaneous 350 Hz and 440 Hz dial tone.
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-
-  C1:
-    expected_resolubility: unresolved
-
-  C2:
-    expected_resolubility: resolvable
+      - id: CST-01
+        text: System follows North American telephony standard using simultaneous
+          350 Hz and 440 Hz dial tone.
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Digital telephony exchange system.
+      glossary:
+      - term: line output level
+        definition: Signal amplitude measured at the analogue line interface, expressed
+          in dBm relative to 1 milliwatt into a 600-ohm load.
+      business_rules:
+      - id: BR-01
+        rule: The dial tone must be maintained for a maximum of 16 seconds; if no
+          dialling input is detected within this interval, the exchange must replace
+          the dial tone with a re-order tone and log the timeout event.
+      constraints: []

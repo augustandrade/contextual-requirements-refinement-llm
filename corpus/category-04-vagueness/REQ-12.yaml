@@ -5,10 +5,11 @@ title: Temporal vagueness in end of day predicate
 source:
   citation: Vogelsang et al. (2025), arXiv:2501.04810, Introduction
 base_requirement_text: The system shall generate a report at the end of each day.
-expected_problem: "'end of each day' is a temporally vague predicate (Pohl 2025, §25.3.5) — it is impossible to determine whether it refers to midnight, end of business hours, or another cutoff."
-expected_behavior: "Per Vogelsang et al. (2025), temporally vague predicates should be replaced by precise time specifications with explicit timezone and cutoff definitions."
+expected_problem: '''end of each day'' is a temporally vague predicate (Pohl 2025,
+  §25.3.5) — it is impossible to determine whether it refers to midnight, end of business
+  hours, or another cutoff.'
 taxonomy_accepted_types:
-  - vagueness
+- vagueness
 contexts:
   C0:
     inject_context: false
@@ -17,25 +18,35 @@ contexts:
     controlled_context:
       domain: Enterprise reporting system for financial operations.
       glossary:
-        - term: report
-          definition: Automated daily summary of processed transactions.
+      - &id001
+        term: report
+        definition: Automated daily summary of processed transactions.
       business_rules: []
       constraints: []
   C2:
     inject_context: true
     controlled_context:
       domain: Enterprise reporting system for financial operations.
-      glossary: []
+      glossary:
+      - *id001
       business_rules:
-        - id: BR-01
-          rule: For reporting purposes, end of day is defined as 23:59:59 UTC on the calendar day.
+      - id: BR-01
+        rule: For reporting purposes, end of day is defined as 23:59:59 UTC on the
+          calendar day.
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-
-  C1:
-    expected_resolubility: unresolved
-
-  C2:
-    expected_resolubility: resolvable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Enterprise reporting system for financial operations.
+      glossary:
+      - *id001
+      - term: report archive
+        definition: Centralised file store where generated daily reports are retained,
+          organised by report date and accessible to authorised users for a rolling
+          7-year period.
+      business_rules:
+      - id: BR-01
+        rule: Each generated report must be delivered to the report archive within
+          5 minutes of generation; if delivery fails, the system must retry every
+          10 minutes for up to 2 hours before raising an alert to the operations team.
+      constraints: []

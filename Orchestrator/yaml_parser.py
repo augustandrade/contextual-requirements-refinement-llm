@@ -101,16 +101,29 @@ def _repair_yaml_embedded_quote(text: str) -> str:
     return '\n'.join(fixed_lines)
 
 
+_LIST_ITEM_MAPPING_SINGLE_QUOTE = re.compile(
+    r"^(\s+- )([\w][\w\s]*): ('(?:[^'\\]|\\.)*')(.+)$"
+)
+
+_EMPTY_VALUE_LIST_ITEM = re.compile(r'^(\s+- )([\w][\w\s]*): *$')
+
+
 def _repair_yaml_value_continuation(text: str) -> str:
     """Merge continuation text after quoted scalars into the value.
 
-    llama3.1:8b produces two problematic patterns:
-      1. Single-line:  - "value"\n          continuation...
-      2. Multi-line:   - "value start\n        value end"\n          continuation...
+    llama3.1:8b produces four problematic patterns handled in order:
 
-    Phase 1 collapses multi-line quoted strings into single lines.
-    Phase 2 merges continuation lines (deeper-indented, non-structural) into
-    the preceding closed quoted scalar.
+    Phase 1 — Collapse multi-line double-quoted scalars into one line.
+    Phase 2 — Fix list items YAML misparses as mappings:
+                 - Glossary: 'maintenance window' definition — "..."
+               YAML sees KEY='Glossary', VALUE='maintenance window', then
+               errors on ' definition'. Fix: wrap the whole content in "…".
+    Phase 3 — Merge deeper-indented non-structural continuation lines into
+               the preceding closed quoted scalar.
+    Phase 4 — Flatten list items whose value is an empty key followed by
+               nested YAML (- KEY:\n  sub: val\n  continuation…). The model
+               dumps a controlled-context sub-structure where a plain string
+               was expected; flatten the entire block into a single "…" item.
     """
     # Phase 1: collapse multi-line double-quoted scalars into one line each
     lines = text.split('\n')
@@ -132,18 +145,30 @@ def _repair_yaml_value_continuation(text: str) -> str:
             collapsed.append(line)
             i += 1
 
-    # Phase 2: merge non-structural continuation lines into preceding closed scalar
-    result = []
+    # Phase 2: list item where content begins KEY: 'SINGLE_QUOTED' rest text.
+    # After Phase 1 all such items are on one line; wrap the whole value in "…".
+    fixed2 = []
+    for line in collapsed:
+        m = _LIST_ITEM_MAPPING_SINGLE_QUOTE.match(line)
+        if m:
+            prefix, key, sq_val, rest = m.groups()
+            full = f'{key}: {sq_val}{rest}'
+            escaped = full.replace('\\', '\\\\').replace('"', '\\"')
+            line = f'{prefix}"{escaped}"'
+        fixed2.append(line)
+
+    # Phase 3: merge non-structural continuation lines into preceding closed scalar
+    result3 = []
     i = 0
-    while i < len(collapsed):
-        line = collapsed[i]
+    while i < len(fixed2):
+        line = fixed2[i]
         m = _CLOSED_QUOTED_SCALAR.match(line)
-        if m and i + 1 < len(collapsed):
+        if m and i + 1 < len(fixed2):
             curr_indent = len(line) - len(line.lstrip())
             merged = line.rstrip()
             j = i + 1
-            while j < len(collapsed):
-                next_line = collapsed[j]
+            while j < len(fixed2):
+                next_line = fixed2[j]
                 if not next_line.strip():
                     break
                 next_indent = len(next_line) - len(next_line.lstrip())
@@ -154,12 +179,46 @@ def _repair_yaml_value_continuation(text: str) -> str:
                 else:
                     break
             if j > i + 1:
-                result.append(merged)
+                result3.append(merged)
                 i = j
                 continue
-        result.append(line)
+        result3.append(line)
         i += 1
-    return '\n'.join(result)
+
+    # Phase 4: flatten list items whose key has an empty value followed by
+    # deeper-indented nested YAML (and optional same-parent continuation text).
+    # The model sometimes dumps a context sub-structure (e.g. glossary list)
+    # where the schema expects a plain string.
+    result4 = []
+    i = 0
+    while i < len(result3):
+        line = result3[i]
+        m = _EMPTY_VALUE_LIST_ITEM.match(line)
+        if m:
+            prefix, key = m.groups()
+            base_indent = len(line) - len(line.lstrip())
+            j = i + 1
+            parts = []
+            while j < len(result3):
+                next_line = result3[j]
+                if not next_line.strip():
+                    break
+                next_indent = len(next_line) - len(next_line.lstrip())
+                if next_indent > base_indent:
+                    parts.append(next_line.strip())
+                    j += 1
+                else:
+                    break
+            if parts:
+                full_text = key + ': ' + ' '.join(parts)
+                escaped = full_text.replace('\\', '\\\\').replace('"', '\\"')
+                result4.append(f'{prefix}"{escaped}"')
+                i = j
+                continue
+        result4.append(line)
+        i += 1
+
+    return '\n'.join(result4)
 
 
 # ---------------------------------------------------------------------------

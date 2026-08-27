@@ -1,14 +1,17 @@
 id: REQ-PILOT-02
 category_id: pilot
-category_name: "Pilot — linguistic (referential ambiguity)"
+category_name: Pilot — linguistic (referential ambiguity)
 title: Pronoun with two competing antecedents in a healthcare alert context
 source:
   citation: Author-constructed
-base_requirement_text: The nurse administers the prescribed medication to the patient. If she does not respond within 10 minutes, the system shall escalate the alert to the duty physician.
-expected_problem: The pronoun "she" has two plausible antecedents (nurse, patient). Without context, it is impossible to determine which person's non-response triggers the escalation.
-expected_behavior: Agent 1 flags referential ambiguity. In C0 and C1 the ambiguity is unresolved. In C2 the business rule identifies the patient as the referent and the ambiguity becomes resolvable.
+base_requirement_text: The nurse administers the prescribed medication to the patient.
+  If she does not respond within 10 minutes, the system shall escalate the alert to
+  the duty physician.
+expected_problem: The pronoun "she" has two plausible antecedents (nurse, patient).
+  Without context, it is impossible to determine which person's non-response triggers
+  the escalation.
 taxonomy_accepted_types:
-  - referential
+- referential
 contexts:
   C0:
     inject_context: false
@@ -17,10 +20,12 @@ contexts:
     controlled_context:
       domain: Hospital patient monitoring system for post-operative care.
       glossary:
-        - term: duty physician
-          definition: The attending physician responsible for a ward during a given shift.
-        - term: alert escalation
-          definition: The process of notifying a higher-priority care provider when a lower-priority care action does not achieve the expected outcome.
+      - term: duty physician
+        definition: The attending physician responsible for a ward during a given
+          shift.
+      - term: alert escalation
+        definition: The process of notifying a higher-priority care provider when
+          a lower-priority care action does not achieve the expected outcome.
       business_rules: []
       constraints: []
   C2:
@@ -28,55 +33,40 @@ contexts:
     controlled_context:
       domain: Hospital patient monitoring system for post-operative care.
       glossary:
-        - term: duty physician
-          definition: The attending physician responsible for a ward during a given shift.
-        - term: alert escalation
-          definition: The process of notifying a higher-priority care provider when a lower-priority care action does not achieve the expected outcome.
+      - term: duty physician
+        definition: The attending physician responsible for a ward during a given
+          shift.
+      - term: alert escalation
+        definition: The process of notifying a higher-priority care provider when
+          a lower-priority care action does not achieve the expected outcome.
       business_rules:
-        - id: BR-01
-          rule: Medication response monitoring applies to the patient, not the care provider. If the patient does not show a recorded response event within the specified observation window after medication administration, the system escalates the alert to the duty physician.
+      - id: BR-01
+        rule: Medication response monitoring applies to the patient, not the care
+          provider. If the patient does not show a recorded response event within
+          the specified observation window after medication administration, the system
+          escalates the alert to the duty physician.
       constraints:
-        - id: OBS-01
-          text: "The observation window for response detection is 10 minutes from the administration timestamp recorded by the system."
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-    expected_findings:
-      - has_ambiguity must be true
-
-      - AMB-01 referential — fragment "she" — two competing antecedents "nurse" and "patient"
-      - No evidence in the text to choose one antecedent over the other
-      - Overall status unresolved; pipeline must bypass Agent 3
-    should_not_do:
-      - choose one antecedent without textual evidence
-      - classify pronoun ambiguity as semantic or lexical
-      - route the case to Agent 3
-    applicable_criteria:
-      - referential_clarity
-
-  C1:
-    expected_resolubility: unresolved
-    expected_findings:
-      - has_ambiguity must be true
-
-      - AMB-01 referential remains unresolved — domain description and glossary do not specify which person's response is monitored
-      - context_dependency rated high
-    should_not_do:
-      - infer antecedent from the domain description alone (domain is general; no rule identifies the patient as the subject)
-      - route the case to Agent 3
-    applicable_criteria:
-      - referential_clarity
-
-  C2:
-    expected_resolubility: resolvable
-    expected_findings:
-      - has_ambiguity must be true
-
-      - AMB-01 referential — supported interpretation "patient" — evidence BR-01 explicitly states monitoring applies to the patient
-      - overall_resolubility status fully_resolvable; Agent 3 may proceed
-    should_not_do:
-      - retain both interpretations as equally valid after reading BR-01
-      - ignore constraint OBS-01 when structuring the timing element
-    applicable_criteria:
-      - referential_clarity
-      - semantic_explicitation
+      - id: OBS-01
+        text: The observation window for response detection is 10 minutes from the
+          administration timestamp recorded by the system.
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Hospital patient monitoring system for post-operative care.
+      glossary:
+      - term: duty physician
+        definition: The attending physician responsible for a ward during a given
+          shift.
+      - term: alert escalation
+        definition: The process of notifying a higher-priority care provider when
+          a lower-priority care action does not achieve the expected outcome.
+      - term: physician acknowledgment
+        definition: Explicit confirmation recorded in the system when the duty physician
+          receives and accepts an escalated alert.
+      business_rules:
+      - id: BR-01
+        rule: An escalated alert must be acknowledged by the duty physician within
+          5 minutes; if no acknowledgment is recorded, the system must re-escalate
+          to the on-call senior physician and log the missed acknowledgment with a
+          timestamp.
+      constraints: []

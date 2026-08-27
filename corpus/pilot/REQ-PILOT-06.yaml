@@ -1,0 +1,68 @@
+id: REQ-PILOT-06
+category_id: pilot
+category_name: Pilot — semantic (AND/OR operator precedence)
+title: Semantic ambiguity in transaction blocking condition
+source:
+  citation: Author-constructed; semantic ambiguity type per Pohl (2025), §25.3.3
+base_requirement_text: The system shall block the transaction if the account balance
+  falls below the minimum threshold and the transaction type is not pre-approved or
+  the account has been flagged for fraud review.
+expected_problem: 'The logical connectives ''and'' and ''or'' lack explicit operator
+  binding, yielding two mutually exclusive blocking conditions: (1) [balance below
+  minimum AND type not pre-approved] OR fraud flag — fraud flag alone triggers a block;
+  (2) balance below minimum AND [type not pre-approved OR fraud flag] — insufficient
+  balance is a mandatory gate. Each interpretation defines a different set of circumstances
+  under which a transaction is blocked.'
+taxonomy_accepted_types:
+- semantic
+contexts:
+  C0:
+    inject_context: false
+  C1:
+    inject_context: true
+    controlled_context:
+      domain: Core banking transaction processing system with real-time risk controls.
+      glossary:
+      - &id001
+        term: minimum threshold
+        definition: The minimum account balance required by the bank's credit policy
+          for outgoing transactions.
+      - &id002
+        term: pre-approved transaction type
+        definition: A transaction category authorised in advance by the account holder's
+          risk profile.
+      business_rules: []
+      constraints: []
+  C2:
+    inject_context: true
+    controlled_context:
+      domain: Core banking transaction processing system with real-time risk controls.
+      glossary:
+      - *id001
+      - *id002
+      business_rules:
+      - id: BR-01
+        rule: 'Insufficient balance is a mandatory blocking gate: if the account balance
+          does not fall below the minimum threshold, the transaction is never blocked
+          regardless of pre-approval status or fraud flag. When the balance is below
+          the minimum threshold, the transaction is blocked if either the transaction
+          type is not pre-approved or the account has been flagged for fraud review.'
+      constraints: []
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Core banking transaction processing system with real-time risk controls.
+      glossary:
+      - *id001
+      - *id002
+      - term: transaction hold record
+        definition: Audit entry created when a transaction is blocked, containing the
+          transaction identifier, account number, block timestamp, and the operator
+          identifier who reviewed the hold.
+      business_rules:
+      - id: BR-01
+        rule: When a transaction is blocked, the system must create a transaction hold
+          record within 1 second, notify the account holder via push notification within
+          30 seconds, and make the hold available for manual review by the fraud operations
+          team within 5 minutes.
+      constraints: []

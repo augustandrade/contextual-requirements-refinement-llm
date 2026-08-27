@@ -4,11 +4,14 @@ category_name: Domain or context-specific ambiguities
 title: Operational technical gap in traffic filtering statement
 source:
   citation: Bashir et al. (2025), ICSME 2025, Listing 1 (R1), Westermo dataset
-base_requirement_text: Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.
-expected_problem: "Key technical terms ('filter network traffic', 'data-plane interfaces', 'management data traffic') lack operational definitions, making the filtering behaviour unimplementable. Per Bashir et al. (2025), this characterises an operational definition gap in industrial requirements."
-expected_behavior: "Per Bashir et al. (2025), requirements with operational definition gaps require explicit technical definitions for each underspecified term before the requirement can be precisely structured."
+base_requirement_text: Routing switches ability to filter network traffic between
+  data-plane interfaces and management data traffic.
+expected_problem: Key technical terms ('filter network traffic', 'data-plane interfaces',
+  'management data traffic') lack operational definitions, making the filtering behaviour
+  unimplementable. Per Bashir et al. (2025), this characterises an operational definition
+  gap in industrial requirements.
 taxonomy_accepted_types:
-  - lexical
+- lexical
 contexts:
   C0:
     inject_context: false
@@ -16,9 +19,7 @@ contexts:
     inject_context: true
     controlled_context:
       domain: Industrial railway communication network using routing switches.
-      glossary:
-        - term: management data traffic
-          definition: Administrative traffic used for device monitoring and control.
+      glossary: []
       business_rules: []
       constraints: []
   C2:
@@ -26,21 +27,27 @@ contexts:
     controlled_context:
       domain: Industrial railway communication network using routing switches.
       glossary:
-        - term: management data traffic
-          definition: SNMP traffic restricted to UDP port 161.
-        - term: filter network traffic
-          definition: Inspect and drop packets based on protocol and destination port.
-        - term: data-plane interfaces
-          definition: The 4 Ethernet ports (eth0-eth3) carrying passenger network data traffic, distinct from the dedicated management port.
+      - term: management data traffic
+        definition: SNMP traffic restricted to UDP port 161.
+      - term: filter network traffic
+        definition: Inspect and drop packets based on protocol and destination port.
+      - term: data-plane interfaces
+        definition: The 4 Ethernet ports (eth0-eth3) carrying passenger network data
+          traffic, distinct from the dedicated management port.
       business_rules: []
       constraints: []
-notes: "Operational definition gap (Bashir et al. 2025): the three key technical terms are used without operational definitions, making each term lexically ambiguous across different network configurations and vendor conventions. C1 provides a generic definition of 'management data traffic' that does not resolve the ambiguity; C2 resolves all three terms with precise operational definitions (protocol, port, interface identifiers). Distinct from REQ-08 (regional standard ambiguity) in that resolution here requires vendor/system-specific operational definitions rather than selection of a published standard."
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-
-  C1:
-    expected_resolubility: unresolved
-
-  C2:
-    expected_resolubility: resolvable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Industrial railway communication network using routing switches.
+      glossary:
+      - term: traffic log record
+        definition: Structured entry written to non-volatile storage for each packet
+          evaluated by the switch, containing ingress port, timestamp, and disposition
+          (forwarded or dropped).
+      business_rules:
+      - id: BR-01
+        rule: The routing switch must sustain its rated line-rate forwarding throughput
+          with filtering active, and must flush completed traffic log records to persistent
+          storage within 500 milliseconds of the packet event.
+      constraints: []

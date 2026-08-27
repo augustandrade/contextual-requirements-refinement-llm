@@ -4,11 +4,12 @@ category_name: Linguistic ambiguities and formulation defects
 title: Referential ambiguity in pronoun
 source:
   citation: Pohl (2025), Chapter 25, Example 25-8 (R42)
-base_requirement_text: The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.
+base_requirement_text: The customer inserts the access card into the card reader and
+  enters a personal identification number (PIN) at the keypad. If it is invalid, the
+  system shall deny the access.
 expected_problem: The pronoun it can refer to either the access card or the PIN.
-expected_behavior: "Per Pohl (2025), Example 25-8, referential ambiguity caused by an unresolved pronoun should be resolved by replacing the pronoun with the explicit referent."
 taxonomy_accepted_types:
-  - referential
+- referential
 contexts:
   C0:
     inject_context: false
@@ -17,27 +18,35 @@ contexts:
     controlled_context:
       domain: Corporate physical access control system with badge and PIN authentication.
       glossary:
-        - term: PIN
-          definition: 4-digit personal identification number.
+      - &id001
+        term: PIN
+        definition: 4-digit personal identification number.
       business_rules: []
       constraints: []
   C2:
     inject_context: true
     controlled_context:
       domain: Corporate physical access control system with badge and PIN authentication.
-      glossary: []
+      glossary:
+      - *id001
       business_rules:
-        - id: BR-01
-          rule: Invalid card causes immediate access denial at turnstile.
-        - id: BR-02
-          rule: Invalid PIN triggers retry request and does not immediately deny access.
+      - id: BR-01
+        rule: Invalid card causes immediate access denial at turnstile.
+      - id: BR-02
+        rule: Invalid PIN triggers retry request and does not immediately deny access.
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-
-  C1:
-    expected_resolubility: unresolved
-
-  C2:
-    expected_resolubility: resolvable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Corporate physical access control system with badge and PIN authentication.
+      glossary:
+      - *id001
+      - term: card reader timeout
+        definition: Maximum duration of 3 seconds the card reader waits for a valid
+          card signal before returning an unreadable status to the access control system.
+      business_rules:
+      - id: BR-01
+        rule: Each access attempt at the turnstile must be logged with a timestamp,
+          turnstile identifier, and outcome code (granted, denied, timeout) in the
+          central access log within 1 second of the event.
+      constraints: []

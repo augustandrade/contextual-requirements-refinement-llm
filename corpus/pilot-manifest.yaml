@@ -10,7 +10,7 @@ language_policy:
   contexts: en
   metadata: en
 methodology:
-  base_requirements: 4
+  base_requirements: 6
   context_levels: [C0, C1, C2]
   context_level_encoding: key_based
   context_injection_policy:
@@ -27,7 +27,7 @@ methodology:
     C0: [intent, inject_context]
     C1: [intent, inject_context, controlled_context]
     C2: [intent, inject_context, controlled_context]
-  total_executions: 12
+  total_executions: 18
   categories:
     - id: pilot-structural
       name: "Pilot structural — bundled functional and quality criteria"
@@ -41,6 +41,12 @@ methodology:
     - id: pilot-control
       name: "Pilot control — clean requirement (no ambiguity)"
       req_ids: [REQ-PILOT-04]
+    - id: pilot-lexical
+      name: "Pilot lexical — polysemous term (business vs technical exception)"
+      req_ids: [REQ-PILOT-05]
+    - id: pilot-semantic
+      name: "Pilot semantic — AND/OR operator precedence"
+      req_ids: [REQ-PILOT-06]
 items:
   - id: REQ-PILOT-01
     file: pilot/REQ-PILOT-01.yaml
@@ -50,5 +56,9 @@ items:
     file: pilot/REQ-PILOT-03.yaml
   - id: REQ-PILOT-04
     file: pilot/REQ-PILOT-04.yaml
+  - id: REQ-PILOT-05
+    file: pilot/REQ-PILOT-05.yaml
+  - id: REQ-PILOT-06
+    file: pilot/REQ-PILOT-06.yaml
 status: ready
 manual_reference: true

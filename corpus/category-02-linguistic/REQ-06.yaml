@@ -4,11 +4,12 @@ category_name: Linguistic ambiguities and formulation defects
 title: Logical ambiguity with and or precedence
 source:
   citation: Pohl (2025), Chapter 25, Example 25-6 (R24)
-base_requirement_text: If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.
+base_requirement_text: If a window of the car is damaged and the interior surveillance
+  of the car detects an intruder or a door of the car is opened without a car key,
+  the safety system shall raise an alarm.
 expected_problem: Logical grouping is unclear due to and or precedence ambiguity.
-expected_behavior: "Per Pohl (2025), Example 25-6, logical connective ambiguity should be resolved by making the precedence explicit through parenthesisation or restructuring of the condition."
 taxonomy_accepted_types:
-  - syntactic
+- semantic
 contexts:
   C0:
     inject_context: false
@@ -17,29 +18,39 @@ contexts:
     controlled_context:
       domain: In-vehicle safety system with intrusion detection and door state monitoring.
       glossary:
-        - term: interior surveillance
-          definition: Sensor subsystem for intrusion detection inside the vehicle.
+      - &id001
+        term: interior surveillance
+        definition: Sensor subsystem for intrusion detection inside the vehicle.
       business_rules: []
       constraints: []
   C2:
     inject_context: true
     controlled_context:
       domain: In-vehicle safety system with intrusion detection and door state monitoring.
-      glossary: []
+      glossary:
+      - *id001
       business_rules:
-        - id: BR-01
-          rule: >
-            Window damage is a mandatory precondition for triggering the alarm.
-            Once window damage is confirmed, the alarm is raised independently
-            by either of two events: (1) the interior surveillance detects an intruder,
-            or (2) a door is opened without a car key.
+      - id: BR-01
+        rule: 'Window damage is a mandatory precondition for triggering the alarm.
+          Once window damage is confirmed, the alarm is raised independently by either
+          of two events: (1) the interior surveillance detects an intruder, or (2)
+          a door is opened without a car key.
+
+          '
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-
-  C1:
-    expected_resolubility: unresolved
-
-  C2:
-    expected_resolubility: resolvable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: In-vehicle safety system with intrusion detection and door state monitoring.
+      glossary:
+      - *id001
+      - term: alarm notification protocol
+        definition: Sequence of outbound notifications dispatched when the safety system
+          raises an alarm, including vehicle horn activation and a GSM signal to the
+          security monitoring centre.
+      business_rules:
+      - id: BR-01
+        rule: When the safety system raises an alarm, the vehicle horn must sound at
+          minimum 110 dB for at least 30 seconds, and a GSM notification must be dispatched
+          to the security monitoring centre within 5 seconds of alarm activation.
+      constraints: []

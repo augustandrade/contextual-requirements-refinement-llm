@@ -4,11 +4,13 @@ category_name: Vagueness
 title: Boundary vagueness for medium sized vehicles
 source:
   citation: Pohl (2025), Chapter 25, §25.3.5, Example 25-9
-base_requirement_text: All medium-sized vehicles shall be equipped with a navigation system.
-expected_problem: "Per Pohl (2025), Example 25-9, 'medium-sized' is a vague term with no objective boundary — there exist vehicles for which it is impossible to determine whether they belong to this category."
-expected_behavior: "Per Pohl (2025), §25.3.5, vague terms should have their extension precisely defined, typically via a glossary entry with measurable boundaries."
+base_requirement_text: All medium-sized vehicles shall be equipped with a navigation
+  system.
+expected_problem: Per Pohl (2025), Example 25-9, 'medium-sized' is a vague term with
+  no objective boundary — there exist vehicles for which it is impossible to determine
+  whether they belong to this category.
 taxonomy_accepted_types:
-  - vagueness
+- vagueness
 contexts:
   C0:
     inject_context: false
@@ -17,8 +19,9 @@ contexts:
     controlled_context:
       domain: Fleet configuration management system.
       glossary:
-        - term: medium-sized vehicle
-          definition: Informal vehicle size category used by operations.
+      - &id001
+        term: navigation system
+        definition: Onboard positioning and route guidance unit installed in the vehicle.
       business_rules: []
       constraints: []
   C2:
@@ -26,16 +29,24 @@ contexts:
     controlled_context:
       domain: Fleet configuration management system.
       glossary:
-        - term: medium-sized vehicle
-          definition: Vehicle with gross weight strictly between 1500 kg and 2000 kg.
+      - *id001
+      - term: medium-sized vehicle
+        definition: Vehicle with gross weight strictly between 1500 kg and 2000 kg.
       business_rules: []
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-
-  C1:
-    expected_resolubility: unresolved
-
-  C2:
-    expected_resolubility: resolvable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Fleet configuration management system.
+      glossary:
+      - *id001
+      - term: map database
+        definition: The onboard digital cartographic dataset used by the navigation
+          system, identified by a region code and a release version number.
+      business_rules:
+      - id: BR-01
+        rule: The map database installed in each vehicle's navigation system must be
+          updated to the latest quarterly release within 30 days of that release becoming
+          available, and the installed version must be recorded in the fleet configuration
+          registry.
+      constraints: []

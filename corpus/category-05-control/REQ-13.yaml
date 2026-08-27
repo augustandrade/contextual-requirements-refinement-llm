@@ -3,10 +3,14 @@ category_id: category-05-control
 category_name: Control group
 title: Genuine well-formed condition-response requirement
 source:
-  citation: Veizaga et al. (2024), Table 6 (Tregex pattern C2), IEEE Transactions on Software Engineering
-base_requirement_text: Once System-A has successfully validated a settlement request, System-A must send an acknowledge message to System-B.
-expected_problem: No ambiguity or structural defect expected. Anonymized requirement from the source's industrial case study, presented by the authors as a correctly segmented single-condition, single-actor, single-response requirement (not associated with any smell in the source).
-expected_behavior: "Per Veizaga et al. (2024), a well-formed single-condition, single-actor, single-response requirement requires no restructuring beyond minimal formal adjustments."
+  citation: Veizaga et al. (2024), Table 6 (Tregex pattern C2), IEEE Transactions
+    on Software Engineering
+base_requirement_text: Once System-A has successfully validated a settlement request,
+  System-A must send an acknowledge message to System-B.
+expected_problem: No ambiguity or structural defect expected. Anonymized requirement
+  from the source's industrial case study, presented by the authors as a correctly
+  segmented single-condition, single-actor, single-response requirement (not associated
+  with any smell in the source).
 contexts:
   C0:
     inject_context: false
@@ -15,10 +19,13 @@ contexts:
     controlled_context:
       domain: Financial post-trade settlement workflow.
       glossary:
-        - term: settlement request
-          definition: Message requesting settlement of a financial instrument.
-        - term: acknowledge message
-          definition: Confirmation message indicating successful processing of a settlement request.
+      - &id001
+        term: settlement request
+        definition: Message requesting settlement of a financial instrument.
+      - &id002
+        term: acknowledge message
+        definition: Confirmation message indicating successful processing of a settlement
+          request.
       business_rules: []
       constraints: []
   C2:
@@ -26,18 +33,30 @@ contexts:
     controlled_context:
       domain: Financial post-trade settlement workflow.
       glossary:
-        - term: System-B
-          definition: Downstream system that receives settlement acknowledgements.
+      - *id001
+      - *id002
+      - term: System-B
+        definition: Downstream system that receives settlement acknowledgements.
       business_rules:
-        - id: BR-01
-          rule: An acknowledge message is sent to System-B only after the settlement request has passed validation.
+      - id: BR-01
+        rule: An acknowledge message is sent to System-B only after the settlement
+          request has passed validation.
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: not_applicable
-
-  C1:
-    expected_resolubility: not_applicable
-
-  C2:
-    expected_resolubility: not_applicable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Financial post-trade settlement workflow.
+      glossary:
+      - *id001
+      - *id002
+      - term: message delivery log
+        definition: Persistent record written before each outbound acknowledge message
+          is transmitted, containing the target system identifier, payload hash, and
+          transmission timestamp.
+      business_rules:
+      - id: BR-01
+        rule: Before transmitting an acknowledge message, System-A must persist a
+          delivery log entry; if transmission fails, System-A must retry delivery at
+          30-second intervals for up to 10 minutes before escalating to an operations
+          alert.
+      constraints: []

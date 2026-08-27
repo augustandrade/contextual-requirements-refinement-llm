@@ -1,12 +1,13 @@
 id: REQ-PILOT-04
 category_id: pilot
-category_name: "Pilot — control (clean requirement)"
+category_name: Pilot — control (clean requirement)
 title: Unambiguous save operation in a document editor
 source:
   citation: Author-constructed
-base_requirement_text: When the user selects the Save option, the system shall write the current document to disk and display a confirmation message.
-expected_problem: None — this requirement is intentionally free of ambiguity. It serves as a control case to verify that the pipeline does not introduce false positives.
-expected_behavior: Agent 1a must flag has_ambiguity as false. Agent 2 must set status no_ambiguity. Agent 3 must produce a single structured functional requirement.
+base_requirement_text: When the user selects the Save option, the system shall write
+  the current document to disk and display a confirmation message.
+expected_problem: None — this requirement is intentionally free of ambiguity. It serves
+  as a control case to verify that the pipeline does not introduce false positives.
 contexts:
   C0:
     inject_context: false
@@ -15,10 +16,12 @@ contexts:
     controlled_context:
       domain: Desktop document editing application.
       glossary:
-        - term: Save option
-          definition: A user-initiated command that triggers the persistence of the current in-memory document state to persistent storage.
-        - term: current document
-          definition: The document instance currently active in the editor at the moment the save command is issued.
+      - term: Save option
+        definition: A user-initiated command that triggers the persistence of the
+          current in-memory document state to persistent storage.
+      - term: current document
+        definition: The document instance currently active in the editor at the moment
+          the save command is issued.
       business_rules: []
       constraints: []
   C2:
@@ -26,55 +29,39 @@ contexts:
     controlled_context:
       domain: Desktop document editing application.
       glossary:
-        - term: Save option
-          definition: A user-initiated command that triggers the persistence of the current in-memory document state to persistent storage.
-        - term: current document
-          definition: The document instance currently active in the editor at the moment the save command is issued.
-        - term: confirmation message
-          definition: A non-modal status notification displayed in the status bar for three seconds after a successful save operation.
+      - term: Save option
+        definition: A user-initiated command that triggers the persistence of the
+          current in-memory document state to persistent storage.
+      - term: current document
+        definition: The document instance currently active in the editor at the moment
+          the save command is issued.
+      - term: confirmation message
+        definition: A non-modal status notification displayed in the status bar for
+          three seconds after a successful save operation.
       business_rules:
-        - id: BR-01
-          rule: The write operation must complete successfully before the confirmation message is displayed. If the write fails, an error notification must be shown instead and no confirmation message is displayed.
+      - id: BR-01
+        rule: The write operation must complete successfully before the confirmation
+          message is displayed. If the write fails, an error notification must be
+          shown instead and no confirmation message is displayed.
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: not_applicable
-    expected_findings:
-      - has_ambiguity must be false
-      - '"Save option" is a typographically-demarcated controlled identifier; must NOT be flagged as lexical ambiguity'
-      - Agent 3 produces a single functional requirement covering the full save sequence
-    should_not_do:
-      - flag "Save option" as lexically ambiguous
-      - route the case to signaling/bypass
-      - produce two separate requirements for the write and the display steps
-    applicable_criteria:
-      - false_positive_check
-      - syntactic_structuring
-
-  C1:
-    expected_resolubility: not_applicable
-    expected_findings:
-      - has_ambiguity must be false
-      - Glossary enriches the FR description; requirement remains clean and atomic
-      - Agent 3 produces a single structured functional requirement
-    should_not_do:
-      - introduce ambiguity findings that are absent in the text
-      - decompose into separate requirements
-    applicable_criteria:
-      - false_positive_check
-      - syntactic_structuring
-
-  C2:
-    expected_resolubility: not_applicable
-    expected_findings:
-      - has_ambiguity must be false
-      - Agent 3 incorporates glossary definition for "confirmation message" and error-handling rule from BR-01 into the structured output
-      - Single functional requirement output; no decomposition required
-    should_not_do:
-      - introduce ambiguity findings that are absent in the text
-      - decompose into two requirements based on BR-01
-      - ignore BR-01 error handling in the structured output
-    applicable_criteria:
-      - false_positive_check
-      - syntactic_structuring
-      - semantic_explicitation
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Desktop document editing application.
+      glossary:
+      - term: Save option
+        definition: A user-initiated command that triggers the persistence of the
+          current in-memory document state to persistent storage.
+      - term: current document
+        definition: The document instance currently active in the editor at the moment
+          the save command is issued.
+      - term: document version record
+        definition: Metadata entry appended to the document's version history on each
+          successful save, containing the save timestamp, file size in bytes, and the
+          user identifier who performed the save.
+      business_rules:
+      - id: BR-01
+        rule: Each successful save operation must append a document version record
+          to the file's version history before returning control to the user interface;
+          the version history must retain at least the 50 most recent save records.
+      constraints: []

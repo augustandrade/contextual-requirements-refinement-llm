@@ -4,10 +4,12 @@ category_name: Structural requirement defects
 title: Incomplete requirement with condition but no system response
 source:
   citation: Veizaga et al. (2024), Table 3, Incomplete requirement smell
-base_requirement_text: When System-A receives a message from Security Manager and if the message is part of the B-file, according to the mapping rules.
-expected_problem: "The requirement specifies a condition but omits the system response — the action the system must take upon receiving the B-file message is entirely absent. Per Veizaga et al. (2024), Table 3, this characterizes the incomplete requirement smell."
-expected_behavior: Detect structural incompleteness and signal the missing system response rather than inferring it; complete the requirement only when a business rule explicitly provides the action.
-notes: "Structural incompleteness (missing system response, per Veizaga et al. 2024, Table 3): distinct from non-feasible absolute availability (REQ-01) and multiple bundled actions (REQ-02). The condition segment is fully formed but the action the system must take is absent. expected_resolubility is unresolved in C0/C1 because the missing system response cannot be inferred from text alone; resolvable in C2 because BR-01 explicitly supplies the action — the pipeline is expected to complete the requirement only when a business rule provides it."
+base_requirement_text: When System-A receives a message from Security Manager and
+  if the message is part of the B-file, according to the mapping rules.
+expected_problem: The requirement specifies a condition but omits the system response
+  — the action the system must take upon receiving the B-file message is entirely
+  absent. Per Veizaga et al. (2024), Table 3, this characterizes the incomplete requirement
+  smell.
 contexts:
   C0:
     inject_context: false
@@ -16,10 +18,10 @@ contexts:
     controlled_context:
       domain: Post-trade financial platform with message routing and B-file classification.
       glossary:
-        - term: Security Manager
-          definition: Workflow authority that sends approval and rejection orders.
-        - term: B-file
-          definition: Reference file used for message classification and routing.
+      - term: Security Manager
+        definition: Workflow authority that sends approval and rejection orders.
+      - term: B-file
+        definition: Reference file used for message classification and routing.
       business_rules: []
       constraints: []
   C2:
@@ -27,18 +29,30 @@ contexts:
     controlled_context:
       domain: Post-trade financial platform with message routing and B-file classification.
       glossary:
-        - term: B-file
-          definition: Reference file used for message classification and routing.
+      - term: Security Manager
+        definition: Workflow authority that sends approval and rejection orders.
+      - term: B-file
+        definition: Reference file used for message classification and routing.
       business_rules:
-        - id: BR-01
-          rule: When System-A receives a B-file message from Security Manager according to the mapping rules, System-A must forward the message to the downstream processing queue and log the event in the Audit Trail.
+      - id: BR-01
+        rule: When System-A receives a B-file message from Security Manager according
+          to the mapping rules, System-A must forward the message to the downstream
+          processing queue and log the event in the Audit Trail.
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-
-  C1:
-    expected_resolubility: unresolved
-
-  C2:
-    expected_resolubility: resolvable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Post-trade financial platform with message routing and B-file classification.
+      glossary:
+      - term: Security Manager
+        definition: Workflow authority that sends approval and rejection orders.
+      - term: B-file
+        definition: Reference file used for message classification and routing.
+      - term: mapping rules
+        definition: A static lookup table, versioned quarterly, that maps incoming
+          message type codes to B-file classification categories.
+      business_rules:
+      - id: BR-01
+        rule: Mapping rule tables are loaded at system startup and reloaded automatically
+          when a new version is published, with a maximum propagation delay of 30 seconds.
+      constraints: []

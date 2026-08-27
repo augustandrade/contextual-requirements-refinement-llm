@@ -4,11 +4,12 @@ category_name: Domain or context-specific ambiguities
 title: Continuous measurement evaluation ambiguity
 source:
   citation: Kamsties et al. (2001), §1 Introduction, example (2)
-base_requirement_text: Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.
-expected_problem: Missing rule for evaluating continuous measurement within the time window.
-expected_behavior: "Per Kamsties et al. (2001), this type of ambiguity requires an explicit evaluation rule for continuous measurements within a time window; without it, different valid interpretations of the condition lead to different system behaviours."
+base_requirement_text: Shut off the pumps if the water level remains above 100 meters
+  for more than 4 seconds.
+expected_problem: Missing rule for evaluating continuous measurement within the time
+  window.
 taxonomy_accepted_types:
-  - semantic
+- semantic
 contexts:
   C0:
     inject_context: false
@@ -17,25 +18,34 @@ contexts:
     controlled_context:
       domain: Dam water level control system with automatic pump shutdown.
       glossary:
-        - term: water level
-          definition: Sensor reading sampled continuously.
+      - &id001
+        term: water level
+        definition: Sensor reading sampled continuously.
       business_rules: []
       constraints: []
   C2:
     inject_context: true
     controlled_context:
       domain: Dam water level control system with automatic pump shutdown.
-      glossary: []
+      glossary:
+      - *id001
       business_rules:
-        - id: BR-01
-          rule: For a 4-second persistence window, the decision metric is the absolute minimum reading in the window.
+      - id: BR-01
+        rule: For a 4-second persistence window, the decision metric is the absolute
+          minimum reading in the window.
       constraints: []
-manual_reference:
-  C0:
-    expected_resolubility: unresolved
-
-  C1:
-    expected_resolubility: unresolved
-
-  C2:
-    expected_resolubility: resolvable
+  C3:
+    inject_context: true
+    controlled_context:
+      domain: Dam water level control system with automatic pump shutdown.
+      glossary:
+      - *id001
+      - term: pump shutdown sequence
+        definition: Ordered procedure for stopping active pumps, consisting of a ramp-down
+          phase followed by a hard stop command issued to each pump controller.
+      business_rules:
+      - id: BR-01
+        rule: On receiving a shutdown command, each pump must complete its ramp-down
+          phase within 2 seconds and must not be restarted for a minimum hold-off period
+          of 60 seconds after the hard stop.
+      constraints: []

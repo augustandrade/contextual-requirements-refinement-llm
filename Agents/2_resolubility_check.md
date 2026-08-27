@@ -40,10 +40,10 @@ Follow these steps in order for each execution:
    - Classify `resolubility_status` based on what the search yields:
      - `resolvable`: direct evidence selects exactly one interpretation over all others. Populate `evidence_from_requirement` and `evidence_from_context` with the passages that support the chosen reading. Set `supported_interpretation` to that reading.
      - `unresolved`: no direct evidence selects or eliminates any interpretation. Omit evidence fields. Populate `missing_information` with the specific item that would resolve the ambiguity — name the definition, rule, quantitative threshold, or entity identification that is absent, keyed to the ambiguity type (e.g. for `lexical`: the missing glossary entry; for `referential`: which entity the anaphor refers to; for `vagueness`: the missing measurable boundary, threshold, or explicit scope definition).
-     - `not_applicable`: the search reveals that one or more reported interpretations have no basis in the text or context — the ambiguity does not survive confrontation with the available evidence. Populate `evidence_from_requirement` and `evidence_from_context` with the passages that eliminate the spurious interpretation(s). Omit `supported_interpretation` and `missing_information`. Classify as `not_applicable` only when evidence actively eliminates an interpretation; when all interpretations remain plausible, classify as `unresolved`.
+     - `false_positive`: the search reveals that one or more reported interpretations have no basis in the text or context — the ambiguity does not survive confrontation with the available evidence. Populate `evidence_from_requirement` and `evidence_from_context` with the passages that eliminate the spurious interpretation(s). Omit `supported_interpretation` and `missing_information`. Classify as `false_positive` only when evidence actively shows that a reported interpretation has no textual or contextual basis; when no evidence selects or eliminates any interpretation, classify as `unresolved`; when evidence selects one interpretation over others without showing the others have no basis, classify as `resolvable`.
    - In all cases: write a concise `justification` summarising the evidence found (or its absence) and the resulting classification.
 2. Determine `overall_resolubility.status`:
-   - `fully_resolvable` if every ambiguity is `resolvable` or `not_applicable`.
+   - `fully_resolvable` if every ambiguity is `resolvable` or `false_positive`.
    - `unresolved` if any ambiguity is `unresolved`.
 
 Decision Rules
@@ -85,13 +85,13 @@ contextual_resolubility_validation:
     status: "fully_resolvable | unresolved"
 ```
 
-When `not_applicable`:
+When `false_positive`:
 ```yaml
 contextual_resolubility_validation:
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: ""
-      resolubility_status: "not_applicable"
+      resolubility_status: "false_positive"
       evidence_from_requirement: []
       evidence_from_context: []
       justification: ""
@@ -172,7 +172,7 @@ contextual_resolubility_validation:
     status: "fully_resolvable"
 ```
 
-# Referential — not applicable, reported antecedent absent from text
+# Referential — false_positive, reported antecedent absent from text
 Input:
 ```yaml
 execution_input:
@@ -194,7 +194,7 @@ contextual_resolubility_validation:
   ambiguity_resolubility:
     - ambiguity_id: "AMB-01"
       fragment: "The log"
-      resolubility_status: "not_applicable"
+      resolubility_status: "false_positive"
       evidence_from_requirement:
         - "The preceding sentence introduces exactly one log entity: the transaction log. No other log type is mentioned in the requirement."
       evidence_from_context: []
@@ -337,5 +337,5 @@ contextual_resolubility_validation:
 Strict output rules
 - Return ONLY the YAML document above. Do not include any explanatory text, delimiters, or commentary.
 - Always wrap string values in double quotes (`"..."`), never single quotes. If a value itself contains a double quote, escape it as `\"`. Never nest an unescaped quote of the same kind inside a quoted string — this breaks YAML parsing.
-- Include `supported_interpretation` only when `resolubility_status` is `resolvable`. Include `missing_information` only when `resolubility_status` is `unresolved`. Omit fields that do not apply to the current status.
+- Include `supported_interpretation` only when `resolubility_status` is `resolvable`. Include `missing_information` only when `resolubility_status` is `unresolved`. Include `evidence_from_requirement` and `evidence_from_context` only when `resolubility_status` is `resolvable` or `false_positive`. Omit fields that do not apply to the current status.
 - When an evidence list has no entries, use `[]`.

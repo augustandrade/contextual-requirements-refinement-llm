@@ -3,7 +3,7 @@
 Processador de corpus: itera sobre o manifesto e executa o pipeline para cada requisito e contexto.
 
 Uso:
-  python3 process_corpus.py                                   # corpus completo (42 execuções)
+  python3 process_corpus.py                                   # corpus completo (42 execuções: 9 ambíguos×4 + 6 controle×1)
   python3 process_corpus.py --subset                          # 1 req por categoria, 1 contexto (~4 execuções)
   python3 process_corpus.py --manifest pilot-manifest.yaml   # corpus piloto (12 execuções)
   python3 process_corpus.py --req REQ-PILOT-04               # requisito específico (3 execuções)
@@ -75,7 +75,7 @@ def process_item(item, run_dir: Path, contexts: list = None):
     category  = data.get('category_name', data.get('category_id', ''))
     base_text = data.get('base_requirement_text')
 
-    _ctxs = contexts or ['C0', 'C1', 'C2']
+    _ctxs = contexts or ['C0', 'C1', 'C2', 'C3']
     pending = [ctx for ctx in _ctxs if not _already_done(run_dir, req_id, ctx)]
     if not pending:
         print(f'  {req_id}  skipped (already complete)')
