@@ -14,3 +14,13 @@ O **Bloco 2** rastreou a rota do "pipeline" (`structured` ou `signaling`) ao lon
 O **Bloco 3** respondeu a RQ3: verificou se o tipo de ambiguidade detectado pelo Agente 1 coincidiu com os tipos aceitos declarados no corpus, tendo como referência a taxonomia de Pohl (2025) — cujas definições estão apresentadas na subseção Taxonomia de Ambiguidades. A avaliação restringiu-se a Cat-02, Cat-03 e Cat-04, categorias que possuem `taxonomy_accepted_types` preenchido, usando a execução em C0. O critério de acerto exigiu que ao menos um dos tipos detectados estivesse entre os aceitos, reconhecendo que o corpus admite conjuntos alternativos para requisitos em que mais de um tipo é defensável.
 
 O **Bloco 4** foi uma verificação complementar de integridade estrutural da saída do pipeline, independente das perguntas de pesquisa: avaliou se o "pipeline" produziu um artefato utilizável em todas as condições. Para a rota `structured`, exigiu-se ao menos um item em `structured_requirements` com `final_statement` não vazio; para `signaling`, ao menos um item em `ambiguity_resolubility` com "status" `unresolved` ou equivalente. Saídas com rota desconhecida receberam valor nulo e foram excluídas do denominador da pontuação. Os resultados desse bloco foram retomados na análise de modos de falha, na seção de Resultados e Discussão.
+
+## Análise estatística
+
+O planejamento da análise estatística foi realizado antes da execução do experimento (Gil, 2018), com nível de significância α = 0,05 adotado como referência para todos os testes inferenciais.
+
+Para RQ1, a comparação de rotas entre C2 e C3 foi conduzida de forma primariamente descritiva, por proporção de conversões `signaling→structured` por modelo. O teste de McNemar foi aplicado de forma exploratória quando o número de pares discordantes por modelo permitia interpretação (N ≥ 5); em razão do tamanho amostral reduzido (15 requisitos por modelo), os resultados foram reportados com a ressalva de baixo poder estatístico.
+
+Para RQ2, os intervalos de confiança de 95% para precisão, revocação, F1 e especificidade foram estimados por bootstrap com 10.000 reamostras, calculados separadamente para cada modelo sobre as 15 execuções em C0. Esse método foi adotado por não pressupor distribuição normal e por ser adequado a amostras pequenas (Efron e Hastie, 2016).
+
+Para RQ3, a comparação de acerto de tipo entre categorias foi reportada por proporção de acerto (acertos/3 por categoria por modelo), sem teste inferencial formal, dado que cada categoria continha apenas três requisitos — número insuficiente para qualquer teste de associação com poder estatístico interpretável. Os resultados foram apresentados em tabela de frequências cruzando categoria, modelo e condição C0.

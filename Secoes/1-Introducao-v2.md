@@ -6,12 +6,4 @@ Historicamente, a mitigação dessas ambiguidades dependeu de inspeções manuai
 
 O contexto fornecido a cada agente, no entanto, determina a qualidade da interpretação: sua ausência compromete a leitura semântica do requisito, e o excesso pode introduzir viés e mascarar ambiguidades genuínas (Pohl, 2025; Bashir et al., 2025). Os estudos disponíveis avaliam o desempenho de LLMs na detecção de ambiguidades, mas não isolam o efeito do nível e da relevância do contexto fornecido aos agentes (Bashir et al., 2025; Cheng et al., 2025; Zadenoori et al., 2025) — lacuna que motiva o delineamento experimental deste trabalho.
 
-O experimento foi estruturado em torno de três perguntas de pesquisa.
-
-RQ1: A relevância semântica do contexto injetado — mantida a especificidade constante entre as condições C2 (contexto relevante) e C3 (contexto irrelevante) — altera a rota de resolução adotada pelo "pipeline"?
-
-RQ2: O "pipeline" distingue requisitos ambíguos de bem formados sem gerar falsos positivos, mantendo precisão, revocação, F1 e especificidade adequadas sobre um grupo de controle intencionalmente construído sem defeitos?
-
-RQ3: Quais categorias de defeito — estrutural, linguística, de domínio e de vaguidade — apresentam maior dificuldade de detecção e classificação pelo "pipeline", segundo a taxonomia de Pohl (2025)?
-
-O presente trabalho teve como objetivo desenvolver e avaliar um "pipeline" multi-agente de LLMs capaz de detectar ambiguidades em requisitos escritos em linguagem natural e de resolvê-las com base no contexto disponível. O sistema foi implementado com três agentes especializados e um consolidador determinístico, executado sobre um corpus controlado de 15 requisitos em quatro condições de contexto (C0–C3), totalizando 420 execuções sobre sete modelos de linguagem de código aberto. O desempenho foi mensurado por meio de quatro blocos de métricas quantitativas calculadas automaticamente contra gabarito embutido no corpus.
+O presente trabalho teve como objetivo desenvolver e avaliar um "pipeline" multi-agente de LLMs capaz de detectar ambiguidades em requisitos escritos em linguagem natural e de resolvê-las com base no contexto disponível. O sistema foi implementado com três agentes especializados e um consolidador determinístico, executado sobre um corpus controlado de 15 requisitos em quatro condições de contexto (C0–C3), totalizando 420 execuções sobre sete modelos de linguagem de código aberto. O desempenho foi mensurado por meio de quatro blocos de métricas quantitativas calculadas automaticamente contra gabarito embutido no corpus. As perguntas de pesquisa, hipóteses e protocolo de avaliação foram apresentados na seção de Material e Métodos.
