@@ -33,7 +33,10 @@ import csv
 import sys
 import argparse
 from datetime import datetime
+from math import comb
 from pathlib import Path
+
+import numpy as np
 
 # ── Caminhos ─────────────────────────────────────────────────────────────────
 _HERE         = Path(__file__).parent
@@ -545,6 +548,218 @@ def export_metadata(run_dirs: list[Path], eval_dir: Path) -> None:
     print(f'Metadata salvo: {meta_path}')
 
 
+# ── Análise estatística (Blocos 1–3) ─────────────────────────────────────────
+
+def _bootstrap_detection_ci(c0_rows: list[dict], n_resamples: int = 10_000, seed: int = 42) -> dict:
+    """Bootstrap IC 95% para precisão, revocação, F1 e especificidade (RQ2).
+
+    Reamostra os pares (expected, actual) conjuntamente para preservar a
+    estrutura de correlação. Usado em C0 (context-free), N=15 por modelo.
+    """
+    pairs = [
+        (r['expected_has_ambiguity'], r['act_has_ambiguity'])
+        for r in c0_rows
+        if r.get('expected_has_ambiguity') is not None and r.get('act_has_ambiguity') is not None
+    ]
+    if not pairs:
+        return {}
+
+    rng = np.random.default_rng(seed)
+    n   = len(pairs)
+    exp_arr = np.array([p[0] for p in pairs], dtype=bool)
+    act_arr = np.array([p[1] for p in pairs], dtype=bool)
+
+    stats: dict[str, list] = {'precision': [], 'recall': [], 'f1': [], 'specificity': []}
+
+    for _ in range(n_resamples):
+        idx = rng.integers(0, n, size=n)
+        e, a = exp_arr[idx], act_arr[idx]
+        tp = int(np.sum( e &  a))
+        fp = int(np.sum(~e &  a))
+        fn = int(np.sum( e & ~a))
+        tn = int(np.sum(~e & ~a))
+        prec = tp / (tp + fp) if (tp + fp) > 0 else None
+        rec  = tp / (tp + fn) if (tp + fn) > 0 else None
+        spec = tn / (tn + fp) if (tn + fp) > 0 else None
+        f1   = 2 * prec * rec / (prec + rec) if prec and rec else None
+        if prec is not None: stats['precision'].append(prec)
+        if rec  is not None: stats['recall'].append(rec)
+        if spec is not None: stats['specificity'].append(spec)
+        if f1   is not None: stats['f1'].append(f1)
+
+    result = {}
+    for metric, vals in stats.items():
+        if vals:
+            result[metric] = {
+                'lo': float(np.percentile(vals, 2.5)),
+                'hi': float(np.percentile(vals, 97.5)),
+                'n_valid': len(vals),
+            }
+        else:
+            result[metric] = None
+    return result
+
+
+def _exact_binomial_pvalue_geq(k: int, n: int, p: float = 0.5) -> float:
+    """P(X >= k) para X ~ Binomial(n, p). Exato, sem dependência externa."""
+    return float(sum(comb(n, i) * (p ** i) * ((1 - p) ** (n - i)) for i in range(k, n + 1)))
+
+
+def _mcnemar_c2_vs_c3(lift_rows_for_run: list[dict]) -> dict:
+    """McNemar para RQ1: compara rota structured em C2 vs C3 (pares por requisito).
+
+    b = C2=structured, C3=signaling  (C2 melhor)
+    c = C2=signaling,  C3=structured (C3 melhor)
+    Teste exato binomial unilateral: H1 = C2 > C3.
+    Reportado como exploratório quando n_discordant < 5.
+    """
+    pairs = [
+        (r['structured_c2'], r['structured_c3'])
+        for r in lift_rows_for_run
+        if r.get('structured_c2') is not None and r.get('structured_c3') is not None
+    ]
+    if not pairs:
+        return {'note': 'sem pares C2/C3 disponíveis'}
+
+    b = sum(1 for c2, c3 in pairs if c2 == 1 and c3 == 0)
+    c = sum(1 for c2, c3 in pairs if c2 == 0 and c3 == 1)
+    n_discordant = b + c
+    n_pairs = len(pairs)
+
+    base = {
+        'n_pairs': n_pairs,
+        'b_c2_wins': b,
+        'c_c3_wins': c,
+        'n_discordant': n_discordant,
+    }
+
+    if n_discordant < 5:
+        return {**base, 'p_value': None,
+                'note': f'n_discordant={n_discordant} < 5 — poder estatístico insuficiente (exploratório)'}
+
+    p_value = _exact_binomial_pvalue_geq(b, n_discordant)
+    return {
+        **base,
+        'p_value': round(p_value, 4),
+        'significant': p_value < 0.05,
+        'note': f'binomial exato, unilateral (H1: C2 > C3), α=0.05',
+    }
+
+
+def _rq3_category_proportions(taxonomy_rows: list[dict]) -> list[dict]:
+    """Proporção de acerto de tipo por categoria e por modelo (RQ3).
+
+    Cada categoria contém apenas 3 requisitos — sem teste inferencial.
+    """
+    from collections import defaultdict
+    # Extrai categoria do req_id (ex: req-02-linguistic-001 → Cat-02)
+    def _cat_from_req(req_id: str) -> str:
+        req_lower = req_id.lower()
+        for cat_id in _CAT_LABELS:
+            tag = cat_id.split('-')[1] + '-' + cat_id.split('-')[2]   # ex: '02-linguistic'
+            if tag in req_lower:
+                return cat_id
+        return 'unknown'
+
+    runs    = sorted({r['run']    for r in taxonomy_rows})
+    cat_ids = sorted({_cat_from_req(r['req_id']) for r in taxonomy_rows})
+
+    rows_out = []
+    for run in runs:
+        run_rows = [r for r in taxonomy_rows if r['run'] == run]
+        for cat_id in cat_ids:
+            cat_rows = [r for r in run_rows if _cat_from_req(r['req_id']) == cat_id]
+            if not cat_rows:
+                continue
+            n       = len(cat_rows)
+            correct = sum(1 for r in cat_rows if r['match'])
+            rows_out.append({
+                'run':      run,
+                'model':    _model_short(run),
+                'category': _CAT_LABELS.get(cat_id, cat_id),
+                'correct':  correct,
+                'total':    n,
+                'proportion': round(correct / n, 4) if n > 0 else None,
+            })
+    return rows_out
+
+
+def run_statistical_analysis(
+    all_rows: list[dict],
+    lift_rows: list[dict],
+    taxonomy_rows: list[dict],
+) -> dict:
+    """Executa as três análises estatísticas e retorna um dict estruturado."""
+    runs = sorted({r['run'] for r in all_rows})
+    result: dict = {'rq1_mcnemar': {}, 'rq2_bootstrap_ci': {}, 'rq3_proportions': []}
+
+    for run in runs:
+        model = _model_short(run)
+        c0    = [r for r in all_rows if r['run'] == run and r['context'] == 'C0']
+        lifts = [r for r in lift_rows if r['run'] == run]
+
+        result['rq2_bootstrap_ci'][model] = _bootstrap_detection_ci(c0)
+        result['rq1_mcnemar'][model]      = _mcnemar_c2_vs_c3(lifts)
+
+    result['rq3_proportions'] = _rq3_category_proportions(taxonomy_rows)
+    return result
+
+
+def _print_statistical_analysis(stats: dict) -> None:
+    """Exibe as análises estatísticas no terminal."""
+    print(f'\n{"═" * 74}')
+    print('ANÁLISE ESTATÍSTICA')
+
+    # RQ2 — Bootstrap IC 95%
+    print(f'\n{"─" * 74}')
+    print('RQ2 — Bootstrap IC 95% para métricas de detecção (N=15, C0, 10.000 reamostras)')
+    print(f'  {"Modelo":<22}  {"Precision":>20}  {"Recall":>20}  {"F1":>20}  {"Specificity":>20}')
+    print(f'  {"─" * 90}')
+    for model, ci in sorted(stats['rq2_bootstrap_ci'].items()):
+        def _fmt(d):
+            if not d:
+                return f'{"—":>20}'
+            return f'{d["lo"]*100:5.1f}%–{d["hi"]*100:5.1f}%'.rjust(20)
+        print(f'  {model:<22}  {_fmt(ci.get("precision"))}  {_fmt(ci.get("recall"))}  {_fmt(ci.get("f1"))}  {_fmt(ci.get("specificity"))}')
+
+    # RQ1 — McNemar
+    print(f'\n{"─" * 74}')
+    print('RQ1 — McNemar C2 vs C3 (exploratório; H1: C2 > C3)')
+    print(f'  {"Modelo":<22}  {"N pares":>8}  {"b (C2>C3)":>10}  {"c (C3>C2)":>10}  {"N discord.":>11}  {"p-value":>9}')
+    print(f'  {"─" * 80}')
+    for model, mc in sorted(stats['rq1_mcnemar'].items()):
+        if 'n_pairs' not in mc:
+            print(f'  {model:<22}  {mc.get("note", "—")}')
+            continue
+        p = f'{mc["p_value"]:.4f}' if mc.get('p_value') is not None else 'n/a*'
+        sig = ' *' if mc.get('significant') else ''
+        print(
+            f'  {model:<22}  {mc["n_pairs"]:>8}  {mc["b_c2_wins"]:>10}  {mc["c_c3_wins"]:>10}'
+            f'  {mc["n_discordant"]:>11}  {p+sig:>9}'
+        )
+    print('  * n_discordant < 5: resultado exploratório, poder insuficiente')
+
+    # RQ3 — Proporções por categoria
+    print(f'\n{"─" * 74}')
+    print('RQ3 — Proporção de acerto de tipo por categoria (sem teste inferencial; N=3/cat)')
+    if stats['rq3_proportions']:
+        models = sorted({r['model'] for r in stats['rq3_proportions']})
+        cats   = sorted({r['category'] for r in stats['rq3_proportions']})
+        header = f'  {"Categoria":<28}' + ''.join(f'{m:>14}' for m in models)
+        print(header)
+        for cat in cats:
+            line = f'  {cat:<28}'
+            for model in models:
+                row = next((r for r in stats['rq3_proportions']
+                            if r['category'] == cat and r['model'] == model), None)
+                if row:
+                    cell = f'{row["correct"]}/{row["total"]} ({row["proportion"]*100:.0f}%)'
+                else:
+                    cell = '—'
+                line += f'{cell:>14}'
+            print(line)
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(description='Avalia runs do pipeline contra o corpus')
@@ -586,6 +801,9 @@ def main():
         taxonomy_rows.extend(evaluate_taxonomy(rd, corpus))
     summarize_taxonomy(taxonomy_rows)
 
+    stats = run_statistical_analysis(all_rows, lift_rows, taxonomy_rows)
+    _print_statistical_analysis(stats)
+
     ts       = datetime.now().strftime('%Y-%m-%dT%H-%M')
     suffix   = f'__{args.label}' if args.label else ''
     eval_dir = _HERE / 'outputs' / 'evaluation' / f'eval__{ts}{suffix}'
@@ -594,6 +812,12 @@ def main():
     export_csv(all_rows,      eval_dir / 'evaluation_results.csv')
     export_csv(lift_rows,     eval_dir / 'context_lift.csv')
     export_csv(taxonomy_rows, eval_dir / 'taxonomy_classification.csv')
+    export_csv(stats['rq3_proportions'], eval_dir / 'rq3_category_proportions.csv')
+
+    stats_path = eval_dir / 'statistical_analysis.json'
+    stats_path.write_text(json.dumps(stats, indent=2, ensure_ascii=False, default=str))
+    print(f'Análise estatística salva: {stats_path}')
+
     export_metadata(run_dirs, eval_dir)
 
     try:
