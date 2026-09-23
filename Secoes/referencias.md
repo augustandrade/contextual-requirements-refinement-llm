@@ -8,15 +8,23 @@ Bashir, S.; Ferrari, A.; Khan, A.; Strandberg, P. E.; Haider, Z.; Saadatmand, M.
 
 Cheng, H.; Husen, J. H.; Lu, Y.; Racharak, T.; Yoshioka, N.; Ubayashi, N.; Washizaki, H. 2025. Generative AI for requirements engineering: a systematic literature review. Software: Practice and Experience. no prelo.
 
+Efron, B.; Hastie, T. 2016. Computer age statistical inference: algorithms, evidence, and data science. Cambridge University Press, Cambridge, Reino Unido.
+
+Gil, A. C. 2018. Como elaborar projetos de pesquisa. 6ed. Atlas, São Paulo, SP, Brasil.
+
 Gulli, A. 2025. Agentic design patterns: a hands-on guide to building intelligent systems. O'Reilly Media, Sebastopol, CA, EUA.
 
 Guo, Y.; Conia, S.; Zhou, Z.; Li, M.; Potdar, S.; Xiao, H. 2025. Do large language models have an English accent? Evaluating and improving the naturalness of multilingual LLMs. In: Annual Meeting of the Association for Computational Linguistics (ACL), 2025, Viena, Áustria. Anais... p. 3823-3838.
 
 Kamsties, E.; Berry, D. M.; Paech, B. 2001. Detecting ambiguities in requirements documents using inspections. In: Workshop on Inspection in Software Engineering (WISE'01), 2001, Paris, França. Anais... p. 68-80.
 
+Nair, P. P. M.; Anish, P. R. 2025. A retrieval-augmented framework for detecting and resolving pragmatic ambiguities in natural language requirements. Preprint. Disponível em: <https://arxiv.org/abs/2607.04436>. Acesso em: 23 set. 2026.
+
 Pohl, K. 2025. Requirements engineering: fundamentals, principles, and techniques. 2ed. Springer, Cham, Suíça.
 
 Schut, L.; Gal, Y.; Farquhar, S. 2025. Do multilingual LLMs think in English? In: International Conference on Learning Representations (ICLR), 2025, Singapura. Anais...
+
+Shefa, J.; Salado, A.; Wach, P.; Topcu, T. G. 2026. Two truths and a lie? Benchmarking off-the-shelf LLMs for requirements quality assessment: performance, false alarms, and misses. Preprint. Disponível em: <https://arxiv.org/abs/2609.03230>. Acesso em: 23 set. 2026.
 
 Sommerville, I. 2016. Software engineering. 10ed. Pearson, Boston, MA, EUA.
 
