@@ -106,7 +106,9 @@ def evaluate_one(final: dict, expected_has_ambiguity: bool) -> dict:
         d1_error_type = None
 
     # D_output — integridade estrutural do output dado a rota tomada
-    _UNRESOLVED_STATUSES = {'unresolved'}
+    # Para signaling: aceita unresolved, non_resolvable E false_positive — todos são
+    # desfechos válidos e utilizáveis quando o pipeline não pode estruturar o requisito.
+    _SIGNALING_VALID_STATUSES = {'unresolved', 'non_resolvable', 'false_positive'}
     act_route   = _get(final, 'pipeline_decision', 'route', default='')
     struct_reqs = _get(final, 'requirement_structuring', 'structured_requirements', default=[]) or []
     d_output = None
@@ -119,7 +121,7 @@ def evaluate_one(final: dict, expected_has_ambiguity: bool) -> dict:
     elif act_route == 'signaling':
         amb_items  = _get(final, 'contextual_resolubility_analysis', 'ambiguity_resolubility', default=[]) or []
         unresolved = [a for a in amb_items if isinstance(a, dict)
-                      and str(a.get('resolubility_status', '')).strip().lower() in _UNRESOLVED_STATUSES]
+                      and str(a.get('resolubility_status', '')).strip().lower() in _SIGNALING_VALID_STATUSES]
         d_output = len(unresolved) > 0
 
     if d_output is not None:
