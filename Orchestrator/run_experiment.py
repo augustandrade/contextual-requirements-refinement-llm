@@ -150,13 +150,15 @@ def _run_model(model: str, label: str, resume: bool, dry_run: bool) -> bool:
     return result.returncode == 0
 
 
-def _run_evaluation(dry_run: bool) -> None:
+def _run_evaluation(label: str, dry_run: bool) -> None:
     if dry_run:
-        print('\n  [eval] DRY-RUN — evaluate.py')
+        print(f'\n  [eval] DRY-RUN — evaluate.py --run {label}')
         return
     print(f'\n{"═" * 60}')
     print('Iniciando avaliação consolidada...', flush=True)
-    result = subprocess.run([sys.executable, str(_EVALUATE)])
+    # Filtra pelo label para excluir runs pilot e de outros experimentos
+    cmd = [sys.executable, str(_EVALUATE), '--filter-label', label]
+    result = subprocess.run(cmd)
     if result.returncode != 0:
         print(f'[WARN] evaluate.py terminou com código {result.returncode}', file=sys.stderr)
 
@@ -229,10 +231,10 @@ def main() -> None:
             print(f'  python3 run_experiment.py --resume --models {m} --label {args.label}')
 
     if not args.skip_eval:
-        _run_evaluation(args.dry_run)
+        _run_evaluation(args.label, args.dry_run)
     else:
         print('\nAvaliação pulada (--skip-eval). Para rodar manualmente:')
-        print(f'  python3 analysis/evaluate.py')
+        print(f'  python3 analysis/evaluate.py --filter-label {args.label}')
 
 
 if __name__ == '__main__':

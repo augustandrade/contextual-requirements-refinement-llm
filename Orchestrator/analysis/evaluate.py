@@ -287,6 +287,7 @@ def evaluate_taxonomy(run_dir: Path, corpus: dict) -> list[dict]:
         rows.append({
             'run':            run_dir.name,
             'req_id':         req_id,
+            'category':       doc.get('category_id', ''),
             'accepted_types': ', '.join(sorted(accepted_types)),
             'detected_types': ', '.join(detected_types) if detected_types else '(nenhuma)',
             'match':          match,
@@ -650,25 +651,16 @@ def _rq3_category_proportions(taxonomy_rows: list[dict]) -> list[dict]:
     """Proporção de acerto de tipo por categoria e por modelo (RQ3).
 
     Cada categoria contém apenas 3 requisitos — sem teste inferencial.
+    Usa o campo 'category' adicionado por evaluate_taxonomy (category_id do corpus).
     """
-    from collections import defaultdict
-    # Extrai categoria do req_id (ex: req-02-linguistic-001 → Cat-02)
-    def _cat_from_req(req_id: str) -> str:
-        req_lower = req_id.lower()
-        for cat_id in _CAT_LABELS:
-            tag = cat_id.split('-')[1] + '-' + cat_id.split('-')[2]   # ex: '02-linguistic'
-            if tag in req_lower:
-                return cat_id
-        return 'unknown'
-
-    runs    = sorted({r['run']    for r in taxonomy_rows})
-    cat_ids = sorted({_cat_from_req(r['req_id']) for r in taxonomy_rows})
+    runs    = sorted({r['run']      for r in taxonomy_rows})
+    cat_ids = sorted({r['category'] for r in taxonomy_rows if r.get('category')})
 
     rows_out = []
     for run in runs:
         run_rows = [r for r in taxonomy_rows if r['run'] == run]
         for cat_id in cat_ids:
-            cat_rows = [r for r in run_rows if _cat_from_req(r['req_id']) == cat_id]
+            cat_rows = [r for r in run_rows if r.get('category') == cat_id]
             if not cat_rows:
                 continue
             n       = len(cat_rows)
@@ -765,6 +757,8 @@ def main():
     parser = argparse.ArgumentParser(description='Avalia runs do pipeline contra o corpus')
     parser.add_argument('--run',      default='', help='Prefixo do run a avaliar (ex: run_002)')
     parser.add_argument('--exclude',  default='', help='Prefixo do run a ignorar (ex: run_001)')
+    parser.add_argument('--filter-label', default='', dest='filter_label',
+                        help='Filtra runs cujo nome contenha este sufixo (ex: main-v1)')
     parser.add_argument('--label',    default='', help='Label para nomear a pasta de saída')
     parser.add_argument('--manifest', default='manifest.yaml',
                         help='Manifesto do corpus (relativo a corpus/). Default: manifest.yaml')
@@ -781,6 +775,8 @@ def main():
         run_dirs = [d for d in run_dirs if d.name.startswith(args.run)]
     if args.exclude:
         run_dirs = [d for d in run_dirs if not d.name.startswith(args.exclude)]
+    if args.filter_label:
+        run_dirs = [d for d in run_dirs if args.filter_label in d.name]
 
     if not run_dirs:
         sys.exit('Nenhum run encontrado.')
