@@ -28,9 +28,19 @@ Os resultados do Bloco 1 foram superiores ao desempenho relatado em estudos que 
 
 Os intervalos de confiança de 95% estimados por bootstrap com 10.000 reamostras revelaram amplitude ampla em todos os modelos, reflexo do tamanho amostral de 15 execuções em C0. Para o deepseek-r1:7b, o IC para revocação abrangeu [30,0%; 84,6%], refletindo a instabilidade gerada pelos cinco falsos negativos; para os demais modelos, os limites inferiores de revocação foram iguais ou superiores a 72,7%, e os de F1 iguais ou superiores a 63,2%. As estimativas pontuais são consistentes com os dados, mas os ICs indicam que afirmações quantitativas fortes sobre superioridade entre modelos não são sustentadas pelo corpus de 15 requisitos.
 
+A Figura 1 apresenta o mapa de acerto da detecção por requisito e modelo, revelando padrões de falha não capturados pelas métricas agregadas da Tabela 1.
+
+![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T14-07/charts/heatmap__D1_req_modelo.png)
+
+Figura 1. Mapa de acerto da detecção de ambiguidade por requisito e modelo em C0. (+) indica positivo esperado; (−) indica negativo esperado (grupo de controle)
+
+*Fonte: Resultados originais da pesquisa*
+
+O exame por requisito revelou dois padrões de falha sistemática. O REQ-08 (Cat-03, domínio) foi o único requisito com falso negativo em quatro dos sete modelos (qwen3.5-9b, mistral-7b, llama3.1-8b e deepseek-r1:7b), caracterizando-o como o texto-base de maior dificuldade de detecção do corpus — possivelmente por apresentar ambiguidade lexical de domínio sem marcadores sintáticos salientes que ancorem a identificação. O REQ-14 (Cat-05, controle) foi sinalizado incorretamente como ambíguo por seis dos sete modelos, sendo o único requisito de controle que o deepseek-r1:7b acertou. Esse resultado indicou que, para a maioria dos modelos, ao menos um dos requisitos intencionalmente bem formados do corpus foi percebido como problemático — limitação que fundamenta a interpretação cautelosa da especificidade reportada na Tabela 1. Os cinco falsos negativos do deepseek-r1:7b distribuíram-se por quatro categorias distintas (Cat-01, Cat-02, Cat-03 e Cat-04), sem concentração em uma categoria específica, o que indicou conservadorismo generalizado na detecção em vez de lacuna restrita a um tipo de ambiguidade.
+
 ## Bloco 2 — Sensibilidade ao contexto
 
-O Bloco 2 rastreou a rota do pipeline ao longo das quatro condições de contexto, respondendo a RQ1. A métrica central foi ΔRoute(C2 − C0): proporção de requisitos que transitaram de signaling para structured ao receber o contexto específico relevante (C2), tomando C0 como referência. A Tabela 2 apresenta os resultados por modelo.
+O Bloco 2 rastreou a rota do pipeline ao longo das quatro condições de contexto, respondendo a RQ1. A métrica central foi ΔRoute(C2 − C0): proporção de requisitos que transitaram de signaling para structured ao receber o contexto específico relevante (C2), tomando C0 como referência. A Tabela 2 apresenta as proporções de conversão por modelo, e a Figura 2 ilustra o comportamento de cada modelo ao longo das quatro condições.
 
 **Tabela 2.** Proporções de conversão de rota por condição de contexto (base: requisitos ambíguos com C0 = signaling)
 
@@ -46,6 +56,12 @@ O Bloco 2 rastreou a rota do pipeline ao longo das quatro condições de context
 
 *Fonte: Resultados originais da pesquisa*
 
+![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T14-07/charts/context_lift__route_delta.png)
+
+Figura 2. Padrões de sensibilidade ao contexto por modelo: trajetória C0–C3 (superior esquerdo), ΔRoute por condição (superior direito), ganhos por estágio C0→C1 e C1→C2 (inferior esquerdo) e discriminação C2 versus C3 (inferior direito)
+
+*Fonte: Resultados originais da pesquisa*
+
 Os modelos da família qwen foram os únicos a demonstrar discriminação entre contexto relevante e irrelevante. O qwen3.5-4b converteu 72,7% das rotas signaling em structured ao receber C2, contra 18,2% em C3 — uma diferença de 54,5 pontos percentuais. O qwen3.5-9b exibiu padrão análogo, com maior magnitude: 90,0% em C2 e 40,0% em C3 (Δ = 50,0 pp). O teste de McNemar unilateral exato confirmou a significância estatística para ambos (qwen3.5-4b: n_discordante = 6, p = 0,016; qwen3.5-9b: n_discordante = 5, p = 0,031), com nenhuma vitória de C3 sobre C2 nos pares discordantes. O ganho de conversão se concentrou inteiramente no estágio C1→C2 para o qwen3.5-4b (72,7%) e majoritariamente nesse estágio para o qwen3.5-9b (80,0%), indicando que a etapa relevante para a resolução foi a injeção do conteúdo específico relevante, não a adição de contexto periférico (C0→C1 = 0% e 10%, respectivamente).
 
 O gemma3-4b apresentou comportamento distinto: ΔC2−C0 e ΔC3−C0 foram idênticos (75,0%), resultando em ΔC2−C3 = 0,0%. O modelo converteu rotas tanto com contexto relevante quanto com contexto irrelevante de mesma especificidade, sem distinguir qual dos dois endereçava o fragmento ambíguo. Em dois requisitos das categorias Cat-02 e Cat-03, a conversão ocorreu exclusivamente em C3 (contexto irrelevante) e não em C2, sugerindo sensibilidade à especificidade do texto injetado independente de sua relevância. O teste de McNemar reportou poder estatístico insuficiente (n_discordante = 4), impossibilitando inferência.
@@ -58,7 +74,7 @@ Esses resultados são compatíveis com a observação de Bashir et al. (2025) de
 
 ## Bloco 3 — Classificação de tipo de ambiguidade
 
-O Bloco 3 avaliou se o tipo de ambiguidade detectado pelo Agente 1 coincidiu com os tipos aceitos declarados no corpus, respondendo a RQ3. A análise restringiu-se às categorias Cat-02, Cat-03 e Cat-04, que possuem `taxonomy_accepted_types` preenchido. A Tabela 3 apresenta a proporção de acerto por categoria e por modelo.
+O Bloco 3 avaliou se o tipo de ambiguidade detectado pelo Agente 1 coincidiu com os tipos aceitos declarados no corpus, respondendo a RQ3. A análise restringiu-se às categorias Cat-02, Cat-03 e Cat-04, que possuem `taxonomy_accepted_types` preenchido. A Tabela 3 apresenta a proporção de acerto por categoria e por modelo, e a Figura 3 detalha a acurácia segundo os tipos da taxonomia de Pohl (2025): lexical, referencial, semântico e vaguidade.
 
 **Tabela 3.** Proporção de acerto de tipo de ambiguidade por categoria e modelo em C0 (acertos/3 por célula)
 
@@ -73,6 +89,14 @@ O Bloco 3 avaliou se o tipo de ambiguidade detectado pelo Agente 1 coincidiu com
 | deepseek-r1:7b | 66,7% (2/3) | 33,3% (1/3) | 0,0% (0/3) |
 
 *Fonte: Resultados originais da pesquisa*
+
+![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T14-07/charts/taxonomy_model_heatmap.png)
+
+Figura 3. Acurácia de classificação de tipo de ambiguidade por tipo da taxonomia de Pohl e modelo em C0
+
+*Fonte: Resultados originais da pesquisa*
+
+A Figura 3 revelou padrões heterogêneos entre tipos e modelos. O tipo vaguidade foi o de desempenho mais baixo em todos os modelos (0 a 33%), evidenciando que nenhum modelo dominou consistentemente a distinção entre imprecisão de fronteira e demais formas de indefinição textual. O tipo referencial apresentou acurácia elevada especificamente nos modelos llama3.1-8b e phi4-mini (100% em ambos), sugerindo que pronomes sem referente inequívoco constituem uma forma de ambiguidade com padrões linguísticos suficientemente salientes para modelos específicos. O tipo semântico exibiu a maior variação intermodelos: qwen3.5-9b registrou 100%, enquanto os demais modelos obtiveram 50% ou menos — heterogeneidade que indicou competências semânticas distintas no pré-treinamento em vez de falha uniforme de prompting. Esses resultados reforçaram a interpretação de que os modelos avaliados carregam perfis de acurácia idiossincrásicos por tipo de ambiguidade, o que fundamenta propostas de composição heterogênea de pipeline nas sugestões para trabalhos futuros.
 
 Cat-02 (linguística) registrou o melhor desempenho: seis dos sete modelos acertaram dois ou três tipos, com mediana de 66,7%. Os requisitos dessa categoria apresentam marcadores textuais reconhecíveis — pronomes sem referente inequívoco, estruturas de coordenação com escopo ambíguo — que parecem ter correspondência direta com padrões linguísticos internalizados durante o pré-treinamento.
 
