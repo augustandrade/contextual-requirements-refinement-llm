@@ -4,6 +4,7 @@ run_experiment.py — Executa o experimento completo: 7 modelos × corpus contro
 
 Uso:
   python3 run_experiment.py                        # todos os 7 modelos, corpus completo
+  python3 run_experiment.py --resume               # retoma runs incompletas; pula modelos já completos
   python3 run_experiment.py --models qwen3.5:9b    # modelo específico
   python3 run_experiment.py --dry-run              # lista o que seria executado, sem rodar
   python3 run_experiment.py --label main-v1        # sufixo para identificar as runs
@@ -12,6 +13,8 @@ Uso:
 O script:
   1. Inicializa o Ollama se não estiver rodando (via ensure_ollama_running).
   2. Para cada modelo, invoca process_corpus.py com OLLAMA_MODEL=<model>.
+     Com --resume: detecta runs incompletas e passa --resume para o process_corpus.py;
+     pula modelos cuja run já esteja completa (≥15 saídas C0).
   3. Após todos os modelos, invoca evaluate.py para gerar métricas e gráficos.
 
 Execuções esperadas: 51 instâncias × 7 modelos = 357 execuções
@@ -20,16 +23,18 @@ Execuções esperadas: 51 instâncias × 7 modelos = 357 execuções
 
 import argparse
 import os
+import re
 import subprocess
 import sys
 import time
 from datetime import datetime
 from pathlib import Path
 
-_HERE       = Path(__file__).parent
-_ANALYSIS   = _HERE / 'analysis'
-_PROCESS    = _HERE / 'process_corpus.py'
-_EVALUATE   = _ANALYSIS / 'evaluate.py'
+_HERE     = Path(__file__).parent
+_ANALYSIS = _HERE / 'analysis'
+_PROCESS  = _HERE / 'process_corpus.py'
+_EVALUATE = _ANALYSIS / 'evaluate.py'
+_RUNS_DIR = _HERE / 'outputs' / 'runs'
 
 MODELS = [
     'qwen3.5:4b',
@@ -40,6 +45,9 @@ MODELS = [
     'phi4-mini',
     'deepseek-r1:7b',
 ]
+
+# Uma run é considerada completa quando todos os 15 requisitos têm saída C0.
+_COMPLETE_THRESHOLD = 15
 
 
 def _ensure_ollama() -> None:
@@ -56,7 +64,6 @@ def _model_available(model: str) -> bool:
         resp = _urlreq.urlopen('http://localhost:11434/api/tags', timeout=5)
         data = json.loads(resp.read())
         available = [m['name'] for m in data.get('models', [])]
-        # Aceita match exato ou com/sem tag :latest
         return any(
             a == model or a.split(':')[0] == model.split(':')[0]
             for a in available
@@ -65,16 +72,72 @@ def _model_available(model: str) -> bool:
         return False
 
 
-def _run_model(model: str, label: str, dry_run: bool) -> bool:
+def _model_slug(model: str) -> str:
+    return re.sub(r'[^a-zA-Z0-9._-]', '-', model)
+
+
+def _count_c0_outputs(run_dir: Path) -> int:
+    """Conta quantos requisitos já têm final_output.json em C0."""
+    return sum(1 for _ in run_dir.rglob('C0/final_output.json'))
+
+
+def _find_run_for_model(model: str, label: str) -> tuple:
+    """Procura a run mais recente para este modelo+label.
+
+    Retorna (run_dir, status) onde status é:
+      'complete'   — run com ≥15 saídas C0 (pular este modelo)
+      'incomplete' — run existe mas está incompleta (retomar)
+      'none'       — nenhuma run encontrada (criar nova)
+    """
+    if not _RUNS_DIR.exists():
+        return None, 'none'
+
+    slug = _model_slug(model)
+    candidates = sorted(
+        [d for d in _RUNS_DIR.iterdir()
+         if d.is_dir()
+         and f'__{slug}__' in d.name
+         and (not label or label in d.name)],
+        reverse=True,  # mais recente primeiro
+    )
+    if not candidates:
+        return None, 'none'
+
+    run_dir = candidates[0]
+    n_c0 = _count_c0_outputs(run_dir)
+    status = 'complete' if n_c0 >= _COMPLETE_THRESHOLD else 'incomplete'
+    return run_dir, status
+
+
+def _run_model(model: str, label: str, resume: bool, dry_run: bool) -> bool:
     """Executa process_corpus.py para um modelo. Retorna True se bem-sucedido."""
     tag = f'  [{model}]'
+
+    resume_run_dir = None
+    if resume:
+        run_dir, status = _find_run_for_model(model, label)
+        if status == 'complete':
+            c0 = _count_c0_outputs(run_dir)
+            print(f'{tag} já completo ({c0}/15 C0) — pulando')
+            return True
+        elif status == 'incomplete':
+            c0 = _count_c0_outputs(run_dir)
+            resume_run_dir = run_dir
+            print(f'{tag} run incompleta ({c0}/15 C0) — retomando {run_dir.name}')
+        # status == 'none': sem run prévia, cria nova normalmente
+
     if dry_run:
-        print(f'{tag} DRY-RUN — process_corpus.py --label {label or "main"}')
+        if resume_run_dir:
+            print(f'{tag} DRY-RUN — process_corpus.py --resume {resume_run_dir.name}')
+        else:
+            print(f'{tag} DRY-RUN — process_corpus.py --label {label or "main"}')
         return True
 
     env = {**os.environ, 'OLLAMA_MODEL': model}
     cmd = [sys.executable, str(_PROCESS)]
-    if label:
+    if resume_run_dir:
+        cmd += ['--resume', resume_run_dir.name]
+    elif label:
         cmd += ['--label', label]
 
     print(f'\n{tag} iniciando — {datetime.now().strftime("%H:%M:%S")}', flush=True)
@@ -104,6 +167,8 @@ def main() -> None:
                         help='Modelos a executar (padrão: todos os 7)')
     parser.add_argument('--label',     default='main-v1',
                         help='Sufixo de identificação das runs (padrão: main-v1)')
+    parser.add_argument('--resume',    action='store_true',
+                        help='Retoma runs incompletas; pula modelos já completos')
     parser.add_argument('--dry-run',   action='store_true',
                         help='Lista o que seria executado sem rodar nada')
     parser.add_argument('--skip-eval', action='store_true',
@@ -116,6 +181,7 @@ def main() -> None:
     print('EXPERIMENTO — Pipeline multi-agente LLM')
     print(f'Modelos   : {len(models)}')
     print(f'Label     : {args.label}')
+    print(f'Modo      : {"retomar incompletas" if args.resume else "execução completa"}')
     print(f'Instâncias: 51 por modelo  (48 ambíguas + 3 controle)')
     print(f'Total     : {51 * len(models)} execuções estimadas')
     print('=' * 60)
@@ -127,7 +193,6 @@ def main() -> None:
         except RuntimeError as e:
             sys.exit(f'Erro: {e}')
 
-        # Avisa modelos não disponíveis antes de começar
         missing = [m for m in models if not _model_available(m)]
         if missing:
             print('\n[AVISO] Os seguintes modelos não foram encontrados no Ollama:')
@@ -142,7 +207,7 @@ def main() -> None:
 
     for i, model in enumerate(models, 1):
         print(f'\n[{i}/{len(models)}] {model}')
-        ok = _run_model(model, args.label, args.dry_run)
+        ok = _run_model(model, args.label, args.resume, args.dry_run)
         results[model] = ok
         if not ok:
             print(f'  [WARN] {model} falhou — continuando com o próximo modelo', file=sys.stderr)
@@ -161,7 +226,7 @@ def main() -> None:
     if failed:
         print(f'\n{len(failed)} modelo(s) com falha. Para retentar:')
         for m in failed:
-            print(f'  python3 run_experiment.py --models {m} --label {args.label}')
+            print(f'  python3 run_experiment.py --resume --models {m} --label {args.label}')
 
     if not args.skip_eval:
         _run_evaluation(args.dry_run)
