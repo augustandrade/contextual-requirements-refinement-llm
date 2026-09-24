@@ -10,7 +10,7 @@ BLOCO 1 — Detecção (context-free, calculado via C0)
 
 BLOCO 2 — Sensibilidade ao contexto (descritivo, sem gabarito de rota)
   act_route     rota que o pipeline escolheu (structured / signaling)
-  Context sensitivity: ΔRoute(C2 − C0), ΔRoute(C3 − C0), Δ(C2 − C3)
+  Context sensitivity: ΔRoute(C2 − C0), ΔRoute(C3 − C0), Δ(C2 − C3), Δ(C3 − C1)
   Staged gains: C0→C1 e C1→C2
 
 BLOCO 3 — Taxonomia Pohl (context-free, C0, Cat-02/03/04)
@@ -210,6 +210,7 @@ def evaluate_context_lift(all_rows: list[dict]) -> list[dict]:
       lift_c2_c0   = C2 − C0  efeito total do contexto específico relevante
       lift_c3_c0   = C3 − C0  efeito do contexto específico irrelevante
       delta_c2_c3  = C2 − C3  efeito puro da relevância (especificidade constante)
+      lift_c3_c1   = C3 − C1  efeito puro da especificidade (relevância constante, nula)
       stage_c0_c1  = C1 − C0  efeito do contexto genérico
       stage_c1_c2  = C2 − C1  ganho de C1 para C2 (relevância sobre genérico)
     """
@@ -244,6 +245,7 @@ def evaluate_context_lift(all_rows: list[dict]) -> list[dict]:
             lift_c2_c0  = _diff(s2, s0)
             lift_c3_c0  = _diff(s3, s0)
             delta_c2_c3 = _diff(s2, s3)
+            lift_c3_c1  = _diff(s3, s1)
             stage_c0_c1 = _diff(s1, s0)
             stage_c1_c2 = _diff(s2, s1)
 
@@ -262,6 +264,7 @@ def evaluate_context_lift(all_rows: list[dict]) -> list[dict]:
                 'lift_c2_c0':             lift_c2_c0,
                 'lift_c3_c0':             lift_c3_c0,
                 'delta_c2_c3':            delta_c2_c3,
+                'lift_c3_c1':             lift_c3_c1,
                 'stage_c0_c1':            stage_c0_c1,
                 'stage_c1_c2':            stage_c1_c2,
                 'transition':             transition,
@@ -420,6 +423,9 @@ def _summarize_context_lift(lift_rows: list[dict], run_name: str) -> None:
         rel_pos = sum(1 for r in amb_c3 if r.get('delta_c2_c3') == 1)
         rel_zer = sum(1 for r in amb_c3 if r.get('delta_c2_c3') == 0)
         rel_neg = sum(1 for r in amb_c3 if r.get('delta_c2_c3') == -1)
+        spe_pos = sum(1 for r in amb_c3 if r.get('lift_c3_c1') == 1)
+        spe_zer = sum(1 for r in amb_c3 if r.get('lift_c3_c1') == 0)
+        spe_neg = sum(1 for r in amb_c3 if r.get('lift_c3_c1') == -1)
         print(f'\n  ΔRoute(C3 − C0)  — ctx específico IRRELEVANTE vs. baseline  [N={n3}]')
         print(f'    +1: {c3_pos:>2}/{n3} ({c3_pos/n3*100:.1f}%)   '
               f'0: {c3_zer:>2}/{n3} ({c3_zer/n3*100:.1f}%)   '
@@ -428,6 +434,10 @@ def _summarize_context_lift(lift_rows: list[dict], run_name: str) -> None:
         print(f'    +1: {rel_pos:>2}/{n3} ({rel_pos/n3*100:.1f}%)   '
               f'0: {rel_zer:>2}/{n3} ({rel_zer/n3*100:.1f}%)   '
               f'−1: {rel_neg:>2}/{n3} ({rel_neg/n3*100:.1f}%)')
+        print(f'\n  ΔRoute(C3 − C1)  — efeito puro da especificidade  [N={n3}]')
+        print(f'    +1: {spe_pos:>2}/{n3} ({spe_pos/n3*100:.1f}%)   '
+              f'0: {spe_zer:>2}/{n3} ({spe_zer/n3*100:.1f}%)   '
+              f'−1: {spe_neg:>2}/{n3} ({spe_neg/n3*100:.1f}%)')
 
     print(f'\n  Padrões de transição (0=signaling 1=structured  ?=sem dado):')
     by_pattern: dict[str, list[str]] = {}
