@@ -57,5 +57,6 @@ Result: 375 executions recorded out of 378 attempted (0.8%), all in qwen3.5:9b.
   run directory; they are kept for traceability, not as a turnkey tool.
 - Each `raw_*/callNN.txt` holds the full model response (the 2500-pass files also carry the
   first 300 characters of the user payload).
-- `Orchestrator/outputs/` is git-ignored; this directory is deliberately outside it so the
-  evidence is versioned.
+- The runs themselves (`Orchestrator/outputs/`) are versioned in the repository since commit
+  `2555623`; this diagnostic lives outside that directory so it stays separate from the
+  original run, which was not modified.
