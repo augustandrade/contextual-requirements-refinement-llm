@@ -41,7 +41,7 @@ methodology:
   # C2 vs C3 isolates relevance (specificity held constant)
   # C3 vs C1 isolates specificity (non-relevance held constant)
   # C1 vs C0 measures effect of generic context
-  total_executions: 60  # 15 base_requirements × 4 context_levels
+  total_executions: 60  # ceiling per model: 15 base_requirements × 4 context_levels; C1-C3 run only when Agent 1 detects ambiguity in C0
   categories:
     - id: category-01-structural
       name: Structural requirement defects
