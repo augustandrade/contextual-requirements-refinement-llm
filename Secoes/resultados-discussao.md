@@ -44,6 +44,8 @@ O exame por requisito revelou dois padrões de falha sistemática. O REQ-08 (Cat
 
 O segundo padrão ocorreu no grupo de controle: o REQ-15 (Cat-05) foi sinalizado incorretamente como ambíguo pelos sete modelos, o REQ-14 por seis e o REQ-13 por quatro. O deepseek-r1:7b acertou o REQ-13 e o REQ-14, o que explica sua especificidade de 66,7%. Esse resultado indicou que todos os modelos perceberam como problemático ao menos um dos requisitos intencionalmente bem formados do corpus — limitação que fundamenta a interpretação cautelosa da especificidade reportada na Tabela 1.
 
+A sinalização de requisitos bem formados também aparece em modelos proprietários. Shefa et al. (2026) reportaram, para o melhor modelo avaliado, taxa de falsos positivos mediana de 11% no conjunto dos critérios e de 33% no critério de ambiguidade, com variação de 11% a 78% entre 100 execuções. As taxas do controle deste experimento, de 33,3% a 100,0% em C0, situaram-se na mesma faixa ou acima. A comparação exige reserva: critérios, requisitos e número de itens diferem, e o controle teve apenas três requisitos.
+
 Os cinco falsos negativos do deepseek-r1:7b distribuíram-se por quatro categorias distintas (Cat-01, Cat-02, Cat-03 e Cat-04), sem concentração em uma categoria específica, o que indicou conservadorismo generalizado na detecção em vez de lacuna restrita a um tipo de ambiguidade.
 
 ## Bloco 2 — Sensibilidade ao contexto
