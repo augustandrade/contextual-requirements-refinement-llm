@@ -36,10 +36,11 @@
     vertical-align: top;
     border: none;
   }
-  tbody tr td:first-child { text-align: left; font-weight: normal; }
+  tbody tr td:first-child { text-align: left; font-weight: normal; white-space: nowrap; }
   tbody tr td:nth-child(2) { text-align: center; white-space: nowrap; }
   tbody tr td:nth-child(3) { font-style: italic; }
   tbody tr td:nth-child(4) { text-align: left; white-space: nowrap; }
+  tbody tr td:nth-child(5) { text-align: left; }
   tbody tr:last-child td {
     border-bottom: 1.5px solid #000;
   }
@@ -62,10 +63,11 @@
 <table>
   <thead>
     <tr>
-      <th style="width:7%">ID</th>
+      <th style="width:8%">ID</th>
       <th style="width:8%">Cat.</th>
-      <th style="width:62%">Requisito (texto original em inglês)</th>
-      <th style="width:23%">Tipos aceitos</th>
+      <th style="width:44%">Requisito (texto original em inglês)</th>
+      <th style="width:17%">Tipos aceitos</th>
+      <th style="width:23%">Origem</th>
     </tr>
   </thead>
   <tbody>
@@ -74,97 +76,112 @@
       <td>Cat-01</td>
       <td>The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.</td>
       <td>—</td>
+      <td>Pohl (2025)</td>
     </tr>
     <tr>
       <td>REQ-02</td>
       <td>Cat-01</td>
       <td>System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.</td>
       <td>—</td>
+      <td>Veizaga et al. (2024)</td>
     </tr>
     <tr>
       <td>REQ-03</td>
       <td>Cat-01</td>
       <td>When System-A receives a message from Security Manager and if the message is part of the B-file, according to the mapping rules.</td>
       <td>—</td>
+      <td>Veizaga et al. (2024)</td>
     </tr>
     <tr>
       <td>REQ-04</td>
       <td>Cat-02</td>
       <td>When a rejection order is received for a cancellation request, System-A must raise a web alert.</td>
       <td>sintático; referencial</td>
+      <td>Veizaga et al. (2024)</td>
     </tr>
     <tr>
       <td>REQ-05</td>
       <td>Cat-02</td>
       <td>The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.</td>
       <td>referencial</td>
+      <td>Pohl (2025)</td>
     </tr>
     <tr>
       <td>REQ-06</td>
       <td>Cat-02</td>
       <td>If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key, the safety system shall raise an alarm.</td>
       <td>semântico</td>
+      <td>Pohl (2025)</td>
     </tr>
     <tr>
       <td>REQ-07</td>
       <td>Cat-03</td>
       <td>Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.</td>
       <td>semântico</td>
+      <td>Kamsties et al. (2001)</td>
     </tr>
     <tr>
       <td>REQ-08</td>
       <td>Cat-03</td>
       <td>Generate a dial tone.</td>
       <td>lexical</td>
+      <td>Kamsties et al. (2001)</td>
     </tr>
     <tr>
       <td>REQ-09</td>
       <td>Cat-03</td>
       <td>Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.</td>
       <td>lexical</td>
+      <td>Bashir et al. (2025)</td>
     </tr>
     <tr>
       <td>REQ-10</td>
       <td>Cat-04</td>
       <td>The TCU is connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls on certain crash levels.</td>
       <td>vaguidade</td>
+      <td>Unterbusch e Vogelsang (2026)</td>
     </tr>
     <tr>
       <td>REQ-11</td>
       <td>Cat-04</td>
       <td>All medium-sized vehicles shall be equipped with a navigation system.</td>
       <td>vaguidade</td>
+      <td>Pohl (2025)</td>
     </tr>
     <tr>
       <td>REQ-12</td>
       <td>Cat-04</td>
       <td>The system shall generate a report at the end of each day.</td>
       <td>vaguidade</td>
+      <td>Vogelsang et al. (2025)</td>
     </tr>
     <tr>
       <td>REQ-13</td>
       <td>Cat-05</td>
       <td>Once System-A has successfully validated a settlement request, System-A must send an acknowledge message to System-B.</td>
       <td>—</td>
+      <td>Veizaga et al. (2024)</td>
     </tr>
     <tr>
       <td>REQ-14</td>
       <td>Cat-05</td>
       <td>The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.</td>
       <td>—</td>
+      <td>Pohl (2025)</td>
     </tr>
     <tr>
       <td>REQ-15</td>
       <td>Cat-05</td>
       <td>The system shall process 95 percent of all queries within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.</td>
       <td>—</td>
+      <td>Pohl (2025)</td>
     </tr>
   </tbody>
 </table>
 
-<p class="fonte">Fonte: Dados originais da pesquisa</p>
+<p class="fonte">Fonte: Elaborado pelo autor, com requisitos extraídos das publicações indicadas na coluna Origem</p>
 <p class="nota">
-  <b>Nota:</b> Cat-01: estrutural (defeitos de formação); Cat-02: linguística (ambiguidades sintáticas, referenciais e semânticas independentes de domínio); Cat-03: de domínio (ambiguidades cuja resolução depende de conhecimento especializado); Cat-04: de vaguidade (quantificadores, termos de fronteira ou predicados imprecisos); Cat-05: controle (requisitos bem formados, sem defeito esperado). Coluna "Tipos aceitos": tipos de ambiguidade declarados no gabarito segundo a taxonomia de Pohl (2025); "—" indica ausência de ambiguidade esperada (Cat-01 e Cat-05). Cat-01 não possui tipos aceitos por classificar defeitos estruturais, não ambiguidades taxonômicas.
+  <b>Nota:</b> Cat-01: estrutural (defeitos de formação); Cat-02: linguística (ambiguidades sintáticas, referenciais e semânticas independentes de domínio); Cat-03: de domínio (ambiguidades cuja resolução depende de conhecimento especializado); Cat-04: de vaguidade (quantificadores, termos de fronteira ou predicados imprecisos); Cat-05: controle (requisitos bem formados, sem defeito esperado). Coluna "Tipos aceitos": tipos de ambiguidade declarados no gabarito segundo a taxonomia de Pohl (2025); "—" indica ausência de ambiguidade esperada (Cat-01 e Cat-05). Cat-01 não possui tipos aceitos por classificar defeitos estruturais, não ambiguidades taxonômicas. Coluna "Origem": publicação da qual o texto do requisito foi extraído.
 </p>
 
 </body>
