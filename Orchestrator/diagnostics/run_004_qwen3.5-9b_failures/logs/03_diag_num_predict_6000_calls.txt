@@ -1,0 +1,7 @@
+call01 num_predict=6000 done_reason=stop eval_count=152 prompt_eval_count=2478 secs=35
+call02 num_predict=6000 done_reason=stop eval_count=3863 prompt_eval_count=4168 secs=392
+call03 num_predict=6000 done_reason=stop eval_count=198 prompt_eval_count=2462 secs=32
+call04 num_predict=6000 done_reason=stop eval_count=207 prompt_eval_count=4231 secs=49
+call05 num_predict=6000 done_reason=length eval_count=6000 prompt_eval_count=1596 secs=487
+call06 num_predict=6000 done_reason=stop eval_count=362 prompt_eval_count=4280 secs=76
+call07 num_predict=6000 done_reason=length eval_count=6000 prompt_eval_count=1596 secs=482

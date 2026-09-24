@@ -1,0 +1,205 @@
+contextual_resolubility_validation:
+  ambiguity_resolubility:
+    - ambiguity_id: "AMB-01"
+      fragment: "If it is invalid"
+      resolubility_status: "resolvable"
+      supported_interpretation: "The personal identification number (PIN) is invalid (e.g., incorrect or expired)."
+      evidence_from_requirement: []
+      evidence_from_context:
+        - "Business rule BR-02: 'Invalid PIN triggers retry request and does not immediately deny access.'"
+        - "Business rule BR-01: 'Invalid card causes immediate access denial at turnstile.'"
+        - "Requirement text: 'If it is invalid, the system shall deny the access.'"
+      justification: "The requirement states that if 'it' is invalid, access is immediately denied. Business rule BR-01 states that an invalid card causes immediate denial, while BR-02 states that an invalid PIN triggers a retry and does not immediately deny access. Since the requirement specifies immediate denial, 'it' must refer to the access card, not the PIN. However, the explanation in the input suggests the ambiguity is between card and PIN. Let's re-evaluate the logic carefully.
+
+        Wait, I need to check the logic again.
+        Requirement: "If it is invalid, the system shall deny the access."
+        Context BR-01: Invalid card -> immediate denial.
+        Context BR-02: Invalid PIN -> retry request, NO immediate denial.
+        
+        If the requirement says "deny the access" (immediate denial implied by the action of denying access upon invalidity in this context), then 'it' cannot be the PIN because an invalid PIN does not cause immediate denial according to BR-02.
+        Therefore, 'it' must be the access card.
+        
+        Wait, let's look at the input explanation again: "It is unclear whether the system denies access because the card is invalid or because the PIN is invalid."
+        If 'it' refers to PIN: Invalid PIN -> Retry (per BR-02). Requirement says "deny access". Contradiction? Or does "deny access" happen later? Usually "deny access" implies stopping the process.
+        If 'it' refers to Card: Invalid Card -> Immediate Denial (per BR-01). Requirement says "deny access". Consistent.
+        
+        So the evidence from context (BR-01 and BR-02) resolves the ambiguity. The condition "deny the access" matches the behavior of an invalid card (BR-01), not an invalid PIN (BR-02). Thus, 'it' refers to the access card.
+        
+        Wait, I might have misread the standard interpretation of such scenarios. Often, if a PIN is wrong, you get a retry. If you get 3 wrong, then it denies. But the text says "If it is invalid... deny". This implies a single check leads to denial.
+        If 'it' = PIN, then one invalid PIN leads to denial. But BR-02 says "Invalid PIN triggers retry request and does not immediately deny access."
+        So if 'it' = PIN, the requirement contradicts BR-02.
+        If 'it' = Card, then one invalid card leads to denial. BR-01 says "Invalid card causes immediate access denial". This matches.
+        
+        Therefore, 'it' must be the access card.
+        
+        Wait, let's re-read the input explanation. "It is unclear whether the system denies access because the card is invalid or because the PIN is invalid."
+        My analysis: The requirement text "deny the access" combined with BR-02 (PIN invalid -> retry) means 'it' cannot be PIN. It must be Card.
+        So the status is resolvable.
+        
+        Wait, is there a possibility that "deny the access" is the outcome of the whole sequence? No, the sentence structure "If it is invalid, the system shall deny the access" links the condition directly to the action.
+        
+        Let's double check the "false_positive" criteria. Is one interpretation impossible? Yes, if 'it' were PIN, the action would be "retry", not "deny". Since the action is "deny", 'it' cannot be PIN.
+        So it is resolvable.
+        
+        Wait, I need to be careful. Is it possible that the requirement implies a specific state where the card is already validated? "The customer inserts the access card... and enters a PIN... If it is invalid..."
+        Usually, you validate card first, then PIN. If card is invalid, deny. If card is valid, ask for PIN. If PIN invalid, retry.
+        The text combines them: "inserts card... and enters PIN... If it is invalid...".
+        If 'it' refers to the last mentioned noun (PIN), then it implies PIN invalid -> deny. But BR-02 says PIN invalid -> retry.
+        So the text "deny" contradicts BR-02 if 'it' is PIN.
+        If 'it' refers to card, then card invalid -> deny. BR-01 says card invalid -> deny. Consistent.
+        So 'it' must be card.
+        
+        Wait, is it possible the user made a mistake in the input explanation? The input explanation says "It is unclear...". My job is to resolve it.
+        The resolution is that 'it' refers to the card.
+        
+        Wait, let's consider the phrase "If it is invalid". In English, "it" often refers to the most recent noun. The most recent noun is "PIN".
+        If the text meant card, it should say "If the card is invalid".
+        However, the context rules clarify the behavior.
+        If the text says "deny", and the rule for PIN says "retry", then the text cannot be referring to PIN.
+        So the text must be referring to card, despite the pronoun proximity.
+        This makes it resolvable via context.
+        
+        Wait, is it possible that the "deny" is the final state after retries? "If it is invalid" might mean "If the validation fails". But the text says "If it is invalid", singular event.
+        Given BR-02 explicitly says "does not immediately deny access", the immediate denial in the requirement text forces 'it' to be the card.
+        
+        So, Resolvable.
+        
+        Wait, I need to check if I should classify as false_positive.
+        Is one interpretation "impossible"?
+        Interpretation 1: Card invalid -> Deny. (Matches BR-01).
+        Interpretation 2: PIN invalid -> Deny. (Contradicts BR-02).
+        Since Interpretation 2 contradicts the business rules provided in the context, it is not a valid interpretation of the system behavior described by the context.
+        Therefore, the ambiguity is resolved by the context.
+        
+        Wait, the instruction says: "Classify `resolubility_status` ... `false_positive`: the search reveals that one or more reported interpretations have no basis in the text or context".
+        Here, Interpretation 2 has no basis in the context (BR-02).
+        So it is `false_positive`?
+        Or is it `resolvable` because the context selects Interpretation 1?
+        The distinction:
+        - `resolvable`: evidence selects exactly one interpretation over all others.
+        - `false_positive`: evidence shows that a reported interpretation has no basis.
+        
+        In this case, the evidence (BR-02) shows that Interpretation 2 (PIN invalid -> deny) is inconsistent with the rules. Thus, it has no basis in the context.
+        So it could be `false_positive`.
+        However, usually `false_positive` is used when the ambiguity detection itself was wrong (e.g., antecedent not in text). Here the antecedent IS in text, but the *interpretation* of the consequence is ruled out by context.
+        The instruction says: "when evidence actively shows that a reported interpretation has no textual or contextual basis".
+        Interpretation 2 says "The personal identification number (PIN) is invalid...". The *interpretation* of the sentence "If it is invalid, deny" as "PIN is invalid" is what is being evaluated.
+        The *interpretation* includes the consequence "deny".
+        If the consequence "deny" is incompatible with the context for the PIN, then the interpretation "PIN is invalid (leading to denial)" is invalid.
+        So yes, `false_positive` might be appropriate if we consider the full interpretation string.
+        But often, `resolvable` is preferred if one reading is clearly supported and the other is ruled out.
+        Let's look at the examples.
+        Example 3 (Referential - false_positive): "The log" -> "transaction log" vs "audit log". Evidence: "preceding sentence introduces exactly one log entity... No other log type is mentioned". So one interpretation refers to an entity absent. -> false_positive.
+        Here, Interpretation 2 refers to an entity (PIN) that IS present. But the *implication* of the sentence structure combined with context makes it invalid.
+        Is the interpretation "PIN is invalid" invalid? No, the PIN can be invalid. The interpretation is "The sentence means: If PIN is invalid, deny". This specific *reading* of the sentence is invalid.
+        The ambiguity is about the referent of "it".
+        Reading A: "it" = Card.
+        Reading B: "it" = PIN.
+        Context says: If Card invalid -> Deny. If PIN invalid -> Retry.
+        Requirement says: If "it" invalid -> Deny.
+        Therefore, Reading A is consistent. Reading B is inconsistent.
+        So Reading B has no basis in the context (because it leads to a contradiction).
+        So `false_positive`?
+        Or `resolvable`?
+        The definition of `resolvable`: "direct evidence selects exactly one interpretation over all others."
+        The definition of `false_positive`: "the search reveals that one or more reported interpretations have no basis in the text or context".
+        Since Reading B leads to a contradiction with the context, it has no basis.
+        So `false_positive` seems correct.
+        However, in many validation frameworks, if one option is clearly the intended one and the other is impossible, it's `resolvable`.
+        Let's check the example 3 again. "The log" -> "transaction log" vs "audit log". "Audit log" is absent. -> false_positive.
+        Here, "PIN is invalid" is not absent. The *interpretation* of the sentence meaning is absent/invalid.
+        I will lean towards `resolvable` because the context *selects* the card interpretation. The fact that the other is impossible is part of the selection process.
+        Actually, looking at the instruction: "when evidence actively shows that a reported interpretation has no textual or contextual basis".
+        Does "PIN is invalid" have a basis? Yes, PINs can be invalid.
+        Does the *interpretation* "If PIN is invalid, deny" have a basis? No.
+        The ambiguity is about the referent.
+        If I say "If it is invalid", and I interpret it as PIN, I am claiming the sentence means "If PIN is invalid, deny". This claim is false based on context.
+        So the interpretation is unsupported.
+        I will use `resolvable` because the context provides a positive selection for the card interpretation (BR-01 matches the requirement's action) and implicitly rules out the PIN interpretation.
+        Wait, the instruction says: "when evidence selects one interpretation over others".
+        Evidence: BR-01 (Card->Deny) matches Req (Invalid->Deny). BR-02 (PIN->Retry) contradicts Req (Invalid->Deny).
+        So evidence selects Card.
+        Status: `resolvable`.
+        
+        Wait, let's reconsider `false_positive`.
+        If the ambiguity detection says "it" refers to Card or PIN.
+        If the text was "If the card is invalid", then "it" referring to PIN would be a false positive (no basis).
+        Here, the text is "If it is invalid".
+        The context rules define the behavior.
+        The behavior for PIN is Retry.
+        The behavior for Card is Deny.
+        The requirement says Deny.
+        So "it" must be Card.
+        So the interpretation "it = PIN" is incorrect.
+        Is it `false_positive` or `resolvable`?
+        In Example 3, the second interpretation referred to an entity not in the text.
+        Here, the second interpretation refers to an entity in the text, but the *semantic consequence* is wrong.
+        I think `resolvable` is the safer bet for "evidence selects one".
+        
+        Let's refine the justification.
+        "The requirement states that invalidity leads to immediate access denial. Business rule BR-01 confirms that an invalid card causes immediate denial, while BR-02 states that an invalid PIN triggers a retry and does not immediately deny access. Since the requirement specifies immediate denial, the pronoun 'it' must refer to the access card, not the PIN. The interpretation that 'it' refers to the PIN is inconsistent with the business rules."
+        
+        Wait, if I say "false_positive", I need to say "Interpretation 2 has no basis".
+        If I say "resolvable", I say "Evidence selects Interpretation 1".
+        Both are true.
+        Which one is preferred?
+        Usually, if the ambiguity is resolved by context, it's `resolvable`.
+        `false_positive` is often reserved for when the ambiguity detection itself was hallucinating an ambiguity that doesn't exist (e.g. pronoun with no antecedents).
+        Here, the antecedents exist, but the *meaning* is resolved.
+        I will go with `resolvable`.
+        
+        Wait, one more check.
+        Input: "If it is invalid".
+        Antecedents: Card, PIN.
+        Interpretations: Card invalid, PIN invalid.
+        Context: Card invalid -> Deny. PIN invalid -> Retry.
+        Req: Invalid -> Deny.
+        Match: Card.
+        Mismatch: PIN.
+        So Card is selected.
+        Status: `resolvable`.
+        
+        Wait, I need to make sure I don't miss the `false_positive` nuance.
+        "Classify `resolubility_status` ... `false_positive`: the search reveals that one or more reported interpretations have no basis in the text or context".
+        Does "PIN is invalid" have a basis? Yes, PINs exist and can be invalid.
+        Does the *interpretation* "If PIN is invalid, deny" have a basis? No.
+        The ambiguity is about the referent.
+        If the interpretation is "The sentence means: If PIN is invalid, deny", then that interpretation has no basis.
+        So maybe `false_positive` is better?
+        Let's look at Example 3 again. "The log" -> "transaction log" vs "audit log". "Audit log" is not in text. -> false_positive.
+        Here, "PIN is invalid" is in text.
+        But the *interpretation* of the sentence's meaning is the issue.
+        I think `resolvable` is more appropriate because the context *selects* the correct one.
+        I will stick with `resolvable`.
+        
+        Wait, I should check the `missing_information` field. Not needed for `resolvable`.
+        `evidence_from_context` needs the rules.
+        `evidence_from_requirement` is empty.
+        
+        Final check on justification text.
+        "The requirement specifies that invalidity results in immediate access denial. Business rule BR-01 states that an invalid card causes immediate denial, whereas BR-02 states that an invalid PIN triggers a retry and does not immediately deny access. Since the requirement's action (immediate denial) aligns only with the behavior of an invalid card, the pronoun 'it' must refer to the access card. The interpretation that 'it' refers to the PIN is inconsistent with the business rules."
+        
+        Wait, I need to make sure I don't use single quotes in the output.
+        Double quotes for all strings.
+        Escape double quotes inside strings.
+        
+        One detail: The input explanation says "It is unclear whether the system denies access because the card is invalid or because the PIN is invalid."
+        My resolution: It is clear because of the context.
+        
+        Okay, ready to generate.
+</think>
+
+contextual_resolubility_validation:
+  ambiguity_resolubility:
+    - ambiguity_id: "AMB-01"
+      fragment: "If it is invalid"
+      resolubility_status: "resolvable"
+      supported_interpretation: "The access card is invalid (e.g., damaged, expired, or not authorized)."
+      evidence_from_requirement: []
+      evidence_from_context:
+        - "Business rule BR-01: 'Invalid card causes immediate access denial at turnstile.'"
+        - "Business rule BR-02: 'Invalid PIN triggers retry request and does not immediately deny access.'"
+      justification: "The requirement states that if 'it' is invalid, the system shall deny access (immediate denial). Business rule BR-01 confirms that an invalid card causes immediate denial, while BR-02 states that an invalid PIN triggers a retry and does not immediately deny access. Since the requirement specifies immediate denial, the pronoun 'it' must refer to the access card, not the PIN. The interpretation that 'it' refers to the PIN is inconsistent with the business rules."
+
+  overall_resolubility:
+    status: "fully_resolvable"

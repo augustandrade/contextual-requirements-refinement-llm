@@ -1,0 +1,10 @@
+ambiguity_detection:
+  has_ambiguity: true
+  ambiguities:
+    - ambiguity_id: "AMB-01"
+      fragment: "If it is invalid"
+      ambiguity_type: "referential"
+      explanation: "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'personal identification number (PIN)'. It is unclear whether the system denies access because the card is invalid or because the PIN is invalid."
+      possible_interpretations:
+        - "The access card is invalid (e.g., damaged, expired, or not authorized)."
+        - "The personal identification number (PIN) is invalid (e.g., incorrect or expired)."

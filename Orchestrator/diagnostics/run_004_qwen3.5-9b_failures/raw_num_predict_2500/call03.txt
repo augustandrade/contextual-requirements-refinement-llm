@@ -1,0 +1,15 @@
+### USER
+base_requirement_text: Once System-A has successfully validated a settlement request,
+  System-A must send an acknowledge message to System-B.
+
+### RAW
+ambiguity_detection:
+  has_ambiguity: true
+  ambiguities:
+    - ambiguity_id: "AMB-01"
+      fragment: "Once System-A has successfully validated a settlement request"
+      ambiguity_type: "semantic"
+      explanation: "The temporal connective 'Once' combined with the condition 'successfully validated' creates an ambiguity regarding the scope of the condition relative to the action. It is unclear whether the validation must be completed before the sending action begins (sequential), or if the sending action is triggered immediately upon the completion of validation (event-driven), or if the validation status is checked at the moment of sending."
+      possible_interpretations:
+        - "System-A must wait until the validation process is fully complete and successful before initiating the sending of the acknowledge message."
+        - "System-A must send the acknowledge message immediately at the exact moment the validation succeeds, without any additional delay or intermediate state checks."

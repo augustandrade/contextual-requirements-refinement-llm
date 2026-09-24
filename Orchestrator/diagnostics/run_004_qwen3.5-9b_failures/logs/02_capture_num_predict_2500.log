@@ -1,0 +1,68 @@
+[ERROR] REQ-05/C2 — validate_resolubility: model response unparsable: while parsing a block mapping
+  in "<unicode string>", line 3, column 7:
+        - ambiguity_id: "AMB-01"
+          ^
+expected <block end>, but found '<scalar>'
+  in "<unicode string>", line 14, column 9:
+            Wait, I need to check the logic  ... 
+            ^
+  agent : validate_resolubility
+  reason: while parsing a block mapping
+  in "<unicode string>", line 3, column 7:
+        - ambiguity_id: "AMB-01"
+          ^
+expected <block end>, but found '<scalar>'
+  in "<unicode string>", line 14, column 9:
+            Wait, I need to check the logic  ... 
+            ^
+  raw   : 'contextual_resolubility_validation:\n  ambiguity_resolubility:\n    - ambiguity_id: "AMB-01"\n      fragment: "If it is invalid"\n      resolubility_status: "resolvable"\n      supported_interpretation: "The personal identification number (PIN) is invalid (e.g., incorrect or expired)."\n      evidence_from_requirement: []\n      evidence_from_context:\n        - "Business rule BR-02: \'Invalid PIN triggers'
+  → skipping — use --resume to retry
+[ERROR] REQ-13/C2 — structure_requirement: model response unparsable: while parsing a block collection
+  in "<unicode string>", line 7, column 9:
+            - "AMB-01 resolved: The fragment ... 
+            ^
+expected <block end>, but found '<scalar>'
+  in "<unicode string>", line 22, column 12:
+            - "Is it possible the fragment is o ... 
+               ^
+  agent : structure_requirement
+  reason: while parsing a block collection
+  in "<unicode string>", line 7, column 9:
+            - "AMB-01 resolved: The fragment ... 
+            ^
+expected <block end>, but found '<scalar>'
+  in "<unicode string>", line 22, column 12:
+            - "Is it possible the fragment is o ... 
+               ^
+  raw   : 'requirement_structuring:\n  structured_requirements:\n    - structured_id: "REQ-XX-SR-01"\n      type: "functional_requirement"\n      final_statement: "Once System-A has successfully validated a settlement request, System-A must send an acknowledge message to System-B."\n      structuring_notes:\n        - "AMB-01 resolved: The fragment \'Once System-A has successfully validated a settlement request\' wa'
+  → skipping — use --resume to retry
+[WARN] yaml_parser: repair #4 (_repair_yaml_embedded_quote) succeeded for root_key='contextual_resolubility_validation'
+[ERROR] REQ-13/C3 — structure_requirement: model response unparsable: while parsing a block collection
+  in "<unicode string>", line 7, column 9:
+            - "AMB-01 resolved: The fragment ... 
+            ^
+expected <block end>, but found '<scalar>'
+  in "<unicode string>", line 22, column 12:
+            - "Is it possible the fragment is o ... 
+               ^
+  agent : structure_requirement
+  reason: while parsing a block collection
+  in "<unicode string>", line 7, column 9:
+            - "AMB-01 resolved: The fragment ... 
+            ^
+expected <block end>, but found '<scalar>'
+  in "<unicode string>", line 22, column 12:
+            - "Is it possible the fragment is o ... 
+               ^
+  raw   : 'requirement_structuring:\n  structured_requirements:\n    - structured_id: "REQ-XX-SR-01"\n      type: "functional_requirement"\n      final_statement: "Once System-A has successfully validated a settlement request, System-A must send an acknowledge message to System-B."\n      structuring_notes:\n        - "AMB-01 resolved: The fragment \'Once System-A has successfully validated a settlement request\' wa'
+  → skipping — use --resume to retry
+
+REQ-05  ambiguous
+  ctx   agent-2             route       agent-3   output
+  C2    error               —           error     error
+
+REQ-13  ambiguous
+  ctx   agent-2             route       agent-3   output
+  C2    fully_resolvable    —           error     error
+  C3    fully_resolvable    —           error     error
+EXIT 0
