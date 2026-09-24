@@ -12,6 +12,8 @@ Brasil. Conselho Nacional de Saúde. 2016. Resolução nº 510, de 7 de abril de
 
 Cheng, H.; Husen, J. H.; Lu, Y.; Racharak, T.; Yoshioka, N.; Ubayashi, N.; Washizaki, H. 2025. Generative AI for requirements engineering: a systematic literature review. Software: Practice and Experience. no prelo.
 
+Dunn, O. J. 1961. Multiple comparisons among means. Journal of the American Statistical Association, 56(293): 52-64.
+
 Efron, B.; Hastie, T. 2016. Computer age statistical inference: algorithms, evidence, and data science. Cambridge University Press, Cambridge, Reino Unido.
 
 Gil, A. C. 2018. Como elaborar projetos de pesquisa. 6ed. Atlas, São Paulo, SP, Brasil.
@@ -25,6 +27,8 @@ Holm, S. 1979. A simple sequentially rejective multiple test procedure. Scandina
 Kamsties, E.; Berry, D. M.; Paech, B. 2001. Detecting ambiguities in requirements documents using inspections. In: Workshop on Inspection in Software Engineering (WISE'01), 2001, Paris, França. Anais... p. 68-80.
 
 Kerlinger, F. N. 1980. Metodologia da pesquisa em ciências sociais: um tratamento conceitual. EPU/EDUSP, São Paulo, SP, Brasil.
+
+McNemar, Q. 1947. Note on the sampling error of the difference between correlated proportions or percentages. Psychometrika, 12(2): 153-157.
 
 Nair, P. P. M.; Anish, P. R. 2025. A retrieval-augmented framework for detecting and resolving pragmatic ambiguities in natural language requirements. Preprint. Disponível em: <https://arxiv.org/abs/2607.04436>. Acesso em: 23 set. 2026.
 

@@ -40,6 +40,7 @@
 - Bashir et al. (2025)
 - Brasil (2016) — Resolução CNS nº 510
 - Cheng et al. (2025)
+- Dunn (1961)
 - Efron; Hastie (2016)
 - Gil (2018)
 - Gulli (2025)
@@ -47,6 +48,7 @@
 - Holm (1979)
 - Kamsties et al. (2001)
 - Kerlinger (1980)
+- McNemar (1947)
 - Nair; Anish (2025)
 - Ollama (2026)
 - Ouyang et al. (2024)
@@ -57,6 +59,7 @@
 - Sommerville (2016)
 - Unterbusch; Vogelsang (2026)
 - Veizaga et al. (2024)
+- Virissimo (2014)
 - Vogelsang et al. (2025)
 - Wiegers; Beatty (2013)
 - Wohlin et al. (2012)
