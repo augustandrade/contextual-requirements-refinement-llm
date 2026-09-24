@@ -66,7 +66,7 @@ Nota: ΔC3−C1 do llama3.1-8b resulta de dois requisitos convertidos e um rever
 
 ![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-24T16-21/charts/context_lift__route_delta.png)
 
-Figura 3. Padrões de sensibilidade ao contexto por modelo: trajetória C0–C3 (superior esquerdo), ΔRoute por condição (superior direito), ganhos por estágio C0→C1 e C1→C2 (inferior esquerdo) e discriminação C2 versus C3 (inferior direito)
+Figura 3. Padrões de sensibilidade ao contexto por modelo, sobre a base da Tabela 2: (a) trajetória C0–C3, com o n de cada modelo na legenda; (b) ΔRoute(C2 − C0); (c) ganhos por estágio C0→C1 e C1→C2; (d) pares C2 versus C3
 
 *Fonte: Resultados originais da pesquisa*
 
