@@ -1,12 +1,13 @@
 # Perguntas de pesquisa, hipóteses e operacionalização das variáveis
 
-<!-- Posicionamento: subtópico de abertura da seção Material e Métodos, antes da descrição do corpus. -->
+<!-- Posicionamento: subtópico de abertura da seção Material e Métodos.
+     Ordem das subseções: perguntas de pesquisa (este arquivo) → corpus controlado → modelos e parâmetros → arquitetura do pipeline → protocolo de avaliação. -->
 
 Esta pesquisa foi classificada como de natureza aplicada, com abordagem quantitativa e objetivo explicativo (Gil, 2018): buscou identificar a relação causal entre o nível e a relevância do contexto fornecido a um "pipeline" multi-agente e os resultados de detecção e resolução de ambiguidades em requisitos de software. O delineamento adotado foi o experimental (Kerlinger, 1980), com manipulação direta da variável independente — condição de contexto — e mensuração das variáveis dependentes em condições controladas. A técnica de coleta de dados adotada foi a pesquisa documental (Gil, 2018): os requisitos que compuseram o corpus foram extraídos de publicações científicas e repositórios públicos, sem coleta primária junto a participantes humanos.
 
 **Perguntas de pesquisa e hipóteses**
 
-Formularam-se três perguntas de pesquisa que orientaram o delineamento experimental.
+Formularam-se três perguntas de pesquisa que orientaram o delineamento experimental. Os termos relativos ao corpus (categorias Cat-01 a Cat-05 e condições de contexto C0 a C3), ao "pipeline" (agentes e rotas de resolução) e à avaliação (métricas e blocos) são detalhados, respectivamente, nas subseções Corpus controlado, Arquitetura do pipeline e Protocolo de avaliação.
 
 **RQ1:** A relevância semântica do contexto injetado — mantida a especificidade constante entre as condições C2 (contexto relevante) e C3 (contexto irrelevante) — altera a rota de resolução adotada pelo "pipeline"?
 

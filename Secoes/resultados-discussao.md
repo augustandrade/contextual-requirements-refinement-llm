@@ -32,11 +32,11 @@ No contexto de detecção de ambiguidade pragmática com abordagem de recuperaç
 
 Os intervalos de confiança de 95% estimados por "bootstrap" com 10.000 reamostras revelaram amplitude ampla em todos os modelos, reflexo do tamanho amostral de 15 execuções em C0. Para o deepseek-r1:7b, o IC para revocação abrangeu [30,0%; 84,6%], refletindo a instabilidade gerada pelos cinco falsos negativos; para os demais modelos, os limites inferiores de revocação foram iguais ou superiores a 72,7%, e os de F1 iguais ou superiores a 63,2%. As estimativas pontuais são consistentes com os dados, mas os ICs indicam que afirmações quantitativas fortes sobre superioridade entre modelos não são sustentadas pelo corpus de 15 requisitos.
 
-A Figura 1 apresenta o mapa de acerto da detecção por requisito e modelo, revelando padrões de falha não capturados pelas métricas agregadas da Tabela 1.
+A Figura 2 apresenta o mapa de acerto da detecção por requisito e modelo, revelando padrões de falha não capturados pelas métricas agregadas da Tabela 1.
 
 ![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T14-07/charts/heatmap__D1_req_modelo.png)
 
-Figura 1. Mapa de acerto da detecção de ambiguidade por requisito e modelo em C0. (+) indica positivo esperado; (−) indica negativo esperado (grupo de controle)
+Figura 2. Mapa de acerto da detecção de ambiguidade por requisito e modelo em C0. (+) indica positivo esperado; (−) indica negativo esperado (grupo de controle)
 
 *Fonte: Resultados originais da pesquisa*
 
@@ -46,7 +46,7 @@ Os cinco falsos negativos do deepseek-r1:7b distribuíram-se por quatro categori
 
 ## Bloco 2 — Sensibilidade ao contexto
 
-O Bloco 2 rastreou a rota do pipeline ao longo das quatro condições de contexto, respondendo a RQ1. A métrica central foi ΔRoute(C2 − C0): proporção de requisitos que transitaram de `signaling` para `structured` ao receber o contexto específico relevante (C2), tomando C0 como referência. A Tabela 2 apresenta as proporções de conversão por modelo, e a Figura 2 ilustra o comportamento de cada modelo ao longo das quatro condições.
+O Bloco 2 rastreou a rota do pipeline ao longo das quatro condições de contexto, respondendo a RQ1. A métrica central foi ΔRoute(C2 − C0): proporção de requisitos que transitaram de `signaling` para `structured` ao receber o contexto específico relevante (C2), tomando C0 como referência. A Tabela 2 apresenta as proporções de conversão por modelo, e a Figura 3 ilustra o comportamento de cada modelo ao longo das quatro condições.
 
 **Tabela 2.** Proporções de conversão de rota por condição de contexto (base: requisitos ambíguos com C0 = signaling)
 
@@ -64,7 +64,7 @@ O Bloco 2 rastreou a rota do pipeline ao longo das quatro condições de context
 
 ![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T14-07/charts/context_lift__route_delta.png)
 
-Figura 2. Padrões de sensibilidade ao contexto por modelo: trajetória C0–C3 (superior esquerdo), ΔRoute por condição (superior direito), ganhos por estágio C0→C1 e C1→C2 (inferior esquerdo) e discriminação C2 versus C3 (inferior direito)
+Figura 3. Padrões de sensibilidade ao contexto por modelo: trajetória C0–C3 (superior esquerdo), ΔRoute por condição (superior direito), ganhos por estágio C0→C1 e C1→C2 (inferior esquerdo) e discriminação C2 versus C3 (inferior direito)
 
 *Fonte: Resultados originais da pesquisa*
 
@@ -84,7 +84,7 @@ A heterogeneidade da resposta — nominalmente significativa apenas nos modelos 
 
 ## Bloco 3 — Classificação de tipo de ambiguidade
 
-O Bloco 3 avaliou se o tipo de ambiguidade detectado pelo Agente 1 coincidiu com os tipos aceitos declarados no corpus, respondendo a RQ3. A análise restringiu-se às categorias Cat-02, Cat-03 e Cat-04, que possuem `taxonomy_accepted_types` preenchido. A Tabela 3 apresenta a proporção de acerto por categoria e por modelo, e a Figura 3 detalha a acurácia segundo os tipos da taxonomia de Pohl (2025): lexical, referencial, semântico e vaguidade.
+O Bloco 3 avaliou se o tipo de ambiguidade detectado pelo Agente 1 coincidiu com os tipos aceitos declarados no corpus, respondendo a RQ3. A análise restringiu-se às categorias Cat-02, Cat-03 e Cat-04, que possuem `taxonomy_accepted_types` preenchido. A Tabela 3 apresenta a proporção de acerto por categoria e por modelo, e a Figura 4 detalha a acurácia segundo os tipos da taxonomia de Pohl (2025): lexical, referencial, semântico e vaguidade.
 
 **Tabela 3.** Proporção de acerto de tipo de ambiguidade por categoria e modelo em C0 (acertos/3 por célula)
 
@@ -102,11 +102,11 @@ O Bloco 3 avaliou se o tipo de ambiguidade detectado pelo Agente 1 coincidiu com
 
 ![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T14-07/charts/taxonomy_model_heatmap.png)
 
-Figura 3. Acurácia de classificação de tipo de ambiguidade por tipo da taxonomia de Pohl e modelo em C0
+Figura 4. Acurácia de classificação de tipo de ambiguidade por tipo da taxonomia de Pohl e modelo em C0
 
 *Fonte: Resultados originais da pesquisa*
 
-A Figura 3 revelou padrões heterogêneos entre tipos e modelos. O tipo vaguidade foi o de desempenho mais baixo em todos os modelos (0 a 33%), evidenciando que nenhum modelo dominou consistentemente a distinção entre imprecisão de fronteira e demais formas de indefinição textual.
+A Figura 4 revelou padrões heterogêneos entre tipos e modelos. O tipo vaguidade foi o de desempenho mais baixo em todos os modelos (0 a 33%), evidenciando que nenhum modelo dominou consistentemente a distinção entre imprecisão de fronteira e demais formas de indefinição textual.
 
 O tipo referencial apresentou acurácia elevada especificamente nos modelos llama3.1-8b e phi4-mini (100% em ambos), sugerindo que pronomes sem referente inequívoco constituem uma forma de ambiguidade com padrões linguísticos suficientemente salientes para modelos específicos. O tipo semântico exibiu a maior variação intermodelos: qwen3.5-9b registrou 100%, enquanto os demais modelos obtiveram 50% ou menos — heterogeneidade que indicou competências semânticas distintas no pré-treinamento em vez de falha uniforme de prompting. Esses resultados reforçaram a interpretação de que os modelos avaliados carregam perfis de acurácia idiossincrásicos por tipo de ambiguidade, o que fundamenta propostas de composição heterogênea de pipeline nas sugestões para trabalhos futuros.
 
