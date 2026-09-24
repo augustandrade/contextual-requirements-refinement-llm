@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Once System-A has successfully validated a settlement request,",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'Once System-A has successfully validated a settlement request' introduces a conditional event. It's unclear whether System-A *must* send the acknowledge message *only* after successful validation, or whether the validation is a prerequisite for sending the message, but the message could be sent at any point during the validation process. The temporal relationship is underspecified.",
+        "possible_interpretations": [
+          "System-A must send the acknowledge message *only* after a settlement request has been successfully validated.",
+          "System-A can send the acknowledge message at any point during the validation process, as long as the settlement request is eventually validated."
+        ]
+      }
+    ]
+  }
+}

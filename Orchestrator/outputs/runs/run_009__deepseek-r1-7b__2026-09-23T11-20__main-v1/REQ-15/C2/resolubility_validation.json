@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "processes all queries within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended interpretation of the ambiguous term 'processes' in the requirement, which could mean either handling or executing each query within the specified time constraints."
+        ],
+        "justification": "The requirement text does not provide explicit context to resolve the ambiguity between interpreting 'processes' as handling individual queries or managing total processing time across all queries. Without additional information from controlled context sources such as glossary entries, business rules, or constraints, no default resolution is possible."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C2",
+    "requirement_id": "REQ-15"
+  }
+}

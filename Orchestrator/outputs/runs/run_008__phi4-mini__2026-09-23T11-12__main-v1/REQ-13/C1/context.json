@@ -1,0 +1,15 @@
+{
+  "domain": "Financial post-trade settlement workflow.",
+  "glossary": [
+    {
+      "term": "settlement request",
+      "definition": "Message requesting settlement of a financial instrument."
+    },
+    {
+      "term": "acknowledge message",
+      "definition": "Confirmation message indicating successful processing of a settlement request."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

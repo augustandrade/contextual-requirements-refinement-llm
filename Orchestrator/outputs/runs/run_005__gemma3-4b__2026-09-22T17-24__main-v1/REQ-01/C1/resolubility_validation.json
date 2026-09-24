@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The payment service must be operational for 100% of all time, with no downtime whatsoever, including during maintenance.",
+        "evidence_from_requirement": [
+          "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades."
+        ],
+        "evidence_from_context": [],
+        "justification": "The requirement explicitly states '100% of the time', and the glossary definition of 'maintenance window' implies that the service must be available during these periods. The interpretation aligns with the literal wording of the requirement."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01"
+  }
+}

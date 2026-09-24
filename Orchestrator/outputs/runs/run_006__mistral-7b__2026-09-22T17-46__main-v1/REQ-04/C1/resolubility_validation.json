@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "received for a cancellation request",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator binding between 'for' and the implicit subject of the sentence — whether the rejection order is related to a specific cancellation request or applies to any cancellation request."
+        ],
+        "justification": "The requirement text provides no parentheses, explicit precedence rule, or contextual business rule to determine which logical binding was intended."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04"
+  }
+}

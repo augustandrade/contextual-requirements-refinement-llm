@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The routing switch filters traffic that flows between data-plane interfaces and management data traffic.",
+        "structuring_notes": [
+          "AMB-01 resolved: ambiguous fragment replaced with supported interpretation to clarify traffic scope."
+        ]
+      }
+    ],
+    "execution_id": "REQ-09-C3",
+    "requirement_id": "REQ-09",
+    "context_condition": "C3"
+  }
+}

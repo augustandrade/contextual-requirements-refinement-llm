@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The precise criteria for an 'invalid' PIN, including whether it refers to format, value, or a previously compromised PIN."
+        ],
+        "justification": "The requirement text does not define what constitutes an 'invalid' PIN. The ambiguity lies in the lack of specificity regarding the conditions under which the system shall deny access."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05"
+  }
+}

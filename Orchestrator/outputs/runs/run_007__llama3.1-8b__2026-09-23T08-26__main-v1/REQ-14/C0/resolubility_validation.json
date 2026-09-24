@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "A denied admittance refers to a situation where the system did not explicitly grant access, but it was implicitly blocked due to lack of clearance or other security measures.",
+        "evidence_from_requirement": [
+          "The phrase 'denied admittances' is used in conjunction with 'granted', implying that both types of events are being reported. This suggests that 'denied' refers to a situation where access was not explicitly granted, rather than an explicit refusal by the system."
+        ],
+        "evidence_from_context": [],
+        "justification": "The use of 'and' between 'granted' and 'denied' implies a distinction between the two types of events, suggesting that 'denied' refers to a situation where access is implicitly blocked due to lack of clearance or other security measures."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C0",
+    "requirement_id": "REQ-14"
+  }
+}

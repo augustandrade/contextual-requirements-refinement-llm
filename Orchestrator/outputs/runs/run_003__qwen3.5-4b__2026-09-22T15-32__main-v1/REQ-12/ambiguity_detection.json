@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'at the end of each day' has a fuzzy extension: it is impossible to determine the exact timestamp (e.g., 23:59:59 vs. 00:00:01) that satisfies the condition, as no measurable boundary separates 'end' from 'start' of the next day.",
+        "possible_interpretations": [
+          "The report is generated at exactly 23:59:59 on the current day.",
+          "The report is generated at exactly 00:00:00 on the following day."
+        ]
+      }
+    ]
+  }
+}

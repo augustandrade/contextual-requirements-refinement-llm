@@ -1,0 +1,62 @@
+{
+  "execution_id": "REQ-02-C1",
+  "requirement_id": "REQ-02",
+  "context_condition": "C1",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'their' has two competing antecedents in scope: 'System-A' and 'System-B'. It is unclear whether 'their' refers to the collective systems of both A and B, or specifically to System-B's own downstream systems.",
+        "possible_interpretations": [
+          "System-A must add System-B to the downstream systems of both System-A and System-B.",
+          "System-A must add System-B to the downstream systems of System-B only."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "referential",
+        "explanation": "The definite phrase 'the Reporting flow' lacks a unique antecedent. It is unclear whether this refers to a specific flow owned by System-A, System-B, or a shared flow between them.",
+        "possible_interpretations": [
+          "System-A must allow System-C to subscribe to a Reporting flow owned by System-A.",
+          "System-A must allow System-C to subscribe to a Reporting flow owned by System-B.",
+          "System-A must allow System-C to subscribe to a shared Reporting flow between System-A and System-B."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The definition of the pronoun 'their' — specifically, whether it refers to System-A alone, System-B alone, or the collective set of both systems."
+        ],
+        "justification": "The requirement text contains no explicit antecedent for 'their', and the provided glossary defines 'downstream systems' only as a general category without specifying ownership or plurality relative to System-A or System-B. No business rule or constraint clarifies the referent."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The definition of 'the Reporting flow' — specifically, whether it is owned by System-A, System-B, or is a shared entity between them."
+        ],
+        "justification": "The requirement text uses the definite article 'the' without a preceding noun phrase to identify the specific flow. The glossary defines the domain but does not define 'Reporting flow' as a specific entity owned by any particular system. No business rule specifies the ownership or existence of a shared flow."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

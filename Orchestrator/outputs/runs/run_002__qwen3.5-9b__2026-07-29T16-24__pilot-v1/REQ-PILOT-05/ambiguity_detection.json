@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "notify the operations team",
+        "ambiguity_type": "referential",
+        "explanation": "The definite noun phrase 'the operations team' lacks a unique antecedent in the immediate context. It could refer to a specific, previously defined team entity in the system's glossary, or it could refer to any group of personnel performing operations, creating ambiguity about which specific group must be notified.",
+        "possible_interpretations": [
+          "The system shall notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model.",
+          "The system shall notify any group of personnel who perform operational tasks, regardless of whether they are formally defined as a single entity."
+        ]
+      }
+    ]
+  }
+}

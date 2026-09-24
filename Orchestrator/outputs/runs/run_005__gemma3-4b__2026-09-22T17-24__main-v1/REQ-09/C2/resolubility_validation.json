@@ -1,0 +1,23 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The switches must block all traffic from management data interfaces to the data plane, preventing unauthorized access.",
+        "evidence_from_requirement": [
+          "The glossary defines 'management data traffic' as SNMP traffic restricted to UDP port 161.",
+          "The glossary defines 'data-plane interfaces' as the 4 Ethernet ports (eth0-eth3) carrying passenger network data traffic, distinct from the dedicated management port."
+        ],
+        "evidence_from_context": [],
+        "justification": "The glossary provides a precise definition of 'management data traffic' and 'data-plane interfaces', establishing a clear boundary between the two traffic types.  The interpretation of blocking traffic from management interfaces to the data plane aligns with this defined separation and the goal of preventing unauthorized access."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09"
+  }
+}

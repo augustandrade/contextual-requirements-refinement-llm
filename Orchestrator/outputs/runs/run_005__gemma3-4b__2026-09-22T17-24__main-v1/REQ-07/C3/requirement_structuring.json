@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "Shut off the pumps if the water level must be strictly greater than 100 meters for more than 4 seconds.",
+        "structuring_notes": [
+          "AMB-01 resolved: 'remains above' replaced with 'must be strictly greater than' per supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-07-C3",
+    "requirement_id": "REQ-07",
+    "context_condition": "C3"
+  }
+}

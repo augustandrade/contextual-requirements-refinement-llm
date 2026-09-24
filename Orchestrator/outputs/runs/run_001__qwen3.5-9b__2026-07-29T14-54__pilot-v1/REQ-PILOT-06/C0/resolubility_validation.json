@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the account balance falls below the minimum threshold and the transaction type is not pre-approved or the account has been flagged for fraud review",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator binding between 'and' and 'or' — whether the alert fires when (balance < threshold AND (type not pre-approved OR flagged)) or when ((balance < threshold AND type not pre-approved) OR (balance < threshold AND flagged))."
+        ],
+        "justification": "The requirement text provides no parentheses, explicit precedence rule, or contextual business rule to determine which logical binding was intended between the 'and' and 'or' connectives."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-PILOT-06-C0",
+    "requirement_id": "REQ-PILOT-06"
+  }
+}

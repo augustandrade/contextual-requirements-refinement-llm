@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects an intruder or a door of the car is opened without a car key",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator binding between 'and' and 'or' — whether the alarm triggers when (intruder detected AND door opened without key) or when (intruder detected OR door opened without key)."
+        ],
+        "justification": "The requirement text provides no parentheses, explicit precedence rule, or contextual business rule to determine which logical binding was intended. The glossary defines 'interior surveillance' but does not clarify the logical structure of the trigger conditions."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "detects an intruder",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary or explicit definition distinguishing between 'unauthorized human' and 'unauthorized animal' qualifying as an 'intruder'."
+        ],
+        "justification": "The glossary defines 'interior surveillance' as a sensor subsystem but does not define the term 'intruder' or provide a business rule to exclude animals from the definition. Without this definition, the fuzzy extension of 'intruder' remains unresolved."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-06-C1",
+    "requirement_id": "REQ-06"
+  }
+}

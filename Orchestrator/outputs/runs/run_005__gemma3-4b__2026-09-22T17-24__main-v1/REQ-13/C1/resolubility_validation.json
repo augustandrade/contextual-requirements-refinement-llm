@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Once System-A has successfully validated a settlement request,",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A must send the acknowledge message *only* after a settlement request has been successfully validated.",
+        "evidence_from_requirement": [
+          "System-A must send an acknowledge message to System-B."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'acknowledge message: Confirmation message indicating successful processing of a settlement request.'"
+        ],
+        "justification": "The glossary definition of 'acknowledge message' explicitly states that it is sent upon successful processing of a settlement request. The requirement states that System-A must send an acknowledge message *after* successful validation, aligning with the glossary definition. The temporal relationship is thus clarified."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-13-C1",
+    "requirement_id": "REQ-13"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "When System-A receives a message from Security Manager, the system checks if the received message matches any entry in the B-file based on a predefined set of mapping rules (e.g., exact match, substring match).",
+        "structuring_notes": [
+          "Core predicate is 'checks' (system action) → functional_requirement. AMB-01 resolved: replaced ambiguous fragment with supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03",
+    "context_condition": "C1"
+  }
+}

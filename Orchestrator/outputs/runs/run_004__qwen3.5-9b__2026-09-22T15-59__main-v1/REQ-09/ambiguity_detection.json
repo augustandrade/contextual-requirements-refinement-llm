@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'between data-plane interfaces and management data traffic' has an attachment ambiguity. It can modify 'filter' (indicating the scope of traffic being filtered) or modify 'interfaces' (indicating the specific interfaces involved in the filtering action), leading to different syntactic trees and meanings regarding what is being filtered versus what defines the interfaces.",
+        "possible_interpretations": [
+          "The routing switch filters traffic that flows between data-plane interfaces and management data traffic (the phrase defines the traffic scope).",
+          "The routing switch filters traffic on interfaces that are located between data-plane interfaces and management data traffic (the phrase defines the interface location)."
+        ]
+      }
+    ]
+  }
+}

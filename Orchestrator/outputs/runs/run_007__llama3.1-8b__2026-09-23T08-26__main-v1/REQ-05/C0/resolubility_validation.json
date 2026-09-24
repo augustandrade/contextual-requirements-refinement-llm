@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The access card inserted by the customer is invalid.",
+        "evidence_from_requirement": [
+          "The preceding sentence mentions 'the access card' as the object being inserted, making it clear that 'it' refers to this entity."
+        ],
+        "evidence_from_context": [],
+        "justification": "The requirement text establishes a clear subject-verb-object structure for the first part of the sentence, which implies that 'it' refers back to the access card."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05"
+  }
+}

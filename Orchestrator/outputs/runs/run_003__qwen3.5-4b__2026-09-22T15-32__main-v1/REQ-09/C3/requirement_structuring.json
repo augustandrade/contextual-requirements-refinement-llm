@@ -1,0 +1,19 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The routing function switches the ability to filter network traffic between a data-plane interface and a stream of management data traffic.",
+        "structuring_notes": [
+          "AMB-01 resolved: 'Routing switches ability...' rewritten to 'The routing function switches the ability...' per supported interpretation.",
+          "AMB-02 resolved: 'between data-plane interfaces and management data traffic' rewritten to 'between a data-plane interface and a stream of management data traffic' per supported interpretation.",
+          "Core predicate is 'switches' (system action) → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-09-C3",
+    "requirement_id": "REQ-09",
+    "context_condition": "C3"
+  }
+}

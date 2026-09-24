@@ -1,0 +1,33 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If she does not respond within 10 minutes",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system escalates the alert if the patient does not show a clinical response to the medication within 10 minutes.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'Medication response monitoring applies to the patient, not the care provider. If the patient does not show a recorded response event within the specified observation window after medication administration, the system escalates the alert to the duty physician.'"
+        ],
+        "justification": "The business rule explicitly states that monitoring applies to the patient, not the care provider, and defines the escalation condition based on the patient's recorded response event. This eliminates the interpretation where 'she' refers to the nurse."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 10 minutes",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The escalation occurs if the condition is not met at any point up to and including the 10-minute mark from the moment of administration.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Constraint OBS-01: 'The observation window for response detection is 10 minutes from the administration timestamp recorded by the system.'"
+        ],
+        "justification": "The constraint explicitly defines the start of the observation window as the 'administration timestamp recorded by the system', resolving the ambiguity about when the 10-minute period begins. It confirms the window starts from the administration event, not from when the nurse finishes."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-PILOT-02-C2",
+    "requirement_id": "REQ-PILOT-02"
+  }
+}

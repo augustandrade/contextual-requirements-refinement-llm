@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The payment service must be operational for 100% of all time, with no downtime whatsoever, including during maintenance.",
+        "evidence_from_requirement": [
+          "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'payment service' - Core transaction processing component responsible for card authorisation, settlement, and refund operations."
+        ],
+        "justification": "The glossary definition of 'payment service' as 'Core transaction processing component responsible for card authorisation, settlement, and refund operations' implies a continuous operational requirement, aligning with the interpretation of '100% of the time' as zero downtime."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-01-C3",
+    "requirement_id": "REQ-01"
+  }
+}

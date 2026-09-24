@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system shall log all exceptions raised during the nightly settlement batch and notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model.",
+        "structuring_notes": [
+          "AMB-01 resolved: fragment 'notify the operations team' replaced with 'notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model' per supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-PILOT-05-C2",
+    "requirement_id": "REQ-PILOT-05",
+    "context_condition": "C2"
+  }
+}

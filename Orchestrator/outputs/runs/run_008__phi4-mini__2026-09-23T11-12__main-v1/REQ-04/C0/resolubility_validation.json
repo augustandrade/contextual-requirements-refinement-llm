@@ -1,0 +1,18 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "when a rejection order is received for a cancellation request,",
+        "resolubility_status": "unresolved",
+        "missing_information": "Specific conditions under which System-A should raise an alert upon receiving 'rejection orders' related to the processing of 'cancellation requests'.",
+        "justification": "The requirement text does not specify whether all rejections due to cancellations or only specific denials are considered for raising a web alert.\""
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04"
+  }
+}

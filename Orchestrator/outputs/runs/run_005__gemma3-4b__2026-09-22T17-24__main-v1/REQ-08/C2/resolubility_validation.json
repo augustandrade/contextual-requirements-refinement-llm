@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Generate a 700 Hz tone with a duration of 1 second, played after the handset is connected.",
+        "evidence_from_requirement": [
+          "The requirement text specifies a 700 Hz tone and a 1-second duration."
+        ],
+        "evidence_from_context": [
+          "Constraint CST-01: System follows North American telephony standard using simultaneous 350 Hz and 440 Hz dial tone. This implies a specific frequency (700 Hz) and duration (1 second) for the dial tone."
+        ],
+        "justification": "The constraint CST-01 explicitly defines the characteristics of the dial tone, resolving the semantic ambiguity of the requirement text."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-08-C2",
+    "requirement_id": "REQ-08"
+  }
+}

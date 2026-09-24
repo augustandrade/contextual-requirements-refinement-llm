@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "notify the operations team",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system shall notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'term: operations team; definition: Group responsible for monitoring and resolving issues in the post-trade workflow.'"
+        ],
+        "justification": "The glossary explicitly defines 'operations team' as a specific group with a defined responsibility within the post-trade workflow. This canonical definition selects the specific entity interpretation over the generic 'any group of personnel' interpretation, which lacks a formal definition in the provided context."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-PILOT-05-C2",
+    "requirement_id": "REQ-PILOT-05"
+  }
+}

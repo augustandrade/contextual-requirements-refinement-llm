@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "All medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A specific definition of 'medium-sized' in terms of dimensions or weight limits."
+        ],
+        "justification": "The term 'medium-sized' is polysemous and lacks a clear, context-specific definition. Without additional information on the size range for medium-sized vehicles within this domain's fleet configuration management system, multiple interpretations are possible."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-11-C1",
+    "requirement_id": "REQ-11"
+  }
+}

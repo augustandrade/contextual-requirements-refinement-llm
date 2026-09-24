@@ -1,0 +1,59 @@
+{
+  "execution_id": "REQ-05-C2",
+  "requirement_id": "REQ-05",
+  "context_condition": "C2",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "semantic",
+        "explanation": "The term 'it' refers to the PIN entered by the customer. The semantic ambiguity arises from the lack of specification regarding what constitutes an 'invalid' PIN. Does 'invalid' mean incorrect format, incorrect digits, or a PIN that has been previously flagged as compromised? The logical operator 'if' doesn't clarify the precise conditions for denial.",
+        "possible_interpretations": [
+          "If the entered PIN does not match any stored valid PIN (format and value).",
+          "If the entered PIN has been previously associated with a security breach or is otherwise flagged as compromised."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "If the entered PIN does not match any stored valid PIN (format and value).",
+        "evidence_from_requirement": [
+          "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad.",
+          "If it is invalid, the system shall deny the access."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'PIN: 4-digit personal identification number.'",
+          "Business rule BR-01: 'Invalid card causes immediate access denial at turnstile.'"
+        ],
+        "justification": "The glossary defines 'PIN' as a 4-digit number. The requirement states that 'it' refers to the PIN entered by the customer. Business rule BR-01 specifies that an invalid card causes immediate access denial, implying that an invalid PIN triggers denial. The interpretation of 'invalid' as 'does not match any stored valid PIN (format and value)' is consistent with the system's access control logic."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "If the entered PIN does not match any stored valid PIN (format and value), the system shall deny the access.",
+        "structuring_notes": [
+          "Core predicate is 'deny' (system action) → functional_requirement. AMB-01 resolved: 'If it is invalid' replaced with 'If the entered PIN does not match any stored valid PIN (format and value)' per supported interpretation."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects an intruder or a door of the car is opened without a car key",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The alarm triggers if the interior surveillance detects an intruder OR if the door is opened without a key (either condition is sufficient).",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [],
+        "justification": "The requirement text structure 'If A and (B or C), then D' clearly indicates that A must be true, and either B or C must be true. The 'or' operates within the scope of the second main clause. Therefore, the alarm triggers if the window is damaged AND (intruder detected OR door opened). The interpretation requiring all three conditions simultaneously is grammatically unsupported."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "detects an intruder",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary or explicit definition distinguishing between 'unauthorized human' and 'unauthorized animal' for the purpose of triggering the alarm."
+        ],
+        "justification": "The glossary defines 'interior surveillance' as a sensor subsystem but does not define 'intruder'. The business rules specify alarm behavior but do not define the entity 'intruder'. The requirement text uses the term without qualification. Without a definition or threshold (e.g., 'any unauthorized entity' vs 'any unauthorized human'), it is impossible to determine if animals qualify as intruders based solely on the provided text."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-06-C3",
+    "requirement_id": "REQ-06"
+  }
+}

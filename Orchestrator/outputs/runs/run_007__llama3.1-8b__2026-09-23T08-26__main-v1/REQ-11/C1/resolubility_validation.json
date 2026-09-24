@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles with a length between 4-6 meters are considered medium-sized.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'navigation system: Onboard positioning and route guidance unit installed in the vehicle.' This definition does not provide any information about vehicle size, but it is not relevant to resolving the ambiguity. However, the presence of a glossary entry for 'navigation system' suggests that the requirement text may be using technical terms from a specific domain."
+        ],
+        "justification": "The controlled context provides a glossary entry for 'navigation system', which implies that the requirement text is using technical terms from a specific domain. Although this does not directly resolve the ambiguity, it increases confidence in the interpretation process. The supported interpretation is based on a common understanding of vehicle classification and size ranges."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-11-C1",
+    "requirement_id": "REQ-11"
+  }
+}

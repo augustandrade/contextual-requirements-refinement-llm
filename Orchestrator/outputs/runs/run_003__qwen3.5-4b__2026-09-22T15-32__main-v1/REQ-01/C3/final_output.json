@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-01-C3",
+  "requirement_id": "REQ-01",
+  "context_condition": "C3",
+  "input_requirement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase '100% of the time' has a fuzzy extension because it lacks a measurable boundary for what constitutes 'time' in a continuous service context. It is impossible to determine if a service is available for exactly 100% of the duration of a maintenance window or upgrade period, as these events inherently occupy time.",
+        "possible_interpretations": [
+          "The service is available for every second of every minute, meaning no downtime is permitted even during scheduled maintenance.",
+          "The service is available for the entire duration of the business day, but may be unavailable during the specific time blocks allocated for maintenance and upgrades."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining the scope of 'time' for the availability metric (e.g., whether 'time' excludes scheduled maintenance windows and infrastructure upgrades, or includes them)."
+        ],
+        "justification": "The requirement text states the service must be available '100% of the time' but includes maintenance windows and upgrades in the scope. The glossary defines 'maintenance window' as a period of planned updates, but provides no rule or constraint defining whether such periods are excluded from the '100%' availability calculation. Without a quantitative threshold or explicit scope boundary, it is impossible to determine if the service must remain available during these events or if the '100%' metric applies only to operational time."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

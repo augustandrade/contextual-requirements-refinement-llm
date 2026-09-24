@@ -1,0 +1,276 @@
+{
+  "rq1_mcnemar": {
+    "qwen3.5-4b": {
+      "n_pairs": 13,
+      "b_c2_wins": 6,
+      "c_c3_wins": 0,
+      "n_discordant": 6,
+      "p_value": 0.0156,
+      "significant": true,
+      "note": "binomial exato, unilateral (H1: C2 > C3), α=0.05"
+    },
+    "qwen3.5-9b": {
+      "n_pairs": 12,
+      "b_c2_wins": 5,
+      "c_c3_wins": 0,
+      "n_discordant": 5,
+      "p_value": 0.0312,
+      "significant": true,
+      "note": "binomial exato, unilateral (H1: C2 > C3), α=0.05"
+    },
+    "gemma3-4b": {
+      "n_pairs": 15,
+      "b_c2_wins": 2,
+      "c_c3_wins": 2,
+      "n_discordant": 4,
+      "p_value": null,
+      "note": "n_discordant=4 < 5 — poder estatístico insuficiente (exploratório)"
+    },
+    "mistral-7b": {
+      "n_pairs": 12,
+      "b_c2_wins": 1,
+      "c_c3_wins": 0,
+      "n_discordant": 1,
+      "p_value": null,
+      "note": "n_discordant=1 < 5 — poder estatístico insuficiente (exploratório)"
+    },
+    "llama3.1-8b": {
+      "n_pairs": 14,
+      "b_c2_wins": 2,
+      "c_c3_wins": 1,
+      "n_discordant": 3,
+      "p_value": null,
+      "note": "n_discordant=3 < 5 — poder estatístico insuficiente (exploratório)"
+    },
+    "phi4-mini": {
+      "n_pairs": 15,
+      "b_c2_wins": 0,
+      "c_c3_wins": 0,
+      "n_discordant": 0,
+      "p_value": null,
+      "note": "n_discordant=0 < 5 — poder estatístico insuficiente (exploratório)"
+    },
+    "deepseek-r1-7b": {
+      "n_pairs": 8,
+      "b_c2_wins": 0,
+      "c_c3_wins": 0,
+      "n_discordant": 0,
+      "p_value": null,
+      "note": "n_discordant=0 < 5 — poder estatístico insuficiente (exploratório)"
+    }
+  },
+  "rq2_bootstrap_ci": {
+    "qwen3.5-4b": {
+      "precision": {
+        "lo": 0.6363636363636364,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "recall": {
+        "lo": 0.7272727272727273,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "f1": {
+        "lo": 0.7272727272727272,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "specificity": {
+        "lo": 0.0,
+        "hi": 1.0,
+        "n_valid": 9641
+      }
+    },
+    "qwen3.5-9b": {
+      "precision": {
+        "lo": 0.5384615384615384,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "recall": {
+        "lo": 0.7272727272727273,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "f1": {
+        "lo": 0.6363636363636365,
+        "hi": 0.9655172413793104,
+        "n_valid": 10000
+      },
+      "specificity": {
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_valid": 9641
+      }
+    },
+    "gemma3-4b": {
+      "precision": {
+        "lo": 0.6,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "recall": {
+        "lo": 1.0,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "f1": {
+        "lo": 0.7499999999999999,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "specificity": {
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_valid": 9641
+      }
+    },
+    "mistral-7b": {
+      "precision": {
+        "lo": 0.6,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "recall": {
+        "lo": 0.6,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "f1": {
+        "lo": 0.631578947368421,
+        "hi": 0.962962962962963,
+        "n_valid": 10000
+      },
+      "specificity": {
+        "lo": 0.0,
+        "hi": 1.0,
+        "n_valid": 9641
+      }
+    },
+    "llama3.1-8b": {
+      "precision": {
+        "lo": 0.5384615384615384,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "recall": {
+        "lo": 0.7272727272727273,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "f1": {
+        "lo": 0.6363636363636365,
+        "hi": 0.9655172413793104,
+        "n_valid": 10000
+      },
+      "specificity": {
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_valid": 9641
+      }
+    },
+    "phi4-mini": {
+      "precision": {
+        "lo": 0.6,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "recall": {
+        "lo": 1.0,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "f1": {
+        "lo": 0.7499999999999999,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "specificity": {
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_valid": 9641
+      }
+    },
+    "deepseek-r1-7b": {
+      "precision": {
+        "lo": 0.6,
+        "hi": 1.0,
+        "n_valid": 9999
+      },
+      "recall": {
+        "lo": 0.3,
+        "hi": 0.8461538461538461,
+        "n_valid": 10000
+      },
+      "f1": {
+        "lo": 0.42105263157894735,
+        "hi": 0.888888888888889,
+        "n_valid": 9998
+      },
+      "specificity": {
+        "lo": 0.0,
+        "hi": 1.0,
+        "n_valid": 9641
+      }
+    }
+  },
+  "rq3_proportions": [
+    {
+      "run": "run_003__qwen3.5-4b__2026-09-22T15-32__main-v1",
+      "model": "qwen3.5-4b",
+      "category": "unknown",
+      "correct": 6,
+      "total": 9,
+      "proportion": 0.6667
+    },
+    {
+      "run": "run_004__qwen3.5-9b__2026-09-22T15-59__main-v1",
+      "model": "qwen3.5-9b",
+      "category": "unknown",
+      "correct": 5,
+      "total": 9,
+      "proportion": 0.5556
+    },
+    {
+      "run": "run_005__gemma3-4b__2026-09-22T17-24__main-v1",
+      "model": "gemma3-4b",
+      "category": "unknown",
+      "correct": 3,
+      "total": 9,
+      "proportion": 0.3333
+    },
+    {
+      "run": "run_006__mistral-7b__2026-09-22T17-46__main-v1",
+      "model": "mistral-7b",
+      "category": "unknown",
+      "correct": 2,
+      "total": 9,
+      "proportion": 0.2222
+    },
+    {
+      "run": "run_007__llama3.1-8b__2026-09-23T08-26__main-v1",
+      "model": "llama3.1-8b",
+      "category": "unknown",
+      "correct": 3,
+      "total": 9,
+      "proportion": 0.3333
+    },
+    {
+      "run": "run_008__phi4-mini__2026-09-23T11-12__main-v1",
+      "model": "phi4-mini",
+      "category": "unknown",
+      "correct": 5,
+      "total": 9,
+      "proportion": 0.5556
+    },
+    {
+      "run": "run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1",
+      "model": "deepseek-r1-7b",
+      "category": "unknown",
+      "correct": 3,
+      "total": 9,
+      "proportion": 0.3333
+    }
+  ]
+}

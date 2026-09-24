@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific antecedent of the pronoun 'it' (either 'access card' or 'personal identification number (PIN)') to determine if access is denied for an invalid card or an invalid PIN."
+        ],
+        "justification": "The requirement text presents two candidate antecedents ('access card' and 'PIN') for the pronoun 'it' without any textual cue (such as a subsequent clarification or specific phrasing) to select one over the other. The controlled context provides definitions for 'PIN' but does not specify which entity the pronoun refers to in the conditional clause."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05"
+  }
+}

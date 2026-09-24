@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles with gross weight strictly between 1500 kg and 2000 kg.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'medium-sized vehicle: Vehicle with gross weight strictly between 1500 kg and 2000 kg.'"
+        ],
+        "justification": "The domain glossary provides a canonical definition of 'medium-sized vehicle' that eliminates the ambiguity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11"
+  }
+}

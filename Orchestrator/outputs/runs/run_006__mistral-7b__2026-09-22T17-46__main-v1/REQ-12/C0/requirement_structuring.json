@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system shall generate a report at the end of each day.",
+        "structuring_notes": [
+          "Core predicate is 'generate' (system action) → functional_requirement. Original phrasing preserved."
+        ]
+      }
+    ],
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12",
+    "context_condition": "C0"
+  }
+}

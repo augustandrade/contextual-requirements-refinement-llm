@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "a rejection order is received for a cancellation request",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system receives a rejection of a cancellation request (the request was to cancel something else, and now that's being rejected).",
+        "evidence_from_requirement": [
+          "The phrase 'for a cancellation request' can refer to either the rejection order itself or the cancellation request."
+        ],
+        "evidence_from_context": [
+          "Business rule: Rejection and approval orders are issued exclusively by Security Manager. This implies that any rejection is of an existing request, not a new one."
+        ],
+        "justification": "The requirement text and controlled context provide sufficient information to resolve the ambiguity in favor of interpretation 2."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04"
+  }
+}

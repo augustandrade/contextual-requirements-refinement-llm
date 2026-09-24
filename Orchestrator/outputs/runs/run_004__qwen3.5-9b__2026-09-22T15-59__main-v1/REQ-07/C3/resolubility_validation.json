@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of the temporal scope for 'remains above 100 meters for more than 4 seconds' — specifically, whether the condition requires continuous duration without interruption or allows for cumulative duration with interruptions."
+        ],
+        "justification": "The requirement text uses the phrase 'remains above... for more than 4 seconds', which linguistically suggests continuity, but the ambiguity detection explicitly posits an alternative interpretation regarding cumulative time with interruptions. The available controlled_context (glossary and business_rules) defines sensor sampling and pump shutdown mechanics but does not provide a logical rule or constraint defining how temporal conditions with 'for' are evaluated (continuous vs. cumulative). Without an explicit rule in the context or a clarifying clause in the requirement text, the system cannot determine if interruptions are permitted."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C3",
+    "requirement_id": "REQ-07"
+  }
+}

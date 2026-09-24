@@ -1,0 +1,27 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical connective 'and' lacks defined operator precedence relative to the implicit scope of 'all', creating ambiguity about whether the report must contain every single event (both granted and denied) or if it implies a selection of events that are either granted or denied (excluding other types, though the text implies binary states). More critically, without explicit grouping, it is unclear if the requirement mandates a count of both types combined or a list containing instances of both types, potentially admitting interpretations where the 'and' distributes over the quantifier 'all' differently than intended.",
+        "possible_interpretations": [
+          "The report must list every individual event that occurred, including both those that were granted and those that were denied.",
+          "The report must contain a summary or aggregated data covering the set of granted events and the set of denied events, rather than a raw log of every single event."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "all granted and denied admittances",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'admittances' is polysemous: it can refer to the act of being allowed entry (access events) or the physical act of entering (movement events). In the context of a locking system, it could mean 'access attempts' (including failed ones) or strictly 'successful entries' and 'denied entries'.",
+        "possible_interpretations": [
+          "The report contains records of every access attempt, distinguishing between those that were allowed and those that were rejected.",
+          "The report contains records of every person who physically entered the building and every person who was stopped at the door."
+        ]
+      }
+    ]
+  }
+}

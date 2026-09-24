@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The requirement explicitly states the report shall contain 'all granted and denied admittances'. The phrase 'all' combined with 'and' logically distributes over the set of events, mandating the inclusion of every event that falls into either category. The interpretation suggesting a 'summary or aggregated data' is unsupported because the text specifies 'all' events, not a summary."
+        ],
+        "evidence_from_context": [],
+        "justification": "The reported ambiguity regarding operator precedence or aggregation vs. listing is a false positive. The use of the quantifier 'all' in conjunction with 'and' necessitates a complete list of every event matching the criteria (granted or denied). The alternative interpretation (summary/aggregated data) contradicts the explicit instruction to include 'all' events."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "all granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report contains records of every access attempt, distinguishing between those that were allowed and those that were rejected.",
+        "evidence_from_requirement": [
+          "The requirement specifies the system is an 'electronic door locking system' which generates reports on 'granted and denied admittances'. The term 'denied' implies an access attempt that was rejected. If 'admittances' referred strictly to physical entry, 'denied' events would not be 'admittances' but 'denials'. Therefore, the term must refer to the access events themselves."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'A recorded event of granted or denied entry to the building.' This definition confirms that 'admittance' in this context refers to the recorded event (the attempt/outcome), not just the physical movement."
+        ],
+        "justification": "The glossary definition of 'admittance' as a 'recorded event of granted or denied entry' clarifies that the term encompasses the outcome of the access control decision. The presence of 'denied' events in the report confirms that the system tracks access attempts (including rejections), ruling out the interpretation that it only tracks physical entries. The 'denied' state is an attribute of the access event, not a separate physical movement."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C3",
+    "requirement_id": "REQ-14"
+  }
+}

@@ -1,0 +1,3 @@
+{
+  "base_requirement_text": "When a rejection order is received for a cancellation request, System-A must raise a web alert."
+}

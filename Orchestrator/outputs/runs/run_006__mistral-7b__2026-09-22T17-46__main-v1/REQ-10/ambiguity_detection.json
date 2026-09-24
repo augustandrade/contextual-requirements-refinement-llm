@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "via CAN and LIN",
+        "ambiguity_type": "lexical",
+        "explanation": "The abbreviations 'CAN' and 'LIN' can refer to multiple communication protocols, each with different characteristics. The specific protocols intended for the TCU-ORC connection are not specified.",
+        "possible_interpretations": [
+          "The TCU is connected to the ORC using Controller Area Network (CAN) bus.",
+          "The TCU is connected to the ORC using Local Interconnect Network (LIN) bus."
+        ]
+      }
+    ]
+  }
+}

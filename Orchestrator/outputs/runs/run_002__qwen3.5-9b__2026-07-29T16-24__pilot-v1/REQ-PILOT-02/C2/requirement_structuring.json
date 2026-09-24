@@ -1,0 +1,19 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system escalates the alert to the duty physician if the patient does not show a clinical response to the medication within 10 minutes, where the escalation occurs if the condition is not met at any point up to and including the 10-minute mark from the moment of administration.",
+        "structuring_notes": [
+          "AMB-01 resolved: 'If she does not respond' replaced with 'if the patient does not show a clinical response to the medication' per supported interpretation.",
+          "AMB-02 resolved: 'within 10 minutes' expanded to 'if the condition is not met at any point up to and including the 10-minute mark from the moment of administration' per supported interpretation.",
+          "Core predicate is 'escalate' (system action) → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-PILOT-02-C2",
+    "requirement_id": "REQ-PILOT-02",
+    "context_condition": "C2"
+  }
+}

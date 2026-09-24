@@ -1,0 +1,11 @@
+{
+  "domain": "Fleet configuration management system.",
+  "glossary": [
+    {
+      "term": "navigation system",
+      "definition": "Onboard positioning and route guidance unit installed in the vehicle."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of the temporal scope for 'remains above 100 meters for more than 4 seconds' — specifically, whether the duration must be continuous without interruption or if cumulative time across interruptions is acceptable."
+        ],
+        "justification": "The requirement text uses the phrase 'remains above... for more than 4 seconds' but does not explicitly define whether interruptions in the state (e.g., dipping below 100 meters and rising again) reset the timer or if the total accumulated time counts. Without a business rule or constraint defining the continuity requirement, both interpretations (continuous vs. cumulative) remain valid based solely on the text."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07"
+  }
+}

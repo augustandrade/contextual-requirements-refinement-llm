@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "redundantly",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU sends duplicate messages over both CAN and LIN, increasing the likelihood that at least one message will be received by the ORC even if there is interference or other issues with either connection.",
+        "evidence_from_requirement": [
+          "The business rule (BR-01) specifies crash severity levels 2 and 3 as triggers for automatic emergency calls; level 1 does not trigger a call. This implies that the system relies on redundant communication to ensure continued operation in case of failures, rather than simply having two separate connections."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'redundantly' can imply duplicate transmission for increased reliability (e.g., sending the same information over both CAN and LIN)."
+        ],
+        "justification": "The business rule and glossary definition provide direct evidence that supports interpretation 2, eliminating interpretation 1 as a viable option."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-10-C2",
+    "requirement_id": "REQ-10"
+  }
+}

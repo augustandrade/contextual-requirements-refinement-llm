@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "all granted and denied admittances",
+        "ambiguity_type": "semantic",
+        "explanation": "The sentence lacks specification regarding the scope of 'admittance'. Does this refer to all physical entries to the building, or only entries via the electronic door locking system? The use of 'all' without further qualification creates ambiguity about the data included in the reports.",
+        "possible_interpretations": [
+          "All physical entries to the building, regardless of how they occurred (e.g., through the electronic door locking system or other entrances).",
+          "Only entries recorded by the electronic door locking system, excluding any other means of access to the building."
+        ]
+      }
+    ]
+  }
+}

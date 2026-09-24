@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-11-C0",
+  "requirement_id": "REQ-11",
+  "context_condition": "C0",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "All medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'medium-sized' is polysemous and lacks a clear definition in this context, leading to multiple plausible interpretations of what constitutes the size range for these vehicles.",
+        "possible_interpretations": [
+          "Medium-sized refers to cars with 4 doors.",
+          "Medium-sized includes any vehicle between compact and SUV sizes without specifying exact dimensions or weight limits."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "All medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A clear definition of 'medium-sized' with specific dimensions or weight limits."
+        ],
+        "justification": "The term 'medium-sized' is ambiguous without a defined range, leading to multiple interpretations. No context provides additional clarity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

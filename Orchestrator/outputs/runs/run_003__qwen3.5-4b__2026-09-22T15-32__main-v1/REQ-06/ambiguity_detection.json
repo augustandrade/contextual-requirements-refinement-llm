@@ -1,0 +1,27 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects an intruder or a door of the car is opened without a car key",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical connective 'or' lacks defined operator precedence relative to the preceding 'and', creating two mutually exclusive trigger conditions for the alarm.",
+        "possible_interpretations": [
+          "The alarm triggers if the interior surveillance detects an intruder AND the door is opened without a key (both conditions must be met).",
+          "The alarm triggers if the interior surveillance detects an intruder OR if the door is opened without a key (either condition is sufficient)."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "detects an intruder",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'intruder' has a fuzzy extension with no measurable boundary; it is impossible to determine if a specific person or animal qualifies as an intruder in this context.",
+        "possible_interpretations": [
+          "An intruder is any unauthorized human entering the vehicle.",
+          "An intruder is any unauthorized human or animal entering the vehicle."
+        ]
+      }
+    ]
+  }
+}

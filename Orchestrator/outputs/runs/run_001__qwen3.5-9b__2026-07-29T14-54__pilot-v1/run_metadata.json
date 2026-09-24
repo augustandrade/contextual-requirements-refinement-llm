@@ -1,0 +1,12 @@
+{
+  "run_id": "run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1",
+  "model": "qwen3.5:9b",
+  "provider": "ollama",
+  "ollama_host": "http://localhost:11434",
+  "temperature": 0.0,
+  "think": false,
+  "started_at": "2026-07-29T14:54:15.081024",
+  "corpus": "pilot-manifest.yaml",
+  "label": "pilot-v1",
+  "subset": null
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific acoustic characteristics (frequency, amplitude, duration) and generation method required for the dial tone."
+        ],
+        "justification": "The requirement text uses the term 'dial tone' without defining its specific parameters. The glossary defines 'line output level' but does not define 'dial tone'. The business rule specifies a maximum duration for maintenance (16 seconds) and replacement behavior, but does not define the initial generation parameters (e.g., frequency, amplitude). No evidence in the text or context selects one of the reported interpretations over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-08-C3",
+    "requirement_id": "REQ-08"
+  }
+}

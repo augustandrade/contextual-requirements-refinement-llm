@@ -1,0 +1,9 @@
+run,req_id,category,expected_has_ambiguity,structured_c0,structured_c1,structured_c2,structured_c3,lift_c2_c0,lift_c3_c0,delta_c2_c3,stage_c0_c1,stage_c1_c2,transition
+run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1,REQ-PILOT-02,pilot,True,0,0,1,,1,,,0,1,0→0→1→?
+run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1,REQ-PILOT-03,pilot,True,0,0,1,,1,,,0,1,0→0→1→?
+run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1,REQ-PILOT-05,pilot,True,0,1,1,,1,,,1,0,0→1→1→?
+run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1,REQ-PILOT-06,pilot,True,0,0,1,,1,,,0,1,0→0→1→?
+run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1,REQ-PILOT-02,pilot,True,0,0,1,0,1,0,1,0,1,0→0→1→0
+run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1,REQ-PILOT-03,pilot,True,0,0,1,0,1,0,1,0,1,0→0→1→0
+run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1,REQ-PILOT-05,pilot,True,0,1,1,1,1,1,0,1,0,0→1→1→1
+run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1,REQ-PILOT-06,pilot,True,0,0,1,0,1,0,1,0,1,0→0→1→0

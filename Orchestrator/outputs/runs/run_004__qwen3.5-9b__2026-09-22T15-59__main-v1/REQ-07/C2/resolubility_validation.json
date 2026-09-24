@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The pumps shut off only if the water level stays above 100 meters continuously for a duration exceeding 4 seconds.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'For a 4-second persistence window, the decision metric is the absolute minimum reading in the window.'"
+        ],
+        "justification": "The business rule defines the decision metric as the 'absolute minimum reading in the window'. If the water level dropped below 100 meters even momentarily within the 4-second window, the minimum reading would be below 100 meters, failing the condition. This eliminates the interpretation allowing for interruptions, confirming that the state must be continuous."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-07-C2",
+    "requirement_id": "REQ-07"
+  }
+}

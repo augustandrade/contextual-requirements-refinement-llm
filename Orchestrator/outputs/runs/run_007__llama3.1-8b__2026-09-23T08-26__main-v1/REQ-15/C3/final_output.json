@@ -1,0 +1,55 @@
+{
+  "execution_id": "REQ-15-C3",
+  "requirement_id": "REQ-15",
+  "context_condition": "C3",
+  "input_requirement": "The system shall process 95 percent of all queries within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.",
+        "ambiguity_type": "semantic",
+        "explanation": "The requirement contains two conditions for query processing time, but the logical operator between them is underspecified. It is unclear whether 'within 1.5 seconds' and 'must not take longer than 4 seconds' are both necessary conditions (AND), or if one condition is sufficient to meet the requirement (OR).",
+        "possible_interpretations": [
+          "The system must process at least 95% of queries within 1.5 seconds AND must not take longer than 4 seconds for any query.",
+          "The system must either process at least 95% of queries within 1.5 seconds OR ensure that no query takes longer than 4 seconds to process."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system must either process at least 95% of queries within 1.5 seconds OR ensure that no query takes longer than 4 seconds to process.",
+        "evidence_from_requirement": [
+          "The phrase 'and' is not used, but rather the word 'must', which typically implies a single condition or an OR relationship in requirements text."
+        ],
+        "evidence_from_context": [],
+        "justification": "Given the absence of 'and' and the use of 'must', it's reasonable to interpret this as an OR relationship between the two conditions."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "quality_requirement",
+        "final_statement": "The system shall process at least 95% of all queries within 1.5 seconds OR ensure that no query takes longer than 4 seconds to process.",
+        "structuring_notes": [
+          "Core predicate is 'process' (measurable property) → quality_requirement. Ambiguity AMB-01 resolved: replaced original phrasing with supported interpretation."
+        ]
+      }
+    ]
+  }
+}

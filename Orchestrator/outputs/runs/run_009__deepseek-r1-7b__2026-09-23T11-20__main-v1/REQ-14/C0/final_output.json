@@ -1,0 +1,27 @@
+{
+  "execution_id": "REQ-14-C0",
+  "requirement_id": "REQ-14",
+  "context_condition": "C0",
+  "input_requirement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous. Each term has a single plausible meaning, there are no competing antecedents, and the sentence admits only one interpretation."
+  },
+  "contextual_resolubility_analysis": null,
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.",
+        "structuring_notes": [
+          "Core predicate is 'shall generate' (system action) → functional_requirement. Original phrasing preserved."
+        ]
+      }
+    ]
+  }
+}

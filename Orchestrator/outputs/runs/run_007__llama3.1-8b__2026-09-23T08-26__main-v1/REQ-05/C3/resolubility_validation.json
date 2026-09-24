@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The PIN entered at the keypad by the customer is invalid.",
+        "evidence_from_requirement": [
+          "The requirement text states 'the system shall deny the access' in response to an invalid input, which directly implies that the action being taken (denial) is a consequence of the PIN's validity, not the card reader's."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'PIN: 4-digit personal identification number.' This definition establishes the PIN as a distinct entity from the access card, making it clear which input is being validated and denied access for."
+        ],
+        "justification": "The requirement text and controlled context provide direct evidence that the system denies access based on the validity of the PIN entered at the keypad."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-05-C3",
+    "requirement_id": "REQ-05"
+  }
+}

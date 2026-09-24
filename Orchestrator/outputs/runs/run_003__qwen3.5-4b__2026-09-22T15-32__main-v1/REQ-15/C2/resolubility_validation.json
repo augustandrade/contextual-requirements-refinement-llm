@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition or rule distinguishing 'functional user requests' from 'system health checks, error logs, or administrative commands'."
+        ],
+        "justification": "The glossary defines 'query' as a single request but does not categorize requests by origin or type. The requirement text uses the phrase 'all queries' without qualification, leaving the set of requests subject to the 95% metric undefined."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 1.5 seconds and must not take longer than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A rule specifying whether the 4-second limit applies to individual query latency or to the cumulative latency of the batch."
+        ],
+        "justification": "The requirement text presents two time constraints ('1.5 seconds' and '4 seconds') without explicit logical operators (e.g., 'and each', 'and total') or parenthetical clarification. The constraint text defines latency measurement but does not resolve the scope of the 4-second limit relative to the 95% batch metric."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C2",
+    "requirement_id": "REQ-15"
+  }
+}

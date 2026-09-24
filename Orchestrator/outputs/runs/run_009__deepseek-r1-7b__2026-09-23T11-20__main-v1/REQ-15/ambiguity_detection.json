@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "processes all queries within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'processes' is ambiguous due to its inherent polysemy, as it can mean either to handle or execute a query. This creates two distinct interpretations of the requirement's intended meaning.",
+        "possible_interpretations": [
+          "The system must process all queries within 1.5 seconds and ensure that processing time does not exceed 4 seconds for any query at any given time.",
+          "The system must process each query individually, ensuring that each is handled within 1.5 seconds without exceeding a total processing time of 4 seconds across all queries."
+        ]
+      }
+    ]
+  }
+}

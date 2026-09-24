@@ -1,0 +1,18 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C",
+        "resolubility_status": "unresolved",
+        "missing_information": "",
+        "justification": "The sentence structure does not provide sufficient context for determining the scope of 'downstream' in relation to either adding a new system or integrating existing ones. Clarification on whether 'System-A's own components are being added as downstream systems, and how System-C subscribes directly into this Reporting flow is needed."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-02-C1",
+    "requirement_id": "REQ-02"
+  }
+}

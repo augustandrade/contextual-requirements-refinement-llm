@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A adds System-B to their own downstream systems.",
+        "evidence_from_requirement": [
+          "The requirement text uses the pronoun 'their' in conjunction with 'downstream systems', which is defined as External systems that receive events from System-A. This suggests that 'their' refers to System-A, not another entity."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'downstream systems' definition — External systems that receive events from System-A."
+        ],
+        "justification": "The controlled context provides a clear definition of 'downstream systems', which implies that the pronoun 'their' in the requirement text refers to System-A, resolving the ambiguity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-02-C3",
+    "requirement_id": "REQ-02"
+  }
+}

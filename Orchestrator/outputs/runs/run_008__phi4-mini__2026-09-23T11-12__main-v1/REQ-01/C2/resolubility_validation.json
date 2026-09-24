@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "including during maintenance windows and infrastructure upgrades.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A clear definition of 'available' in the context that includes or excludes periods for system improvements, such as scheduled updates (maintenance) versus times when service is fully operational but not performing transactions due to planned enhancements like patches/corrections/upgrades."
+        ],
+        "justification": "The requirement lacks a precise explanation on whether availability encompasses maintenance and upgrades. Without this definition provided by controlled_context, the interpretation of 'available 100% of the time' remains ambiguous as it could mean either continuous operation or including periods when not processing transactions due to planned improvements but still considered available for other reasons."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01"
+  }
+}

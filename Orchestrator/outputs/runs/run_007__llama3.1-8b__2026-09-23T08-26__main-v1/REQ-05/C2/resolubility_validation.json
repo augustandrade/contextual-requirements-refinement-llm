@@ -1,0 +1,25 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The PIN entered at the keypad by the customer is invalid.",
+        "evidence_from_requirement": [
+          "The following sentence specifies that an invalid card causes immediate access denial, implying that a valid card is required for access. However, it does not specify what happens if the PIN is invalid."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'PIN: 4-digit personal identification number.' This definition focuses on the PIN as a separate input from the access card.",
+          "Business rule BR-02: 'Invalid PIN triggers retry request and does not immediately deny access.' This rule explicitly states that an invalid PIN does not trigger immediate access denial, supporting interpretation 2."
+        ],
+        "justification": "The requirement text and controlled context provide evidence to select one interpretation over the other. The glossary definition of PIN as a separate input from the access card and business rule BR-02 support the conclusion that an invalid PIN triggers a retry request rather than immediate access denial."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05"
+  }
+}

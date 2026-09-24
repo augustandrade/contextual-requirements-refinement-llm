@@ -1,0 +1,11 @@
+{
+  "domain": "In-vehicle safety system with intrusion detection and door state monitoring.",
+  "glossary": [
+    {
+      "term": "interior surveillance",
+      "definition": "Sensor subsystem for intrusion detection inside the vehicle."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

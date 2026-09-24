@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A must integrate System-B into the systems that System-A itself is connected to.",
+        "evidence_from_requirement": [
+          "System-A must add System-B to their downstream systems"
+        ],
+        "evidence_from_context": [
+          "Glossary: 'downstream systems that receive events from System-A.'"
+        ],
+        "justification": "The glossary definition of 'downstream systems' clarifies that 'their' refers to the systems directly connected to System-A, aligning with the interpretation that System-A integrates System-B into its own connected systems."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition of 'Reporting flow' – the specific data and processes included within the flow.",
+          "The conditions under which System-C can subscribe to and unsubscribe from the Reporting flow."
+        ],
+        "justification": "The requirement text lacks a definition of 'Reporting flow' and does not specify the access level or subscription/unsubscription criteria for System-C, leaving the interpretation open."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-02-C1",
+    "requirement_id": "REQ-02"
+  }
+}

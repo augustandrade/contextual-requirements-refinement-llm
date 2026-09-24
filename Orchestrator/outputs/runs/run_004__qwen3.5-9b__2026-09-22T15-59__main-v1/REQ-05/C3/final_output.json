@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-05-C3",
+  "requirement_id": "REQ-05",
+  "context_condition": "C3",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'personal identification number (PIN)'. It is unclear whether the system denies access because the card is invalid or because the PIN is invalid.",
+        "possible_interpretations": [
+          "The access card is invalid (e.g., damaged, expired, or not authorized).",
+          "The personal identification number (PIN) is invalid (e.g., incorrect or expired)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A rule or definition specifying whether the system validates the card, the PIN, or both before denying access, and which specific invalid condition triggers the denial."
+        ],
+        "justification": "The requirement text mentions both an 'access card' and a 'personal identification number (PIN)' as inputs. The pronoun 'it' could refer to either. The provided glossary defines 'PIN' but does not define 'access card' or specify the validation logic for the card. The business rules describe logging outcomes but do not define the specific conditions under which access is denied (card invalidity vs. PIN invalidity). Without explicit text or context stating that the card is validated first, or that both must be valid, the antecedent of 'it' remains ambiguous."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

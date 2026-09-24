@@ -1,0 +1,21 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file, according to the mapping rules",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The precise meaning of 'part of' – does it refer to the message content or the B-file itself?",
+          "A detailed description of the 'mapping rules' used for classification."
+        ],
+        "justification": "The phrase 'part of the B-file, according to the mapping rules' is underspecified. It's unclear whether 'part of' refers to the message content or the file itself, and the 'according to' clause lacks precision regarding the mapping rules."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03"
+  }
+}

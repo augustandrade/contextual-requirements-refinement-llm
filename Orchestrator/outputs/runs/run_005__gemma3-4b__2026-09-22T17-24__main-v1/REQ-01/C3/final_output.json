@@ -1,0 +1,57 @@
+{
+  "execution_id": "REQ-01-C3",
+  "requirement_id": "REQ-01",
+  "context_condition": "C3",
+  "input_requirement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term '100% of the time' is inherently vague. It lacks a precise definition of what constitutes 'available'. There is no measurable boundary defining what constitutes 'available' – it's impossible to determine membership definitively.  Does this mean zero downtime, or a specific, quantifiable level of uptime?",
+        "possible_interpretations": [
+          "The payment service must be operational for 100% of all time, with no downtime whatsoever, including during maintenance.",
+          "The payment service must be available for 99.999% of all time, allowing for a small, defined amount of downtime (e.g., 0.001%)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The payment service must be operational for 100% of all time, with no downtime whatsoever, including during maintenance.",
+        "evidence_from_requirement": [
+          "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'payment service' - Core transaction processing component responsible for card authorisation, settlement, and refund operations."
+        ],
+        "justification": "The glossary definition of 'payment service' as 'Core transaction processing component responsible for card authorisation, settlement, and refund operations' implies a continuous operational requirement, aligning with the interpretation of '100% of the time' as zero downtime."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "quality_requirement",
+        "final_statement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+        "structuring_notes": [
+          "Core predicate is 'available' (measurable property) → quality_requirement. Supported interpretation used to clarify '100% of the time'."
+        ]
+      }
+    ]
+  }
+}

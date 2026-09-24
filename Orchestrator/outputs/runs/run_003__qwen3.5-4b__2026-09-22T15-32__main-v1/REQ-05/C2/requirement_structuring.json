@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If the PIN is invalid, the system shall deny the access.",
+        "structuring_notes": [
+          "AMB-01 resolved: pronoun 'it' replaced with 'the PIN' per supported interpretation. Core predicate 'deny' is a system action → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05",
+    "context_condition": "C2"
+  }
+}

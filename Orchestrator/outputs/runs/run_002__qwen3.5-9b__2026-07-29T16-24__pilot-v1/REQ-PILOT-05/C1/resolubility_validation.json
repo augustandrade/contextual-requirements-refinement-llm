@@ -1,0 +1,23 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "notify the operations team",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The requirement explicitly uses the definite article 'the' before 'operations team', which grammatically implies reference to a specific, unique entity rather than any arbitrary group."
+        ],
+        "evidence_from_context": [
+          "Glossary entry: 'operations team: Group responsible for monitoring and resolving issues in the post-trade workflow.' This provides a canonical definition for the specific entity."
+        ],
+        "justification": "The use of the definite article 'the' combined with the existence of a specific glossary entry defining 'operations team' as a singular group responsible for specific duties eliminates the interpretation that it refers to 'any group of personnel'. The ambiguity is a false positive because the text and context jointly select exactly one interpretation."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-PILOT-05-C1",
+    "requirement_id": "REQ-PILOT-05"
+  }
+}

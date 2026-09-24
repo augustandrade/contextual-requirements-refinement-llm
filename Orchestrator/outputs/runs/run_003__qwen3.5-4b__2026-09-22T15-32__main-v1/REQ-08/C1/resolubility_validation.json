@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A specific definition of 'dial tone' including required acoustic characteristics (frequency, amplitude, duration) and generation method."
+        ],
+        "justification": "The requirement text uses the term 'dial tone' without specifying its acoustic parameters or generation method. The controlled context provides no glossary definition, business rules, or constraints to resolve the vagueness regarding the specific signal characteristics."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08"
+  }
+}

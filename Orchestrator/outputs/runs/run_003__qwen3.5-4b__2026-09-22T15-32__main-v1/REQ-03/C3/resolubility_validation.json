@@ -1,0 +1,33 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When System-A receives a message from Security Manager and if the message is part of the B-file",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A shall perform an action (e.g., process or store) when it receives a message from Security Manager that is part of the B-file.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "The requirement text uses the conjunction 'and' to link the reception event with the condition regarding the B-file, implying a single combined condition for the action rather than two separate sequential events."
+        ],
+        "justification": "The syntactic ambiguity between a single conditional clause and two separate clauses is resolved by the use of 'and' connecting the two phrases within the same sentence structure, indicating a unified condition."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "according to the mapping rules",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The mapping rules defined in the current document or context.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'mapping rules: A static lookup table, versioned quarterly, that maps incoming message type codes to B-file classification categories.'"
+        ],
+        "justification": "The glossary provides a canonical definition for 'mapping rules' that exists within the controlled context, eliminating the interpretation that it refers to an external, unspecified document."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-03-C3",
+    "requirement_id": "REQ-03"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "Once System-A has successfully validated a settlement request, System-A must send an acknowledge message to System-B.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; original phrasing preserved. Core predicate is 'send' (system action) → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-13-C1",
+    "requirement_id": "REQ-13",
+    "context_condition": "C1"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "domain": "Integration platform that orchestrates downstream services and reporting subscriptions.",
+  "glossary": [
+    {
+      "term": "Reporting flow",
+      "definition": "Event stream used by subscribers for operational reporting."
+    },
+    {
+      "term": "downstream systems",
+      "definition": "External systems that receive events from System-A."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Partner registration and reporting subscription are independent operations and must be specified as separate requirements."
+    }
+  ],
+  "constraints": []
+}

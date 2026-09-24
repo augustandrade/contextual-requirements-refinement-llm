@@ -1,0 +1,56 @@
+{
+  "execution_id": "REQ-01-C2",
+  "requirement_id": "REQ-01",
+  "context_condition": "C2",
+  "input_requirement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time, including during maintenance windows and infrastructure upgrades",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical connective 'including' creates an ambiguity regarding the scope of the '100% availability' claim. It is unclear whether the 100% metric applies to the entire system uptime (implying maintenance/upgrades must be instantaneous or non-existent) or if the 100% metric applies only to the periods outside of maintenance/upgrades, with the inclusion clause merely specifying that these periods are part of the overall operational context but not necessarily subject to the same strict availability metric.",
+        "possible_interpretations": [
+          "The payment service must be operational 100% of the time without any interruption, meaning maintenance windows and infrastructure upgrades must be performed in a way that does not cause any downtime (e.g., zero-downtime deployments).",
+          "The payment service must be operational 100% of the time during normal operations, and the phrase 'including during maintenance windows' is intended to clarify that these specific periods are part of the overall service scope, but the 100% availability requirement does not strictly apply to the duration of the maintenance/upgrades themselves (allowing for downtime during those specific events)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time, including during maintenance windows and infrastructure upgrades",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The requirement states: 'The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.'"
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01: 'The payment service is subject to a maximum of four scheduled maintenance windows per year, each not exceeding two hours, during which transaction processing is suspended.'"
+        ],
+        "justification": "The reported ambiguity suggests two mutually exclusive interpretations: one where 100% availability includes maintenance (implying zero downtime) and one where it excludes maintenance downtime. However, the requirement text explicitly uses the phrase 'including during maintenance windows' to assert that the 100% availability claim covers these periods. This phrasing directly supports the first interpretation (zero downtime) and contradicts the second interpretation (allowing downtime). Furthermore, the context (Business rule BR-01) explicitly states that 'transaction processing is suspended' during maintenance windows. If the requirement intended to allow downtime (the second interpretation), it would be logically inconsistent with the explicit claim of '100% availability' covering those times. The use of 'including' serves to clarify that the strict 100% metric applies even to the times when maintenance occurs, effectively ruling out the interpretation that maintenance downtime is an exception to the 100% claim. Therefore, the ambiguity is a false positive; the text actively selects the interpretation that maintenance must be zero-downtime to satisfy the '100% including...' claim."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "quality_requirement",
+        "final_statement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; original phrasing preserved. Core predicate is 'available' (measurable property of system performance) → quality_requirement."
+        ]
+      }
+    ]
+  }
+}

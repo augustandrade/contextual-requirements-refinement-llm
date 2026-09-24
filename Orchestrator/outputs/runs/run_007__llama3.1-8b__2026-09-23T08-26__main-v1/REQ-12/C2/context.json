@@ -1,0 +1,16 @@
+{
+  "domain": "Enterprise reporting system for financial operations.",
+  "glossary": [
+    {
+      "term": "report",
+      "definition": "Automated daily summary of processed transactions."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "For reporting purposes, end of day is defined as 23:59:59 UTC on the calendar day."
+    }
+  ],
+  "constraints": []
+}

@@ -1,0 +1,19 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The TCU is connected to the ORC using both CAN and LIN protocols in a redundant manner to execute the automatic emergency calls when specific crash levels are detected.",
+        "structuring_notes": [
+          "AMB-01 resolved: 'redundantly via CAN and LIN' replaced with 'using both CAN and LIN protocols in a redundant manner' per supported interpretation.",
+          "AMB-02 resolved: 'on certain crash levels' replaced with 'when specific crash levels are detected' per supported interpretation.",
+          "Core predicate is 'execute' (system action) → functional_requirement. Original phrasing preserved after ambiguity resolution."
+        ]
+      }
+    ],
+    "execution_id": "REQ-10-C2",
+    "requirement_id": "REQ-10",
+    "context_condition": "C2"
+  }
+}

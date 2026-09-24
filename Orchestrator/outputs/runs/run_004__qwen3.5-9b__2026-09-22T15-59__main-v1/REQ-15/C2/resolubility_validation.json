@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of the population boundary for 'all queries' and a rounding rule for the 95% threshold (e.g., 'at least 95%' or 'exactly 95% rounded to nearest integer')."
+        ],
+        "justification": "The requirement text mentions 'all queries' but does not define the scope of this population (e.g., per session, per day, or total system lifetime) nor does it specify how the 95% threshold is calculated (exact count vs. rounded). The glossary defines 'query' but does not address the statistical boundary for the percentage."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 1.5 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise measurable threshold defining whether 'within' implies strictly less than (<) or less than or equal to (<=) for the 1.5 second limit."
+        ],
+        "justification": "The requirement text uses 'within 1.5 seconds' without specifying if the boundary is inclusive or exclusive. The constraints define latency measurement methodology but do not resolve the inclusive/exclusive nature of the time threshold."
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "must not take longer than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise measurable threshold defining whether 'longer than' implies strictly greater than (>) or greater than or equal to (>=) for the 4 second limit."
+        ],
+        "justification": "The requirement text uses 'longer than 4 seconds' without specifying if the boundary is inclusive or exclusive. The constraints define latency measurement methodology but do not resolve the inclusive/exclusive nature of the upper bound."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C2",
+    "requirement_id": "REQ-15"
+  }
+}

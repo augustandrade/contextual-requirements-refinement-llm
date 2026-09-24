@@ -1,0 +1,33 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU is connected to the ORC using both CAN and LIN protocols in a redundant manner.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Domain context: 'Automotive crash-detection and emergency-call system (TCU/ORC)' implies a functional relationship where the TCU communicates with the ORC to trigger calls, necessitating a redundant data path."
+        ],
+        "justification": "In automotive safety architectures, redundancy in communication between the Telematics Control Unit (TCU) and the Occupant Restraint Controller (ORC) is critical for fail-safe operation. The phrase 'redundantly via CAN and LIN' structurally modifies 'connected', indicating that the connection itself utilizes both protocols to ensure reliability, rather than the TCU merely possessing both interfaces while using a single protocol for the link."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "to execute automatic emergency calls on certain crash levels",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU executes the automatic emergency calls when specific crash levels are detected.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'Automatic emergency calls are triggered for crash severity levels 2 (moderate) and 3 (severe) on the internal crash severity scale; level 1 (minor) does not trigger a call.' This rule explicitly states that the *triggering* (execution) of the call is based on the TCU's internal scale."
+        ],
+        "justification": "The business rule clarifies that the decision to trigger an emergency call is made based on the TCU's internal crash severity scale. Since the TCU is the entity monitoring the 'internal crash severity scale' and the rule describes the triggering condition, the TCU is the agent executing the call logic at the specified levels, not the ORC."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-10-C2",
+    "requirement_id": "REQ-10"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A business rule or glossary entry defining the semantic relationship between a 'rejection order' and a 'cancellation request' to determine if the rejection order is a specific response to the cancellation or a coincidental event."
+        ],
+        "justification": "The requirement text uses the preposition 'for' which is ambiguous in this context; it could mean 'pertaining to' (specific rejection) or 'in the context of' (coincidental timing). The provided controlled_context contains no business rules or glossary entries that define the nature of 'rejection orders' or their relationship to 'cancellation requests', leaving the logical binding between the event and the object underspecified."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04"
+  }
+}

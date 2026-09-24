@@ -1,0 +1,24 @@
+{
+  "domain": "Financial post-trade settlement platform executing overnight batch processing.",
+  "glossary": [
+    {
+      "term": "operations team",
+      "definition": "Group responsible for monitoring and resolving issues in the post-trade workflow."
+    },
+    {
+      "term": "settlement batch",
+      "definition": "Automated overnight process that finalises and records all pending transactions from the trading day."
+    },
+    {
+      "term": "batch completion report",
+      "definition": "Summary document generated at the end of each settlement batch run, listing total transactions processed, count of exceptions, and batch execution duration."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "The operations team must be notified via the incident management platform within 15 minutes of batch completion; the notification must include the batch completion report as an attachment, and unacknowledged alerts must be re-sent every 30 minutes until acknowledged."
+    }
+  ],
+  "constraints": []
+}

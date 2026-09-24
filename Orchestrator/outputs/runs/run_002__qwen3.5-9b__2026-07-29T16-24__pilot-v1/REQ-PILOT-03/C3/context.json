@@ -1,0 +1,24 @@
+{
+  "domain": "Human resources management system for a mid-sized enterprise.",
+  "glossary": [
+    {
+      "term": "leave request",
+      "definition": "A formal employee request for planned absence from work, submitted through the HR system."
+    },
+    {
+      "term": "automatic approval",
+      "definition": "Approval granted by the system without requiring manual review by a manager."
+    },
+    {
+      "term": "leave submission window",
+      "definition": "The period during which a leave request must be submitted relative to the requested start date; requests submitted fewer than 2 business days before the start date are routed to expedited manual review regardless of eligibility status."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Upon automatic approval or manual review routing, the system must send the employee a notification within 60 seconds stating the outcome and, in the case of manual review routing, the expected response time from the manager."
+    }
+  ],
+  "constraints": []
+}

@@ -1,0 +1,12 @@
+{
+  "run_id": "run_006__mistral-7b__2026-09-22T17-46__main-v1",
+  "model": "mistral:7b",
+  "provider": "ollama",
+  "ollama_host": "http://localhost:11434",
+  "temperature": 0.0,
+  "think": false,
+  "started_at": "2026-09-22T17:46:07.935320",
+  "corpus": "manifest.yaml",
+  "label": "main-v1",
+  "subset": null
+}

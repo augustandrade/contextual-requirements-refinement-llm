@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The adjective 'medium-sized' has a fuzzy extension: there is no precise, universally agreed boundary separating a vehicle that is 'medium-sized' from one that is 'small' or 'large'. At least one vehicle exists for which it is impossible to determine whether it belongs to the set of 'medium-sized vehicles'.",
+        "possible_interpretations": [
+          "The requirement applies to vehicles with a length between 4.5 meters and 6.0 meters.",
+          "The requirement applies to vehicles with a length between 5.0 meters and 6.5 meters."
+        ]
+      }
+    ]
+  }
+}

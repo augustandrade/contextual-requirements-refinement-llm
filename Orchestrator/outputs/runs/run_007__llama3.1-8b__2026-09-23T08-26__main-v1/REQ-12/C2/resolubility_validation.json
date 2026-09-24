@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system generates a report at 23:59 of each calendar day, regardless of whether it is a weekend or holiday.",
+        "evidence_from_requirement": [
+          "Business rule BR-01 defines end of day as 23:59:59 UTC on the calendar day, which supports interpretation 1."
+        ],
+        "evidence_from_context": [
+          "Glossary definition of 'report' emphasizes an automated daily summary of processed transactions, implying a focus on calendar days rather than working days."
+        ],
+        "justification": "The business rule and glossary definition provide direct textual support for the calendar-day interpretation, eliminating the working-day reading."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-12-C2",
+    "requirement_id": "REQ-12"
+  }
+}

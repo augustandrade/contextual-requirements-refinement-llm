@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A clear definition of 'medium-sized' in the context of vehicle classification, specifying which dimensions (length, width, height) or weight range(s) are considered medium."
+        ],
+        "justification": "The requirement text lacks a specific definition for 'medium-sized', leaving multiple plausible interpretations based on different dimensions or weight ranges."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator binding between 'and' and 'must not' — whether the system must process at least 95 percent of all queries within 1.5 seconds, but there is no guarantee that every query will be processed within this time frame; or the system must process all queries within 1.5 seconds, and it is not allowed to take longer than 4 seconds on any given query."
+        ],
+        "justification": "The requirement text provides no parentheses, explicit precedence rule, or contextual business rule to determine which logical binding was intended."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C3",
+    "requirement_id": "REQ-15"
+  }
+}

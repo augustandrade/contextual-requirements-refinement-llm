@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "all granted and denied admittances",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The scope of 'admittance' – whether it refers to all physical entries to the building or only entries recorded by the electronic door locking system."
+        ],
+        "justification": "The requirement lacks a clear definition of 'admittance', leading to two distinct interpretations regarding the scope of data included in the monthly reports."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-14-C0",
+    "requirement_id": "REQ-14"
+  }
+}

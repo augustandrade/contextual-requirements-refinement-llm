@@ -1,0 +1,23 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report shall list the specific events where entry was granted or denied (e.g., timestamps, user IDs, door IDs).",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'admittance: A recorded event of granted or denied entry to the building.'",
+          "Business rule: 'Each monthly admittance report must be deposited...'"
+        ],
+        "justification": "The glossary explicitly defines 'admittance' as a 'recorded event', which selects the interpretation involving specific events (timestamps, user IDs) rather than abstract permission records. The business rule further supports this by referring to the report as a collection of these admittances to be deposited."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C3",
+    "requirement_id": "REQ-14"
+  }
+}

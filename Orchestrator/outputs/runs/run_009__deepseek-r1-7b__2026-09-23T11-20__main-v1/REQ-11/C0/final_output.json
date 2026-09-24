@@ -1,0 +1,27 @@
+{
+  "execution_id": "REQ-11-C0",
+  "requirement_id": "REQ-11",
+  "context_condition": "C0",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous. The term 'medium-sized' refers to vehicles that are neither too small nor too large, and the phrase 'All medium-sized vehicles' clearly specifies the target group of vehicles without any competing antecedents or ambiguous interpretations."
+  },
+  "contextual_resolubility_analysis": null,
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "All medium-sized vehicles shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "No system action stated; requirement specifies an action (equipped) → functional_requirement. Original phrasing preserved."
+        ]
+      }
+    ]
+  }
+}

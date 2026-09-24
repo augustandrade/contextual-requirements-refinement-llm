@@ -1,0 +1,26 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "If the entered PIN does not match any stored valid PIN (format and value).",
+        "evidence_from_requirement": [
+          "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad.",
+          "If it is invalid, the system shall deny the access."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'PIN: 4-digit personal identification number.'",
+          "Business rule BR-01: 'Invalid card causes immediate access denial at turnstile.'"
+        ],
+        "justification": "The glossary defines 'PIN' as a 4-digit number. The requirement states that 'it' refers to the PIN entered by the customer. Business rule BR-01 specifies that an invalid card causes immediate access denial, implying that an invalid PIN triggers denial. The interpretation of 'invalid' as 'does not match any stored valid PIN (format and value)' is consistent with the system's access control logic."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05"
+  }
+}

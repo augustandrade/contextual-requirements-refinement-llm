@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A business rule or glossary entry defining the semantic relationship between 'rejection order' and 'cancellation request' to determine if the rejection order targets the cancellation request or is merely coincidental."
+        ],
+        "justification": "The requirement text uses the preposition 'for' which is ambiguous in this context. The controlled context (business_rules) specifies the behavior of the alert upon acknowledgment but does not define the triggering condition's logical binding. There is no evidence in the requirement or context to distinguish between a rejection order that specifically denies a cancellation request versus a generic rejection order occurring while a cancellation request is present. The ambiguity remains unresolved."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-04-C3",
+    "requirement_id": "REQ-04"
+  }
+}

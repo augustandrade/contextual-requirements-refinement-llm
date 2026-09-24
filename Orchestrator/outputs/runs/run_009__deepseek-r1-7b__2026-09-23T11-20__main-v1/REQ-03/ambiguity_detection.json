@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file",
+        "ambiguity_type": "referential",
+        "explanation": "The conditional phrase 'if the message is part of the B-file' can refer to multiple antecedents in scope, such as 'the B-file' or 'the message's file type'. The exact reference depends on the context within the requirement.",
+        "possible_interpretations": [
+          "If the message belongs to the B-file",
+          "If the message is part of a B-file"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining the specific physical characteristics (e.g., length in meters or weight in kg) that qualify a vehicle as 'medium-sized'."
+        ],
+        "justification": "The requirement text uses the term 'medium-sized' without a numeric threshold. The provided glossary defines 'medium-sized vehicle' only by weight (1500 kg to 2000 kg), but the ambiguity report proposes two distinct interpretations based on length and weight. Since the glossary definition is specific to weight, it does not resolve the ambiguity regarding length-based interpretations, nor does it confirm that weight-based vehicles are the sole intended category if length is the primary differentiator. No explicit quantitative threshold or scope boundary exists in the text or context to select one interpretation over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; original phrasing preserved. Core predicate 'filter' indicates a system action → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09",
+    "context_condition": "C2"
+  }
+}

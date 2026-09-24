@@ -1,0 +1,57 @@
+{
+  "execution_id": "REQ-01-C3",
+  "requirement_id": "REQ-01",
+  "context_condition": "C3",
+  "input_requirement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "maintenance windows",
+        "ambiguity_type": "referential",
+        "explanation": "The term 'maintenance windows' is ambiguous because it can refer to either the scheduled periods of downtime for maintenance (the system is unavailable) or the specific time frames during which maintenance activities are performed, implying some level of availability within those windows.",
+        "possible_interpretations": [
+          "Maintenance windows refer to the scheduled periods when the system is completely unavailable for maintenance.",
+          "Maintenance windows refer to the specific time frames during which maintenance activities are performed, allowing for some level of availability within those windows."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "maintenance windows",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Maintenance windows refer to the specific time frames during which maintenance activities are performed, allowing for some level of availability within those windows.",
+        "evidence_from_requirement": [
+          "The phrase 'including during maintenance windows' suggests that some level of availability is maintained even during these periods."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'maintenance window: Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes.' This definition implies a time frame for maintenance activities rather than complete unavailability."
+        ],
+        "justification": "The requirement text and controlled context provide sufficient information to select one interpretation over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "quality_requirement",
+        "final_statement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+        "structuring_notes": [
+          "Core predicate is 'available' (measurable property) → quality requirement. Original phrasing preserved."
+        ]
+      }
+    ]
+  }
+}

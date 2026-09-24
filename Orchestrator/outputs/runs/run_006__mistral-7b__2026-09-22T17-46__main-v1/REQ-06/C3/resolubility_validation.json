@@ -1,0 +1,27 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key,",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator binding between 'and' and 'or' — whether the alarm fires when (window damaged AND interior surveillance detects intruder OR door opened without key), or when window damaged AND (interior surveillance detects intruder OR door opened without key)."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the interior surveillance of the car detects an intruder",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Which specific window's interior surveillance system is being referred to."
+        ]
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-06-C3",
+    "requirement_id": "REQ-06"
+  }
+}

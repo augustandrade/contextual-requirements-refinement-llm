@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'redundantly' refers back to 'the TCU', but in this context, it could also refer to 'the ORC'. This creates ambiguity about which component is being referred to as redundant.",
+        "possible_interpretations": [
+          "The TCU is redundantly connected via CAN and LIN.",
+          "The ORC is redundantly connected via CAN and LIN."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining what constitutes '100% of the time' (e.g. a specific number of minutes or seconds per hour, day, or year)."
+        ],
+        "justification": "The requirement text provides no numeric threshold or explicit scope definition for '100% of the time', and no controlled context is available to supply one."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01"
+  }
+}

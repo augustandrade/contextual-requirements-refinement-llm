@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "shall contain all granted and denied admittances",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Specific criteria for what constitutes a 'granted' entry in the context of security compliance."
+        ],
+        "justification": "The requirement does not clarify whether to include only successful entries that complied with protocols or also those attempts which were subsequently rejected."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-14-C3",
+    "requirement_id": "REQ-14"
+  }
+}

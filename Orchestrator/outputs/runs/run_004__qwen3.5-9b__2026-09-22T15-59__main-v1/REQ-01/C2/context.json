@@ -1,0 +1,25 @@
+{
+  "domain": "Online payment processing platform handling real-time card authorisations for e-commerce merchants.",
+  "glossary": [
+    {
+      "term": "payment service",
+      "definition": "Core transaction processing component responsible for card authorisation, settlement, and refund operations."
+    },
+    {
+      "term": "maintenance window",
+      "definition": "Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "The payment service is subject to a maximum of four scheduled maintenance windows per year, each not exceeding two hours, during which transaction processing is suspended."
+    }
+  ],
+  "constraints": [
+    {
+      "id": "QLT-01",
+      "text": "Availability targets must be expressed as a percentage with explicit exclusions for scheduled maintenance, and must be measurable over a defined rolling period (e.g. 99.95% over any 30-day window)."
+    }
+  ]
+}

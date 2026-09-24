@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "shall contain all granted and denied admittances",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Clarification on whether 'granted' refers to successful entries that complied with security protocols or includes any entry attempt."
+        ],
+        "justification": "The requirement does not specify if the report should only include successfully compliant grants of access, excluding those subsequently rejected for other reasons."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-14-C2",
+    "requirement_id": "REQ-14"
+  }
+}

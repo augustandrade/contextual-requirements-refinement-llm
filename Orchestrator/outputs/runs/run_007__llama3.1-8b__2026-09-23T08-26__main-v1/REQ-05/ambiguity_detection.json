@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'PIN'. It is unclear which input being invalid must trigger the access denial.",
+        "possible_interpretations": [
+          "The access card inserted by the customer is invalid.",
+          "The PIN entered at the keypad by the customer is invalid."
+        ]
+      }
+    ]
+  }
+}

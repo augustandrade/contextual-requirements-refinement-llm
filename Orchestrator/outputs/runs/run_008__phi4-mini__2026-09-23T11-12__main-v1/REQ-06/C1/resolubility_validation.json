@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the interior surveillance of the car detects an intruder or a door of",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended logical relationship between detecting an intruder and unauthorized entry through the car's door (AND, OR)."
+        ],
+        "justification": "No explicit precedence rule is provided in either requirement text nor controlled context to determine if both events must occur simultaneously or just one."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-06-C1",
+    "requirement_id": "REQ-06"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The TCU connects to the ORC redundantly via CAN and LIN to automatically initiate an emergency call whenever a crash level is detected, regardless of the specific magnitude of the impact.",
+        "structuring_notes": [
+          "Core predicate is 'execute automatic emergency calls' (system action) → functional_requirement. Supported interpretation used to resolve ambiguity regarding the trigger conditions."
+        ]
+      }
+    ],
+    "execution_id": "REQ-10-C3",
+    "requirement_id": "REQ-10",
+    "context_condition": "C3"
+  }
+}

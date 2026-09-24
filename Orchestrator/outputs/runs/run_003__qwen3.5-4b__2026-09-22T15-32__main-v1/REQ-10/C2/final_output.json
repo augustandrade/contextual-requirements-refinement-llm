@@ -1,0 +1,78 @@
+{
+  "execution_id": "REQ-10-C2",
+  "requirement_id": "REQ-10",
+  "context_condition": "C2",
+  "input_requirement": "The TCU is connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls on certain crash levels.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'via CAN and LIN' is structurally ambiguous: it can modify 'connected' (implying the connection uses both protocols redundantly) or 'TCU' (implying the TCU is equipped with both interfaces, while the connection itself might use only one).",
+        "possible_interpretations": [
+          "The TCU is connected to the ORC using both CAN and LIN protocols in a redundant manner.",
+          "The TCU is equipped with both CAN and LIN interfaces, and the connection to the ORC is redundant (but the specific protocol used for the connection is not specified)."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "to execute automatic emergency calls on certain crash levels",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'certain crash levels' lacks a defined logical scope relative to the TCU's capabilities or the ORC's response, creating ambiguity about whether the TCU executes the calls at those levels, the ORC executes them, or both.",
+        "possible_interpretations": [
+          "The TCU executes the automatic emergency calls when specific crash levels are detected.",
+          "The ORC executes the automatic emergency calls when specific crash levels are detected (and the TCU's role is merely to signal the level)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU is connected to the ORC using both CAN and LIN protocols in a redundant manner.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Domain context: 'Automotive crash-detection and emergency-call system (TCU/ORC)' implies a functional relationship where the TCU communicates with the ORC to trigger calls, necessitating a redundant data path."
+        ],
+        "justification": "In automotive safety architectures, redundancy in communication between the Telematics Control Unit (TCU) and the Occupant Restraint Controller (ORC) is critical for fail-safe operation. The phrase 'redundantly via CAN and LIN' structurally modifies 'connected', indicating that the connection itself utilizes both protocols to ensure reliability, rather than the TCU merely possessing both interfaces while using a single protocol for the link."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "to execute automatic emergency calls on certain crash levels",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU executes the automatic emergency calls when specific crash levels are detected.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'Automatic emergency calls are triggered for crash severity levels 2 (moderate) and 3 (severe) on the internal crash severity scale; level 1 (minor) does not trigger a call.' This rule explicitly states that the *triggering* (execution) of the call is based on the TCU's internal scale."
+        ],
+        "justification": "The business rule clarifies that the decision to trigger an emergency call is made based on the TCU's internal crash severity scale. Since the TCU is the entity monitoring the 'internal crash severity scale' and the rule describes the triggering condition, the TCU is the agent executing the call logic at the specified levels, not the ORC."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The TCU is connected to the ORC using both CAN and LIN protocols in a redundant manner to execute the automatic emergency calls when specific crash levels are detected.",
+        "structuring_notes": [
+          "AMB-01 resolved: 'redundantly via CAN and LIN' replaced with 'using both CAN and LIN protocols in a redundant manner' per supported interpretation.",
+          "AMB-02 resolved: 'on certain crash levels' replaced with 'when specific crash levels are detected' per supported interpretation.",
+          "Core predicate is 'execute' (system action) → functional_requirement. Original phrasing preserved after ambiguity resolution."
+        ]
+      }
+    ]
+  }
+}

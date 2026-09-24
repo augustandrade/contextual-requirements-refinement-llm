@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition or business rule specifying whether 'eligible' includes only tenure/policy criteria, only disciplinary status, or a combination of both."
+        ],
+        "justification": "The requirement text uses the term 'eligible' without defining its specific scope. The glossary defines 'leave request', 'automatic approval', and 'leave submission window', but does not define 'eligible'. The business rules describe notification timing and routing logic but do not define the criteria for eligibility. Since the term is polysemous and no context defines which meaning applies, the ambiguity remains unresolved."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-PILOT-03-C3",
+    "requirement_id": "REQ-PILOT-03"
+  }
+}

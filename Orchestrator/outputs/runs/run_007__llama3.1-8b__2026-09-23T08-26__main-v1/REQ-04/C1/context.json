@@ -1,0 +1,11 @@
+{
+  "domain": "Post-trade financial platform with cancellation workflows and alerts.",
+  "glossary": [
+    {
+      "term": "System-A",
+      "definition": "User-facing alert module."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

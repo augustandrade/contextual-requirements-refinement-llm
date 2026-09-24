@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report is generated at the close of business on each day.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'report: Automated daily summary of processed transactions.'"
+        ],
+        "justification": "The glossary defines 'report' as an 'Automated daily summary of processed transactions', which aligns with the interpretation of 'at the close of business' as a daily summary. The controlled context further supports this interpretation by specifying the domain as 'Enterprise reporting system for financial operations', which typically involves closing business operations at the end of the day."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-12-C1",
+    "requirement_id": "REQ-12"
+  }
+}

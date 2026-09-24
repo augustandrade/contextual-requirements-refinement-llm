@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "for more than 4 seconds",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'more than 4 seconds' is ambiguous because it does not specify whether the measurement starts from the beginning of the time interval or from a specific point within it. This yields two possible interpretations.",
+        "possible_interpretations": [
+          "The water level must remain above 100 meters for more than 4 consecutive seconds, starting from the initial moment when the condition is first met.",
+          "The water level must remain above 100 meters for at least 4 seconds out of any 5-second window, allowing for some flexibility in timing."
+        ]
+      }
+    ]
+  }
+}

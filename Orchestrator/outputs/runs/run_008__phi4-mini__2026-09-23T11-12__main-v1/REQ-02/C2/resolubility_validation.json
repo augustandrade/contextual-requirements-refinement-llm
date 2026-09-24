@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Clarification on whether 'downstream' refers to adding a new system or integrating existing ones."
+        ],
+        "justification": "The sentence structure creates ambiguity in the attachment of PP, leading to two interpretations. Controlled context does not provide sufficient clarity for resolution without additional information about System-A's integration process with downstream systems and how it relates to both Systems-B and C within this domain."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02"
+  }
+}

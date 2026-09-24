@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The TCU sends duplicate messages over both CAN and LIN, increasing the likelihood that at least one message will be received by the ORC even if there is interference or other issues with either connection.",
+        "structuring_notes": [
+          "Core predicate is 'sends' (system action) → functional_requirement. Original phrasing preserved."
+        ]
+      }
+    ],
+    "execution_id": "REQ-10-C2",
+    "requirement_id": "REQ-10",
+    "context_condition": "C2"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'queries' is polysemous in a requirements context; it may refer to all requests of any type (including system health checks, error logs, or administrative commands) or strictly to user-initiated functional requests. The definition of the set being 95% of depends on this classification.",
+        "possible_interpretations": [
+          "95% of all requests made to the system, regardless of type or origin.",
+          "95% of all functional user requests, excluding system maintenance or diagnostic traffic."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 1.5 seconds and must not take longer than 4 seconds",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical relationship between the two time constraints is underspecified. It is unclear if the 4-second limit applies to the cumulative batch of 95% of queries or to individual queries within that batch, creating two mutually exclusive interpretations of the performance guarantee.",
+        "possible_interpretations": [
+          "The system must process 95% of queries in a single batch within 1.5 seconds, and no individual query within that batch may exceed 4 seconds.",
+          "The system must process 95% of queries in a single batch within 1.5 seconds, and the entire batch (or any other batch) must not exceed 4 seconds total."
+        ]
+      }
+    ]
+  }
+}

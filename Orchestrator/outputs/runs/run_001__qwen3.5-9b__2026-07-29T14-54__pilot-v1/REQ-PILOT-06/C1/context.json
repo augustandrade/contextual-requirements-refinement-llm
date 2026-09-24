@@ -1,0 +1,15 @@
+{
+  "domain": "Core banking transaction processing system with real-time risk controls.",
+  "glossary": [
+    {
+      "term": "minimum threshold",
+      "definition": "The minimum account balance required by the bank's credit policy for outgoing transactions."
+    },
+    {
+      "term": "pre-approved transaction type",
+      "definition": "A transaction category authorised in advance by the account holder's risk profile."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

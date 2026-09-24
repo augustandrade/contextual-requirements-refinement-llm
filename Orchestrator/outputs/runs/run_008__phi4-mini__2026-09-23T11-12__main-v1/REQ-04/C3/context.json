@@ -1,0 +1,20 @@
+{
+  "domain": "Post-trade financial platform with cancellation workflows and alerts.",
+  "glossary": [
+    {
+      "term": "System-A",
+      "definition": "User-facing alert module."
+    },
+    {
+      "term": "alert severity level",
+      "definition": "Classification label (INFO, WARNING, CRITICAL) assigned to a web alert to indicate urgency and drive visual presentation on the operator dashboard."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "A web alert raised for a rejection order must be classified as CRITICAL severity, remain visible on the operator dashboard until explicitly acknowledged, and generate a persistent audit log entry upon acknowledgment."
+    }
+  ],
+  "constraints": []
+}

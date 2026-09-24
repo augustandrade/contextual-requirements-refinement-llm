@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A domain rule or glossary entry defining the architectural implication of 'connected redundantly via CAN and LIN' (i.e., whether 'via' distributes over the list of protocols to imply separate links, or applies to the single redundant link)."
+        ],
+        "justification": "The requirement text uses the phrase 'via CAN and LIN' without explicit structural markers (such as 'separate links' or 'a single link using both'). The controlled context provides definitions for TCU and ORC but lacks business rules or constraints specifying the physical topology of the redundant connection. Without a rule stating that 'redundantly via X and Y' implies separate links for X and Y, or a rule stating it implies a dual-protocol single link, the syntactic ambiguity regarding the scope of 'via' cannot be resolved."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10"
+  }
+}

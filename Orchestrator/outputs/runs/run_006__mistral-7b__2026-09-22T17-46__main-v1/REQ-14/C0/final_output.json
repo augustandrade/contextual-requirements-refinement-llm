@@ -1,0 +1,43 @@
+{
+  "execution_id": "REQ-14-C0",
+  "requirement_id": "REQ-14",
+  "context_condition": "C0",
+  "input_requirement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "monthly reports",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'monthly' lacks a precise definition, as it does not specify the exact number of days in each month or whether the report should be generated at the beginning, end, or both ends of each month.",
+        "possible_interpretations": [
+          "Reports are generated on the first day of every calendar month.",
+          "Reports are generated on the last day of every calendar month.",
+          "Reports are generated at both the start and end of every calendar month."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "monthly reports",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of 'monthly', specifying the exact number of days in each month or whether the report should be generated at the beginning, end, or both ends of each month."
+        ],
+        "justification": "The requirement text provides no explicit scope definition for 'monthly'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

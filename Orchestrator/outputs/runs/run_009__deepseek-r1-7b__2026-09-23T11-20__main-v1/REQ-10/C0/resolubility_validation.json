@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Which component ('the TCU' or 'the ORC') is referred to as redundant."
+        ],
+        "justification": "The requirement introduces two candidate referents without any textual cue to select one over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C0",
+    "requirement_id": "REQ-10"
+  }
+}

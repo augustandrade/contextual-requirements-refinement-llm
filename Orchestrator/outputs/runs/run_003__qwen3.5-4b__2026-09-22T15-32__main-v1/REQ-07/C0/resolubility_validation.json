@@ -1,0 +1,21 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of 'remains' regarding continuous versus sustained states with brief interruptions.",
+          "A precise definition of 'more than 4 seconds' regarding strict inequality versus inclusive boundaries."
+        ],
+        "justification": "The requirement text uses vague temporal and logical terms ('remains', 'more than') without providing quantitative thresholds, explicit scope boundaries, or operator-binding rules to distinguish between the two interpretations. No controlled context is available to resolve these ambiguities."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07"
+  }
+}

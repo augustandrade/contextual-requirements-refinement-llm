@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The pronoun 'redundantly' refers back to either 'the TCU' or 'the ORC'. No additional context clarifies which component is redundant."
+        ],
+        "justification": "The requirement introduces two candidate antecedents for the pronoun 'redundantly', and no textual cue selects one over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C3",
+    "requirement_id": "REQ-10"
+  }
+}

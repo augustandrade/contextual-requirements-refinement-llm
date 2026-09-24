@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the interior surveillance of the car detects an intruder or a door of the car is opened without a car key,",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'a window of the car is damaged' and 'a door of the car is opened without a car key'. It is unclear which condition must trigger the alarm.",
+        "possible_interpretations": [
+          "The safety system raises an alarm if a window of the car is damaged and an intruder is detected by the interior surveillance.",
+          "The safety system raises an alarm if a door of the car is opened without a car key, regardless of any damage to windows or presence of an intruder."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU connects to the ORC redundantly via CAN and LIN, and automatically initiates an emergency call whenever a crash level is detected, regardless of the specific magnitude of the impact.",
+        "evidence_from_requirement": [
+          "The TCU is connected to the ORC redundantly via CAN and LIN",
+          "to execute automatic emergency calls"
+        ],
+        "evidence_from_context": [
+          "Glossary: 'TCU: Telematics Control Unit.' and 'ORC: Occupant Restraint Controller.'",
+          "Business rule BR-01: 'An eCall session must maintain an open voice channel for a minimum of 120 seconds; if the connection is dropped before this threshold, the TCU must automatically retry up to three times with a 30-second interval between attempts.'"
+        ],
+        "justification": "The phrase 'on certain crash levels' is interpreted as 'regardless of the specific magnitude of the impact' based on the business rule BR-01, which mandates automatic retries irrespective of the crash level. The glossary definitions provide context for the TCU and ORC, clarifying their roles in the eCall process."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-10-C3",
+    "requirement_id": "REQ-10"
+  }
+}

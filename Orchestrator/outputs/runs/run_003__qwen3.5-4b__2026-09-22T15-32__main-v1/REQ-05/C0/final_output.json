@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-05-C0",
+  "requirement_id": "REQ-05",
+  "context_condition": "C0",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: the 'access card' and the 'personal identification number (PIN)'. It is unclear whether the denial condition applies when the card is invalid, the PIN is invalid, or both.",
+        "possible_interpretations": [
+          "The system denies access if the access card is invalid.",
+          "The system denies access if the PIN is invalid."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific antecedent of the pronoun 'it' — whether it refers to the 'access card' or the 'personal identification number (PIN)'."
+        ],
+        "justification": "The requirement text presents two distinct entities ('access card' and 'PIN') and uses the pronoun 'it' without any textual cue (such as a preceding clause defining the subject or a possessive marker) to select one antecedent over the other. No controlled context is available to resolve this referential ambiguity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

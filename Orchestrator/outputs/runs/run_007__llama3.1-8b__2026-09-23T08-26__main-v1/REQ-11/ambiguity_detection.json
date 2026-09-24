@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "explanation": "The adjective 'medium-sized' is polysemous and lacks a clear definition in the context of vehicle classification. It can refer to various dimensions (length, width, height) or weight ranges, leading to multiple plausible interpretations.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4-6 meters are considered medium-sized.",
+          "Vehicles weighing between 1,500-3,000 kg are considered medium-sized."
+        ]
+      }
+    ]
+  }
+}

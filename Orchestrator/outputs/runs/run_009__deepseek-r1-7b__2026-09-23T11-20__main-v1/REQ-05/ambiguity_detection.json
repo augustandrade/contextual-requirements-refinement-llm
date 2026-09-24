@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid, the system shall deny the access.",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' refers to either 'access card' or 'PIN'. The requirement does not specify which one should trigger the denial.",
+        "possible_interpretations": [
+          "If the access card is invalid, the system denies access.",
+          "If the entered PIN is invalid, the system denies access."
+        ]
+      }
+    ]
+  }
+}

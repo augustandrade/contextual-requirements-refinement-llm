@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file, according to the mapping rules.",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system checks if the received message matches any entry in the B-file based on a predefined set of mapping rules (e.g., exact match, substring match).",
+        "evidence_from_requirement": [
+          "The phrase 'according to the mapping rules' suggests that the condition is evaluated against a predefined set of rules."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'mapping rules: A static lookup table, versioned quarterly, that maps incoming message type codes to B-file classification categories.' This definition implies a fixed and explicit rule set for matching messages to B-files."
+        ],
+        "justification": "The requirement text and controlled context provide sufficient information to select one interpretation over the other. The phrase 'according to the mapping rules' suggests a predefined evaluation process, which is consistent with the glossary's description of mapping rules as a static lookup table."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-03-C3",
+    "requirement_id": "REQ-03"
+  }
+}

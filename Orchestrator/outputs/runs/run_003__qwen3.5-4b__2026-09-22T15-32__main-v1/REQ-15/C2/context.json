@@ -1,0 +1,16 @@
+{
+  "domain": "Query-processing system with a performance SLA.",
+  "glossary": [
+    {
+      "term": "query",
+      "definition": "A single request submitted to the system for processing."
+    }
+  ],
+  "business_rules": [],
+  "constraints": [
+    {
+      "id": "QLT-01",
+      "text": "Latency is measured from the instant the system receives the complete request payload to the instant the last byte of the response is transmitted, under a sustained load of up to 500 concurrent queries."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "ability to filter network traffic between",
+        "ambiguity_type": "lexical",
+        "explanation": "The verb 'ability' can be interpreted as either a noun (a capability or feature) or an adjective (having the ability). This creates two different interpretations of the requirement.",
+        "possible_interpretations": [
+          "The routing switches have the capability to filter network traffic between data-plane interfaces and management data traffic.",
+          "The routing switches possess the ability to filter network traffic between data-plane interfaces and management data traffic."
+        ]
+      }
+    ]
+  }
+}

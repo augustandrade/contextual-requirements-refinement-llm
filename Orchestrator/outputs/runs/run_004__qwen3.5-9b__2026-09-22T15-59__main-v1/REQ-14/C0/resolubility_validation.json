@@ -1,0 +1,30 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The phrase 'all granted and denied admittances' explicitly enumerates two distinct categories of events ('granted' and 'denied'). The logical connective 'and' functions to conjoin these two specific sets within the scope of 'all', mandating the inclusion of both types. There is no ambiguity regarding whether the report must contain events of both types; the text requires both."
+        ],
+        "evidence_from_context": [],
+        "justification": "The reported ambiguity suggests a conflict between listing every event versus aggregating data. However, the text 'all granted and denied admittances' clearly mandates the inclusion of both categories. The interpretation that it implies a selection excluding other types is invalid because the text explicitly defines the scope as 'granted and denied'. The interpretation that it requires a count rather than a list is unsupported by the text which specifies 'reports containing... admittances', implying a list of instances. Thus, the ambiguity is a false positive; the requirement clearly demands a list of all events of both specified types."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "all granted and denied admittances",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition or business rule clarifying whether 'admittances' refers to 'access attempts' (including denied ones) or strictly to 'successful entries' (granted only), given the text explicitly mentions 'denied' admittances which implies the term must cover denied events."
+        ],
+        "justification": "The term 'admittances' is used in a context that includes 'denied' events. If 'admittance' strictly means 'successful entry', then 'denied admittance' is an oxymoron or requires a specific definition of 'denied admittance' as a distinct event type. The requirement text does not define 'admittance'. Without a glossary entry or business rule defining 'admittance' in this specific domain (e.g., 'admittance = access attempt' vs 'admittance = successful entry'), it is unclear if the report should list 'denied' events as 'denied admittances' (implying 'admittance' covers attempts) or if the requirement is internally inconsistent. The missing information is the domain definition of 'admittance'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-14-C0",
+    "requirement_id": "REQ-14"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Generate a standard 400 Hz sine wave dial tone with a duration of 2 seconds.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Constraint CST-01: 'System follows North American telephony standard using simultaneous 350 Hz and 440 Hz dial tone.'"
+        ],
+        "justification": "The constraint CST-01 explicitly defines the acoustic characteristics (350 Hz and 440 Hz) and implies the standard nature of the signal, selecting the first interpretation over the vague second option which relies on unspecified local standards."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-08-C2",
+    "requirement_id": "REQ-08"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-11-C2",
+  "requirement_id": "REQ-11",
+  "context_condition": "C2",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' lacks a measurable boundary; it is impossible to determine which specific vehicle sizes qualify as 'medium' without an external standard or definition.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4.5 meters and 5.5 meters.",
+          "Vehicles with a weight between 2,000 kg and 3,500 kg."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining the specific physical characteristics (e.g., length in meters or weight in kg) that qualify a vehicle as 'medium-sized'."
+        ],
+        "justification": "The requirement text uses the term 'medium-sized' without a numeric threshold. The provided glossary defines 'medium-sized vehicle' only by weight (1500 kg to 2000 kg), but the ambiguity report proposes two distinct interpretations based on length and weight. Since the glossary definition is specific to weight, it does not resolve the ambiguity regarding length-based interpretations, nor does it confirm that weight-based vehicles are the sole intended category if length is the primary differentiator. No explicit quantitative threshold or scope boundary exists in the text or context to select one interpretation over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

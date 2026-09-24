@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system shall log all exceptions raised during the nightly settlement batch and notify the operations team.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; original phrasing preserved. Core predicate 'log' and 'notify' are system actions → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-PILOT-05-C1",
+    "requirement_id": "REQ-PILOT-05",
+    "context_condition": "C1"
+  }
+}

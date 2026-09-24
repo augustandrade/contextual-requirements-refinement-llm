@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A domain rule or glossary entry defining the architectural implication of 'connected redundantly via CAN and LIN' to distinguish between a single dual-protocol link versus two separate protocol-specific redundant links."
+        ],
+        "justification": "The requirement text presents a syntactic ambiguity regarding the scope of the prepositional phrase 'via CAN and LIN'. Without a controlled context containing business rules that define how 'redundantly via [Protocol A and Protocol B]' is interpreted in this specific domain (e.g., whether it implies a single physical link carrying both protocols or two distinct physical links), there is no evidence to select one interpretation over the other. The text alone does not resolve whether the redundancy applies to the connection entity (single link) or the communication path (two links)."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C0",
+    "requirement_id": "REQ-10"
+  }
+}

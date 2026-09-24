@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'admittances' is polysemous and can refer either to the act of entry itself (events) or to the state of being allowed (permissions/records). This creates ambiguity regarding whether the report should list the specific events of entry or the status records associated with those events.",
+        "possible_interpretations": [
+          "The report shall list the specific events where entry was granted or denied (e.g., timestamps, user IDs, door IDs).",
+          "The report shall list the permission records or status flags indicating whether entry was allowed or refused."
+        ]
+      }
+    ]
+  }
+}

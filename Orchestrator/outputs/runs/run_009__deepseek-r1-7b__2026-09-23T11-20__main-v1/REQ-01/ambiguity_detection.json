@@ -1,0 +1,6 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous. Each term has a single plausible meaning ('available', '100%', 'during maintenance windows', and 'infrastructure upgrades') with no competing antecedents or ambiguous extensions."
+  }
+}

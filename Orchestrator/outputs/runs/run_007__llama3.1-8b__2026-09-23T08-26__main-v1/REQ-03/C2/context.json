@@ -1,0 +1,20 @@
+{
+  "domain": "Post-trade financial platform with message routing and B-file classification.",
+  "glossary": [
+    {
+      "term": "Security Manager",
+      "definition": "Workflow authority that sends approval and rejection orders."
+    },
+    {
+      "term": "B-file",
+      "definition": "Reference file used for message classification and routing."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "When System-A receives a B-file message from Security Manager according to the mapping rules, System-A must forward the message to the downstream processing queue and log the event in the Audit Trail."
+    }
+  ],
+  "constraints": []
+}

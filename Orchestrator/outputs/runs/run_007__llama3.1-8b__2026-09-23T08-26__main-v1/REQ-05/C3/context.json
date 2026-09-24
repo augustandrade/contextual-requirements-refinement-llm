@@ -1,0 +1,20 @@
+{
+  "domain": "Corporate physical access control system with badge and PIN authentication.",
+  "glossary": [
+    {
+      "term": "PIN",
+      "definition": "4-digit personal identification number."
+    },
+    {
+      "term": "card reader timeout",
+      "definition": "Maximum duration of 3 seconds the card reader waits for a valid card signal before returning an unreadable status to the access control system."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Each access attempt at the turnstile must be logged with a timestamp, turnstile identifier, and outcome code (granted, denied, timeout) in the central access log within 1 second of the event."
+    }
+  ],
+  "constraints": []
+}

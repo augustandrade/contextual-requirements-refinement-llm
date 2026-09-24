@@ -1,0 +1,33 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A registers System-B in its own list of downstream systems (administrative inclusion).",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'downstream systems: External systems that receive events from System-A.' This definition implies a relationship where System-A is the source and System-B is the receiver, consistent with System-A managing the list of such systems."
+        ],
+        "justification": "The glossary defines 'downstream systems' as external systems receiving events from System-A. This implies System-A is the owner/manager of the set of downstream systems. The phrase 'add System-B to their downstream systems' logically means System-A includes System-B in its own managed set of receivers. The alternative interpretation (System-A connecting to System-B as a downstream system) is semantically redundant or incorrect because 'downstream' describes the role relative to the source (System-A), not the connection action itself. The lexical ambiguity of 'add' (register vs connect) is resolved by the domain definition of 'downstream systems' which frames the relationship as a registration of a receiver role."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-C registers an interest to receive notifications from the Reporting flow (passive consumption).",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'Reporting flow subscriptions use a push delivery model; the platform delivers events to registered subscriber endpoints...'"
+        ],
+        "justification": "The business rule explicitly states that 'Reporting flow subscriptions use a push delivery model' and that the platform 'delivers events to registered subscriber endpoints'. This confirms that 'subscribe' in this context means registering an interest to receive notifications (passive consumption). The alternative interpretation of 'active participation' (contributing data or managing state) is ruled out because the rule describes a 'push delivery model' to 'registered subscriber endpoints', which is characteristic of a consumer role, not an active participant or producer role."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-02-C3",
+    "requirement_id": "REQ-02"
+  }
+}

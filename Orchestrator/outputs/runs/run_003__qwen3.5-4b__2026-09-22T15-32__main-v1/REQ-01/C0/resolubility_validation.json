@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining the scope of 'time' (e.g., business hours vs. 24/7) and the exclusion criteria for 'downtime' during maintenance windows and infrastructure upgrades."
+        ],
+        "justification": "The requirement text uses the phrase '100% of the time' without defining what constitutes 'time' or explicitly excluding maintenance windows from the availability metric. The controlled context is absent, so no glossary or business rules exist to clarify the definition of availability or the treatment of scheduled downtime."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01"
+  }
+}

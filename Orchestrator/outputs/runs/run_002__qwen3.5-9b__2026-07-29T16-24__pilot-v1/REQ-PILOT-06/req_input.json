@@ -1,0 +1,3 @@
+{
+  "base_requirement_text": "The system shall block the transaction if the account balance falls below the minimum threshold and the transaction type is not pre-approved or the account has been flagged for fraud review."
+}

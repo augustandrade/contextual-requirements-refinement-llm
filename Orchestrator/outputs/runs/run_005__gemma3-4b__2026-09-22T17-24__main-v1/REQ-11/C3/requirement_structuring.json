@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "All vehicles with a length between 4.5 and 6 meters shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "AMB-01 resolved: 'medium-sized vehicles' replaced with 'vehicles with a length between 4.5 and 6 meters' per supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-11-C3",
+    "requirement_id": "REQ-11",
+    "context_condition": "C3"
+  }
+}

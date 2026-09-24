@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The pumps shut off only if the water level stays above 100 meters continuously for a duration exceeding 4 seconds.",
+        "structuring_notes": [
+          "AMB-01 resolved: ambiguous phrasing replaced with supported interpretation specifying continuous duration condition."
+        ]
+      }
+    ],
+    "execution_id": "REQ-07-C2",
+    "requirement_id": "REQ-07",
+    "context_condition": "C2"
+  }
+}

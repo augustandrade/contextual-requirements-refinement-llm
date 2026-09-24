@@ -1,0 +1,3 @@
+{
+  "base_requirement_text": "Once System-A has successfully validated a settlement request, System-A must send an acknowledge message to System-B."
+}

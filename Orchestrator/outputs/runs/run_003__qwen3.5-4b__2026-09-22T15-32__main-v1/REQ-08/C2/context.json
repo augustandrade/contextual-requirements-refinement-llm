@@ -1,0 +1,11 @@
+{
+  "domain": "Digital telephony exchange system.",
+  "glossary": [],
+  "business_rules": [],
+  "constraints": [
+    {
+      "id": "CST-01",
+      "text": "System follows North American telephony standard using simultaneous 350 Hz and 440 Hz dial tone."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "all granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Only entries recorded by the electronic door locking system, excluding any other means of access to the building.",
+        "evidence_from_requirement": [
+          "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building."
+        ],
+        "evidence_from_context": [
+          "Business rule: Monthly admittance reports shall cover all access events recorded within the calendar month and must include the event timestamp, the access point identifier, and the outcome (granted or denied)."
+        ],
+        "justification": "The business rule BR-01 explicitly states that the monthly admittance reports cover 'all access events recorded within the calendar month' and specifies the data elements included. This clarifies that 'admittance' refers to events recorded by the electronic door locking system, excluding other access points."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C2",
+    "requirement_id": "REQ-14"
+  }
+}

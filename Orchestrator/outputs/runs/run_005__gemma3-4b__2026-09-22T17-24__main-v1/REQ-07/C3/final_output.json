@@ -1,0 +1,57 @@
+{
+  "execution_id": "REQ-07-C3",
+  "requirement_id": "REQ-07",
+  "context_condition": "C3",
+  "input_requirement": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'above' is inherently vague. It doesn't specify a precise upper limit or tolerance. The acceptable range of values around 100 meters is undefined, leading to uncertainty about when the condition is met.",
+        "possible_interpretations": [
+          "The water level must be strictly greater than 100 meters.",
+          "The water level can be within a tolerance of +/- 0.5 meters of 100 meters."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The water level must be strictly greater than 100 meters.",
+        "evidence_from_requirement": [
+          "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'water level' - Sensor reading sampled continuously."
+        ],
+        "justification": "The requirement explicitly states 'remains above', implying a strict greater-than condition, consistent with the definition of 'water level' as a continuous sensor reading. The vagueness is resolved by the explicit wording of the requirement."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "Shut off the pumps if the water level must be strictly greater than 100 meters for more than 4 seconds.",
+        "structuring_notes": [
+          "AMB-01 resolved: 'remains above' replaced with 'must be strictly greater than' per supported interpretation."
+        ]
+      }
+    ]
+  }
+}

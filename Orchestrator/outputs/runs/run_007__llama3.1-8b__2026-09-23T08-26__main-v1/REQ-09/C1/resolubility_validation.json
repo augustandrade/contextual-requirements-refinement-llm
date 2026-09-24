@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The routing switch filters network traffic from data-plane interfaces towards management data traffic (e.g., interface A to management network).",
+        "evidence_from_requirement": [
+          "The phrase 'between' can be interpreted as indicating a direction, and the presence of 'management data traffic' suggests that the filtering is being done in relation to this type of traffic."
+        ],
+        "evidence_from_context": [
+          "Domain: Industrial railway communication network using routing switches. This context implies that management data traffic is likely to be distinct from data-plane interfaces, supporting the interpretation that filtering is being done in one direction."
+        ],
+        "justification": "The requirement text and controlled context support the interpretation that the routing switch filters network traffic from data-plane interfaces towards management data traffic."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-09-C1",
+    "requirement_id": "REQ-09"
+  }
+}

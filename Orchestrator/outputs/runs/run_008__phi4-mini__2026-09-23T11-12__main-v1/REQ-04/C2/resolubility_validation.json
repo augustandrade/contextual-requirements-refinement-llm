@@ -1,0 +1,18 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "when a rejection order is received for a cancellation request,",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [],
+        "justification": "The requirement text does not specify that System-A should raise an alert on any type of 'rejection' but only in the context related to processing specific types of orders, namely those involving cancellations."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04"
+  }
+}

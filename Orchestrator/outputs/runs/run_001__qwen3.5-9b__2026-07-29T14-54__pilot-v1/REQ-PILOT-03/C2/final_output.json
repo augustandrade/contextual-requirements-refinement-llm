@@ -1,0 +1,56 @@
+{
+  "execution_id": "REQ-PILOT-03-C2",
+  "requirement_id": "REQ-PILOT-03",
+  "context_condition": "C2",
+  "input_requirement": "The system shall automatically approve the leave request if the employee is eligible.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'eligible' is polysemous in the context of leave requests. It can refer to meeting the minimum tenure or policy criteria, or it can refer to having no pending disciplinary actions or other disqualifying factors.",
+        "possible_interpretations": [
+          "The employee has met the minimum service duration or policy criteria required to take leave.",
+          "The employee has no pending disciplinary actions or other disqualifying factors that would prevent leave approval."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The employee has met the minimum service duration or policy criteria required to take leave, AND has no pending disciplinary actions or other disqualifying factors that would prevent leave approval.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary definition for 'eligible': 'An employee is eligible for automatic leave approval when ALL of the following conditions are simultaneously met: (a) accrued leave balance is at least equal to the number of days requested; (b) no active disciplinary action on record; (c) the requested dates do not overlap a mandatory attendance window; and (d) the direct manager has not placed a temporary approval hold on the employee''s account.'",
+          "Business rule BR-01: 'Automatic approval is granted when all four eligibility conditions defined in the glossary entry for 'eligible' are satisfied.'"
+        ],
+        "justification": "The glossary explicitly defines 'eligible' as requiring ALL four conditions (including tenure/policy criteria AND disciplinary status) to be met simultaneously. The business rule confirms that automatic approval depends on this complete set of conditions. Therefore, the ambiguity between 'meeting tenure criteria' and 'having no disciplinary actions' is resolved: both are required components of the single definition of 'eligible' provided in the context."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system shall automatically approve the leave request if the employee has met the minimum service duration or policy criteria required to take leave, AND has no pending disciplinary actions or other disqualifying factors that would prevent leave approval.",
+        "structuring_notes": [
+          "AMB-01 resolved: ambiguous fragment 'if the employee is eligible' replaced with detailed supported interpretation defining eligibility criteria."
+        ]
+      }
+    ]
+  }
+}

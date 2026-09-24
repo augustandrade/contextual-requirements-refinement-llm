@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "notify the operations team",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition or reference to a specific, uniquely identified 'operations team' entity in the system's organizational model or glossary to distinguish it from a generic group of personnel."
+        ],
+        "justification": "The requirement text mentions 'the operations team' but provides no antecedent or contextual definition to select between a specific organizational entity and a generic group of personnel. The controlled_context is absent, so no glossary or business rules are available to resolve this referential ambiguity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-PILOT-05-C0",
+    "requirement_id": "REQ-PILOT-05"
+  }
+}

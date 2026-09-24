@@ -1,0 +1,11 @@
+{
+  "domain": "Enterprise reporting system for financial operations.",
+  "glossary": [
+    {
+      "term": "report",
+      "definition": "Automated daily summary of processed transactions."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

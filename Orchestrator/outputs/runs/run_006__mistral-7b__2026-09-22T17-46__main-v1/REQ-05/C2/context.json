@@ -1,0 +1,20 @@
+{
+  "domain": "Corporate physical access control system with badge and PIN authentication.",
+  "glossary": [
+    {
+      "term": "PIN",
+      "definition": "4-digit personal identification number."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Invalid card causes immediate access denial at turnstile."
+    },
+    {
+      "id": "BR-02",
+      "rule": "Invalid PIN triggers retry request and does not immediately deny access."
+    }
+  ],
+  "constraints": []
+}

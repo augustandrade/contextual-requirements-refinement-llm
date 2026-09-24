@@ -1,0 +1,20 @@
+{
+  "domain": "Dam water level control system with automatic pump shutdown.",
+  "glossary": [
+    {
+      "term": "water level",
+      "definition": "Sensor reading sampled continuously."
+    },
+    {
+      "term": "pump shutdown sequence",
+      "definition": "Ordered procedure for stopping active pumps, consisting of a ramp-down phase followed by a hard stop command issued to each pump controller."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "On receiving a shutdown command, each pump must complete its ramp-down phase within 2 seconds and must not be restarted for a minimum hold-off period of 60 seconds after the hard stop."
+    }
+  ],
+  "constraints": []
+}

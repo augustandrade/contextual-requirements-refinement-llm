@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "for more than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Whether the measurement starts from the beginning of the time interval or from a specific point within it."
+        ],
+        "justification": "The requirement text does not specify how to measure 'more than 4 seconds', leaving two possible interpretations."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07"
+  }
+}

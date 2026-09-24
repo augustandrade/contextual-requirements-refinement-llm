@@ -1,0 +1,54 @@
+{
+  "execution_id": "REQ-11-C2",
+  "requirement_id": "REQ-11",
+  "context_condition": "C2",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The adjective 'medium-sized' has a fuzzy extension: there is no precise, universally agreed boundary separating a vehicle that is 'medium-sized' from one that is 'small' or 'large'. At least one vehicle exists for which it is impossible to determine whether it belongs to the set of 'medium-sized vehicles'.",
+        "possible_interpretations": [
+          "The requirement applies to vehicles with a length between 4.5 meters and 6.0 meters.",
+          "The requirement applies to vehicles with a length between 5.0 meters and 6.5 meters."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The glossary explicitly defines 'medium-sized vehicle' as: 'Vehicle with gross weight strictly between 1500 kg and 2000 kg'."
+        ],
+        "evidence_from_context": [],
+        "justification": "The ambiguity detection report claims 'medium-sized' has a fuzzy extension and lacks a precise boundary. However, the controlled context (glossary) provides a precise, non-fuzzy definition based on gross weight (1500 kg < weight < 2000 kg). The reported interpretations based on vehicle length are unsupported by the text, as the requirement and context define the category by weight, not length. Therefore, the ambiguity is a false positive; the set of 'medium-sized vehicles' is precisely defined."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "All medium-sized vehicles shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; no text substitution required. Core predicate 'be equipped with' (system action) → functional_requirement."
+        ]
+      }
+    ]
+  }
+}

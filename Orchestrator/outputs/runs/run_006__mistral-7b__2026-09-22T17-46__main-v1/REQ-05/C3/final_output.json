@@ -1,0 +1,55 @@
+{
+  "execution_id": "REQ-05-C3",
+  "requirement_id": "REQ-05",
+  "context_condition": "C3",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'PIN'. It is unclear which input being invalid must trigger the access denial.",
+        "possible_interpretations": [
+          "The access card is invalid (e.g., stolen, expired, or not registered).",
+          "The PIN entered at the keypad is incorrect."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The PIN entered at the keypad is incorrect.",
+        "evidence_from_requirement": [
+          "The requirement text specifies that the customer enters a PIN 'at the keypad', implying that the PIN is the input being checked for validity."
+        ],
+        "evidence_from_context": [],
+        "justification": "The requirement text specifies that the customer enters a PIN at the keypad, which implies that the PIN is the input being checked for validity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "If the PIN entered at the keypad is incorrect, the system shall deny the access.",
+        "structuring_notes": [
+          "Core predicate is 'deny' (system action) → functional_requirement. Ambiguity AMB-01 resolved: pronoun 'it' replaced with 'the PIN entered at the keypad' per supported interpretation."
+        ]
+      }
+    ]
+  }
+}

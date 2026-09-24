@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "via CAN and LIN",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific communication protocols intended for the TCU-ORC connection."
+        ],
+        "justification": "The requirement text does not specify which CAN or LIN protocol is used for the TCU-ORC connection."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C3",
+    "requirement_id": "REQ-10"
+  }
+}

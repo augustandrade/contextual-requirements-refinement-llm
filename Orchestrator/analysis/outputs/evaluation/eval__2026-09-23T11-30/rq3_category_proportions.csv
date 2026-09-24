@@ -1,0 +1,8 @@
+run,model,category,correct,total,proportion
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,qwen3.5-4b,unknown,6,9,0.6667
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,qwen3.5-9b,unknown,5,9,0.5556
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,gemma3-4b,unknown,3,9,0.3333
+run_006__mistral-7b__2026-09-22T17-46__main-v1,mistral-7b,unknown,2,9,0.2222
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,llama3.1-8b,unknown,3,9,0.3333
+run_008__phi4-mini__2026-09-23T11-12__main-v1,phi4-mini,unknown,5,9,0.5556
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,deepseek-r1-7b,unknown,3,9,0.3333

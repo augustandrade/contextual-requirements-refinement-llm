@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of the population 'all queries' (e.g., total count, sampling method) and a rounding rule for the 95% threshold (e.g., strict equality, ceiling, or floor)."
+        ],
+        "justification": "The requirement text mentions 'all queries' but does not define the total population size or a rounding mechanism for the percentage. Without a business rule or constraint specifying how to handle fractional counts or define the exact subset, the boundary for '95 percent' remains indeterminate."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 1.5 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise measurable threshold defining whether 'within' implies strictly less than (<) or less than or equal to (<=) the specified time limit."
+        ],
+        "justification": "The requirement text uses 'within 1.5 seconds' without a constraint specifying the inclusivity of the boundary. No glossary entry or business rule defines the semantic scope of 'within' in this performance context, leaving the exact limit undefined."
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "must not take longer than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise measurable threshold defining whether 'longer than' implies strictly greater than (>) or greater than or equal to (>=) the specified time limit."
+        ],
+        "justification": "The requirement text uses 'longer than 4 seconds' without a constraint specifying the inclusivity of the boundary. No glossary entry or business rule defines the semantic scope of 'longer than' in this performance context, leaving the exact limit undefined."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C1",
+    "requirement_id": "REQ-15"
+  }
+}

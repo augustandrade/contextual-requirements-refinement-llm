@@ -1,0 +1,27 @@
+{
+  "execution_id": "REQ-PILOT-04-C0",
+  "requirement_id": "REQ-PILOT-04",
+  "context_condition": "C0",
+  "input_requirement": "When the user selects the Save option, the system shall write the current document to disk and display a confirmation message.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: 'Save option' refers to a specific UI element, 'write to disk' has a single technical meaning, and 'display a confirmation message' is a clear action. There are no competing antecedents, polysemous terms, or structural ambiguities in this sentence."
+  },
+  "contextual_resolubility_analysis": null,
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "When the user selects the Save option, the system shall write the current document to disk and display a confirmation message.",
+        "structuring_notes": [
+          "Core predicate is 'write' and 'display' (system actions) → functional_requirement. Original phrasing preserved."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: the trigger condition ('rejection order received for a cancellation request') and the action ('raise a web alert') are clearly defined with no competing antecedents, structural parses, or fuzzy terms."
+  }
+}

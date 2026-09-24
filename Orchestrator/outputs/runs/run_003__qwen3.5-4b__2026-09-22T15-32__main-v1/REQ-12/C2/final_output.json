@@ -1,0 +1,55 @@
+{
+  "execution_id": "REQ-12-C2",
+  "requirement_id": "REQ-12",
+  "context_condition": "C2",
+  "input_requirement": "The system shall generate a report at the end of each day.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'at the end of each day' has a fuzzy extension: it is impossible to determine the exact timestamp (e.g., 23:59:59 vs. 00:00:01) that satisfies the condition, as no measurable boundary separates 'end' from 'start' of the next day.",
+        "possible_interpretations": [
+          "The report is generated at exactly 23:59:59 on the current day.",
+          "The report is generated at exactly 00:00:00 on the following day."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report is generated at exactly 23:59:59 on the current day.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'For reporting purposes, end of day is defined as 23:59:59 UTC on the calendar day.'"
+        ],
+        "justification": "The business rule explicitly defines 'end of day' as 23:59:59 UTC, eliminating the ambiguity between the end of the current day and the start of the next day."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system shall generate a report at exactly 23:59:59 on the current day.",
+        "structuring_notes": [
+          "AMB-01 resolved: 'at the end of each day' replaced with 'at exactly 23:59:59 on the current day' per supported interpretation. Core predicate 'generate' indicates system action → functional_requirement."
+        ]
+      }
+    ]
+  }
+}

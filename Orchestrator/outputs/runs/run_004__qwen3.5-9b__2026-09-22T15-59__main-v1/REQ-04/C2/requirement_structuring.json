@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; original phrasing preserved. Core predicate is 'raise' (system action) → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04",
+    "context_condition": "C2"
+  }
+}

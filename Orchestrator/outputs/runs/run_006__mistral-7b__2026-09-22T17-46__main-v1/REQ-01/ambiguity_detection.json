@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase '100% of the time' lacks a measurable boundary, making it unclear what percentage of time the service can be temporarily unavailable during maintenance windows and infrastructure upgrades without violating the requirement.",
+        "possible_interpretations": [
+          "The payment service is available for 99.999% of the total time (5 minutes of downtime per year).",
+          "The payment service is available for 99.9% of the total time (43 minutes and 20 seconds of downtime per hour)."
+        ]
+      }
+    ]
+  }
+}

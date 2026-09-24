@@ -1,0 +1,23 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time, including during maintenance windows and infrastructure upgrades",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The requirement states: 'The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.'"
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01: 'The payment service is subject to a maximum of four scheduled maintenance windows per year, each not exceeding two hours, during which transaction processing is suspended.'"
+        ],
+        "justification": "The reported ambiguity suggests two mutually exclusive interpretations: one where 100% availability includes maintenance (implying zero downtime) and one where it excludes maintenance downtime. However, the requirement text explicitly uses the phrase 'including during maintenance windows' to assert that the 100% availability claim covers these periods. This phrasing directly supports the first interpretation (zero downtime) and contradicts the second interpretation (allowing downtime). Furthermore, the context (Business rule BR-01) explicitly states that 'transaction processing is suspended' during maintenance windows. If the requirement intended to allow downtime (the second interpretation), it would be logically inconsistent with the explicit claim of '100% availability' covering those times. The use of 'including' serves to clarify that the strict 100% metric applies even to the times when maintenance occurs, effectively ruling out the interpretation that maintenance downtime is an exception to the 100% claim. Therefore, the ambiguity is a false positive; the text actively selects the interpretation that maintenance must be zero-downtime to satisfy the '100% including...' claim."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01"
+  }
+}

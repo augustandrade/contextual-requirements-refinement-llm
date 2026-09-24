@@ -1,0 +1,64 @@
+run,req_id,accepted_types,detected_types,match
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,REQ-04,"referential, syntactic",(nenhuma),False
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,REQ-05,referential,referential,True
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,REQ-06,semantic,"semantic, vagueness",True
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,REQ-07,semantic,semantic,True
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,REQ-08,lexical,vagueness,False
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,REQ-09,lexical,"lexical, lexical",True
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,REQ-10,vagueness,"syntactic, semantic",False
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,REQ-11,vagueness,vagueness,True
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,REQ-12,vagueness,vagueness,True
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,REQ-04,"referential, syntactic",semantic,False
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,REQ-05,referential,referential,True
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,REQ-06,semantic,semantic,True
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,REQ-07,semantic,semantic,True
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,REQ-08,lexical,(nenhuma),False
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,REQ-09,lexical,syntactic,False
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,REQ-10,vagueness,syntactic,False
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,REQ-11,vagueness,vagueness,True
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,REQ-12,vagueness,vagueness,True
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,REQ-04,"referential, syntactic",semantic,False
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,REQ-05,referential,semantic,False
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,REQ-06,semantic,semantic,True
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,REQ-07,semantic,vagueness,False
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,REQ-08,lexical,semantic,False
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,REQ-09,lexical,semantic,False
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,REQ-10,vagueness,semantic,False
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,REQ-11,vagueness,vagueness,True
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,REQ-12,vagueness,vagueness,True
+run_006__mistral-7b__2026-09-22T17-46__main-v1,REQ-04,"referential, syntactic",semantic,False
+run_006__mistral-7b__2026-09-22T17-46__main-v1,REQ-05,referential,referential,True
+run_006__mistral-7b__2026-09-22T17-46__main-v1,REQ-06,semantic,"semantic, referential",True
+run_006__mistral-7b__2026-09-22T17-46__main-v1,REQ-07,semantic,vagueness,False
+run_006__mistral-7b__2026-09-22T17-46__main-v1,REQ-08,lexical,(nenhuma),False
+run_006__mistral-7b__2026-09-22T17-46__main-v1,REQ-09,lexical,semantic,False
+run_006__mistral-7b__2026-09-22T17-46__main-v1,REQ-10,vagueness,lexical,False
+run_006__mistral-7b__2026-09-22T17-46__main-v1,REQ-11,vagueness,lexical,False
+run_006__mistral-7b__2026-09-22T17-46__main-v1,REQ-12,vagueness,(nenhuma),False
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,REQ-04,"referential, syntactic",referential,True
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,REQ-05,referential,referential,True
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,REQ-06,semantic,referential,False
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,REQ-07,semantic,semantic,True
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,REQ-08,lexical,(nenhuma),False
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,REQ-09,lexical,semantic,False
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,REQ-10,vagueness,lexical,False
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,REQ-11,vagueness,lexical,False
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,REQ-12,vagueness,lexical,False
+run_008__phi4-mini__2026-09-23T11-12__main-v1,REQ-04,"referential, syntactic",syntactic,True
+run_008__phi4-mini__2026-09-23T11-12__main-v1,REQ-05,referential,referential,True
+run_008__phi4-mini__2026-09-23T11-12__main-v1,REQ-06,semantic,semantic,True
+run_008__phi4-mini__2026-09-23T11-12__main-v1,REQ-07,semantic,vagueness,False
+run_008__phi4-mini__2026-09-23T11-12__main-v1,REQ-08,lexical,lexical,True
+run_008__phi4-mini__2026-09-23T11-12__main-v1,REQ-09,lexical,semantic,False
+run_008__phi4-mini__2026-09-23T11-12__main-v1,REQ-10,vagueness,syntactic,False
+run_008__phi4-mini__2026-09-23T11-12__main-v1,REQ-11,vagueness,lexical,False
+run_008__phi4-mini__2026-09-23T11-12__main-v1,REQ-12,vagueness,vagueness,True
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,REQ-04,"referential, syntactic",(nenhuma),False
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,REQ-05,referential,referential,True
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,REQ-06,semantic,semantic,True
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,REQ-07,semantic,vagueness,False
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,REQ-08,lexical,(nenhuma),False
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,REQ-09,lexical,lexical,True
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,REQ-10,vagueness,referential,False
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,REQ-11,vagueness,(nenhuma),False
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,REQ-12,vagueness,(nenhuma),False

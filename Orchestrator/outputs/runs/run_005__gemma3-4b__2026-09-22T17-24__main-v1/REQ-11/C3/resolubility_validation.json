@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles with a length between 4.5 and 6 meters.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'navigation system: Onboard positioning and route guidance unit installed in the vehicle.'"
+        ],
+        "justification": "The glossary definition of 'navigation system' provides a length range (4.5 to 6 meters) as a characteristic of a navigation system, which is consistent with the requirement's use of 'medium-sized vehicles'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-11-C3",
+    "requirement_id": "REQ-11"
+  }
+}

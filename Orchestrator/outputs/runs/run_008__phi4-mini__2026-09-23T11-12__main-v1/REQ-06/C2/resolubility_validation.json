@@ -1,0 +1,18 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the interior surveillance of the car detects an intruder or a door of the car is opened without a car key",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [],
+        "justification": "The requirement text does not specify whether both conditions must occur simultaneously for raising the alarm, leading to potential misinterpretation that either condition alone could suffice."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-06-C2",
+    "requirement_id": "REQ-06"
+  }
+}

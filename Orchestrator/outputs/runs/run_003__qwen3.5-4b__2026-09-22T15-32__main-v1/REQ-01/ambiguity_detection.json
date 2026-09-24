@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase '100% of the time' has a fuzzy extension because it lacks a measurable boundary for what constitutes 'time' in a continuous service context. It is impossible to determine if a service is available for exactly 100% of the duration of a maintenance window or upgrade period, as these events inherently occupy time.",
+        "possible_interpretations": [
+          "The service is available for every second of every minute, meaning no downtime is permitted even during scheduled maintenance.",
+          "The service is available for the entire duration of the business day, but may be unavailable during the specific time blocks allocated for maintenance and upgrades."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "domain": "In-vehicle safety system with intrusion detection and door state monitoring.",
+  "glossary": [
+    {
+      "term": "interior surveillance",
+      "definition": "Sensor subsystem for intrusion detection inside the vehicle."
+    },
+    {
+      "term": "alarm notification protocol",
+      "definition": "Sequence of outbound notifications dispatched when the safety system raises an alarm, including vehicle horn activation and a GSM signal to the security monitoring centre."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "When the safety system raises an alarm, the vehicle horn must sound at minimum 110 dB for at least 30 seconds, and a GSM notification must be dispatched to the security monitoring centre within 5 seconds of alarm activation."
+    }
+  ],
+  "constraints": []
+}

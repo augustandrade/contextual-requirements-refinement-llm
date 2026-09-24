@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A specific threshold duration beyond which the pump shutdown is triggered (e.g., exactly five or six seconds)."
+        ],
+        "justification": "The requirement text provides no explicit definition of what constitutes 'more than four seconds' and no context to infer a precise boundary."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C3",
+    "requirement_id": "REQ-07"
+  }
+}

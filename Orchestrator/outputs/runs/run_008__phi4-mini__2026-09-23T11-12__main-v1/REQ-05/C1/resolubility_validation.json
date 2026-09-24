@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if it is invalid",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The requirement should specify whether 'it' refers to the validity of card insertion OR pin entry, or if both conditions must be valid."
+        ],
+        "justification": "The sentence does not clarify which condition (card insertion OR PIN entry) being deemed as ''invalid'' triggers access denial."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05"
+  }
+}

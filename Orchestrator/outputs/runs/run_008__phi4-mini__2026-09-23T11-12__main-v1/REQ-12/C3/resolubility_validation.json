@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A specific time or condition that defines 'the exact moment' when a report should be generated at the day's conclusion."
+        ],
+        "justification": "The requirement text does not provide an explicit boundary for what constitutes 'end of each day', leading to multiple interpretations regarding timing. Controlled context offers definitions but lacks specificity on generation timescales, leaving ambiguity unresolved without further clarification or additional rules specifying exact timings within operational hours (e.g., end-of-day as 23:59 vs any time after workday conclusion)."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-12-C3",
+    "requirement_id": "REQ-12"
+  }
+}

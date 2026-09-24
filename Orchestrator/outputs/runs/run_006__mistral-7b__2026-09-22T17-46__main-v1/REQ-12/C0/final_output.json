@@ -1,0 +1,27 @@
+{
+  "execution_id": "REQ-12-C0",
+  "requirement_id": "REQ-12",
+  "context_condition": "C0",
+  "input_requirement": "The system shall generate a report at the end of each day.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: each term has a single plausible meaning, there are no competing antecedents, and the sentence admits only one parse tree."
+  },
+  "contextual_resolubility_analysis": null,
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system shall generate a report at the end of each day.",
+        "structuring_notes": [
+          "Core predicate is 'generate' (system action) → functional_requirement. Original phrasing preserved."
+        ]
+      }
+    ]
+  }
+}

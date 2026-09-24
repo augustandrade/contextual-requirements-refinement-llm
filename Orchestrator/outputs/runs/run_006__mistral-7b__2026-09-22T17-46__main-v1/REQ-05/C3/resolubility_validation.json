@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The PIN entered at the keypad is incorrect.",
+        "evidence_from_requirement": [
+          "The requirement text specifies that the customer enters a PIN 'at the keypad', implying that the PIN is the input being checked for validity."
+        ],
+        "evidence_from_context": [],
+        "justification": "The requirement text specifies that the customer enters a PIN at the keypad, which implies that the PIN is the input being checked for validity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-05-C3",
+    "requirement_id": "REQ-05"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "All medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of 'medium-sized' in terms of dimensions, weight or vehicle class (e.g., cars with specific door count like 4-door sedans)"
+        ],
+        "justification": "The term 'medium-sized' is polysemous and lacks a clear context-specific definition. Without additional information on the size range for medium-sized vehicles, multiple interpretations are possible."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11"
+  }
+}

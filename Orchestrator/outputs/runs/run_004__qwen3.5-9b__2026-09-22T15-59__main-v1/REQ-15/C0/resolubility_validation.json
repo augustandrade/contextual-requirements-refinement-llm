@@ -1,0 +1,38 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of the population 'all queries' (e.g., total count, sampling method) and a rounding rule for the 95% threshold (e.g., strict equality, ceiling, or floor)."
+        ],
+        "justification": "The requirement text provides no quantitative threshold or explicit scope definition for the '95 percent' subset, nor does it define the total population size or rounding rules needed to resolve the fuzzy boundary between the reported interpretations."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 1.5 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise measurable boundary defining whether 'within' implies strictly less than (<) or less than or equal to (<=) for the 1.5 second limit."
+        ],
+        "justification": "The requirement text provides no numeric threshold or explicit scope definition to distinguish between a strict inequality and an inclusive boundary for the 1.5 second response time."
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "must not take longer than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise measurable boundary defining whether 'longer than' implies strictly greater than (>) or greater than or equal to (>=) for the 4 second limit."
+        ],
+        "justification": "The requirement text provides no numeric threshold or explicit scope definition to distinguish between a strict inequality and an inclusive boundary for the 4 second maximum latency."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C0",
+    "requirement_id": "REQ-15"
+  }
+}

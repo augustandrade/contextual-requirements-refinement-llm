@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'their' has two competing antecedents in scope: 'System-A' and 'downstream systems'. It is unclear whose downstream systems are being referred to.",
+        "possible_interpretations": [
+          "System-A adds System-B to their own downstream systems.",
+          "System-A adds System-B to the downstream systems of another entity (not specified)."
+        ]
+      }
+    ]
+  }
+}

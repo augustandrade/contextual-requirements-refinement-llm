@@ -1,0 +1,31 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU is connected to the ORC using both CAN and LIN protocols in a redundant manner.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'TCU: Telematics Control Unit.' and 'ORC: Occupant Restraint Controller.' In automotive architecture, the TCU (Telematics unit) is the entity responsible for establishing the communication link to external or internal safety systems (like the ORC). The phrase 'connected to the ORC' implies the TCU is the active connector. The prepositional phrase 'via CAN and LIN' modifies the connection action, indicating the protocols used for that specific connection."
+        ],
+        "justification": "The requirement states the TCU is 'connected to the ORC'. In the context of the glossary, the TCU is the Telematics unit, which acts as the communication hub. The phrase 'via CAN and LIN' describes the medium of this connection. The alternative interpretation (TCU equipped with interfaces but connection unspecified) contradicts the explicit statement that the TCU is connected 'via' these specific protocols. The syntax 'connected to X via Y' standardly implies the connection to X utilizes Y."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "to execute automatic emergency calls on certain crash levels",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific entity responsible for executing the automatic emergency calls (TCU vs ORC) and the defined logical scope of 'certain crash levels'."
+        ],
+        "justification": "The requirement text states the TCU is connected to the ORC to 'execute automatic emergency calls'. While the TCU is the Telematics unit, the ORC (Occupant Restraint Controller) is the entity that typically triggers airbag deployment and often manages the crash event itself. The text does not explicitly state whether the TCU executes the call independently or if the ORC executes it upon receiving a signal from the TCU. Furthermore, 'certain crash levels' is a vague quantifier without a defined threshold or list of levels in the text or context."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C3",
+    "requirement_id": "REQ-10"
+  }
+}

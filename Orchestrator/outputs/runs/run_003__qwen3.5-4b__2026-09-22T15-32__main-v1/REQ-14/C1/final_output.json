@@ -1,0 +1,55 @@
+{
+  "execution_id": "REQ-14-C1",
+  "requirement_id": "REQ-14",
+  "context_condition": "C1",
+  "input_requirement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'admittances' is polysemous and can refer either to the act of entry itself (events) or to the state of being allowed (permissions/records). This creates ambiguity regarding whether the report should list the specific events of entry or the status records associated with those events.",
+        "possible_interpretations": [
+          "The report shall list the specific events where entry was granted or denied (e.g., timestamps, user IDs, door IDs).",
+          "The report shall list the permission records or status flags indicating whether entry was allowed or refused."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report shall list the specific events where entry was granted or denied (e.g., timestamps, user IDs, door IDs).",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'admittance: A recorded event of granted or denied entry to the building.'"
+        ],
+        "justification": "The domain glossary explicitly defines 'admittance' as a 'recorded event', which selects the interpretation involving specific events (timestamps, user IDs) and rules out the interpretation involving abstract permission records or status flags."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The electronic door locking system shall generate monthly reports containing the specific events where entry was granted or denied (e.g., timestamps, user IDs, door IDs).",
+        "structuring_notes": [
+          "Core predicate is 'generate' (system action) → functional_requirement. Ambiguity AMB-01 resolved: 'granted and denied admittances' replaced with 'specific events where entry was granted or denied (e.g., timestamps, user IDs, door IDs)' per supported interpretation."
+        ]
+      }
+    ]
+  }
+}

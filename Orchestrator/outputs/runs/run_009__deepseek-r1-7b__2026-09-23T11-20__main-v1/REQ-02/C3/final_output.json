@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-02-C3",
+  "requirement_id": "REQ-02",
+  "context_condition": "C3",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'their' in 'downstream systems' can refer to either 'System-A's own downstream systems' or 'the systems of the entities that work with System-A'. This creates two distinct interpretations based on the antecedent.",
+        "possible_interpretations": [
+          "System-A must add System-B to their own downstream systems and allow System-C to subscribe to the Reporting flow.",
+          "System-A must add System-B to the downstream systems of the entities that work with System-A and allow System-C to subscribe to the Reporting flow."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The pronoun 'their' refers ambiguously to either 'System-A's own downstream systems' or 'the systems of the entities that work with System-A'."
+        ],
+        "justification": "The requirement text introduces an ambiguous reference for 'their', which could refer to two different antecedents without any textual cue to select one over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

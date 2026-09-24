@@ -1,0 +1,16 @@
+{
+  "domain": "Dam water level control system with automatic pump shutdown.",
+  "glossary": [
+    {
+      "term": "water level",
+      "definition": "Sensor reading sampled continuously."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "For a 4-second persistence window, the decision metric is the absolute minimum reading in the window."
+    }
+  ],
+  "constraints": []
+}

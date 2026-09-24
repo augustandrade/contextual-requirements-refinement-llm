@@ -1,0 +1,33 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When System-A receives a message from Security Manager and if the message is part of the B-file",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A shall perform an action (e.g., process or store) when it receives a message from Security Manager that is part of the B-file.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01 explicitly describes the scenario: 'When System-A receives a B-file message from Security Manager according to the mapping rules, System-A must forward the message...'"
+        ],
+        "justification": "The business rule BR-01 provides a canonical example that binds the reception event and the B-file condition together as a single trigger for a specific action, ruling out the interpretation where they are separate conditions."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "according to the mapping rules",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The mapping rules defined in the current document or context.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01 uses the exact phrase 'according to the mapping rules' in the context of System-A receiving a B-file message, implying the rules are intrinsic to the system's operation described in this document."
+        ],
+        "justification": "The business rule BR-01 establishes a precedent where 'mapping rules' are invoked within the system's defined workflow, supporting the interpretation that they are internal to the current context rather than external."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03"
+  }
+}

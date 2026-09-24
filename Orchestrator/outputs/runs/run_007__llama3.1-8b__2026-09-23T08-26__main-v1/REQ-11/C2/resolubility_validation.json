@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles weighing between 1,500-3,000 kg are considered medium-sized.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'term: medium-sized vehicle; definition: Vehicle with gross weight strictly between 1500 kg and 2000 kg.'"
+        ],
+        "justification": "The controlled context provides a clear definition of 'medium-sized vehicle' based on weight, eliminating the interpretation based on length."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11"
+  }
+}

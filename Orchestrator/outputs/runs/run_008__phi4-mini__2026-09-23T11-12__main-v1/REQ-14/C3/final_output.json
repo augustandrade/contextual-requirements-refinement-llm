@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-14-C3",
+  "requirement_id": "REQ-14",
+  "context_condition": "C3",
+  "input_requirement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "shall contain all granted and denied admittances",
+        "ambiguity_type": "semantic",
+        "explanation": "The requirement is ambiguous because it does not specify whether 'granted' refers to successful entries that complied with security protocols or simply any entry, including those which were subsequently rejected.",
+        "possible_interpretations": [
+          "The report includes only the instances where individuals have been granted access and allowed into the building.",
+          "The report lists all attempts at admittance without distinction between grants of permission (successful) versus denials due to security checks or other reasons."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "shall contain all granted and denied admittances",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Specific criteria for what constitutes a 'granted' entry in the context of security compliance."
+        ],
+        "justification": "The requirement does not clarify whether to include only successful entries that complied with protocols or also those attempts which were subsequently rejected."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

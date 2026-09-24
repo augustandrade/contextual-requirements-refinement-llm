@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "monthly reports",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of 'monthly', specifying the exact number of days in each month or whether the report should be generated at the beginning, end, or both ends of each month."
+        ],
+        "justification": "The requirement text does not provide a specific timeframe for generating monthly reports."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-14-C3",
+    "requirement_id": "REQ-14"
+  }
+}

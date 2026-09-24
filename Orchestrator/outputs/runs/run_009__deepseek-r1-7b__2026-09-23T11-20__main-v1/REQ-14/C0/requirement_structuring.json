@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.",
+        "structuring_notes": [
+          "Core predicate is 'shall generate' (system action) → functional_requirement. Original phrasing preserved."
+        ]
+      }
+    ],
+    "execution_id": "REQ-14-C0",
+    "requirement_id": "REQ-14",
+    "context_condition": "C0"
+  }
+}

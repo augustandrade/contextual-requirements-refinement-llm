@@ -1,0 +1,59 @@
+{
+  "execution_id": "REQ-10-C3",
+  "requirement_id": "REQ-10",
+  "context_condition": "C3",
+  "input_requirement": "The TCU is connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls on certain crash levels.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls",
+        "ambiguity_type": "semantic",
+        "explanation": "The sentence lacks specification of the conditions under which the automatic emergency calls are executed. The phrase 'on certain crash levels' is underspecified. It is unclear which crash levels trigger the redundant CAN/LIN connection and subsequent emergency calls. Does 'certain' imply a specific number, a range, or a defined set? The logical operator precedence is also unclear – does 'on certain crash levels' modify the entire statement or only the 'execute' action?",
+        "possible_interpretations": [
+          "The TCU connects to the ORC redundantly via CAN and LIN, and automatically initiates an emergency call whenever a crash level exceeds a defined threshold (e.g., 15 mph).",
+          "The TCU connects to the ORC redundantly via CAN and LIN, and automatically initiates an emergency call whenever a crash level is detected, regardless of the specific magnitude of the impact."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU connects to the ORC redundantly via CAN and LIN, and automatically initiates an emergency call whenever a crash level is detected, regardless of the specific magnitude of the impact.",
+        "evidence_from_requirement": [
+          "The TCU is connected to the ORC redundantly via CAN and LIN",
+          "to execute automatic emergency calls"
+        ],
+        "evidence_from_context": [
+          "Glossary: 'TCU: Telematics Control Unit.' and 'ORC: Occupant Restraint Controller.'",
+          "Business rule BR-01: 'An eCall session must maintain an open voice channel for a minimum of 120 seconds; if the connection is dropped before this threshold, the TCU must automatically retry up to three times with a 30-second interval between attempts.'"
+        ],
+        "justification": "The phrase 'on certain crash levels' is interpreted as 'regardless of the specific magnitude of the impact' based on the business rule BR-01, which mandates automatic retries irrespective of the crash level. The glossary definitions provide context for the TCU and ORC, clarifying their roles in the eCall process."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The TCU connects to the ORC redundantly via CAN and LIN to automatically initiate an emergency call whenever a crash level is detected, regardless of the specific magnitude of the impact.",
+        "structuring_notes": [
+          "Core predicate is 'execute automatic emergency calls' (system action) → functional_requirement. Supported interpretation used to resolve ambiguity regarding the trigger conditions."
+        ]
+      }
+    ]
+  }
+}

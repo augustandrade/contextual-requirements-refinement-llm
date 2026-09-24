@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term '100% of the time' is inherently vague. It lacks a precise definition of what constitutes 'available'. There is no measurable boundary defining what constitutes 'available' – it's impossible to determine membership definitively.  Does this mean zero downtime, or a specific, quantifiable level of uptime?",
+        "possible_interpretations": [
+          "The payment service must be operational for 100% of all time, with no downtime whatsoever, including during maintenance.",
+          "The payment service must be available for 99.999% of all time, allowing for a small, defined amount of downtime (e.g., 0.001%)."
+        ]
+      }
+    ]
+  }
+}

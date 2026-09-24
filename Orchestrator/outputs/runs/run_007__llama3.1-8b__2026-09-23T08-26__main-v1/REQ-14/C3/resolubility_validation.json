@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "A denied admittance refers to an explicit refusal by the system, where the user's credentials were checked and found insufficient for entry.",
+        "evidence_from_requirement": [
+          "The business rule BR-01 states that each monthly report must be deposited to the corporate SFTP endpoint within 24 hours of the last calendar day of the covered month. This implies that the system explicitly checks user credentials before granting or denying access, supporting interpretation 1."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'admittance' is defined as a recorded event of granted or denied entry to the building. This definition supports interpretation 1 by implying that a denied admittance involves an explicit refusal by the system."
+        ],
+        "justification": "The requirement text and controlled context provide direct evidence supporting interpretation 1, which aligns with the business rule's emphasis on explicit checks for user credentials."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C3",
+    "requirement_id": "REQ-14"
+  }
+}

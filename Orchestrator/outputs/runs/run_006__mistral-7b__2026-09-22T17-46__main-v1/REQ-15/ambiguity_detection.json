@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical connectives 'and' and 'must not' lack defined operator precedence, yielding two mutually exclusive conditions for query processing: (1) the system must process 95 percent of all queries within 1.5 seconds, and it is allowed to take longer than 4 seconds on some queries; or (2) the system must process all queries within 1.5 seconds, and it is not allowed to take longer than 4 seconds on any query.",
+        "possible_interpretations": [
+          "The system must process at least 95 percent of all queries within 1.5 seconds, but there is no guarantee that every query will be processed within this time frame; the remaining queries may take longer than 4 seconds to process.",
+          "The system must process all queries within 1.5 seconds, and it is not allowed to take longer than 4 seconds on any given query."
+        ]
+      }
+    ]
+  }
+}

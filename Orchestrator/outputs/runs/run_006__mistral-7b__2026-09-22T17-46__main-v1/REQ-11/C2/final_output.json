@@ -1,0 +1,55 @@
+{
+  "execution_id": "REQ-11-C2",
+  "requirement_id": "REQ-11",
+  "context_condition": "C2",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'medium-sized' is vague and lacks a universally agreed-upon definition. Different vehicle manufacturers may have different criteria for what constitutes a medium-sized vehicle, leading to potential ambiguity.",
+        "possible_interpretations": [
+          "Vehicles with an average length between 4.5 meters (compact cars) and 5.2 meters (midsize sedans).",
+          "Vehicles with an average weight between 1.5 tons (light trucks) and 2 tons (heavy SUVs)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles with gross weight strictly between 1500 kg and 2000 kg.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'medium-sized vehicle: Vehicle with gross weight strictly between 1500 kg and 2000 kg.'"
+        ],
+        "justification": "The domain glossary provides a canonical definition of 'medium-sized vehicle' that eliminates the ambiguity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "All vehicles with gross weight strictly between 1500 kg and 2000 kg shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "Core predicate is 'equip' (system action) → functional_requirement. Ambiguity AMB-01 resolved: replaced 'medium-sized vehicles' with 'vehicles with gross weight strictly between 1500 kg and 2000 kg' per supported interpretation."
+        ]
+      }
+    ]
+  }
+}

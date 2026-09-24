@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended logical operator between the two conditions for query processing time — whether 'AND' or 'OR'."
+        ],
+        "justification": "The requirement text provides no explicit logical connective, and the controlled context does not supply one. The business rule QLT-01 defines latency measurement but does not address operator precedence."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C2",
+    "requirement_id": "REQ-15"
+  }
+}

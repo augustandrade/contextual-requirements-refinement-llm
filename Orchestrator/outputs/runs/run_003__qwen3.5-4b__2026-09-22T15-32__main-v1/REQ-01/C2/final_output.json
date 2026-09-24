@@ -1,0 +1,56 @@
+{
+  "execution_id": "REQ-01-C2",
+  "requirement_id": "REQ-01",
+  "context_condition": "C2",
+  "input_requirement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase '100% of the time' has a fuzzy extension because it lacks a measurable boundary for what constitutes 'time' in a continuous service context. It is impossible to determine if a service is available for exactly 100% of the duration of a maintenance window or upgrade period, as these events inherently occupy time.",
+        "possible_interpretations": [
+          "The service is available for every second of every minute, meaning no downtime is permitted even during scheduled maintenance.",
+          "The service is available for the entire duration of the business day, but may be unavailable during the specific time blocks allocated for maintenance and upgrades."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The service is available for the entire duration of the business day, but may be unavailable during the specific time blocks allocated for maintenance and upgrades.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'The payment service is subject to a maximum of four scheduled maintenance windows per year, each not exceeding two hours, during which transaction processing is suspended.'",
+          "Definition of maintenance window: 'Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes.'"
+        ],
+        "justification": "The requirement explicitly states that availability includes 'during maintenance windows and infrastructure upgrades'. The glossary and business rule confirm that maintenance windows are periods where transaction processing is suspended. Therefore, the service cannot be available 100% of the time including these windows; the 100% target applies to the operational period excluding these explicitly excluded maintenance blocks."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "quality_requirement",
+        "final_statement": "The payment service shall be available for the entire duration of the business day, but may be unavailable during the specific time blocks allocated for maintenance and upgrades.",
+        "structuring_notes": [
+          "Core predicate is 'available' (measurable property of performance) → quality_requirement. Ambiguity AMB-01 resolved: 'available 100% of the time' replaced with supported interpretation regarding business day availability and maintenance exclusions."
+        ]
+      }
+    ]
+  }
+}

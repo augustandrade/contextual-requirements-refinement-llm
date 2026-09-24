@@ -1,0 +1,19 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.",
+        "structuring_notes": [
+          "AMB-01 resolved: fragment 'granted and denied admittances' clarified to list every individual event including both granted and denied per supported interpretation.",
+          "AMB-02 resolved: fragment 'all granted and denied admittances' clarified to contain records of every access attempt distinguishing between allowed and rejected per supported interpretation.",
+          "Core predicate is 'generate' (system action) → functional_requirement. Original phrasing preserved as both interpretations align with the original intent."
+        ]
+      }
+    ],
+    "execution_id": "REQ-14-C2",
+    "requirement_id": "REQ-14",
+    "context_condition": "C2"
+  }
+}

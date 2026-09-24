@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file, according to the mapping rules.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A clear definition of which specific subset of mapping rules apply and how they are applied in this scenario or context."
+        ],
+        "justification": "The requirement text introduces ambiguity regarding the scope of the mapping rules, leading to multiple possible interpretations without sufficient evidence to select one over the others."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The PIN entered at the keypad by the customer is invalid.",
+        "evidence_from_requirement": [
+          "The preceding sentence specifies that the customer inserts an 'access card' and enters a 'PIN', implying that these are two separate inputs. The system's response to invalid input is triggered by the second of these, which is the PIN."
+        ],
+        "evidence_from_context": [
+          "Glossary: term = PIN, definition = 4-digit personal identification number. This establishes that the PIN is a distinct entity from the access card and is the focus of the system's authentication process."
+        ],
+        "justification": "The requirement text and controlled context establish that the PIN is the input being validated by the system, making interpretation 2 the correct choice."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05"
+  }
+}

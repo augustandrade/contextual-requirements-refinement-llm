@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "quality_requirement",
+        "final_statement": "The payment service shall be available for the entire duration of the business day, but may be unavailable during the specific time blocks allocated for maintenance and upgrades.",
+        "structuring_notes": [
+          "Core predicate is 'available' (measurable property of performance) → quality_requirement. Ambiguity AMB-01 resolved: 'available 100% of the time' replaced with supported interpretation regarding business day availability and maintenance exclusions."
+        ]
+      }
+    ],
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01",
+    "context_condition": "C2"
+  }
+}

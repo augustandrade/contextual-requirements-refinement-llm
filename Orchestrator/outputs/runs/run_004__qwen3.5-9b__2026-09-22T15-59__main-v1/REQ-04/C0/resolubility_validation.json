@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition or rule specifying whether the phrase 'rejection order is received for a cancellation request' implies a direct causal/targeting relationship (the cancellation was rejected) or a contextual co-occurrence (a rejection order exists while a cancellation request is present)."
+        ],
+        "justification": "The requirement text uses the preposition 'for' to link the rejection order and the cancellation request, but does not explicitly define the semantic relationship between them. Without a glossary entry defining 'rejection order for X' or a business rule clarifying that 'for' implies targeting versus mere association, the distinction between the two interpretations cannot be resolved from the provided text."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-04-C0",
+    "requirement_id": "REQ-04"
+  }
+}

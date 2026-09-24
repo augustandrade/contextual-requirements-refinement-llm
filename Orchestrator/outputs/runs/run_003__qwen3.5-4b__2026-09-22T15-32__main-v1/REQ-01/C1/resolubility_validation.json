@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining the scope of 'time' (e.g., '99.9% of uptime per month' or 'excluding scheduled maintenance windows') and a quantitative threshold for '100%' (e.g., '99.99% availability' or 'zero downtime excluding planned outages')."
+        ],
+        "justification": "The requirement text uses the phrase '100% of the time' without defining the scope of 'time' or providing a measurable threshold. The controlled context defines 'maintenance window' but does not specify whether '100% availability' excludes these windows or requires zero downtime even during them. No business rules or constraints provide the necessary quantitative boundary to resolve the vagueness."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01"
+  }
+}

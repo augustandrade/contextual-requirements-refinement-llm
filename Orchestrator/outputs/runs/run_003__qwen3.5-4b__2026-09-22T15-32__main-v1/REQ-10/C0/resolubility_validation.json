@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific syntactic attachment of the phrase 'via CAN and LIN' — whether it modifies 'connected' (indicating the connection uses both protocols redundantly) or 'TCU' (indicating the TCU has both interfaces)."
+        ],
+        "justification": "The requirement text presents two structurally distinct readings for the prepositional phrase 'via CAN and LIN' without any textual cues (such as punctuation, modifiers, or explicit phrasing) to determine which attachment is intended."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "to execute automatic emergency calls on certain crash levels",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The logical scope of the phrase 'to execute automatic emergency calls' — whether the TCU performs the execution based on crash levels, the ORC performs the execution based on crash levels, or the relationship between the TCU's signaling and the ORC's execution is undefined."
+        ],
+        "justification": "The requirement text does not specify which entity (TCU or ORC) is responsible for executing the emergency calls, nor does it define the logical relationship between crash level detection and call execution."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C0",
+    "requirement_id": "REQ-10"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building, where a denied admittance refers to a situation where the system did not explicitly grant access, but it was implicitly blocked due to lack of clearance or other security measures.",
+        "structuring_notes": [
+          "Core predicate is 'generate' (system action) → functional_requirement. Ambiguity AMB-01 resolved: replaced original phrasing with supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-14-C0",
+    "requirement_id": "REQ-14",
+    "context_condition": "C0"
+  }
+}

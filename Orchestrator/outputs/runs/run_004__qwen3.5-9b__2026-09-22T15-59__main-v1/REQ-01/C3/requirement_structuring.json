@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "quality_requirement",
+        "final_statement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; original phrasing preserved. Core predicate is 'available' (measurable property of system performance) → quality_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-01-C3",
+    "requirement_id": "REQ-01",
+    "context_condition": "C3"
+  }
+}

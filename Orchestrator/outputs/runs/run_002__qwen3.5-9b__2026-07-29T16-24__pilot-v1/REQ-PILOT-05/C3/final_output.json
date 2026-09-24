@@ -1,0 +1,56 @@
+{
+  "execution_id": "REQ-PILOT-05-C3",
+  "requirement_id": "REQ-PILOT-05",
+  "context_condition": "C3",
+  "input_requirement": "The system shall log all exceptions raised during the nightly settlement batch and notify the operations team.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "notify the operations team",
+        "ambiguity_type": "referential",
+        "explanation": "The definite noun phrase 'the operations team' lacks a unique antecedent in the immediate context. It could refer to a specific, previously defined team entity in the system's glossary, or it could refer to any group of personnel performing operations, creating ambiguity about which specific group must be notified.",
+        "possible_interpretations": [
+          "The system shall notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model.",
+          "The system shall notify any group of personnel who perform operational tasks, regardless of whether they are formally defined as a single entity."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "notify the operations team",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system shall notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary entry for 'operations team': 'Group responsible for monitoring and resolving issues in the post-trade workflow.'",
+          "Business rule BR-01: 'The operations team must be notified via the incident management platform...'"
+        ],
+        "justification": "The glossary explicitly defines 'operations team' as a specific group with a defined responsibility within the post-trade workflow. The business rule BR-01 further reinforces this by prescribing specific notification procedures ('must be notified', 're-sent every 30 minutes') applicable to this specific entity, rather than a generic group of personnel. This evidence selects the interpretation referring to the defined entity and rules out the generic interpretation."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system shall log all exceptions raised during the nightly settlement batch and notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model.",
+        "structuring_notes": [
+          "AMB-01 resolved: fragment 'notify the operations team' replaced with 'notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model' per supported interpretation."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "execution_id": "REQ-04-C0",
+  "requirement_id": "REQ-04",
+  "context_condition": "C0",
+  "input_requirement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: the trigger condition ('rejection order received for a cancellation request') and the action ('raise a web alert') are clearly defined with no competing antecedents, structural parses, or fuzzy terms."
+  },
+  "contextual_resolubility_analysis": null,
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+        "structuring_notes": [
+          "Core predicate is 'raise' (system action) → functional_requirement. Original phrasing preserved."
+        ]
+      }
+    ]
+  }
+}

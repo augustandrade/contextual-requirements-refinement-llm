@@ -1,0 +1,54 @@
+{
+  "execution_id": "REQ-04-C2",
+  "requirement_id": "REQ-04",
+  "context_condition": "C2",
+  "input_requirement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical relationship between the condition 'rejection order is received' and the object 'cancellation request' is underspecified. It is unclear whether the rejection order pertains to the cancellation request itself (the cancellation was rejected) or if the rejection order is a separate event occurring in the context of a cancellation request.",
+        "possible_interpretations": [
+          "The system raises an alert when a rejection order is received that specifically targets or denies a cancellation request (the cancellation was rejected).",
+          "The system raises an alert whenever a rejection order is received, provided that a cancellation request exists in the system at that time (the rejection order is unrelated to the cancellation request's status)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The phrase 'rejection order is received for a cancellation request' explicitly uses the preposition 'for' to link the rejection order to the cancellation request. In standard English usage, 'X for Y' indicates that X is directed at Y or pertains to Y. Therefore, the rejection order specifically targets the cancellation request."
+        ],
+        "evidence_from_context": [],
+        "justification": "The reported ambiguity suggests two interpretations: one where the rejection targets the cancellation, and one where the rejection is unrelated but coincidental. The preposition 'for' in the requirement text ('rejection order... for a cancellation request') semantically binds the rejection order to the cancellation request, ruling out the interpretation that the rejection is unrelated. The ambiguity is a false positive because the text structure itself resolves the relationship."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; original phrasing preserved. Core predicate is 'raise' (system action) → functional_requirement."
+        ]
+      }
+    ]
+  }
+}

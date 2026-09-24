@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "If a window of the car is damaged and an intruder is detected by the interior surveillance, or if a door of the car is opened without a car key, the safety system shall raise an alarm.",
+        "structuring_notes": [
+          "AMB-01 resolved: replaced ambiguous fragment with supported interpretation. Original phrasing preserved."
+        ]
+      }
+    ],
+    "execution_id": "REQ-06-C3",
+    "requirement_id": "REQ-06",
+    "context_condition": "C3"
+  }
+}

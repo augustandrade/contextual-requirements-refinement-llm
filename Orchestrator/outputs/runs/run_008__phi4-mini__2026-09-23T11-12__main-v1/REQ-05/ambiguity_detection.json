@@ -1,0 +1,13 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' could refer to either the action of inserting an access card or entering a PIN, making unclear which condition (card insertion OR pin entry) being deemed as 'invalid'. possible_interpretations: - The system denies access if any part of using both methods is invalid. - The system only checks for validity after all steps are completed."
+      }
+    ]
+  }
+}

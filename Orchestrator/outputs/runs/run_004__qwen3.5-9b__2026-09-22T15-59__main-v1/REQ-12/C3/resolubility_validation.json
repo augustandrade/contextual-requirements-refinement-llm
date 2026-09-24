@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining what constitutes 'the end of each day' (e.g., a specific timestamp like 23:59:59, 00:00:00, or a business rule defining 'business day close')."
+        ],
+        "justification": "The requirement text uses the vague phrase 'at the end of each day' without specifying a precise timestamp. The controlled context (glossary and business rules) defines 'report' and 'report archive' and delivery timing, but does not provide a quantitative threshold or explicit scope definition for 'the end of each day' to resolve the ambiguity between midnight and business close."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-12-C3",
+    "requirement_id": "REQ-12"
+  }
+}

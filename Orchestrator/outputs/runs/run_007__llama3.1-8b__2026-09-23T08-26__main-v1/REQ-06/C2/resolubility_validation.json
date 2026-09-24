@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the interior surveillance of the car detects an intruder or a door of the car is opened without a car key,",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The safety system raises an alarm if a window of the car is damaged and an intruder is detected by the interior surveillance.",
+        "evidence_from_requirement": [
+          "Business rule BR-01 states that 'Window damage is a mandatory precondition for triggering the alarm.' This implies that the alarm can only be raised when a window is damaged, not when a door is opened without a car key."
+        ],
+        "evidence_from_context": [
+          "Glossary: interior surveillance — Sensor subsystem for intrusion detection inside the vehicle. This definition supports interpretation 1, where the interior surveillance detects an intruder in the context of a damaged window."
+        ],
+        "justification": "The business rule establishes that window damage is a mandatory precondition for triggering the alarm, which selects interpretation 1 over interpretation 2."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-06-C2",
+    "requirement_id": "REQ-06"
+  }
+}

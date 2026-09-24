@@ -1,0 +1,20 @@
+{
+  "domain": "Integration platform that orchestrates downstream services and reporting subscriptions.",
+  "glossary": [
+    {
+      "term": "downstream systems",
+      "definition": "External systems that receive events from System-A."
+    },
+    {
+      "term": "subscription token",
+      "definition": "Unique identifier issued to each subscriber of the Reporting flow, used for authentication on each event delivery."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Reporting flow subscriptions use a push delivery model; the platform delivers events to registered subscriber endpoints within 500 milliseconds of the triggering event."
+    }
+  ],
+  "constraints": []
+}

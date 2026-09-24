@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition distinguishing 'queries' from other system traffic types (e.g., health checks, error logs, administrative commands) or a business rule explicitly excluding such traffic from the performance guarantee."
+        ],
+        "justification": "The requirement text uses the term 'queries' without qualification, and no glossary or business rule is available to define the specific set of requests subject to the 95% threshold. The distinction between user-initiated functional requests and other system traffic cannot be resolved from the provided text."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 1.5 seconds and must not take longer than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "An explicit logical operator binding rule or parenthetical clarification defining whether the 4-second limit applies to individual queries within the batch or to the cumulative batch processing time."
+        ],
+        "justification": "The requirement text presents two time constraints ('1.5 seconds' and '4 seconds') with an ambiguous logical relationship. Without parentheses, explicit precedence rules, or contextual business rules defining the scope of the 4-second limit, it is impossible to determine if the limit applies to individual queries or the aggregate batch."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C0",
+    "requirement_id": "REQ-15"
+  }
+}

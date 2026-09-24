@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A syntactic rule or domain convention defining whether the prepositional phrase 'between data-plane interfaces and management data traffic' attaches to the verb 'filter' (defining traffic scope) or to the noun 'interfaces' (defining interface location)."
+        ],
+        "justification": "The requirement text contains no explicit punctuation, parentheses, or additional clauses to resolve the attachment ambiguity of the prepositional phrase. No controlled context (business rules or glossary) is provided to establish a canonical parsing convention for this specific syntactic structure. Consequently, the evidence is insufficient to select one interpretation over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-09-C0",
+    "requirement_id": "REQ-09"
+  }
+}

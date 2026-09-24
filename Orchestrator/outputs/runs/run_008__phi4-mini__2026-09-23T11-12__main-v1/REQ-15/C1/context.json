@@ -1,0 +1,11 @@
+{
+  "domain": "Query-processing system with a performance SLA.",
+  "glossary": [
+    {
+      "term": "query",
+      "definition": "A single request submitted to the system for processing."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

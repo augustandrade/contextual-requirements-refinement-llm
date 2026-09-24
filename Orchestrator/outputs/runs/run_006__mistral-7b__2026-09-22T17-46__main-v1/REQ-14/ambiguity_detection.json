@@ -1,0 +1,18 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "monthly reports",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'monthly' lacks a precise definition, as it does not specify the exact number of days in each month or whether the report should be generated at the beginning, end, or both ends of each month.",
+        "possible_interpretations": [
+          "Reports are generated on the first day of every calendar month.",
+          "Reports are generated on the last day of every calendar month.",
+          "Reports are generated at both the start and end of every calendar month."
+        ]
+      }
+    ]
+  }
+}

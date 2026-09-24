@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-01-C1",
+  "requirement_id": "REQ-01",
+  "context_condition": "C1",
+  "input_requirement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase '100% of the time' has a fuzzy extension because it lacks a measurable boundary for what constitutes 'time' in a continuous service context. It is impossible to determine if a service is available for exactly 100% of the duration of a maintenance window or upgrade period, as these events inherently occupy time.",
+        "possible_interpretations": [
+          "The service is available for every second of every minute, meaning no downtime is permitted even during scheduled maintenance.",
+          "The service is available for the entire duration of the business day, but may be unavailable during the specific time blocks allocated for maintenance and upgrades."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining the scope of 'time' (e.g., '99.9% of uptime per month' or 'excluding scheduled maintenance windows') and a quantitative threshold for '100%' (e.g., '99.99% availability' or 'zero downtime excluding planned outages')."
+        ],
+        "justification": "The requirement text uses the phrase '100% of the time' without defining the scope of 'time' or providing a measurable threshold. The controlled context defines 'maintenance window' but does not specify whether '100% availability' excludes these windows or requires zero downtime even during them. No business rules or constraints provide the necessary quantitative boundary to resolve the vagueness."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

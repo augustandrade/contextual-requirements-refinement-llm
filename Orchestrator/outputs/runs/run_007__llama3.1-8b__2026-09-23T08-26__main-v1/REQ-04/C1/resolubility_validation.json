@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "a rejection order is received for a cancellation request",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Which entity the phrase 'for a cancellation request' refers to: the rejection order itself or the cancellation request."
+        ],
+        "justification": "The requirement text introduces two candidate antecedents without any textual cue to select one over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-04-C1",
+    "requirement_id": "REQ-04"
+  }
+}

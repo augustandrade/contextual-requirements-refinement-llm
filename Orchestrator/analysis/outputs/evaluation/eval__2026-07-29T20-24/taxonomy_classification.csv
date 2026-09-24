@@ -1,0 +1,9 @@
+run,req_id,accepted_types,detected_types,match
+run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1,REQ-PILOT-02,referential,"referential, vagueness",True
+run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1,REQ-PILOT-03,vagueness,lexical,False
+run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1,REQ-PILOT-05,lexical,referential,False
+run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1,REQ-PILOT-06,semantic,semantic,True
+run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1,REQ-PILOT-02,referential,"referential, vagueness",True
+run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1,REQ-PILOT-03,vagueness,lexical,False
+run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1,REQ-PILOT-05,lexical,referential,False
+run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1,REQ-PILOT-06,semantic,semantic,True

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "processes all queries within 1.5 seconds and must not take longer than 4 seconds to process queries at any given time.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended interpretation of the ambiguous term 'processes' is unclear, as it could mean either handling or executing a query."
+        ],
+        "justification": "The requirement text does not provide sufficient context or clarification to resolve the ambiguity introduced by the ambiguous term 'processes'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C0",
+    "requirement_id": "REQ-15"
+  }
+}

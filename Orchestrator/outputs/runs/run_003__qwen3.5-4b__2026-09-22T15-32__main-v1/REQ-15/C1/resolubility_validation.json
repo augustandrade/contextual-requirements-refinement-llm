@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition or classification rule distinguishing 'functional user requests' from 'system health checks, error logs, or administrative commands'."
+        ],
+        "justification": "The glossary defines 'query' as a single request but does not specify the scope of 'all queries' regarding request types. The requirement text contains no exclusion criteria for system maintenance or diagnostic traffic, leaving the set of queries subject to the 95% metric undefined."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 1.5 seconds and must not take longer than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "An explicit logical binding rule or parenthetical clarification defining whether the 4-second limit applies to individual queries or the cumulative batch."
+        ],
+        "justification": "The requirement text presents two time constraints without explicit logical operators (e.g., parentheses) or business rules to define their precedence. It is unclear if the 4-second limit constrains the aggregate batch time or the maximum duration of any single query within the batch."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C1",
+    "requirement_id": "REQ-15"
+  }
+}

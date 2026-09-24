@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "If (window damaged AND intruder detected) OR (door opened without key), the safety system shall raise an alarm.",
+        "structuring_notes": [
+          "AMB-01 resolved: ambiguous condition replaced with explicit logical structure per supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-06-C2",
+    "requirement_id": "REQ-06",
+    "context_condition": "C2"
+  }
+}

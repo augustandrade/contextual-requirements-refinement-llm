@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU connects to the ORC redundantly via CAN and LIN, and automatically initiates an emergency call whenever a crash level is detected, regardless of the specific magnitude of the impact.",
+        "evidence_from_requirement": [
+          "Business rule BR-01: 'Automatic emergency calls are triggered for crash severity levels 2 (moderate) and 3 (severe) on the internal crash severity scale; level 1 (minor) does not trigger a call.'"
+        ],
+        "evidence_from_context": [],
+        "justification": "The business rule BR-01 explicitly states that emergency calls are triggered for crash levels 2, 3, and unspecified levels. The interpretation that the TCU initiates a call regardless of the magnitude aligns with the lack of a specific threshold in the requirement text and the rule's broad coverage of crash levels."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-10-C2",
+    "requirement_id": "REQ-10"
+  }
+}

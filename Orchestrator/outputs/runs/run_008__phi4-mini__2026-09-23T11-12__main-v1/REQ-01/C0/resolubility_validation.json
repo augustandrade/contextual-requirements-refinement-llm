@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "including during maintenance windows and infrastructure upgrades.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A clear definition of 'available' in the context that includes or excludes periods for system improvements."
+        ],
+        "justification": "The requirement lacks a precise explanation on whether availability encompasses times typically reserved for updates, leading to two interpretations without direct evidence favoring one over another."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01"
+  }
+}

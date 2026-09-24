@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A specific, measurable definition of 'medium-sized' vehicles, such as a length range or a gross vehicle weight range."
+        ],
+        "justification": "The term 'medium-sized' is inherently vague and lacks a quantifiable definition. Multiple interpretations are possible, and no contextual information is provided to resolve the ambiguity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-11-C0",
+    "requirement_id": "REQ-11"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A lexical definition or business rule distinguishing between 'registering a system in a list' (administrative inclusion) and 'establishing a data flow connection' (topological connection) for the verb 'add'."
+        ],
+        "justification": "The requirement text uses the verb 'add' without specifying whether it implies administrative registration or physical/topological connection. No controlled context (glossary or business rules) is provided to define the specific meaning of 'add' in this domain. The ambiguity regarding 'their' is resolved by standard English grammar (referring to System-A), but the lexical ambiguity of 'add' remains unresolved."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A lexical definition or business rule distinguishing between 'registering interest to receive updates' (passive consumption) and 'joining as an active participant' (active participation) for the verb 'subscribe'."
+        ],
+        "justification": "The requirement text uses the verb 'subscribe' without specifying whether it implies passive consumption of notifications or active participation in the flow. No controlled context is provided to define the specific meaning of 'subscribe' in this domain. The distinction between passive and active roles is not clarified in the text."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-02-C0",
+    "requirement_id": "REQ-02"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "domain": "Financial post-trade settlement platform executing overnight batch processing.",
+  "glossary": [
+    {
+      "term": "operations team",
+      "definition": "Group responsible for monitoring and resolving issues in the post-trade workflow."
+    },
+    {
+      "term": "exceptions",
+      "definition": "Transactions that cannot be settled automatically due to a deviation from standard settlement rules (e.g. missing counterparty confirmation, currency mismatch, or settlement date conflict). Runtime software errors are recorded separately in the system error log and are outside the scope of this requirement."
+    },
+    {
+      "term": "settlement batch",
+      "definition": "Automated overnight process that finalises and records all pending transactions from the trading day."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

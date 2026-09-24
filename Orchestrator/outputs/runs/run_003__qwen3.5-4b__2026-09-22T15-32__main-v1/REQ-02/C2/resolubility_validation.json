@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The antecedent of the pronoun 'their' — whether it refers to System-A alone, System-B alone, or both systems collectively."
+        ],
+        "justification": "The requirement text uses the pronoun 'their' without explicitly naming the antecedent. The controlled context provides definitions for 'downstream systems' and 'Reporting flow' but contains no business rule or constraint defining the ownership or collective nature of downstream systems relative to System-A and System-B. No textual evidence selects one interpretation over the others."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The ownership or origin of 'the Reporting flow' — whether it is owned by System-A, System-B, or is a shared entity."
+        ],
+        "justification": "The requirement text uses the definite article 'the' without a preceding noun phrase to identify the specific flow. The glossary defines 'Reporting flow' generically as an event stream but does not specify which system owns it. Business rule BR-01 states that registration and subscription are independent operations but does not define the source of the flow. No evidence selects one interpretation over the others."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02"
+  }
+}

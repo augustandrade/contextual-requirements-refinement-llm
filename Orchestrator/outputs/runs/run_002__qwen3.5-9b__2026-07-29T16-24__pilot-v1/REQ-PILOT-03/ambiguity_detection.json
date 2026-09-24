@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'eligible' is polysemous in the context of leave requests. It can refer to meeting the minimum tenure or policy criteria, or it can refer to having no pending disciplinary actions or other disqualifying factors.",
+        "possible_interpretations": [
+          "The employee has met the minimum service duration or policy criteria required to take leave.",
+          "The employee has no pending disciplinary actions or other disqualifying factors that would prevent leave approval."
+        ]
+      }
+    ]
+  }
+}

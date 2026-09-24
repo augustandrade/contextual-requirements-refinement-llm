@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator binding between 'if' and the logical connective — whether the condition is (received from Security Manager AND part of the B-file) or (part of the B-file, independently of whether it was received from Security Manager)."
+        ],
+        "justification": "The requirement text provides no parentheses, explicit precedence rule, or contextual business rule to determine which logical binding was intended."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03"
+  }
+}

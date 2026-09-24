@@ -1,0 +1,18 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone.",
+        "resolubility_status": "unresolved",
+        "missing_information": "Specific signal or action to represent the 'dial tone' in this context.",
+        "justification": "The term's polysemy is not resolved by either domain glossary, business rules, nor constraints. No further contextual clues are provided within controlled_context for interpretation guidance."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-08-C1",
+    "requirement_id": "REQ-08"
+  }
+}

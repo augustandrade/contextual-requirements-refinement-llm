@@ -1,0 +1,12 @@
+{
+  "run_id": "run_005__gemma3-4b__2026-09-22T17-24__main-v1",
+  "model": "gemma3:4b",
+  "provider": "ollama",
+  "ollama_host": "http://localhost:11434",
+  "temperature": 0.0,
+  "think": false,
+  "started_at": "2026-09-22T17:24:47.019641",
+  "corpus": "manifest.yaml",
+  "label": "main-v1",
+  "subset": null
+}

@@ -1,0 +1,11 @@
+{
+  "domain": "Corporate physical access control system with badge and PIN authentication.",
+  "glossary": [
+    {
+      "term": "PIN",
+      "definition": "4-digit personal identification number."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

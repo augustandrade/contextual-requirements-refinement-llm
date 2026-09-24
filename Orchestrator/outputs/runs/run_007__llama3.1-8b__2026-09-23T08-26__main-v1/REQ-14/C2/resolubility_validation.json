@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "A denied admittance refers to an explicit refusal by the system, where the user's credentials were checked and found insufficient for entry.",
+        "evidence_from_requirement": [
+          "The business rule 'Monthly admittance reports shall cover all access events recorded within the calendar month and must include the event timestamp, the access point identifier, and the outcome (granted or denied).' implies that the outcome is explicitly determined by the system's decision."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'A recorded event of granted or denied entry to the building.' This definition focuses on the explicit action of granting or denying access, rather than implicit blocking due to lack of clearance."
+        ],
+        "justification": "The business rule and glossary provide direct evidence that a denied admittance refers to an explicit refusal by the system."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C2",
+    "requirement_id": "REQ-14"
+  }
+}

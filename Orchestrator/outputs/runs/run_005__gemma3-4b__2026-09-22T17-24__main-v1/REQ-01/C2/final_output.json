@@ -1,0 +1,57 @@
+{
+  "execution_id": "REQ-01-C2",
+  "requirement_id": "REQ-01",
+  "context_condition": "C2",
+  "input_requirement": "The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term '100% of the time' is inherently vague. It lacks a precise definition of what constitutes 'available'. There is no measurable boundary defining what constitutes 'available' – it's impossible to determine membership definitively.  Does this mean zero downtime, or a specific, quantifiable level of uptime?",
+        "possible_interpretations": [
+          "The payment service must be operational for 100% of all time, with no downtime whatsoever, including during maintenance.",
+          "The payment service must be available for 99.999% of all time, allowing for a small, defined amount of downtime (e.g., 0.001%)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The payment service must be available for 99.999% of all time, allowing for a small, defined amount of downtime (e.g., 0.001%).",
+        "evidence_from_requirement": [
+          "QLT-01: Availability targets must be expressed as a percentage with explicit exclusions for scheduled maintenance, and must be measurable over a defined rolling period (e.g. 99.95% over any 30-day window)."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'maintenance window: Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes.'"
+        ],
+        "justification": "The constraint QLT-01 explicitly defines the acceptable availability target as 99.999% with exclusions for maintenance windows, resolving the vagueness of '100% of the time'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "quality_requirement",
+        "final_statement": "The payment service shall be available 99.999% of the time, including during maintenance windows and infrastructure upgrades.",
+        "structuring_notes": [
+          "AMB-01 resolved: '100% of the time' replaced with '99.999% of the time' per supported interpretation."
+        ]
+      }
+    ]
+  }
+}

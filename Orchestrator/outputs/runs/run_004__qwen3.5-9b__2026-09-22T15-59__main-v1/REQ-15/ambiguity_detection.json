@@ -1,0 +1,37 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term '95 percent' has a fuzzy extension because the boundary for counting 'all queries' is indeterminate; it is impossible to determine exactly which subset of queries constitutes the 95% threshold without a precise, measurable definition of the population or a rounding rule.",
+        "possible_interpretations": [
+          "The system must successfully process a subset of queries where the count is mathematically exactly 95% of the total query set (e.g., 95 out of 100).",
+          "The system must process a subset of queries where the count is approximately 95% (e.g., 94.5% rounded up to 95, or 95.1% rounded down), leaving the exact membership boundary undefined."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "within 1.5 seconds",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'within 1.5 seconds' relies on a fuzzy boundary for the time limit; it is impossible to determine if a response time of exactly 1.500001 seconds satisfies the requirement due to the lack of a precise measurable threshold for 'within' in this context.",
+        "possible_interpretations": [
+          "The response time must be strictly less than 1.5 seconds (e.g., 1.499 seconds).",
+          "The response time must be less than or equal to 1.5 seconds (e.g., 1.500 seconds)."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-03",
+        "fragment": "must not take longer than 4 seconds",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'longer than 4 seconds' implies a fuzzy boundary for the maximum acceptable latency; it is impossible to determine if a processing time of exactly 4.0 seconds violates the condition without a precise definition of the upper bound.",
+        "possible_interpretations": [
+          "The processing time must be strictly less than 4 seconds (e.g., 3.999 seconds).",
+          "The processing time must be less than or equal to 4 seconds (e.g., 4.0 seconds)."
+        ]
+      }
+    ]
+  }
+}

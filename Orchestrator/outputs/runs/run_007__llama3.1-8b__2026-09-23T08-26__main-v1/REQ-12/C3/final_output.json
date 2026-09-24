@@ -1,0 +1,57 @@
+{
+  "execution_id": "REQ-12-C3",
+  "requirement_id": "REQ-12",
+  "context_condition": "C3",
+  "input_requirement": "The system shall generate a report at the end of each day.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "ambiguity_type": "lexical",
+        "explanation": "The phrase 'end of each day' is ambiguous due to polysemy in the word 'day'. It can refer either to a calendar day (24-hour period) or a working day (business day). Each interpretation imposes a different frequency on when the report should be generated.",
+        "possible_interpretations": [
+          "The system generates a report at 23:59 of each calendar day, regardless of whether it is a weekend or holiday.",
+          "The system generates a report at the end of each working day (e.g., 17:00), which may not coincide with the calendar day boundary."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system generates a report at 23:59 of each calendar day, regardless of whether it is a weekend or holiday.",
+        "evidence_from_requirement": [
+          "The glossary defines 'report' as an Automated daily summary of processed transactions, which implies a connection to the calendar day boundary (23:59)."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 specifies delivery to the report archive within 5 minutes of generation, implying a focus on calendar days for reporting purposes."
+        ],
+        "justification": "The glossary definition and business rule BR-01 support the interpretation that 'end of each day' refers to the calendar day boundary."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system shall generate a report at 23:59 of each calendar day, regardless of whether it is a weekend or holiday.",
+        "structuring_notes": [
+          "AMB-01 resolved: ambiguous fragment 'at the end of each day' replaced with supported interpretation."
+        ]
+      }
+    ]
+  }
+}

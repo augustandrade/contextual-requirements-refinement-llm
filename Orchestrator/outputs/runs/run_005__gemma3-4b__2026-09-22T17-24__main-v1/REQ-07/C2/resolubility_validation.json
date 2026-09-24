@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A tolerance value or a defined upper limit for the water level relative to 100 meters."
+        ],
+        "justification": "The requirement uses the term 'remains above' without specifying a tolerance or upper limit, leading to ambiguity regarding the acceptable range of values around 100 meters. The business rule BR-01 does not provide this information."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C2",
+    "requirement_id": "REQ-07"
+  }
+}

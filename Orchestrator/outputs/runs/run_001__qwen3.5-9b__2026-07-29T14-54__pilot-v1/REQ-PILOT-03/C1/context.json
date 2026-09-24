@@ -1,0 +1,15 @@
+{
+  "domain": "Human resources management system for a mid-sized enterprise.",
+  "glossary": [
+    {
+      "term": "leave request",
+      "definition": "A formal employee request for planned absence from work, submitted through the HR system."
+    },
+    {
+      "term": "automatic approval",
+      "definition": "Approval granted by the system without requiring manual review by a manager."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

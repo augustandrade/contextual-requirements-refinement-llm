@@ -1,0 +1,11 @@
+{
+  "domain": "Dam water level control system with automatic pump shutdown.",
+  "glossary": [
+    {
+      "term": "water level",
+      "definition": "Sensor reading sampled continuously."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

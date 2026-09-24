@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-04-C1",
+  "requirement_id": "REQ-04",
+  "context_condition": "C1",
+  "input_requirement": "When a rejection order is received for a cancellation request, System-A must raise a web alert.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'for a cancellation request' introduces an underspecified condition. It is unclear whether the rejection order is specifically triggered *because* of the cancellation request, or simply *when* a rejection order is received. This introduces a scope ambiguity regarding the trigger for the alert.",
+        "possible_interpretations": [
+          "The web alert is raised only when a rejection order is received *because* a cancellation request was made (the rejection is a direct consequence of the cancellation).",
+          "The web alert is raised whenever a rejection order is received, regardless of whether it was triggered by a cancellation request (the alert is a notification of the rejection)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The precise trigger condition for the alert: whether the rejection is a direct consequence of the cancellation request, or simply a notification of a rejection order."
+        ],
+        "justification": "The requirement text does not explicitly state whether the alert is triggered by the cancellation request or simply by the receipt of a rejection order. This introduces a scope ambiguity regarding the trigger condition."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

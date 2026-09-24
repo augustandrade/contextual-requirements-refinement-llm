@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-11-C0",
+  "requirement_id": "REQ-11",
+  "context_condition": "C0",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' is inherently vague. There is no objective, measurable definition of 'medium-sized' in terms of dimensions, weight, or other quantifiable characteristics. The extension of this term is indeterminate – at least one vehicle exists that would not be considered 'medium-sized' according to this definition.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4.5 and 6 meters.",
+          "Vehicles with a gross vehicle weight between 1.5 and 3.5 tonnes."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A specific, measurable definition of 'medium-sized' vehicles, such as a length range or a gross vehicle weight range."
+        ],
+        "justification": "The term 'medium-sized' is inherently vague and lacks a quantifiable definition. Multiple interpretations are possible, and no contextual information is provided to resolve the ambiguity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

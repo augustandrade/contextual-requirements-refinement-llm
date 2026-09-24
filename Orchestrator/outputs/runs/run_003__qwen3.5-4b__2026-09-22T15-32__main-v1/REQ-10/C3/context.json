@@ -1,0 +1,24 @@
+{
+  "domain": "Automotive crash-detection and emergency-call system (TCU/ORC).",
+  "glossary": [
+    {
+      "term": "TCU",
+      "definition": "Telematics Control Unit."
+    },
+    {
+      "term": "ORC",
+      "definition": "Occupant Restraint Controller."
+    },
+    {
+      "term": "eCall session",
+      "definition": "A single end-to-end emergency call attempt initiated by the TCU, comprising connection setup, minimum voice duration, and mandatory vehicle data transmission to the Public Safety Answering Point (PSAP)."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "An eCall session must maintain an open voice channel for a minimum of 120 seconds; if the connection is dropped before this threshold, the TCU must automatically retry up to three times with a 30-second interval between attempts."
+    }
+  ],
+  "constraints": []
+}

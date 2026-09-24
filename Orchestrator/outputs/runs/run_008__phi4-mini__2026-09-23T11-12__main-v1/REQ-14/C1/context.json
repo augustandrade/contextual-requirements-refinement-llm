@@ -1,0 +1,11 @@
+{
+  "domain": "Building access control system.",
+  "glossary": [
+    {
+      "term": "admittance",
+      "definition": "A recorded event of granted or denied entry to the building."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

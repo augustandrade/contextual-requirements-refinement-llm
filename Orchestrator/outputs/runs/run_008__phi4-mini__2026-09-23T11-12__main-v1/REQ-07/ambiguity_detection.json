@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the water level remains above 100 meters for more than 4 seconds.",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'more than 4 seconds' is vague because it does not specify an upper limit, making membership indeterminate. Additionally, there could be a misunderstanding of whether to measure continuous time or discrete intervals.",
+        "possible_interpretations": [
+          "Shut off the pumps if water level stays above 100 meters for any duration longer than exactly four consecutive seconds.",
+          "Shut off the pumps as soon as it has been more than four total elapsed seconds since last check, regardless of how many times this condition is met within that time frame."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The phrase 'rejection order is received for a cancellation request' explicitly uses the preposition 'for' to link the rejection order to the cancellation request. In standard English usage, 'X for Y' indicates that X is directed at Y or pertains to Y. Therefore, the rejection order specifically targets the cancellation request."
+        ],
+        "evidence_from_context": [],
+        "justification": "The reported ambiguity suggests two interpretations: one where the rejection targets the cancellation, and one where the rejection is unrelated but coincidental. The preposition 'for' in the requirement text ('rejection order... for a cancellation request') semantically binds the rejection order to the cancellation request, ruling out the interpretation that the rejection is unrelated. The ambiguity is a false positive because the text structure itself resolves the relationship."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The routing switch filters network traffic from data-plane interfaces towards management data traffic (e.g., interface A to management network).",
+        "evidence_from_requirement": [
+          "The phrase 'between' can be interpreted as indicating a direction or flow, rather than a separation between two entities."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'management data traffic' is defined as SNMP traffic restricted to UDP port 161, implying that it is a specific type of traffic that the routing switch needs to filter from the data-plane interfaces."
+        ],
+        "justification": "The requirement text and controlled context suggest that the phrase 'between' is used to indicate direction or flow, rather than separation between entities. This interpretation is supported by the definition of management data traffic in the glossary."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-09-C2",
+    "requirement_id": "REQ-09"
+  }
+}

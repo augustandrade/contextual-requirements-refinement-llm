@@ -1,0 +1,6 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: each term has a single plausible meaning, there are no competing antecedents, and the sentence admits only one parse tree."
+  }
+}

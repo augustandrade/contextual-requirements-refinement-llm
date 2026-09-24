@@ -1,0 +1,24 @@
+{
+  "domain": "Online payment processing platform handling real-time card authorisations for e-commerce merchants.",
+  "glossary": [
+    {
+      "term": "payment service",
+      "definition": "Core transaction processing component responsible for card authorisation, settlement, and refund operations."
+    },
+    {
+      "term": "maintenance window",
+      "definition": "Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes."
+    },
+    {
+      "term": "availability monitoring agent",
+      "definition": "Automated probe that issues synthetic transaction requests every 60 seconds and records success or failure against the payment service endpoint."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Availability metrics must be reported to stakeholders in a monthly SLA dashboard generated on the first business day of each month, covering the preceding calendar month."
+    }
+  ],
+  "constraints": []
+}

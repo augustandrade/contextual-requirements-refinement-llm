@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "shall contain all granted and denied admittances",
+        "ambiguity_type": "semantic",
+        "explanation": "The requirement is ambiguous because it does not specify whether 'granted' refers to successful entries that complied with security protocols or simply any entry, including those which were subsequently rejected.",
+        "possible_interpretations": [
+          "The report includes only the instances where individuals have been granted access and allowed into the building.",
+          "The report lists all attempts at admittance without distinction between grants of permission (successful) versus denials due to security checks or other reasons."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A domain rule or architectural constraint specifying whether the TCU and ORC share a single physical link supporting both CAN and LIN protocols, or if they maintain two distinct physical links (one CAN, one LIN) to achieve redundancy."
+        ],
+        "justification": "The requirement text describes the connection topology ('connected... redundantly') and the protocols ('via CAN and LIN') but does not explicitly define the physical topology (single multi-protocol link vs. dual separate links). The controlled context (glossary, business rules) defines the components and call triggers but lacks the specific architectural rule defining the physical redundancy implementation for the TCU-ORC link. Without a rule stating 'TCU and ORC share a single CAN/LIN bus' or 'TCU and ORC have separate CAN and LIN links', the syntactic attachment of 'via CAN and LIN' to 'redundantly' cannot be resolved."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C2",
+    "requirement_id": "REQ-10"
+  }
+}

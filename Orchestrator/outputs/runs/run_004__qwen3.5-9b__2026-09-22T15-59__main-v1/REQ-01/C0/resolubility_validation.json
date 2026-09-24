@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time, including during maintenance windows and infrastructure upgrades",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A quantitative threshold or explicit scope definition clarifying whether '100% availability' applies to the duration of maintenance/upgrades or if those periods are excluded from the metric calculation."
+        ],
+        "justification": "The requirement text uses the phrase 'including during...' which linguistically suggests inclusion, but the explanation correctly identifies a semantic ambiguity regarding the strictness of the '100%' metric during those included periods. The text does not provide a quantitative boundary (e.g., '100% excluding maintenance') or a business rule that explicitly defines the availability metric's behavior during maintenance. Without such evidence, it is impossible to determine if the requirement demands zero downtime during maintenance or if the metric applies to the aggregate time excluding maintenance. No controlled context is provided to resolve this."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01"
+  }
+}

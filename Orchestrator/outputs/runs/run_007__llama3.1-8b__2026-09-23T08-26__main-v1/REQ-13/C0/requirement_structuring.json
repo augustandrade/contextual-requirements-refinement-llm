@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "Once the settlement request itself is valid and meets all necessary criteria for processing, as determined by System-A's validation checks, System-A must send an acknowledge message to System-B.",
+        "structuring_notes": [
+          "Core predicate is 'send' (system action) → functional_requirement. AMB-01 resolved: replaced ambiguous fragment with supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13",
+    "context_condition": "C0"
+  }
+}

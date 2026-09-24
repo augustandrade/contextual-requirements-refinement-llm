@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the water level remains above 100 meters for more than 4 seconds.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "An upper limit to 'more than four consecutive seconds' or clarification on continuous vs. discrete time measurement."
+        ],
+        "justification": "The requirement text does not specify an exact duration beyond which the water level triggers a pump shutdown, nor is it clear whether this should be measured as cumulative elapsed time since last check (potentially allowing for multiple activations) versus strictly exceeding 4 consecutive seconds."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C2",
+    "requirement_id": "REQ-07"
+  }
+}

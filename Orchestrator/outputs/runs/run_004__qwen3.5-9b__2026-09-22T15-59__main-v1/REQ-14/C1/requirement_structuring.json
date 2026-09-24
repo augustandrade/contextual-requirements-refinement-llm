@@ -1,0 +1,19 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The electronic door locking system shall generate monthly reports containing records of every access attempt, distinguishing between those that were allowed and those that were rejected.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; no action taken on fragment.",
+          "AMB-02 resolved: fragment 'all granted and denied admittances' replaced with 'records of every access attempt, distinguishing between those that were allowed and those that were rejected' per supported interpretation.",
+          "Core predicate is 'generate' (system action) → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-14-C1",
+    "requirement_id": "REQ-14",
+    "context_condition": "C1"
+  }
+}

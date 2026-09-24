@@ -1,0 +1,16 @@
+{
+  "domain": "Building access control system.",
+  "glossary": [
+    {
+      "term": "admittance",
+      "definition": "A recorded event of granted or denied entry to the building."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Monthly admittance reports shall cover all access events recorded within the calendar month and must include the event timestamp, the access point identifier, and the outcome (granted or denied)."
+    }
+  ],
+  "constraints": []
+}

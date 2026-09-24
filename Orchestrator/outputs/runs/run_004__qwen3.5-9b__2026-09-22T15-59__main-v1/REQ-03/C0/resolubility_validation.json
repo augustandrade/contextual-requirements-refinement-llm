@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file, according to the mapping rules",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A syntactic rule or explicit precedence definition clarifying whether 'according to the mapping rules' modifies the specific condition of B-file membership or the broader reception event."
+        ],
+        "justification": "The requirement text presents a syntactic ambiguity regarding the scope of the prepositional phrase 'according to the mapping rules'. No textual cues, parentheses, or contextual business rules are present to determine if the rules define the membership check or the processing context. Without such evidence, the ambiguity cannot be resolved."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-03-C0",
+    "requirement_id": "REQ-03"
+  }
+}

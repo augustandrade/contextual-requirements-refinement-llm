@@ -1,0 +1,21 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The glossary explicitly defines 'medium-sized vehicle' as: 'Vehicle with gross weight strictly between 1500 kg and 2000 kg'."
+        ],
+        "evidence_from_context": [],
+        "justification": "The ambiguity detection report claims 'medium-sized' has a fuzzy extension and lacks a precise boundary. However, the controlled context (glossary) provides a precise, non-fuzzy definition based on gross weight (1500 kg < weight < 2000 kg). The reported interpretations based on vehicle length are unsupported by the text, as the requirement and context define the category by weight, not length. Therefore, the ambiguity is a false positive; the set of 'medium-sized vehicles' is precisely defined."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11"
+  }
+}

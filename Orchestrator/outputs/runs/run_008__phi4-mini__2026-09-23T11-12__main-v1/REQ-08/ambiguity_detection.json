@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone.",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'dial tone' is polysemous; it can refer to the sound produced when dialing on an old telephone or metaphorically represent any signal indicating that service (like answering machine) has been reached.",
+        "possible_interpretations": [
+          "Produce a standard dial-tone audio pattern as heard in traditional landline telephones.",
+          "Indicate through some form of signaling, such as lighting up the receiver's indicator when no one is available to answer calls on an answering service system (like voicemail)."
+        ]
+      }
+    ]
+  }
+}

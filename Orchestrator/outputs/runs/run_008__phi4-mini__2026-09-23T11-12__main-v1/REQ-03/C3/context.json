@@ -1,0 +1,24 @@
+{
+  "domain": "Post-trade financial platform with message routing and B-file classification.",
+  "glossary": [
+    {
+      "term": "Security Manager",
+      "definition": "Workflow authority that sends approval and rejection orders."
+    },
+    {
+      "term": "B-file",
+      "definition": "Reference file used for message classification and routing."
+    },
+    {
+      "term": "mapping rules",
+      "definition": "A static lookup table, versioned quarterly, that maps incoming message type codes to B-file classification categories."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Mapping rule tables are loaded at system startup and reloaded automatically when a new version is published, with a maximum propagation delay of 30 seconds."
+    }
+  ],
+  "constraints": []
+}

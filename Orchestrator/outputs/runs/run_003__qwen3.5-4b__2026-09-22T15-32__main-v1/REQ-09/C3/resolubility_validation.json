@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The routing function itself is the mechanism that performs the switching of the ability (the ability is the object being switched).",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01 states: 'The routing switch must sustain its rated line-rate forwarding throughput with filtering active, and must flush completed traffic log records...'. This implies the routing switch possesses and maintains the capability (ability) to filter, and the context describes the switch's operational state rather than a change in capability."
+        ],
+        "justification": "The requirement describes the switch's inherent function ('Routing switches ability...') in the context of sustaining throughput with filtering active. The business rule confirms the switch maintains the filtering capability, supporting the interpretation that the switch is the entity performing the action on its own ability, rather than an external function modifying the switch's capability."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "between data-plane interfaces and management data traffic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The filter operates between a data-plane interface and a stream of management data traffic.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary definition of 'traffic log record': 'Structured entry written to non-volatile storage for each packet evaluated by the switch, containing ingress port, timestamp, and disposition (forwarded or dropped).' This implies the switch evaluates packets (traffic) at ingress ports (interfaces) and makes forwarding/dropping decisions.",
+          "Business rule BR-01: 'The routing switch must sustain its rated line-rate forwarding throughput with filtering active...'. This confirms the switch filters traffic at the interface level."
+        ],
+        "justification": "The glossary defines the switch's operation as evaluating packets at ingress ports and determining disposition (forwarded or dropped). The phrase 'between data-plane interfaces and management data traffic' in the context of a switch evaluating packets logically refers to the switch processing traffic arriving at interfaces, distinguishing between the interface entry point and the traffic stream being processed, rather than switching between two types of interfaces."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-09-C3",
+    "requirement_id": "REQ-09"
+  }
+}

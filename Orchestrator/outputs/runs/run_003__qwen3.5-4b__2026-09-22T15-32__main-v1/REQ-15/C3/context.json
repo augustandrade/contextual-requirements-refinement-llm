@@ -1,0 +1,20 @@
+{
+  "domain": "Query-processing system with a performance SLA.",
+  "glossary": [
+    {
+      "term": "query",
+      "definition": "A single request submitted to the system for processing."
+    },
+    {
+      "term": "API client token",
+      "definition": "Authentication credential issued per registered caller, used to identify the source of each query and enforce per-client rate limits."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Each registered API client is subject to a rate limit of 100 queries per second; requests exceeding this limit must receive an HTTP 429 response and must not be queued for processing."
+    }
+  ],
+  "constraints": []
+}

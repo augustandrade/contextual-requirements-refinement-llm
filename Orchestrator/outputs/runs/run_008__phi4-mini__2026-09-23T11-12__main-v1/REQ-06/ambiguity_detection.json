@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the interior surveillance of the car detects an intruder or a door of the car is opened without a car key,",
+        "ambiguity_type": "semantic",
+        "explanation": "The sentence contains two conditions that could independently trigger the safety system alarm. The logical relationship between detecting an intruder and opening a door without authorization (car key) isn't specified, leading to potential misinterpretations about whether both events must occur simultaneously or if either one is sufficient.",
+        "possible_interpretations": [
+          "Both detection of an intruder AND unauthorized entry through the car's door are required for raising the alarm.",
+          "Detection of any single event (either intrusion OR opening a door without key) should suffice to raise the alarm."
+        ]
+      }
+    ]
+  }
+}

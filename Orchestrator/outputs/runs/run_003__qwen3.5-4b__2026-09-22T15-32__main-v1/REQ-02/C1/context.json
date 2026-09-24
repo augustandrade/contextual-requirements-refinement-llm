@@ -1,0 +1,11 @@
+{
+  "domain": "Integration platform that orchestrates downstream services and reporting subscriptions.",
+  "glossary": [
+    {
+      "term": "downstream systems",
+      "definition": "External systems that receive events from System-A."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

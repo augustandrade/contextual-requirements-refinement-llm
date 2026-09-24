@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-11-C3",
+  "requirement_id": "REQ-11",
+  "context_condition": "C3",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' lacks a measurable boundary; it is impossible to determine which specific vehicle sizes qualify as 'medium' without an external standard or definition.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4.5 meters and 5.5 meters.",
+          "Vehicles with a weight between 2,000 kg and 3,500 kg."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining the classification of 'medium-sized vehicles' (e.g., specific length in meters, weight in kg, or passenger capacity)."
+        ],
+        "justification": "The requirement text uses the term 'medium-sized' without any numeric thresholds or explicit scope definitions. The controlled context provides glossary definitions for 'navigation system' and 'map database' and a business rule regarding map updates, but contains no definition or standard for classifying vehicle size. Without a quantitative threshold or explicit scope boundary, it is impossible to determine which specific vehicles qualify as 'medium-sized'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

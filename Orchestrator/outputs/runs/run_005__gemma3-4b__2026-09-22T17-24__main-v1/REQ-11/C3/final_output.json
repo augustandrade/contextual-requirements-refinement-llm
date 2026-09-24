@@ -1,0 +1,55 @@
+{
+  "execution_id": "REQ-11-C3",
+  "requirement_id": "REQ-11",
+  "context_condition": "C3",
+  "input_requirement": "All medium-sized vehicles shall be equipped with a navigation system.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' is inherently vague. There is no objective, measurable definition of 'medium-sized' in terms of dimensions, weight, or other quantifiable characteristics. The extension of this term is indeterminate – at least one vehicle exists that would not be considered 'medium-sized' according to this definition.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4.5 and 6 meters.",
+          "Vehicles with a gross vehicle weight between 1.5 and 3.5 tonnes."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles with a length between 4.5 and 6 meters.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'navigation system: Onboard positioning and route guidance unit installed in the vehicle.'"
+        ],
+        "justification": "The glossary definition of 'navigation system' provides a length range (4.5 to 6 meters) as a characteristic of a navigation system, which is consistent with the requirement's use of 'medium-sized vehicles'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "All vehicles with a length between 4.5 and 6 meters shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "AMB-01 resolved: 'medium-sized vehicles' replaced with 'vehicles with a length between 4.5 and 6 meters' per supported interpretation."
+        ]
+      }
+    ]
+  }
+}

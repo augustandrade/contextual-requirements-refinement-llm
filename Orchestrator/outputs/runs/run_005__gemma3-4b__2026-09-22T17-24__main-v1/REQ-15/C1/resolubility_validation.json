@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The time period over which '95 percent' is calculated (e.g., hourly, 5-minute, etc.)."
+        ],
+        "justification": "The requirement lacks a defined time period for calculating the 95% threshold, leading to ambiguity regarding the population of queries considered."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "must not take longer than 4 seconds to process queries at any given time",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The duration over which the 4-second limit applies (e.g., sustained limit, 1-second window)."
+        ],
+        "justification": "The phrase 'at any given time' lacks a defined duration, creating ambiguity regarding the scope of the 4-second limit."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C1",
+    "requirement_id": "REQ-15"
+  }
+}

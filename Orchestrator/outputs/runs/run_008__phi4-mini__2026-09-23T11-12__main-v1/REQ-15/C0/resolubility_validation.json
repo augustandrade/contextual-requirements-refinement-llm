@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 1.5 seconds\" AND \"not take longer than 4 seconds\"",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator precedence between processing queries within 1.5 seconds and not exceeding four seconds."
+        ],
+        "justification": "The requirement text does not provide sufficient context to determine the relationship (inclusive or exclusive) of these two time constraints."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C0",
+    "requirement_id": "REQ-15"
+  }
+}

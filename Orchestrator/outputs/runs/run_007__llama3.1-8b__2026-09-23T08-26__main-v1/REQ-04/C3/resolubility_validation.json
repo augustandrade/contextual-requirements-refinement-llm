@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "a rejection order is received for a cancellation request",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system receives a rejection of a cancellation request (the request was to cancel something else, and now that's being rejected).",
+        "evidence_from_requirement": [
+          "Business rule BR-01 states that a web alert raised for a rejection order must be classified as CRITICAL severity. This implies that the rejection order is the entity being rejected."
+        ],
+        "evidence_from_context": [
+          "Glossary definition of 'rejection order': an order that has been rejected by another party, indicating that the original request was not fulfilled."
+        ],
+        "justification": "The business rule and glossary definitions provide clear context that the rejection order is the entity being rejected, eliminating interpretation 1."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-04-C3",
+    "requirement_id": "REQ-04"
+  }
+}

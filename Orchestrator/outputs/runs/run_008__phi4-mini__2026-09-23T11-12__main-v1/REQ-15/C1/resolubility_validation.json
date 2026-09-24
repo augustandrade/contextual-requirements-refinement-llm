@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "within 1.5 seconds\" AND \"not take longer than 4 seconds\"",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator precedence between the two time constraints."
+        ],
+        "justification": "The requirement text does not clarify whether processing times up to and excluding both 1.5 seconds are required, or if it imposes an inclusive window from zero to one point five (or four) seconds for some cases while also stating that no query should take longer than four seconds at any given moment."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-15-C1",
+    "requirement_id": "REQ-15"
+  }
+}

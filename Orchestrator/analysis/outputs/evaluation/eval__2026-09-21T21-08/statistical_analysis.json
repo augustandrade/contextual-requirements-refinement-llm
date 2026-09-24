@@ -1,0 +1,50 @@
+{
+  "rq1_mcnemar": {
+    "qwen3.5-9b": {
+      "n_pairs": 4,
+      "b_c2_wins": 3,
+      "c_c3_wins": 0,
+      "n_discordant": 3,
+      "p_value": null,
+      "note": "n_discordant=3 < 5 — poder estatístico insuficiente (exploratório)"
+    }
+  },
+  "rq2_bootstrap_ci": {
+    "qwen3.5-9b": {
+      "precision": {
+        "lo": 1.0,
+        "hi": 1.0,
+        "n_valid": 9987
+      },
+      "recall": {
+        "lo": 0.3333333333333333,
+        "hi": 1.0,
+        "n_valid": 10000
+      },
+      "f1": {
+        "lo": 0.5,
+        "hi": 1.0,
+        "n_valid": 9987
+      },
+      "specificity": null
+    }
+  },
+  "rq3_proportions": [
+    {
+      "run": "run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1",
+      "model": "qwen3.5-9b",
+      "category": "unknown",
+      "correct": 2,
+      "total": 4,
+      "proportion": 0.5
+    },
+    {
+      "run": "run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1",
+      "model": "qwen3.5-9b",
+      "category": "unknown",
+      "correct": 2,
+      "total": 4,
+      "proportion": 0.5
+    }
+  ]
+}

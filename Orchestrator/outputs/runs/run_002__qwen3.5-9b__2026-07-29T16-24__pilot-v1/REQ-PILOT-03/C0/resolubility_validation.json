@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition or business rule specifying whether 'eligible' refers to tenure/policy criteria, disciplinary status, or both."
+        ],
+        "justification": "The requirement text uses the term 'eligible' without defining its scope. The controlled context is absent, so there is no glossary entry or business rule to determine if eligibility is limited to tenure, disciplinary status, or a combination of both. Both interpretations remain equally plausible based on the available evidence."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-PILOT-03-C0",
+    "requirement_id": "REQ-PILOT-03"
+  }
+}

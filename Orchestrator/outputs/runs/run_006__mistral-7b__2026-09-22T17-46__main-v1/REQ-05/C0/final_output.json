@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-05-C0",
+  "requirement_id": "REQ-05",
+  "context_condition": "C0",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' has two competing antecedents in scope: 'access card' and 'PIN'. It is unclear which input being invalid must trigger the access denial.",
+        "possible_interpretations": [
+          "The access card is invalid (e.g., stolen, expired, or not registered).",
+          "The PIN entered at the keypad is incorrect."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "it is invalid",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Which input the pronoun 'it' refers to."
+        ],
+        "justification": "The requirement introduces two candidate antecedents without any textual cue to select one over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "between data-plane interfaces and management data traffic",
+        "ambiguity_type": "semantic",
+        "explanation": "The preposition 'between' implies two distinct entities, but the requirement text does not explicitly specify what these entities are. It could refer to different types of network traffic (data plane vs management) or different physical interfaces within the routing switch.",
+        "possible_interpretations": [
+          "The routing switch filters data-plane traffic between different data-plane interfaces and manages data traffic separately.",
+          "The routing switch filters data-plane traffic from one interface to another while managing data traffic on a separate set of interfaces."
+        ]
+      }
+    ]
+  }
+}

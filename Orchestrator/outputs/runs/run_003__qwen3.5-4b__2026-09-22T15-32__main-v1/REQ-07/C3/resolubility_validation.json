@@ -1,0 +1,21 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of 'remains' regarding continuous state versus sustained state with brief interruptions.",
+          "A precise definition of 'more than 4 seconds' regarding strict inequality (> 4s) versus inclusive inequality (>= 4s)."
+        ],
+        "justification": "The requirement text uses vague temporal qualifiers ('remains', 'more than') without explicit boundaries or definitions. The controlled context provides a glossary for 'water level' and 'pump shutdown sequence' and a business rule regarding ramp-down timing, but none of these sources define the temporal logic of the trigger condition itself. No evidence in the text or context selects one interpretation over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C3",
+    "requirement_id": "REQ-07"
+  }
+}

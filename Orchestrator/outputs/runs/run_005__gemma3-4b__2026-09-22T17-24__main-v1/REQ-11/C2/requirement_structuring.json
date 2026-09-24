@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "All vehicles with a gross vehicle weight between 1.5 and 3.5 tonnes shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "Fragment 'medium-sized vehicles' replaced with supported interpretation 'Vehicles with a gross vehicle weight between 1.5 and 3.5 tonnes' per resolvable status."
+        ]
+      }
+    ],
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11",
+    "context_condition": "C2"
+  }
+}

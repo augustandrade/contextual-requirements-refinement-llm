@@ -1,0 +1,25 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "all granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Only entries recorded by the electronic door locking system, excluding any other means of access to the building.",
+        "evidence_from_requirement": [
+          "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'admittance: A recorded event of granted or denied entry to the building.'",
+          "Business rule BR-01: 'Each monthly admittance report must be deposited to the corporate SFTP endpoint and made available to all recipients on the distribution list within 24 hours of the last calendar day of the covered month; failed deposits must be retried and flagged to the system administrator.'"
+        ],
+        "justification": "The glossary definition of 'admittance' and the business rule BR-01 explicitly state that the report contains 'admittances' recorded by the electronic door locking system, excluding other access methods. This interpretation aligns with the scope of the system's functionality."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C3",
+    "requirement_id": "REQ-14"
+  }
+}

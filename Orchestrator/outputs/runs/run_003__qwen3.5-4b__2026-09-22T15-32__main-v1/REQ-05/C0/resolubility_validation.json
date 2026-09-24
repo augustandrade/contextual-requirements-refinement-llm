@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific antecedent of the pronoun 'it' — whether it refers to the 'access card' or the 'personal identification number (PIN)'."
+        ],
+        "justification": "The requirement text presents two distinct entities ('access card' and 'PIN') and uses the pronoun 'it' without any textual cue (such as a preceding clause defining the subject or a possessive marker) to select one antecedent over the other. No controlled context is available to resolve this referential ambiguity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-05-C0",
+    "requirement_id": "REQ-05"
+  }
+}

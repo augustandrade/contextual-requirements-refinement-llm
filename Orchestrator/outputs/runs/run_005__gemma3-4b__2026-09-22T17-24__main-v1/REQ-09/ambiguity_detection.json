@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'filter network traffic' is ambiguous regarding the criteria for filtering. Does it filter based on source/destination IP addresses, ports, protocols, or some other characteristic? The sentence doesn't specify the filtering mechanism or the criteria, leading to multiple interpretations of what constitutes 'filtering'.",
+        "possible_interpretations": [
+          "The switches must block all traffic from management data interfaces to the data plane, preventing unauthorized access.",
+          "The switches must prioritize data plane traffic over management data traffic, ensuring that critical data flows are not delayed or disrupted."
+        ]
+      }
+    ]
+  }
+}

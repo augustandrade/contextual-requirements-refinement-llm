@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "the interior surveillance of the car detects an intruder or a door of the car is opened without a car key,",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The safety system raises an alarm if a window of the car is damaged and an intruder is detected by the interior surveillance.",
+        "evidence_from_requirement": [
+          "The preceding sentence introduces two conditions that must both be met for the alarm to trigger, implying that 'it' refers to the first condition ('a window of the car is damaged')."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'interior surveillance: Sensor subsystem for intrusion detection inside the vehicle.' This definition supports the reading in which the interior surveillance detects an intruder."
+        ],
+        "justification": "The requirement text establishes a conjunctive relationship between the two conditions, and the glossary provides context that selects one interpretation over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-06-C1",
+    "requirement_id": "REQ-06"
+  }
+}

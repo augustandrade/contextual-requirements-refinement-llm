@@ -1,0 +1,18 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if it is invalid",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [],
+        "justification": "'It' refers to the combined action of card insertion and PIN entry, not a single step. The requirement does not support either interpretation without unsupported inference."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05"
+  }
+}

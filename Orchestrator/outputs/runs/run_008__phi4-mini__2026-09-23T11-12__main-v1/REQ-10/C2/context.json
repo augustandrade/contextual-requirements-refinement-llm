@@ -1,0 +1,20 @@
+{
+  "domain": "Automotive crash-detection and emergency-call system (TCU/ORC).",
+  "glossary": [
+    {
+      "term": "TCU",
+      "definition": "Telematics Control Unit."
+    },
+    {
+      "term": "ORC",
+      "definition": "Occupant Restraint Controller."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Automatic emergency calls are triggered for crash severity levels 2 (moderate) and 3 (severe) on the internal crash severity scale; level 1 (minor) does not trigger a call."
+    }
+  ],
+  "constraints": []
+}

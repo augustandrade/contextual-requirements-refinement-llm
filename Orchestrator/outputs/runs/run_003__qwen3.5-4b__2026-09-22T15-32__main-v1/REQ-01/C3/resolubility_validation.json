@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining the scope of 'time' for the availability metric (e.g., whether 'time' excludes scheduled maintenance windows and infrastructure upgrades, or includes them)."
+        ],
+        "justification": "The requirement text states the service must be available '100% of the time' but includes maintenance windows and upgrades in the scope. The glossary defines 'maintenance window' as a period of planned updates, but provides no rule or constraint defining whether such periods are excluded from the '100%' availability calculation. Without a quantitative threshold or explicit scope boundary, it is impossible to determine if the service must remain available during these events or if the '100%' metric applies only to operational time."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-01-C3",
+    "requirement_id": "REQ-01"
+  }
+}

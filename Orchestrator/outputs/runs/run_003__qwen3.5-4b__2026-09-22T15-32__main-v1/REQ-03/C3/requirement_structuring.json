@@ -1,0 +1,19 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "System-A shall perform an action (e.g., process or store) when it receives a message from Security Manager that is part of the B-file, according to the mapping rules defined in the current document or context.",
+        "structuring_notes": [
+          "AMB-01 resolved: Added 'shall perform an action...' to clarify the system behavior per supported interpretation.",
+          "AMB-02 resolved: Expanded 'mapping rules' to 'mapping rules defined in the current document or context' per supported interpretation.",
+          "Core predicate is 'perform an action' (system action) → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-03-C3",
+    "requirement_id": "REQ-03",
+    "context_condition": "C3"
+  }
+}

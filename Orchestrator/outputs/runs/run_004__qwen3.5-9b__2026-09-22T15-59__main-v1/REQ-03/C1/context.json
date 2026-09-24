@@ -1,0 +1,15 @@
+{
+  "domain": "Post-trade financial platform with message routing and B-file classification.",
+  "glossary": [
+    {
+      "term": "Security Manager",
+      "definition": "Workflow authority that sends approval and rejection orders."
+    },
+    {
+      "term": "B-file",
+      "definition": "Reference file used for message classification and routing."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

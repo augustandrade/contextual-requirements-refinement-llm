@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "detects an intruder or a door of the car is opened without a car key",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system raises an alarm if either an intruder is detected OR a door is opened without a car key (inclusive).",
+        "evidence_from_requirement": [
+          "Business rule BR-01: 'Window damage is a mandatory precondition for triggering the alarm. Once window damage is confirmed, the alarm is raised independently by either of two events: (1) the interior surveillance detects an intruder, or (2) a door is opened without a car key.'"
+        ],
+        "evidence_from_context": [],
+        "justification": "The business rule explicitly states that the alarm is raised if either event occurs, indicating an inclusive 'or' interpretation. The definition of 'interior surveillance' confirms its role in detecting intruders."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-06-C2",
+    "requirement_id": "REQ-06"
+  }
+}

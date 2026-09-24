@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-PILOT-05-C0",
+  "requirement_id": "REQ-PILOT-05",
+  "context_condition": "C0",
+  "input_requirement": "The system shall log all exceptions raised during the nightly settlement batch and notify the operations team.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "notify the operations team",
+        "ambiguity_type": "referential",
+        "explanation": "The definite noun phrase 'the operations team' lacks a unique antecedent in the immediate context. It could refer to a specific, previously defined team entity in the system's glossary, or it could refer to any group of personnel performing operations, creating ambiguity about which specific group must be notified.",
+        "possible_interpretations": [
+          "The system shall notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model.",
+          "The system shall notify any group of personnel who perform operational tasks, regardless of whether they are formally defined as a single entity."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "notify the operations team",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition or reference to a specific, uniquely identified 'operations team' entity in the system's organizational model or glossary to distinguish it from a generic group of personnel."
+        ],
+        "justification": "The requirement text mentions 'the operations team' but provides no antecedent or contextual definition to select between a specific organizational entity and a generic group of personnel. The controlled_context is absent, so no glossary or business rules are available to resolve this referential ambiguity."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

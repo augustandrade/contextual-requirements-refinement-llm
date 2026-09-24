@@ -1,0 +1,20 @@
+{
+  "domain": "Post-trade financial platform with cancellation workflows and alerts.",
+  "glossary": [
+    {
+      "term": "System-A",
+      "definition": "User-facing alert module."
+    },
+    {
+      "term": "Security Manager",
+      "definition": "Workflow authority that approves or rejects cancellation requests."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Rejection and approval orders are issued exclusively by Security Manager."
+    }
+  ],
+  "constraints": []
+}

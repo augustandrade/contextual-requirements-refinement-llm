@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "System-A must add System-B to their own downstream systems and allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "AMB-01 resolved: pronoun 'their' replaced with possessive adjective 'own' per supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-02-C3",
+    "requirement_id": "REQ-02",
+    "context_condition": "C3"
+  }
+}

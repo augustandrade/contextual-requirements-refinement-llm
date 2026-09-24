@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A specific, quantifiable level of uptime (e.g., 99.999%) or a definition of 'available' that includes acceptable downtime during maintenance windows and infrastructure upgrades."
+        ],
+        "justification": "The term '100% of the time' is inherently vague and lacks a measurable boundary defining what constitutes 'available'. No specific definition of 'available' is provided, leaving the interpretation open to subjective judgment."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-01-C0",
+    "requirement_id": "REQ-01"
+  }
+}

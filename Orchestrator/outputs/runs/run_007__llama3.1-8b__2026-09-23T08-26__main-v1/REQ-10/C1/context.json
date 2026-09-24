@@ -1,0 +1,15 @@
+{
+  "domain": "Automotive crash-detection and emergency-call system (TCU/ORC).",
+  "glossary": [
+    {
+      "term": "TCU",
+      "definition": "Telematics Control Unit."
+    },
+    {
+      "term": "ORC",
+      "definition": "Occupant Restraint Controller."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

@@ -1,0 +1,16 @@
+{
+  "domain": "In-vehicle safety system with intrusion detection and door state monitoring.",
+  "glossary": [
+    {
+      "term": "interior surveillance",
+      "definition": "Sensor subsystem for intrusion detection inside the vehicle."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "Window damage is a mandatory precondition for triggering the alarm. Once window damage is confirmed, the alarm is raised independently by either of two events: (1) the interior surveillance detects an intruder, or (2) a door is opened without a car key.\n"
+    }
+  ],
+  "constraints": []
+}

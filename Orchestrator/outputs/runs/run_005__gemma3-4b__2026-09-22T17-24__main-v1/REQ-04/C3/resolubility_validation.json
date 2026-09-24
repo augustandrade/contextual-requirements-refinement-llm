@@ -1,0 +1,25 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The web alert is raised only when a rejection order is received *because* a cancellation request was made (the rejection is a direct consequence of the cancellation).",
+        "evidence_from_requirement": [
+          "System-A must raise a web alert.",
+          "When a rejection order is received for a cancellation request"
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01: 'A web alert raised for a rejection order must be classified as CRITICAL severity, remain visible on the operator dashboard until explicitly acknowledged, and generate a persistent audit log entry upon acknowledgment.'"
+        ],
+        "justification": "The business rule BR-01 explicitly states that alerts for rejection orders triggered by cancellation requests must be classified as CRITICAL and persist until acknowledged, strongly suggesting that the alert is triggered *because* of the cancellation request. The requirement text further reinforces this interpretation by specifying 'for a cancellation request'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-04-C3",
+    "requirement_id": "REQ-04"
+  }
+}

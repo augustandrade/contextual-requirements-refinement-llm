@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' lacks a measurable boundary; it is impossible to determine which specific vehicle sizes qualify as 'medium' without an external standard or definition.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4.5 meters and 5.5 meters.",
+          "Vehicles with a weight between 2,000 kg and 3,500 kg."
+        ]
+      }
+    ]
+  }
+}

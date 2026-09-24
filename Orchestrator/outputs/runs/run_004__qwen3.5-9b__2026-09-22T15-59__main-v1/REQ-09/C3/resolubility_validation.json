@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The routing switch filters traffic that flows between data-plane interfaces and management data traffic (the phrase defines the traffic scope).",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01 states: 'The routing switch must sustain its rated line-rate forwarding throughput with filtering active, and must flush completed traffic log records to persistent storage within 500 milliseconds of the packet event.' This rule implies that the filtering action applies to the packets being evaluated and forwarded (the traffic scope), rather than defining a physical location of interfaces. If the phrase defined interface location, the rule regarding 'packet event' and 'flushing records' would be disconnected from the filtering action's scope."
+        ],
+        "justification": "The business rule regarding packet evaluation and record flushing establishes that the filtering action is performed on the traffic packets themselves. The phrase 'between data-plane interfaces and management data traffic' logically describes the categories of traffic (data-plane vs management) that are being distinguished and filtered, rather than describing a physical spatial relationship between interfaces. The interpretation where the phrase defines interface location is semantically inconsistent with the operational context of filtering traffic types."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-09-C3",
+    "requirement_id": "REQ-09"
+  }
+}

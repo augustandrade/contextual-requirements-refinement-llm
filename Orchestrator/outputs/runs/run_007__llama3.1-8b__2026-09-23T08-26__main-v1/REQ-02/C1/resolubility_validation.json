@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The entity whose downstream systems are being referred to by 'their'."
+        ],
+        "justification": "The requirement text introduces two competing antecedents for the pronoun 'their', but no textual cue selects one over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-02-C1",
+    "requirement_id": "REQ-02"
+  }
+}

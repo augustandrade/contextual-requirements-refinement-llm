@@ -1,0 +1,32 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The requirement states the report shall contain 'all granted and denied admittances'. The phrase 'all' distributes over the conjunction 'and', mandating the inclusion of every event that falls into either category. The interpretation suggesting a 'summary or aggregated data' is unsupported because the text explicitly requires 'all' events, not a subset or summary."
+        ],
+        "evidence_from_context": [],
+        "justification": "The reported ambiguity regarding aggregation vs. listing is a false positive. The use of the quantifier 'all' combined with 'and' logically necessitates the inclusion of every individual event of both types. There is no textual basis for an interpretation that would exclude individual events in favor of a summary."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "all granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report contains records of every access attempt, distinguishing between those that were allowed and those that were rejected.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'admittance: A recorded event of granted or denied entry to the building.'"
+        ],
+        "justification": "The glossary defines 'admittance' as a 'recorded event of granted or denied entry'. This definition aligns with the interpretation that the report contains records of access attempts (events), rather than the physical act of movement itself. The definition explicitly ties the term to the 'granted or denied' status, confirming that the report must distinguish between allowed and rejected attempts."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C1",
+    "requirement_id": "REQ-14"
+  }
+}

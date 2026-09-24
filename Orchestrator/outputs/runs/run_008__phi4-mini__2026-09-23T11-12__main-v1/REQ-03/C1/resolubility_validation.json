@@ -1,0 +1,18 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file, according to the mapping rules.",
+        "resolubility_status": "unresolved",
+        "missing_information": "The intended logical operator precedence (AND/OR) between conditions for System-A receiving a message.",
+        "justification": "The requirement text lacks clarity on whether both conditions must be met simultaneously or if any condition suffices. No contextual business rule clarifies the interpretation of 'according to the mapping rules'.\""
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-03-C1",
+    "requirement_id": "REQ-03"
+  }
+}

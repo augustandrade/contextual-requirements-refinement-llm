@@ -1,0 +1,16 @@
+{
+  "domain": "Digital telephony exchange system.",
+  "glossary": [
+    {
+      "term": "line output level",
+      "definition": "Signal amplitude measured at the analogue line interface, expressed in dBm relative to 1 milliwatt into a 600-ohm load."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "The dial tone must be maintained for a maximum of 16 seconds; if no dialling input is detected within this interval, the exchange must replace the dial tone with a re-order tone and log the timeout event."
+    }
+  ],
+  "constraints": []
+}

@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "ambiguity_type": "semantic",
+        "explanation": "The term 'it' refers to the PIN entered by the customer. The semantic ambiguity arises from the lack of specification regarding what constitutes an 'invalid' PIN. Does 'invalid' mean incorrect format, incorrect digits, or a PIN that has been previously flagged as compromised? The logical operator 'if' doesn't clarify the precise conditions for denial.",
+        "possible_interpretations": [
+          "If the entered PIN does not match any stored valid PIN (format and value).",
+          "If the entered PIN has been previously associated with a security breach or is otherwise flagged as compromised."
+        ]
+      }
+    ]
+  }
+}

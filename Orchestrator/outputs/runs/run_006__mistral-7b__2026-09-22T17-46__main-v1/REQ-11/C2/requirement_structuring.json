@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "All vehicles with gross weight strictly between 1500 kg and 2000 kg shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "Core predicate is 'equip' (system action) → functional_requirement. Ambiguity AMB-01 resolved: replaced 'medium-sized vehicles' with 'vehicles with gross weight strictly between 1500 kg and 2000 kg' per supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11",
+    "context_condition": "C2"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls",
+        "ambiguity_type": "semantic",
+        "explanation": "The sentence lacks specification of the conditions under which the automatic emergency calls are executed. The phrase 'on certain crash levels' is underspecified. It is unclear which crash levels trigger the redundant CAN/LIN connection and subsequent emergency calls. Does 'certain' imply a specific number, a range, or a defined set? The logical operator precedence is also unclear – does 'on certain crash levels' modify the entire statement or only the 'execute' action?",
+        "possible_interpretations": [
+          "The TCU connects to the ORC redundantly via CAN and LIN, and automatically initiates an emergency call whenever a crash level exceeds a defined threshold (e.g., 15 mph).",
+          "The TCU connects to the ORC redundantly via CAN and LIN, and automatically initiates an emergency call whenever a crash level is detected, regardless of the specific magnitude of the impact."
+        ]
+      }
+    ]
+  }
+}

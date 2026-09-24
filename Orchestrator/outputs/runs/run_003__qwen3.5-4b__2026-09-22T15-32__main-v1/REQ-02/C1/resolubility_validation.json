@@ -1,0 +1,29 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The definition of the pronoun 'their' — specifically, whether it refers to System-A alone, System-B alone, or the collective set of both systems."
+        ],
+        "justification": "The requirement text contains no explicit antecedent for 'their', and the provided glossary defines 'downstream systems' only as a general category without specifying ownership or plurality relative to System-A or System-B. No business rule or constraint clarifies the referent."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The definition of 'the Reporting flow' — specifically, whether it is owned by System-A, System-B, or is a shared entity between them."
+        ],
+        "justification": "The requirement text uses the definite article 'the' without a preceding noun phrase to identify the specific flow. The glossary defines the domain but does not define 'Reporting flow' as a specific entity owned by any particular system. No business rule specifies the ownership or existence of a shared flow."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-02-C1",
+    "requirement_id": "REQ-02"
+  }
+}

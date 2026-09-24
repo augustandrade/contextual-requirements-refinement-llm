@@ -1,0 +1,27 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "95 percent of all queries",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term '95 percent' is inherently vague. It does not specify the population of queries being considered, nor does it define what constitutes a 'query'. The threshold for '95 percent' is indeterminate – at least one query exists for which it is impossible to determine whether it falls within the specified range.",
+        "possible_interpretations": [
+          "95% of queries processed in the last hour.",
+          "95% of queries processed in the last 5 minutes."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "must not take longer than 4 seconds to process queries at any given time",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'at any given time' is vague. It doesn't specify the duration over which the 4-second limit applies. Is it a sustained limit, or a peak limit? The extension of 'at any given time' is indeterminate – at least one query exists for which it is impossible to determine whether the system exceeds the 4-second limit.",
+        "possible_interpretations": [
+          "The system must not exceed 4 seconds for any single query during its entire processing lifecycle.",
+          "The system must not exceed 4 seconds for any query during a 1-second window."
+        ]
+      }
+    ]
+  }
+}

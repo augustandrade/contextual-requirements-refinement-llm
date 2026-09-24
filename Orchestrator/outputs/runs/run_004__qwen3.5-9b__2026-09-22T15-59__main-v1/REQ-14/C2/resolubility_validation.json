@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report must list every individual event that occurred, including both those that were granted and those that were denied.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'Monthly admittance reports shall cover all access events recorded within the calendar month...'"
+        ],
+        "justification": "The business rule explicitly states that reports must cover 'all access events recorded', which mandates a list of every individual event rather than an aggregated summary. This eliminates the interpretation requiring only summary data."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "all granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report contains records of every access attempt, distinguishing between those that were allowed and those that were rejected.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'admittance: A recorded event of granted or denied entry to the building.'",
+          "Business rule BR-01: 'Monthly admittance reports shall cover all access events recorded within the calendar month...'"
+        ],
+        "justification": "The glossary defines 'admittance' as a 'recorded event', and the business rule refers to 'access events recorded'. This confirms that the term refers to the recorded attempts (access events) rather than the physical act of movement or strictly successful entries. The requirement to cover 'all' events further supports the interpretation of recording every attempt."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C2",
+    "requirement_id": "REQ-14"
+  }
+}

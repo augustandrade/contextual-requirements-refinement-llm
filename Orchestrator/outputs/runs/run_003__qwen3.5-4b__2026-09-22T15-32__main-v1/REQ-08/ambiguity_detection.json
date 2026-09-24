@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Generate a dial tone",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'dial tone' has a fuzzy extension regarding its specific acoustic characteristics (frequency, amplitude, duration) and the required generation method. At least one specific audio signal exists for which it is impossible to determine whether it satisfies the requirement without further specification.",
+        "possible_interpretations": [
+          "Generate a standard 400 Hz sine wave dial tone with a duration of 2 seconds.",
+          "Generate a dial tone that matches the specific frequency and amplitude standards of the local telecommunications network."
+        ]
+      }
+    ]
+  }
+}

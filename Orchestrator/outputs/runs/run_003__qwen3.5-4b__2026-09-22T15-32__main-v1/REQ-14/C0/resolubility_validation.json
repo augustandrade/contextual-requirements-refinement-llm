@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A canonical definition or glossary entry for the term 'admittances' that distinguishes between 'events of entry' and 'permission records'."
+        ],
+        "justification": "The requirement text uses the term 'admittances' without further qualification. The controlled context is absent, and the requirement text itself does not provide a definition or usage pattern that selects between the two candidate interpretations (listing events vs. listing status records). Without a glossary entry or explicit business rule defining 'admittances' in this domain, the ambiguity remains unresolved."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-14-C0",
+    "requirement_id": "REQ-14"
+  }
+}

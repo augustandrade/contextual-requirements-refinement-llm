@@ -1,0 +1,21 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "it is invalid",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The subsequent clause explicitly refers to the PIN, confirming that 'it' refers to the PIN and not the access card."
+        ],
+        "evidence_from_context": [],
+        "justification": "Interpretation 1 is incorrect because the requirement text makes it clear that the invalid input being referred to is the PIN, not the access card."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05"
+  }
+}

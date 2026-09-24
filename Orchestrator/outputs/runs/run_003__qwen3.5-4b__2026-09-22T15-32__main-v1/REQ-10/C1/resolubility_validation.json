@@ -1,0 +1,31 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU is connected to the ORC using both CAN and LIN protocols in a redundant manner.",
+        "evidence_from_requirement": [
+          "The phrase 'redundantly' modifies the connection state, implying that the redundancy arises from the use of multiple protocols (CAN and LIN) rather than the presence of multiple interfaces on a single protocol."
+        ],
+        "evidence_from_context": [],
+        "justification": "The modifier 'redundantly' logically applies to the method of connection ('via CAN and LIN'). If the TCU had both interfaces but used only one protocol, the connection itself would not be redundant; the redundancy would stem from the dual-protocol link."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "to execute automatic emergency calls on certain crash levels",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific entity responsible for executing the automatic emergency calls (TCU or ORC) and the defined logical scope of 'certain crash levels'."
+        ],
+        "justification": "The requirement text does not specify which controller executes the calls, nor does it define the scope of 'certain crash levels' relative to the TCU's or ORC's capabilities. The controlled context provides definitions for TCU and ORC but lacks business rules or constraints defining the execution logic or crash level thresholds."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10"
+  }
+}

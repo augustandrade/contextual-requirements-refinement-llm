@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A has successfully validated a settlement request",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'successfully validated' can be interpreted in two ways. It could mean that the validation process completed without errors, or it could imply that the validation was successful in the sense that the settlement request is valid and should proceed.",
+        "possible_interpretations": [
+          "System-A has successfully completed the validation process for the settlement request (no errors occurred).",
+          "The settlement request itself is valid and meets all necessary criteria for processing, as determined by System-A's validation checks."
+        ]
+      }
+    ]
+  }
+}

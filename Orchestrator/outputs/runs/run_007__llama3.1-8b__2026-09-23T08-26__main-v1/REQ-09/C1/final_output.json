@@ -1,0 +1,57 @@
+{
+  "execution_id": "REQ-09-C1",
+  "requirement_id": "REQ-09",
+  "context_condition": "C1",
+  "input_requirement": "Routing switches ability to filter network traffic between data-plane interfaces and management data traffic.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "ambiguity_type": "semantic",
+        "explanation": "The phrase 'between data-plane interfaces' can be interpreted in two ways. It could mean that the routing switch filters traffic between different data-plane interfaces, or it could mean that the routing switch filters traffic from data-plane interfaces towards management data traffic.",
+        "possible_interpretations": [
+          "The routing switch filters network traffic between different data-plane interfaces (e.g., interface A to B).",
+          "The routing switch filters network traffic from data-plane interfaces towards management data traffic (e.g., interface A to management network)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The routing switch filters network traffic from data-plane interfaces towards management data traffic (e.g., interface A to management network).",
+        "evidence_from_requirement": [
+          "The phrase 'between' can be interpreted as indicating a direction, and the presence of 'management data traffic' suggests that the filtering is being done in relation to this type of traffic."
+        ],
+        "evidence_from_context": [
+          "Domain: Industrial railway communication network using routing switches. This context implies that management data traffic is likely to be distinct from data-plane interfaces, supporting the interpretation that filtering is being done in one direction."
+        ],
+        "justification": "The requirement text and controlled context support the interpretation that the routing switch filters network traffic from data-plane interfaces towards management data traffic."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The routing switch filters network traffic from data-plane interfaces towards management data traffic.",
+        "structuring_notes": [
+          "AMB-01 resolved: supported interpretation used to clarify ambiguous fragment. Original phrasing preserved."
+        ]
+      }
+    ]
+  }
+}

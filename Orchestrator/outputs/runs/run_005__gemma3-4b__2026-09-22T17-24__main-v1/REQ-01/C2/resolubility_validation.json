@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "100% of the time",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The payment service must be available for 99.999% of all time, allowing for a small, defined amount of downtime (e.g., 0.001%).",
+        "evidence_from_requirement": [
+          "QLT-01: Availability targets must be expressed as a percentage with explicit exclusions for scheduled maintenance, and must be measurable over a defined rolling period (e.g. 99.95% over any 30-day window)."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'maintenance window: Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes.'"
+        ],
+        "justification": "The constraint QLT-01 explicitly defines the acceptable availability target as 99.999% with exclusions for maintenance windows, resolving the vagueness of '100% of the time'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01"
+  }
+}

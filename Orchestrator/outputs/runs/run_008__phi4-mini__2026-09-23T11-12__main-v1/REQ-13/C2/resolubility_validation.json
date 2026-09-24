@@ -1,0 +1,18 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "once System-A has successfully validated a settlement request,",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [],
+        "justification": "The requirement text does not provide enough syntactic context to determine if 'once' implies immediate acknowledgment or subsequent actions are required before sending the acknowledge message."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-13-C2",
+    "requirement_id": "REQ-13"
+  }
+}

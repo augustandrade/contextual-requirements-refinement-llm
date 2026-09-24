@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-PILOT-06-C3",
+  "requirement_id": "REQ-PILOT-06",
+  "context_condition": "C3",
+  "input_requirement": "The system shall block the transaction if the account balance falls below the minimum threshold and the transaction type is not pre-approved or the account has been flagged for fraud review.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the account balance falls below the minimum threshold and the transaction type is not pre-approved or the account has been flagged for fraud review",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical connectives 'and' and 'or' lack defined operator precedence, yielding two mutually exclusive interpretations of the blocking conditions. It is unclear whether the 'and' binds tighter than the 'or' (requiring both the balance condition and one of the other conditions) or if the 'or' binds tighter (requiring the balance condition and at least one of the other conditions).",
+        "possible_interpretations": [
+          "The system blocks the transaction if the account balance falls below the minimum threshold AND (the transaction type is not pre-approved OR the account has been flagged for fraud review).",
+          "The system blocks the transaction if (the account balance falls below the minimum threshold AND the transaction type is not pre-approved) OR (the account balance falls below the minimum threshold AND the account has been flagged for fraud review)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the account balance falls below the minimum threshold and the transaction type is not pre-approved or the account has been flagged for fraud review",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator binding between 'and' and 'or' — whether the alert fires when (balance < threshold AND (type not pre-approved OR flagged)) or when ((balance < threshold AND type not pre-approved) OR (balance < threshold AND flagged))."
+        ],
+        "justification": "The requirement text provides no parentheses, explicit precedence rule, or contextual business rule to determine which logical binding was intended. The glossary defines terms but does not specify logical operator precedence. The business rules describe post-block actions but do not define the blocking condition logic."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "maintenance windows",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Maintenance windows refer to the specific time frames during which maintenance activities are performed, allowing for some level of availability within those windows.",
+        "evidence_from_requirement": [
+          "The phrase 'including during maintenance windows' implies that some level of availability is maintained even during these periods."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'maintenance window: Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes.' This definition suggests a focus on maintenance activities rather than system unavailability."
+        ],
+        "justification": "The requirement text and controlled context provide sufficient information to resolve the ambiguity in favor of the interpretation allowing for some level of availability within maintenance windows."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "domain": "Online payment processing platform handling real-time card authorisations for e-commerce merchants.",
+  "glossary": [
+    {
+      "term": "payment service",
+      "definition": "Core transaction processing component responsible for card authorisation, settlement, and refund operations."
+    },
+    {
+      "term": "maintenance window",
+      "definition": "Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

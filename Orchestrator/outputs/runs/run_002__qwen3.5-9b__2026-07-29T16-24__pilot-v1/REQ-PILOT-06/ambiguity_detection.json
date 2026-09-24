@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the account balance falls below the minimum threshold and the transaction type is not pre-approved or the account has been flagged for fraud review",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical connectives 'and' and 'or' lack defined operator precedence, yielding two mutually exclusive interpretations of the blocking conditions. It is unclear whether the 'and' binds tighter than the 'or' (requiring both the balance condition and one of the other conditions) or if the 'or' binds tighter (requiring the balance condition and at least one of the other conditions).",
+        "possible_interpretations": [
+          "The system blocks the transaction if the account balance falls below the minimum threshold AND (the transaction type is not pre-approved OR the account has been flagged for fraud review).",
+          "The system blocks the transaction if (the account balance falls below the minimum threshold AND the transaction type is not pre-approved) OR (the account balance falls below the minimum threshold AND the account has been flagged for fraud review)."
+        ]
+      }
+    ]
+  }
+}

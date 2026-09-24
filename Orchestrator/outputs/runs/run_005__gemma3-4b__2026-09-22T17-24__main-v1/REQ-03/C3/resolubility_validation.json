@@ -1,0 +1,26 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file, according to the mapping rules",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The message content must match the data stored within the B-file, as defined by the mapping rules.",
+        "evidence_from_requirement": [
+          "The requirement states 'if the message is part of the B-file, according to the mapping rules.'"
+        ],
+        "evidence_from_context": [
+          "Glossary: 'B-file' is defined as 'Reference file used for message classification and routing.'",
+          "Glossary: 'mapping rules' is defined as 'A static lookup table, versioned quarterly, that maps incoming message type codes to B-file classification categories.'",
+          "Business Rule BR-01: 'Mapping rule tables are loaded at system startup and reloaded automatically when a new version is published, with a maximum propagation delay of 30 seconds.'"
+        ],
+        "justification": "The glossary definitions and business rule BR-01 provide sufficient context to interpret 'part of the B-file' as referring to the message content matching the data within the B-file, as defined by the mapping rules. The mapping rules are explicitly stated to map message type codes to B-file classification categories."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-03-C3",
+    "requirement_id": "REQ-03"
+  }
+}

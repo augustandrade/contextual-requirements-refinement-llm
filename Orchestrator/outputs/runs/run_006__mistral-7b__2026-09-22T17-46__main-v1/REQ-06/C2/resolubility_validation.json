@@ -1,0 +1,30 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The intended operator binding between 'and' and the following clause."
+        ],
+        "justification": "The requirement text provides no parentheses, explicit precedence rule, or contextual business rule to determine which logical binding was intended."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "the interior surveillance of the car detects an intruder",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The interior surveillance of the damaged window detects an intruder.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'Window damage is a mandatory precondition for triggering the alarm. Once window damage is confirmed, the alarm is raised independently by either of two events: (1) the interior surveillance detects an intruder, or (2) a door is opened without a car key.' This establishes that the interior surveillance of the damaged window is responsible for detecting the intruder."
+        ]
+      }
+    ],
+    "overall_resolubility": {
+      "status": "partially_resolvable"
+    },
+    "execution_id": "REQ-06-C2",
+    "requirement_id": "REQ-06"
+  }
+}

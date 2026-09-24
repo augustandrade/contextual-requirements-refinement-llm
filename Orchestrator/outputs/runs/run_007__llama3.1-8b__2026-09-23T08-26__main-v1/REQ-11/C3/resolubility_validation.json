@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A clear definition of 'medium-sized' in terms of vehicle dimensions (length, width, height) or weight range."
+        ],
+        "justification": "The requirement text lacks a specific definition for 'medium-sized', and the controlled context does not provide one either. The glossary only defines 'navigation system' and 'map database'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-11-C3",
+    "requirement_id": "REQ-11"
+  }
+}

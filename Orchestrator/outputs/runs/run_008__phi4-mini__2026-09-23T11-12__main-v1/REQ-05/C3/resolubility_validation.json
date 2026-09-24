@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if it is invalid",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific condition(s) that would render the access attempt as 'invalid'. Does this refer to an incorrect card insertion, a wrong PIN entry or both?"
+        ],
+        "justification": "The requirement text does not specify whether 'it' refers solely to one action (card insertion OR pin entry), nor if it encompasses invalidity in either of these actions. Without further context on what constitutes the conditions for access denial after using multiple methods simultaneously."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-05-C3",
+    "requirement_id": "REQ-05"
+  }
+}

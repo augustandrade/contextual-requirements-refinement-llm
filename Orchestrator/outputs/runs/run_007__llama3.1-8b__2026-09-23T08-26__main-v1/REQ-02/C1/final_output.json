@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-02-C1",
+  "requirement_id": "REQ-02",
+  "context_condition": "C1",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'their' has two competing antecedents in scope: 'System-A' and 'downstream systems'. It is unclear whose downstream systems are being referred to.",
+        "possible_interpretations": [
+          "System-A adds System-B to their own downstream systems.",
+          "System-A adds System-B to the downstream systems of another entity (not specified)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The entity whose downstream systems are being referred to by 'their'."
+        ],
+        "justification": "The requirement text introduces two competing antecedents for the pronoun 'their', but no textual cue selects one over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

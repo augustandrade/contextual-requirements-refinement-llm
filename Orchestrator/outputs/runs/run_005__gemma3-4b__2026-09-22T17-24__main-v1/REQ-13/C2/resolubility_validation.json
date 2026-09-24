@@ -1,0 +1,25 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Once System-A has successfully validated a settlement request,",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A must send the acknowledge message only after a settlement request has been successfully validated.",
+        "evidence_from_requirement": [
+          "System-A must send an acknowledge message to System-B.",
+          "Once System-A has successfully validated a settlement request,"
+        ],
+        "evidence_from_context": [
+          "Business rule: An acknowledge message is sent to System-B only after the settlement request has passed validation."
+        ],
+        "justification": "The business rule explicitly states that the acknowledge message is sent *only* after successful validation, aligning with the interpretation of the requirement fragment. The phrase 'Once' indicates a conditional event, and the business rule clarifies the condition."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-13-C2",
+    "requirement_id": "REQ-13"
+  }
+}

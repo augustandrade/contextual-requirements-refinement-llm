@@ -1,0 +1,3 @@
+{
+  "base_requirement_text": "When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds."
+}

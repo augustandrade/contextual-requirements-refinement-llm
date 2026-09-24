@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "All medium-sized vehicles shall be equipped with a navigation system.",
+        "structuring_notes": [
+          "AMB-01 marked as false_positive; no text substitution required. Core predicate 'be equipped with' (system action) → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11",
+    "context_condition": "C2"
+  }
+}

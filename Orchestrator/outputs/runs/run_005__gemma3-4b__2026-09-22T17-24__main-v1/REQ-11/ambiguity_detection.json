@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "vagueness",
+        "explanation": "The term 'medium-sized' is inherently vague. There is no objective, measurable definition of 'medium-sized' in terms of dimensions, weight, or other quantifiable characteristics. The extension of this term is indeterminate – at least one vehicle exists that would not be considered 'medium-sized' according to this definition.",
+        "possible_interpretations": [
+          "Vehicles with a length between 4.5 and 6 meters.",
+          "Vehicles with a gross vehicle weight between 1.5 and 3.5 tonnes."
+        ]
+      }
+    ]
+  }
+}

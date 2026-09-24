@@ -1,0 +1,62 @@
+{
+  "execution_id": "REQ-02-C0",
+  "requirement_id": "REQ-02",
+  "context_condition": "C0",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'their' has two competing antecedents in scope: 'System-A' and 'System-B'. It is unclear whether 'their' refers to the collective systems of both A and B, or specifically to System-B's own downstream systems.",
+        "possible_interpretations": [
+          "System-A must add System-B to the downstream systems of both System-A and System-B.",
+          "System-A must add System-B to the downstream systems of System-B only."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "ambiguity_type": "referential",
+        "explanation": "The definite phrase 'the Reporting flow' lacks a unique antecedent. It is unclear whether this refers to a specific flow owned by System-A, System-B, or a shared flow between them.",
+        "possible_interpretations": [
+          "System-A must allow System-C to subscribe to a Reporting flow owned by System-A.",
+          "System-A must allow System-C to subscribe to a Reporting flow owned by System-B.",
+          "System-A must allow System-C to subscribe to a shared Reporting flow between System-A and System-B."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The definition of the pronoun 'their' and its specific antecedent (System-A or System-B)."
+        ],
+        "justification": "The requirement text contains two competing antecedents ('System-A' and 'System-B') for the pronoun 'their' without any textual cue to select one over the other. No controlled context is available to resolve this referential ambiguity."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The definition of the entity 'the Reporting flow' and its ownership (System-A, System-B, or shared)."
+        ],
+        "justification": "The definite phrase 'the Reporting flow' lacks a unique antecedent in the requirement text. The three candidate interpretations (owned by A, owned by B, or shared) are not distinguished by any evidence in the text or available context."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

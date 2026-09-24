@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A specific timestamp or time window defining what constitutes 'the end of each day' (e.g., 'by 23:59:59', 'within the last hour', or 'at 00:00:00')."
+        ],
+        "justification": "The requirement text uses the vague phrase 'at the end of each day' without a measurable boundary, and the provided glossary and business rules do not define a specific time threshold for this phrase."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-12-C3",
+    "requirement_id": "REQ-12"
+  }
+}

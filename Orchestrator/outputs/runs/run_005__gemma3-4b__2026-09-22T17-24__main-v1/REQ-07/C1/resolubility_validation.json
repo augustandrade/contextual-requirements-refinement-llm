@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A quantitative tolerance around the 100-meter threshold. For example, 'within +/- 0.5 meters of 100 meters'."
+        ],
+        "justification": "The requirement uses the vague term 'remains above' without specifying a tolerance or upper limit. This leaves open the question of what constitutes 'remaining above'."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C1",
+    "requirement_id": "REQ-07"
+  }
+}

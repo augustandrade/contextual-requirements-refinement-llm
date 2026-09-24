@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "Once System-A has successfully validated a settlement request",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of the temporal relationship between 'successfully validated' and 'send an acknowledge message' (e.g., a requirement for a specific delay, an event-triggered immediate action, or a state-check-at-send-time)."
+        ],
+        "justification": "The requirement text uses the phrase 'Once... must send', which linguistically supports an event-driven or sequential interpretation but does not explicitly rule out a state-check-at-send-time interpretation or define the exact timing boundary. Without a controlled context containing business rules defining the timing semantics of 'Once' or constraints specifying the allowed latency between validation and sending, the ambiguity remains unresolved."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-13-C0",
+    "requirement_id": "REQ-13"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report must be generated at 23:59:59 UTC on the calendar day.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'For reporting purposes, end of day is defined as 23:59:59 UTC on the calendar day.'"
+        ],
+        "justification": "The business rule explicitly defines 'end of day' as 23:59:59 UTC, eliminating the ambiguity regarding whether it refers to midnight or an unspecified time shortly before midnight."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-12-C2",
+    "requirement_id": "REQ-12"
+  }
+}

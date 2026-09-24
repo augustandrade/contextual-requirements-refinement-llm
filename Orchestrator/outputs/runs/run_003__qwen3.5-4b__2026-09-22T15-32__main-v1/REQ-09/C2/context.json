@@ -1,0 +1,19 @@
+{
+  "domain": "Industrial railway communication network using routing switches.",
+  "glossary": [
+    {
+      "term": "management data traffic",
+      "definition": "SNMP traffic restricted to UDP port 161."
+    },
+    {
+      "term": "filter network traffic",
+      "definition": "Inspect and drop packets based on protocol and destination port."
+    },
+    {
+      "term": "data-plane interfaces",
+      "definition": "The 4 Ethernet ports (eth0-eth3) carrying passenger network data traffic, distinct from the dedicated management port."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

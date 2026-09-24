@@ -1,0 +1,30 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The scope of 'downstream' is underspecified.  Specifically, which systems does 'their' refer to?"
+        ],
+        "justification": "The phrase 'their downstream systems' is ambiguous. It is unclear which systems 'System-A' refers to. Does 'their' refer to System-A itself, or to a broader set of systems that System-A is part of? The scope of 'downstream' is underspecified."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The term 'Reporting flow' is vague. It is unclear what constitutes a 'Reporting flow'.",
+          "The term 'subscribe' is also underspecified – what level of access does System-C receive, and what are the conditions for subscribing and un-subscribing?"
+        ],
+        "justification": "The term 'Reporting flow' is vague. It is unclear what constitutes a 'Reporting flow'. The definition of 'subscribe' is also underspecified – what level of access does System-C receive, and what are the conditions for subscribing and un-subscribing?"
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02"
+  }
+}

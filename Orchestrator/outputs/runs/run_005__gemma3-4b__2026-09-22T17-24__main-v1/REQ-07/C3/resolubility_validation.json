@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The water level must be strictly greater than 100 meters.",
+        "evidence_from_requirement": [
+          "Shut off the pumps if the water level remains above 100 meters for more than 4 seconds."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'water level' - Sensor reading sampled continuously."
+        ],
+        "justification": "The requirement explicitly states 'remains above', implying a strict greater-than condition, consistent with the definition of 'water level' as a continuous sensor reading. The vagueness is resolved by the explicit wording of the requirement."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-07-C3",
+    "requirement_id": "REQ-07"
+  }
+}

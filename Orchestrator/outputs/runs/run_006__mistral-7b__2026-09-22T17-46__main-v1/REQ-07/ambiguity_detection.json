@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "more than 4 seconds",
+        "ambiguity_type": "vagueness",
+        "explanation": "The phrase 'more than 4 seconds' has a fuzzy extension: no measurable boundary separates a duration that qualifies as more than 4 seconds from one that does not. At least one duration exists for which it is impossible to determine whether the requirement is satisfied.",
+        "possible_interpretations": [
+          "The water level remains above 100 meters for at least 5 seconds.",
+          "The water level remains above 100 meters for at least 4.1 seconds."
+        ]
+      }
+    ]
+  }
+}

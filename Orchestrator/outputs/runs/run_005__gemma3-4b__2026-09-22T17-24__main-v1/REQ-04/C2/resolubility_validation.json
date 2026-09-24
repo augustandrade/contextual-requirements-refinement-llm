@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "When a rejection order is received for a cancellation request",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The precise trigger condition for the alert: whether the rejection is a direct consequence of the cancellation request, or simply a notification of a rejection order."
+        ],
+        "justification": "The requirement text does not explicitly state whether the alert is triggered by the cancellation request itself, or simply by the receipt of a rejection order. This introduces a scope ambiguity regarding the trigger for the alert."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-04-C2",
+    "requirement_id": "REQ-04"
+  }
+}

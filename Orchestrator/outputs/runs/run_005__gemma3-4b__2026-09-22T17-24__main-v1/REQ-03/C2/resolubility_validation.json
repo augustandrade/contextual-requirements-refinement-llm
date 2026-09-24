@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file, according to the mapping rules",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The message content must match the data stored within the B-file, as defined by the mapping rules.",
+        "evidence_from_requirement": [
+          "Business rule BR-01: 'When System-A receives a B-file message from Security Manager according to the mapping rules, System-A must forward the message to the downstream processing queue and log the event in the Audit Trail.'"
+        ],
+        "evidence_from_context": [
+          "Glossary: 'B-file: Reference file used for message classification and routing.'"
+        ],
+        "justification": "Business rule BR-01 explicitly states that System-A receives a 'B-file message' and that the message content must match the data within the B-file, as determined by the mapping rules. This interpretation aligns with the glossary definition of a B-file and the operational intent of the business rule."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-03-C2",
+    "requirement_id": "REQ-03"
+  }
+}

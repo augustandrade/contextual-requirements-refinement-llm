@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-09-23T11:30:50.749411",
+  "runs_included": [
+    "run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1",
+    "run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1",
+    "run_003__qwen3.5-4b__2026-09-22T15-32__main-v1",
+    "run_004__qwen3.5-9b__2026-09-22T15-59__main-v1",
+    "run_005__gemma3-4b__2026-09-22T17-24__main-v1",
+    "run_006__mistral-7b__2026-09-22T17-46__main-v1",
+    "run_007__llama3.1-8b__2026-09-23T08-26__main-v1",
+    "run_008__phi4-mini__2026-09-23T11-12__main-v1",
+    "run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1"
+  ],
+  "models": [
+    "deepseek-r1:7b",
+    "gemma3:4b",
+    "llama3.1:8b",
+    "mistral:7b",
+    "phi4-mini",
+    "qwen3.5:4b",
+    "qwen3.5:9b"
+  ],
+  "eval_dir": "/Users/augustandrade/Library/Mobile Documents/com~apple~CloudDocs/[] ARQUIVOS/[] ACADEMICO/[] MBA USP/TCC/Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T11-30"
+}

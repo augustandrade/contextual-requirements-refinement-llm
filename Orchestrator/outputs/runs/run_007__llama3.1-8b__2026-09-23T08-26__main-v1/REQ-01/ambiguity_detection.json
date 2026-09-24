@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "maintenance windows",
+        "ambiguity_type": "referential",
+        "explanation": "The term 'maintenance windows' is ambiguous because it can refer to either the scheduled periods of downtime for maintenance (the system is unavailable) or the specific time frames during which maintenance activities are performed, implying some level of availability within those windows.",
+        "possible_interpretations": [
+          "Maintenance windows refer to the scheduled periods when the system is completely unavailable for maintenance.",
+          "Maintenance windows refer to the specific time frames during which maintenance activities are performed, allowing for some level of availability within those windows."
+        ]
+      }
+    ]
+  }
+}

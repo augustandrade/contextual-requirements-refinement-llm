@@ -1,0 +1,23 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "notify the operations team",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system shall notify the specific, uniquely identified 'operations team' entity defined in the system's organizational model.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary entry for 'operations team': 'Group responsible for monitoring and resolving issues in the post-trade workflow.'",
+          "Business rule BR-01: 'The operations team must be notified via the incident management platform...'"
+        ],
+        "justification": "The glossary explicitly defines 'operations team' as a specific group with a defined responsibility within the post-trade workflow. The business rule BR-01 further reinforces this by prescribing specific notification procedures ('must be notified', 're-sent every 30 minutes') applicable to this specific entity, rather than a generic group of personnel. This evidence selects the interpretation referring to the defined entity and rules out the generic interpretation."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-PILOT-05-C3",
+    "requirement_id": "REQ-PILOT-05"
+  }
+}

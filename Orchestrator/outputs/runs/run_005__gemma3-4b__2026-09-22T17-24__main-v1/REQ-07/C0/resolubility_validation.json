@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A quantitative tolerance or upper limit around 100 meters to define what constitutes 'remaining above'."
+        ],
+        "justification": "The requirement uses the vague term 'remains above' without specifying a precise upper limit or tolerance. This leaves open the interpretation of whether the water level must be strictly greater than 100 meters or if a tolerance is acceptable."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C0",
+    "requirement_id": "REQ-07"
+  }
+}

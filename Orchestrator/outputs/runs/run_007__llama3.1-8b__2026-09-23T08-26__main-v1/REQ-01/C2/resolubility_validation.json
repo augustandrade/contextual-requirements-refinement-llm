@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "maintenance windows",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Maintenance windows refer to the specific time frames during which maintenance activities are performed, allowing for some level of availability within those windows.",
+        "evidence_from_requirement": [
+          "The constraint QLT-01 specifies that availability targets must be expressed as a percentage with explicit exclusions for scheduled maintenance. This implies that the system is available to some extent during maintenance windows."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'maintenance window' definition — Scheduled period during which the platform undergoes planned updates, patches, or infrastructure changes. This definition suggests that maintenance activities are performed within these time frames, allowing for some level of availability."
+        ],
+        "justification": "The requirement text and controlled context provide evidence that maintenance windows refer to periods when maintenance activities are performed, rather than the system being completely unavailable. The constraint QLT-01 and glossary definition support this interpretation."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-01-C2",
+    "requirement_id": "REQ-01"
+  }
+}

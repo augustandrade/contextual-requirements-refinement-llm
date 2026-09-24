@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "A denied admittance refers to a situation where the system did not explicitly grant access, but it was implicitly blocked due to lack of clearance or other security measures.",
+        "evidence_from_requirement": [
+          "The glossary defines 'admittance' as 'A recorded event of granted or denied entry to the building.' This definition encompasses both explicit refusals and implicit blocks."
+        ],
+        "evidence_from_context": [
+          "Domain: Building access control system. The context suggests that the system is responsible for controlling access, which implies that implicit blocks are a relevant consideration."
+        ],
+        "justification": "The glossary definition of 'admittance' and the domain context support interpretation 2, which accounts for both explicit refusals and implicit blocks."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-14-C1",
+    "requirement_id": "REQ-14"
+  }
+}

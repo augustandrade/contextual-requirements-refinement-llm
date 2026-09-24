@@ -1,0 +1,36 @@
+{
+  "execution_id": "REQ-05-C2",
+  "requirement_id": "REQ-05",
+  "context_condition": "C2",
+  "input_requirement": "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad. If it is invalid, the system shall deny the access.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if it is invalid",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'it' could refer to either the action of inserting an access card or entering a PIN, making unclear which condition (card insertion OR pin entry) being deemed as 'invalid'. possible_interpretations: - The system denies access if any part of using both methods is invalid. - The system only checks for validity after all steps are completed."
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if it is invalid",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [],
+        "justification": "'It' refers to the combined action of card insertion and PIN entry, not a single step. The requirement does not support either interpretation without unsupported inference."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

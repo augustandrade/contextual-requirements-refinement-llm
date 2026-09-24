@@ -1,0 +1,55 @@
+{
+  "execution_id": "REQ-03-C3",
+  "requirement_id": "REQ-03",
+  "context_condition": "C3",
+  "input_requirement": "When System-A receives a message from Security Manager and if the message is part of the B-file, according to the mapping rules.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file, according to the mapping rules",
+        "ambiguity_type": "syntactic",
+        "explanation": "The prepositional phrase 'according to the mapping rules' has ambiguous attachment scope. It can modify the condition 'if the message is part of the B-file' (defining how membership is determined) or modify the entire preceding clause 'When System-A receives a message from Security Manager' (defining the context of the reception event).",
+        "possible_interpretations": [
+          "The system checks if the message belongs to the B-file by applying the mapping rules, and if so, processes it.",
+          "The system processes messages received from the Security Manager according to the mapping rules, but only if those messages happen to be part of the B-file."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the message is part of the B-file, according to the mapping rules",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system checks if the message belongs to the B-file by applying the mapping rules, and if so, processes it.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'mapping rules: A static lookup table, versioned quarterly, that maps incoming message type codes to B-file classification categories.' This definition confirms that the mapping rules are the mechanism used to determine B-file membership."
+        ],
+        "justification": "The glossary definition of 'mapping rules' explicitly states they map message types to B-file categories. This establishes that the rules are the operational definition for determining if a message is 'part of the B-file'. Therefore, the phrase 'according to the mapping rules' must modify the condition of membership ('if the message is part of the B-file'), not the reception event itself. The alternative interpretation that the rules modify the reception event contradicts the definition that the rules are for classification."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "When System-A receives a message from Security Manager and if the message belongs to the B-file by applying the mapping rules, the system shall process it.",
+        "structuring_notes": [
+          "AMB-01 resolved: ambiguous fragment 'if the message is part of the B-file, according to the mapping rules' replaced with supported interpretation 'The system checks if the message belongs to the B-file by applying the mapping rules, and if so, processes it.' Core predicate is 'processes' (system action) → functional_requirement."
+        ]
+      }
+    ]
+  }
+}

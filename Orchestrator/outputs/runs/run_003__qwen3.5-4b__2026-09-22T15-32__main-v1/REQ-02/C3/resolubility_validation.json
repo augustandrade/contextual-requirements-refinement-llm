@@ -1,0 +1,31 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A must add System-B to the downstream systems of System-B only.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Domain definition: 'downstream systems' are defined as 'External systems that receive events from System-A'. Since System-B is not defined as an external system receiving events from System-A, it cannot be a 'downstream system' of System-A. Therefore, System-B can only be added to its own downstream systems."
+        ],
+        "justification": "The glossary defines 'downstream systems' strictly as external systems receiving events from System-A. System-B is a peer entity in the requirement, not an external recipient of events from System-A. Thus, System-B cannot be a 'downstream system' of System-A, ruling out the interpretation that System-A adds System-B to its own downstream systems."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific ownership or origin of 'the Reporting flow' (whether owned by System-A, System-B, or shared)."
+        ],
+        "justification": "The requirement text uses the definite article 'the' without explicitly naming the flow's owner. The glossary defines 'subscription token' but not 'Reporting flow'. The business rules describe the delivery model but do not specify which system owns the flow. No textual or contextual evidence selects one ownership interpretation over the others."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-02-C3",
+    "requirement_id": "REQ-02"
+  }
+}

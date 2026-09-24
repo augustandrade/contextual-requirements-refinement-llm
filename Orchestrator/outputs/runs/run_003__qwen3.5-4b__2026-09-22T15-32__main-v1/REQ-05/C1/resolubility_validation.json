@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific antecedent of the pronoun 'it' — whether it refers to the 'access card', the 'PIN', or both."
+        ],
+        "justification": "The requirement text presents two distinct entities ('access card' and 'PIN') and uses the pronoun 'it' without any textual cue (such as a preceding clause defining the subject or a possessive marker) to select one antecedent over the other. The controlled context provides definitions for 'PIN' and the domain but lacks specific business rules or constraints that define the validity condition for the access denial logic."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05"
+  }
+}

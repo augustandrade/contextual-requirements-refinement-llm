@@ -1,0 +1,27 @@
+{
+  "execution_id": "REQ-PILOT-01-C0",
+  "requirement_id": "REQ-PILOT-01",
+  "context_condition": "C0",
+  "input_requirement": "When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds.",
+  "ambiguity_analysis": {
+    "has_ambiguity": false,
+    "no_ambiguity_reason": "The requirement is linguistically unambiguous: 'confirmation email' refers to a single specific message type, 'the customer' refers to the specific entity who submitted the order, and 'within 30 seconds' provides a precise temporal boundary. There are no competing antecedents, polysemous terms, or structural ambiguities in this sentence."
+  },
+  "contextual_resolubility_analysis": null,
+  "pipeline_decision": {
+    "overall_resolubility_status": "no_ambiguity",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "When a customer submits an order, the system shall send a confirmation email to the customer within 30 seconds.",
+        "structuring_notes": [
+          "Core predicate is 'send' (system action) → functional_requirement. Original phrasing preserved."
+        ]
+      }
+    ]
+  }
+}

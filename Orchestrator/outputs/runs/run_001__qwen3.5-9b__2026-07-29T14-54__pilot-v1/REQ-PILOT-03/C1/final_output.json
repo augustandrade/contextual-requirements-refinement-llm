@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-PILOT-03-C1",
+  "requirement_id": "REQ-PILOT-03",
+  "context_condition": "C1",
+  "input_requirement": "The system shall automatically approve the leave request if the employee is eligible.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'eligible' is polysemous in the context of leave requests. It can refer to meeting the minimum tenure or policy criteria, or it can refer to having no pending disciplinary actions or other disqualifying factors.",
+        "possible_interpretations": [
+          "The employee has met the minimum service duration or policy criteria required to take leave.",
+          "The employee has no pending disciplinary actions or other disqualifying factors that would prevent leave approval."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "if the employee is eligible",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A definition or business rule specifying the exact criteria for 'eligible' (e.g., minimum tenure, disciplinary status, or both)."
+        ],
+        "justification": "The requirement text uses the term 'eligible' without defining its specific criteria. The controlled context glossary defines 'leave request' and 'automatic approval' but does not define 'eligible'. The business_rules list is empty, providing no logical precedence or scope boundaries to resolve whether 'eligible' refers to tenure, disciplinary status, or a combination of both. Without explicit evidence in the text or context, the ambiguity remains unresolved."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

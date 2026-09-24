@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If a window of the car is damaged and the interior surveillance of the car detects an intruder or a door of the car is opened without a car key",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical connectives 'and' and 'or' lack defined operator precedence, creating two mutually exclusive interpretations of the trigger conditions for the alarm.",
+        "possible_interpretations": [
+          "The alarm triggers if (window damaged AND intruder detected) OR (door opened without key).",
+          "The alarm triggers if (window damaged AND intruder detected AND door opened without key)."
+        ]
+      }
+    ]
+  }
+}

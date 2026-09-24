@@ -1,0 +1,20 @@
+{
+  "domain": "Fleet configuration management system.",
+  "glossary": [
+    {
+      "term": "navigation system",
+      "definition": "Onboard positioning and route guidance unit installed in the vehicle."
+    },
+    {
+      "term": "map database",
+      "definition": "The onboard digital cartographic dataset used by the navigation system, identified by a region code and a release version number."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-01",
+      "rule": "The map database installed in each vehicle's navigation system must be updated to the latest quarterly release within 30 days of that release becoming available, and the installed version must be recorded in the fleet configuration registry."
+    }
+  ],
+  "constraints": []
+}

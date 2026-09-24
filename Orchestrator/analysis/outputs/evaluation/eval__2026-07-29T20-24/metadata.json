@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-07-29T20:24:30.274428",
+  "runs_included": [
+    "run_001__qwen3.5-9b__2026-07-29T14-54__pilot-v1",
+    "run_002__qwen3.5-9b__2026-07-29T16-24__pilot-v1"
+  ],
+  "models": [
+    "qwen3.5:9b"
+  ],
+  "eval_dir": "/Users/augustandrade/Library/Mobile Documents/com~apple~CloudDocs/[] ARQUIVOS/[] ACADEMICO/[] MBA USP/TCC/Orchestrator/analysis/outputs/evaluation/eval__2026-07-29T20-24"
+}

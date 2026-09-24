@@ -1,0 +1,18 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "The TCU is connected to the ORC redundantly via CAN and LIN",
+        "resolubility_status": "unresolved",
+        "missing_information": "Clarification on whether 'via CAN and LIN' refers to simultaneous use or sequential backup after redundancy through another protocol.",
+        "justification": "Controlled context does not provide sufficient syntactic rules for disambiguating attachment of prepositional phrase with respect to redundant connections."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10"
+  }
+}

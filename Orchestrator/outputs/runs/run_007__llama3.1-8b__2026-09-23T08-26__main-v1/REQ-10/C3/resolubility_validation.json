@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "redundantly",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The TCU sends duplicate messages over both CAN and LIN, increasing the likelihood that at least one message will be received by the ORC even if there is interference or other issues with either connection.",
+        "evidence_from_requirement": [
+          "The business rule BR-01 states that an eCall session must maintain an open voice channel for a minimum of 120 seconds; this implies that duplicate messages are sent to ensure continued communication in case of a single failure, which aligns with interpretation 2."
+        ],
+        "evidence_from_context": [],
+        "justification": "The glossary definition of 'redundantly' is not provided, but the business rule BR-01 supports interpretation 2 by implying the need for duplicate messages to ensure continued communication."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-10-C3",
+    "requirement_id": "REQ-10"
+  }
+}

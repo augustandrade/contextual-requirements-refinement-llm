@@ -1,0 +1,19 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "System-A registers System-B in its own list of downstream systems (administrative inclusion) and System-C registers an interest to receive notifications from the Reporting flow (passive consumption).",
+        "structuring_notes": [
+          "AMB-01 resolved: 'System-A must add System-B to their downstream systems' replaced with 'System-A registers System-B in its own list of downstream systems (administrative inclusion)'.",
+          "AMB-02 resolved: 'allow System-C to subscribe to the Reporting flow' replaced with 'System-C registers an interest to receive notifications from the Reporting flow (passive consumption)'.",
+          "Core predicates are 'registers' (system action) → functional_requirement."
+        ]
+      }
+    ],
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02",
+    "context_condition": "C2"
+  }
+}

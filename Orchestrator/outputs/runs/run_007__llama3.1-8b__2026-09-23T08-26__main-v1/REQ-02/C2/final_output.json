@@ -1,0 +1,57 @@
+{
+  "execution_id": "REQ-02-C2",
+  "requirement_id": "REQ-02",
+  "context_condition": "C2",
+  "input_requirement": "System-A must add System-B to their downstream systems and allow System-C to subscribe to the Reporting flow.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "ambiguity_type": "referential",
+        "explanation": "The pronoun 'their' has two competing antecedents in scope: 'System-A' and 'downstream systems'. It is unclear whose downstream systems are being referred to.",
+        "possible_interpretations": [
+          "System-A adds System-B to their own downstream systems.",
+          "System-A adds System-B to the downstream systems of another entity (not specified)."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "add System-B to their downstream systems",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A adds System-B to their own downstream systems.",
+        "evidence_from_requirement": [
+          "The requirement text uses the pronoun 'their' in a way that implies possession by System-A, not another entity."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'downstream systems' definition — External systems that receive events from System-A. This suggests that the downstream systems referred to are those of System-A."
+        ],
+        "justification": "The requirement text and controlled context provide sufficient information to resolve the ambiguity in favor of the first interpretation."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "System-A must add System-B to their own downstream systems and allow System-C to subscribe to the Reporting flow.",
+        "structuring_notes": [
+          "AMB-01 resolved: pronoun 'their' replaced with possessive adjective 'own' per supported interpretation."
+        ]
+      }
+    ]
+  }
+}

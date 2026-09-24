@@ -1,0 +1,34 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A must add System-B to their downstream systems",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-A registers System-B in its own list of downstream systems (administrative inclusion).",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'downstream systems: External systems that receive events from System-A.' This definition implies a relationship where System-A is the source and System-B is the receiver, consistent with System-A managing the list of such systems.",
+          "Business rule BR-01: 'Partner registration and reporting subscription are independent operations and must be specified as separate requirements.' This implies that 'adding' (registration) is a distinct operation from 'connecting' (flow establishment), supporting the interpretation of 'add' as administrative inclusion."
+        ],
+        "justification": "The glossary defines 'downstream systems' as external systems receiving events from System-A, implying System-A manages this relationship. The business rule distinguishes 'registration' from 'subscription', suggesting 'add' refers to the registration operation. The interpretation of 'add' as establishing a physical connection is less likely given the glossary's focus on the receiving relationship managed by the source system."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "allow System-C to subscribe to the Reporting flow",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "System-C registers an interest to receive notifications from the Reporting flow (passive consumption).",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'Reporting flow: Event stream used by subscribers for operational reporting.' The definition explicitly states the flow is 'used by subscribers', implying a consumption role rather than active participation or contribution."
+        ],
+        "justification": "The glossary definition of 'Reporting flow' specifies that it is 'used by subscribers', which aligns with the passive consumption interpretation (registering interest to receive updates) rather than active participation or contributing data."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-02-C2",
+    "requirement_id": "REQ-02"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "If the entered PIN is invalid, the system shall deny the access.",
+        "structuring_notes": [
+          "Core predicate is 'deny' (system action) → functional_requirement. Original phrasing preserved despite false positive ambiguity resolution for 'it is invalid'."
+        ]
+      }
+    ],
+    "execution_id": "REQ-05-C1",
+    "requirement_id": "REQ-05",
+    "context_condition": "C1"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "If the entered PIN does not match any stored valid PIN (format and value).",
+        "evidence_from_requirement": [
+          "The customer inserts the access card into the card reader and enters a personal identification number (PIN) at the keypad.",
+          "If it is invalid, the system shall deny the access."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'PIN: 4-digit personal identification number.'"
+        ],
+        "justification": "The glossary definition of 'PIN' clarifies that 'it' refers to the entered PIN, and the requirement explicitly states that the system denies access if the entered PIN is not a valid one (matching a stored valid PIN)."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-05-C3",
+    "requirement_id": "REQ-05"
+  }
+}

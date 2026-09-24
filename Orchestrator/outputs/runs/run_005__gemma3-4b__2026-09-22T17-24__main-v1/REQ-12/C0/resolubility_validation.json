@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A precise definition of 'at the end of each day', specifying the time or event that triggers report generation."
+        ],
+        "justification": "The phrase 'at the end of each day' lacks a specific temporal reference, leaving the exact moment of report generation undefined. The interpretation of 'end' is indeterminate."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-12-C0",
+    "requirement_id": "REQ-12"
+  }
+}

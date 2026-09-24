@@ -1,0 +1,42 @@
+{
+  "execution_id": "REQ-10-C1",
+  "requirement_id": "REQ-10",
+  "context_condition": "C1",
+  "input_requirement": "The TCU is connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls on certain crash levels.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "via CAN and LIN",
+        "ambiguity_type": "lexical",
+        "explanation": "The abbreviations 'CAN' and 'LIN' can refer to multiple communication protocols, each with different characteristics. The specific protocols intended for the TCU-ORC connection are not specified.",
+        "possible_interpretations": [
+          "The TCU is connected to the ORC using Controller Area Network (CAN) bus.",
+          "The TCU is connected to the ORC using Local Interconnect Network (LIN) bus."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "via CAN and LIN",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "The specific communication protocol(s) intended for the TCU-ORC connection."
+        ],
+        "justification": "The requirement text does not specify which of the multiple possible CAN and LIN protocols are relevant to the TCU-ORC connection."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "non_resolvable",
+    "route": "signaling"
+  },
+  "requirement_structuring": null
+}

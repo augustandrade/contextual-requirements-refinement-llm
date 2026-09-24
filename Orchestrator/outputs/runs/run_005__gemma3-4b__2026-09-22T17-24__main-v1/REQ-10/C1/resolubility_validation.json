@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "connected to the ORC redundantly via CAN and LIN to execute automatic emergency calls",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A quantitative threshold or a defined set of crash levels that trigger the automatic emergency calls."
+        ],
+        "justification": "The requirement lacks specific details regarding the conditions under which the automatic emergency calls are executed. The term 'certain' is ambiguous, and the logical operator precedence between 'on certain crash levels' and 'execute automatic emergency calls' is unclear."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-10-C1",
+    "requirement_id": "REQ-10"
+  }
+}

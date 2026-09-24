@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "System-A has successfully validated a settlement request",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The settlement request itself is valid and meets all necessary criteria for processing, as determined by System-A's validation checks.",
+        "evidence_from_requirement": [
+          "Business rule BR-01 states that an acknowledge message is sent to System-B only after the settlement request has passed validation. This implies that the validation process is not just error-free but also successful in determining the validity of the settlement request."
+        ],
+        "evidence_from_context": [
+          "Glossary: 'settlement request' definition — Message requesting settlement of a financial instrument. This suggests that the validation checks are focused on ensuring the settlement request meets necessary criteria for processing, rather than simply completing without errors."
+        ],
+        "justification": "The requirement text and controlled context provide sufficient evidence to select one interpretation over the other. The business rule BR-01 and glossary definition of 'settlement request' support the reading that the validation process is successful in determining the validity of the settlement request."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-13-C2",
+    "requirement_id": "REQ-13"
+  }
+}

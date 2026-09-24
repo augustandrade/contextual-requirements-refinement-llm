@@ -1,0 +1,25 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "remains above 100 meters for more than 4 seconds",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The pumps shut off only if the water level stays strictly above 100 meters without interruption for a duration strictly exceeding 4 seconds.",
+        "evidence_from_requirement": [
+          "The use of the verb 'remains' implies a state of continuity rather than a single point in time or a partial overlap.",
+          "The phrase 'for more than 4 seconds' implies a duration strictly greater than 4 seconds, not inclusive."
+        ],
+        "evidence_from_context": [
+          "Business rule BR-01 defines the decision metric for a 4-second persistence window as the 'absolute minimum reading in the window'. This rule supports the interpretation that the system monitors a continuous state (minimum reading) over a duration, rather than checking for a single point in time within a window."
+        ],
+        "justification": "The requirement text uses 'remains', which semantically denotes continuous duration, ruling out an interpretation based on a single point in time. The phrase 'more than 4 seconds' explicitly defines a strict inequality for duration. The business rule regarding the 'absolute minimum reading in the window' confirms that the system evaluates a sustained state over the window, consistent with the continuous interpretation. The alternative interpretation (checking if the level is above threshold at any point within a window) contradicts the 'remains' verb and the specific metric defined in the business rule."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-07-C2",
+    "requirement_id": "REQ-07"
+  }
+}

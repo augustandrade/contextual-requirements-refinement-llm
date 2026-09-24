@@ -1,0 +1,79 @@
+{
+  "execution_id": "REQ-14-C2",
+  "requirement_id": "REQ-14",
+  "context_condition": "C2",
+  "input_requirement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.",
+  "ambiguity_analysis": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "ambiguity_type": "semantic",
+        "explanation": "The logical connective 'and' lacks defined operator precedence relative to the implicit scope of 'all', creating ambiguity about whether the report must contain every single event (both granted and denied) or if it implies a selection of events that are either granted or denied (excluding other types, though the text implies binary states). More critically, without explicit grouping, it is unclear if the requirement mandates a count of both types combined or a list containing instances of both types, potentially admitting interpretations where the 'and' distributes over the quantifier 'all' differently than intended.",
+        "possible_interpretations": [
+          "The report must list every individual event that occurred, including both those that were granted and those that were denied.",
+          "The report must contain a summary or aggregated data covering the set of granted events and the set of denied events, rather than a raw log of every single event."
+        ]
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "all granted and denied admittances",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'admittances' is polysemous: it can refer to the act of being allowed entry (access events) or the physical act of entering (movement events). In the context of a locking system, it could mean 'access attempts' (including failed ones) or strictly 'successful entries' and 'denied entries'.",
+        "possible_interpretations": [
+          "The report contains records of every access attempt, distinguishing between those that were allowed and those that were rejected.",
+          "The report contains records of every person who physically entered the building and every person who was stopped at the door."
+        ]
+      }
+    ]
+  },
+  "contextual_resolubility_analysis": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report must list every individual event that occurred, including both those that were granted and those that were denied.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-01: 'Monthly admittance reports shall cover all access events recorded within the calendar month...'"
+        ],
+        "justification": "The business rule explicitly states that reports must cover 'all access events recorded', which mandates a list of every individual event rather than an aggregated summary. This eliminates the interpretation requiring only summary data."
+      },
+      {
+        "ambiguity_id": "AMB-02",
+        "fragment": "all granted and denied admittances",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The report contains records of every access attempt, distinguishing between those that were allowed and those that were rejected.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'admittance: A recorded event of granted or denied entry to the building.'",
+          "Business rule BR-01: 'Monthly admittance reports shall cover all access events recorded within the calendar month...'"
+        ],
+        "justification": "The glossary defines 'admittance' as a 'recorded event', and the business rule refers to 'access events recorded'. This confirms that the term refers to the recorded attempts (access events) rather than the physical act of movement or strictly successful entries. The requirement to cover 'all' events further supports the interpretation of recording every attempt."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    }
+  },
+  "pipeline_decision": {
+    "overall_resolubility_status": "fully_resolvable",
+    "route": "structured"
+  },
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The electronic door locking system shall generate monthly reports containing all granted and denied admittances to the building.",
+        "structuring_notes": [
+          "AMB-01 resolved: fragment 'granted and denied admittances' clarified to list every individual event including both granted and denied per supported interpretation.",
+          "AMB-02 resolved: fragment 'all granted and denied admittances' clarified to contain records of every access attempt distinguishing between allowed and rejected per supported interpretation.",
+          "Core predicate is 'generate' (system action) → functional_requirement. Original phrasing preserved as both interpretations align with the original intent."
+        ]
+      }
+    ]
+  }
+}

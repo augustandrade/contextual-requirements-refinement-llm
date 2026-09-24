@@ -1,0 +1,15 @@
+{
+  "domain": "Financial post-trade settlement platform executing overnight batch processing.",
+  "glossary": [
+    {
+      "term": "settlement batch",
+      "definition": "Automated overnight process that finalises and records all pending transactions from the trading day."
+    },
+    {
+      "term": "operations team",
+      "definition": "Group responsible for monitoring and resolving issues in the post-trade workflow."
+    }
+  ],
+  "business_rules": [],
+  "constraints": []
+}

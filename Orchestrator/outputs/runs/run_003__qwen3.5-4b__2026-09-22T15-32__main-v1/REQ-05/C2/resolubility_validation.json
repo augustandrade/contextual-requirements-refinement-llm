@@ -1,0 +1,23 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The system denies access if the PIN is invalid.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Business rule BR-02: 'Invalid PIN triggers retry request and does not immediately deny access.' This explicitly rules out the interpretation that an invalid PIN causes immediate denial.",
+          "Business rule BR-01: 'Invalid card causes immediate access denial at turnstile.' This explicitly confirms that an invalid card causes immediate denial."
+        ],
+        "justification": "The controlled context provides specific business rules that distinguish the consequences of an invalid card versus an invalid PIN. Since the requirement states 'the system shall deny the access' (immediate denial) and BR-01 states that only an invalid card causes immediate denial, while BR-02 states an invalid PIN does not cause immediate denial, the pronoun 'it' must refer to the access card."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05"
+  }
+}

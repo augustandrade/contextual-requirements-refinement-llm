@@ -1,0 +1,21 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "available 100% of the time, including during maintenance windows and infrastructure upgrades",
+        "resolubility_status": "false_positive",
+        "evidence_from_requirement": [
+          "The requirement states: 'The payment service shall be available 100% of the time, including during maintenance windows and infrastructure upgrades.'"
+        ],
+        "evidence_from_context": [],
+        "justification": "The phrase 'including during...' functions as a restrictive modifier that explicitly extends the scope of the '100% of the time' claim to cover the specified periods. It does not create a logical ambiguity between two mutually exclusive interpretations; rather, it clarifies that the 100% metric applies to the entire operational context, including those specific events. The second reported interpretation (that the metric does not apply to maintenance windows) contradicts the explicit textual inclusion. Therefore, only the first interpretation has a basis in the text, rendering the ambiguity a false positive."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-01-C1",
+    "requirement_id": "REQ-01"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "at the end of each day.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A specific time or boundary that defines 'the exact moment' constituting an entire day's cycle."
+        ],
+        "justification": "The requirement text lacks a measurable threshold for when exactly reports should be generated, leading to multiple interpretations regarding timing within the same 24-hour period."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-12-C1",
+    "requirement_id": "REQ-12"
+  }
+}

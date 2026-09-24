@@ -1,0 +1,22 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "Vehicles with a gross vehicle weight between 1.5 and 3.5 tonnes.",
+        "evidence_from_requirement": [],
+        "evidence_from_context": [
+          "Glossary: 'medium-sized vehicle' definition: Vehicle with gross weight strictly between 1500 kg and 2000 kg."
+        ],
+        "justification": "The glossary provides a precise definition of 'medium-sized vehicle' based on gross vehicle weight, resolving the vagueness of the term in the requirement text."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-11-C2",
+    "requirement_id": "REQ-11"
+  }
+}

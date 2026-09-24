@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "granted and denied admittances",
+        "ambiguity_type": "lexical",
+        "explanation": "The adjective 'denied' is polysemous in this context. It can mean either that the access was explicitly refused by the system or that it was implicitly blocked due to lack of clearance.",
+        "possible_interpretations": [
+          "A denied admittance refers to an explicit refusal by the system, where the user's credentials were checked and found insufficient for entry.",
+          "A denied admittance refers to a situation where the system did not explicitly grant access, but it was implicitly blocked due to lack of clearance or other security measures."
+        ]
+      }
+    ]
+  }
+}

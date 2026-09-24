@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "If it is invalid, the system shall deny the access.",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "Which entity ('access card' or 'PIN') triggers access denial when invalid."
+        ],
+        "justification": "The requirement introduces two candidate antecedents for 'it', and no textual cue selects one over the other."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-05-C2",
+    "requirement_id": "REQ-05"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "quality_requirement",
+        "final_statement": "The system shall process at least 95% of all queries within 1.5 seconds OR ensure that no query takes longer than 4 seconds to process.",
+        "structuring_notes": [
+          "Core predicate is 'process' (measurable property) → quality_requirement. Ambiguity AMB-01 resolved: replaced original phrasing with supported interpretation."
+        ]
+      }
+    ],
+    "execution_id": "REQ-15-C3",
+    "requirement_id": "REQ-15",
+    "context_condition": "C3"
+  }
+}

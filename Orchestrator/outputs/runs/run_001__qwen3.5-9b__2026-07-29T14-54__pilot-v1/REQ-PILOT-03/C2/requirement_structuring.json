@@ -1,0 +1,17 @@
+{
+  "requirement_structuring": {
+    "structured_requirements": [
+      {
+        "structured_id": "REQ-XX-SR-01",
+        "type": "functional_requirement",
+        "final_statement": "The system shall automatically approve the leave request if the employee has met the minimum service duration or policy criteria required to take leave, AND has no pending disciplinary actions or other disqualifying factors that would prevent leave approval.",
+        "structuring_notes": [
+          "AMB-01 resolved: ambiguous fragment 'if the employee is eligible' replaced with detailed supported interpretation defining eligibility criteria."
+        ]
+      }
+    ],
+    "execution_id": "REQ-PILOT-03-C2",
+    "requirement_id": "REQ-PILOT-03",
+    "context_condition": "C2"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "more than 4 seconds",
+        "resolubility_status": "unresolved",
+        "missing_information": [
+          "A measurable boundary defining what constitutes 'more than 4 seconds' (e.g. a specific duration greater than 4 seconds)."
+        ],
+        "justification": "The requirement text provides no numeric threshold or explicit scope definition for 'more than 4 seconds', and no controlled context is available to supply one."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "unresolved"
+    },
+    "execution_id": "REQ-07-C3",
+    "requirement_id": "REQ-07"
+  }
+}

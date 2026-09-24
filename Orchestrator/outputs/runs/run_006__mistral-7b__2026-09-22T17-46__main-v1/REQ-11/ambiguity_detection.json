@@ -1,0 +1,17 @@
+{
+  "ambiguity_detection": {
+    "has_ambiguity": true,
+    "ambiguities": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "medium-sized vehicles",
+        "ambiguity_type": "lexical",
+        "explanation": "The term 'medium-sized' is vague and lacks a universally agreed-upon definition. Different vehicle manufacturers may have different criteria for what constitutes a medium-sized vehicle, leading to potential ambiguity.",
+        "possible_interpretations": [
+          "Vehicles with an average length between 4.5 meters (compact cars) and 5.2 meters (midsize sedans).",
+          "Vehicles with an average weight between 1.5 tons (light trucks) and 2 tons (heavy SUVs)."
+        ]
+      }
+    ]
+  }
+}

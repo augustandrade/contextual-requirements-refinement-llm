@@ -1,0 +1,24 @@
+{
+  "contextual_resolubility_validation": {
+    "ambiguity_resolubility": [
+      {
+        "ambiguity_id": "AMB-01",
+        "fragment": "filter network traffic between data-plane interfaces and management data traffic",
+        "resolubility_status": "resolvable",
+        "supported_interpretation": "The routing switch filters network traffic from data-plane interfaces towards management data traffic (e.g., interface A to management network).",
+        "evidence_from_requirement": [
+          "The phrase 'between' can be interpreted as indicating a direction, rather than a separation between two entities."
+        ],
+        "evidence_from_context": [
+          "Business rule: The routing switch must flush completed traffic log records to persistent storage within 500 milliseconds of the packet event. This implies that the routing switch is interacting with management data traffic in real-time."
+        ],
+        "justification": "The requirement text and business rules suggest that the routing switch is filtering network traffic from data-plane interfaces towards management data traffic, rather than between different data-plane interfaces."
+      }
+    ],
+    "overall_resolubility": {
+      "status": "fully_resolvable"
+    },
+    "execution_id": "REQ-09-C3",
+    "requirement_id": "REQ-09"
+  }
+}
