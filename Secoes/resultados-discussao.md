@@ -34,7 +34,7 @@ Os intervalos de confiança de 95% estimados por "bootstrap" com 10.000 reamostr
 
 A Figura 2 apresenta o mapa de acerto da detecção por requisito e modelo, revelando padrões de falha não capturados pelas métricas agregadas da Tabela 1.
 
-![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T14-07/charts/heatmap__D1_req_modelo.png)
+![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-24T16-21/charts/heatmap__D1_req_modelo.png)
 
 Figura 2. Mapa de acerto da detecção de ambiguidade por requisito e modelo em C0. (+) indica positivo esperado; (−) indica negativo esperado (grupo de controle)
 
@@ -46,23 +46,25 @@ Os cinco falsos negativos do deepseek-r1:7b distribuíram-se por quatro categori
 
 ## Bloco 2 — Sensibilidade ao contexto
 
-O Bloco 2 rastreou a rota do pipeline ao longo das quatro condições de contexto, respondendo a RQ1. A métrica central foi ΔRoute(C2 − C0): proporção de requisitos que transitaram de `signaling` para `structured` ao receber o contexto específico relevante (C2), tomando C0 como referência. A Tabela 2 apresenta as proporções de conversão por modelo, e a Figura 3 ilustra o comportamento de cada modelo ao longo das quatro condições.
+O Bloco 2 rastreou a rota do pipeline ao longo das quatro condições de contexto, respondendo a RQ1. A métrica central foi ΔRoute(C2 − C0): proporção de requisitos que transitaram de `signaling` para `structured` ao receber o contexto específico relevante (C2), tomando C0 como referência. O contraste ΔRoute(C3 − C1) isolou o efeito da especificidade do contexto, com relevância constante. A Tabela 2 apresenta, por modelo, a média de ΔRoute em cada contraste — a proporção de conversões `signaling→structured` descontada a de reversões —, e a Figura 3 ilustra o comportamento de cada modelo ao longo das quatro condições.
 
-**Tabela 2.** Proporções de conversão de rota por condição de contexto (base: requisitos ambíguos com C0 = signaling)
+**Tabela 2.** Proporções de conversão de rota por condição de contexto (base: requisitos de Cat-01 a Cat-04 detectados pelo Agente 1 em C0)
 
-| Modelo | n | ΔC2−C0 | ΔC3−C0 | ΔC2−C3 | C0→C1 | C1→C2 |
-|---|---:|---:|---:|---:|---:|---:|
-| qwen3.5-4b | 11 | 72,7% | 18,2% | 54,5% | 0,0% | 72,7% |
-| qwen3.5-9b | 10 | 90,0% | 40,0% | 50,0% | 10,0% | 80,0% |
-| gemma3-4b | 12 | 75,0% | 75,0% | 0,0% | 16,7% | 58,3% |
-| mistral-7b | 10 | 20,0% | 10,0% | 10,0% | 10,0% | 10,0% |
-| llama3.1-8b | 11 | 54,5% | 36,4% | 18,2% | 27,3% | 27,3% |
-| phi4-mini | 12 | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% |
-| deepseek-r1:7b | 7 | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% |
+| Modelo | n | ΔC2−C0 | ΔC3−C0 | ΔC2−C3 | ΔC3−C1 | C0→C1 | C1→C2 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| qwen3.5-4b | 11 | 72,7% | 18,2% | 54,5% | 18,2% | 0,0% | 72,7% |
+| qwen3.5-9b | 10 | 90,0% | 40,0% | 50,0% | 30,0% | 10,0% | 80,0% |
+| gemma3-4b | 12 | 75,0% | 75,0% | 0,0% | 58,3% | 16,7% | 58,3% |
+| mistral-7b | 10 | 20,0% | 10,0% | 10,0% | 0,0% | 10,0% | 10,0% |
+| llama3.1-8b | 11 | 54,5% | 36,4% | 18,2% | 9,1% | 27,3% | 27,3% |
+| phi4-mini | 12 | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% |
+| deepseek-r1:7b | 7 | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% |
 
 *Fonte: Resultados originais da pesquisa*
 
-![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T14-07/charts/context_lift__route_delta.png)
+Nota: ΔC3−C1 do llama3.1-8b resulta de dois requisitos convertidos e um revertido (`structured` em C1, `signaling` em C3); nas demais células não houve reversões, exceto em ΔC2−C3 do gemma3-4b, com dois requisitos favoráveis a C2 e dois a C3.
+
+![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-24T16-21/charts/context_lift__route_delta.png)
 
 Figura 3. Padrões de sensibilidade ao contexto por modelo: trajetória C0–C3 (superior esquerdo), ΔRoute por condição (superior direito), ganhos por estágio C0→C1 e C1→C2 (inferior esquerdo) e discriminação C2 versus C3 (inferior direito)
 
@@ -70,13 +72,13 @@ Figura 3. Padrões de sensibilidade ao contexto por modelo: trajetória C0–C3 
 
 Os modelos da família qwen foram os únicos a demonstrar discriminação entre contexto relevante e irrelevante. O qwen3.5-4b converteu 72,7% das rotas `signaling` em `structured` ao receber C2, contra 18,2% em C3 — uma diferença de 54,5 pontos percentuais. O qwen3.5-9b exibiu padrão análogo, com maior magnitude: 90,0% em C2 e 40,0% em C3 (Δ = 50,0 pp); esse modelo contribuiu com 12 pares C2/C3, e não 14, em razão das falhas de execução descritas no Bloco 4. O teste exato binomial unilateral indicou significância ao nível nominal de 0,05 para ambos (qwen3.5-4b: n_discordante = 6, p = 0,016; qwen3.5-9b: n_discordante = 5, p = 0,031), com nenhuma vitória de C3 sobre C2 nos pares discordantes; após a correção de Bonferroni sobre os sete modelos (α ≈ 0,007), porém, nenhum dos dois resultados permaneceu significativo.
 
-O ganho de conversão se concentrou inteiramente no estágio C1→C2 para o qwen3.5-4b (72,7%) e majoritariamente nesse estágio para o qwen3.5-9b (80,0%), indicando que a etapa relevante para a resolução foi a injeção do conteúdo específico relevante, não a adição de contexto periférico (C0→C1 = 0% e 10%, respectivamente).
+O ganho de conversão se concentrou inteiramente no estágio C1→C2 para o qwen3.5-4b (72,7%) e majoritariamente nesse estágio para o qwen3.5-9b (80,0%), indicando que a etapa relevante para a resolução foi a injeção do conteúdo específico relevante, não a adição de contexto periférico (C0→C1 = 0% e 10%, respectivamente). O efeito da especificidade isolada, medido por ΔC3−C1, foi menor que o da relevância nos dois modelos (18,2% contra 54,5% no qwen3.5-4b; 30,0% contra 50,0% no qwen3.5-9b).
 
-O gemma3-4b apresentou comportamento distinto: ΔC2−C0 e ΔC3−C0 foram idênticos (75,0%), resultando em ΔC2−C3 = 0,0%. O modelo converteu rotas tanto com contexto relevante quanto com contexto irrelevante de mesma especificidade, sem distinguir qual dos dois endereçava o fragmento ambíguo. Em dois requisitos das categorias Cat-02 e Cat-03, a conversão ocorreu exclusivamente em C3 (contexto irrelevante) e não em C2, sugerindo sensibilidade à especificidade do texto injetado independente de sua relevância. O teste de McNemar reportou poder estatístico insuficiente (n_discordante = 4), impossibilitando inferência.
+O gemma3-4b apresentou comportamento distinto: ΔC2−C0 e ΔC3−C0 foram idênticos (75,0%), resultando em ΔC2−C3 = 0,0%. O modelo converteu rotas tanto com contexto relevante quanto com contexto irrelevante de mesma especificidade, sem distinguir qual dos dois endereçava o fragmento ambíguo. Em dois requisitos das categorias Cat-02 e Cat-03, a conversão ocorreu exclusivamente em C3 (contexto irrelevante) e não em C2, sugerindo sensibilidade à especificidade do texto injetado independente de sua relevância. O contraste ΔC3−C1 corroborou essa leitura: sete dos doze requisitos (58,3%) converteram em C3 sem terem convertido em C1, e nenhum seguiu o caminho inverso. O teste de McNemar reportou poder estatístico insuficiente (n_discordante = 4), impossibilitando inferência.
 
 O phi4-mini e o deepseek-r1:7b registraram ΔRoute = 0,0% em todas as métricas de todas as condições. Para o phi4-mini, esse resultado combinado com o desempenho do Bloco 1 (revocação 100%) caracterizou um modelo que detectou todas as ambiguidades mas considerou nenhuma resolúvel com qualquer volume de contexto — padrão de conservadorismo na resolução independente do insumo. Para o deepseek-r1:7b, os cinco falsos negativos em C0 reduziram a base de análise para sete requisitos, todos roteados para `signaling` e nenhum convertido por C1, C2 ou C3.
 
-O llama3.1-8b apresentou particularidade relevante: 27,3% dos requisitos foram roteados para `structured` já em C0, sem qualquer contexto adicional. Esse patamar elevado de resolução autônoma comprimiu os deltas observados em condições superiores, de modo que o ΔC2−C0 de 54,5% subestima a sensibilidade real do modelo ao contexto: os requisitos que o modelo não resolveu em C0 foram convertidos em C2 na proporção esperada, mas a base de cálculo era menor.
+O llama3.1-8b apresentou particularidade relevante: cinco dos onze requisitos ambíguos (45,5%) foram roteados para `structured` já em C0, sem qualquer contexto adicional. Esse patamar elevado de resolução autônoma comprimiu os deltas observados em condições superiores, de modo que o ΔC2−C0 de 54,5% subestima a sensibilidade real do modelo ao contexto: todos os seis requisitos que o modelo não resolveu em C0 foram convertidos em C2, mas a base de cálculo incluiu também os cinco que já estavam resolvidos.
 
 Esses resultados, tomados como indício exploratório, são compatíveis com a observação de Bashir et al. (2025) de que estratégias de prompting com informação contextual elevam o desempenho de LLMs na tarefa de detecção de ambiguidades industriais — embora o mecanismo seja distinto: enquanto Bashir et al. injetaram exemplos de requisitos rotulados como demonstrações (aprendizado em contexto de poucos exemplos), o presente pipeline injetou documentação de domínio diretamente relacionada ao requisito analisado.
 
@@ -84,7 +86,7 @@ A heterogeneidade da resposta — nominalmente significativa apenas nos modelos 
 
 A não confirmação de H1 não equivale, contudo, à ausência de efeito. Em nenhum modelo o saldo de pares discordantes favoreceu C3 sobre C2: foi positivo nos dois qwen (+6 e +5), no mistral-7b e no llama3.1-8b (+1 em ambos) e nulo nos demais. Esse padrão é compatível com um efeito real da relevância, mas os dados não têm poder para sustentá-lo: com no máximo 15 pares por modelo e no máximo seis discordantes, apenas diferenças extremas poderiam superar o limiar corrigido, e a correção de Bonferroni sobre sete testes é conservadora. Nos dois modelos em que o efeito nominal foi mais forte, o ganho concentrou-se no estágio C1→C2, o que aponta a injeção de conteúdo relevante, e não de contexto periférico, como o fator decisivo.
 
-Dois modelos não permitiram testar a hipótese. O phi4-mini e o deepseek-r1:7b não converteram nenhuma rota em nenhuma condição, de modo que a ausência de diferença entre C2 e C3 decorre de o pipeline nunca ter alcançado a rota `structured` com esses modelos, e não de eles ignorarem a relevância do contexto. No gemma3-4b, a conversão foi igual com contexto relevante e irrelevante (75,0%), o que sugere sensibilidade à presença de texto específico injetado, independentemente de sua relação com o fragmento ambíguo.
+Dois modelos não permitiram testar a hipótese. O phi4-mini e o deepseek-r1:7b não converteram nenhuma rota em nenhuma condição, de modo que a ausência de diferença entre C2 e C3 decorre de o pipeline nunca ter alcançado a rota `structured` com esses modelos, e não de eles ignorarem a relevância do contexto. No gemma3-4b, a conversão foi igual com contexto relevante e irrelevante (75,0%), o que, somado ao ΔC3−C1 de 58,3%, indica sensibilidade à presença de texto específico injetado, independentemente de sua relação com o fragmento ambíguo.
 
 Uma limitação central da interpretação é que o Bloco 2 mede a rota adotada, e não a correção da resolução: não havia gabarito de rota esperada por condição. Assim, a conversão em C3 pode indicar resolução indevida, isto é, o Agente 2 aceitar contexto irrelevante como evidência, e não apenas sensibilidade legítima ao contexto. Estudos futuros com um corpus maior e um gabarito da resolução esperada poderiam distinguir a conversão correta da indevida e conferir poder estatístico à comparação entre C2 e C3.
 
@@ -106,7 +108,7 @@ O Bloco 3 avaliou se o tipo de ambiguidade detectado pelo Agente 1 coincidiu com
 
 *Fonte: Resultados originais da pesquisa*
 
-![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-23T14-07/charts/taxonomy_model_heatmap.png)
+![](../Orchestrator/analysis/outputs/evaluation/eval__2026-09-24T16-21/charts/taxonomy_model_heatmap.png)
 
 Figura 4. Acurácia de classificação de tipo de ambiguidade por tipo da taxonomia de Pohl e modelo em C0
 
