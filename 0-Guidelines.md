@@ -35,17 +35,30 @@
 
 ### Referências válidas para uso no texto
 - Almeida et al. (2025)
-- Andrade (2026) — repositório do pipeline *(a ser adicionado)*
+- Andrade (2026) — repositório do pipeline
+- Atil et al. (2024)
 - Bashir et al. (2025)
 - Cheng et al. (2025)
+- Efron; Hastie (2016)
+- Gil (2018)
 - Gulli (2025)
 - Guo et al. (2025)
+- Holm (1979)
 - Kamsties et al. (2001)
+- Kerlinger (1980)
+- Nair; Anish (2025)
+- Ollama (2026)
+- Ouyang et al. (2024)
 - Pohl (2025)
 - Schut; Gal; Farquhar (2025)
+- Shefa et al. (2026)
+- Sokolova; Lapalme (2009)
 - Sommerville (2016)
+- Unterbusch; Vogelsang (2026)
 - Veizaga et al. (2024)
+- Vogelsang et al. (2025)
 - Wiegers; Beatty (2013)
+- Wohlin et al. (2012)
 - Zadenoori et al. (2025)
 
 **Qualquer outra referência deve ser adicionada antes de ser citada no texto.**

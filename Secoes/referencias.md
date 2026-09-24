@@ -18,9 +18,15 @@ Gulli, A. 2025. Agentic design patterns: a hands-on guide to building intelligen
 
 Guo, Y.; Conia, S.; Zhou, Z.; Li, M.; Potdar, S.; Xiao, H. 2025. Do large language models have an English accent? Evaluating and improving the naturalness of multilingual LLMs. In: Annual Meeting of the Association for Computational Linguistics (ACL), 2025, Viena, Áustria. Anais... p. 3823-3838.
 
+Holm, S. 1979. A simple sequentially rejective multiple test procedure. Scandinavian Journal of Statistics, 6: 65-70.
+
 Kamsties, E.; Berry, D. M.; Paech, B. 2001. Detecting ambiguities in requirements documents using inspections. In: Workshop on Inspection in Software Engineering (WISE'01), 2001, Paris, França. Anais... p. 68-80.
 
+Kerlinger, F. N. 1980. Metodologia da pesquisa em ciências sociais: um tratamento conceitual. EPU/EDUSP, São Paulo, SP, Brasil.
+
 Nair, P. P. M.; Anish, P. R. 2025. A retrieval-augmented framework for detecting and resolving pragmatic ambiguities in natural language requirements. Preprint. Disponível em: <https://arxiv.org/abs/2607.04436>. Acesso em: 23 set. 2026.
+
+Ollama. 2026. Ollama, versão 0.21.1. Disponível em: <https://ollama.com>. Acesso em: 24 set. 2026.
 
 Ouyang, S.; Zhang, J. M.; Harman, M.; Wang, M. 2024. An empirical study of the non-determinism of ChatGPT in code generation. Preprint. Disponível em: <https://arxiv.org/abs/2308.02828>. Acesso em: 24 set. 2026.
 
@@ -29,6 +35,8 @@ Pohl, K. 2025. Requirements engineering: fundamentals, principles, and technique
 Schut, L.; Gal, Y.; Farquhar, S. 2025. Do multilingual LLMs think in English? In: International Conference on Learning Representations (ICLR), 2025, Singapura. Anais...
 
 Shefa, J.; Salado, A.; Wach, P.; Topcu, T. G. 2026. Two truths and a lie? Benchmarking off-the-shelf LLMs for requirements quality assessment: performance, false alarms, and misses. Preprint. Disponível em: <https://arxiv.org/abs/2609.03230>. Acesso em: 23 set. 2026.
+
+Sokolova, M.; Lapalme, G. 2009. A systematic analysis of performance measures for classification tasks. Information Processing & Management, 45(4): 427-437.
 
 Sommerville, I. 2016. Software engineering. 10ed. Pearson, Boston, MA, EUA.
 
@@ -41,5 +49,7 @@ Virissimo, D. B. 2014. Extensão do WRSPM para artefatos de requisitos em linha 
 Vogelsang, A.; Korn, A.; Broccia, G.; Ferrari, A.; Fischbach, J.; Arora, C. 2025. On the impact of requirements smells in prompts: the case of automated traceability. Preprint. Disponível em: <https://arxiv.org/abs/2501.04810>. Acesso em: 24 set. 2026.
 
 Wiegers, K.; Beatty, J. 2013. Software requirements. 3ed. Microsoft Press, Redmond, WA, EUA.
+
+Wohlin, C.; Runeson, P.; Höst, M.; Ohlsson, M. C.; Regnell, B.; Wesslén, A. 2012. Experimentation in software engineering. Springer, Berlin, Alemanha.
 
 Zadenoori, M. A.; Zhao, L.; Alhoshan, W.; Ferrari, A. 2025. Automatic prompt engineering: the case of requirements classification. In: International Working Conference on Requirements Engineering: Foundation for Software Quality (REFSQ), 2025, Barcelona, Espanha. Anais... p. 217-225.
