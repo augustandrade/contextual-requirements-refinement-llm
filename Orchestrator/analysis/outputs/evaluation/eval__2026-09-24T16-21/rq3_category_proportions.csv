@@ -1,0 +1,22 @@
+run,model,category,correct,total,proportion
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,qwen3.5-4b,Cat-02 Linguística,2,3,0.6667
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,qwen3.5-4b,Cat-03 Domínio,2,3,0.6667
+run_003__qwen3.5-4b__2026-09-22T15-32__main-v1,qwen3.5-4b,Cat-04 Vaguidade,2,3,0.6667
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,qwen3.5-9b,Cat-02 Linguística,2,3,0.6667
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,qwen3.5-9b,Cat-03 Domínio,1,3,0.3333
+run_004__qwen3.5-9b__2026-09-22T15-59__main-v1,qwen3.5-9b,Cat-04 Vaguidade,2,3,0.6667
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,gemma3-4b,Cat-02 Linguística,1,3,0.3333
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,gemma3-4b,Cat-03 Domínio,0,3,0.0
+run_005__gemma3-4b__2026-09-22T17-24__main-v1,gemma3-4b,Cat-04 Vaguidade,2,3,0.6667
+run_006__mistral-7b__2026-09-22T17-46__main-v1,mistral-7b,Cat-02 Linguística,2,3,0.6667
+run_006__mistral-7b__2026-09-22T17-46__main-v1,mistral-7b,Cat-03 Domínio,0,3,0.0
+run_006__mistral-7b__2026-09-22T17-46__main-v1,mistral-7b,Cat-04 Vaguidade,0,3,0.0
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,llama3.1-8b,Cat-02 Linguística,2,3,0.6667
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,llama3.1-8b,Cat-03 Domínio,1,3,0.3333
+run_007__llama3.1-8b__2026-09-23T08-26__main-v1,llama3.1-8b,Cat-04 Vaguidade,0,3,0.0
+run_008__phi4-mini__2026-09-23T11-12__main-v1,phi4-mini,Cat-02 Linguística,3,3,1.0
+run_008__phi4-mini__2026-09-23T11-12__main-v1,phi4-mini,Cat-03 Domínio,1,3,0.3333
+run_008__phi4-mini__2026-09-23T11-12__main-v1,phi4-mini,Cat-04 Vaguidade,1,3,0.3333
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,deepseek-r1-7b,Cat-02 Linguística,2,3,0.6667
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,deepseek-r1-7b,Cat-03 Domínio,1,3,0.3333
+run_009__deepseek-r1-7b__2026-09-23T11-20__main-v1,deepseek-r1-7b,Cat-04 Vaguidade,0,3,0.0
