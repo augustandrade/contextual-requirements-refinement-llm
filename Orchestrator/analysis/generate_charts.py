@@ -521,11 +521,17 @@ def _stacked_lift(ax, x, width, pos, zero, neg, label_pos, label_zero, label_neg
                     str(val), ha='center', va='center', fontsize=9,
                     color='white', fontweight='bold')
     ax.set_ylim(0, y_max)
-    ax.yaxis.grid(True, linestyle='--', alpha=0.35)
     ax.set_axisbelow(True)
 
 
-def chart_context_lift(df: pd.DataFrame, df_lift: pd.DataFrame, out_dir: Path):
+def _open_axes(ax, letter: str):
+    """Sem grade nem borda superior/direita; rótulo (a)–(d) no lugar do título."""
+    ax.spines[['top', 'right']].set_visible(False)
+    ax.text(-0.10, 1.04, letter, transform=ax.transAxes,
+            fontsize=12, fontweight='bold', va='bottom')
+
+
+def chart_context_lift(df_lift: pd.DataFrame, out_dir: Path):
     """Layout 2×2 — Context Sensitivity (apenas req com expected_has_ambiguity=True).
 
       (a) top-left  — Line chart: % structured por condição C0→C1→C2→C3
@@ -534,7 +540,9 @@ def chart_context_lift(df: pd.DataFrame, df_lift: pd.DataFrame, out_dir: Path):
       (d) bot-right — Delta_c2_c3: efeito puro de relevância (quando C3 presente)
 
     Narrativa: curva geral (a) → efeito agregado (b) → onde acontece (c) → é legítimo? (d)
-    Escala Y compartilhada entre (b), (c) e (d) = N req ambíguos.
+    Todos os painéis usam a mesma base da Tabela 2: os requisitos de Cat-01 a Cat-04
+    detectados em C0 (linhas de context_lift.csv), sem os falsos negativos, que não
+    são executados em C1–C3. O n de cada modelo aparece na legenda de (a).
     """
     df_amb = df_lift[df_lift['expected_has_ambiguity'].astype(str) == 'True'].copy()
 
@@ -544,8 +552,8 @@ def chart_context_lift(df: pd.DataFrame, df_lift: pd.DataFrame, out_dir: Path):
 
     runs   = sorted(df_lift['run'].unique())
     lbls   = _model_labels(runs)
-    n      = len(df_amb[df_amb['run'] == runs[0]])
-    y_max  = n * 1.18
+    n_run  = {r: len(df_amb[df_amb['run'] == r]) for r in runs}
+    y_max  = max(n_run.values()) * 1.3
     has_c3 = 'lift_c3_c0' in df_amb.columns and df_amb['lift_c3_c0'].notna().any()
 
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -556,20 +564,16 @@ def chart_context_lift(df: pd.DataFrame, df_lift: pd.DataFrame, out_dir: Path):
     width = 0.55
 
     # ── (a) Line chart — % structured nos req ambíguos por condição ──────────
-    df_amb_full = df[df['expected_has_ambiguity'].astype(str) == 'True'].copy() \
-        if 'expected_has_ambiguity' in df.columns else pd.DataFrame()
-
-    ctxs       = [c for c in CTX_ORDER if c in df_amb_full['context'].values] \
-        if not df_amb_full.empty else ['C0', 'C1', 'C2']
+    ctxs       = [c for c in CTX_ORDER if f'structured_{c.lower()}' in df_amb.columns]
     ctx_labels = {'C0': 'C0\n(sem ctx)', 'C1': 'C1\n(genérico)',
                   'C2': 'C2\n(específico)', 'C3': 'C3\n(irrelevante)'}
     x_labels   = [ctx_labels.get(c, c) for c in ctxs]
 
     for run, color, ls, mk in zip(runs, MODEL_PALETTE, MODEL_LINES, MODEL_MARKERS):
-        sub  = df_amb_full[df_amb_full['run'] == run] if not df_amb_full.empty else pd.DataFrame()
-        vals = [_pct(sub[sub['context'] == ctx]['route_structured']) for ctx in ctxs]
+        sub  = df_amb[df_amb['run'] == run]
+        vals = [_pct(sub[f'structured_{ctx.lower()}']) for ctx in ctxs]
         ax_line.plot(x_labels, vals, linestyle=ls, marker=mk, linewidth=2, color=color,
-                     label=lbls[run], markersize=7, zorder=3)
+                     label=f'{lbls[run]} (n={n_run[run]})', markersize=7, zorder=3)
         for xlbl, val in zip(x_labels, vals):
             if not math.isnan(val):
                 ax_line.annotate(f'{val:.0f}%', (xlbl, val),
@@ -580,15 +584,12 @@ def chart_context_lift(df: pd.DataFrame, df_lift: pd.DataFrame, out_dir: Path):
         ax_line.axvline(x=2.5, color='#bdbdbd', linewidth=1, linestyle='--', zorder=1)
         ax_line.text(2.6, 3, 'controle\nirrelevante', fontsize=7.5, color='#9e9e9e', va='bottom')
 
-    ax_line.set_ylim(0, 115)
-    ax_line.yaxis.grid(True, linestyle='--', alpha=0.4)
-    ax_line.set_axisbelow(True)
-    ax_line.set_ylabel('% rota structured', fontsize=10)
-    ax_line.set_title(f'Curva de comportamento por condição\n(N={n} req ambíguos por modelo)',
-                      fontsize=10, fontweight='bold')
+    ax_line.set_ylim(0, 130)
+    ax_line.set_yticks(range(0, 101, 20))
+    ax_line.set_ylabel('% de requisitos na rota structured', fontsize=10)
     handles, labels = ax_line.get_legend_handles_labels()
-    ax_line.legend(handles, labels, fontsize=8, loc='lower right',
-                   ncol=max(1, len(runs) // 4))
+    ax_line.legend(handles, labels, fontsize=8, loc='upper left', ncol=2, frameon=False)
+    _open_axes(ax_line, '(a)')
 
     # ── (b) Stacked bar — ΔRoute(C2−C0) ─────────────────────────────────────
     lift_pos  = [len(df_amb[(df_amb['run'] == r) & (df_amb['lift_c2_c0'] == 1)])  for r in runs]
@@ -596,13 +597,12 @@ def chart_context_lift(df: pd.DataFrame, df_lift: pd.DataFrame, out_dir: Path):
     lift_neg  = [len(df_amb[(df_amb['run'] == r) & (df_amb['lift_c2_c0'] == -1)]) for r in runs]
 
     _stacked_lift(ax_lift, x, width, lift_pos, lift_zero, lift_neg,
-                  'lift=+1 (resolveu)', 'lift= 0 (sem variação)', 'lift=−1 (degradação)', y_max)
-    ax_lift.set_title(f'ΔRoute(C2 − C0) — efeito total\n(N={n} req ambíguos)',
-                      fontsize=10, fontweight='bold')
+                  'converteu (+1)', 'sem variação (0)', 'reverteu (−1)', y_max)
+    _open_axes(ax_lift, '(b)')
     ax_lift.set_xticks(x)
     ax_lift.set_xticklabels([lbls[r] for r in runs], fontsize=9, rotation=15, ha='right')
     ax_lift.set_ylabel('Nº de requisitos', fontsize=10)
-    ax_lift.legend(fontsize=8.5, loc='upper right')
+    ax_lift.legend(fontsize=8.5, loc='upper right', frameon=False)
 
     # ── (c) Delta bars — ganhos por etapa ────────────────────────────────────
     width_s  = 0.35
@@ -628,46 +628,35 @@ def chart_context_lift(df: pd.DataFrame, df_lift: pd.DataFrame, out_dir: Path):
             ax_stage.text(x[i] + width_s / 2, -0.3, f'−{l12}',
                           ha='center', va='top', fontsize=8, color=LIFT_NEG_COLOR)
 
-    ax_stage.set_title(f'Ganhos por etapa — onde o contexto ajuda?\n(N={n} req ambíguos)',
-                       fontsize=10, fontweight='bold')
+    _open_axes(ax_stage, '(c)')
     ax_stage.set_xticks(x)
     ax_stage.set_xticklabels([lbls[r] for r in runs], fontsize=9, rotation=15, ha='right')
     ax_stage.set_ylabel('Nº de requisitos com ganho', fontsize=10)
     ax_stage.set_ylim(0, y_max)
-    ax_stage.yaxis.grid(True, linestyle='--', alpha=0.35)
     ax_stage.set_axisbelow(True)
-    ax_stage.legend(fontsize=8.5, loc='upper right')
+    ax_stage.legend(fontsize=8.5, loc='upper right', frameon=False)
 
     # ── (d) Delta_c2_c3 — efeito puro de relevância ──────────────────────────
     if has_c3:
         df_c3   = df_amb[df_amb['lift_c3_c0'].notna()]
         runs_c3 = [r for r in runs if len(df_c3[df_c3['run'] == r]) > 0]
         x_c3    = np.arange(len(runs_c3))
-        n_c3    = len(df_c3[df_c3['run'] == runs_c3[0]]) if runs_c3 else n
 
         rel_disc = [len(df_c3[(df_c3['run'] == r) & (df_c3['delta_c2_c3'] == 1)]) for r in runs_c3]
         rel_zero = [len(df_c3[(df_c3['run'] == r) & (df_c3['delta_c2_c3'] == 0)]) for r in runs_c3]
         rel_neg  = [len(df_c3[(df_c3['run'] == r) & (df_c3['delta_c2_c3'] == -1)]) for r in runs_c3]
 
         _stacked_lift(ax_rel, x_c3, width, rel_disc, rel_zero, rel_neg,
-                      'C2>C3 (relevância resolveu)', 'C2=C3 (sem discriminação)',
-                      'C2<C3 (irrelevante foi melhor)', y_max)
-        ax_rel.set_title(f'Δ(C2 − C3) — efeito puro de relevância\n(N={n_c3} req com C3)',
-                         fontsize=10, fontweight='bold')
+                      'C2 converteu, C3 não', 'mesma rota em C2 e C3',
+                      'C3 converteu, C2 não', y_max)
+        _open_axes(ax_rel, '(d)')
         ax_rel.set_xticks(x_c3)
         ax_rel.set_xticklabels([lbls[r] for r in runs_c3], fontsize=9, rotation=15, ha='right')
         ax_rel.set_ylabel('Nº de requisitos', fontsize=10)
-        ax_rel.legend(fontsize=8, loc='upper right')
+        ax_rel.legend(fontsize=8.5, loc='upper right', frameon=False)
     else:
         ax_rel.set_visible(False)
 
-    subtitle = ('(d) Δ(C2−C3) isola efeito puro de relevância vs. especificidade'
-                if has_c3 else '')
-    fig.suptitle(
-        'Context Sensitivity — como o contexto altera a rota do modelo\n'
-        + subtitle,
-        fontsize=11, fontweight='bold',
-    )
     plt.tight_layout()
     out_path = out_dir / 'context_lift__route_delta.png'
     fig.savefig(out_path, dpi=150, bbox_inches='tight')
@@ -733,11 +722,6 @@ def chart_heatmap(df: pd.DataFrame, out_dir: Path):
               mpatches.Patch(color=NA_COLOR,    label='N/A')]
     fig.legend(handles=legend, loc='lower center', ncol=3, fontsize=9,
                bbox_to_anchor=(0.5, -0.04))
-    fig.suptitle(
-        'D1 — Detecção de ambiguidade: req × modelo (C0 only)\n'
-        '(+) = positivo esperado  ·  (−) = negativo esperado (controle)',
-        fontsize=10, fontweight='bold',
-    )
     plt.tight_layout()
     out_path = out_dir / 'heatmap__D1_req_modelo.png'
     fig.savefig(out_path, dpi=150, bbox_inches='tight')
@@ -746,6 +730,9 @@ def chart_heatmap(df: pd.DataFrame, out_dir: Path):
 
 
 # ── DIAGNÓSTICO: Chart 7 — taxonomia de Pohl (Agente 1a) ─────────────────────
+
+_TAX_TYPE_PT = {'lexical': 'lexical', 'syntactic': 'sintático', 'semantic': 'semântico',
+                'referential': 'referencial', 'vagueness': 'vaguidade'}
 
 _TAX_EXACT_COLOR = '#2e7d32'    # verde  — todos os aceitos presentes, sem extras
 _TAX_OVER_COLOR  = '#f9a825'    # amarelo — aceito presente, mas há tipos extras
@@ -946,19 +933,14 @@ def chart_taxonomy_model_heatmap(df: pd.DataFrame, out_dir: Path):
                         fontweight='bold' if val > 0 else 'normal')
 
     ax.set_xticks(range(n_types))
-    ax.set_xticklabels(true_types, fontsize=10)
+    ax.set_xticklabels([_TAX_TYPE_PT.get(t, t) for t in true_types], fontsize=10)
     ax.set_yticks(range(n_runs))
     ax.set_yticklabels([lbls[r] for r in runs], fontsize=10)
-    ax.set_xlabel('Tipo Pohl (ground truth)', fontsize=11, labelpad=8)
+    ax.set_xlabel('Tipo de ambiguidade (taxonomia de Pohl)', fontsize=11, labelpad=8)
     ax.set_ylabel('Modelo', fontsize=11, labelpad=8)
 
     plt.colorbar(im, ax=ax, shrink=0.80, pad=0.02, label='% de acerto')
 
-    ax.set_title(
-        'Acurácia por tipo Pohl × modelo — Agente 1a\n'
-        'Padrão uniforme → problema de prompt  ·  Heterogêneo → capacidade diferente por modelo',
-        fontsize=10, fontweight='bold',
-    )
     plt.tight_layout()
     out_path = out_dir / 'taxonomy_model_heatmap.png'
     fig.savefig(out_path, dpi=150, bbox_inches='tight')
@@ -1244,7 +1226,7 @@ def main():
         df_lift = pd.read_csv(lift_path)
         if args.run:
             df_lift = df_lift[df_lift['run'].str.startswith(args.run)]
-        chart_context_lift(df, df_lift, out_dir)
+        chart_context_lift(df_lift, out_dir)
     else:
         print(f'  [WARN] context_lift.csv não encontrado — rode evaluate.py primeiro')
 

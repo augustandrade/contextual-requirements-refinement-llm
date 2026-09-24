@@ -845,7 +845,7 @@ def main():
         gc.chart_heatmap(df, charts_dir)
         # Bloco 2 — Sensibilidade ao contexto
         df_lift = pd.read_csv(eval_dir / 'context_lift.csv')
-        gc.chart_context_lift(df, df_lift, charts_dir)
+        gc.chart_context_lift(df_lift, charts_dir)
         # Bloco 3 — Taxonomia Pohl
         tax_csv = eval_dir / 'taxonomy_classification.csv'
         if tax_csv.exists():
