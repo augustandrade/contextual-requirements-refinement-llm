@@ -8,6 +8,8 @@ Atil, B.; Aykent, S.; Chittams, A.; Fu, L.; Passonneau, R. J.; Radcliffe, E.; Ra
 
 Bashir, S.; Ferrari, A.; Khan, A.; Strandberg, P. E.; Haider, Z.; Saadatmand, M.; Bohlin, M. 2025. Requirements ambiguity detection and explanation with LLMs: an industrial study. In: IEEE International Conference on Software Maintenance and Evolution (ICSME), 2025, Auckland, Nova Zelândia. Anais... p. 620-629.
 
+Brasil. Conselho Nacional de Saúde. 2016. Resolução nº 510, de 7 de abril de 2016: dispõe sobre as normas aplicáveis a pesquisas em Ciências Humanas e Sociais. Disponível em: <https://www.gov.br/conselho-nacional-de-saude/pt-br/atos-normativos/resolucoes/2016/resolucao-no-510.pdf>. Acesso em: 24 set. 2026.
+
 Cheng, H.; Husen, J. H.; Lu, Y.; Racharak, T.; Yoshioka, N.; Ubayashi, N.; Washizaki, H. 2025. Generative AI for requirements engineering: a systematic literature review. Software: Practice and Experience. no prelo.
 
 Efron, B.; Hastie, T. 2016. Computer age statistical inference: algorithms, evidence, and data science. Cambridge University Press, Cambridge, Reino Unido.

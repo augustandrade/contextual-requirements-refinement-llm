@@ -38,6 +38,7 @@
 - Andrade (2026) — repositório do pipeline
 - Atil et al. (2024)
 - Bashir et al. (2025)
+- Brasil (2016) — Resolução CNS nº 510
 - Cheng et al. (2025)
 - Efron; Hastie (2016)
 - Gil (2018)
