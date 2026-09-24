@@ -26,7 +26,7 @@ A partir dessas perguntas, foram enunciadas três hipóteses experimentais.
 
 **H2:** Se o "pipeline" operar sobre o corpus controlado, então a precisão, a revocação e o F1 serão superiores a 0,70 nas execuções em C0, e a taxa de falsos positivos sobre Cat-05 será inferior a 0,30.
 
-**H3:** Se as categorias de defeito diferirem em complexidade linguística e dependência de domínio, então Cat-03 (domínio) e Cat-04 (vaguidade) apresentarão menor taxa de acerto de tipo do que Cat-02 (linguística), na condição C0.
+**H3:** Se o "pipeline" processar requisitos de categorias de defeito distintas, então, em cada modelo, a taxa de acerto de tipo na condição C0 variará entre Cat-02 (linguística), Cat-03 (de domínio) e Cat-04 (vaguidade).
 
 Os limiares de H2 foram fixados antes da execução do experimento principal — registrados no repositório do estudo em 21 de setembro de 2026 (Andrade, 2026), um dia antes das execuções — como critério do pesquisador, e não como padrão normativo, dada a inexistência de valor de referência consolidado para a tarefa. O valor de 0,70 situou-se na faixa de desempenho reportada por estudos anteriores: Bashir et al. (2025) obtiveram F1 de até 75,8% na detecção de ambiguidade em requisitos industriais com modelos de código aberto, e Nair e Anish (2025) reportaram revocação macro-média máxima de 0,75, obtida pelo GPT-4o-mini, modelo proprietário. O limiar de 0,30 para falsos positivos correspondeu ao complemento de uma especificidade de 0,70, mantendo a simetria com os demais critérios.
 
