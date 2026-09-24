@@ -12,15 +12,17 @@ Formularam-se três perguntas de pesquisa que orientaram o delineamento experime
 
 **RQ2:** O "pipeline" distingue requisitos ambíguos de bem formados sem gerar falsos positivos, mantendo precisão, revocação, F1 e especificidade adequadas sobre um grupo de controle intencionalmente construído sem defeitos?
 
-**RQ3:** Quais categorias de defeito — estrutural, linguística, de domínio e de vaguidade — apresentam maior dificuldade de detecção e classificação pelo "pipeline", segundo a taxonomia de Pohl (2025)?
+**RQ3:** Entre as categorias de ambiguidade — linguística, de domínio e de vaguidade —, quais apresentam maior dificuldade de classificação de tipo pelo "pipeline", segundo a taxonomia de Pohl (2025)? A categoria estrutural (Cat-01) integra a detecção (RQ2), mas não a análise de tipo, pois seus defeitos não constituem tipos dessa taxonomia.
 
 A partir dessas perguntas, foram enunciadas três hipóteses experimentais.
 
-**H1:** Se o contexto injetado for semanticamente relevante para o fragmento ambíguo (condição C2), então a taxa de conversão de rota `signaling→structured` será significativamente superior à observada quando o contexto for específico, porém irrelevante (condição C3).
+**H1:** Se o contexto injetado for semanticamente relevante para o fragmento ambíguo (condição C2), então a taxa de conversão de rota `signaling→structured` será significativamente superior à observada quando o contexto for específico, porém irrelevante (condição C3), segundo teste exato binomial unilateral sobre os pares discordantes de cada modelo (α = 0,05).
 
 **H2:** Se o "pipeline" operar sobre o corpus controlado, então a precisão, a revocação e o F1 serão superiores a 0,70 nas execuções em C0, e a taxa de falsos positivos sobre Cat-05 será inferior a 0,30.
 
 **H3:** Se as categorias de defeito diferirem em complexidade linguística e dependência de domínio, então Cat-03 (domínio) e Cat-04 (vaguidade) apresentarão menor taxa de acerto de tipo do que Cat-02 (linguística), na condição C0.
+
+Os limiares de H2 foram fixados antes da execução do experimento como critério do pesquisador, e não como padrão normativo, dada a inexistência de valor de referência consolidado para a tarefa. O valor de 0,70 situou-se na faixa de desempenho reportada por estudos anteriores: Bashir et al. (2025) obtiveram F1 de até 75,8% na detecção de ambiguidade em requisitos industriais com modelos de código aberto, e Nair e Anish (2025) reportaram revocação macro-média máxima de 0,75, obtida pelo GPT-4o-mini, modelo proprietário. O limiar de 0,30 para falsos positivos corresponde ao complemento de uma especificidade de 0,70, mantendo a simetria com os demais critérios.
 
 **Operacionalização das variáveis**
 
@@ -28,4 +30,4 @@ A variável independente (VI) correspondeu à condição de contexto experimenta
 
 Três variáveis dependentes foram mensuradas. A primeira (VD1) correspondeu à rota do "pipeline" — categórica binária: `structured` ou `signaling` —, derivada automaticamente do campo `routing_decision` do artefato `final_output.json`. A segunda (VD2) compreendeu as métricas de detecção — precisão, revocação, F1 e especificidade —, calculadas pelo script `evaluate.py` a partir das classificações TP, FP, FN e TN de cada execução em C0. A terceira (VD3) registrou o acerto de tipo de ambiguidade — variável binária por instância —, verificada pela presença de ao menos um dos tipos detectados pelo Agente 1 entre os tipos aceitos declarados no corpus (`taxonomy_accepted_types`), nas execuções em C0 de Cat-02, Cat-03 e Cat-04.
 
-As variáveis controladas incluíram o texto do requisito (fixo por instância em todas as condições), a temperatura dos modelos (0,0 em todos os casos), o parâmetro `think: false` e o esquema YAML dos "prompts" de sistema. As variáveis não controladas compreenderam as diferenças arquiteturais entre os sete modelos avaliados e possíveis variações de latência introduzidas pelo servidor Ollama — reconhecidas como limitação do estudo.
+As variáveis controladas incluíram o texto do requisito (fixo por instância em todas as condições), a temperatura dos modelos (0,0 em todos os casos), o parâmetro `think: false` e o esquema YAML dos "prompts" de sistema. Os sete modelos avaliados foram tratados como fator de comparação, e não como variável controlada: suas diferenças arquiteturais, de tamanho e de treinamento não foram isoladas e limitam a atribuição de diferenças de desempenho a características específicas dos modelos. Reconhece-se ainda, como limitação, que a temperatura 0,0 não garante determinismo bit a bit em execução por GPU.
